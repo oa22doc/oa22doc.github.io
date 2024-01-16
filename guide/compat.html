@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1><a name="pagetop"></a>Compatibility for OpenAccess Applications and Data </h1>
+<!--DEVELOPMENT ('X' Release) BRANCH VERSION-->
+<!--DEVELOPMENT ('X' Release) BRANCH VERSION-->
+<!--DEVELOPMENT ('X' Release) BRANCH VERSION-->
+ <hr>
+<p>OpenAccess provides specific levels of compatibility when future releases occur. Two types of compatibility are provided: </p>
+ <ul>
+   <li>API compatibility&#8212;Allowing an old application to run on new OpenAccess releases without changing the code or recompiling</li>
+   <li>Data  compatibility&#8212;Addresses whether or not the databases written by applications built on one version of OpenAccess can be read or modified by applications using a different version of OpenAccess. In particular, newer OpenAccess releases can include  features that have associated data that is not understood by previous versions of OpenAccess. OpenAccess supports <em>feature-based data compatibility</em>, which means that new features can be added to OpenAccess in a way that continues to allow newer releases of OpenAccess to be used by older applications. </li>
+ </ul>
+ <h2>API Compatibility</h2>
+ <p>Among the minor releases of OpenAccess 2.2, for example, between 2.2.1 and 2.2.2, OpenAccess provides drop-in compatibility for applications. This means that a new version of the OpenAccess shared libraries can be used by an application that was  using a previous version of the shared libraries. However, this is only true if the application limits its calls to the official public API provided by OpenAccess. </p>
+ <p><strong>Note: </strong>Drop-in compatibility is not provided for the Windows platform.</p>
+ <h3><a name="official_api"></a>Official OpenAccess Public API </h3>
+ <p>The complete public API is documented in the <a href="../classes.html">OpenAccess API List of Classes</a>. By navigating the classes and functions that are available from these pages, you have access to information about the official public API. Any APIs not listed on these pages are not part of the official public API and may change between minor releases. In particular, the following APIs are not subject to compatibility guarantees:</p>
+ <ul>
+   <li>Private functions that are part of the OpenAccess implementation</li>
+   <li>Plug-in interfaces</li>
+   <li>Interfaces used within the OpenAccess translators</li>
+ </ul>
+ <p>Many of the above interfaces are allowed to change because new versions of the software defining these interfaces and new versions using these interfaces are always released together. </p>
+ <p>For the translators, the reusable part of the implementation is released as a static library so that applications can control the version of the library to which they link. </p>
+ <p>There are some classes and functions   included in the OpenAccess public header files that are <em>not</em> documented in the <em>OpenAccess  List of API Classes</em>. These classes and functions are not part of the official API. They are subject to change and should not be used by applications. (Classes and functions that fit into this category were typically added to simplify the structure and relationships of the public C++ classes.)</p>
+ <h3><a name="api_compat"></a>Checking API Compatibility</h3>
+ <p>OpenAccess provides a mechanism to check for release compatibility between an application and the OpenAccess shared libraries on which it runs. </p>
+ <p>Whenever new functions are added to the official public API, the oacAPIMinorRevNumber number is incremented. For example, if the current oacAPIMinorRevNumber is 4 and new functions are added, the oacAPIMinorRevNumber is incremented to 5. This means that </p>
+ <ul>
+   <li>Applications compiled with the header files from an OpenAccess implementation with oacAPIMinorRevNumber 5 or later cannot be used with OpenAccess shared libraries created from an OpenAccess release with oacAPIMinorRevNumber 4 or earlier. </li>
+   <li>Applications compiled with an implementation with  oacAPIMinorRevNumber 4 or earlier will continue to run unchanged with the shared libraries in a subsequent release.</li>
+ </ul>
+ <p>The oacAPIMajorRevNumber tracks major new OpenAccess versions, such as a change from OpenAccess 2.2 to OpenAccess 3.0.&nbsp; This number must be the same for an application and the OpenAccess shared libraries on which it runs. </p>
+ <p><strong>Note:</strong> The oacAPIMajorRevNumber and oacAPIMinorRevNumber do not come directly from other version numbers such as &ldquo;2.2&rdquo;. The API major revision number for 2.2 releases is 4. The API minor revision number is incremented for new releases in the 2.2 stream as new functions and classes are added to the API. </p>
+ <p>If your application uses the design database, use the <a href="../design/oaDesignDBTypes_8h.html#oaDesignInit">oaDesignInit</a>  function to check for API compatibility. This function automatically calls the oaTechInit(), oaDMInit(), and oaBaseInit() lower-level initialization function on which it depends. Initialization routines can be called multiple times, but initialization is performed the first time only. </p>
+ <pre><span class="style2">    </span>void oaDesignInit(oaUInt4&nbsp; apiMajorRev,
+                      oaUInt4&nbsp; apiMinorRev,
+                      oaUInt4  dataModelRev
+                      )</pre>
+ <p>The version numbers compiled into the application&rsquo;s initialization call will be compared to the version numbers built into the OpenAccess runtime libraries each time the call is made. </p>
+ <ul>
+   <li>The apiMajorRev argument should be set to oacAPIMajorRevNumber to pick up the major revision number of the current OpenAccess software. </li>
+   <li>The&nbsp; apiMinorRev argument should be set to oacAPIMinorRevNumber to pick up the minor revision number of the current OpenAccess software. </li>
+   <li>The dataModelRev argument is related to data compatibility and is explained in <a href="#fbc">Feature-Based Data Compatibility</a> below. This number indicates the version of the OpenAccess data model that the application supports. </li>
+</ul>
+ <p>For example, the following example shows an init function picking up the current OpenAccess major and minor version numbers and specifying a dataModelRev of 1.</p>
+ <pre>oaDesignInit(oacAPIMajorRevNumber, oacAPIMinorRevNumber, 1);</pre>
+ <p>The apiMajorRev and apiMinorRev arguments cause the function to throw the oacInvalidAPIRev exception  if the OpenAccess implementation present at run time is not compatible with the version used at compile time. </p>
+ <p>For  example, if you attempt to use an application compiled against the headers in an implementation with the minor revision number of 7 with the shared libraries from an implementation with the minor revision of 4, the following error results and OpenAccess cannot be used in the current process. </p>
+ <pre>Requested minor API version 7 is newer than the minor API version 4 of the shared libraries.</pre>
+ <p>There is no API compatibility between OpenAccess releases in which the main version number  (apiMajorRev) changes. For example, a potential future release of OpenAccess such as 3.0 might increment the major version number, which would mean that drop-in compatibility with 2.2 was not provided. Note that no such major version change is planned at this time. </p>
+ <p>You can retrieve version information for the OpenAccess shared libraries and the application compiled against OpenAccess with the <a href="../base/classoaBuildInfo.html">oaBuildInfo</a> class. </p>
+ <h2><a name="fbc"></a>Feature-Based  Data Compatibility</h2>
+ <p>OpenAccess adds new kinds of data to the data model as newer versions are released. For example, OpenAccess might add new kinds of figures, or it might add the ability to reference more than one technology database from a given design database. Each new kind of data added to the data model is called a <em>feature</em>. When a database contains one or more instances of the new kind of data, then it is using that feature. In many cases, older applications will not be able to use databases that have  new features. </p>
+ <p>OpenAccess includes the infrastructure to support feature-based data compatibility, which means that OpenAccess has the ability to control the access that an application has to an OpenAccess database based on </p>
+ <ul>
+   <li>The version of OpenAccess that the application supports </li>
+   <li> The new features  used in that database</li>
+ </ul>
+ <p>An application can specify the version of the OpenAccess data model that is supports by using an initialization function that takes a dataModelRev argument. For example:</p>
+ <pre>void oaDesignInit(oaUInt4     apiMajorRev,
+                  oaUInt4     apiMinorRev,
+                  oaUInt4     dataModelRev
+                  )  </pre>
+ <p>An application might specify a lower dataModelRev in the oaDesignInit() function to indicate that it does not yet support a new feature, such as incremental technology databases, which is defined in the OpenAccess shared libraries with a higher dataModelRev than the application is building against. The application can call these init functions multiple times, but the dataModelRev numbers specified in those calls must be consistent or OpenAccess  throws an exception. </p>
+ <p>When an application increments its dataModelRev, it is indicating support for new features. The application must support all features in that dataModelRev (as well as all features in previous dataModelRevs). For information about features included in each dataModelRev, refer to <a href="../../relnotes/feature_table.html">Features by Data Model</a>.</p>
+ <p>Applications should use the new init functions that take the dataModelRev argument because the older versions of these functions (that do not take the dataModelRev argument) are considered deprecated. For applications that use the new init functions, all calls to the init functions must specify the same dataModelRev, or OpenAccess will throw an exception. For applications that continue calling the older versions, OpenAccess will infer the dataModelRev argument to be the current version (oacDataModelRevNumber) in the kit the application was compiled against. If there are differences between the inferred data model revisions between multiple components of the same application, OpenAccess chooses the highest dataModelRev of the application as a whole. If an application uses this approach, it is specifying that OpenAccess should tolerate possible data model revision mismatches between its components. </p>
+ <p>If an application contains a mixture of calls to the old and new init functions, OpenAccess will not issue an exception if the inferred dataModelRev numbers are inconsistent with the explicitly specified dataModelRev numbers. Instead, OpenAccess chooses the explicitly-specified dataModelRev of the new init function, even if it is lower than an implicitly specified dataModelRev from a deprecated init function. </p>
+ <p>OpenAccess is very conservative about allowing access to new features. The intended use model is as follows: </p>
+ <ul>
+   <li>A  new version of OpenAccess with new features is released </li>
+   <li>Applications  begin supporting those new features</li>
+   <li>The new features can be used in a flow only when all the applications in the flow support the new features </li>
+ </ul>
+ <p>With feature-based compatibility, OpenAccess can </p>
+ <ol>
+   <li>Prevent an application from opening a database for read. If the application is built on an older OpenAccess release and might not correctly interpret the data model for the database containing the new feature, OpenAccess prevents the application from opening that database in any mode, and an oacDataNotCompatibleOnOpen exception is thrown.<br>
+     <br>
+     For example, if OpenAccess added a new kind of shape, then an application that only supports the older shapes could misunderstand the design geometry. So, an application compiled before the new shape was introduced is not allowed to read databases containing the new shape. <br>
+     <br>
+   </li>
+   <li>Prevent an application from editing a database. If the application is built on an older OpenAccess release and cannot edit a database containing the new feature without corrupting the database, the application is not allowed to open or reopen the database in append mode, and an oacDataNotCompatibleOnOpenInEditableMode exception is thrown.<br>
+     <br>
+     In this case, the newer data is purely additional data, but the application was introduced before the new data was added and will not be able to correctly maintain the data. The application can read the database, but not edit it. <br>
+       <br>
+   </li>
+   <li>Prevent an application from getting into a situation in which saving a database results in data loss. If the application is built on an older OpenAccess release and cannot save a database containing the new feature without losing data, the application is not allowed to open or reopen the database in append mode, and an oacDataNotCompatibleOnOpenInAppendMode exception is thrown.<br>
+     <br>
+     In this case, the newer data is purely additional data and OpenAccess will allow the application to read the data, but not  edit and save the data.<br>
+     <br>
+      If the application can tolerate losing the new data when saving the database, it can open or reopen the database in &lsquo;A&rsquo; mode, which is an override mode:<br>
+     <br>
+     <code>oaDesign/oaTech/oaWafer::open(mode = 'A'); <br>
+     oaDesign/oaTech/oaWafer::reopen(mode = 'A');</code><br>
+     <br>
+     For example, if OpenAccess added timing constraints to the design connectivity, this would not interfere with an application's ability to read the rest of the data in the design. However, an application using an older version of OpenAccess would not be able to save timing constraints. If the application opens the database in the override mode, then saves the database, the timing constraint data is lost. <br>
+     <br>
+   There is no exception when an application opens the database in &lsquo;r&rsquo; mode and then call saveAs()<strong>.</strong></li>
+ </ol>
+ <p>For example, an application built on OpenAccess might provide an exception message such as the following for the first case above:</p>
+ <pre>Design database contains features defined in OpenAccess release p038 and cannot be opened by    <br>software that supports OpenAccess release p024. </pre>
+ <p>In many cases, the operations that OpenAccess can perform on new data depends on how the data is referenced in the database. For example, consider the figGroup feature. If an application simply creates a figGroup, an application that uses an earlier version of OpenAccess that doesn't support figGroups will not be able to save the data without losing the figGroup. However, if an application includes a figGroup as part of an oaGroup, then an earlier application cannot read the data at all. </p>
+ <p><strong>Note</strong>: The operations for feature-based data compatibility also apply to the DMData databases for lib, cell, view, and cellView properties. </p>
+ <h4>Detecting the Data Model Revision and  Features for Databases</h4>
+ <p>OpenAccess  provides functions for determining which  features are present in a database loaded in memory. An application can call one of the following functions, which return an array of oaFeature object pointers. The application can  iterate through the array to get the ID for each feature present. Each feature ID corresponds to an <a href="../base/oaFeature_8h.html">oaFeatureIDEnum</a> value. </p>
+ <ul>
+   <li><a href="../dm/classoaDMData.html#oaDMData::getFeatures">oaDMData::getFeatures</a></li>
+   <li><a href="../design/classoaDesign.html#oaDesign::getFeatures">oaDesign::getFeatures</a></li>
+   <li><a href="../tech/classoaTech.html#oaTech::getFeatures">oaTech::getFeatures</a></li>
+   <li><a href="../wafer/classoaWafer.html#oaWafer::getFeatures">oaWafer::getFeatures</a></li>
+ </ul>
+ <p>The getFeatures functions above also return the minimum data model revision of the database based on the features it includes.</p>
+ <p>OpenAccess also provides an <a href="../base/classoaFeature.html#oaFeature::getDataModelRev">oaFeature:getDataModelRev</a> function to get the data model revision number for a particular feature. </p>
+ <h3>Compatibility Exceptions </h3>
+ <p>The <a href="../base/classoaCompatibilityError.html">oaCompatibilityError</a> class, which derives from the oaException class, represents the exceptions that OpenAccess throws when it detects features in a database that are not supported by the version of  OpenAccess  the application is running against. </p>
+ <p>Applications should catch oaCompatibilityErrors on operations that open OpenAccess databases. This should be handled separately from other oaExceptions. For example:</p>
+ <pre>
+try {
+     oaDesign::open(...);
+} 
+
+
+catch (oaCompatibilityError &error) {
+}
+
+catch (oaException   &error) {
+}
+</pre>
+ <p><strong>Note: </strong>The most common compatibility exceptions were described in the previous section. </p>
+<p>The <a href="../base/classoaFeature.html">oaFeature</a> class contains the information about the type of data in a database that might prevent an older application from opening it. An oaFeature is a session object that categorizes and gives names for new types of data in OpenAccess databases. </p>
+<h3>Retrieving Compatibility Error Information </h3>
+<p>After catching a compatibility error, an application can retrieve information about the error by getting its error message. Additional functions for getting information about the compatibility error are also available.</p>
+<table border="0" cellpadding="0" cellspacing="8" width="">
+  <tbody>
+    <tr valign="top">
+      <td width="460"><strong>Function</strong></td>
+      <td width="373"><strong>Description</strong></td>
+    </tr>
+    <tr valign="top">
+      <td><pre>const oaString &oaCompatibilityError::getMsg();</pre></td>
+      <td>Returns the string message for this exception. </td>
+    </tr>
+    <tr valign="top">
+      <td><pre>const oaFeatureArray &getFeatures() const;</pre></td>
+      <td>Returns the array of features that caused this compatibility exception.</td>
+    </tr>
+    <tr valign="top">
+      <td><pre>const oaString &amp;getAppBuildName() const;</pre></td>
+      <td>Returns the name of the OpenAccess build against which the application is built, such as 2.2-p032.</td>
+    </tr>
+    <tr valign="top">
+      <td><pre>const oaString &amp;getKitBuildName() const;</pre></td>
+      <td>Returns the name of the OpenAccess kit  with which the application is running, such as 2.2-p032.</td>
+    </tr>
+    <tr valign="top">
+      <td><pre>const oaString &amp;getDataModelBuildName() const;</pre></td>
+      <td>Returns the name of the earliest OpenAccess build that supports the data model for the new data, such as 2.2-p032.</td>
+    </tr>
+    <tr valign="top">
+      <td><pre>oaUInt4  getAppDataModelRev() const;</pre></td>
+      <td> Returns data model revision of the database.</td>
+    </tr>
+    <tr valign="top">
+      <td><pre>oaUInt4  getKitDataModelRev() const; </pre></td>
+      <td>Returns the data model revision that the OpenAccess shared library supports. 
+
+ 
+
+</td>
+    </tr>
+    <tr valign="top">
+      <td><pre>oaUInt4  getDBDataModelRev() const; </pre></td>
+      <td>  Returns the database data model revision that triggers this error. 
+
+ </td>
+    </tr>
+  </tbody>
+</table>
+<p>When an application catches a compatibility error, it means that there are new features in the database that the application does not support or understand. This can be the case if </p>
+<ol>
+  <li>The application is built against an older release of OpenAccess that does not support the new 
+    
+  feature.</li>
+  <li>The OpenAccess shared libraries that this application is running with are old and do not support the new 
+    
+              feature. </li>
+</ol>
+<p>When compatibility errors occur, refer to the <a href="../../relnotes/feature_table.html">Features by Data Model</a> for information about the new features available in OpenAccess releases. For the second case above, the application can  advise  users to drop-in a later 
+  
+OpenAccess kit that is drop-in compatible with that application. </p>
+<h3><strong>Feature-Based Compatibility</strong> API Programming Example</h3>
+<p>OpenAccess provides API programming examples, which include an example that demonstrates how feature-based compatibility is used. Refer to the FeatureBasedCompatibility example in <a href="apipkgs.html#examples"> API Programming Examples</a> for more information. </p>
+<h2><a name="transDataModel"></a>Specifying a   DataModelRev when Importing Data into a Flow </h2>
+<p>All applications in a flow must be capable of supporting the highest data model used in that flow. OpenAccess provides several mechanism to support this when importing data into your flow using OpenAccess translators. </p>
+<ul>
+  <li> You can create a text file containing the data model you want to use and save it as <code>OA.DATAMODEL</code> to the data directory of your OpenAccess installation hierarchy. The content of the file is a single numeric value.<br>
+      <br>
+  </li>
+  <li>You can use the <code>OA_DATAMODEL</code> environment variable to specify the highest data model  supported by your flow. For example, you can set the environment variable as follows to indicate that your flow does not yet support the new features in data model 4:<br>
+      <br>
+      <code>OA_DATAMODEL 3 </code> <br>
+      <br>
+      <strong>Note:</strong>The features in data model 4 are described in the <a href="../../relnotes/feature_table.html">Features by Data Model</a>.<br>
+      <br>
+  </li>
+  <li>The <code>strm2oa</code>, <code>lef2oa</code>, and <code>def2oa</code> translators have a <code>-dataModel</code> option that lets you specify the data model used when translating data into OpenAccess. </li>
+</ul>
+<p>The <code>OA_DATAMODEL</code> environment variable overrides a value set in the <code>OA.DATAMODEL</code> file. In addition, the individual <code>-dataModel</code> translator options override the value set by either the environment variable or an <code>OA.DATAMODEL</code> file.</p>
+<p>If you use the <code>OA.DATAMODEL</code> file or the <code>OA_DATAMODEL</code> environment variable  to specify the highest data model supported by your flow, the translators default to this value when importing data into OpenAccess. </p>
+<p>When reading data into OpenAccess, the translators adjust their output based on the specified data model. For example, if data model 1 is specified (by any of the three mechanisms above), and the design data to be imported contains new constraints from data model 2, those constraints will either be saved as properties instead of as OpenAccess constraints or dropped. For more information about how data is handled in such situations, refer to the mapping documentation for the translator being used.</p>
+<p>For information about the correspondence between the data model value, the OpenAccess version, and the supported features, refer to the <a href="../../relnotes/feature_table.html">Features by Data Model</a>. </p>
+<p> </p>
+<p><a
+href="#pagetop">Return to top of page</a></p>
+    <p align=center style='text-align:center;'><img src="images/compatFooter.gif" width="198" height="22"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+</li>
+</body>
+</html>

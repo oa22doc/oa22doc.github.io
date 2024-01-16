@@ -1,0 +1,18 @@
+#navigation {
+  display:none;
+}
+.noprint {
+  display:none;
+}
+body {
+  font-family:Times New Roman;
+  font-size:12pt;
+}
+A, A:link, A:visited {
+  color:#0000ff;
+  text-decoration: none;
+}
+A:hover {
+  color:#0000ff;
+  text-decoration: none;
+}

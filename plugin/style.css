@@ -1,0 +1,254 @@
+/* Set page background to white */
+body {
+background: #ffffff;
+color: #000;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 85%;
+}
+
+/* Inline tag for code examples */ 
+code .code {
+font-family: Courier, monospace;
+font-size: 85%;
+}
+
+code.red {
+color: #cc6666
+}
+
+/* Default font for page is sans-serif */
+div p td h1 h2 h3 li {
+font-family:Arial,Helvetica,sans-serif;
+}
+
+/* General purpose center alignment */
+.center {
+text-align: center;
+}
+
+/* General purpose block indent */
+.indent {
+margin-left: 4%
+}
+
+/* Headings (default for h1 is centered */
+h1 {
+font-size: 155%;
+color: #000099;
+background: #eeeeee;
+}
+h2 {
+font-size: 135%;
+color: #000099;
+
+background: #eeeeee;
+}
+
+h3 {
+font-size: 115%;
+color: #000099;
+
+font-style:italic;
+background: #ffffcc;
+}
+
+h4 {
+font-size: 80%;
+font-style: italic;
+color: #000099;
+font-variant:small-caps;
+background: #eeeeee;
+}
+
+/* Headings (default for h1 is centered */
+h1.topicSyntax {
+font-size: 155%;
+color: #000099;
+background: #eeeeee;
+}
+h2.topicSyntax {
+font-size: 135%;
+color: #000099;
+background: #eeeeee;
+margin-left: 20px
+}
+
+h3.topicSyntax {
+font-size: 115%;
+color: #000099;
+font-style: normal;
+background: #ffffff;
+margin-left: 40px
+}
+
+h4.topicSyntax {
+font-size: 95%;
+font-variant: small-caps;
+font-style: normal;
+background: #ffffff;
+margin-left: 60px
+}
+
+/* Use the following for extra space above headings */
+h2.spabove {
+margin-top: 1.3em;
+}
+h3.spabove {
+margin-top: 1.1em;
+}
+
+#title {
+font-family:Arial, Helvetica, sans-serif;
+font-weight:bold;
+font-size:130%;
+text-align: center;
+}
+/* Following general purpose selectors provide extra space above */
+.w18above {
+margin-top: 1.3em;
+}
+.w16above {
+margin-top: 1.1em;
+}
+.w14above {
+margin-top: 1em;
+}
+
+/* <u> tag is deprecated, so use em */
+em.ul {
+font-style: normal;
+text-decoration: underline;
+}
+em.red {
+font-style: normal;
+color: red;
+}
+
+/* construct selector for 'heading-like' usage */
+p.construct {
+font-weight: bold;
+background-color: #ffffbb
+}
+
+/* small font used in copyright statement */
+p.copyright {
+font-size: 75%;
+}
+
+/* syntax examples are indented, courier */
+p.example {
+font-family: Courier, monospace;
+text-indent: 4%
+}
+
+/* particular style used in mapping documents (may be replaced/removed)  */
+p.syntax {
+font-style: italic;
+text-indent: 5%;
+margin-top: -5px;
+}
+
+.width100 {
+width: 4em;
+}
+td.width300 {
+width: 8em;
+}
+
+/* toc selectors allow for indented toc-s */
+p.toc1 {
+text-indent: 5%;
+}
+p.toc2 {
+text-indent: 10%;
+}
+p.toc3 {
+text-indent: 15%
+}
+
+/* following meant to 'force' browsers to preserve whitespace */
+pre {
+white-space: pre;
+font-family: Courier, monospace;
+font-size: 75%;
+}
+/* code examples */
+pre.code {
+font-family: Courier, monospace;
+font-size: 75%;
+}
+/* syntax examples use sans-serif */
+pre.syntax {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 75%;
+font-style: italic;
+font-weight: normal;
+}
+
+/* tables in LEF/DEF mapping */
+.borders table, .borders td {
+  border: 1px solid #bbbbbb;
+  padding: 4px;
+}
+.borders th {
+  border: 1px solid #bbbbbb;
+  background: #ccccff;
+  padding: 4px;
+}
+
+table.pad4 {
+padding: .8em;
+}
+/* default for table cells is vertically align to top */
+td {
+font-family:Arial,Helvetica,sans-serif;
+font-size:95%;
+vertical-align: top;
+}
+td.middle {
+vertical-align: middle;
+}
+/* code in tables uses monospaced font */
+td.code {
+font-family: Courier, monospace;
+font-size: 80%;
+vertical-align: top;
+}
+td.term {
+font-weight: bold;
+vertical-align: top;
+padding-bottom: 1em;
+}
+/* default table heading cell left-aligned */
+th {
+font-family:Arial,Helvetica,sans-serif;
+text-align: left;
+}
+/* if you like it centered
+*/
+th.center {
+text-align: center
+}
+
+
+/* doxygen generated styles */
+/* H1 { text-align: center; } */
+A.qindex {}
+A.qindexRef {}
+A.el { text-decoration: none; font-weight: bold }
+A.elRef { font-weight: bold }
+A.code { text-decoration: none; font-weight: normal; color: #4444ee }
+A.codeRef { font-weight: normal; color: #4444ee }
+DL.el { margin-left: -1cm }
+DIV.fragment { width: 100%; border: none; background-color: #eeeeee }
+DIV.ah { background-color: white;}
+TD.md { background-color: #ffffcc }
+DIV.groupHeader { margin-left: 1em; margin-top: .8em; margin-bottom: 6px; font-weight: bold }
+DIV.groupText { margin-left: 1em; font-style: italic; font-size: smaller }
+FONT.keyword       { color: #008000 }
+FONT.keywordtype   { color: #604020 }
+FONT.keywordflow   { color: #e08000 }
+FONT.comment       { color: #800000 }
+FONT.preprocessor  { color: #806020 }
+FONT.stringliteral { color: #002080 }
+FONT.charliteral   { color: #008080 }

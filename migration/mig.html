@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Migrating Your 2.0 Applications to OpenAccess 2.2</h1>
+<hr>
+
+
+<p>This document describes updates to the OpenAccess 2.2 API compared to 2.0. This document is for developers
+who need to migrate their OpenAccess 2.0 applications to OpenAccess 2.2. For information on updating your existing OpenAccess 2.0 database, see  <a href="../uprev/index.html">Automatically Updating 2.0.x Libraries to 2.2</a>.</p>
+<p>A script that automatically updates client source code to reflect changes to the object names in OpenAccess 2.2 is available in under <code>&lt;install_dir&gt;/bin/oa20to22src</code>. This script does not work on Windows. </p>
+<p>There are several companion files that contain the rules that <code>oa20to22src</code> uses:</p>
+<ul>
+<li>oaAppDefs.sed</li>
+<li>oaDesign.sed</li>
+<li></li>
+oaEnums.sed
+</ul>
+<h2>Command Syntax </a> </h2>
+<p>You can run the updater in different modes specified by a command-line option as shown in the following examples.</p>
+<pre>oa20to22src -file  &quot;appZ.cpp appZ.h appZOptions.cpp&quot; -diff</pre>
+
+<p>Shows the changes to appZ.cpp, appZ.h, and appZoptions.cpp  without saving the changes. </p>
+<pre>oa20to22src -file &quot;appZ.cpp appZ.h appZOptions.cpp&quot; -test</pre>
+<p>Test changes and save them into three new files: <code>appZ.cpp.oa22</code>, <code>appZ.h.oa22</code>, and <code>appZOptions.cpp.oa22</code>.</p>
+<p>The <em>–diff</em> option lets you get a quick feel about what will be changed, while the <em>–test</em> option is useful for doing a graphical diff. &nbsp;The <em>–silent</em> option is useful after confirming that the changes are correct with either <em>–diff</em> or <em>–test</em>. </p>
+<p>The script attempts to update class names and variable names in a consistent way, but the changes it makes may not be appropriate for all client code. &nbsp;Because “Design” contains fewer letters than “CellView”, the script will affect the format of the source code. After running the script, you should inspect the modified files and fix any issues introduced by the script. </p>
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th colspan="2" align="left">Required Arguments </th>
+</tr>
+<tr>
+<td width="245">-file <em>fileList</em></td>
+<td width="647">Quoted, space-separated list of source files (.h and .cpp) to update. </td>
+</tr>
+<tr bgcolor="#eeffcc">
+<td colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>[-diff]</td>
+<td>Shows the changes for each file (diff) without saving the changes.</td>
+<tr bgcolor="#FFFFFF">
+<td>[-query]</td>
+<td>Shows the changes for each file and prompts you to save the changes.</td>
+<tr bgcolor="#FFFFFF">
+<td>[-silent]</td>
+<td> Make changes silently in place for each file. </td>
+<tr bgcolor="#FFFFFF">
+<td>[-test]</td>
+<td> Test changes, saving them in <code><em>fileName</em>.oa22</code> for each file.<br>
+This is the default.</td>
+<tr bgcolor="#FFFFFF">
+<td>[-type appDefs | callbacks | enums | design]</td>
+<td><p>Specifies the type of changes to make:</p>
+<ul>
+<li>appDefs specifies changes to addDef class names.</li>
+<li>callbacks specifies changes for oaCallback to oaObserver. </li>
+<li>enums specifies changes to enum names.</li>
+<li>design specifies changes related to oaCellView changing to oaDesign. Also includes changed related to the current OpenAccess installation hierarchy.<br>
+<strong>Important:</strong> Specify the <em>design</em> type <em>only once</em> on a given source file or you might corrupt your data. (oaCellView is used in the OpenAccess 2.2 API for a different purpose.)</li>
+</ul></td>
+<tr bgcolor="#FFFFFF">
+<td>[-help | -h]</td>
+<td>Prints help.</td>
+<tr bgcolor="#FFFFFF">
+<td>[-version | -v]</td>
+<td>Prints version information. </td>
+</table>
+<p>There are manual steps you that need to perform in addition to running the source code migrator. Some changes cannot be automated. For example, the way that routes are handled is different in 2.2 because vias and segments are now managed objects. Programmers need to adjust their code accordingly. </p>
+<p>The process for completing this part of the migration will involve updating your code, compiling, and making fixes, until the code compiles correctly. </p>
+<p>The best source of information about the manual code changes are reflected in this set of <a href="../../relnotes/relnotes.html">What's New in OpenAccess 2.2</a> documents. </p>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<div style="text-align: center">
+<img src="images/migratefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

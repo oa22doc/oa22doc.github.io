@@ -1,0 +1,821 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>OpenAccess Observers </h1>
+<hr />
+<p>Topics:</p>
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#working">Working with Observers</a></li>
+  <li><a href="#observer_notifications">Observer Notifications</a>
+    <ul>
+      <li><a href="#standard_notification">Standard Observer Notifications </a></li>
+      <li><a href="#special_notifications">Special Observer Notifications</a></li>
+    </ul>
+  </li>
+  <li><a href="#sequence">Observer Notification Sequence</a>
+    <ul>
+      <li><a href="#scoped">Scoped Observer Notifications</a></li>
+    </ul>
+  </li>
+  <li><a href="#observer_libdeflist_example">oaLibDefList Observer Example</a></li>
+  <li><a href="#docs">Related Documentation </a></li>
+</ul>
+<h2><a name="overview"></a>Overview</h2>
+<p>An application can use OpenAccess <em>observers</em>  to receive  notification whenever certain changes occur to the state and contents  of open databases. Observers notify  applications of changes to a particular class of objects. For example, the oaShape observer sends notifications if a shape is created, modified, or destroyed. A complex application can use observers to ensure that its internal state is consistent with changes made by other code in the same process. </p>
+<p>The <a href="../base/classoaObserver.html">oaObserver</a> class is an abstract class template used as the  base class for observers in OpenAccess. OpenAccess defines which classes can have observers. Observers are allowed  at the level of the managed class hierarchy that maps to the most common needs of applications. For example, there is an observer for oaNet, but not for oaBitNet, oaBundleNet, or oaBusNet.</p>
+<p><img src="images/observerHierarchy.gif" width="543" height="318"></p>
+<h2><a name="working"></a>Working with Observers </h2>
+<p> To use an observer, an application must do the following: </p>
+<ul>
+  <li> Create a derived class that inherits from the appropriate  Observer&lt;&gt;  class. For a list of available observer template  classes, see the Observer&lt;oaClassName&gt; column of the <a href="../base/classoaObserver.html#observer_table">OpenAccess Observer Table</a> in the API documentation. </li>
+</ul>
+<ul>
+  <li> Implement the notification functions, which are virtual functions in the Observer&lt;&gt; class, that correspond to events  for which callers are requesting notification.</li>
+</ul>
+<ul>
+  <li> Construct an instance of the derived class to register it in a given application. </li>
+</ul>
+<p>See the <a href="#observer_libdeflist_example">Observer&lt;oaLibDefList&gt; Code Example</a>  for a simple declaration and implementation of a user observer class  derived from the <a href="../dm/classoaObserver_3oaLibDefList_4.html">oaObserver&lt;oaLibDefList&gt;</a> template    specialization.</p>
+<p><strong>Enabling Observers and Setting Priorities </strong> </p>
+<p> Observers can be enabled or disabled. This can be done either during construction (see <a href="../base/classoaObserver.html#oaObserver_constructor">oaObserver::oaObserver</a>) or by calling the observer's <a href="../base/classoaBaseObserver.html#oaBaseObserver::enable">enable</a> function). Disabled observers are not called. The enabled status of an observer can be checked by calling <a href="../base/classoaBaseObserver.html#oaBaseObserver::isEnabled">isEnabled</a>. </p>
+<p> Observers are ordered by priority. Observers with higher priority  (which means those with lower priority numbers) are called first. The  priority of each observer is established during construction of the  observer (see <a href="../base/classoaObserver.html#oaObserver_constructor">oaObserver::oaObserver</a> ). </p>
+<h2><a name="observer_notifications"></a>Observer Notifications </h2>
+<p>There are two general types of observers in OpenAccess, standard observers and special observers. </p>
+<h3><strong><a name="standard_notification"></a>Standard Observer Notifications </strong></h3>
+<p> Standard observers, which are derived from <a href="../base/classoaStdObserver.html">oaStdObserver</a>, notify applications when objects are created, modified, or destroyed. The standard observers have the following interface: </p>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td align="right" nowrap="nowrap" valign="top" width="84"><div align="left">virtual void&nbsp;</div></td>
+      <td valign="bottom" width="439"><div align="left"><strong>onPostCreate</strong> (T *object)</div></td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap" valign="top"><div align="left">virtual void&nbsp;</div></td>
+      <td valign="bottom"><strong>onPreDestroy</strong> (T *object)</td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap" valign="top"><div align="left">virtual void&nbsp;</div></td>
+      <td valign="bottom"><strong>onPreModify</strong> (T *object, D modType) </td>
+    </tr>
+    <tr>
+      <td align="right" nowrap="nowrap" valign="top"><div align="left">virtual void&nbsp;</div></td>
+      <td valign="bottom"><strong>onPostModify</strong> (T *object, D modType) <a href=../base/classoaObserver.html#mod_usage"></a></td>
+    </tr>
+  </tbody>
+</table>
+<dl compact="compact">
+  <dt>Where:<br>
+  </dt>
+  <dd>
+    <table border="0" cellpadding="0" cellspacing="2" width="552">
+      <tbody>
+        <tr>
+          <td valign="top" width="89"><em>object</em>&nbsp;</td>
+          <td width="457">Pointer to the observed object</td>
+        </tr>
+        <tr>
+          <td valign="top"><em>modType</em>&nbsp;</td>
+          <td>Type of modification made to the observed object</td>
+        </tr>
+      </tbody>
+    </table>
+  </dd>
+</dl>
+<p><strong><a name="mod_usage" id="mod_usage"></a></strong>Most standard observers have onPreModify and onPostModify event notification    functions that pass a modTypeEnum denoting the type of modification. For these standard observers, the <em>modType Enum</em> column of the <a href="../base/classoaObserver.html#observer_table"> OpenAccess   Observer Table</a> lists    the name of the modTypeEnum whose values are    passed to the onPreModify and onPostModify functions. For all other observers (those with     "N/A" in    the right column), the onPreModify and onPostModify functions are <em>not</em> implemented.</p>
+<h3><strong><a name="special_notifications"></a>Special Observer Notifications </strong></h3>
+<p>Special observers provide  unique notification functions for particular OpenAccess objects. For example, the oaObserver&lt;oaLibDefList&gt; special observer provides the following notification functions:</p>
+<pre>
+virtual oaBoolean 	oaObserver&lt;oaLibDefList&gt;::onPreOpenLibs(oaLibDefList    *defList)
+virtual void            oaObserver&lt;oaLibDefList&gt;::onPostOpenLibs(oaLibDefList   *defList)
+virtual oaBoolean 	oaObserver&lt;oaLibDefList&gt;::onLoadWarnings(oaLibDefList                 *defList,
+                                                                 const oaString                &msg,
+                                                                 oaLibDefListWarningTypeEnum   type)
+																   </pre>
+<p>The special observers are as follows:</p>
+<ul>
+  <li><a href="../base/classoaObserver_3oaAppDef_4.html">oaObserver&lt;oaAppDef&gt;</a></li>
+  <li><a href="../base/classoaObserver_3oaConstraintDef_4.html">oaObserver&lt;oaConstraintDef&gt;</a></li>
+  <li><a href="../base/classoaObserver_3oaConstraintGroupDef_4.html">oaObserver&lt;oaConstraintGroupDef&gt;</a></li>
+  <li><a href="../base/classoaObserver_3oaConstraintParamDef_4.html">oaObserver&lt;oaConstraintParameterDef&gt;</a></li>
+  <li><a href="../tech/classoaObserver_3oaDerivedLayerDef_4.html">oaObserver&lt;oaDerivedLayerDef&gt;</a></li>
+  <li><a href="../tech/classoaObserver_3oaDerivedLayerParamDef_4.html">oaObserver&lt;oaDerivedLayerParamDef&gt;</a></li>
+  <li><a href="../design/classoaObserver_3oaDesign_4.html">oaObserver&lt;oaDesign&gt;</a></li>
+  <li><a href="../dm/classoaObserver_3oaDMData_4.html">oaObserver&lt;oaDMData&gt;</a></li>
+  <li><a href="../base/classoaObserver_3oaGroupDef_4.html">oaObserver&lt;oaGroupDef&gt;</a></li>
+  <li><a href="../dm/classoaObserver_3oaLib_4.html">oaObserver&lt;oaLib&gt;</a></li>
+  <li><a href="../dm/classoaObserver_3oaLibDefList_4.html">oaObserver&lt;oaLibDefList&gt;</a></li>
+  <li><a href="../design/classoaObserver_3oaParasiticNetwork_4.html">oaObserver&lt;oaParasiticNetwork&gt;</a></li>
+  <li><a href="../tech/classoaObserver_3oaTech_4.html">oaObserver&lt;oaTech&gt;</a></li>
+  <li><a href="../dm/classoaObserver_3oaViewType_4.html">oaObserver&lt;oaViewtype&gt;</a></li>
+  <li><a href="../wafer/classoaObserver_3oaWafer_4.html">oaObserver&lt;oaWafer&gt;</a></li>
+</ul>
+<p>Some special observers have onPreModify and onPostModify event notification    functions that pass a modTypeEnum value denoting the type of modification. For these special observers, the <em>modType Enum</em> column of the <a href="../base/classoaObserver.html#observer_table"> OpenAccess Observer Table</a> lists    the name of the <em>modTypeEnum</em> whose values are    passed to the onPreModify and onPostModify functions. For all other observers (those with    an "N/A" in    the right column), the onPreModify and onPostModify functions are <em>not</em> implemented. </p>
+<p>Special observers can report on a variety of events or circumstances. Some special observers provide notifications when there is conflicting data. For example,  oaObserver&lt;oaConstraintGroupDef&gt;::onConflict issues a notification when an on-disk oaConstraintGroupDef conflicts with an existing oaConstraintGroupDef definition. There are also special observer notifications for conflicting objects or attribute values across a graph of incremental technology databases, for example, the oaObserver&lt;oaTech&gt;::onClearanceMeasureConflict observer. There are also special observers that report when there is a change to the state of a database, and special observers that report on binding issues. </p>
+<h2><a name="sequence"></a>Observer Notification Sequence </h2>
+<p>A single action in the API can trigger a number of observer notifications on multiple objects. For example, when an oaNet is deleted, any oaTerms connected to the net are automatically deleted. The net is also disconnected from any oaInstTerms. Each of these events can trigger observer notifications. </p>
+<p>To better understand the sequencing of observer notifications, it's useful to understand the two types of relationships between objects in the database: </p>
+<ul>
+    <li>Dependent relationships, which are  uni-directional. For example, an oaTerm is dependent on an oaNet (or  the oaNet is the owner of an oaTerm). In a dependent relationship, if  the owning object is deleted, the dependent object is deleted  automatically.    </li>
+    <li>Association relationships, which  are bi-directional. For example, the relationship between oaNets and  oaInstTerms is an association relationship. The objects in an  association relationship exist independently of each other.    </li>
+</ul>
+  <p> The sequence of events that occur during the destruction of a  managed object are the  opposite of the sequence of events that  occurred when the application created and built-up the object. The destruction sequence for a managed object first removes all the association  relationships between objects, then destroys all the dependent objects. Observers are issued as follows: </p>
+  <ul>
+    <li>The association objects are modified when the  relationships between them are removed<span class="style2"></span>. This triggers onPreModify and onPostModify observer notifications. </li>
+    <li>The dependent  objects are  destroyed,  which triggers the onPreDestroy observer notification. </li>
+    <li>The  originating object is destroyed, which triggers the onPreDestroy observer  notification. </li>
+  </ul>
+  <p>To handle circular relationships between objects, OpenAccess must  first remove the relationship between any dependent object and  association objects, then remove all association relationships between  the originating object and other objects. This makes it possible to  handle the destruction of dependent objects in order. For example, consider the relationship of an oaNet to other connection objects in the database. </p>
+  <p><img src="images/observerNotificationSeq.gif" width="583" height="594"></p>
+  <h3><a name="scoped"></a>Scoped Observer Notifications </h3>
+  <p>A single, high level OpenAccess function call can map to a state  change that  includes multiple  lower level state changes (or side effects). Such  changes are known as  hierarchical state changes. Applications that need to understand which changes are side effects of other changes can use the <a href="../base/classoaObserver_3T_00_01V_4.html#onBeginCreate">onBeginCreate</a>, <a href="../base/classoaObserver_3T_00_01V_4.html#onEndCreate">onEndCreate</a>, <a href="../base/classoaObserver_3T_00_01V_4.html#onBeginDestroy">onBeginDestroy</a>, and <a href="../base/classoaObserver_3T_00_01V_4.html#onEndDestroy">onEndDestroy</a> observer notifications. These notifications are  referred to as <em>scoped</em> because they span the entire range of the create() and destroy() function calls.</p>
+<p>Consider an oaNet::destroy operation. This operation has several side effects: </p>
+  <ul>
+    <li>All of the net&rsquo;s connections are removed. </li>
+    <li>If there are terminals connected to the net,  those terminals are destroyed. </li>
+    <li>The parasitic networks on the net are destroyed.</li>
+    <li>The oaConnectDefs and implicit multi-bit owners  of the net are destroyed.</li>
+</ul>
+  <p>The onBeginDestroy scoped observer marks the beginning of the set of scoped changes. Note that the onBeginDestroy observer notification is an object without a valid handle. Applications  monitor  the standard observers that occur within the set of scoped changes (between the onBeginDestroy and onEndDestroy, for example). The order of the sequence  of standard observer notifications within a set of scoped changes must be maintained.</p>
+<p>The onBeginCreate and onEndDestroy notifications are unique. They pass in a pointer to the    object  that owns the object for which the notifications are being sent.   The owners for the OpenAccess objects (for which  scoped observer notifications are available) are as follows. </p>
+
+<table border=1 cellpadding=2 cellspacing=2 width=713>
+    <col width=180 style='width:135pt' />
+    <col width=272 style='width:204pt' />
+    <col width=134 style='width:101pt' />
+    <col width=111 style='width:83pt' />
+    <tr height=17>
+      <td height=17 width=180><strong>OpenAccess
+        Object</strong></td>
+      <td width=272><strong>Owning Object</strong></td>
+      <td width=134><strong>Package</strong></td>
+      <td width=127><strong>Notes</strong></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaAnalysisLib</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaAnalysisOpPoint</td>
+      <td width=272>oaAnalysisPoint</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaAnalysisPoint</td>
+      <td width=272>oaDesign</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaAppObject</td>
+      <td width=272>oaObject (database)</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaAssignment</td>
+      <td width=272>oaInst</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaBlock</td>
+      <td width=272>oaDesign</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaBlockage</td>
+      <td width=272>oaBlockObject</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaBoundary</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaBusNetDef</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaBusTermDef</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaCell</td>
+      <td width=272>oaLib</td>
+      <td>oaDM</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaCellView</td>
+      <td width=272>oaLib</td>
+      <td>oaDM</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaCluster</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaCMap</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td>onBeginCreate only</td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConnectDef</td>
+      <td width=272>oaBlockObject
+        (oaTerm/oaNet)</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConstraint</td>
+      <td width=272>oaObject (database)</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConstraintDef</td>
+      <td width=272>oaSession</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConstraintGroup</td>
+      <td width=272>oaObject (owner/database)</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConstraintGroupDef</td>
+      <td width=272>oaSession</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConstraintGroupMem</td>
+      <td width=272>oaConstraintGroup</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConstraintParam</td>
+      <td width=272>oaObject (database)</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaConstraintParamDef</td>
+      <td width=272>oaSession</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaDerivedLayerDef</td>
+      <td width=272>oaSession</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaDerivedLayerParam</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaDerivedLayerParamDef</td>
+      <td width=272>oaSession</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaDesignInst</td>
+      <td width=272>oaReticle/oaFrame</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaDevice</td>
+      <td width=272>oaParasiticNetwork</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaDMFile</td>
+      <td width=272>oaLib</td>
+      <td>oaDM</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaElmore</td>
+      <td width=272>oaReducedModel</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaFigGroup</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaFigGroupMem</td>
+      <td width=272>oaFigGroup</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaFrame</td>
+      <td width=272>oaWafer</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaFrameInst</td>
+      <td width=272>oaReticle/oaFrame</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaGCellPattern</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaGroup</td>
+      <td width=272>oaObject (database)</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaGroupDef</td>
+      <td width=272>oaSession</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaGroupMember</td>
+      <td width=272>oaGroup</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaGuide</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaImage</td>
+      <td width=272>oaReticle/oaReticleRef</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaInst</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaInstHeader</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaInstTerm</td>
+      <td width=272>oaInst</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaLayer</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaLayerHeader</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21>oaLibDefList</td>
+      <td>oaSession</td>
+      <td>oaDM</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21>oaLibDefListMem</td>
+      <td>oaSession</td>
+      <td>oaDM</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaLPPHeader</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaMarker</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaNet</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaNode</td>
+      <td width=272>oaParasiticNetwork</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaOpPoint</td>
+      <td width=272>oaAnalysisLib</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaOpPointHeader</td>
+      <td width=272>oaDesign</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaParasiticNetwork</td>
+      <td width=272>oaDesign</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaPin</td>
+      <td width=272>oaTerm</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaPoleResidue</td>
+      <td width=272>oaReducedModel</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaProp</td>
+      <td width=272>oaObject (owner)</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaPurpose</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaReducedModel</td>
+      <td width=272>oaAnalysisPoint</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaReticle</td>
+      <td width=272>oaWafer</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaRoute</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaRow</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaScanChain</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaScanChainInst</td>
+      <td width=272>oaScanChainSet</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaScanChainSet</td>
+      <td width=272>oaScanChain</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaShape</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaSiteDef</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaSteiner</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaStepperMap</td>
+      <td width=272>oaWaferDesc</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaSubNetwork</td>
+      <td width=272>oaParasiticNetwork</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaTechHeader</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaTechLayerHeader</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaTechViaDefHeader</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaTerm</td>
+      <td width=272>oaNet</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaTrackPattern</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaValue</td>
+      <td width=272>oaObject (database)</td>
+      <td>oaBase</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaVectorInstDef</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaVia</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaViaDef</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaViaHeader</td>
+      <td width=272>oaBlock</td>
+      <td>oaDesign</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaViaSpec</td>
+      <td width=272>oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaViaVariant</td>
+      <td width=272>oaDesign/oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21>oaViaVariantHeader</td>
+      <td width=272>oaDesign/oaTech</td>
+      <td>oaTech</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaView</td>
+      <td width=272>oaLib</td>
+      <td>oaDM</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaViewType</td>
+      <td width=272>oaSession</td>
+      <td>oaDM</td>
+      <td>onBeginCreate only</td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaWaferDesc</td>
+      <td width=272>oaWafer</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+    <tr height=21>
+      <td height=21 width=180>oaWaferFeature</td>
+      <td width=272>oaWaferDesc</td>
+      <td>oaWafer</td>
+      <td></td>
+    </tr>
+  </table>
+<p>
+
+  <p>To access the scoped observer notifications, derive your   observer class from the <code>oaObserver&lt;T, oaRevisionTraits
+  &lt;T>
+::scopedObserverRevision></code> class, for example: </p>
+<pre>
+       class myRouteObserver : public oaVersionedObserver&lt;oaRoute, oaRevisionTraits&lt;oaRoute>::scopedObserverRevision> >
+       {
+                           myRouteObserver(oaUInt4 priorityIn);
+                           ~myRouteObserver(); 
+
+              virtual void  onBeginCreate(oaObject *owner, oaUInt4 scopeID);
+              virtual void  onEndCreate(oaRoute *object, oaUInt4 scopeID);
+              virtual void  onBeginDestroy(oaRoute *object, oaUInt4 scopeID);
+              virtual void  oaEndDestroy(oaObject      *owner, oaUInt4 scopeID);
+       };
+</pre>
+                                          <p>Then redefine the onBeginCreate, onEndCreate,   onBeginDestroy, and onEndDestroy virtual functions to suit your needs.    Note that you continue to have   access to all the  default observer notifications.                                          </p>
+                                          <h2><strong><a name="observer_libdeflist_example"></a>oaLibDefList Observer         Example</strong></h2>
+  <p>Below is a  class declaration for an observer class derived from <a href="../dm/classoaObserver_3oaLibDefList_4.html">oaObserver&lt;oaLibDefList&gt;</a> followed by the implementation for the derived observer's constructor and it onLoadWarnings notification function. The constructor     passes the derived observer's priority and enabled settings    to the parent's constructor. The onLoadWarnings notification function sends any received warning messages to <code>cout</code>. </p>
+<p>This    technique of declaring and implementing a user observer class that is derived    from a specialized oaObserver template (in this example, derived from oaObserver&lt;oaLibdefList&gt;)    is the typical approach for deriving and using OpenAccess observers in  applications. Refer to the   <a href="../base/classoaObserver.html#observer_name">Observer&lt;oaClassName&gt;</a> column of the OpenAccess Observer Table for a complete list of specialized oaObserver templates that can be used in this fashion. </p>
+<pre>
+class myLibDefListObserver : public oaObserver&lt;oaLibDefList&gt; {
+public:
+    myLibDefListObserver(oaUInt4      priorityIn, 
+                         oaBoolean    enabledIn = true); 
+    oaBoolean onLoadWarnings(oaLibDefList                   *obj,
+                             const oaString                 &msg,
+                             oaLibDefListWarningTypeEnum    type);
+};
+
+myLibDefListObserver::myLibDefListObserver(oaUInt4       priorityIn, 
+                                           oaBoolean     enabledIn)
+										   
+:	oaObserver&lt;oaLibDefList&gt;(priorityIn, enabledIn)            <strong>// The constructor passes the</strong>                     
+{                                                                  <strong>// priority and enabled status.</strong>
+}
+oaBoolean
+myLibDefListObserver::onLoadWarnings(oaLibDefList                   *obj,              <strong>// The onLoadWarnings function</strong>
+                                     const oaString                 &msg,              <strong>// sends messages to cout.</strong>
+                                     oaLibDefListWarningTypeEnum    type)
+{
+     if (!obj) {
+        cout << "Error trying to open default libs.def file: " << msg << endl;
+     } else {
+        oaString libDefPath;
+        obj->getPath(libDefPath);
+        switch(type) {
+            case oacSyntaxErrorLibDefListWarning:
+                cout << "Syntax error in " << libDefPath << ": " << msg << endl;
+                break;
+            default:
+                cout << libDefPath <<  " load warning: " << msg << endl;
+                break;
+        }
+    }
+    return true;
+}</pre>
+<h2><a name="docs"></a>Related Documentation  </h2>
+<ul>
+  <li><a href="../base/classoaObserver.html#observer_table">OpenAccess Observer Table</a> in the API documentaion.</li>
+  <li><a href="../observer/classes.html">Observer Classes</a> special observer listing </li>
+  <li><a href="cellviewiocb.html">oaDesign Observer Notification and Binding</a></li>
+</ul>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

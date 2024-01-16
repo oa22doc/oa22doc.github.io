@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>oaLayerShapeAngle (oacLayerShapeAngle)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The oacLayerShapeAngle layer constraint specifies the allowed geometry orientations on a designated layer. This constraint uses an enumerated type to specify the allowed layer geometry orientations of:</p>
+    <ul>
+      <li>All angles </li>
+    </ul>
+    <ul>
+      <li>45/135 degree and orthogonal</li>
+    </ul>
+    <ul>
+      <li>Orthogonal-only </li>
+    </ul>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaTech.html">oaTech</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>This oaIntValue specifies the allowed geometry orientations on the designated layer. The possible values are those of the oaShapeAngleType enum.</p>
+        <p>
+        Units: Enum</p>
+        <p>This 
+          value
+        is represented by an
+          <a href="../../html/base/classoaShapeAngleType.html">oaShapeAngleType</a>
+        enumeration:
+        </p>
+        <table border="0" cellpadding="4">
+          <tr style="background-color:#99cccc">
+            <th>Value</th>
+            <th>Name</th>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacAllShapeAngleType</td>
+            <td valign="top">                    all</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacDiagonalAndOrthogonalShapeAngleType</td>
+            <td valign="top">  diagonalAndOrthogonal</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacOrthogonalOnlyShapeAngleType</td>
+            <td valign="top">         orthogonalOnly</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
+    <h2>Manufacturing Reasons</h2>
+    <p>Some CMOS processes limit geometries on certain layers to orthogonal-only orientations. This constraint can be used to override the default allowed geometry orientation set for all layers by the oacShapeAngleConstraint.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

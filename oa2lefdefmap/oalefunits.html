@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|units'/>
+<a name='53005'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Units"></a>Units</h1>
+<pre>
+  [UNITS
+     [<a href='#53006'>DATABASE</a> MICRONS LEFconvertFactor ;]
+     [<a href='#53008'>CAPACITANCE</a> PICOFARADS convertFactor ;]
+     [<a href='#53009'>RESISTANCE</a> OHMS convertFactor ;]
+     [<a href='#53010'>POWER</a> MILLIWATTS convertFactor ;]
+     [<a href='#53011'>CURRENT</a> MILLIAMPS convertFactor ;]
+     [<a href='#53012'>VOLTAGE</a> VOLTS convertFactor ;]
+     [<a href='#53013'>FREQUENCY</a> MEGAHERTZ convertFactor ;]
+   END UNITS]
+</pre>
+<p>The LEF UNITS DATABASE is stored in OpenAccess using the oaTech::dbuPerUU attribute. This value is used to convert all LEF data to the correct database units.</p>
+<p>The other UNITS attributes are stored as oaIntProps on the <q>LEF Legacy</q> oaHierProp, with property names according to the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>LEF Attribute</th>
+<th class='borders'>oaHierProp Property Name</th>
+<th class='borders'>Units</th>
+</tr>
+<tr>
+<td class='borders'>TIME</td>
+<td class='borders'>TIME</td>
+<td class='borders'>nanosecond</td>
+</tr>
+<tr>
+<td class='borders'>CAPACITANCE</td>
+<td class='borders'>CAPACITANCE</td>
+<td class='borders'>picofarad</td>
+</tr>
+<tr>
+<td class='borders'>RESISTANCE</td>
+<td class='borders'>RESISTANCE</td>
+<td class='borders'>ohm</td>
+</tr>
+<tr>
+<td class='borders'>POWER</td>
+<td class='borders'>POWER</td>
+<td class='borders'>milliwatt</td>
+</tr>
+<tr>
+<td class='borders'>CURRENT</td>
+<td class='borders'>CURRENT</td>
+<td class='borders'>milliamp</td>
+</tr>
+<tr>
+<td class='borders'>VOLTAGE</td>
+<td class='borders'>VOLTAGE</td>
+<td class='borders'>volt</td>
+</tr>
+<tr>
+<td class='borders'>FREQUENCY</td>
+<td class='borders'>FREQUENCY</td>
+<td class='borders'>megahertz</td>
+</tr>
+</table>
+</div>
+<a name='lef|units|capacitance'/>
+<a name='53008'/>
+<h2 class='topicSyntax'>
+CAPACITANCE PICOFARADS convertFactor</h2>
+<div style='margin-left:40px;'>
+<p>This value is stored in an oaIntProp named <q>TIME_UNIT</q> on the <q>LEF Legacy</q> oaHierProp. See the <q>LEF Legacy</q> property. The values in the OpenAccess database are stored in SI units that correspond to LEF, so this convert factor is not used.</p>
+</div>
+<a name='lef|units|current'/>
+<a name='53011'/>
+<h2 class='topicSyntax'>
+CURRENT MILLIAMPS convertFactor</h2>
+<div style='margin-left:40px;'>
+<p>This value is stored in an oaIntProp named <q>CURRENT_UNIT</q> on the <q>LEF Legacy</q> oaHierProp. See the <q>LEF Legacy</q> property. The values in the OpenAccess database are stored in SI units that correspond to LEF, so this convert factor is not used.</p>
+</div>
+<a name='lef|units|database'/>
+<a name='53006'/>
+<h2 class='topicSyntax'>
+DATABASE MICRONS LEFconvertFactor</h2>
+<div style='margin-left:40px;'>
+<p>The <q>Database Units per Micron</q> convert factor is stored in the oaTech::DBUPerUU attribute. The view type for a LEF cellview is always oacMaskLayout. The API to obtain this factor is:</p>
+<pre>
+   oaUInt4 oaTech::getDBUPerUU(const oaViewType *viewType) const;
+</pre>
+<p>This value is also used to convert all distance and area values between LEF and Database units.</p>
+</div>
+<a name='lef|units|frequency'/>
+<a name='53013'/>
+<h2 class='topicSyntax'>
+FREQUENCY MEGAHERTZ convertFactor</h2>
+<div style='margin-left:40px;'>
+<p>This value is stored in an oaIntProp named <q>FREQUENCY_UNIT</q> on the &quot;LEF Legacy&quot; oaHierProp. See the <q>LEF Legacy</q> property. The values in the OpenAccess database are stored in SI units that correspond to LEF, so this convert factor is not used.</p>
+</div>
+<a name='lef|units|power'/>
+<a name='53010'/>
+<h2 class='topicSyntax'>
+POWER MILLIWATTS convertFactor</h2>
+<div style='margin-left:40px;'>
+<p>This value is stored in an oaIntProp named <q>POWER_UNIT</q> on the <q>LEF Legacy</q> oaHierProp. See the <q>LEF Legacy</q> property. The values in the OpenAccess database are stored in SI units that correspond to LEF, so this convert factor is not used.</p>
+</div>
+<a name='lef|units|resistance'/>
+<a name='53009'/>
+<h2 class='topicSyntax'>
+RESISTANCE OHMS convertFactor</h2>
+<div style='margin-left:40px;'>
+<p>This value is stored in an oaIntProp named <q>RESISTANCE_UNIT</q> on the &quot;LEF Legacy&quot; oaHierProp. See the <q>LEF Legacy</q> property. The values in the OpenAccess database are stored in SI units that correspond to LEF, so this convert factor is not used.</p>
+</div>
+<a name='lef|units|voltage'/>
+<a name='53012'/>
+<h2 class='topicSyntax'>
+VOLTAGE VOLTS convertFactor</h2>
+<div style='margin-left:40px;'>
+<p>This value is stored in an oaIntProp named <q>VOLTAGE_UNIT</q> on the <q>LEF Legacy</q> oaHierProp. See the <q>LEF Legacy</q> property. The values in the OpenAccess database are stored in SI units that correspond to LEF, so this convert factor is not used.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

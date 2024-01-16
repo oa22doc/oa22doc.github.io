@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+                <h1>Verilog Annotation Tool (verilogAnnotate)</h1>
+                <hr>
+                <h2><a name="cmd">Overview</a></h2>
+                <p> You can update existing OpenAccess data with terminal ordering  information from a Verilog  file. </p>
+                <h4>Command Syntax </h4>
+        <p> Enter:</p>
+                <pre>verilogAnnotate -refLibs <em>libraryList</em> -verilog <em>fileList</em></span> [Optional Arguments]
+
+</pre>
+    <p>The <code>verilogAnnotate</code> executable updates existing OpenAccess designs with information from a Verilog netlist. Only the top module of any given OpenAccess design is annotated. Module instances are not created and connectivity is not changed. </p>
+<h3>Annotation Process </h3>
+<p>For each Verilog module in the Verilog file, <code>verilogAnnotate</code> performs the following:</p>
+<ul>
+<li>Searches each OpenAccess library in the <em><code>libraryList</code></em>  looking for an oaCell with the same name as the Verilog module. </li>
+<li>If an oaCell with the same name is found, searches the oaCell for a view contained in the <em><code>viewList</code></em>. Each view in the <em><code>viewList</code></em> is tried in the order specified on the command line. </li>
+<li>If no matching view is found, a warning is printed. </li>
+</ul>
+<p>Otherwise, the oaDesign that corresponds to the oaCell and oaView is opened for editing. <code>verilogAnnotate</code> updates the top module of the oaDesign with the module interface information from the input Verilog module.  If this information already exists in the oaModule, it is overwritten. It is <em>not</em> an error if there are more terminals in the top oaModule than there are ports in the Verilog module. It <em>is</em> an error if there are Verilog ports that do not have corresponding oaModTerms in the top oaModule. If there is no top module,  the top module will be set according to the <code>verilog2oa</code> <a href="verilog2oacmds.html#top_module_detection">top module detection</a> rules.</p>
+
+<p>verilogAnnotate treats "tristate" as equivalent to "output" for consistency purposes.  Ports that are declared "output" in Verilog, but have an existing termType of "tristate", retain the "tristate" termType.</p>
+
+<p><code>verilogAnnotate</code>  is based on <a href="verilog2oacmds.html">verilog2oa</a> and has the same <a href="../verilogmap/verilog2oamap.html">mappings and restrictions</a>. </p>
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th colspan="2" align="left">Required Arguments </th>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td width="224" valign="top"> -refLibs <em>libraryList</em> </td>
+<td width="618">Specifies a quoted, space-separated list of OpenAccess libraries in which to search for oaDesigns to annotate. <code>verilogAnnotate</code> searches for a matching oaCell for each Verilog module.
+</td>
+</tr>
+<tr>
+<td valign="top" valign="top"> -verilog <em>fileList</em> </td>
+<td valign="top">Quoted, space-separated list of Verilog files. The files are processed in the order they are specified. </td>
+</tr>
+<tr bgcolor="#eeffcc">
+<td colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -help | -h </td>
+<td valign="top"><p>Prints command-line help. </p></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -leafLibs <em>libList</em> </td>
+<td valign="top">If you use this option, a warning is issued. This option is deprecated. Use the <em>-refLibs</em> option instead.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -leafViews <em>viewList</em> </td>
+<td valign="top">If you use this option, a warning is issued. This option is deprecated. Use the <em>-refViews</em> option instead.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-libDefFile <em>filename</em></td>
+<td>Specifies the lib.defs file to load. The path to the lib.defs file can be a full or relative path. If this option is omitted, the default search mechanism of the DM system is used to find and load the lib.defs file.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -logFile <em>file</em> </td>
+<td valign="top"> Names the logfile. If not specified, the default filename is verilogannotate.log. </td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noInfo <em>msgIds</em></td>
+<td valign="top">Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noWarning <em>msgIds</em></td>
+<td valign="top">Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file and are not included in the total of WARNING messages displayed in the summary.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-refViews <em>viewList</em> </td>
+<td valign="top">Specifies a quoted, space-separated list of views  that <code>verilogAnnotate</code> searches in the oaCells that match the Verilog module name. All specified views are searched for a possible match, all found matches are used, and all found Verilog modules are updated. <br><br>
+If you omit this option, the default <em>abstract</em> view is used.
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td> -templateFile <em>file</em></td>
+<td><p>Specifies a file containing arguments to <code>verilogannotate</code>. You can specify a template file instead of entering a string of arguments on the command line. </p>
+<p>If you specify a template file, arguments on the command line have precedence over arguments specified in the file. So, if the same argument exists in the template file and in the command line, the translator uses the argument on the command line.</p>
+<p>Specify arguments in a template file as follows:</p>
+<ul>
+<li> Enter arguments in the template file without a dash (-) before the argument.</li>
+<li> Enter each argument and value pair on a single line.</li>
+<li> Separate the argument from its value using a space or a tab.</li>
+<li> Designate comment lines with a <em>#</em> sign as the first character in the line.</li>
+</ul>
+<p><strong>Sample Template File</strong></p>
+<pre>
+# verilogannotate command line arguments
+
+logFile        myverilogannotate.log
+refLibs        "mylibA mylibB"
+tolerate
+</pre>
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -tolerate </td>
+<td valign="top"> Tolerate unimplemented features and non-structural Verilog in the input. Warnings are issued when these features are encountered. Using this option can cause unexpected results. <br>
+By default, this option is off. </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-v</td>
+<td valign="top"> Prints tool, format, and library version information.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-version</td>
+<td valign="top"> Prints tool and format version information.</td>
+</tr>
+</table>
+
+<p><strong>Note</strong>: Command line arguments specifying library, cell, and view names are interpreted according to the Native name space. See <a href="../guide/namemap.html#9">Native Name Space</a> in the Name Mapping article of the Programmers Guide for details about the native name space.</p>
+
+<h2>Merging Verilog and LEF/DEF Information</h2>
+<p>If you need to merge Verilog and LEF/DEF information, you must follow a particular sequence of steps. Refer to the <a href="../verilog/verilog2oacmds.html#verilogandlefdef">verilog2oa documentation</a> and the section <em>Creating a Design by Merging Verilog and LEF/DEF Information</em> for the steps you must follow.</p>
+
+<h2>Error and Warning Messages</h2>
+
+<p>Translators emit messages that report translation progress, report warnings about unusual data or conditions, or report problems with files or data that caused partial or complete translation failure. These messages are written to a log file so you can review translation status, identify error and warning conditions, and consider whether additional actions are needed.</p>
+
+<p>OpenAccess translators use a standard message format to ensure comprehensive and consistent messaging. This message format consists of three elements, which are: message type keyword,  message prefix, and message text. The message text can be further divided into three parts. The first part indicates what caused the message, the second indicates the consequence of the problem or condition, and the third part suggests an action you can take to remedy the problem or condition.</p>
+
+<p>In addition to the three standard elements, messages can also include two optional elements. An optional filename/line number element is included, when available, to more precisely identify the source of a problem or condition within the source data file. A context string is another optional element that is included, when available, to identify the type of data object that caused the message to be emitted. The following example shows a typical error message that includes the optional filename and line number element.</p>
+
+<pre>
+    ERROR: (OALEFDEF-50004): file.lef(123): A cell was not specified. Translation was terminated. 
+    You must specify a cell.
+</pre>
+ 
+<p>One benefit of this message format is that it allows you to sort, filter, and examine only those types of messages that interest you. The keyword at the start of each message is either ERROR or WARNING and is always all uppercase. The message prefix identifies the translator family and the specific message source within the translator. The message prefix is a stable value that will not change between versions even when the message text gets updated. This makes it suitable for routine sorting and filtering.</p>
+
+<p>If you seek assistance for resolving an issue related to a translator error or warning message, be sure to retain the message type keyword (ERROR or WARNING), and retain the message prefix to identify the translator family and the message source. Also make note of the filename/line number and context information if these are included in the message.</p>
+
+<p><a href="#pagetop">Return to top of page</a></p>
+                <div style="text-align: center"> <img src="images/footer.gif"><br/>
+	</div>
+        <p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; </a><a href="../base/titlecopy.html">2004-2010 Cadence Design Systems, Inc.</a><br>
+			All rights reserved.</p>
+		<noscript>
+			<p><em class="red">This page requires JavaScript enabled.</em></p>
+		</noscript>
+	</body>
+</html>

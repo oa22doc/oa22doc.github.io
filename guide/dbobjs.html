@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>OpenAccess Classes</h1>
+<hr>
+<p>The classes, functions, and symbols that comprise the OpenAccess API are defined in a C++ namespace, and applications using the API must refer to that namespace. The common method for doing this is to start with a using declaration that refers to the <code>oa</code> namespace:</p>
+<pre>using namespace oa      </pre>
+<p>Alternatively, each OpenAccess name can be prefixed: </p>
+<pre>oa::oaString      mystring(&quot;hello&quot;);        </pre>
+<p>Each application source file must apply one of these techniques. The OpenAccess header files do not specify <code>using oa namespace</code>.</p>
+<p><strong>Note:</strong> The <code>oa</code> namespace is actually an alias for a version-specific namespace, such as <code>OpenAccess_4::</code>. Application code should use this namespace directly only in the very unusual case in which an application refers to multiple versions of the OpenAccess implementation.</p>
+<h2>C++ Classes in the OpenAccess API </h2>
+<p>   There are three basic categories of C++ classes in the OpenAccess API: </p>
+<UL>
+<li><a href="#managed">Managed Classes </a>
+<li><a href="#session">Session Classes</a></li>
+<li><a href="#utility">Utility Classes </a>
+  <ul>
+    <li><a href="#strings">Strings</a>  </li>
+    <li><a href="#arrays">Array Classes </a>  </li>
+    <li><a href="#enums">Enum Wrappers</a>  </li>
+    <li><a href="#coords">Coordinates</a></li>
+  </ul>
+</li>
+</UL>
+<hr >
+<h3 class="spabove"><a name="managed">Managed Classes </a></h3>
+<p class="spabove">Managed classes represent data that is persistently stored in OpenAccess databases. </p>
+<p class="spabove">The oaObject class is the abstract base class  for all  objects managed by  OpenAccess. Applications do not need to allocate storage for managed objects -- this is handled by OpenAccess. Managed objects are created and destroyed using create and destroy functions, not constructors and destructors. The create function for a managed object returns a pointer to the new object, and callers can use that pointer to query, modify, or destroy the object.</p>
+<p>You use the OpenAccess API to traverse to managed 
+  classes from their database object, which can be an oaDesign, oaTech, oaLib, or oaWafer.</p>
+<p>All   managed classes in the database are derived from the <a href="../base/classoaObject.html"><code>oaObject</code></a> class. Most classes that 
+represent objects in designs are also derived from the <a href="../design/classoaDesignObject.html"><code>oaDesignObject</code></a> class, and most classes in a technology database derive from <a href="../tech/classoaTech.html"><code>oaTechObject</code></a>. You cannot inherit from  OpenAccess managed objects. Instead, you can use oaAppDefs or extensions to extend the persistent attributes. See <a href="extend.html">Extending the Database</a> for more information. </p>
+<p><img src="images/oaObjectHier.gif"></p>
+<p>Note that objects that derive from oaSession are <a href="#session">session</a> objects, which explained later in this document. </p>
+<p>Objects that can be created in multiple types of database  inherit from oaObject, but not from a specific database class. For example, properties, groups, and constraints can reside in design databases and technology databases, so they do not derive from oaDesignObject.</p>
+<p>Managed objects  have the following attributes:</p>
+
+<ul>
+<li>They can be placed in groups. 
+  
+<li>They can have attached properties. 
+  
+<li>They can reside in one or more of design, technology, wafer, or lib databases.
+<li>The API uses pointers to these objects. 
+  
+<li>Callers do not directly construct or destroy instances of these 
+classes.</li>
+<li>They can be created  only with a create() function, which returns a pointer to the new object. </li>
+<li>Undo and Redo operations can be performed on these objects in a design or wafer database.</li>
+</ul> 
+
+<p>Some examples of managed classes are instances, nets, terminals, pins, 
+layers, figures and shapes, vias, routes, and properties.</p>
+<p>The underlying data structures and storage for managed classes are entirely the responsibility of the database. In most cases, there are APIs specifically for creating and deleting these classes of objects.</p>
+<h4 class="spabove">API for Managed Classes</h4>
+
+<p>You can use the API to traverse managed objects in OpenAccess databases.</p>
+
+<ul>
+<li>Where a managed object has a <em>one-to-one</em> relationship with another object, there will be a member function that returns a pointer to that object.
+<li>Where a managed object has a <em>one-to-n</em> relationship with  other objects, there will be a member function that returns a collection of <em>n</em> objects. 
+</ul>
+
+<h5 class="spabove">Accessing Managed Objects </h5>
+<p>The following examples show how to work with managed objects. </p>
+<p>Creating a net:</p>
+<pre>	oaNet *mynet=oaNet::create(myBlock, name);</pre>
+<p>Destroying an object:</p>
+<pre>	mynet->destroy();</pre>
+<p>Traversing to a unique object (only one exists) from another object: </p>
+<blockquote>
+  <pre>
+oaNet *net;
+net = terminal-&gt;getNet();
+</pre>
+</blockquote>
+<p>Using a find function, such as finding a net by name: </p>
+<blockquote>
+  <pre>
+oaName netNm("ldMem0", oaVerilogNS);
+oaNet *IdNet = oaNet::find(block, netNm)</pre>
+</blockquote>
+<p>Getting a pointer to a related object:</p>
+<pre class="spabove">	oaNet *net = myRoute->getNet();</pre>
+<p class="spabove">Getting the database for an object:</p>
+<pre class="spabove">	oaDesign *dsgn = (oaDesign*) myInst->getDatabase();</pre>
+<h5 class="spabove">Getting Data Out of Managed Classes</h5>
+<p>You use a <code>get</code> call to retrieve a single attribute of an object associated with a class. Simple attributes, such as  enum values, are the return values of the <code>get</code> function.</p>
+<p>For example, to get the signal type of a net:</p>
+<pre>
+    oaSigType sigType = net-&gt;getSigType();
+</pre>
+<p>More complex attributes are returned in utility classes. To get these, the caller passes in an instance of the utility class by reference. For example, to get a net name:</p>
+<pre>
+    oaName name;
+    mynet-&gt;getName(name);</pre>
+
+<h5><a name="It"></a>Accessing Collections</h5>
+<p>Collections are used to retrieve objects in a database when there is more than one object in relationship to the starting object. For example, you can use a collection to get all the nets in a block or  all the pins on a terminal. </p>
+<p>To step through the objects in a collection, the application constructs an iterator from the collection. The code uses the iterator by calling its <code>getNext</code> function in a <code>for</code> or <code>while</code> loop. The <code>getNext</code> function returns a pointer to each object in the collection. When the iterator is done, it returns a <code>NULL</code> value. At that time, the calling code can destroy the iterator or reset it to iterate over the objects again. </p>
+<p> When an iterator is active, it is safe to delete objects that have  already been returned by that iterator (including the most recent getNext() call). This does not cause the iterator to return invalid  objects or to skip other objects. </p>
+<p> It is <em>not</em> safe to delete an object in the collection  that has not yet been returned by the iterator. This   invalidates the iterator and can cause problematic results, such  returning invalid objects, throwing exceptions, and skipping members of  the collection. </p>
+<p> Further, adding objects to a collection while iterating over the collection is not recommended because subsequent getNext()  results are undefined. </p>
+<p> The order in which objects are returned by oaIter::getNext() is not guaranteed to be the same: </p>
+<ul>
+  <li>Between two separate instantiations of an oaIter class over the same set of objects</li>
+  <li>After calling oaIter::reset()</li>
+</ul>
+<p><b>Example</b></p>
+<pre>
+    oaIter&lt;oaNet&gt; netIter(block-&gt;getNets());
+    oaNet *aNet;
+    while (aNet = netIter.getNext() ) {
+        // Do something with aNet
+    }</pre>
+<p class="spabove">The API also uses arrays to access multiple objects from the database. See <a href="#arrays">Array Classes</a> for more information. </p>
+<h4><a name="Static"></a>Static Member Functions</h4>
+<p>OpenAccess uses static member functions to reduce the number of functions of container classes such as oaBlock and oaDesign. Consider the following OpenAccess code, which uses  static member functions: </p>
+<pre>oaInst* myInst = oaInst::find(	myBlock,  name );
+oaRect* myRect = oaRect::create( myBlock, layer5, purpose1, bbox );</pre>
+<p>If a different approach had been used, the oaBlock class would contain APIs such as <code>oaBlock::findInst</code> and <code>oaBlock::createRect</code> (and many more). Also, making the functions static places them in the documentation with the class that they return. </p>
+<h4 class="spabove">Automatic Classes</h4>
+<p>Some managed database classes are automatic classes. Instances of automatic 
+classes are created as a consequence of the creation of other classes. For 
+example, <a href="../design/classoaInstHeader.html"><code>oaInstHeader</code></a> 
+objects  are automatically created when you 
+create <a href="../design/classoaInst.html"><code>oaInst</code></a> objects. 
+You cannot explicitly create or delete automatic classes.</p>
+
+
+<h4 class="spabove">Automatic Naming for Named Objects </h4>
+
+<p>For some  named objects, the database will automatically generate a name  if one is not specified when the object is created. The following objects fit into this category.</p>
+<table width="700" border="0">
+  <tr>
+    <th width="33%" scope="col"><div align="left">Block Domain</div></th>
+    <th width="33%" scope="col"><div align="left">Module Domain</div></th>
+    <th width="33%" scope="col"><div align="left">Occurrence Domain</div></th>
+  </tr>
+  <tr>
+    <td width="33%"><a href="../design/classoaArrayInst.html"><code>oaArrayInst</code></a></td>
+    <td width="33%"><a href="../design/classoaModScalarInst.html"><code>oaModScalarInst</code></a></td>
+    <td width="33%"><a href="../design/classoaOccScalarInst.html"><code>oaOccScalarInst</code></a></td>
+  </tr>
+  <tr>
+    <td width="33%"><a href="../design/classoaScalarInst.html"><code>oaScalarInst</code></a> </td>
+    <td width="33%"><a href="../design/classoaModModuleScalarInst.html"><code>oaModModuleScalarInst</code></a></td>
+    <td width="33%"><a href="../design/classoaOccModuleScalarInst.html"><code>oaOccModuleScalarInst</code></a></td>
+  </tr>
+  <tr>
+    <td width="33%"><a href="../design/classoaScalarNet.html"><code>oaScalarNet</code></a> </td>
+    <td width="33%"><a href="../design/classoaModScalarNet.html"><code>oaModScalarNet</code></a></td>
+    <td width="33%"><a href="../design/classoaOccScalarNet.html"><code>oaOccScalarNet</code></a></td>
+  </tr>
+  <tr>
+    <td width="33%"><a href="../design/classoaPin.html"><code>oaPin</code></a> </td>
+    <td width="33%">&nbsp;</td>
+    <td width="33%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="33%"><code><a href="../design/classoaBoundary.html">oaBoundary</a></code> </td>
+    <td width="33%">&nbsp;</td>
+    <td width="33%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="33%"><code><a href="../design/classoaRow.html">oaRow</a></code> </td>
+    <td width="33%">&nbsp;</td>
+    <td width="33%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code><a href="../design/classoaFigGroup.html">oaFigGroup</a></code></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>Nets, instances, and pins always have  unique names. If you do not supply a name when you create one of these objects, the database assigns an instance name such as <code>I_001</code>. Relying on automatic naming of these objects is more efficient because it conserves memory.</p>
+
+<p>Automatic naming only applies to scalar objects. Buses must always be assigned a name, but they can be sparse (contain missing bits). Vector instances cannot be sparse because they are single objects, and there is no way to declare a vector instance with missing bits. </p>
+<hr>
+<h3><a name="session"></a>Session Classes </h3>
+<p>Session objects are built and managed by OpenAccess and have many of the characteristics of managed objects, but are not persistent and are not part of any particular database. <a href="../base/classoaAppDef.html">oaAppDefs</a>, <a href="../base/classoaConstraintDef.html">oaConstraintDefs</a>, and <a href="../dm/classoaViewType.html">oaViewTypes</a> are session objects. These objects must be used consistently across all databases. OpenAccess creates them in the <a href="../base/classoaSession.html">oaSession</a> where it enforces the proper uniqueness by preventing inconsistent objects from being created. </p>
+<h4><a name="unique"></a>Uniqueness of Session Objects</h4>
+<p>Uniqueness can be an issue for <a href="../base/classoaAppDef.html">oaAppDefs</a>, <a href="../base/classoaConstraintDef.html">oaConstraintDefs</a>, and <a href="../base/classoaConstraintParamDef.html">oaConstraintParamDefs</a>, where the session object has some attributes that define it and other attributes that must be used consistently for that definition. </p>
+<p>For example, an oaAppDef is determined by its name and the class of object to which it applies. For a given name and class pair, all the other attributes - persistence, type of value, and default value - must have a consistent setting. For example, if an IntAppDef named &ldquo;myData&rdquo; exists on oaNets, trying to  get  a FloatAppDef named &ldquo;myData&rdquo; on oaNets throws an exception. However it is still legal to get a BooleanAppDef named &ldquo;myData&rdquo; on oaInsts. </p>
+<P>One of these session objects exists in a given session either because data of that type exists in a database that is currently open, or because the application performed a get() for it. Once one of these objects exists in a given session, any attempt to create an inconsistent session object with the same definition is an error. If a database containing an oaAppDef  that is inconsistent with a previously existing oaAddDef is opened,  the newly read oaAppDef and its associated extension data are ignored and are not  available to the application. </P>
+<P>If an application tries to get a session object after a database containing an inconsistent definition of that session object has been read in,  the get() function throws an exception. The application is not able to use that definition. To avoid issues like this, applications should get() session objects with the definition that the application expects before reading in any databases.</P>
+<P>Better yet, session objects should always be used consistently so these issues never arise.</P>
+<h4>Session API </h4>
+<p>The caller must ask OpenAccess for the object. Note that the <code>get</code> method below is a synonym for <em>find or create</em>. </p>
+<pre>	oaIntAppDef<oaShape> *intExt = oaIntAppDef<oaShape>::get(&quot;myint&quot;, 0, true);
+</pre>
+<p>Session objects are never destroyed.</p>
+<hr>
+<h3 class="spabove"><a name="utility">Utility Classes</a></h3>
+<p class="spabove">A utility class instance is always constructed and destroyed by the application. The calling code completely controls the lifetime of instances of these classes. When data represented by a utility class is to be retrieved from the database, the caller will construct an empty utility object and pass it by reference to a member function of the managed class for the database to fill in. </p>
+<p><span class="spabove">Callers can use utility classes to help access managed classes. </span>Utility classes include oaString, oaName, oaObserver, oaPointArray, and oaTransform.</p>
+<p>Occasionally, callers will derive their own classes from the utility classes 
+defined in the API. For example, a caller can derive a class from the 
+<a href="../base/classoaString.html"><code>oaString</code></a> class that 
+implements a different storage methodology than that used by the native 
+<a href="../base/classoaString.html"><code>oaString</code></a> class.</p>
+<p><strong>Examples</strong></p>
+<p>Utility objects are constructed and destroyed by the caller: </p>
+<pre>	oaString     title("OA API Guide");
+	oaPointArray pts(20);
+
+	oaTransform  *trans = new oaTransform(20,10);
+
+	delete trans;
+</pre>
+<p>To get a complex piece of information from a utility class, functions that pass utility arguments by reference are used, such as in the <code>oaName::get</code> call in this example. </p>
+<pre>	oaString str;
+	iname.get(oaVerilogNS, str);
+	cout << str << endl;
+</pre>
+<blockquote>
+    <p><strong>Note:</strong> There is a minor exception to this. Functions to get compiled-in strings return a reference to the string as a function value. </p>
+    <pre>oaString nameOut = myDesign->getCellType().getName();</pre>
+</blockquote>
+<p>Most of the utility classes have  a copy constructor:</p>
+<pre>	oaPoint firstPoint(ptArray[0]);
+</pre>
+<p class="spabove">Some utility classes provide a special function that returns a reference to be used for setting values, as in the final assignment in this example: </p>
+<pre class="spabove">	oaBox bbx(10, 10, 40, 40);
+	oaInt4 side1 = bbx.left();
+	bbx.left() = 20;</pre>
+<p>For more information about  special utility classes, see <a href="#strings">Strings</a> and <a href="#arrays">Array Classes</a>. </p>
+<h3 class="spabove"><a name="strings">Strings</a></h3>
+<p>The <a href="../base/classoaString.html"><code>oaString</code></a> 
+class helps callers create, manipulate, and pass strings into and out of the 
+database.</p>
+
+<p>The <a href="../base/classoaString.html"><code>oaString</code></a> class 
+contains many generally useful string functions. This class can be used 
+independently of the database and is useful for many applications, even 
+those that are not database applications.</p>
+
+<p>Strings are almost always passed into the database and returned from the
+database by reference.</p>
+
+<div class="indent">
+<p><strong>Example</strong></p>
+
+<pre>
+oaString pinName("Pin");
+oaPin    *pin = oaPin::create(term,  rectangle,  pinName, oacLeft);
+
+oaString str;
+pin-&gt;getName(str);
+</pre>
+
+<p>As long as the <code>str</code> object is in scope, it will contain the name of the pin. The value  of <code>str</code> is not 
+updated if the name of the pin changes.</p>
+</div>
+
+<p>Always having the application construct a string that it passes into OpenAccess helps to ensure the safety of the OpenAccess memory layout because applications never get pointers to strings in the database's memory. OpenAccess uses this technique even though these calls cannot be made inline as arguments to other functions, such as <code>printf</code>.</p>
+<div class="indent">
+<h4><strong>Example</strong></h4>
+
+<pre>
+oaString str; 
+marker-&gt;getMsg(str); 
+cout &lt;&lt; "Message = " &lt;&lt; str &lt;&lt; endl; </pre>
+</div>
+
+
+<h3 class="spabove"><a name="arrays">Array Classes</a></h3>
+<p class="spabove">Arrays are derived from the template class <a href="../base/classoaArray.html">oaArray&lt;T></a>. You can create your own instances of the oaArray class template. </p>
+<p>Some of the utility objects defined in the API are arrays. A common array class is the <a href="../base/classoaPointArray.html"> <code>oaPointArray</code></a> class, which is used to pass a series of geometric locations to and from the API. As are all utility objects, the <a href="../base/classoaPointArray.html"><code>oaPointArray</code></a> class is constructed by the caller and is handed by reference to the functions in the API that utilize point arrays.</p>
+<p>Utility arrays and <a href="../base/classoaString.html"> <code>oaString</code></a> objects are reallocated as needed. If the caller performs operations on the arrays that causes them to grow, they will be automatically reallocated. If this occurs frequently, performance can be an issue. To prevent performance issues, avoid constructing arrays in inner loops and avoid letting <a href="../base/classoaArray.html#oaArray::append"><code>append</code></a> increment the allocation. </p>
+<p>There are constructors to <a href="../base/classoaPointArray.html"> <code>oaPointArray</code></a> (and other arrays) that let you set the allocated size when you construct the array. When using a point array in a way that allows it to grow during use, you should initially construct the array with its largest anticipated size. The size of the point array can be larger than the number of points actually stored. This is useful when the oaPointArray is used as a buffer because it reduces the need to reallocate the array.</p>
+<p>Just as with built-in C++ arrays, it is easy to access unallocated or uninitialized elements though this is always inappropriate.</p>
+<div class="indent">
+  <p><b>Example</b></p>
+  <blockquote>
+    <pre>
+oaPointArray  sqWave(10);           // Largest anticipated size
+
+sqWave.append(oaPoint(0,0));        // Starting point
+sqWave.append(oaPoint(0,50));       // Add remaining points
+sqWave.append(oaPoint(50,50));
+sqWave.append(oaPoint(50,0));
+sqWave.append(oaPoint(100,0));
+sqWave.append(oaPoint(100,50));
+sqWave.setNumElements(6);           // Specify the number of elements
+
+oaPath *waveShape = oaPath.create(blk, DrawLyr, LabelPurp, 1,
+                                  sqWave, oacTruncatePathStyle)</pre>
+  </blockquote>
+</div>
+<p class="spabove">Use square brackets [ ] to access array elements:</p>
+<blockquote>
+  <pre class="spabove">oaPoint side1 = ptArray[iPt];
+ptArray[++iPt] = oaPoint(20,30);
+</pre>
+</blockquote>
+<h3 class="spabove">Arrays Compared to Collections</h3>
+<p class="spabove">Where there is an <em>n-to-1</em> relationship in the data model, an API can handle this  as a collection or  as an array that is passed back and forth to the application. The OpenAccess API  uses arrays and collections according to the following guidelines:</p>
+<ul>
+  <li><span class="spabove">Arrays are often used as API arguments for a set of values in which the order matters.</span></li>
+  <li><span class="spabove">Arrays are often used when there are  relatively few elements. Tens is OK. Millions is not.</span></li>
+  <li>Collections are used for larger numbers of elements and when the order isn't important. </li>
+  <li>Arrays are often used when it is desirable that adding all the members of the collection be an atomic operation that triggers a single observer notification.</li>
+  <li>Collections are used when it is desirable to have the addition of each element trigger its own observer notification.</li>
+</ul>
+<p class="spabove">For example, OpenAccess uses an oaCollection to get all the members of a group, which can be quite large. In contrast,  an oaPointArray is used to get all the points defining a polygon. </p>
+<div class="indent"> </div>
+
+
+<h3 class="spabove"><a name="enums">Enum Wrappers</a></h3>
+
+<p>The OpenAccess API uses a number of enums to pass various settings between
+the calling code and the database. For example, oaOrientEnum lists the
+possible rotation and mirroring transforms that can be applied to a figure,
+and oaPathStyleEnum lists the possible end types for an oaPath.</p>
+<P></P>
+OpenAccess declares a <em>wrapper class</em> for 
+each of these enums. This wrapper implements extra functions for each enum, 
+which provides additional flexibility and allows the functions that reference 
+the enums to be more type-specific. The functions in the API that reference  
+enums are declared using the enum wrapper class.
+<P></P>
+
+<p>For example, the function <code>oaRoute::setRouteStatus</code> has the declaration:</p>
+
+<pre>
+void setRouteStatus (const oaRouteStatus &amp;routeStatus);
+</pre>
+
+<p>oaRouteStatus is a wrapper class for oaRouteStatusEnum.</p>
+
+<p>The <code>setRouteStatus</code> function can be called using any of the
+following equivalent calls:</p>
+
+<ul>
+<li>Using an enum value 
+<pre>
+myroute-&gt;setRouteStatus(oacFixedRouteStatus);
+</pre>
+<li>Constructing a wrapper object 
+<pre>
+myroute-&gt;setRouteStatus(oaRouteStatus(oacFixedRouteStatus));
+</pre>
+<li>Casting the enum value to an instance of the wrapper 
+  class 
+<pre>
+myroute-&gt;setRouteStatus((oaRouteStatus)oacFixedRouteStatus);
+</pre>          </li>
+</ul>
+
+<p>All of these calls  compile into the same efficient code. The enum
+value method is preferred because it is the simplest.</p>
+
+<p>The wrapper class provides the ability to return a string that represents
+the enum value at execution time. This function can be used to report on the
+value.
+
+<pre>
+oaString     stat(myroute-&gt;getRouteStatus.getName());
+cout         &lt;&lt; "Route status  is " &lt;&lt; stat  &lt;&lt;  endl;
+</pre>
+
+<p>The wrapper classes also allow the caller to construct an instance of the
+enum value from a string. This is much less efficient than using the symbolic
+enum value, but is useful in applications such as an interpreted scripting
+language.</p>
+
+<pre>
+myroute-&gt;setStatus(oaRouteStatus("locked"));
+</pre>
+
+<h3 class="spabove">Enum Documentation Format</h3>
+
+<p>Enum values are included in the class reference material for each wrapper
+class. For example, the 
+<a href="../design/classoaScanChainSetType.html"><code>oaScanChainSetType</code></a> class includes
+the following enum information.</p>
+
+<p class="construct">
+enum oaScanChainSetTypeEnum 
+</p>
+
+<div class="indent">
+<table border="0">
+<tr>
+<td><strong>Enumeration values:</strong></td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>oacOrderedSetType</em></td>
+<td>"orderedSet"</td>
+</tr>
+
+<tr>
+<td width="250">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>oacUnorderedSetType</em></td>
+<td>"unorderedSet"</td>
+</tr>
+</table>
+</div>
+
+<p>The first column shows the enum symbol that is used by 
+the C++ compiler. The quoted string is the value that can be returned using 
+  <code>oaEnumClass::getName()</code> or that can be used to construct an instance of the 
+wrapper using <code>oaEnumClass::("string value")</code>. 
+<h3><a name="coords"></a>Coordinates</h3>
+<p>Coordinates in OpenAccess are  32-bit signed integers, and you can use the full range of these signed integers.</p>
+<p>OpenAccess uses typedefs for function arguments that are coordinates, distances, or offsets in order to indicate the usage of the arguments:</p>
+<ul>
+  <li>oaCoord represents signed geometric coordinates in database units.</li>
+  <li> oaOffset represents the signed difference between two oaCoord values in database units.</li>
+  <li>oaDist represents a non-negative distance between two oaCoord values in database units.</li>
+</ul>
+<p>All coordinates are integers in database units. There is a mapping from database units into the standard distance called user units. This mapping is stored in a technology database. The technology database will specify the number of database units that represent a single user unit, and it will have an enum value that represents the user unit. Common settings for mask layout views are 1000 database units per user unit with the user units as Microns.</p>
+<p>For more information, see <a href="../tech/classoaTech.html#oaTech::setDBUPerUU"><code>oaTech::setDBUPerUU</code></a>.</p>
+<hr>
+<h2>Other Topics </h2>
+<P class=spabove>The  following topics are covered in this section: </P>
+<UL>
+  <LI><a href="#templates">Template Classes</a>
+  <LI><a href="#Observers">Observers</a>
+  <LI><a href="#derived">Classes From Which Applications Derive</a> </LI>
+</UL>
+<h3><a name="templates"></a>Template Classes</h3>
+<p>The OpenAccess API uses  class templates. Most class templates can only be applied to specific OpenAccess classes. </p>
+<ul>
+  <li><a href="../base/classoaAppDef.html">oaAppDef</a> class template <br>
+  Allows applications to extend the data to support their own private data model. See <a href="extend.html">Extending the Database</a> for more information.<br>
+  <br> 
+  </li>
+  <li><a href="../base/classoaCollection.html">oaCollection</a> class template<br>
+    Can be applied to both the container class and the class that resides in the collection.<br>
+    <br> 
+  </li>
+  <li><a href="../base/classoaIter.html">oaIter</a> class template<br>
+    Can be constructed with an oaCollection and  applied to the class of the objects returned by the oaIter. <br>
+    <br>
+  </li>
+  <li><a href="../base/classoaArray.html">oaArray</a> class template<br>
+    Can be applied to any utility class. <br>
+    <br>
+  </li>
+  <li><a href="../base/classoaObserver.html">oaObserver</a><br>
+    Can be applied to certain managed objects in oaDesign databases. See <a href="#Observers">Observers</a> for more information.<br>
+  </li>
+</ul>
+<p>You can  specify the class that the template is applied to when you declare a variable that uses the template:</p>
+<pre>oaFloatAppDef&lt;oaNet> *weight;
+</pre>
+<h3 class="spabove"><a name="Observers">Observers</a></h3>
+<p>The <code><a href="../base/classoaObserver.html">oaObserver</a></code> class is an abstract base class for all types of observers in OpenAccess. Observers notify the client of changes to a particular class of objects. For example, the oaShape observer notifies the client if a shape is created, modified, or destroyed. </p>
+<ul>
+  <li>Observers can be enabled or disabled as desired. Disabled observers are not called. </li>
+  <li>Observers are ordered by priority. An observer with a higher priority (indicated by a lower priority number) is called first. </li>
+</ul>
+<p>Refer to <a href="../base/classoaObserver.html#observer_table">OpenAccess Observers </a> to see a table of the managed classes that support observers. </p>
+<p>For an example of a template that implements observers, refer to <a href="observerexample.html">Observer Template Code Example</a>. </p>
+<h3><a name="derived"></a>Classes From Which Applications Derive </h3>
+<p> Some classes are abstract classes from which the application must create derived classes to redefine the virtual functions. Examples are <a href="../base/classoaObserver.html">oaObserver</a> and <a href="../design/classoaRegionQuery.html">oaRegionQuery</a>.</p>
+<p>Note that you cannot derive from a managed class. There is no way to call the parent's constructor to make the object. </p>
+<h2>&nbsp;</h2>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="TEXT-ALIGN: center">
+<IMG src="../pgfooter.gif"><br >
+
+</div><br >
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br >All rights reserved.</p>
+</body>
+</html>

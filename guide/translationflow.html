@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>A Typical Design Translation Flow and Related Issues</h1>
+<hr>
+<p>An important reason for using OpenAccess is to eliminate all dependencies on translators, but importing legacy designs into an OpenAccess flow can require several translation steps. This document describes a typical flow to import design data into OpenAccess, and it describes the issues that can occur during the translation process.</p>
+
+<p>This document contains the following sections:</p>
+<ul>
+<li><a href="#typicalflow">A Typical Flow</a></li>
+<li><a href="#partitionedflow">Adjusting for a Partitioned Flow</a></li>
+<li><a href="#mismatches">Handling Mismatches</a></li>
+<li><a href="#incorrectinstmstr">Avoiding Incorrect Instance Masters</a></li>
+<li><a href="#missingmultibitconn">Correcting Missing Multi-bit Connectivity</a></li>
+<li><a href="#correctinglefdeferrors">Correcting Errors Produced by lef2oa and def2oa</a></li>
+<li><a href="#namemapping">Handling Name Mapping Issues</a></li>
+<li><a href="#incorrecthierarchy">Fixing Incorrect Hierarchy</a></li>
+<li><a href="#verilogdefmismatch">Avoiding Verilog and DEF Mismatches</a></li>
+<li><a href="#extranets">Analyzing Extra Nets</a></li>
+<li><a href="#mixoaversions">Mixing and Matching OpenAccess Versions</a></li>
+</ul>
+
+<a name="typicalflow"></a>
+<h2>A Typical Flow</h2>
+The following list shows the steps for translating legacy data into OpenAccess.</p>
+<ol>
+<li>Use lef2oa to create the reference libraries and the technology data.</li>
+<li>Use verilogAnnotate to establish terminal order and to group the multi-bit interfaces of the reference library designs.</li>
+<li>Use verilog2oa to import the logical description of the design.</li>
+<li>Use def2oa to annotate the logical description of the design with the physical implementation.</li>
+<li>Use spef2oa to annotate parasitics onto the design. (Optional)</li>
+</ol>
+
+<p>For example, consider a design that consists of:</p>
+<ul>
+<li>Two LEF files: <code>foundry18u7lm.lef</code> and <code>stdLib.lef</code></li>
+<li>A Verilog file <code>stdLibStubs.v</code> (which contains Verilog module stub definitions of the reference library cells)</li>
+<li>A Verilog file <code>myDesign.v</code> (which contains Verilog module definitions of every cell in the design)</li>
+<li>A DEF file <code>myDesign.def</code></li>
+<li>A SPEF file <code>myDesign.spef</code></li>
+</ul>
+
+<p>The basic process to import this design into OpenAccess uses the following flow:</p>
+<pre>
+lef2oa -lib foundryLib -lef foundry18u7lm.lef
+
+lef2oa -lib stdLib -lef stdLib.lef -techLib foundryLib
+
+verilogAnnotate -refLibs "foundryLib stdLib" -verilog stdLibStubs.v
+
+verilog2oa -lib designLib -refLibs "foundryLib stdLib" \
+           -view layout -viewType maskLayout -verilog myDesign.v \
+           -tieLow VSS -tieHigh VDD
+
+def2oa -lib designLib -cell top -view layout -def myDesign.def \
+       -refLibs "foundryLib stdLib" -techLib foundryLib
+
+spef2oa -lib designLib -cell top -view layout \
+        -spef myDesign.spef -ap typ
+</pre>
+
+<p>This process works for simple designs that are not partitioned for implementation.  If the design is partitioned, you must modify the process to accommodate the partitions.</p>
+
+<a name="partitionedflow"></a>
+<h2>Adjusting for a Partitioned Flow</h2>
+<p>Consider the design in the previous example but now partitioned into three designs: a top level, a core, and a controller (the top level design is composed of instances of the core and the controller and includes some connecting logic). In this case, the first two steps are the same as the basic flow, but the verilog2oa and def2oa steps must be modified to create the partitions. Most likely you will still have a single Verilog file describing the whole design, but because the design is partitioned, you most likely have three DEF files; one DEF file for the top and one for each partition.</p>
+
+<p>The order of translation is important because the verilog2oa translator makes decisions about the masters of instances based on the designs that are already created. The verilog2oa translator builds a module hierarchy, but it is capable of instantiating other designs as part of that hierarchy. When you run verilog2oa, you produce a single design with a specific multi-level module hierarchy that is rooted at the module that  you supply with the -top option. When verilog2oa creates module instances, it first looks for master candidates in its set of refLibs and refViews. If it finds a cell that matches the instantiated module's name in one of the refLibs, it creates the instance as a design instance. If a module definition for such a design is found in the input Verilog, that module definition (and all the subordinate hierarchy) is ignored.</p>
+
+<p>By running verilog2oa three times with different -top options, you are partitioning the design into two sub-designs that are instantiated by a top level design. Each partition (and the top level for that matter) have module hierarchy that may be greater than one level deep. If you only run verilog2oa once, all instances are module instances and there is no partitioning of the top level design. See Searching for Leafs in refLibs and refViews for details about the instance master selection process used by verilog2oa.</p>
+
+<p>Following is the flow for translating a partitioned design.</p>
+<pre>
+# The first three commands are the same as before.
+lef2oa -lib foundryLib -lef foundry18u7lm.lef
+lef2oa -lib stdLib -lef stdLib.lef -techLib foundryLib
+verilogAnnotate -refLibs "foundryLib stdLib" -verilog stdLibStubs.v
+
+# Create the logical partition of the core.  Note that you are
+# now using the -top option of verilog2oa and you are ignoring the
+# warnings about modules that are not in the hierarchy of the core
+# module (there will be a large number of these because
+# the design has been partitioned). This step isn't strictly
+# necessary because the def2oa translator will build a module
+# hierarchy if one does not exist, but it will preserve the
+# the multi-bit Verilog interface to the core. If you skip this
+# step and there are multi-bit terminals on the core, you will
+# need to run verilogAnnotate on the core.  You can skip
+# this step if the myDesign.v file does not contain a module
+# definition for the core, but you may need to generate a stub
+# Verilog module definition for verilogAnnotate if there are
+# multi-bit terminals on the core.
+verilog2oa -lib coreLib -refLibs "stdLib foundryLib" \
+           -view layout -viewType maskLayout -verilog myDesign.v \
+           -tieLow VSS -tieHigh VDD \
+           -top core -noWarning 40071
+
+# Add the physical implementation to the core partition.
+def2oa -lib coreLib -cell core -view layout -def myCore.def \
+       -refLibs "stdLib foundryLib" -techLib foundryLib
+
+# Create the logical partition of the controller using the same
+# technique that was used to create the core. As before, this step
+# may be skipped, but verilogAnnotate may be required.
+verilog2oa -lib controllerLib -refLibs "stdLib foundryLib" \
+           -view layout -viewType maskLayout -verilog myDesign.v \
+           -tieLow VSS -tieHigh VDD \
+           -top controller -noWarning 40071
+
+# Add the physical implementation to the controller partition.
+def2oa -lib controllerLib -cell controller -view layout \
+       -def myController.def \
+       -refLibs "stdLib foundryLib" -techLib foundryLib
+
+# Create the top level design's logical hierarchy.  Because the
+# core and controller partitions were created in separate
+# libraries, those libraries must be added to the -refLibs
+# option. Also, because the desired view of the core and
+# controller is "layout" (rather than "abstract") you must use the
+# -refViews option to select that view. The order of the views
+# is important.  Because lef2oa may create stub designs in the
+# foundry and standard libraries with "layout" views that you do
+# not want to instantiate, you should specify "abstract" first to
+# pick up the "abstract" views of the foundry and standard
+# libraries, however, because the core and controller partitions
+# will not have "abstract" views, the "layout" view will be
+# selected for those designs. Do not specify the top module (let
+# the translator determine the top module automatically).
+verilog2oa -lib designLib \
+           -refLibs "coreLib controllerLib stdLib foundryLib" \
+           -refViews "abstract layout" \
+           -view layout -viewType maskLayout -verilog myDesign.v \
+           -tieLow VSS -tieHigh VDD \
+           -noWarning 40071
+
+# Add physical implementation to the top level design.
+def2oa -lib designLib -cell top -view layout -def myDesign.def \
+       -refLibs "stdLib foundryLib" -techLib foundryLib
+</pre>
+
+<a name="mismatches"></a>
+<h2>Handling Mismatches</h2>
+<p>One of the big problems of legacy designs is mismatches between all the translator files that encode separate aspects of the same design. OpenAccess is designed to eliminate this problem by providing a single self-consistent repository for all design information, but it doesn't automatically resolve inconsistencies when legacy designs are imported. OpenAccess name mapping does automatically resolve issues surrounding use of different syntax rules to refer to the same object, and the OpenAccess Embedded Module Hierarchy automatically resolves most issues raised when switching between a hierarchical, logical representation of the design data to a flat, physical representation. However, importation problems can still occur because legacy, translator-based flows have very weak consistency checking between the separate file formats.</p>
+
+<a name="incorrectinstmstr"></a>
+<h2>Avoiding Incorrect Instance Masters</h2>
+<p>Occasionally, an instance has the wrong master. Usually, this happens when a cell with the same name appears in several reference libraries or when a cell has multiple views. Give special attention to the order of libraries that are passed to the verilog2oa -refLibs option and the def2oa -refLibs options. Also consider the order of views passed to the verilog2oa -refViews and def2oa -refViews options. Libraries and views are selected in the order that they are listed.</p>
+
+<p>See <a href="../verilogmap/verilog2oamap.html#leaf_search">Searching for Leafs in refLibs and refViews</a> for more information.</p>
+
+<a name="missingmultibitconn"></a>
+<h2>Correcting Missing Multi-bit Connectivity</h2>
+<p>The most common mismatch that occurs while running verilog2oa is on the interface of instantiated designs. The Verilog language includes multi-bit connectivity; however designs imported from LEF and DEF only have single bit connectivity. If a multi-bit terminal exists in a leaf cell (from the previous example, a cell in either the foundry or standard cell libraries) and that cell was imported from either LEF or DEF, some process must annotate the design to establish the proper grouping and order of the bits in the resulting multi-bit terminals. The verilogAnnotate program is designed to do this. All that is needed is a Verilog interface description for each cell that must to be annotated. Not all cells require annotation, but because it is difficult to determine at the start which cells require annotation, the typical process annotates all the cells.</p>
+
+<p>If you discover that some expected connectivity is missing, first determine whether  the correct master is instantiated. If the correct master is instantiated, determine whether the missing connectivity is multi-bit. If the missing connectivity is multi-bit, you might need to run verilogAnnotate on the library that contains the instance's master. You must have a Verilog module definition of the interface of this cell in order to run verilogAnnotate.</p>
+
+<p>See <a href="../verilog/verilog2oacmds.html#verilogandlefdef">Creating a Design by Merging Verilog and LEF/DEF Information</a> for more information.</p>
+
+<a name="correctinglefdeferrors"></a>
+<h2>Correcting Errors Produced by lef2oa and def2oa</h2>
+<p>When lef2oa and def2oa produce error messages, the message describes the problem and it suggests at least one step to take to resolve the problem. Sometimes lef2oa and def2oa write a design even though errors are found during processing. When this happens, the resulting design is left intact only for debugging purposes. Do not ignore the errors produced by lef2oa or def2oa even if they succeed in producing a design database. Incorrect connectivity, incorrect hierarchy or incorrect routes are very likely results of these errors.</p>
+
+<a name="namemapping"></a>
+<h2>Handling Name Mapping Issues</h2>
+<p>Because different translator formats have different rules for specifying the names of objects, legacy flows often run into name mapping issues. OpenAccess name mapping  automatically resolves most of these problems. In particular, OpenAccess implicitly understands that net a/b\[1\]_c in the DEF namespace is the same as net a.\b[1]_c in the Verilog namespace. The OpenAccess DEF namespace goes further and implicitly escapes bus delimiters in all cases except at the end of a name or a hierarchical delimiter.  OpenAccess also understands that a/b[1]_c is the same as a/b\[1\]_c (in the DEF namespace) and is the same as a.\b[1]_c (in the Verilog namespace).</p>
+
+<p>Because OpenAccess employs strong name mapping, the naming rules of each language are strictly enforced. Legacy flows often mix naming rules in different file formats. For example, legacy designs sometimes use DEF names in a SPEF file. If the files being imported into OpenAccess take these liberties with the naming rules of the language, these issues must be resolved before importing the data into OpenAccess.</p>
+
+<p>Sometimes names of nets are deliberately changed in the course of a design flow in order to replace characters considered "illegal" for a given tool. Although OpenAccess handles this using the name mapping capability described above, non-OpenAccess based tools often do not have this capability, and the CAD flow designer must handle this outside of the tools. If this type of name <em>munging</em> occurs between Verilog generation and DEF generation, nets in the DEF will not match with an equivalent net in the module domain, and def2oa will report that it cannot match those nets. This type of problem must be corrected in the DEF, and cannot be resolved in def2oa or in OpenAccess.</p>
+
+<p>See <a href="namemap.html">Name Mapping</a> for details.</p>
+
+<a name="incorrecthierarchy"></a>
+<h2>Fixing Incorrect Hierarchy</h2>
+<p>Hierarchical names are often ambiguous in legacy flows because the partitioning of the design is not enforced between files. Hierarchy problems are often discovered when the def2oa translator produces errors such as:</p>
+
+<pre>
+"ERROR: (OALEFDEF-50095): NET a/b/c/d: This net was not found
+in the existing design. The net was ignored. Check whether the
+connectivity matches the existing design."
+</pre>
+
+<p>This can happen if the design is partitioned, and one or more of the imported files  does not respect that partitioning. Using the previous example one again, suppose that the top level DEF file myDesign.def contains a reference to the net core/x. The problem is that because of the partitioning, net x is a net in the core design and is not a net in the top level design. The DEF data for this net must appear in the myCore.def file not in the myDesign.def file.</p>
+
+<p><strong>Note</strong>: OpenAccess can probe across design boundaries through the Occurrence domain; however this does not imply that annotations (such as routes) can be made across design boundaries.</p>
+
+<p>See <a href="emh.html">OpenAccess Hierarchy Domains</a> for more information.</p>
+
+<a name="verilogdefmismatch"></a>
+<h2>Avoiding Verilog and DEF Mismatches</h2>
+<p>When importing both Verilog and DEF into OpenAccess, it is critical that the design does not undergo significant change between Verilog generation and DEF generation.  Such changes include: adding instances that are not physical only, changing the interfaces of oaDesigns, and partitioning the design in a way that puts part of a module in one physical oaDesign and part in another. You should verify  that the design's Verilog and DEF represent a snapshot of the data at the same point in time.</p>
+
+<p>See <a href="emh.html">OpenAccess Hierarchy Domains</a> for more information.</p>
+
+<a name="extranets"></a>
+<h2>Analyzing Extra Nets</h2>
+<p>Sometimes, after importing a design into OpenAccess, unconnected (or partially connected) nets appear in the block domain. Usually, these <em>extra</em> nets are a result of unconnected, partially connected, or equivalent nets (that is, nets connected via a Verilog "assign" statement), which are buried within the Verilog module hierarchy and contain no shapes, routes, or parasitics. Most of the time, these nets are benign and do not cause concern unless there is some additional reason to think that the connectivity is incomplete.</p>
+
+<a name="mixoaversions"></a>
+<h2>Mixing and Matching OpenAccess Versions</h2>
+<p>Except for certain well documented features, all databases written by any 2.2 version of OpenAccess can be read by any other. The OpenAccess API is drop-in compatible, so a later version can always be used with an application compiled on any earlier version. You can ship your product on version N and later send the customer just the version N+1 OpenAccess libraries to fix a particular problem. The customer does not need to regenerate data or recompile applications.</p>
+
+<p>See <a href="compat.html">Compatibility for OpenAccess Applications and Data</a> for more information.</p>
+<br><br>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="index.html">Return to Programmers Guide topics</a></p><br>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

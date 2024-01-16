@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minEdgeAdjacentDistance (oacMinEdgeAdjacentDistance)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in layer constraint oacMinEdgeAdjacentDistance specifies the minimum distance along the edge between one set of connected minimum length edges and another set of connected minimum length edges. This constraint also specifies the minimum length of an edge, and optionally, specifies how many minimum length edges must be connected for this constraint to apply. The constraint is associated with a single layer. This constraint is usually applied in combination with the oacMinEdgeMaxCount constraint.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>oacMinEdgeAdjacentDistance has an oaIntValue specifies the minimum distance along the edge between one set of connected mimimum length edges and the other set of connected minimum length edges.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>maxLength</b><br />oacMaxLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)</td>
+        <td>
+          <p>An oaIntValue that specifies the maximum length of a short edge.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>count</b><br />oacCountConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Count</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)</td>
+        <td>
+          <p>An oaIntValue that specifies the maximum number of connected short edges that trigger this constraint. The maximum supported value is 2.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>exceptSameCorner</b><br />oacExceptSameCornerConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>specifies that the constraint does not apply for an edge that has the same type (concave or convex) of 90-degree corner at each end.</p>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/minedgeadjacentdistance.gif" alt="minedgeadjacentdistance.gif" />
+      <br />
+    </p>
+    <h2>Manufacturing Reasons</h2>
+    <p>Some foundries limit the maximum number of consecutive minimum edges. It is also required to limit the distance along an edge between one set of consecutive minimum length edges and another set of consecutive minimum length edges.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

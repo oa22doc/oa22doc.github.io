@@ -1,0 +1,24 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Occurrence Domain Class Index
+
+HTMLFILES = \
+	classoaOccObject.html
+        classoaOccTraverser.html
+
+
+BUILDINFO
+The occurrence domain includes an unfolded description of all connectivity and hierarchy specified in either 
+the module or block domains. <em>Unfolded</em> means that each path down the hierarchy leads to distinct 
+occurrence objects. Note that occShapes are not part of the occurrence domain and are not included in this 
+category. 
+
+See <a href="../guide/emh.html">Understanding OpenAccess Hierarchy</a>
+in the Programmers Guide for more information.
+
+
+

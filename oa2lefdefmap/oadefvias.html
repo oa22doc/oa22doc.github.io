@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|vias'/>
+<a name='18000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Vias"></a>Vias</h1>
+<pre>
+ [VIAS numVias;
+   [- viaName
+
+   { [+ <a href='#18001'>VIARULE</a> viaRuleName
+       + CUTSIZE xSize ySize
+       + LAYERS botmetalLayer cutLayer topMetalLayer
+       + CUTSPACING xCutSpacing yCutSpacing
+       + ENCLOSURE xBotEnc yBotEnc xTopEnc yTopEnc
+       [+ ROWCOL numCutRows NumCutCols]
+       [+ ORIGIN xOffset yOffset]
+       [+ OFFSET xBotOffset yBotOffset xTopOffset yTopOffset]
+       [+ <a href='#18002'>PATTERN</a> cutPattern]
+     ]
+     | [+ <a href='#18003'>RECT</a> layerName pt pt | POLYGON layerName pt pt pt
+  
+       ] ... }
+
+   ;] ...
+
+ END VIAS]
+</pre>
+<p>Lists the names and geometry definitions of all generated vias in the design. The numVias information corresponds to the number of parameterized via objects in the design.</p>
+<p>Turn Vias are recognized and stored in the turnViaNames list. CustomViaDefs are created instead of stdVias for the following cases :</p>
+<ul>
+<li>vias without PATTERNNAME</li>
+<li>vias with invalid PATTERNNAME</li>
+<li>vias with an incorrect viaName</li>
+<li>vias for which there is no associated stdViaDef</li>
+</ul>
+</div>
+<a name='def|vias|rect'/>
+<a name='18003'/>
+<h2 class='topicSyntax'>
+RECT layerName pt pt | POLYGON layerName pt pt pt</h2>
+<div style='margin-left:40px;'>
+<p>The rectangle geometries are determined from certain parameters of a via. These parameter values are obtained using the following API members:</p>
+<pre>
+   oaViaDef *oaViaHeader::getViaDef() const
+   oaLayer *oaViaDef::getLayer1() const
+   oaLayer *oaViaDef::getLayer2() const
+   void oaLayer::getName(oaString &amp;name) const
+   oaLayerNum oaViaParam::getCutLayer() const
+
+   const oaPoint &amp;oaViaParam::getLayer1Enc() const
+   const oaPoint &amp;oaViaParam::getOriginOffset() const
+   const oaPoint &amp;oaViaParam::getCutSpacing() const
+   oaUInt4 oaViaParam::getCutWidth() const
+   oaUInt4 oaViaParam::getCutHeight() const
+   oaUInt4 oaViaParam::getCutColumns() const
+   oaUInt4 oaViaParam::getCutRows() const
+   oaBoolean oaViaParam::getCutPatternVal(oaUInt4 cutRowNum,
+                                          oaUInt4 cutColNum ) const
+</pre>
+</div>
+<a name='def|vias|viarule'/>
+<a name='18001'/>
+<h2 class='topicSyntax'>
+VIARULE viaRuleName<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ CUTSIZE xSize ySize<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ LAYERS botmetalLayer cutLayer topMetalLayer<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ CUTSPACING xCutSpacing yCutSpacing<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ENCLOSURE xBotEnc yBotEnc xTopEnc yTopEnc<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[+ ROWCOL numCutRows NumCutCols]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[+ ORIGIN xOffset yOffset]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[+ OFFSET xBotOffset yBotOffset xTopOffset yTopOffset]</h2>
+<div style='margin-left:40px;'>
+<p>The VIARULE associates a layer and width pair with a set of vias. These vias must already exist in the technology database.</p>
+<p>For dataModel 4, the VIARULE is mapped by adding the specified vias to the <a href="../guide/oacValidRoutingViasConstraint.html">oacValidRoutingVias</a> constraint in the LEFSpecialRouteSpec constraint group. The value of the constraint is an oaViaTopology2DTblValue that is a two dimensional table of oaViaTopologyArrayValues. This is similar to how the oaViaDef2DTblValue table is used on the oaViaSpec for dataModel 3.</p>
+<p>For dataModel 3, the VIARULE statement is mapped by adding the specified vias to the oaViaSpec for the given layer pair. The oaViaSpec has an oaViaDef2DTblValue that is a two dimensional table of oaViaDef arrays that are indexed by the two WIDTH values. If WIDTH is not specified, the specified vias are added to the default value of the table.</p>
+</div>
+<a name='def|vias|viarule|pattern'/>
+<a name='18002'/>
+<h3 class='topicSyntax'>
+PATTERN cutPattern</h3>
+<div style='margin-left:60px;'>
+<p>cutPattern is determined from certain parameters of the via. These parameter values are obtained by using the following API members:</p>
+<pre>
+     void oaViaHeader::getViaDefName(oaString &amp;name) const
+     void oaStdViaHeader::getParams(oaViaParam &amp;params) const
+     const oaPoint &amp;oaViaParam::getLayer1Enc() const
+     const oaPoint &amp;oaViaParam::getOriginOffset() const
+     const oaPoint &amp;oaViaParam::getCutSpacing() const
+     oaUInt4 oaViaParam::getCutWidth() const
+     oaUInt4 oaViaParam::getCutHeight() const
+     oaUInt4 oaViaParam::getCutColumns() const
+     oaUInt4 oaViaParam::getCutRows() const
+     oaBoolean oaViaParam::getCutPatternVal(oaUInt4 cutRowNum,
+                                            oaUInt4 cutColNum ) const
+</pre>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

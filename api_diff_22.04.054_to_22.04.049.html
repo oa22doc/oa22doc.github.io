@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h2>Summary of API Changes</h2>
+		<p>Following is a summary of the API changes between the OpenAccess p054 release
+			and the p049 release.<SPAN style="COLOR: rgb(0,102,204)"><SPAN style="COLOR: rgb(0,102,204)"><SPAN style="COLOR: rgb(0,102,204)"><SPAN style="COLOR: rgb(0,102,204)"></p>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<BR><PRE>	<a href="design/classoaArrayInst.html">oaArrayInst</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="design/classoaArrayInst.html#a15">copy(const oaScalarName &amp;name, const oaTransform &amp;xform, oaBlock *block)</a> <BR>
+		<a href="design/classoaArrayInst.html#a14">copy(const oaScalarName &amp;name, const oaTransform &amp;xform)</a> <BR>
+	<a href="design/classoaDesign.html">oaDesign</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="design/classoaDesign.html#a5">saveAs(const oaScalarName &amp;libNameIn, const oaScalarName &amp;cellNameIn, const oaScalarName &amp;viewNameIn, oaBoolean renameTopModule)</a> <BR>
+	<a href="design/classoaScalarInst.html">oaScalarInst</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="design/classoaScalarInst.html#a3">copy(const oaScalarName &amp;name, const oaTransform &amp;xform, oaBlock *block)</a> <BR>
+		<a href="design/classoaScalarInst.html#a2">copy(const oaScalarName &amp;name, const oaTransform &amp;xform)</a> <BR>
+	<a href="design/classoaVectorInst.html">oaVectorInst</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="design/classoaVectorInst.html#a8">copy(const oaScalarName &amp;baseName, const oaTransform &amp;xform, oaBlock *block)</a> <BR>
+		<a href="design/classoaVectorInst.html#a7">copy(const oaScalarName &amp;baseName, const oaTransform &amp;xform)</a> <BR>
+	<a href="design/classoaVectorInstBit.html">oaVectorInstBit</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="design/classoaVectorInstBit.html#a5">copy(const oaScalarName &amp;baseName, const oaTransform &amp;xform, oaBlock *block)</a> <BR>
+		<a href="design/classoaVectorInstBit.html#a4">copy(const oaScalarName &amp;baseName, const oaTransform &amp;xform)</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>	<a href="base/oaBaseMsgs_8h.html#a232">oaBaseMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="base/oaBaseMsgs_8h.html#a232a231">oacOpenAccessNotInitialized</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<PRE>
+	<a href="base/classoaComplex.html">oaComplex</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="base/classoaComplex.html#a16">operator!=(const oaComplex &amp;c) const</a> <BR>
+		<a href="base/classoaComplex.html#a15">operator==(const oaComplex &amp;c) const</a> <BR>
+	<a href="base/classoaDualInt.html">oaDualInt</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="base/classoaDualInt.html#a8">operator!=(const oaDualInt &amp;right) const</a> <BR>
+		<a href="base/classoaDualInt.html#a7">operator==(const oaDualInt &amp;right) const</a> <BR>
+	<a href="wafer/classoaLayerMap.html">oaLayerMap</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="wafer/classoaLayerMap.html#a11">operator!=(const oaLayerMap &amp;layerMap) const</a> <BR>
+		<a href="wafer/classoaLayerMap.html#a10">operator==(const oaLayerMap &amp;layerMap) const</a>
+<BR>
+<BR>
+	<a href="design/classoaNetTermPair.html">oaNetTermPair</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="design/classoaNetTermPair.html#a9">operator!=(const oaNetTermPair&lt; NetType, TermType &gt; &amp;val) const</a> <BR>
+		<a href="design/classoaNetTermPair.html#a8">operator==(const oaNetTermPair&lt; NetType, TermType &gt; &amp;val) const</a> <BR><BR>
+	<a href="design/classoaSegStyle.html">oaSegStyle</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="design/classoaSegStyle.html#a20">genBoundary(oaPointArray &amp;points) const</a> <BR>
+	<a href="tech/classoaSiteRef.html">oaSiteRef</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="tech/classoaSiteRef.html#a11">operator!=(const oaSiteRef &amp;other) const</a> <BR>
+		<a href="tech/classoaSiteRef.html#a10">operator==(const oaSiteRef &amp;other) const</a> <BR>
+	<a href="tech/classoaViaTopology.html">oaViaTopology</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="tech/classoaViaTopology.html#a15">operator!=(const oaViaTopology &amp;viaTopology) const</a> <BR>
+		<a href="tech/classoaViaTopology.html#a14">operator==(const oaViaTopology &amp;viaTopology) const</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>	<a href="base/oaBaseMsgs_8h.html#a231">oaBaseMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="base/oaBaseMsgs_8h.html#a231a230">oacStringOverflow</a> <BR>
+	<a href="design/oaDesignMsgs_8h.html#a628">oaDesignMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a610">oacDesignInvalidUndoModel</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a611">oacCannotModifyImplicitNetEquivalence</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a612">oacInvalidEquivalentNetIterFlags</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a613">oacTermNetMismatchInRepeatedMembers</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a614">oacCannotSetGlobalOnImplicitNet</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a615">oacCannotSetSigTypeOnImplicitNet</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a616">oacCannotSetPriorityOnImplicitNet</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a617">oacCannotSetSourceOnImplicitNet</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a618">oacCannotTransferToImplicitNet</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a619">oacCannotMergeToImplicitNet</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a620">oacCannotModifyImplicitTerm</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a621">oacCannotSensitizeImplicitTerm</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a622">oacCannotSetPinConnectMethodOnImplicitTerm</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a623">oacCannotSetNameOfNetInBusNet</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a624">oacCannotSetNameOfTermInBusTerm</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a625">oacCannotDestroyOverriddenInstTerm</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a626">oacCannotEditOverriddenInstTerm</a> <BR>
+		<a href="design/oaDesignMsgs_8h.html#a628a627">oacInvalidOperationOnDesignBeingPurged</a> <BR>
+<BR>
+	<a href="tech/oaTechMsgs_8h.html#a155">oaTechMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="tech/oaTechMsgs_8h.html#a155a154">oacTechInvalidUndoModel</a> <BR>
+		 <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		</SPAN>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified
+#<BR>#################################<BR></P>
+		<PRE>	<a href="base/classsr1to1Relationship.html">sr1to1Relationship</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		getFrom() const<BR>
+	<a href="base/classsr1toNRelationship.html">sr1toNRelationship</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+
+		getFrom() const<BR>
+	<a href="base/classsrRelationshipBase.html">srRelationshipBase</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="base/classsrRelationshipBase.html#a2">getFrom() const</a> <BR>
+		<a href="base/classsrRelationshipBase.html#b0">srRelationshipBase(const sd::sdRelationshipBase *def=0, const srObjectRef::CSPtr from=0)</a> <BR>
+
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		srRelationshipBase(const sd::sdRelationshipBase *def)<BR>
+	<a href="base/classsrVisitor.html">srVisitor</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="base/classsrVisitor.html#a5">visit(srRelationshipBase *object)=0</a> <BR>
+</PRE>
+		<P><BR>
+			################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were added #<BR>#################################<BR><PRE>	<a href="base/oaBaseModTypes_8h.html#a41">oaConstraintGroupHeaderModTypeEnum</a> <BR>
+	<a href="base/oaBaseModTypes_8h.html#a43">oaConstraintParamDefModTypeEnum</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<PRE>
+	<a href="base/oaBaseMsgs_8h.html#a230">oaBaseMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="base/oaBaseMsgs_8h.html#a230a229">oacChecksumMismatch</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		</SPAN>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<BR></P>
+		<PRE>	<a href="dm/classoaLibDef.html">oaLibDef</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="dm/classoaLibDef.html#a7">addLibAttribute(const oaString &amp;attrName, const oaString &amp;attrVal)</a> <BR>
+		<a href="dm/classoaLibDef.html#a8">removeLibAttribute(const oaString &amp;attrName)</a> <BR>
+		<a href="dm/classoaLibDef.html#a5">setLibMode(oaLibMode libMode)</a> <BR>
+		<a href="dm/classoaLibDef.html#a3">setLibWritePath(const oaString &amp;writePath)</a> <BR>
+	<a href="dm/classoaLibDefList.html">oaLibDefList</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="dm/classoaLibDefList.html#d5">create(const oaString &amp;filePath)</a> <BR>
+		<a href="dm/classoaLibDefList.html#oaLibDefList::getDefaultFileName">getDefaultFileName(oaString &amp;libDefName)</a> <BR>
+		<a href="dm/classoaLibDefList.html#oaLibDefList::open">open()</a> <BR>
+	<a href="dm/classoaObserver_3oaLibDefList_4.html">oaObserver&lt; oaLibDefList, oacObserverVersion1 &gt;</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="dm/classoaObserver_3oaLibDefList_4.html#a5">onPostCreate(oaLibDefList *defList)</a> <BR>
+		<a href="dm/classoaObserver_3oaLibDefList_4.html#a8">onPostSave(oaLibDefList *defList)</a> <BR>
+		<a href="dm/classoaObserver_3oaLibDefList_4.html#a10">onPostSaveAs(oaLibDefList *defList, const oaString &amp;name)</a> <BR>
+		<a href="dm/classoaObserver_3oaLibDefList_4.html#a6">onPreDestroy(oaLibDefList *defList)</a> <BR>
+		<a href="dm/classoaObserver_3oaLibDefList_4.html#a7">onPreSave(oaLibDefList *defList)</a> <BR>
+		<a href="dm/classoaObserver_3oaLibDefList_4.html#a9">onPreSaveAs(oaLibDefList *defList, const oaString &amp;name)</a> <BR>
+</PRE>
+		<P><BR>
+			################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were added #<BR>#################################<BR><PRE>	<a href="base/oaBaseModTypes_8h.html#a55">oaLibDefListMemModTypeEnum</a> <BR>
+	<a href="base/oaBaseModTypes_8h.html#a56">oaLibDefListModTypeEnum</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>
+	<a href="dm/oaDMMsgs_8h.html#a123">oaDMMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a33">oacObsoleteDMMsg3030</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a34">oacObsoleteDMMsg3031</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a36">oacObsoleteDMMsg3033</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a37">oacObsoleteDMMsg3034</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a38">oacObsoleteDMMsg3035</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a39">oacObsoleteDMMsg3036</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a40">oacObsoleteDMMsg3037</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a41">oacObsoleteDMMsg3038</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a42">oacObsoleteDMMsg3039</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a43">oacObsoleteDMMsg3040</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a119">oacFailedToGetLibDefInterface</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a120">oacPlugInInterfaceException</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a121">oacLibDefMemMoveAfterSelf</a> <BR>
+		<a href="dm/oaDMMsgs_8h.html#a123a122">oacLibDefListExists</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed Values</SPAN><BR>
+		oacLibDefFileSyntaxError <BR>
+		oacLibDefFileCannotOpenInclude <BR>
+		oacLibDefFileInvalidCommand <BR>
+		oacLibDefFileFailedToGetLibName <BR>
+		oacLibDefFileFailedToGetLibPath <BR>
+		oacLibDefFileFailedToGetAttrName <BR>
+		oacLibDefFileFailedToGetAttrVal <BR>
+		oacLibDefFileFailedToGetIncludePath <BR>
+		oacLibDefFileMultipleDefinitions <BR>
+		oacLibDefFileCannotOpenFile <BR>
+	<a href="design/oaDesignModTypes_8h.html#a390">oaModuleModTypeEnum</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN> <BR>
+		<a href="design/oaDesignModTypes_8h.html#a390a135">oacInvalidateModuleModType</a> <BR>
+	<a href="design/oaDesignModTypes_8h.html#a395">oaOccurrenceModTypeEnum</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="design/oaDesignModTypes_8h.html#a395a172">oacUniquifyOccurrenceModType</a> <BR>
+		<a href="design/oaDesignModTypes_8h.html#a395a173">oacUndoUniquifyOccurrenceModType</a> <BR>
+	<a href="dm/oaView_8h.html#a19">oaReservedViewTypeEnum</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="dm/oaView_8h.html#a19a15">oacSPECTREText</a> <BR>
+		<a href="dm/oaView_8h.html#a19a16">oacSPICEText</a> <BR>
+		<a href="dm/oaView_8h.html#a19a17">oacHSPICEText</a> <BR>
+		<a href="dm/oaView_8h.html#a19a18">oacCDLText</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		</SPAN></SPAN>
+		<P><SPAN style="COLOR: rgb(0,102,204)"><SPAN style="COLOR: rgb(0,102,204)">&nbsp;</P>
+		</SPAN></SPAN>
+	</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Sample Namespace Implementation: oaWinNS to oaNative</h1>
+<hr />
+
+<p>The following example shows the flow when converting a scalar name string
+from the Windows name space (<a href="../base/classoaWinNS.html">oaWinNS</a>) to a
+name string in the <a href="../base/classoaNativeNS.html">oaNative</a> 
+namespace. This flow illustrates the implementation of the
+<a href="../base/classoaNameSpace.html#oaNameSpace::getInternalMember">getInternalMember</a> function for
+oaWinNS.</p>
+
+<ol>
+<li>Because the oaWinNS namespace uses keywords, first determine if the name
+string is a keyword in oaWinNS.</li>
+<br />
+
+<ul>
+<li>If the name string is a keyword in oaWinNS and it is escaped, the name is
+valid and processing of this name string is complete.</li>
+<br /><br />
+
+<li>If the name string is a keyword in oaWinNS and it is <em>not</em> escaped,
+oaWinNS throws an exception.</li>
+<br /><br />
+</ul>
+
+<li>If a name string is not a keyword, check each character in the name to
+determine if it is a valid character in the oaNative namespace. Character
+validation follows the flow shown in the figure below. Because bus characters
+are not allowed in the Windows namespace, no bus character checking is
+necessary. Case sensitivity is considered when validating the keywords as well
+as when validating each character.</li><br /><br />
+</ol>
+
+<div class="indent">
+<p><img src="images/figFlowWinToNative.gif"
+alt="Converting oaWinNS name string to oaNative"></p>
+</div>
+
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="derivingnamespaces.html#flowIn">Return to Deriving Namespaces</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

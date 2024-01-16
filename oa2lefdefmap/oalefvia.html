@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|via'/>
+<a name='66000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Via"></a>Via</h1>
+<pre>
+ VIA viaName
+
+   [<a href='#66001'>DEFAULT]</a>
+   [[<a href='#66002'>TOPOFSTACKONLY]</a>]
+       { <a href='#66003'>VIARULE</a> viaRuleName ;
+           CUTSIZE xSize ySize ;
+           LAYERS botMetalLayer cutLayer topMetalLayer ;
+           CUTSPACING xCutSpacing yCutSpacing ;
+           ENCLOSURE xBotEnc yBotEnc xTopEnc yTopEnc ;
+           [ROWCOL numCutRows numCutCols ;]
+           [ORIGIN xOffset yOffset ;]
+           [OFFSET xBotOffset yBotOffset xTopOffset yTopOffset ;]
+           [PATTERN cutPattern ;]
+       }
+   | { [<a href='#66004'>RESISTANCE</a> resistValue ;]
+       {<a href='#66005'>LAYER</a> layerName ;
+           { RECT pt pt ;
+           | POLYGON pt pt pt ...;} ...
+       } ...
+   }
+       <a href='#66006'>PROPERTY</a> propName propVal ... ;
+
+ END viaName
+</pre>
+<p>The LEF VIA objects are stored in OpenAccess by using an oaCustomViaDef or as an oaViaVariant for dataModel 4 and higher.</p>
+</div>
+<a name='lef|via|default'/>
+<a name='66001'/>
+<h2 class='topicSyntax'>
+DEFAULT</h2>
+<div style='margin-left:40px;'>
+<p>The oaCustomViaDef or oaViaVariant created for VIAs with the DEFAULT keyword are added to the oacValidRoutingVias constraint in the LEFDefaultRouteSpec constraintGroup.</p>
+</div>
+<a name='lef|via|layer'/>
+<a name='66005'/>
+<h2 class='topicSyntax'>
+LAYER layerName ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ RECT pt pt ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| POLYGON pt pt pt ...;} ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ...<BR/>
+&nbsp;</h2>
+<div style='margin-left:40px;'>
+<p>The VIA layer geometries are stored in OpenAccess using a separate oaDesign referenced by the oaViaDef::CellView attribute. The RECT shapes are created as oaRect objects in this oaDesign, on the oaPhysicalLayer specified by the LAYER statement.</p>
+</div>
+<a name='lef|via|property'/>
+<a name='66006'/>
+<h2 class='topicSyntax'>
+PROPERTY propName propVal ...</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oalefproperties.html">PROPERTIES</a>.</p>
+</div>
+<a name='lef|via|resistance'/>
+<a name='66004'/>
+<h2 class='topicSyntax'>
+| { [RESISTANCE resistValue ;]</h2>
+<div style='margin-left:40px;'>
+<p>The VIA RESISTANCE attribute is stored in OpenAccess using the oaViaDef::resistancePerCut attribute. The resistancePerCut value is calculated by multiplying the total VIA resistance value times the number of cuts to obtain the OpenAccess resistancePerCut value.</p>
+</div>
+<a name='lef|via|topofstackonly'/>
+<a name='66002'/>
+<h2 class='topicSyntax'>
+TOPOFSTACKONLY</h2>
+<div style='margin-left:40px;'>
+<p>The TOPOFSTACKONLY keyword on LEF VIAs is stored as an oaBooleanProp named <q>TOPOFSTACKONLY</q> on the oaCustomViaDef or oaStdViaVariant created for the VIA.</p>
+</div>
+<a name='lef|via|viarule'/>
+<a name='66003'/>
+<h2 class='topicSyntax'>
+VIARULE viaRuleName ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUTSIZE xSize ySize ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LAYERS botMetalLayer cutLayer topMetalLayer ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CUTSPACING xCutSpacing yCutSpacing ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ENCLOSURE xBotEnc yBotEnc xTopEnc yTopEnc ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ROWCOL numCutRows numCutCols ;]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ORIGIN xOffset yOffset ;]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[OFFSET xBotOffset yBotOffset xTopOffset yTopOffset ;]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PATTERN cutPattern ;]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+<div style='margin-left:40px;'>
+<p>For dataModel 4 and above, the VIA VIARULE maps to an <a href="../tech/classoaStdViaVariant.html">oaStdViaVariant</a> object containing an <a href="../tech/classoaViaParam.html">oaViaParam</a> object and a reference to an <a href="../tech/classoaStdViaDef.html">oaStdViaDef</a>. When a VIA is used in a MACRO, the oaStdViaDef/oaViaParam pair is retrieved from the oaStdViaVariant.</p>
+<p>Before dataModel 4, the VIA VIARULE is not stored persistently in OpenAccess. Instead, the viaRuleName and the parameters are stored in a private table, and when the via is used, the table is searched using the viaRuleName as the index for getting the parameters and creating an <a href="../design/classoaStdVia.html">oaStdVia</a>.</p>
+<p>Note: The viaRuleName must be unique. In dataModel 4 and above, if the technology database already contains an <a href="../tech/classoaViaVariant.html">oaViaVariant</a> with the same name but different parameters, the oaStdViaVariant is given a different, unique name, and any use of this VIA VIARULE is mapped to the new name.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

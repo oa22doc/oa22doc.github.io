@@ -1,0 +1,15 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Technology Class Index
+
+BUILDINFO
+The OpenAccess technology database contains the technology specification that corresponds to a particular 
+design methodology and fabrication technology. The information stored in an oaTech is applicable across 
+many or all of the oaDesigns that comprise the total design hierarchy. This category contains the 
+classes that can be stored in an oaTech and the classes that are used to interact with those objects.
+
+See <a href="../guide/tech.html">Using Technology Databases</a> for more information.

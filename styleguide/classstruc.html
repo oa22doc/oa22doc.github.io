@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Class, Structure, and Enum Declarations and Definitions</h1>
+<hr />
+
+<p>Cleanly formatted class, structure, and enum definitions greatly affect the 
+readability of source code. </p>
+
+<ul>
+<li><a href="#common">Common Coding Standard for Classes, Structures, and Enumerations</a></li>
+<li><a href="#1">Member Names</a></li>
+<li><a href="#2">Inline Methods</a></li>
+<li><a href="#3">Classes or Structs?</a></li>
+<li><a href="#4">Static Class Members</a></li>
+<li><a href="#5">Using <code>const</code></a></li>
+</ul>
+
+<h2><a name="common"></a>Common Coding Standard for Classes, Structures, and Enumerations</h2>
+<p>The following coding standards apply to class, structure, and enum 
+  definitions.</p>
+<table border=0 width=850 cellspacing=20>
+<tr valign=top>
+<td>Block Comment</td>
+<td>Precede each definition with three empty lines and the block comment.</td>
+</tr>
+
+<tr valign=top>
+<td>Open Brace Location</td>
+<td>Place the opening brace on the same line as the object type and name.</td>
+</tr>
+
+<tr valign=top>
+<td>Member Indentation</td>
+<td>Indent class member method and data names to align one tab from the longest type name or at a minimum on column 29.</td>
+</tr>
+
+<tr valign=top>
+<td>Member Arguments</td>
+<td>Align member function argument types and names.</td>
+</tr>
+
+<tr valign=top>
+<td>Public, Protected, Private &nbsp; &nbsp; &nbsp;</td>
+<td>List public methods and data first, protected methods and data second, and 
+private methods and data third. Group all public members, all protected members, 
+and all private members. Do not indent the keywords <code>public</code>, 
+<code>protected</code>, or <code>private</code>.</td>
+</tr>
+
+<tr valign=top>
+<td>Friend Declarations</td>
+<td>List friend declarations last, and align the friend names.</td>
+</tr>
+
+<tr valign=top>
+<td>Member Grouping</td>
+<td>Group class and structure members as appropriate. Group common or related 
+methods and data. Use spaces to separate and delineate different groups.</td>
+</tr>
+
+<tr valign=top>
+<td>Static Members</td>
+<td>Separate static class members from non-static members unless they are clearly
+related.</td>
+</tr>
+</table>
+<br />
+
+<p>The following example illustrates the class, structure, and enum coding 
+standards.</p>
+<br />
+
+
+<pre>
+
+// *****************************************************************************
+// oaMyClass
+// *****************************************************************************
+class oaMyClass : public oaMyBaseClass {
+public:
+                                 oaMyClass(oaUInt4   intArg,
+                                           oaFloat    floatArg = 3.5f);
+                                 ~oaMyClass();
+
+    oaUInt4                      getFunc1() const;
+    oaBoolean                    getFunc2() const;
+    oaInt4                       getFunc3(oaUInt4       arg1) const;
+    const oaMyClass              *getFunc4(oaBoolean    arg1) const;
+
+    void                         setFunc1(oaUInt4       argA,
+                                          oaUInt4      argB) const;
+    oaBoolean                    setFunc2() const;
+    void                         setFunc3(oaUInt4       arg1) const;
+    oaMyClass                    *setFunc4(oaBoolean    arg1) const;
+
+    void                         myMemberFunc1(oaUInt4  myIntArg);
+
+    static const oaUInt4         findMyClass(oaUInt4    info);
+
+protected:
+    void                         specFuncA(oaUInt4      argA) const;
+
+private:
+    oaUInt4                      m_data1; 
+    oaBoolean                    m_data2;
+    oaMyClass2                   *m_data3;
+
+    static oaMyClass3            *s_listHead;
+
+friend class    myFriendClass1;
+friend class    myFriendClass1;
+};
+
+
+
+// *****************************************************************************
+// oaMyStruct
+// *****************************************************************************
+struct oaMyStruct {
+    oaUInt4               m_data1; 
+    oaBoolean             m_data2; 
+    oaMyClass2            *m_data3;
+};
+
+
+
+// *****************************************************************************
+// oaMyEnum
+// *****************************************************************************
+enum oaMyEnum {
+    oacEnumVal1         = 0,
+    oacLongEnumVal2     = 1,
+    oacEnumVal1         = 2
+};
+</pre>
+<br /><br />
+
+
+<h2><a name="1"></a>Member Names</h2>
+
+<p>Because class member functions and data names are relative to the class name, 
+you do not need to include the class name in the member name.</p>
+
+<p>For example, if a member function of the <code>polygon</code> class creates a 
+copy of the polygon, it is redundant to give this member function a name like 
+<code>copyPolygon()</code>, since it is obvious that it pertains to polygons. 
+A more appropriate name is simply <code>copy()</code>.</p>
+
+<p>Occasionally, a developer will want to create a local variable for a purpose similar (but not identical) 
+to a variable declared in a class or base class.  A typical example is an accessor function that is used
+to set the value of some member variable in the class. For example, 
+
+<pre>
+class oaMyClass {
+public:
+    void              set(oaUInt4 value);
+
+private:
+    oaUInt4           value;
+    static oaMyClass  singleton;
+};
+</pre>
+
+The argument <code>value</code> holds the same data as the member variable <code>value</code> but the same name cannot 
+be used in the implementation without the local variable <code>value</code> hiding the member variable <code>value</code>.  
+Frequently, the existence of a member named <code>value</code> will not be immediately apparent to the developer 
+because it appears in a base class of the class that is being developed. To avoid these issues, prefix all 
+non-static member variables with <code>m_</code> and prefix all static member variables with <code>s_</code>. The previous 
+example should look like this:
+
+<pre>
+class oaMyClass {
+public:
+    void              set(oaUInt4 value);
+
+private:
+    oaUInt4           m_value;
+    static oaMyClass  s_singleton;
+};
+</pre>
+</p><br /><br />
+
+
+<h2><a name="2"></a>Inline Methods</h2>
+
+<p>Inline methods are valuable for encapsulating functionality and data while ensuring high-performance, but you must always demonstrate that inlining a function results in better performance. Virtual functions require an extra step to determine whether they can be inline. One design pattern that frequently calls for inline treatment is when base class virtual functions are declared as pure, and all derived classes are required to redefine them. It is often useful for the base class to provide a basic definition for these functions that can then be called by the redefined functions in the derived classes. An extra level of function call overhead can be avoided if these base class definitions are inline.</p>
+
+<p>Private member functions of a class may be defined as inline in a <code>.cpp</code> file only if they are intended to be used within that file and nowhere else.  This is consistent with the principle of information hiding, which calls for not revealing implementation details (such as those found in the body of a member function) to any wider audience than necessary. Never include inline methods in the class definition.</p>
+
+<p>Inline functions must be added to the appropriate <code>.inl</code> file. The class definition file must not contain any member function implementation. To allow for member functions in two  interdependent classes to be inlined, the inlined functions must be placed in the <code>.inl</code> files and not in the header files.</p>
+<br><br>
+<h2><a name="3"></a>Classes or Structs?</h2>
+
+<p>For C++ development, classes are the preferable object for almost all 
+development. However, a struct may be more appropriate if: </p>
+
+<ul>
+<li>A  collection of elements will be manipulated frequently as a group, 
+but the requirements are so trivial that using a class with methods for 
+data access is overkill</li>
+
+<li>The code interfaces to C-level code, and only structs are allowed</li>
+</ul>
+<br /><br />
+
+
+<h2><a name="4"></a>Static Class Members</h2>
+
+<p>When developing systems using C++, it is appropriate to completely eliminate 
+the use of global variables and global functions. Because global information 
+is obviously necessary and useful, create the data by relating the global 
+variables and functions to a particular class, then implementing them as static 
+members of the class.</p>
+
+<p>For example, to maintain a linked list of nets in a design, rather than keep 
+a global pointer to the head of the list, a more appropriate solution is to keep 
+the pointer as a static member of the <code>net</code> class. Instead of the 
+code:</p>
+
+<pre>
+	oaNet           *oavFirstNet;
+</pre>
+
+<p>use a static member:</p>
+
+<pre>
+class oaNet {
+    .
+    .
+    .
+private:
+    .
+    .
+    .
+    static oaNet           *s_first;
+}
+</pre>
+
+<p>The pointer is hidden and protected but still accessible from the member 
+functions of the <code>oaNet</code> class (which are the most likely and appropriate 
+functions to use the pointer anyway.)</p>
+
+<p>Be careful  when creating static class members. Like all global variables, 
+static class members are not thread-safe, so proper safeguards must be used to 
+protect them.</p>
+<p>Static class member variable definitions appear at the head of <code>.cpp</code> files in a separate block.  The default rules for variable declarations apply, but avoiding alignment and placing a single space between the type and the variable name is also acceptable.  Additionally, the initializer values may also be aligned. For example, the following is the preferred format:</p>
+<pre>
+// *****************************************************************************
+// Initialize Static Members
+// *****************************************************************************
+oaUInt4           oaDatabase::s_size                    = 16;
+const oaUInt4     oaDatabase::s_fullReadThreshold       = 131072;
+const oaUInt4     oaDatabase::s_fullWriteThreshold      = 32768;
+const oaUInt4     oaDatabase::s_swapCheckOffset         = 0;
+const oaUInt4     oaDatabase::s_idOffset                = 4;
+const oaUInt4     oaDatabase::s_schemaRevNumOffset      = 6;
+const oaUInt4     oaDatabase::s_databaseTocOffset       = 8;
+const oaUInt2     oaDatabase::s_baseSchemaRev           = 0;
+</pre>
+
+<p>However these formats are also acceptable:</p>
+<pre>
+// *****************************************************************************
+// Initialize Static Members
+// *****************************************************************************
+oaUInt4           oaDatabase::s_size = 16;
+const oaUInt4     oaDatabase::s_fullReadThreshold = 131072;
+const oaUInt4     oaDatabase::s_fullWriteThreshold = 32768;
+const oaUInt4     oaDatabase::s_swapCheckOffset = 0;
+const oaUInt4     oaDatabase::s_idOffset = 4;
+const oaUInt4     oaDatabase::s_schemaRevNumOffset = 6;
+const oaUInt4     oaDatabase::s_databaseTocOffset = 8;
+const oaUInt2     oaDatabase::s_baseSchemaRev = 0;
+
+
+// *****************************************************************************
+// Initialize Static Members
+// *****************************************************************************
+oaUInt4 oaDatabase::s_size = 16;
+const oaUInt4 oaDatabase::s_fullReadThreshold = 131072;
+const oaUInt4 oaDatabase::s_fullWriteThreshold = 32768;
+const oaUInt4 oaDatabase::s_swapCheckOffset = 0;
+const oaUInt4 oaDatabase::s_idOffset = 4;
+const oaUInt4 oaDatabase::s_schemaRevNumOffset = 6;
+const oaUInt4 oaDatabase::s_databaseTocOffset = 8;
+const oaUInt2 oaDatabase::s_baseSchemaRev = 0;
+</pre>
+</p>
+<br /><br />
+
+
+<h2><a name="5"></a>Using const</h2>
+
+<p>The OpenAccess coding standards require judicious use of <code>const</code> 
+as a way of providing read-only access to data. Properly used, <code>const</code>
+lets you  develop code that gives access to private data without copying 
+the data to protect it.</p>
+
+<p>Everything that can be <code>const</code>, should be <code>const</code>, and 
+no more. Although this rule can be applied in a number of contexts, the main 
+focus is member functions, pointers, and references. Apply 
+<code>const</code> consistently and correctly from the beginning, starting with 
+the most &quot;primitive&quot; functions (which includes all member functions), in the 
+following order:</p>
+
+<ol>
+<li>If a member function does not modify the object it is a member of, declare
+it <code>const</code>.</li>
+
+<li>If function parameters are pointers or references, and if the function 
+makes only read-only use of them, declare them <code>const</code>.
+</li>
+
+<li>Declare local pointer variables <code>const</code> if all uses of them 
+are <code>const</code>.</li>
+
+<li>Declare function return types and data members that are pointer types 
+<code>const</code> if it really makes sense to restrict clients to read-only 
+access to the object being returned (this is one area where excessive use of 
+<code>const</code> can be harmful).</li>
+</ol>
+
+<p><code>const</code> is also useful for documenting the programmer's intent with regards to data members and local variables. For example, local variables are often used simply to hold a copy of a value created by some complex expression or 
+other expensive operation and are not really &quot;variables&quot; at all. These local variables should be <code>const</code>. </p>
+
+<p>In the following example, it is immediately apparent that <code>count</code> 
+is not modified and its value is readily known wherever it occurs in the code.</p>
+
+<pre>
+    const oaInt4        count = inst-&gt;countTerminalsConnectedToHighFanoutNets();
+</pre>
+
+<h3>Use the <em>mutable</em> Keyword Instead of Casting Away const-ness</h3>
+<p>Use the mutable keyword to identify data members that need to be modified by const member functions. The traditional way to modify the private, internal state of an object within a const member function is to cast away the const-ness of the this pointer and then access (and modify) the member through the resultant non-const expression. C++ now provides a better, more explicit alternative to this sort of casting: the <em>mutable</em> keyword. Syntactically, mutable is like a storage class (think of static) and precedes any type specifier for a data member. A data member that  is declared to be mutable can be modified even within a const member function. Just as with the casting technique, modification of mutable data should not result in any externally visible change to the state of an object, otherwise the const designation on the member function is not accurate. Always use the mutable keyword instead of the casting technique.</p>
+
+<p>Following are examples of both correct and incorrect methods for identifying data members that can be modified by const member functions.</p>
+<pre>
+class SomeClass {
+public:
+    ...
+    oaInt4            getSomething() const;
+    ...
+private:
+    static oaInt4     computeSomething();
+	  
+    mutable oaInt4    m_somethingRight;
+    oaInt4            m_somethingWrong;
+};
+
+
+// This implementation is correct, because it properly makes
+// use of the mutable qualifier on somethingRight.
+oaInt4
+SomeClass::getSomething()
+{
+    if (m_somethingRight == 0) {
+        m_somethingRight = computeSomething();
+    }
+    return m_somethingRight;
+}
+
+
+// This implementation is incorrect, because it
+// improperly casts away the const-ness of this
+// in order to modify somethingWrong.
+oaInt4
+SomeClass::getSomething()
+{
+    if (m_somethingWrong == 0) {
+        (const_cast&lt;SomeClass *&gt;(this))-&gt;m_somethingWrong = computeSomething();
+    }
+    return m_somethingWrong;
+}
+
+</pre>
+
+
+
+
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

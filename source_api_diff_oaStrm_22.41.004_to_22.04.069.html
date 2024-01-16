@@ -1,0 +1,278 @@
+<html>
+	<head>
+		<title>OpenAccess API Deltas</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	</head>
+	<body bgcolor="#ffffff" text="#000000">
+		<h2>Summary of API Changes</h2>
+		<p> The summary of the API changes 
+			is as follows:</p><SPAN 
+style="COLOR: #0066cc">
+<P><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following new classes were added #<BR>#################################<PRE>
+	<A href="classViaExclusionData.html">ViaExclusionData</A> <BR>
+	<A href="classStrmInMaterialCheck.html">StrmInMaterialCheck</A> <BR>
+	<A href="classStrmReader.html">StrmReader</A> <SPAN style="COLOR: #0066cc"></PRE><PRE>	<A href="classStrmIn_1_1NameMgr.html">StrmIn::NameMgr</A> <BR>
+	<A href="classStrmOutSequential.html">StrmOutSequential</A> </SPAN><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"></PRE><PRE>	<A href="classGds2Ascii.html">Gds2Ascii</A> <BR>
+	<A href="classStrmInDBUnit.html">StrmInDBUnit</A> 
+<BR>################################# </SPAN></SPAN></SPAN><BR></PRE>
+<P></SPAN></SPAN><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following classes were modified #<BR>#################################<BR></P><PRE>	<A href="classOptionsOut.html">OptionsOut</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classOptionsOut.html#a72">convertPath() const</A> <BR>
+		<A href="classOptionsOut.html#a36">setConvertPath(oaBoolean val)</A> <SPAN style="COLOR: #0066cc">
+</PRE><PRE>		<A href="classOptionsOut.html#a71">getCloseDesigns() const</A> <BR>		<BR>		<A href="classOptionsOut.html#a36">setCloseDesigns(oaBoolean val)</A></PRE><PRE>	<A href="classOptionsIn.html">OptionsIn</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classOptionsIn.html#a66">getCellNamePrefix() const</A> <BR>
+		<A href="classOptionsIn.html#a67">getCellNameSuffix() const</A> <BR>
+		<A href="classOptionsIn.html#a22">setCellNamePrefix(const oaString &amp;prefix)</A> <BR>
+		<A href="classOptionsIn.html#a23">setCellNameSuffix(const oaString &amp;suffix)</A> <BR>
+<U><FONT color=#008000></FONT></U>		<A href="classOptionsIn.html#a63">getOutputPerfData() const</A> <BR>		<BR>		<A href="classOptionsIn.html#a61">getSaveDesigns() const</A> <BR>		<BR>		<A href="classOptionsIn.html#a62">getSkipLppLayer() const</A> <BR>		<BR>		<A href="classOptionsIn.html#a40">getViaExclusionData() const</A> <BR>	<BR>		<A href="classOptionsIn.html#a32">setOutputPerfData(oaBoolean value)</A> <BR><BR><BR><BR>		<BR>		<A href="classOptionsIn.html#a30">setSaveDesigns(oaBoolean value)</A> <BR><BR>		<BR>		<A href="classOptionsIn.html#a31">setSkipLppLayer(oaBoolean value)</A> <BR><BR>		<BR>		<A href="classOptionsIn.html#a9">setViaExclusionData(ViaExclusionData *value)</A> <BR><BR>
+		<A href="classOptionsIn.html#a69">getLPListOnly() const</A> <BR>	<BR>		<A href="classOptionsIn.html#a35">setLPListOnly(oaBoolean value)</A> <BR>		<BR>		<A href="classOptionsIn.html#a20">setTextHeight(oaFloat value)</A> <BR>		<BR>		<A href="classOptionsIn.html#a71">getIsNewTech() const</A> <BR>		<BR><BR>		<A href="classOptionsIn.html#a36">setIsNewTech(oaBoolean value)</A> <BR>	<BR>		<A href="classOptionsIn.html#a57">getScaleTextHeight() const</A> <BR>		<BR>		<A href="classOptionsIn.html#a21">setScaleTextHeight(oaFloat value)</A> <BR></SPAN>	<BR><SPAN style="COLOR: red">		<u>Removed API</u></SPAN><BR>		setTextHeight(oaUInt4 value)<BR></SPAN></SPAN></SPAN>
+<U><FONT color=#ff0000></FONT></U><BR>
+		 <SPAN style="COLOR: #0066cc">	<A href="classCellMapIn.html">CellMapIn</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classCellMapIn.html#a3">read(const oaString &amp;fileName)</A> <BR>
+<U><FONT color=#008000></FONT></U><BR>
+	<A href="classProp.html">Prop</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classProp.html#a1">Prop(oaUInt4 id)</A> <BR>
+		<A href="classProp.html#a2">Prop(const Prop &amp;in)</A> <BR>
+		<A href="classProp.html#a7">operator=(const Prop &amp;rhs)</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		Prop(oaUInt2 id)<BR>
+	<A href="classStrmBase.html">StrmBase</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN>		<BR>		<A href="classStrmBase.html#a9">flushToApp()</A> <BR><BR>		<BR>		<A href="classStrmBase.html#a7">info(const oaException &amp;err)</A> <BR><BR>		<BR>		<A href="classStrmBase.html#a8">info(const oaCommon::IException &amp;excp)</A>
+<BR>		<
+		BR><BR>
+	<A href="classStrmIn.html">StrmIn</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classStrmIn.html#b0">StrmIn(const StrmIn &amp;strmIn)</A> <BR>
+		<A href="classStrmIn.html#a0">StrmIn()</A> <BR>
+		<A href="classStrmIn.html#a8">addLP(oaUInt4 layer, oaUInt4 purpose)</A> <BR>
+		<A href="classStrmIn.html#a3">addStruct(const oaString &amp;strName, oaDouble mag, oaDouble angle, oaBoolean mx)</A> <BR>
+		<A href="classStrmIn.html#a2">addStruct(const oaString &amp;strName)</A> <BR>
+		<A href="classStrmIn.html#a20">close(Structure *structIn, oaBoolean detectVias=true, oaBoolean doPurge=true)</A> <BR>
+		<A href="classStrmIn.html#a15">complete()</A> <BR>
+		<A href="classStrmIn.html#b1">createStruct(const oaString &amp;strName)</A> <BR>
+		<A href="classStrmIn.html#a36">getExistingCustomViaDef(const oaDesign *cell, oaString cellName)</A> <BR>
+		<A href="classStrmIn.html#a35">getExistingStdViaDef(const oaViaParam *checkParams, const oaLayer *layer1, const oaLayer *layer2, const oaLayer *implant1, const oaLayer *implant2) const</A> <BR>
+		<A href="classStrmIn.html#a10">getLayerMapIndexCache() const</A> <BR>
+		<A href="classStrmIn.html#a16">getOptions() const</A> <BR>
+		<A href="classStrmIn.html#a5">getScaledStruct(const Structure *structIn, oaDouble mag, oaDouble angle, oaBoolean mx)</A> <BR>
+		<A href="classStrmIn.html#a34">getUniqViaName(oaString &amp;cellName)</A> <BR>
+		<A href="classStrmIn.html#a11">init(const OptionsIn *optionsIn)</A> <BR>
+		<A href="classStrmIn.html#d0">isFreeAngle(const oaDouble angle)</A> <BR>
+		<A href="classStrmIn.html#a37">mapArefGeometries(const oaString &amp;name, const oaPoint &amp;lr, const oaPoint &amp;ul, const oaPoint &amp;origin, oaBoolean mx, oaDouble angle, oaUInt2 numCols, oaUInt2 numRows, oaTransform &amp;xform, oaOffset &amp;colSpacing, oaOffset &amp;rowSpacing) const</A> <BR>
+		<A href="classStrmIn.html#a33">mapLayer(const oaUInt2 strmLayer, const oaUInt2 strmType, oaLayerNum &amp;layer, oaPurposeNum &amp;purpose)</A> <BR>
+		<A href="classStrmIn.html#e0">mapOrient(oaBoolean mx, oaDouble angle, oaOrient &amp;orient)</A> <BR>
+		<A href="classStrmIn.html#b5">mapTextAlign(oaUInt2 value, oaTextAlign &amp;align)</A> <BR>
+		<A href="classStrmIn.html#a19">open(Structure *structIn, oaBoolean useTempCellView=true)</A> <BR>
+		<A href="classStrmIn.html#a14">postTranslate()</A> <BR>
+		<A href="classStrmIn.html#a12">preCheck()</A> <BR>
+		<A href="classStrmIn.html#a13">preTranslate()</A> <BR>
+		<A href="classStrmIn.html#a21">setUnits(oaDouble UUperDBU, oaDouble meterPerDBU)</A> <BR>
+		<A href="classStrmIn.html#a28">writeAref(Structure *structIn, const oaString &amp;name, oaBoolean mx, oaDouble angle, oaDouble mag, const oaTransform &amp;transform, oaUInt2 numCols, oaUInt2 numRows, oaOffset colSpacing, oaOffset rowSpacing, const PropArray &amp;props)</A> <BR>
+		<A href="classStrmIn.html#a22">writeBoundary(Structure *structIn, const oaUInt2 layer, const oaUInt2 purpose, oaPointArray &amp;points, const PropArray &amp;props)</A> <BR>
+		<A href="classStrmIn.html#a23">writeBox(Structure *structIn, const oaUInt2 layer, const oaUInt2 purpose, oaPointArray &amp;points, const PropArray &amp;props)</A> <BR>
+		<A href="classStrmIn.html#a29">writeCustomVia(Structure *structIn, const oaCustomViaDef *def, oaPoint &amp;origin, const oaBoolean mx, const oaDouble angle, const oaDouble mag, const PropArray &amp;props)</A> <BR>
+		<A href="classStrmIn.html#a25">writeNode(Structure *structIn, const oaUInt2 layer, const oaUInt2 purpose, oaPointArray &amp;points, const PropArray &amp;props)</A> <BR>
+		<A href="classStrmIn.html#a24">writePath(Structure *structIn, const oaUInt2 layer, const oaUInt2 purpose, const oaUInt2 pathType, oaInt4 width, oaInt4 bgnExt, oaInt4 endExt, oaPointArray &amp;points, const PropArray &amp;props)</A> <BR>
+		<A href="classStrmIn.html#a27">writeSref(Structure *structIn, const oaString &amp;name, oaPoint &amp;origin, const oaBoolean mx, const oaDouble angle, const oaDouble mag, const PropArray &amp;props)</A> <BR>
+		<A href="classStrmIn.html#a30">writeStdVia(Structure *structIn, const oaStdViaDef *def, oaPoint &amp;origin, const oaBoolean mx, const oaDouble angle, const oaDouble mag, const PropArray &amp;props, const oaViaParam *params=NULL)</A>
+<BR>
+		<A href="classStrmIn.html#a26">writeText(Structure *structIn, const oaString &amp;text, const oaUInt2 layer, const oaUInt2 purpose, oaPoint &amp;origin, const oaUInt2 font, const oaUInt2 alignValue, const oaBoolean mx, const oaDouble angle, const oaDouble mag, const PropArray &amp;props)</A> <BR>		<BR>		<A href="classStrmIn.html#b2">mapInstName(Structure *structIn, oaBoolean notFoundcell=true)</A> <BR>		<BR>		<A href="classStrmIn.html#a6">resolveStruct(Structure *structIn, oaBoolean notFoundCell=true)</A> <BR>		<BR>		<A href="classStrmIn.html#b17">copyDesign(oaDesign *designToCopy, const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName) const</A> <BR> <BR><BR> <BR><BR>		<BR>		<A href="classStrmIn.html#b24">isUsingTempCV(oaDesign *design)</A> 
+		<BR>		<A href="classStrmIn.html#b21">arefXYConformsWithPIPO(const oaPoint &amp;origin, const oaPoint &amp;lr, const oaPoint &amp;ul, oaDouble angle, oaBoolean mx) const</A> <BR><BR>		<BR>		<A href="classStrmIn.html#b22">calculateArefSpacings(oaUInt2 numCols, oaUInt2 numRows, const oaPoint &amp;lr, const oaPoint &amp;ul, oaTransform &amp;xform, oaInt4 &amp;dx, oaInt4 &amp;dy, oaBoolean usingPipo=true) const</A> <BR><BR>		<BR>		<A href="classStrmIn.html#b20">checkViaDef(Structure *structIn)</A> <BR><BR> <BR>		<BR>		<A href="classStrmIn.html#b17">createLayer(oaTech *tech, const oaString &amp;layerName, oaMaterial material=oacOtherMaterial, oaUInt4 maskNum=oacNullIndex)</A> <BR><BR>		<BR>		<A href="classStrmIn.html#b18">createPurpose(oaTech *tech, const oaString &amp;purposeName)</A> <BR><BR> <BR><BR>		<BR>		<A href="classStrmIn.html#b11">getStructName(oaString &amp;strName, oaDouble mag=1.0, oaDouble angle=0.0, oaBoolean mx=false) const</A> <BR><BR><BR>		<BR>		<A href="classStrmIn.html#a21">purge(Structure *structIn, oaBoolean destroyCell)</A><BR> <BR>		<BR><BR>		<BR>		<A href="classStrmIn.html#b19">translateCellAsViaDef(Structure *structIn)</A></SPAN></SPAN>
+<BR>		<BR>		<A href="classStrmIn.html#a22">deleteTempCellViews()</A> <BR><BR><BR>		<BR>		<A href="classStrmIn.html#a47">resolveStructCellName(Structure *structIn, oaBoolean allViewNames)</A> <BR><BR>		<BR>		<A href="classStrmIn.html#b13">setDBUnit(oaDouble UUperDBU)</A>		<BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+<FONT color=#0066cc>
+		StrmIn(const oaString &amp;nameIn)<BR>
+		close(Structure *structIn, oaDesign *design)<BR>
+		copyDesign(oaDesign *design, oaDouble mag, oaDouble angle, 
+		oaBoolean mx)<BR>
+		getCellStat() const<BR>
+		 <BR>
+		getCustomViaStat() const<BR>
+		getOptions()
+		
+		getOrient(oaBoolean mx, oaInt4 angle, oaOrient &amp;orient)<BR>
+		getPathSegStat() const<BR>
+		getPathStat() const<BR>
+		getPolygonStat() const<BR>
+		getRectStat() const<BR>
+		       <BR>
+		getSrefStat() const<BR>
+		getStdViaStat() const<BR>
+		getStruct(const oaString &amp;str)<BR>
+		getStructCnt() const<BR>
+		getTextStat() const<BR>
+		getTmpCellName() const<BR>
+		getTmpViewName() const<BR>
+		getZeroAreaPolygonStat() const<BR>
+		incrArefStat()<BR>
+		incrCellStat()<BR>
+		incrCustomViaStat()<BR>
+		incrPathSegStat()<BR>
+		incrPathStat()<BR>
+		incrPolygonStat()<BR>
+		incrRectStat()<BR>
+		incrSrefStat()<BR>
+		incrStdViaStat()<BR>
+		incrTextStat()<BR>
+		incrZeroAreaPolygonStat()<BR>
+		 <BR>
+		isTechModified()<BR>
+		mapLayer(oaUInt2 strmLayer, oaUInt2 strmType, oaLayerNum &amp;layer, oaPurposeNum &amp;purpose)<BR>		         numShiftsInRead() const
+		<BR>
+		open(Structure *structIn)<BR>
+		read()<BR>
+		       resetStats()<BR>
+		       <BR>
+		       <BR>
+		setTmpCellName(oaScalarName tmpCellNameIn)<BR>
+		setTmpViewName(oaScalarName tmpViewNameIn)<BR>
+		windowShifted()<BR>
+		writeAref(oaDesign *cell, const oaString &amp;name, oaPoint origin, oaPoint lr, oaPoint ul, oaBoolean mx, oaDouble angle, oaDouble mag, oaUInt2 numCols, oaUInt2 numRows, const PropArray &amp;props)<BR>
+		writeBoundary(oaDesign *cell, oaUInt2 layer, oaUInt2 purpose, oaPointArray &amp;points, const PropArray &amp;props)<BR>
+		writeBox(oaDesign *cell, oaUInt2 layer, oaUInt2 purpose, oaPointArray &amp;points, const PropArray &amp;props)<BR>
+		writeCustomVia(oaDesign *cell, oaCustomViaDef *def, oaPoint &amp;origin, oaBoolean mx, oaDouble angle, oaDouble mag, const PropArray &amp;props)<BR>
+		writeNode(oaDesign *cell, oaUInt2 layer, oaUInt2 purpose, oaPointArray &amp;points, const PropArray &amp;props)<BR>
+		writeOa(OptionsIn *optionsIn)<BR>
+		writePath(oaDesign *cell, oaUInt2 layer, oaUInt2 purpose, oaUInt2 pathType, oaInt4 width, oaInt4 bgnExt, oaInt4 endExt, oaPointArray &amp;points, const PropArray &amp;props)<BR>
+		writeSref(oaDesign *cell, const oaString &amp;name, oaPoint &amp;origin, oaBoolean mx, oaDouble angle, oaDouble mag, const PropArray &amp;props)<BR>
+		writeStdVia(oaDesign *cell, oaStdViaDef *def, oaPoint &amp;origin, oaBoolean mx, oaDouble angle, oaDouble mag, const PropArray &amp;props, const oaViaParam *params=NULL)<BR>		<BR>		mapInstName(Structure *structIn)<BR>		<BR>		resolveStruct(Structure *structIn)
+		<BR>
+		writeText(oaDesign *cell, const oaString &amp;data, oaUInt2 layer, oaUInt2 purpose, oaPoint &amp;origin, oaOrient &amp;orient, oaUInt2 font, oaTextAlign &amp;align, oaUInt4 height, const PropArray &amp;props)<BR></FONT>
+	<A href="classStrmOut.html">StrmOut</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>		<BR>		<A href="classStrmOut.html#b0">validateStrmFile()</A> <BR>		<BR>		<A href="classStrmOut.html#b44">outputCell(oaCell *cell, oaBoolean force=false, oaBoolean warnWhenNoOutput=false)</A> <BR>		<BR>		<A href="classStrmOut.html#b7">writeStrmUnits()</A> <BR><SPAN style="COLOR: #0066cc"><BR>		<BR>		<A href="classStrmOut.html#b122">isOutputtingPcells() const</A> </SPAN>
+<BR>		<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+<FONT color=#0066cc>
+		<BR>	<BR><BR>		outputCell(oaCell *cell, oaBoolean force=false)
+<BR><BR>
+	<A href="classStructure.html">Structure</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classStructure.html#a16">getAngle() const</A> <BR>
+		<A href="classStructure.html#a54">getCustomViaStat() const</A> <BR>
+		<A href="classStructure.html#a11">getDesign() const</A> <BR>
+		<A href="classStructure.html#a17">getMX() const</A> <BR>
+		<A href="classStructure.html#a15">getMag() const</A> <BR>
+		<A href="classStructure.html#a18">getOriginal() const</A> <BR>
+		<A href="classStructure.html#a50">getPathSegStat() const</A> <BR>
+		<A href="classStructure.html#a48">getPathStat() const</A> <BR>
+		<A href="classStructure.html#a46">getPolygonStat() const</A> <BR>
+		<A href="classStructure.html#a47">getRectStat() const</A> <BR>
+		<A href="classStructure.html#a52">getSrefStat() const</A> <BR>
+		<A href="classStructure.html#a55">getStdViaStat() const</A> <BR>
+		<A href="classStructure.html#a49">getTextStat() const</A> <BR>
+		<A href="classStructure.html#a12">getTopBlock() const</A> <BR>
+		<A href="classStructure.html#a51">getZeroAreaPolygonStat() const</A> <BR>
+		<A href="classStructure.html#a112">incrArefStat()</A> <BR>
+		<A href="classStructure.html#a113">incrCustomViaStat()</A> <BR>
+		<A href="classStructure.html#a109">incrPathSegStat(oaUInt4 layerMapIndex)</A> <BR>
+		<A href="classStructure.html#a107">incrPathStat(oaUInt4 layerMapIndex)</A> <BR>
+		<A href="classStructure.html#a105">incrPolygonStat(oaUInt4 layerMapIndex)</A> <BR>
+		<A href="classStructure.html#a106">incrRectStat(oaUInt4 layerMapIndex)</A> <BR>
+		<A href="classStructure.html#a111">incrSrefStat()</A> <BR>
+		<A href="classStructure.html#a114">incrStdViaStat()</A> <BR>
+		<A href="classStructure.html#a108">incrTextStat(oaUInt4 layerMapIndex)</A> <BR>
+		<A href="classStructure.html#a110">incrZeroAreaPolygonStat(oaUInt4 layerMapIndex)</A> <BR>
+		<A href="classStructure.html#a70">setAngle(oaDouble value)</A> <BR>
+		<A href="classStructure.html#a61">setDesign(oaDesign *design)</A> <BR>
+		<A href="classStructure.html#a71">setMX(oaBoolean value)</A> <BR>
+		<A href="classStructure.html#a69">setMag(oaDouble value)</A> <BR>		<BR>		<A href="classStructure.html#a22">getStdViaAsCell() const</A> <BR><BR>		<BR>		<A href="classStructure.html#a70">setStdViaAsCell(oaBoolean value)</A> <SPAN style="COLOR: #0066cc"><BR></SPAN>
+		<A href="classStructure.html#a72">setOriginal(const Structure *value)</A> <BR>
+		<A href="classStructure.html#a62">setViaDef(oaViaDef *viaDef)</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+	<FONT color=#0066cc>
+		getSavedDesign() const<BR>
+		setSavedDesign(oaBoolean value)<BR>
+		setViaDef(const oaViaDef *viaDef)</FONT>
+		  <SPAN style="COLOR: #0066cc"><BR></PRE><PRE>	<A href="classMapWindow.html">MapWindow</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		writeByte(oaUInt4 &amp;loc, oaByte dataIn)<BR>
+		writeByteArray(oaUInt4 &amp;loc, oaUInt4 numObjects, oaByte *dataIn)<BR>
+		writeInt2(oaUInt4 &amp;loc, oaInt2 dataIn)<BR>
+		writeInt4(oaUInt4 &amp;loc, oaInt4 dataIn)<BR>
+		writePointArray(oaUInt4 &amp;loc, const oaPointArray &amp;points)<BR>
+		writeReal8(oaUInt4 &amp;loc, oaDouble dataIn)<BR>
+		writeString(oaUInt4 &amp;loc, const oaString &amp;dataIn)<BR>
+		writeUInt2(oaUInt4 &amp;loc, oaUInt2 dataIn)<BR>
+		writeUInt4(oaUInt4 &amp;loc, oaUInt4 dataIn)<BR>
+		          <BR>
+	<A href="classStrmIn_1_1NameMgr.html">StrmIn::NameMgr</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classStrmIn_1_1NameMgr.html#a2">getVariantInfo(const oaDesign &amp;design, oaDouble mag, oaDouble angle, oaBoolean mx, oaScalarName &amp;libScalarName, oaScalarName &amp;cellScalarName, oaScalarName &amp;viewScalarName)</A> <BR>		<BR>		<A href="classStrmIn_1_1NameMgr.html#a6">beginUsedLibs() const</A> <BR>		<BR>		<A href="classStrmIn_1_1NameMgr.html#a7">endUsedLibs() const</A> <BR><BR>		<BR>		<A href="classStrmIn_1_1NameMgr.html#a8">getFromTargetLib(Structure *structIn, oaBoolean allViewNames)</A> <BR>
+	<A href="classStrmOutSequential.html">StrmOutSequential</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classStrmOutSequential.html#a0">StrmOutSequential(const oaString &amp;nameIn, oaUInt4 bufferSize=1024 *1024)</A> <BR>		<BR>		<A href="classStrmOutSequential.html#a2">getName() const</A> 
+		<BR>
+		<A href="classStrmOutSequential.html#a3">close()</A> <BR>
+		<A href="classStrmOutSequential.html#a2">open(oaChar mode)</A> <BR>
+		<A href="classStrmOutSequential.html#a4">writeByte(oaByte dataIn)</A> <BR>
+		<A href="classStrmOutSequential.html#a10">writeByteArray(oaUInt4 numObjects, oaByte *dataIn)</A> <BR>
+		<A href="classStrmOutSequential.html#a6">writeInt2(oaInt2 dataIn)</A> <BR>
+		<A href="classStrmOutSequential.html#a8">writeInt4(oaInt4 dataIn)</A> <BR>
+		<A href="classStrmOutSequential.html#a12">writePointArray(const oaPointArray &amp;points)</A> <BR>
+		<A href="classStrmOutSequential.html#a9">writeReal8(oaDouble dataIn)</A> <BR>
+		<A href="classStrmOutSequential.html#a11">writeString(const oaString &amp;dataIn)</A> <BR>
+		<A href="classStrmOutSequential.html#a5">writeUInt2(oaUInt2 dataIn)</A> <BR>
+		<A href="classStrmOutSequential.html#a7">writeUInt4(oaUInt4 dataIn)</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		StrmOutSequential(const oaString &amp;nameIn)<BR>
+		writeByte(oaUInt4 &amp;loc, oaByte dataIn)<BR>
+		writeByteArray(oaUInt4 &amp;loc, oaUInt4 numObjects, oaByte *dataIn)<BR>
+		writeInt2(oaUInt4 &amp;loc, oaInt2 dataIn)<BR>
+		writeInt4(oaUInt4 &amp;loc, oaInt4 dataIn)<BR>
+		writePointArray(oaUInt4 &amp;loc, const oaPointArray &amp;points)<BR>
+		writeReal8(oaUInt4 &amp;loc, oaDouble dataIn)<BR>
+		writeString(oaUInt4 &amp;loc, const oaString &amp;dataIn)<BR>
+		writeUInt2(oaUInt4 &amp;loc, oaUInt2 dataIn)<BR>
+		writeUInt4(oaUInt4 &amp;loc, oaUInt4 dataIn)<SPAN style="COLOR: #0066cc"></SPAN></SPAN></SPAN><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"></PRE><PRE>	<A href="classPcellMap.html">PcellMap</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classPcellMap.html#a2">add(const oa::oaString &amp;libName, const oa::oaString &amp;cellName, const oa::oaString &amp;viewName, const oa::oaParamArray ¶ms, const oa::oaString &amp;name, oa::oaBoolean afterFirstRound)</A> <BR>
+		<A href="classPcellMap.html#a3">addTranslated(const oa::oaString &amp;libName, const oa::oaString &amp;cellName, const oa::oaString &amp;viewName, const oa::oaParamArray ¶ms, const oa::oaString &amp;name)</A> <BR>
+		<A href="classPcellMap.html#a7">begin() const</A> <BR>
+		<A href="classPcellMap.html#a8">end() const</A> <BR>
+		<A href="classPcellMap.html#a4">find(const oa::oaString &amp;libName, const oa::oaString &amp;cellName, const oa::oaString &amp;viewName, const oa::oaParamArray ¶ms, oa::oaString &amp;structName) const</A> <BR>
+		<A href="classPcellMap.html#a5">findTranslated(const oa::oaString &amp;libName, const oa::oaString &amp;cellName, const oa::oaString &amp;viewName, const oa::oaParamArray ¶ms) const</A> <BR>
+		<A href="classPcellMap.html#a10">getAfterFirstRoundNumUsed() const</A> <BR>
+		<A href="classPcellMap.html#a9">getNumUsed() const</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		add(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, const oaParamArray ¶ms, const oaString &amp;name)<BR>
+		find(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, const oaParamArray ¶ms) const<BR>
+		getCellName(oaUInt4 i) const<BR>
+		getLibName(oaUInt4 i) const<BR>
+		getNumNames() const<BR>
+		getParams(oaUInt4 i, oaParamArray ¶ms) const<BR>
+		getStructName(oaUInt4 i) const<BR>
+		getViewName(oaUInt4 i) const<BR><BR>
+<U><FONT color=#ff0000></FONT></U><BR>
+	<A href="classUtilStrTblHashTbl.html">UtilStrTblHashTbl</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN>
+		<A href="classUtilStrTblHashTbl.html#b0">hash(oa::oaUInt4 obj, oa::oaUInt4 &amp;start, oa::oaUInt4 &amp;stride) const</A> <BR>
+		     <BR>
+		   <BR>
+#################################</SPAN><BR></SPAN> </SPAN><SPAN style="COLOR: #0066cc"></PRE>
+<P><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following classes were deleted #<BR>#################################<BR><PRE>	PcellHashTbl<BR>
+	PcellIter<BR>################################# 
+</PRE>
+<P></SPAN><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following enums were modified #<BR>#################################<BR></P><PRE>	<A href="oaStrmMsgs_8h.html#a80">MsgIds</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaStrmMsgs_8h.html#a80a50">cGenericErrorMsg</A> <BR>
+		<A href="oaStrmMsgs_8h.html#a80a78">cLayerMapRequiredForViaDetect</A> <BR>
+		<A href="oaStrmMsgs_8h.html#a80a79">cArefXYInconsistentWithAngleMX</A> <BR>
+		<A href="oaStrmMsgs_8h.html#a81a80">cOverMaxLimit</A><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">
+</PRE><PRE>
+		<A href="oaStrmMsgs_8h.html#a86a84">cInvalidOutputGDSFileName</A> <BR>
+		<A href="oaStrmMsgs_8h.html#a86a85">cUnmatchingUnits</A> <BR><SPAN style="COLOR: #0066cc"><BR>
+		<A href="oaStrmMsgs_8h.html#a84a78">cCellNotFoundInLib</A> <BR>
+		<A href="oaStrmMsgs_8h.html#a84a79">cCellViewNotFoundInLib</A> <BR> </SPAN><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">
+		<A href="oaStrmMsgs_8h.html#a82a81">cNewLibrary</A> <BR><BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed Values</SPAN><BR>
+		cUnusedMessageID48</SPAN><SPAN style="COLOR: #0066cc"><BR>
+		
+																			#################################<SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">&nbsp; 
+</SPAN></SPAN></SPAN></SPAN></PRE></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></FONT>
+	</body>
+</html>

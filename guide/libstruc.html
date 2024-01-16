@@ -1,0 +1,1473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h1><a name="pagetop"></a>OpenAccess Libraries and Design Management
+		</h1>
+		<hr>
+		<p class="style1">OpenAccess supports a library structure for organizing all the 
+			data files that apply to a set of designs. This structure organizes the files 
+			into libraries, cells, and views. It can be used for all data files that 
+			applications store, not just the databases that OpenAccess manages inside these 
+			libraries. OpenAccess provides an API that lets applications use this structure 
+			and synchronize their access to the library files.
+		</p>
+		<p class="style1">OpenAccess also provides an API for accessing version control for 
+			library files, though a third-party implementation is required to actually use 
+			these functions.
+		</p>
+		<h2><strong><a name="dmSystems"></a>DM Systems </strong>
+		</h2>
+		<p>Library file storage, synchronization, and version-control is handled through a 
+			DM system. OpenAccess uses a plug-in infrastructure that lets an application 
+			choose a specific DM system at runtime when it
+			<span class="style1">creates</span>
+			libraries. Each DM system has its own techniques for storing the data files in 
+			a library. Accordingly, OpenAccess applications should not make assumptions 
+			about where the library data files exist on disk. Instead, applications should 
+			always use the API to access this data.
+		</p>
+		<p>OpenAccess provides two DM systems:
+		</p>
+		<ul>
+			<li>
+				<a href="#fileSys">FileSys DM System</a><br>
+				The FileSys DM system organizes library information using the directory 
+				structure of the file system. FileSys is a production quality DM system, which 
+				also provides backward compatibility with previous versions of OpenAccess.</li>
+			<li>
+				<a href="#turbo">Turbo DM System </a>
+				<br>
+				The Turbo DM system is a server-based system. In this model, the library 
+				contains a database that persistently records the library files and structure. 
+				The file names and locations are determined by the Turbo system. This 
+				organization is intentionally not documented and is subject to change. A 
+				library server application performs workspace synchronization and handles file 
+				locking. The Turbo DM system is released as Beta code and is subject to change.</li>
+		</ul>
+		<h2>DM Data Model</h2>
+		<p>An OpenAccess library consists of design data files, auxiliary files, and the 
+			relationships between them. The following is a schema representation of the 
+			primary classes of the OpenAccess DM data model. These classes comprise the 
+			OpenAccess DM API through which an application can create, access, and manage 
+			OpenAccess libraries and the files they contain.</p>
+		<img src="../schema/dmobject.png">
+		<p>A <em>library </em>(<code><a href="../dm/classoaLib.html">oaLib</a></code>) is the 
+			top level organization of the design data. Each library is represented by a 
+			directory on disk, and its contents are managed by the selected DM system.
+		</p>
+		<p>
+			Libraries have several different roles.</p>
+		<ul>
+			<li>
+				<em>Design libraries</em>
+			contain the user-created parts of a design hierarchy, including all the data 
+			and design components that make up a design.
+			<li>
+				<em>Reference libraries</em>
+			contain the master copies of the cells you can reference in a design.
+			<li>
+				<em>Technology libraries</em> contain the technology parameters that correspond 
+				to a particular design methodology and fabrication technology. These parameters 
+				are typically contained in a <em>technology database</em>.
+			</li>
+		</ul>
+		<p>You can store all these types of data in a single library. However, the 
+			reference data and technology parameters are typically stored in a single 
+			library. </li> </li> </table>
+		</p>
+		<p>A library is also a logical <em>container </em>object that contains cells (<a href="../dm/classoaCell.html">oaCells</a>), 
+			views (<a href="../dm/classoaView.html">oaViews</a>), cellViews (<a href="../dm/classoaCellView.html">oaCellViews</a>), 
+			and files (<a href="../dm/classoaDMFile.html">oaDMFiles</a>).
+		</p>
+		<h4>oaCells</h4>
+		<p>An oaCell <em></em>is a container object that contains oaCellViews and 
+			oaDMFiles. A single oaCell contains the data that describe an individual 
+			building block of a chip or system. An oaCell can contain multiple oaCellViews, 
+			each of which represent a different view of this oaCell.
+		</p>
+		<h4>oaViews</h4>
+		<p>An oaView <em></em>is a container object that contains oaCellViews and 
+			oaDMFiles. Different views can represent levels of abstraction for a design 
+			(behavior or gate), or different stages in the design process (RTL, 
+			post-synthesis, placed, or routed.)
+			<br>
+			<br>
+			Each view has a designated <em>viewType,</em> which is persistent. The <a href="../dm/classoaViewType.html">				oaViewType</a> session object
+			<span class="style1">represents a single viewType for the current session</span>. 
+			There are several reserved viewTypes used by OpenAccess, which are represented 
+			in the oaReservedViewTypeEnum. You can specify the view type with the viewType 
+			argument to <a href="../design/classoaDesign.html#oaDesign::open"><code>oaDesign::open</code></a>.
+			<br>
+		</p>
+		<h5><a name="reservedViewTypes"></a>Reserved viewTypes
+		</h5>
+		<p>
+			<a name="oaDesign_viewTypes"></a>These viewTypes represent valid viewTypes for 
+			a design database (oaDesign):</p>
+		<table width="500" border="1">
+			<tr>
+				<th width="33%" scope="col">
+					<div align="left">viewType</div>
+				</th>
+				<th width="33%" scope="col">
+					<div align="left">Enumeration</div>
+				</th>
+			</tr>
+			<tr>
+				<td width="33%">&quot;maskLayout&quot;</td>
+				<td width="33%"><em><em>oacMaskLayout</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="33%">&quot;schematic&quot;</td>
+				<td width="33%"><em><em>oacSchematic</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="33%">&quot;schematicSymbol&quot;</td>
+				<td width="33%"><em><em>oacSchematicSymbol</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="33%">&quot;netlist&quot;</td>
+				<td width="33%"><em><em>oacNetlist</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="33%">&quot;oaHierDesign&quot;</td>
+				<td width="33%"><em><em>oacHierDesign</em></em>&nbsp;</td>
+			</tr>
+		</table>
+		<p><br>
+			This viewType is for a wafer database (oaWafer):<br>
+		</p>
+		<table width="500" border="1">
+			<tr>
+				<th width="30%" scope="col">
+					<div align="left">viewType</div>
+				</th>
+				<th width="30%" scope="col">
+					<div align="left">Enumeration</div>
+				</th>
+			</tr>
+			<tr>
+				<td width="30%">"wafer"</td>
+				<td width="30%"><em><em>oacWafer</em></em>&nbsp;</td>
+			</tr>
+		</table>
+		<p><br>
+			These viewTypes represent external standard viewTypes. These viewTypes do not 
+			have corresponding OpenAccess database representations.
+			<br>
+		</p>
+		<table width="500" border="1">
+			<tr>
+				<th width="30%" scope="col">
+					<div align="left">viewType</div>
+				</th>
+				<th width="30%" scope="col">
+					<div align="left">Enumeration</div>
+				</th>
+			</tr>
+			<tr>
+				<td width="30%">&quot;verilogAMSText&quot;</td>
+				<td width="30%"><em><em>oacVerilogAMSText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;VHDLAMSText&quot;
+				</td>
+				<td width="30%"><em><em>oacVHDLAMSText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;verilogText&quot;</td>
+				<td width="30%"><em><em>oacVerilogText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;VHDLText&quot;</td>
+				<td width="30%"><em><em>oacVHDLText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;verilogAText&quot;</td>
+				<td width="30%"><em><em>oacVerilogAText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;systemVerilogText&quot;</td>
+				<td width="30%"><em><em>oacSystemVerilogText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;SPECTREText&quot;</td>
+				<td width="30%"><em><em>oacSPECTREText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;SPICEText&quot;</td>
+				<td width="30%"><em><em>oacSPICEText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;HSPICEText&quot;</td>
+				<td width="30%"><em><em>oacHSPICEText</em></em>&nbsp;</td>
+			</tr>
+			<tr>
+				<td width="30%">&quot;CDLText&quot;</td>
+				<td width="30%"><em><em>oacCDLText</em></em>&nbsp;</td>
+			</tr>
+		</table>
+		<h4><a name="oaCellViews"></a>oaCellViews
+		</h4>
+		<p>An oaCellView is a container object that contains oaDMFiles. oaCellViews can 
+			also contain OpenAccess databases such as oaDesign or oaWafer. An oaCellView 
+			has a parent oaCell and a parent oaView. An oaCellView always has a single 
+			oaDMFile that holds the primary data for the oaCellView and is known as the 
+			primary file. This correlates to the master file definition in previous 
+			versions of OpenAccess. The viewType attribute of the parent oaView determines 
+			the type of the primary file. The primary oaDMFile can be empty (or not exist 
+			on disk).</p>
+		<p><strong>Note:</strong> <code>oaDesign::open</code> creates oaCells, oaViews, and 
+			oaCellViews as needed so that the oaCellView being referenced will exist. 
+			Typically, the viewType of an oaView that OpenAccess creates in such cases will 
+			be one of the reserved viewTypes for oaDesigns. However, if you use <code>oaDesign::open</code>
+			on a&nbsp; pre-existing oaCellView with a viewType other than an <a href="#oaDesign_viewTypes">				oaDesign viewType</a>, the operation succeeds, but the database read or 
+			written is not the primary oaDMFile of the oaCellView.
+		</p>
+		<h4>oaDMFiles</h4>
+		<p>Files saved in an OpenAccess database are represented in the API with the <a href="../dm/classoaDMFile.html">				oaDMFile</a> class. Any number of oaDMFiles can exist in any of the library 
+			containers: oaLibs, oaCells, oaViews, or oaCellViews.
+		</p>
+		<p>An oaDMFile represents a file that has been registered by a design management 
+			(DM) system, but that file need not yet exist on disk. An oaDMFile is created 
+			with an oaDMFile call, such as <code>oaDMFile::create</code>. The actual file 
+			on disk can be created by applications outside of the OpenAccess API as well as 
+			by higher level calls, such as <code>oaDesign::save</code>.</p>
+		<p>An oaCellView has a special oaDMFile known as the primary oaDMFile. The format 
+			of the primary oaDMFile reflects the viewType of the oaView containing the 
+			oaCellView. Note that the primary oaDMFile of an oaCellView always exists even 
+			if the file it represents does not yet exist on disk.</p>
+		<h3 class="style1"><a name="lead_follow"></a>Leader-Follower File Associations</h3>
+		<p class="style1">oaDMFiles can be associated with each other using a 
+			leader-follower association. Associations are single level only. An oaDMFile 
+			can be associated with only one leader. Associations are within containers 
+			only. When the leader is destroyed, moved, or copied, the operation is applied 
+			to all followers. When a version-control operation is applied to the leader, 
+			the operation is also applied to all the followers under version control. 
+			Version control operations may only be applied to a leader. A primary oaDMFile 
+			can be a leader, but it cannot be a follower.</p>
+		<h2><strong>Working with Libraries</strong></h2>
+		<p>OpenAccess lets you work with libraries by using a library definition file, 
+			which is a list of the logical names and paths for the libraries in your 
+			project. You can use a library definition file to open all your pre-existing 
+			libraries at once. Using a library definition file is not required -- you can 
+			simply <a href="#open_libs">open libraries using the APIs</a>.
+		</p>
+		<p class="style4">OpenAccess provides a plug-in interface and a default plug-in 
+			(oaLibDef) for working with library definition files. For information about 
+			creating a library definition file plug-in, refer to <a href="ldf_plugin.html">How 				to Write a Library Definition File Plug-In.</a></p>
+		<h3><strong><a name="libDefs_syntax"></a>Library Definition Files </strong>
+		</h3>
+		<p>OpenAccess can open existing libraries by reading a library definition file and 
+			opening all of the libraries defined in it. OpenAccess reads the library 
+			definition file when <a href="../dm/classoaLibDefList.html#oaLibDefList::openLibs1"><code>oaLibDefList::openLibs()</code></a>
+			is called.</p>
+		<p>There are three types of keyword statements that you can use in a <code>lib.defs</code>
+			file:</p>
+		<ul>
+			<li>
+				<a href="#define">DEFINE</a> statement - Specify a particular library for use 
+				in a project. Relative paths are interpreted relative to the directory 
+				containing the <code>lib.defs</code> file.
+			</li>
+			<li>
+				<a href="#include">INCLUDE</a> statement - Use a set of libraries as defined in 
+				another <code>lib.defs</code> file. Relative paths are interpreted relative to 
+				the directory containing the <code>lib.defs</code> file.
+			</li>
+			<li>
+				<a href="#assign">ASSIGN</a> statement - Specify attributes for a particular 
+				library.
+			</li>
+		</ul>
+		<p>Keywords are case insensitive. An end of line (EOL), end of file (EOF), or <a href="#comment">				comment</a> character terminates an entry in a <code>lib.defs</code> file.
+		</p>
+		<h5><a name="define"></a>DEFINE Statements
+		</h5>
+		<p>A library is defined in the library definition file by using the <code>DEFINE</code>
+			keyword, followed by a logical name or label for your library, followed by the 
+			path to the directory containing the cells.
+		</p>
+		<p><img src="images/libdefs.gif"></p>
+		<p>You can use the the following syntax when specifying library paths in a library 
+			definition file.
+		</p>
+		<table width="663" border="1">
+			<tr>
+				<td><code>./ </code>
+				</td>
+				<td width="72%">Path relative to the location of the <code>lib.defs</code> file
+				</td>
+			</tr>
+			<tr>
+				<td><code>../ </code>
+				</td>
+				<td>Path relative to the location of the <code>lib.defs</code> file
+				</td>
+			</tr>
+			<tr>
+				<td><p><code>$<em>envVar</em><br>
+							$HOME<br>
+						</code>
+					</p>
+				</td>
+				<td>Path that uses environment variables
+					<span class="style1">that are expanded in place</span>
+				</td>
+			</tr>
+			<tr>
+				<td><code>~/ </code>
+				</td>
+				<td>UNIX path (only on UNIX platforms)</td>
+			</tr>
+			<tr>
+				<td width="28%"><code>~user/ </code>
+				</td>
+				<td>UNIX path (only on UNIX platforms)</td>
+			</tr>
+		</table>
+		<p class="style4">Relative paths are interpreted relative to the directory 
+			containing the <code>lib.defs</code> file. Note that if the <code>lib.defs</code>
+			file is symbolically linked to a target <code>lib.defs</code> in a different 
+			directory, the relative paths are resolved with respect to the target <code>lib.defs</code>
+			file.
+		</p>
+		<p>The logical name for the library is always interpreted as a name in the UNIX 
+			namespace.
+		</p>
+		<p>The path to the library directory is not name mapped.
+		</p>
+		<h5><a name="include"></a>INCLUDE Statements</h5>
+		<p class="style1">You can use the <code>INCLUDE</code> statement to include all the 
+			libraries listed in a different <code>lib.defs</code> file, as follows:</p>
+		<pre class="style1">INCLUDE /usrDir/libs/lib.defs
+
+INCLUDE ../lib.defs</pre>
+		<h5 class="style1"><a name="assign"></a>ASSIGN Statements</h5>
+		<p class="style1">Certain attributes can be specified using the <code>ASSIGN</code> 
+			keyword. Permanent attributes that must apply to all users of a given library 
+			are specified in the call to create the library, not in a library definition 
+			file.
+		</p>
+		<p class="style1">The supported set of attributes is defined by a given DM system 
+			implementation.
+		</p>
+		<p class="style1">You can use the <code>ASSIGN</code> statement to assign 
+			attributes to a library. The syntax is as follows:</p>
+		<pre class="style1">ASSIGN <em>libName attrName attrValue</em></pre>
+		<p class="style1">OpenAccess DM supports attributes for library mode and the 
+			library write path:</p>
+		<pre class="style1">ASSIGN <em>libName</em> libMode <em>&lt;mode&gt;</em>
+ASSIGN <em>libName</em> </em>writePath <em>&lt;tempFileWritePath&gt;</em></pre>
+		<blockquote>
+			<p class="style1">Where <em><code>&lt;mode&gt;</code></em> is either <code>shared</code>
+				or <code>nonShared</code>, and<code> <em>&lt;tempFileWritePath&gt; </em></code>is 
+				the write path for the library.
+			</p>
+			<p class="style1"><strong>Note:</strong> <em><code>&lt;mode&gt; </code></em>can 
+				also be <code>readOnly</code>, but this mode is not currently supported by the 
+				provided OpenAccess DM systems.</p>
+		</blockquote>
+		<p class="style1">All other attributes are passed to the plug-in when the library 
+			is opened, so plug-in specific attributes should be passed in using <code>oaLib::open</code>.</p>
+		<h5><a name="comment"></a>Comments</h5>
+		<p>Use the pound character (#) at the beginning of a line for comments. You can 
+			also include inline comments by placing a pound character with a space after 
+			it, followed by your comment text.
+		</p>
+		<h5><strong>Historical Note</strong></h5>
+		<p>A library definition file has a format and syntax similar to the <code>cds.lib</code>
+			file used by earlier versions of OpenAccess, except that <code>UNASSIGN</code>, <code>
+				UNDEFINE</code>, <code>SOFTDEFINE</code>, and <code>SOFTINCLUDE</code> statements 
+			are not supported. Unlike the <code>cds.lib</code> file, the <code>lib.defs</code>
+			file does not have special provisions for library paths relative to the Cadence 
+			installation root. Also, the old style for comments, which was two dashes (--), 
+			is not supported.</p>
+		<h4>Searching for a Library Definition File</h4>
+		<p>OpenAccess performs a standard search for a library definition file if you call <code>
+				oaLibDefList::openLibs</code> with no arguments.
+		</p>
+		<p>OpenAccess searches in three locations for a file named <code>lib.defs</code>:</p>
+		<ol>
+			<li>
+				Your current working directory: <code>./lib.defs</code></li>
+			<li>
+				Your login directory: <code>$HOME/lib.defs</code></li>
+			<li>
+				The <code>data</code> directory in your installation hierarchy: <code><em>&lt;install_dir&gt;</em>/data/lib.defs</code></li>
+		</ol>
+		<p><strong>Note:</strong> <em><code>&lt;install_dir&gt; </code></em>is the top 
+			installation directory for OpenAccess. It is determined from the location of 
+			the OpenAccess shared libraries in use in the current session. For example, on 
+			UNIX, the default <em><code>&lt;install_dir&gt; </code></em>is <code>/opt/OpenAccess</code>
+			, and on Windows, the default is <code>C:\Program Files\OpenAccess</code>.</p>
+		<h4>Specifying a Particular Library Definition File
+		</h4>
+		<p>You can open the libraries in a specific named library definition file and avoid 
+			using the standard search outlined previously. For example:
+		</p>
+		<pre><a href="../dm/classoaLibDefList.html#oaLibDefList::openLibs2">oaLibDefList::openLibs</a>(&quot;../project.defs&quot;);</pre>
+		<h4><a name="change_libdef"></a>Changing the Library Definition File</h4>
+		<p>When an application creates a library, the new library should be recorded in the 
+			library definition file. First, use <a href="../dm/classoaLibDefList.html#oaLibDefList::get">				oaLibDefList::get</a> in append mode to open the library definition file 
+			object, then use <a href="../dm/classoaLibDef.html#oaLibDef::create">oaLibDef::create</a>
+			to add the entry.
+		</p>
+		<p>To delete an entry from the list, use <a href="../dm/classoaLibDefList.html#oaLibDefList::get">				oaLibDefList::get</a> in append mode, then iterate through the members 
+			using <a href="../dm/classoaLibDefList.html#oaLibDefList::getMembers">oaLibDefList::getMembers</a>. 
+			Use <a href="../dm/classoaLibDefListMem.html#oaLibDefListMem::destroy">oaLibDefListMem::destroy</a>
+			to delete the entry you want.
+		</p>
+		<p>When finished modifying a library definition file, use <a href="../dm/classoaLibDefList.html#oaLibDefList::save">				oaLibDefList::save</a>.</p>
+		<p>The OpenAccess translators provide an example of how applications use libraries 
+			and update <code>lib.defs</code> files. <a href="../guide/usinglibs.html">See How 				Translators Use Libraries</a> for details.
+		</p>
+		<h3><a name="create_lib"></a><strong>Creating a Library</strong></h3>
+		<p>You create a library by specifying the name and path (relative or absolute) to 
+			the library. It is an error if a library with
+			<span class="style1">the same name already exists or if a non-empty directory exists at the specified path.</span>
+			You can specify the DM system and any DM attributes at library creation time.
+		</p>
+		<h4><strong><a name="libdef_prog_code"></a> Code Example &#8211; Creating a Library 
+				Programmatically</strong></h4>
+		<p><code>oaUnixNS unixNS;<br>
+				oaScalarName libName(unixNS, &quot;libName&quot;);</code></p>
+		<pre>oaLib::create(libName, &quot;/usr/libName&quot;, mode = oacSharedLibMode, dmSystem = &quot;oaDMTurbo&quot;)
+</pre>
+		<p>You can specify the current working directory for the library path if the 
+			current working directory is empty.</p>
+		<h4><a name="permissions"></a>Library Permissions
+		</h4>
+		<p>
+			When oaLib::create creates a library directory, it provides the following 
+			permissions.
+		</p>
+		<ul>
+			<li>
+				UNIX platforms - 777 permissions are used.</li>
+			<li>
+				Windows platform - The Access Control List (ACL) from the parent directory is 
+				used.</li>
+		</ul>
+		<h3><strong><a name="open_libs"></a>Opening a Library</strong></h3>
+		<p>A pre-existing library can be opened with the <code>oaLib::open</code> function.
+		</p>
+		<p>The following must be true in order for <code>oaLib::open</code> to be 
+			successful:</p>
+		<ul>
+			<li>
+			The library must exist.
+			<li>
+				The <a href="#choose_DM">DM system</a> used to access the library must be 
+				available.
+			</li>
+		</ul>
+		<h4><a name="open_library_example"></a>Code Example - Opening an Existing Library</h4>
+		<pre>// Check whether the library has already been opened.
+oaLib *lib1 = oaLib::find(libName);</pre>
+		<pre>// If the library is not open, open it.
+   if (!lib1) {
+       lib1 = oaLib::open(libName, libPath);
+}</pre>
+		<h2><strong><a name="accessModes"></a>Access Modes for Opening Libraries </strong>
+		</h2>
+		<p>The access mode for a library can be specified when the library is opened using <code>
+				oaLib::open</code>. When using <code>oaLibDefList::openLibs</code>, the 
+			access mode can be specified by an <code>ASSIGN</code> statement in the library 
+			definition file.
+		</p>
+		<p>OpenAccess provides <em>shared</em>, <em>non-shared, </em>and <em>read-only</em> 
+			library access modes, with the default being <em>shared</em>. Each mode is 
+			valid only if the DM system implementation supports it.</p>
+		<ul>
+			<li>
+				Shared access allows multiple processes to modify the libraries, so the DM 
+				system must synchronize all access to the libraries.
+			</li>
+			<br>
+			<li>
+				Non-shared access designates that the library can be modified by the 
+				application, but only one process can have the library open at a time. The DM 
+				system will not allow other processes to open the library.
+			</li>
+			<br>
+			<li>
+				Read-only access designates that the library may be opened by multiple 
+				concurrent processes, but all of them must be in read-only<em> </em>access 
+				mode. The DM system will not allow a library to be opened in this mode if it is 
+				already opened in another mode. The converse is true: The DM system will not 
+				allow a library to be opened in a different mode if it is already opened in 
+				read-only mode. Read-only mode provides better performance because the DM 
+				system does not have to check for modifications to the library.
+			</li>
+		</ul>
+		<p><strong>Examples</strong></p>
+		<p>To specify the library access mode using <code>oaLib::open</code>:</p>
+		<pre>oaLib *  open (myLib, &quot;/usr/MyLibs/Cell_1&quot;, oacReadOnlyMode); </pre>
+		<p><a name="ASSIGN"></a>To specify the library access mode in the library 
+			definition file:
+		</p>
+		<pre>DEFINE libName /usrDir/libPath/libDir 
+ASSIGN libName libMode <span class="style1">nonShared</span>
+DEFINE otherLib ./otherLib
+ASSIGN otherLib libMode shared</pre>
+		<h2><strong> <a name="accessObjs"></a>Accessing Objects in Libraries </strong>
+		</h2>
+		<p>Each oaLib contains a number of objects such as oaCells, oaCellViews, and 
+			oaDMFiles. Applications must establish access to the library in order to 
+			traverse to these objects. That access is established for short periods of time 
+			so that libraries can be efficiently shared among multiple processes.</p>
+		<p>Applications call <a href="../dm/classoaLib.html#oaLib::getAccess"><code>oaLib::getAccess</code></a>
+			on a library to establish this access, then <a href="../dm/classoaLib.html#oaLib::releaseAccess">				<code>oaLib::releaseAccess</code></a> when finished with the current 
+			traversal. All pointers to DM objects (other than the oaLib itself) become 
+			invalid as soon as the access is released.
+		</p>
+		<p><span class="style1">The DM plug-in system controls the access validation and synchronization. For example, the Turbo DM system</span>
+			will allow either a single process to have write access to a given library, or 
+			it will allow multiple processes to have read access. If there are processes 
+			with read access when a write access is requested, the process requesting write 
+			access must wait for the readers to release access. If there are processes with 
+			write access when a process requests read or write access, then the processes 
+			requesting read or write access must wait.</p>
+		<p>In some cases, library access can be established internally by OpenAccess. For 
+			example, creating a design database with <code>oaDesign::open()</code> in <code>'w'</code>
+			mode may create the oaCell, oaView, oaCellView, and the oaDMFile that will hold 
+			the database. OpenAccess will establish write access to the library to enable 
+			these create operations during the open call.
+		</p>
+		<p>Access requests can be nested. Write access requests may only be nested under 
+			other write access requests, so they may only appear when the outermost request 
+			is a write request.
+			<span class="style1">When the outermost access is a read request</span>, 
+			further nesting can only be for read requests. Each request in a set of nested 
+			requests must be released. The process does not give up its access to the 
+			library until all of the current requests are released.</p>
+		<p>Deadlocks between access requests might occur. For example, there might be a 
+			deadlock between library access requests from different clients. To handle 
+			this, a request to get access has a timeout with a default value. The 
+			application can control the timeout value through the access request.
+		</p>
+		<p><strong>Code Example - Getting the Primary File in a oaCellView</strong></p>
+		<p>This example shows a read access being used to get the path to the primary file 
+			in a oaCellView.
+		</p>
+		<pre>    oaNativeNS nameSpace; 
+    oaScalarName(nameSpace, "viewName");
+	
+    if ( lib1->getAccess(oacReadLibAccess) ) {
+        oaCell     *cell = oaCell::get(lib1, oaScalarName(nameSpace, "cellName"));
+        oaView     *view = oaView::get(lib1, oaScalarName(nameSpace, "viewName"));
+        oaCellView *cv = oaCellView::get(cell, view);
+
+        oaDMFile   *cvfile = cv->getPrimary();
+
+        cvfile->getPath(filePath);
+
+        lib1->releaseAccess();
+    }</pre>
+		<h2><strong><a name="dm_design_data"></a> Properties and Extensions on DM Objects </strong>
+		</h2>
+		<p>You can create properties and extensions on oaDMObjects such as oaLibs and 
+			oaDMCellViews. To support this, each of these oaDMObjects has an associated <a href="../dm/classoaDMData.html">				oaDMData</a> object that is used to store this information. For example, an 
+			oaLibDMData object stores properties and extensions for an oaLib.</p>
+		<p><img src="images/DMData.gif" width="523" height="151"></p>
+		<p>Each oaDMData object is a small database that can be opened and closed like the 
+			other OpenAccess databases.
+		</p>
+		<p>An oaDMData database can be opened using the pointer to its corresponding 
+			oaDMObject. To do this, open oaDMData while you have access to its library so 
+			that the pointer is valid. For example:
+		</p>
+		<blockquote>
+			<pre>oaDMData * cellProps = oaDMData::open(myCell, 'a');</pre>
+		</blockquote>
+		<p>An oaCellDMData object can also be opened using the name of its container. For 
+			example:</p>
+		<blockquote>
+			<pre>oaCellDMData * cellProps = oaCellDMData::open(&quot;lib&quot;, &quot;cell&quot;, 'a');</pre>
+		</blockquote>
+		<p>In this case, the open call does not have to occur while access to the library 
+			is established. OpenAccess handles this for you.
+			<span class="style1">See the API documentation for information about how to open <a href="../dm/classoaCellViewDMData.html">					oaCellViewDMData</a>, <a href="../dm/classoaLibDMData.html">oaLibDMData</a>, and <a href="../dm/classoaViewDMData.html">oaViewDMData</a> objects.</span></p>
+		<p>Once an oaDMData object is open, you can put properties or extensions on it 
+			through the standard methods. For example:</p>
+		<blockquote>
+			<pre>oaStringProp::create(cellProps, "example", "exampleString");</pre>
+		</blockquote>
+		<p>You can access properties in the same manner:</p>
+		<pre class="style1">    oaProp::find(cellProps, &quot;int&quot;, &quot;example&quot;);   </pre>
+		<a name="choose_DM"></a>
+		<h2>Choosing a DM System
+		</h2>
+		<p>
+			The OpenAccess plug-in architecture lets applications choose a specific DM 
+			system at run time. This DM system is not linked into the application when the 
+			application is built, and may not have even existed when the application was 
+			built.
+			<span class="style1">Rather, it is in a shared library that is loaded dynamically when OpenAccess creates or loads a library.</span></p>
+		<p><img src="images/generalArch.gif"></p>
+		<p>
+			<span class="style1">This plug-in architecture also allows OpenAccess  to provide a <em>
+					versionable interface</em> between the standard OpenAccess implementation and a specific plug-in implementation.</span>
+			The term <em>versionable interface</em> refers to the ability to smoothly 
+			introduce a new version of the programming interface that changes function 
+			signatures and semantics without breaking existing applications, or preventing 
+			implementations of the old interface from working with new applications. Hence 
+			changed versions of these interfaces can be adopted gradually.</p>
+		<p><img src="images/ILIB.gif"></p>
+		<p>
+			OpenAccess is supplied with two DM plug-ins. The <a href="#fileSys">Filesys DM 				system</a> supports directory-based libraries. The <a href="#turbo">Turbo DM 				system</a> supports server-based libraries. When a library is created 
+			through the OpenAccess API, the caller must specify the name of the DM system 
+			that manages the new library. All subsequent access to this library 
+			automatically uses the DM system specified when the library was created.</p>
+		<h2><a name="fileSys"></a>FileSys DM System</h2>
+		<p>The FileSys DM system organizes library information using the directory 
+			structure of the file system. Cells are created as directories in the library 
+			directory, and oaCellViews are created as directories in the cell directory. 
+			The cell name and the view name determine the cell directory name and the 
+			oaCellView directory name, respectively. FileSys is a production quality DM 
+			system that provides backward compatibility with previous versions of 
+			OpenAccess.</p>
+		<h3 class="style1">Creating FileSys Libraries
+		</h3>
+		<p class="style1">To create a library using the FileSys DM system, use <code>&quot;oaDMFileSys&quot;</code>
+			as the <code>dmSystem</code> argument to <code>oaLib::create</code>.
+		</p>
+		<p class="style1">You can also specify the DM system when running OpenAccess 
+			translators that create libraries. See <a href="usinglibs.html">How Translators Use 				Libraries</a> for details.</p>
+		<h3>Primary Files</h3>
+		<p>In the FileSys DM system, a particular file in the oaCellView directory is 
+			identified as the <em>primary</em> file. The primary file represents the data 
+			for the oaCellView.
+		</p>
+		<p>The following figure shows how FileSys determines the primary file for a 
+			oaCellView</p>
+		<p><img src="images/FileSysSearch.gif" width="586" height="493">
+		</p>
+		<p>When an oaCellView is created, a <code>master.tag</code> file and a primary file 
+			are typically created by FileSys. If nothing has been saved, the primary file 
+			has a zero length. Note that a database with a zero length does not represent 
+			valid data. If OpenAccess attempts to read such a database, an exception is 
+			thrown.</p>
+		<p>Using <a href="../design/classoaDesign.html#oaDesign::destroy">oaDesign::destroy</a> on a 
+			FileSys design does not remove the oaCellView directory. Rather, the on-disk 
+			design data is removed and the primary file becomes a zero length file.
+		</p>
+		<p>The viewType of a FileSys oaCellView is determined from the viewType of the 
+			primary file. If the primary file (and thus the viewType) of a oaCellView 
+			cannot be determined, the oaCellView is ignored.
+		</p>
+		<h3>Primary File Name to viewType Mapping
+		</h3>
+		<p>For reserved viewTypes, the file names of
+			<span class="style1">the primary files</span>
+			are predefined. Accordingly, OpenAccess can look at a primary file, such as <code>layout.oa</code>, 
+			and map it to the predefined viewType of maskLayout. Also, if you create a new 
+			oaCellView&nbsp; with one of the reserved viewTypes, OpenAccess creates a zero 
+			length primary file with the correct predefined file name.
+		</p>
+		<p>The following table lists the reserved viewTypes and their associated primary 
+			file names.
+		</p>
+		<table width="780" border="1">
+			<tr>
+				<th width="33%" scope="col">
+					<div align="left">viewType</div>
+				</th>
+				<th width="33%" scope="col">
+					<div align="left">Enumeration</div>
+				</th>
+				<th width="33%" scope="col">
+					<div align="left">Associated OpenAccess File
+					</div>
+				</th>
+			</tr>
+			<tr>
+				<td width="33%">&quot;maskLayout&quot;</td>
+				<td width="33%"><em><em>oacMaskLayout</em></em>&nbsp;</td>
+				<td width="33%">layout.oa</td>
+			</tr>
+			<tr>
+				<td width="33%">&quot;schematic&quot;</td>
+				<td width="33%"><em><em>oacSchematic</em></em>&nbsp;</td>
+				<td width="33%">sch.oa</td>
+			</tr>
+			<tr>
+				<td width="33%">&quot;schematicSymbol&quot;</td>
+				<td width="33%"><em><em>oacSchematicSymbol</em></em>&nbsp;</td>
+				<td width="33%">symbol.oa</td>
+			</tr>
+			<tr>
+				<td>&quot;netlist&quot;</td>
+				<td><em><em>oacNetlist</em></em>&nbsp;</td>
+				<td>netlist.oa</td>
+			</tr>
+			<tr>
+				<td>"oaHierDesign"</td>
+				<td><em>oacHierDesign</em></td>
+				<td>hierDesign.oa
+				</td>
+			</tr>
+			<tr>
+				<td>"wafer"</td>
+				<td><em><em>oacWafer</em></em>&nbsp;</td>
+				<td>wafer.oa</td>
+			</tr>
+			<tr>
+				<td>&quot;verilogAMSText&quot;</td>
+				<td><em><em>oacVerilogAMSText</em></em>&nbsp;</td>
+				<td>verilog.vams</td>
+			</tr>
+			<tr>
+				<td>&quot;VHDLAMSText&quot;
+				</td>
+				<td><em><em>oacVHDLAMSText</em></em>&nbsp;</td>
+				<td>vhdl.vhms</td>
+			</tr>
+			<tr>
+				<td>&quot;verilogText&quot;</td>
+				<td><em><em>oacVerilogText</em></em>&nbsp;</td>
+				<td>verilog.v</td>
+			</tr>
+			<tr>
+				<td>&quot;VHDLText&quot;</td>
+				<td><em><em>oacVHDLText</em></em>&nbsp;</td>
+				<td>vhdl.vhd</td>
+			</tr>
+			<tr>
+				<td>&quot;verilogAText&quot;</td>
+				<td><em><em>oacVerilogAText</em></em>&nbsp;</td>
+				<td>verilog.va</td>
+			</tr>
+			<tr>
+				<td>&quot;systemVerilogText&quot;</td>
+				<td><em><em>oacSystemVerilogText</em></em>&nbsp;</td>
+				<td>verilog.sv</td>
+			</tr>
+			<tr>
+				<td>&quot;SPECTREText&quot;</td>
+				<td><em><em>oacSPECTREText</em></em>&nbsp;</td>
+				<td>spectre.scs</td>
+			</tr>
+			<tr>
+				<td>&quot;SPICEText&quot;</td>
+				<td><em><em>oacSPICEText</em></em>&nbsp;</td>
+				<td>spice.spc</td>
+			</tr>
+			<tr>
+				<td>&quot;HSPICEText&quot;</td>
+				<td><em><em>oacHSPICEText</em></em>&nbsp;</td>
+				<td>hspice.hsp</td>
+			</tr>
+			<tr>
+				<td>&quot;CDLText&quot;</td>
+				<td><em><em>oacCDLText</em></em>&nbsp;</td>
+				<td>netlist.cdl</td>
+			</tr>
+		</table>
+		<h3>Primary File Names for Custom viewTypes
+		</h3>
+		<p>OpenAccess has a methodology for naming the primary file when you create an 
+			oaCellView with a custom view type. If the custom viewType name you provide has 
+			a period (.) in it, the name of the primary file created will be the same as 
+			the name of the viewType. Otherwise, the primary file is named <em><code>&lt;viewType&gt;</code></em><code>.file.</code></p>
+		<p>So, if you provide a viewType name of <code>a.b</code>, the primary file is 
+			named <em>a.b</em>. If OpenAccess encounters this primary file, it can identify 
+			that the file has a custom viewType named <code>a.b</code>. If you provide a 
+			viewType name of <code>myType</code>, the primary file is named <code>myType.file</code>. 
+			If OpenAccess encounters this primary file, it can identify that the file has a 
+			custom viewType named <code>myType</code>.
+		</p>
+		<p>If you use <code>oaDesign::open</code> on a oaCellView that has a viewType other 
+			than an <a href="#oaDesign_viewTypes">oaDesign viewType</a>, the operation 
+			succeeds, but the database read or written is not the primary file of the 
+			oaCellView.
+		</p>
+		<h3>Library Attributes
+		</h3>
+		<p>You can specify the version control system for the library by using the 
+			oaLib::create function and specifying the corresponding attribute.</p>
+		<table width="780" border="1">
+			<tr>
+				<th width="22%" scope="col">
+					<div align="left">Attribute</div>
+				</th>
+				<th width="78%" scope="col">
+					<div align="left">Description</div>
+				</th>
+			</tr>
+			<tr>
+				<td>&quot;VCSystem&quot;</td>
+				<td>Name of the VC system for this library. There are no VC systems supplied with 
+					OpenAccess.
+				</td>
+			</tr>
+			<tr>
+				<td>&quot;libReadOnly&quot;</td>
+				<td><p>Specifies whether or not applications can modify the library and its contents. 
+						The legal values are &quot;yes&quot; or &quot;no&quot;. This attribute can be 
+						set to &quot;yes&quot; to indicate that the library is a read-only reference 
+						library. If set to &quot;yes&quot;, OpenAccess is always able to perform 
+						partial reading of the data, which can improve performance.
+					</p>
+					<p>If set to &ldquo;no&rdquo; (the default), and the library is being accessed 
+						across an NFS or AFS network, and the file system permissions prevent 
+						OpenAccess from modifying the library, OpenAccess will read database files 
+						completely into memory when they are first accessed.<br>
+						<br>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>&quot;origFileSystem&quot;</td>
+				<td>Specifies the original file system on which the library was created with 
+					regards to how file and directory names are mapped. On &ldquo;Unix&rdquo; file 
+					systems, file and directory names are case-sensitive and case preserving, and 
+					the oaUnixNS namespace is used to map logical names to file system names. On 
+					the &ldquo;Windows&rdquo; file system, file and directory names are 
+					case-insensitive and case preserving, and the oaWinNS namespace is used to map 
+					logical names to file system names. This attribute is useful if libraries will 
+					be accessed across the different file systems.</td>
+			</tr>
+		</table>
+		<h3 class="style1"><a name="file_locking"></a>File Locking
+		</h3>
+		<p class="style1">When an application requests a lock on a file (see <a href="../dm/classoaDMFile.html#oaDMFile::getLock">				oaDMFile::getLock</a>), the OpenAccess DM system is responsible for 
+			ensuring that only one process has a lock on that file at a given time. Note 
+			that applications can request a lock on any file in a library. In addition, 
+			OpenAccess databases automatically lock any database files that are open for 
+			‘w’rite or ‘a’ppend.</p>
+		<p>The FileSys DM system implements locks by writing a lock file in the same 
+			directory as the file being locked, The name of the lock file is the name of 
+			the file being locked with a <code>.cdslck</code> suffix. The lock file 
+			contains information about when the lock file was created and who created it, 
+			for example:</p>
+		<pre>LockStakeVersion                      1.1
+LoginName                             user7
+HostName                              pc-user7.global.cadence.com
+ProcessIdentifier                     3468
+ProcessCreationTime_UTC               1102386083
+ProcessCreationTime_Readable 12/06/04 18:21:23 Pacific Standard Time
+AppIdentifier                         OpenAccess FileSys DM Plug-In
+OSType                                win32
+ReasonForPlacingEditLock              OpenAccess edit lock
+FilePathUsedToEditLock                c:\dev\oa\test\testDir\dmFileLockLib\lcell1\lview1\layout.oa.cdslck
+TimeEditLocked                        12/06/04 10:22:16 Pacific Standard Time</pre>
+		<p>A file that has a lock file owned by an active process cannot be locked by 
+			another process. Instead, the lock request will fail. If the lock request was 
+			generated by OpenAccess for oaDesign::open, then an oacCannotLockDatabase 
+			exception is thrown.</p>
+		<h4>Lock Recovery</h4>
+		<p>During normal operation, FileSys removes any remaining locks that it created 
+			during the run when the process exits. However, in certain situations, FileSys 
+			is not able to clean up the locks before shutdown. For example, this might 
+			occur if the program crashed or a system was removed from the network. In these 
+			cases, stale lock files might remain in the library.
+		</p>
+		<p>When an application asks the OpenAccess DM system to lock a file in a FileSys 
+			library, FileSys first checks to see if that file already has a lock file. If 
+			there is no lock file, FileSys creates one.
+		</p>
+		<p>If there is a lock file, FileSys attempts to determine if the process that owns 
+			the lock file is active. In order for FileSys to determine if a process is 
+			active on another machine, that machine must have a <em>lock recovery daemon</em>
+			running. If the daemon on the other machine is running and the process holding 
+			the lock is active, FileSys denies the lock request because the file is in use. 
+			If the daemon on the other machine is running and the process holding the lock 
+			is not active, FileSys removes the old lock and creates a new one for the 
+			current process. If no daemon is running on the other machine, FileSys assumes 
+			that the process that created the lock file is active and does not remove the 
+			lock.</p>
+		<p>In order to provide the lock recovery daemon for use by lock requests on other 
+			machines, FileSys ensures that the current machine has a daemon running 
+			whenever it opens a FileSys library. If one is not already running, FileSys 
+			will attempt to start it. Note that the daemon must be on the host that is 
+			setting the lock, not necessarily the host on which the library is stored.
+		</p>
+		<p>The OpenAccess FileSys lock recovery daemon is called <code>oaFSLockD</code> and 
+			is located in <code><em>&lt;install_dir&gt;</em>/bin/<em>&lt;platform&gt;</em>/<em>&lt;mode&gt;</em>/</code>. 
+			This daemon is run automatically when FileSys libraries are opened, so users do 
+			not have to run it explicitly. Sometimes it is beneficial to run this daemon at 
+			start-up time. This approach will cover the case in which the locking host has 
+			rebooted from a crash, but no FileSys application has yet run on that host. To 
+			start the daemon, you may execute the script at
+			<install_dir>
+				<code><em>&lt;install_dir&gt;</em>/bin/oaFSLockD</code>.
+		</p>
+		<p>Lock recovery is not perfect. For example, when a host owning a lock crashes, 
+			its lock cannot be recovered while it is down. Another host that tries to 
+			recover that lock cannot distinguish a crash of the locking host from a network 
+			error that prevents communicating with its daemon. Hence FileSys will assume 
+			that the lock is valid. In cases like this, users must delete lock files 
+			manually.</p>
+		<p><strong>Compatibility Note:</strong> This locking mechanism is designed so that 
+			FileSys will respect locks created by OpenAccess 2.0 programs and older Cadence 
+			Software. However, it uses a different lock recovery daemon that communicates 
+			on a different port number. The older lock recovery daemon is called <code>clsbd</code>. 
+			Hence a lock set by a host that is only running OpenAccess 2.0 applications 
+			cannot be recovered by an OpenAccess 2.2 application. This is an unusual 
+			circumstance because most files will only get locked by one or the other 
+			version of the locking software.
+		</p>
+		<h4>Transferring Libraries From UNIX to Windows File Systems
+		</h4>
+		<p>In FileSys, the cell directory name and the view directory name are name mapped 
+			versions of the cell name and view name. If the library is created on a UNIX 
+			file system, the cell and view directory names are mapped to the UNIX 
+			namespace. Likewise, if the library is created on a Windows file system, the 
+			names are mapped to the Windows namespace, which is case insensitive.</p>
+		<p>You can copy a library from a UNIX platform to a Windows platform as long as you 
+			do not have two cell directory names or two view directory names (in the same 
+			cell) that differ only in case. When you copy a library from a UNIX platform, 
+			the library is identified as a UNIX library and OpenAccess continues to use the 
+			UNIX namespace for the library.</p>
+		<h3>Limitations</h3>
+		<ul>
+			<li>
+				The <a href="#lead_follow">leader-follower</a> association is supported in 
+				FileSys,
+				<span class="style1">but the relationship is only valid during the session.</span></li>
+			<li>
+				Files cannot be stored in views. Accordingly, FileSys does not support oaDMData 
+				objects in oaViews.
+			</li>
+			<li>
+				Consistency of viewTypes for a particular view name is not enforced.
+			</li>
+			<li class="style1">
+				Because there is no library server, library access is not synchronized between 
+				processes. Library access is always granted.
+			</li>
+		</ul>
+		<h2><a name="turbo"></a>Turbo DM System
+		</h2>
+		<p>The Turbo DM system is a server-based system. In this model, library 
+			meta-information is stored in a database that persistently records information 
+			such as which files belong to which cells and which views.</p>
+		<p class="style1">To create a library using the Turbo DM system, use <code>&quot;oaDMTurbo&quot;</code>
+			as the <code>dmSystem</code> argument to <code>oaLib::create</code>.
+		</p>
+		<p class="style1">The Turbo DM system is released as Beta code and is subject to 
+			change.</p>
+		<h3><strong>DM Attributes Supported by Turbo</strong></h3>
+		<p>You can specify the library attributes for each library with the <code>oaLib::create</code>
+			function.
+		</p>
+		<table width="780" border="1">
+			<tr>
+				<th width="22%" scope="col">
+					<div align="left">Attribute</div>
+				</th>
+				<th width="78%" scope="col">
+					<div align="left">Description</div>
+				</th>
+			</tr>
+			<tr>
+				<td>&quot;maxFilesPerDataDir&quot;</td>
+				<td><p>Specifies how many files are created before the Turbo DM system starts creating 
+						subdirectories to store the files. This number is also used as the maximum 
+						number of files to include in the subdirectories.<br>
+						If not specified, this attribute defaults to 10,000.</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="22%">&quot;serverHostName<a name="serverHostName"></a>&quot;</td>
+				<td>Host name of the machine on which to start the library server process.
+				</td>
+			</tr>
+			<tr>
+				<td width="22%">&quot;serverLogFileName<a name="serverLogFileName"></a>&quot;</td>
+				<td>Path to the log file, which can be an absolute or relative path.<br>
+					Default value: <code>server.slog</code>
+				</td>
+			</tr>
+			<tr>
+				<td>"serverLogVerbosity<a name="serverLogVerbosity"></a>"</td>
+				<td><p>Verbosity of the operation log:
+					</p>
+					<ul>
+						<li>
+							0 = Verbose. All errors and messages are recorded.
+						</li>
+						<li>
+							1 = Terse. Only errors are recorded.
+						</li>
+						<li>
+							2 = None. No log file is generated.
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td width="22%">&quot;serverPortNum<a name="serverPortNum"></a>&quot;</td>
+				<td><p>Specifies the port number for communicating with a client.
+						<br>
+						Valid values: Numbers greater than 1023 that are not being used by another 
+						server on the host machine.<br>
+						Default value: 55576</p>
+					<p><strong>Note:</strong> Use this option only if you will be using a server on a 
+						remote machine that specifies a port other than 55576, which is not typically 
+						the case. (It is recommended that servers use the default port value.)
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>"serverLibPath<a name="serverLibPath"></a>"</td>
+				<td><p>Path that the server uses to find the library directory. Specify this attribute 
+						to correctly support libraries in which the path in the <code>lib.defs</code> file 
+						might not be a path that can be accessed anywhere on the network and the server 
+						might be running on a different node on the network.</p>
+					<p>This path can be different than the client&rsquo;s notion of the library path in 
+						a <code>lib.defs</code> file. This might be necessary, for example, if the 
+						client is on a Windows machine and the server is on a UNIX machine.
+					</p>
+					<p>Because there is no reliable way for the server to automatically determine the 
+						path of the library, it is the responsibility of the user who creates the 
+						library to supply this information.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td width="22%">&quot;VCSystem<a name="VCSystem"></a>&quot;</td>
+				<td>Name of the version control system for this library. There are no version 
+					control systems supplied with OpenAccess.
+				</td>
+			</tr>
+			<tr>
+				<td>&quot;libReadOnly&quot;</td>
+				<td><p>Specifies whether or not applications can modify the library and its contents. 
+						The legal values are &quot;yes&quot; or &quot;no&quot;. This attribute can be 
+						set to &quot;yes&quot; to indicate that the library is a read-only reference 
+						library. If set to &quot;yes&quot;, OpenAccess is always able to perform 
+						partial reading of the data, which can improve performance.
+					</p>
+					<p>If set to &ldquo;no&rdquo; (the default), and the library is being accessed 
+						across an NFS or AFS network, and the file system permissions prevent 
+						OpenAccess from modifying the library, OpenAccess will read database files 
+						completely into memory when they are first accessed.<br>
+						<br>
+					</p>
+				</td>
+			</tr>
+		</table>
+		<p class="style1">You can also specify the DM system when running OpenAccess 
+			translators that create libraries. See <a href="usinglibs.html">How Translators Use 				Libraries</a> for details.
+		</p>
+		<p>There are two use models for working with the library server:</p>
+		<ul>
+			<li>
+				<a href="#perm">Permanent remote server (optional) </a>
+			</li>
+			<li>
+				<a href="#automatic">Automatic local server</a></li>
+		</ul>
+		<p>If you attempt to open or create a library, OpenAccess searches for a library 
+			server as follows:</p>
+		<p class="style4"><img src="images/libServerFlowchart.gif"></p>
+		<h3><a name="perm"></a>Permanent Remote Server</h3>
+		<p>You can set up a permanent server on a remote machine to serve library users on 
+			other systems. The server should be automatically started whenever the remote 
+			machine is booted. Specify the command to start the library server with the 
+			desired options in one of the system startup files.
+		</p>
+		<p>When you run a permanent server to manage a library, make sure that the server 
+			can write files in the library. As long as this requirement is satisfied, you 
+			can protect the library directory however you like to control who can access 
+			the library.</p>
+		<p>If you want a stricter protection than the <a href="#permissions">library 				permissions</a> provided by OpenAccess when a library is created, you can 
+			create the directory before oaLib::create turns it into a library. When this 
+			model is used, you should create the library with the <a href="#serverHostName"><code>serverHostName</code></a>
+			attribute naming the node where the server will be running. The <a href="#serverLibPath">				<code>serverLibPath</code></a> and <a href="#serverPortNum"><code>serverPortNum</code></a>
+			attribute might also be used in this case.
+		</p>
+		<p>To run the library server, use the following command:</p>
+		<pre><font face="Courier New" size=3><span style="FONT-SIZE: 12pt; FONT-FAMILY: 'Courier New'">oaDMTurboServer <em>options</em></span></font></pre>
+		<p>The command-line options are as follows:</p>
+		<table width="780" border="1">
+			<tr>
+				<th width="32%" scope="col">
+					<div align="left">Option</div>
+				</th>
+				<th width="68%" scope="col">
+					<div align="left">Description</div>
+				</th>
+			</tr>
+			<tr>
+				<td width="32%">[-portNumber <em>portNumber</em>]
+				</td>
+				<td><p>Port number that clients use to connect to this server.
+						<br>
+						Valid values: Numbers greater than 1023 that are not being used by another 
+						server on the host machine.<br>
+						Default value: 55576</p>
+					<p>Note: Use this option only if port number 55576 is already in use by another 
+						application. Otherwise, it is more straightforward to accept the default value.
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td>[-logFile <em>logFileName</em>]
+				</td>
+				<td>Full path to the log file, which records the operations of the server.<br>
+					Default value: <code>server.slog</code>
+				</td>
+			</tr>
+			<tr>
+				<td>[-logVerbosity <em>verbosity</em>]
+				</td>
+				<td><p>Verbosity of the operation log:
+					</p>
+					<ul>
+						<li>
+							0 = Verbose. All errors and messages are recorded.
+						</li>
+						<li>
+							1 = Terse. Only errors are recorded.
+						</li>
+						<li>
+							2 = None. No log file is generated.
+						</li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>[-waitToClose <em>timeout</em>]
+				</td>
+				<td>The time in seconds for the server to stay alive after the last client has 
+					disconnected. Typically, this is only used when the server is automatically 
+					started by the oaDMTurbo plug-in.</td>
+			</tr>
+			<tr>
+				<td>[-h | -help]
+				</td>
+				<td>Prints help
+				</td>
+			</tr>
+			<tr>
+				<td>[-v | -version]
+				</td>
+				<td>Prints tool version information.</td>
+			</tr>
+		</table>
+		<p>A permanent remote server is typically used in combination with a <code>lib.defs</code>
+			file that is available on the network.</p>
+		<h3><a name="automatic"></a>Automatic Local Server</h3>
+		<p>An automatic local server is started when
+		</p>
+		<ul>
+			<li>
+				A client application opens an existing library or creates a new library on the 
+				local machine and the <a href="#serverHostName"><code>serverHostName</code></a> 
+				library attribute was not used to specify a remote server when the library was 
+				created. Note that when a library is created with no <code>serverHostName</code>
+				or <a href="#serverPortNum"><code>serverportNumber</code></a> specified, 
+				OpenAccess assigns a random port number between 55700 and 56699 for the library 
+				server.
+			</li>
+			<li>
+				A client application opens an existing library or creates a new library with 
+				the <code>serverHostName</code> specified, but the server cannot be connected 
+				to.
+			</li>
+		</ul>
+		<p>
+			Once started, the local server continues to run as long as a process has a 
+			library open that was served by the server. After the last connection is 
+			closed, the server exits if no new connection is made within five seconds.</p>
+		<p>The library server must always have write access to the library directory, even 
+			if the access mode is readOnly.</p>
+		<p>A server that is automatically started on the local system runs with the same 
+			user name and user ID as the process that caused it to start.
+		</p>
+		<a name="autocriticalsave"></a>
+		<h2>Using the Auto Save and Critical Save API</h2>
+		<p>The OpenAccess auto save and critical save functionality supports saving the 
+			in-memory state of a database independent of other user initiated save 
+			operations. The auto save and critical save functionality provides functions 
+			that applications can use to backup and recover a design state during the 
+			normal course of a design session and in the case when a crash occurs. In 
+			addition to saving and recovering the in-memory state, support is also provided 
+			for common file management functions such as checking file existence and for 
+			destroying a recovery file when it is no longer needed.</p>
+		<p>The auto save operation occurs when the application explicitly calls the auto 
+			save API functions. The interval for performing an auto save operation is not 
+			set by the OpenAccess API but must be implemented separately by the 
+			application.</p>
+		<p>Critical save functionality is provided for saving the in-memory state of a 
+			database when a critical event or signal occurs such as a kill signal. The 
+			critical save functionality also includes API members for common file 
+			management tasks. Catching the signal that triggers a critical save operation 
+			is not part of the OpenAccess API, but must be provided by the application. As 
+			a minimum, this involves registering a signal handler that calls 
+			design->save(oacCriticalSave) after the signal is received and then proceeding 
+			in the application as necessary after receiving the signal.</p>
+		<p>The primary access to auto save and critical save functionality is through the 
+			oaDesign and oaTech objects. The oaDesign and oaTech classes include the 
+			following auto save and critical save functions:</p>
+		<pre>
+    oaDesign::save(oaSaveRecoverType type)
+    oaDesign::isRecovered()
+    oaDesign::recover(const oaScalarName &amp;libNameIn, 
+                      const oaScalarName &amp;cellNameIn, 
+                      const oaScalarName &amp;viewNameIn,
+                      oaSaveRecoverType type)
+    oaDesign::exists(const oaScalarName &amp;libNameIn, 
+                     const oaScalarName &amp;cellNameIn, 
+                     const oaScalarName &amp;viewNameIn,
+                     oaSaveRecoverType type)
+    oaDesign::destroy(const oaScalarName &amp;libNameIn, 
+                      const oaScalarName &amp;cellNameIn, 
+                      const oaScalarName &amp;viewNameIn,
+                      oaSaveRecoverType type)
+                      
+    oaTech::save(oaSaveRecoverType type)
+    oaTech::isRecovered()
+    oaTech::recover(const oaScalarName &amp;libName,
+                    oaSaveRecoverType type)
+    oaTech::exists(const oaScalarName &amp;libName, 
+                   oaSaveRecoverType type)
+    oaTech::exists(oaLib *lib, 
+                   oaSaveRecoverType type)
+    oaTech::destroy(const oaScalarName &amp;libName,
+                    oaSaveRecoverType type)
+</pre>
+		<p>oaLibDMData, oaCellDMData, and oaCellViewDMData objects also provide auto save 
+			and critical save functionality, but the preferred access is through the 
+			oaDesign and oaTech objects. The oaDMFileSys plug-in provides an auto save and 
+			critical save interface to the built-in DM system included with OpenAccess. 
+			Support for the Turbo DM system is not provided.</p>
+		<h3>DM Layer Support for Auto Save and Critical Save</h3>
+		<p>The auto save and critical save files are intended to be hidden from users and 
+			therefore use a special extension to prevent accessing as normal database 
+			files. The auto save file uses an oa- extension, and the critical save file 
+			uses an oa+ extension. These files do not support versioning and have no impact 
+			on internal calculations such as determining the primary file within an 
+			oaCellView. Though it is possible to access the auto save and critical save 
+			files directly, access through functions on the corresponding databases is 
+			preferred for managing these files.</p>
+		<h4>oaSaveRecoverType Enumerated Type</h4>
+		<p>The <a href="../dm/classoaSaveRecoverType.html">oaSaveRecoverType class</a> defines 
+			the oaSaveRecoverTypeEnum enumeration for specifying either the oacAutoSaveType 
+			(<em>oaAutoSave</em>) file or the oacCriticalSaveType (<em>oaCriticalSave</em>) 
+			file. This is defined in the DM layer and referenced in both the OpenAccess and 
+			oaDMFileSys plug-in API functions.</p>
+		<h4>oaDMFile and oaDMData Support</h4>
+		<p>The most common usage for checking existence and recovering an oaSaveRecoverType 
+			file employs the oaDesign and oaTech database functions. However, the <a href="../dm/classoaDMFile.html">				oaDMFile class</a> includes function overloads for managing the 
+			oaSaveRecoverType files. These are:</p>
+		<ul>
+			<li>
+				existsOnDisk(oaSaveRecoverType type)</li>
+			<li>
+				recover(oaSaveRecoverType type)</li>
+			<li>
+				getPath(oaSaveRecoverType type, oaString &amp;path)</li>
+		</ul>
+		<p>The <a href="../dm/classoaLibDMData.html">oaLibDMData</a>, <a href="../dm/classoaCellDMData.html">				oaCellDMData</a>, <a href="../dm/classoaViewDMData.html">oaViewDMData</a>, 
+			and <a href="../dm/classoaCellViewDMData.html">oaCellViewDMData</a> classes 
+			provide functions for managing the auto save and critical save files. These 
+			classes include members for implicitly managing the auto save or critical save 
+			files that exist in the corresponding oaDMContainer for an object, and they 
+			also include functions for managing all the files in the oaDMContainer that are 
+			implied by specifying a library, cell, or view name.</p>
+		<!-- <h4>ILib Class Members and Plug-in Support</h4>
+<p>The <a href="../plugin/classILib.html">ILib class</a> provides the interface between the libraries and the DM plug-in. This class includes member functions for managing the auto save and critical save DM files. These ILib functions are:</p>
+<ul>
+<li>getPath(IDMFile *file, oaSaveRecoverTypeEnum type, IString *&amp;path)</li>
+<li>fileCreate(IDMFile *file, oaSaveRecoverTypeEnum type)</li>
+<li>fileValidateDestroy(IDMFile *file, oaSaveRecoverTypeEnum type)</li>
+<li>fileDestroy(IDMFile *file, oaSaveRecoverTypeEnum type)</li>
+</ul>
+<p>These functions are used by the oaDMFileSys plug-in and must be implemented if you write a custom DM plug-in that supports the auto save and critical save functionality.</p> -->
+		<h3>Saving the In-memory State</h3>
+		<p>The in-memory state is saved for backup and recovery by implementing either 
+			oaDesign::save(oacSaveRecoverType type) or oaTech::save(oacSaveRecoverType 
+			type). These functions use private implementations for accessing the DM system. 
+			The auto save and critical save files should always be created using these 
+			database functions.</p>
+		<p>In order to create an auto save or critical save file, the original source 
+			database must be opened in either write or append mode. It is an error if an 
+			auto save or critical save is attempted and the source database is open in read 
+			mode. This policy ensures that the user has the database locked for editing, 
+			and that the critical or auto save operation does not conflict with other 
+			processes that could attempt the same operation.</p>
+		<p>No observer notifications are issued during a critical or auto save operation. 
+			Only one auto save and one critical save database can exist in a container, and 
+			an existing auto save or critical save database file is overwritten when auto 
+			save or critical save operations are performed. This improves the possibility 
+			that the write to disk succeeds. When a critical or auto save operation is 
+			triggered, the isModified flag on the database is not affected, and the 
+			operation is performed regardless of whether the database has been modified or 
+			not. Further, the current state of the database undo stack is unaffected. For 
+			oaDesign databases, any associated parasitic databases are saved as well.</p>
+		<p>An implementation for performing a critical save is:</p>
+		<pre>
+    design-&gt;save(oacCriticalSaveType);
+    tech-&gt;save(oacCriticalSaveType);
+</pre>
+		<h3>Recovering an Auto Save or Critical Save Database</h3>
+		<p>If you open an auto save or critical save database, it is opened in read only 
+			mode, and the entire database is read into memory at once. A partial read of a 
+			recovery database is not supported.</p>
+		<p>If the original source database is in memory, it must be purged before opening a 
+			recovery database. It is an error if the original source database is open and 
+			in memory when attempting to read a recovery database. An implementation for 
+			purging a design from memory before opening a recovery database is:</p>
+		<pre>
+    design-&gt;purge();
+</pre>
+		<p>No validity checking is performed when the recovery database is read into 
+			memory, and therefore, it is prudent for applications to perform data validity 
+			checks before replacing an original source database with the recovered data. 
+			The usual preOpen and postOpen observer notifications are issued when 
+			recovering a critical or auto save database.</p>
+		<p>An example implementation for recovering a design is:</p>
+		<pre>
+    if (oaDesign::exists(libName, cellName, viewName, oacAutoSaveType)) {
+        cout << "Recovering the auto save file\n";
+        design = oadesign::recover(libname, cellname, viewname, oacautosavetype);
+    }
+</pre>
+		<h4>Saving a Recovered Database</h4>
+		<p>As mentioned previously, this opens the recovery database in read-only mode. In 
+			order to save the recovery database, and replace the original source database, 
+			the recovery database must be reopened in append mode. An example 
+			implementation for accomplishing this is:</p>
+		<pre>
+    recoveredDesign = oaDesign::recover(libName, cellName, viewName, oacAutoSaveType);
+
+    recoveredDesign->reopen('a');
+    recoveredDesign->save();
+    recoveredDesign->close();
+</pre>
+		<p>You can recover a tech in a similar manner. For example:</p>
+		<pre>
+    oaTech *recoveredTech = oaTech::recover(libName);
+
+    recoveredTech->reopen(‘a’);
+    recoveredTech->save();
+    recoveredTech->close();
+</pre>
+		<p>The oaTech database supports the ability to have one library reference another 
+			library's tech database. This capability is known as <em>tech attachment</em>. 
+			For example, if library A is attached to library B, opening the tech for 
+			library A effectively opens the tech database that resides in library B. When 
+			saving critical and auto save databases for a tech, they are written to the 
+			library that the tech is located in regardless of any attachment. The oaTech 
+			auto save and critical save functions follow the attachments as needed.</p>
+		<h4>Destroying a Recovered Database After Use</h4>
+		<p>A flag on the recovery database indicates that it is recovered. If a recovered 
+			database is saved and replaces the original database, the isRecovered flag is 
+			reset to allow the recovered database to fully replace the original source. The 
+			critical and auto save database files are left in place until destroyed. An 
+			example implementation to destroy an auto save database is:</p>
+		<pre>
+    if (oaDesign::exists(libName, cellName, viewName, oacAutoSaveType)) {
+        oaDesign::destroy(libName, cellName, viewName, oacAutoSaveType);
+
+        if (!oaDesign::exists(libName, cellName, viewName, oacAutoSaveType)) {
+            cout << "Auto save file removed successfully.\n";
+        }
+    }
+</pre>
+		<h4>Performing Validity Checks After Recovering and Before Saving a Design</h4>
+		<p>After recovering a design, an application can check the validity of the 
+			recovered design before saving it. This is most useful when recovering a 
+			critical save file because a fault causing a critical save could leave a design 
+			in an inconsistent state. An example implementation is:</p>
+		<pre>
+    recoveredDesign = oaDesign::recover(libName, cellName, viewName, oacCriticalSaveType);
+
+    if (checkValidity(recoveredDesign)) {        
+        recoveredDesign->reopen('a');
+        recoveredDesign->save();
+    } else {        
+        // Error    
+    }
+</pre>
+		<p><a href="#pagetop">Return to top of page</a></p>
+		<p><a href="index.html">Return to Programmers Guide topics</a></p>
+		<div style="text-align: center">
+			<img src="../pgfooter.gif"><br />
+		</div>
+		<br />
+		<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+			<br />
+			All rights reserved.</p>
+	</body>
+</html>

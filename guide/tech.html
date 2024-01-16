@@ -1,0 +1,836 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Using  Technology Databases </h1>
+<hr>
+<p>This document describes:</p>
+<ul>
+  <li><a href="#techDB">Technology Databases </a>
+    <ul>
+      <li><a href="#techObjects">Technology Objects</a></li>
+      <li><a href="#techAttributes">Technology Database Attributes</a></li>
+      <li><a href="#interact">How Design and Technology Databases Interact</a></li>
+    </ul>
+  </li>
+  <li><a href="#inc">Incremental Technology Databases</a>
+    <ul>
+      <li><a href="#referencing">Referencing Technology Databases </a>
+          <ul>
+            <li><a href="#setting">Setting and Unsetting References</a></li>
+            <li><a href="#binding">Binding of Referenced Technology Databases</a></li>
+            <li><a href="#observer_ref">Observer Notifications </a></li>
+          </ul>
+      </li>
+      
+      <li><a href="#workWith">Working with Technology Database Attributes</a>
+        <ul>
+          <li><a href="#designating_processfamily">Designating the Process Family</a></li>
+        </ul>
+      </li>
+      <li><a href="#conflicts">Conflicts in Incremental Technology Databases </a></li>
+      <ul>
+        <li><a href="#setRefConflicts">Conflicts While Setting References</a></li>
+        <li><a href="#conflictingAttValues">Conflicts While Attempting to Set Technology Database Attribute Values</a></li>
+        <li><a href="#techObjConflict">Conflicts While Attempting to Create Technology Objects</a></li>
+        <li><a href="#resolve">Resolving Conflicts (Due to Out-of-Context Edits)</a></li>
+      </ul>
+      <li><a href="#excluding_layers"><span class="newtext">Excluding Incompatible Layers</span></a></li>
+      <li><a href="#get_ref_tech_info">Getting Information About Referenced Technology Databases</a></li>
+      <li><a href="#find_tech_obj">Finding Technology  Objects</a></li>
+      <li><a href="#tech_in_design">Using Technology Objects in Design Databases</a></li>
+      <li><a href="#tech_in_tech">Using Technology Objects in Different Technology Databases</a></li>
+      <li><a href="#design_constraints">Using  Constraint Groups to Organize Constraints </a>
+          <ul>
+            <li><a href="#constraint_groups_tech">Constraint Groups in oaTech Databases</a></li>
+            <li><a href="#constraint_groups_design">Constraint Groups in oaDesign  Databases</a></li>
+            <li><a href="#constraint_group_wafer">Constraint Groups in Wafer Databases</a></li>
+            <li><a href="#constraint_group_headers">Constraint Group Headers</a></li>
+            <li><a href="#finding_constraint_groups">Finding Constraint Groups and Constraint Group Members</a></li>
+          </ul>
+      </li>
+      <li><a href="#trans_support">Translator Support</a></li>
+    </ul>
+  </li>
+</ul>
+<h2><a name="techDB"></a></h2>
+<h2>Technology Databases </h2>
+<p>OpenAccess  models a variety of technology information in the technology database (<a href="../tech/classoaTech.html">oaTech</a>).  Some of this information is part of the process specification and is determined by the foundry, such as layers and foundry process rules.  Other information is specific to an IP library being used by a given design, such as via and site definitions.   Finally, some information is specific to a design library, such as the definition of a custom via being used in a particular route, or  specific design constraints.</p>
+<p>Technology databases are  created in a  library: </p>
+<pre>oaTech * oaTech::create(oaLib *lib)  
+</pre>
+<p>Once created, a technology database can be populated with technology objects. </p>
+<h3><a name="techObjects"></a></h3>
+<h3>Technology Objects </h3>
+<p>OpenAccess provides  classes  for  modeling the following types of technology information. </p>
+<ul>
+  <li>Layers<br>
+    <br>
+The <a href="../tech/classoaLayer.html">oaLayer</a> class defines a layer that is referenced when creating physical  design data.<br>
+  <br>
+  </li>
+  <li>Purposes<br><br>
+  The <a href="../tech/classoaPurpose.html">oaPurpose</a> class  can be referenced with a layer when creating physical design data. The purpose consists of a purpose type, purpose name, and purpose number.<br><br>
+</li> 
+  <li>Constraints<br>
+    <br>
+        The <a href="../base/classoaConstraint.html">oaConstraint</a> class provides a base class for all kinds of constraint representations, from foundry rules on layout to other design-related constraints.
+    All constraint objects are defined by a <a href="../base/classoaConstraintDef.html">constraintDef</a> and have an associated value  and optional constraint parameters.<br>
+        <br>
+  </li>
+  <li>Analysis libraries and operating points<br>
+      <br>
+    The <a href="../tech/classoaAnalysisLib.html">oaAnalysisLib</a> class defines a relationship between an analysis library (which is external to OpenAccess) and a set of  <a href="../tech/classoaOpPoint.html">oaOpPoint</a> objects corresponding to operating points defined in that analysis library.  The oaOpPoint class defines an operating point that represents a single  triplet of process, voltage, and temperature (PVT) defined in a  particular analysis library. <br>
+    <br>
+  </li>
+  <li>    Site definitions <br>
+    <br>
+  The <a href="../tech/classoaSiteDef.html">oaSiteDef</a> class defines a site in which you can place standard cells in a row.  A site has a type, plus width, height, symmetry, spacing, and other information allowing for the specification of placeable objects within a row.<br>
+  <br>
+  </li>
+  <li>Via variants<br>
+    <br>
+  </span>The <a href="../tech/classoaViaVariant.html">oaViaVariant</a> class is used to store a predefined parameterization of an oaStdVia or an   oaCustomVia. The oaViaVariant object represents a named pairing of an oaViaDef reference and a fully specified   set of via parameters. <br>
+    <br>
+  </li>
+  <li>Via definitions<br>
+    <br> 
+    The <a href="../tech/classoaViaDef.html">oaViaDef</a> class implements an oaViaDef object, which defines a via design in a technology database.  <br>
+    <br>
+  </li>
+</ul>
+<h3><a name="techAttributes"></a></h3>
+<h3>Technology Database Attributes </h3>
+<p>A technology database contains technology attributes such as</p>
+<ul>
+  <li>Default manufacturing grid</li>
+  <li>Clearance measure</li>
+  <li>Gate grounded </li>
+  <li>DBUPerUU and userUnits (for oacMaskLayout, oacSchematic, oacSchematicSymbol, oacNetlist view types) </li>
+  <li>processFamily</li>
+</ul>
+<p>You can explicitly set values for  these attributes.  For those that are not explicitly set, OpenAccess  assigns  <a href="#attributeDefaultValues">default values</a>. </p>
+<h3><a name="interact"></a></h3>
+<h3>How Design and Technology Databases Interact </h3>
+<p>A library database (<a class=elRef href="../dm/classoaLib.html">oaLib</a>) typically contains a single oaTech  database (known as the primary oaTech), and all the designs in that library use that oaTech. Alternatively, a library can use an attached oaTech  in another library as its primary oaTech. In this case, all the designs in the library use the attached oaTech database. </p>
+<h4>Figure 1: Use Models for Technology Databases </h4>
+<p><img src="images/tech_org.gif" width="770" height="248"></p>
+<p>When a technology database contained in the design library is  opened for a library, it is associated with the library and   remains the technology database for that library until it is purged or the library   is closed. For an attached technology database, the application can detach the attached technology database using <a href="../tech/classoaTech.html#oaTech::detach">oaTech::detach</a> and attach a different one during usage. </p>
+<p>An oaTech database can reference another oaTech database, which can in turn reference other oaTech databases, and so forth. A reference is a mechanism that allows an oaTech database to inherit information from other oaTech databases. This approach is known as using <em>incremental technology databases</em>. </p>
+<h4>Figure 2: Referenced Technology Databases</h4>
+<p>A technology database references an oaLib by name. Typically, that oaLib contains a technology database, and that technology database is the target of the reference. </p>
+<p class="style1"><img src="images/tech_org2.gif" width="794" height="352"></p>
+<p><strong>Note:</strong> If you open a design whose technology database cannot be opened, no error messages are issued, and the technology database is not bound to the design. To check for this situation, applications can use the oaDesign::getTech function. If this function returns NULL, the tech for the design cannot be opened. In addition, applications can attempt to directly open the tech for the design's library. This issues exception messages to help identify the problems.</p>
+<h4>Figure 3: Referenced   Attached Technology Database </h4>
+<p>A technology database can reference an oaLib that uses the attachment mechanism to associate with another oaLib that contains the target technology database. </p>
+<p><img src="images/tech_org3.gif" width="485" height="278"></p>
+<p>The attached oaLib might itself attach to another oaLib instead of containing an oaTech database. This chain of attachments can continue. </p>
+<h2><a name="inc"></a></h2>
+<h2>Incremental Technology Databases </h2>
+<p>Applications can use incremental technology databases to provide technology information from multiple sources, such as the foundry, an IP provider, or a designer, to the application at different points in the design cycle. OpenAccess lets applications incrementally assemble technology information by creating references from one oaTech database to other oaTech databases.</p>
+<p>In the following example, the  technology database used by the  Top design references two technology databases, the Standard Cell oaTech database and the RAM oaTech database. This means that all the design constraints and process information in the Standard Cell  and  RAM oaTech databases are applicable to the Top design. The Top design's oaTech database is  a <em>derived</em> technology database because it is, in effect, inheriting information from the technology databases that it references. Furthermore, both the Standard Cell and RAM oaTech databases reference the Foundry 7LM variant oaTech database, which in turn references the Foundry oaTech database. This chain of references is known as the technology database <em>graph</em>. All the design rules from the Foundry oaTech database up to the primary design oaTech database apply to the design. </p>
+<p>Note that each reference is created separately, and the technology database graph is created incrementally. </p>
+<h4><a name="fig4_graph"></a></h4>
+<h4>Figure 4: Technology Database Graph </h4>
+<p><img src="images/tech_chain.gif" width="652" height="638"></p>
+<p>The following example shows another scenario for sharing  technology information. In this example, the design  instantiates elements from reference libraries, but does not need the technology information for those reference libraries. The Top design does not use via definitions or other technology objects defined in the oaTech databases of the two reference libraries. The Top design only requires its own oaTech database, which references the same foundry oaTech database that the reference libraries also use. </p>
+<h4>Figure 5: Alternative Technology Database Graph </h4>
+<p><img src="images/tech_chain_alt.gif" width="788" height="616"></p>
+<h2><a name="referencing"></a></h2>
+<h2>Referencing Technology Databases</h2>
+<p>When an oaTech database references another oaTech, it inherits the information from that oaTech. When you set up an oaTech database with multiple references, the order in which you supply the references is reflected in the graph of technology databases. When OpenAccess traverses the graph of technology databases, it first searches in the most derived database, then moves on to the first referenced database. If that referenced database itself has references, those are examined next. This continues until the final referenced technology database is examined. At this point, if necessary, OpenAccess will move to the next reference that you supplied for the most derived database, and begin that traversal. </p>
+<p>For example, in the following figure, the Top design's oaTech database has its first reference to the Standard Cell oaTech database, and has a second reference to the RAM oaTech database. When searching for technology information, OpenAccess first examines the design's oaTech database, then the Standard Cell oaTech database, then the foundry 7LM Variant oaTech database, then the Foundry oaTech database. Finally, if the information is not found, OpenAccess goes to the second reference for the Top design's oaTech and searches the RAM oaTech database, which is the last database searched. </p>
+<h4><a name="fig6_searchOrder"></a></h4>
+<h4>Figure 6: Order of References and Search Order </h4>
+<p class="style1"><img src="images/tech_search_order.gif" width="663" height="639"></p>
+<p>OpenAccess prevents  <a href="#conflicts">conflicting technology objects</a> in a graph of technology databases whenever possible. Accordingly, the search path is not part of an ability to choose a preferred item between multiple items with the same name. However, <a href="../base/classoaGroup.html">oaGroups</a>, <a href="../base/classoaAppDef.html">oaAppDefs</a>, and <a href="../base/classoaProp.html">oaProps</a> are not formally supported by the incremental technology database functionality, so name collisions are not prevented. For these object types, a user can search for an object within the scope of an entire graph of techs by setting up a search using the oaTechHeaderArray returned from oaTech::getTechHeaders (with the local argument set to false).</p>
+<h3><a name="setting"></a></h3>
+<h3>Setting and Unsetting References</h3>
+<p>OpenAccess lets you use information from multiple oaTech databases by setting references  from the current oaTech database to other oaTech databases. You supply the list of references in the form of an <a href="../tech/classoaTechArray.html">oaTechArray</a> object. As described in the previous section, the order of the references in the array can be important.</p>
+<p>To set the references for the current technology database, pass in the oaTechArray object:</p>
+<pre>	void oaTech::setRefs(const oaTechArray &amp;refs)</pre>
+<p>When setRefs() is used, pre and post-modify observers are called from <a href="../tech/classoaObserver_3oaTech_4.html">oaObserver&lt;oaTech></a> using the oacSetRefsTechModType.</p>
+<p>The setRefs operation is not allowed if it introduces a conflict in the graph of techs. For more information, refer to <a href="#conflicts">Conflicts in Incremental Technology Databases </a>.</p>
+<p>To change the set of references for a technology database, call the setRefs function again and pass in a different oaTechArray object. </p>
+<p>To remove the references from a technology database, use:</p>
+<pre>	oaTech::unsetRefs()</pre>
+<p>OpenAccess provides a programming example that uses incremental technology database references. Refer to the description of this example (<a href="apipkgs.html#incrTechDB">incrTechDB</a>) in the Programmers Guide.
+<h3><a name="binding"></a>Binding of Referenced Technology Databases</h3>
+<p>When an application opens a technology database, OpenAccess attempts to open each of the referenced technology databases in the graph rooted at that  technology database. Consider <a href="#fig4_graph">Figure 4: Technology Database Graph</a>. If an application  opens the Top design, all the oaTech databases in the pictured graph will be opened if possible. If the application opens the RAM oaTech database,   only the foundry 7LM variant and the foundry oaTech databases will be opened. </p>
+<p>In either case, if one of the referenced technology databases cannot be found or opened, the reference to it becomes <em>unbound</em> and its data cannot be accessed. The <a href="../tech/classoaTechHeader.html">oaTechHeader</a>  class stores  information about bound or unbound technology database references for a derived technology database. OpenAccess issues an onUnboundRef  notification when a referenced database cannot be opened at the time the derived database is opened. A notification is made for each unbound referenced database that is encountered. </p>
+<p>See <a href="#get_ref_tech_info">Getting Information About Referenced Technology Databases</a> for more information about oaTechHeaders. </p>
+<h3><a name="observer_ref"></a>Observer Notifications </h3>
+<p>OpenAccess provides observers that an application can use to monitor events when opening incremental technology databases. Consider the following set of incremental technology databases.</p>
+<h4>Figure 7: Observers for Incremental Technology Databases </h4>
+<p><img src="images/observers.gif" width="196" height="230"> </p>
+<p>Assume that the application has derived observers to receive notifications when references to incremental technology databases are bound, and when technology databases are opened. If none of the technology databases are open, and oaTech A is opened, the following sequence of observers is called:</p>
+<ol>
+  <li>onPreOpenRefs(A);</li>
+  <li>onPreOpenRefs(B);</li>
+  <li>onFirstOpen(D);</li>
+  <li>onFirstOpen(E);</li>
+  <li>onPostOpenRefs(B);</li>
+  <li>onFirstOpen(B); </li>
+  <li>onFirstOpen(C);</li>
+  <li>onPostOpenRefs(A);</li>
+  <li>onFirstOpen(A);<br>
+  </li>
+</ol>
+<p>Consider the same example,  except this time, oaTech B is open, but oaTech D does not exist. The following sequence of observer notifications is called when oaTech A is opened. </p>
+<ol>
+  <li>onPreOpenRefs(A);</li>
+  <li> onUnboundRefs(B, header from B to D);</li>
+  <li> onPostOpenRefs(A);<br>
+  </li>
+</ol>
+
+
+
+<p><strong>Note:</strong> Observers are also provided for getting information about <a href="#conflicts">conflicts</a> in incremental technology databases. </p>
+<h2><a name="workWith"></a></h2>
+<h2>Working with Technology Database Attributes</h2>
+<p>You can explicitly set values for  technology database attributes. For attribute values that are not explicitly set, OpenAccess  assigns  default values. The following table shows the technology database attributes that are available and their default values.</p>
+<p><a name="attributeDefaultValues"></a></p>
+<table border="1" cellpadding="2" cellspacing="2">
+  <tr>
+    <th width="249" bgcolor="#FFFFCC"  scope="col"><div align="left">Technology Database Attributes </div></th>
+    <th colspan="4" bgcolor="#FFFFCC" scope="col"><div align="left">Default Value </div></th>
+  </tr>
+  <tr>
+    <td bordercolor="#E0DFE3">DefaultManufacturingGrid</td>
+    <td colspan="4">0</td>
+  </tr>
+  <tr>
+    <td bordercolor="#E0DFE3">ClearanceMeasure</td>
+    <td colspan="4">oacEuclidianClearanceMeasure</td>
+  </tr>
+  <tr>
+    <td bordercolor="#E0DFE3">isGateGrounded</td>
+    <td colspan="4">false</td>
+  </tr>
+  <tr>
+    <td bordercolor="#E0DFE3"><span class="newtext">processFamily</span></td>
+    <td colspan="4"><span class="newtext">"" (empty string)</span></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td width="121" bgcolor="#FFFFCC"><strong>oacMaskLayout</strong></td>
+    <td width="108" bgcolor="#FFFFCC"><strong>oacSchematic</strong></td>
+    <td width="166" bgcolor="#FFFFCC"><strong>oacSchematicSymbol</strong></td>
+    <td width="98" bgcolor="#FFFFCC"><strong>oacNetlist</strong></td>
+  </tr>
+  <tr>
+    <td>DBUPerUU</td>
+    <td>1000</td>
+    <td>160</td>
+    <td>160</td>
+    <td>160</td>
+  </tr>
+  <tr>
+    <td>userUnits</td>
+    <td>oacMicron</td>
+    <td>oacInch</td>
+    <td>oacInch</td>
+    <td>oacInch</td>
+  </tr>
+</table>
+<p>When working with incremental technology databases, explicitly set values take precedence over implicit ones. If none of the oaTech's in a graph have explicitly set a particular attribute value, such as DBUPerUU, the default value applies to all the oaTechs in the graph. If one of the oaTechs has an explicitly set value for DBUPerUU, that value applies to all the oaTechs  derived from that oaTech in the graph. For example, in the following graph, oaTech A inherits the explicitly set value of 2000 for DBUPerUU from oaTech Y. </p>
+<h4><a name="inheritExplicit"></a>Figure 8: Inheriting Explicit Attribute Values </h4>
+<p class="style1"><img src="images/attributeLessTech.gif" width="487" height="340"></p>
+<p>A conflict occurs when there are two or more explicitly set attribute values that differ. Whenever possible, OpenAccess prevents applications from setting conflicting  values for attributes. For more information, refer to <a href="#conflicts">Conflicts in Incremental Technology Databases </a>.</p>
+<p>Applications can use the <code>get<em>&lt;attrribute&gt;</em></code> functions with the <em>local</em> argument in order to get the local attribute value only. For example: </p>
+<pre>
+oaTech::getDBUPerUU(const oaViewType *viewType,
+                    oaBoolean        local) const;
+</pre>
+<p>Functions that get technology attribute values return an explicitly set attribute value if one is available. Otherwise, the default value is returned. If an application calls getDBUPerUU on one of the databases in a graph, the function returns the  explicitly set attribute value that is closest to the oaTech from which the call was issued. For example, in <a href="#inheritExplicit">Figure 8: Inheriting Explicit Attribute Values</a>, a call to getDBUPerUU from oaTech X returns the explicitly set value from oaTech Y, namely, 2000. If there is no explicitly set value, the implicit default value is returned. </p>
+<p>Functions are  provided to determine whether or not an attribute on an oaTech was explicitly set. For example, oaTech::isDBUPerUUSet returns true if the attribute has an explicitly set value. There is also an  oaTech::unsetDBUPerUU  	 function that returns the attribute to its implicit default value. (An exception is issued if this function is called on an attribute that was not explicitly set.) </p>
+<p><strong>Important:</strong> Versions of OpenAccess prior to 2.2.7 (x201) do not manage the distinction between explicit and implicit technology attributes. If a database containing explicitly set technology attributes is opened in  a version of OpenAccess prior to 2.2.7 (x201), the setting that indicates that a technology attribute was explicitly set is lost. If that same database is then opened again by a newer version of OpenAccess, all the technology attributes are interpreted as having been explicitly set. </p>
+<h4><a name="designating_processfamily"></a></h4>
+<h3>Designating the Process Family</h3>
+<p>Foundries often use multiple graphs of technology databases where each graph includes a tech for the base process plus other techs to define the variant of the process. It is important to distinguish the technology databases for one process variant from techs belonging to other variants. OpenAccess includes an API to designate the processFamily attribute for a database in order to avoid mixing techs for one process variant with those for other process variants. While mixing technology databases that have different <a href="#detecting_processfamily_conflicts">processFamily</a> attributes is prohibited, mixing databases that have the same processFamily attribute with those that have no processFamily attribute is permitted.</p>
+
+<p>You set the processFamily attribute for a technology database with the <a href="../tech/classoaTech.html">oaTech</a> class setProcessFamily() API. In addition, there is an API to unset the processFamily (oaTech::unsetProcessFamily), and to get the processFamily (oaTech::getProcessFamily).</p>
+
+<h2><a name="conflicts"></a></h2>
+<h2>Conflicts in Incremental Technology Databases </h2>
+<p>When using incremental technology databases, it's important to  understand how OpenAccess manages technology objects, technology  attributes, and constraints across a graph of technology databases. In  particular, understanding how OpenAccess deals with conflicts is  important.</p>
+<p>OpenAccess prevents the introduction of conflicts in a graph of technology databases whenever possible.</p>
+<ul>
+  <li>oaTech::setRefs is not allowed if the technology databases to comprise the graph of techs will contain conflicting technology objects, constraint groups, or  technology attribute values.</li>
+  <li>Setting conflicting attribute values is not allowed.</li>
+  <li>Creating technology objects with conflicting names (or other matching characteristics) is not allowed. </li>
+</ul>
+<h3><a name="setRefConflicts"></a></h3>
+<h3>Conflicts While Setting References </h3>
+<p>If a setRefs operation would create a graph of techs that included  conflicting (explicitly set) technology database attribute values, an observer notification is issued and an oacTechSetRefsConflicts exception is thrown. </p>
+<p>Similarly, if setRefs would introduce a conflicting   technology object, an onConflict observer is issued and the oacTechSetRefsConflicts exception is thrown. </p>
+<p>For both types of conflicts, one observer notification is issued for each conflict. Multiple conflicts produce multiple observers. </p>
+<p>The following example shows a simple conflict involving an oaLayer. </p>
+<h4>Figure 9: Conflicts on setRefs Operation </h4>
+<p><img src="images/conflictObservers2.gif" width="135" height="200"></p>
+<p>Each of these techs has a layer number 1, so OpenAccess  issues a single observer notification and throws an exception. The observer notification indicates that </p>
+<ul>
+  <li>Tech A is the most derived tech</li>
+  <li>The type of the conflict, which in this case, is a layer number conflict</li>
+  <li>There two conflicting objects&mdash;one layer object in Tech A and one layer object in Tech B </li>
+</ul>
+<pre>
+oaObserver&lt;oaTech&gt;::onConflict(oaTech                  *mostDerivedTech,
+                               oaTechConflictTypeEnum   conflictType
+                               oaObjectArray            conflictingObjs,
+                               );</pre>
+<p>An object can have conflicts in more than one database. In the following example, Tech A attempts to set references to Tech C and Tech B. </p>
+<h4>Figure 10: More Conflicts on setRefs Operation </h4>
+<p><img src="images/conflictObservers4.gif" width="258" height="199"></p>
+<p>Each of the three techs has a layer with layer number 1. In addition, Tech A and Tech B both have a layer with layer number 2. In this example, OpenAccess issues two observer notifications and throws an exception. </p>
+<p>One observer reports that </p>
+<ul>
+  <li>Tech A is the most derived tech</li>
+  <li>The type of the conflict, which in this case, is a layer number conflict</li>
+  <li>There are three conflicting objects, one layer with layer number 1 in Tech A, one in Tech B, and one in Tech C.</li>
+</ul>
+<p>A second observer reports that</p>
+<ul>
+  <li>Tech A is is the most derived tech</li>
+  <li>The type of the conflict, which in this case, is a layer number conflict</li>
+  <li>There are two conflicting objects, one layer with layer number 2 in Tech A, and one in Tech B.</li>
+</ul>
+<p> In the following example, Tech A attempts to set a reference to Tech B. Tech B has an existing reference to   Tech C, which is not currently open. In order to set the reference from Tech A to Tech B, OpenAccess will check for and open any databases in the graph of techs that are not already open. </p>
+<p>In this example, OpenAccess attempts to open   Tech C. As a result of this, a conflict is encountered,    an observer notification is issued, and an exception is thrown. The observer notification indicates Tech A is the most derived tech, and that the layer number 1 is contained in Techs A, B, and C. </p>
+<h4>Figure 11: Conflicts Introduced as a Side Effect </h4>
+<p><img src="images/conflictObservers5.gif" width="336" height="324"></p>
+<p>This particular example demonstrates another sort of conflict, which is less common. Notice that Tech D has a reference to Tech C, and that they both contain a layer with layer number 1. When Tech C was opened as a result of the setRefs operation from Tech A to Tech B, this other conflict, from Tech D to Tech C, becomes apparent and OpenAccess issues another observer notification for Tech D as the most derived tech. This notification  reports that there is a conflict for  layer number 1 in Tech D and Tech C. </p>
+<p>Refer to <a href="#resolve">Resolving Conflicts</a> for details about how to resolve such conflicts. </p>
+<h4><a name="conflictingAttValues"></a></h4>
+<h3>Conflicts While Attempting to Set Technology Database Attribute Values</h3>
+<p>When an attempt is made to set conflicting technology database attribute value, the operation is prevented an an exception is thrown. </p>
+<p> The following table lists the functions for setting technology database attributes and lists the corresponding exceptions that are thrown when there are conflicts.</p>
+<table width="67%" border="1" cellpadding="2" cellspacing="2">
+  <tr>
+    <th bgcolor="#FFFFCC" scope="col"><div align="left">Function</div></th>
+    <th bgcolor="#FFFFCC" scope="col"><div align="left">Exception</div></th>
+  </tr>
+  <tr>
+    <td><a href="../tech/classoaTech.html#oaTech::setDBUPerUU">oaTech::setDBUPerUU</a></td>
+    <td>oacConflictingDBUPerUUInTech </td>
+  </tr>
+  <tr>
+    <td><a href="../tech/classoaTech.html#oaTech::setUserUnits">oaTech::setUserUnits</a></td>
+    <td>oacConflictingUserUnitsInTech </td>
+  </tr>
+  <tr>
+    <td><a href="../tech/classoaTech.html#oaTech::setClearanceMeasure">oaTech::setClearanceMeasure</a></td>
+    <td>oacConflictingClearanceMeasureInTech 	</td>
+  </tr>
+  <tr>
+    <td><a href="../tech/classoaTech.html#oaTech::setDefaultManufacturingGrid">oaTech::setDefaultManufacturingGrid</a></td>
+    <td>oacConflictingDefaultManufacturingGridInTech </td>
+  </tr>
+  <tr>
+    <td><a href="../tech/classoaTech.html#oaTech::setGateGrounded">oaTech::setGateGrounded</a></td>
+    <td>oacConflictingGateGroundedInTech</td>
+  </tr>
+  <tr>
+    <td><a href="../tech/classoaTech.html#oaTech::setProcessFamily">oaTech::setProcessFamily</a></td>
+    <td>oacConflictingProcessFamilyInTech </td>
+  </tr>
+</table>
+<h4><a name="techObjConflict"></a></h4>
+<h3>Conflicts While Attempting to Create Technology Objects </h3>
+<p>If an attempt is made to create a technology object that would introduce a conflict into a graph of techs, an exception is thrown. For example, when creating an oaPurpose, the following exceptions can be thrown: 
+<ul>
+  <li>oacPurposeNumberExists </li>
+  <li>oacPurposeNameExists</li>
+</ul>
+<p>The following table lists all the technology objects, and shows the characteristics that are used to uniquely distinguish these objects.</p>
+<table width="80%" border="1" cellpadding="2" cellspacing="2">
+  <tr>
+    <th bgcolor="#FFFFCC" scope="col"><div align="left">Technology Database Object</div></th>
+    <th width="26%" bgcolor="#FFFFCC" scope="col"><div align="left">Matching Characteristics </div></th>
+    <th width="44%" bgcolor="#FFFFCC" scope="col"><div align="left">Exception</div></th>
+  </tr>
+  <tr>
+    <td width="30%">oaAnalysisLib</td>
+    <td>Name</td>
+    <td>oacAnalysisLibNameExists    </td>
+  </tr>
+  <tr>
+    <td>oaConstraint</td>
+    <td>Name</td>
+    <td><p>oacConstraintNameExists </p>    </td>
+  </tr>
+  <tr>
+    <td>oaConstraintGroup (in an oaTech)</td>
+    <td>Name</td>
+    <td>oacConstraintGroupNameExists </td>
+  </tr>
+  <tr>
+    <td rowspan="2">oaLayer</td>
+    <td>Name</td>
+    <td>oacConflictingLayerNamesInTech </td>
+  </tr>
+  <tr>
+    <td> Number </td>
+    <td>oacConflictingLayerNumbersInTech</td>
+  </tr>
+  <tr>
+    <td>oaDerivedLayer</td>
+    <td>derivation</td>
+    <td>oacLayerDerivationExists </td>
+  </tr>
+  <tr>
+    <td>oaPhysicalLayer</td>
+    <td>excludedLayer</td>
+    <td>oacLayerIsExcluded</td>
+  </tr>
+  <tr>
+    <td rowspan="2">oaPurpose</td>
+    <td>Name</td>
+    <td>oacPurposeNameExists </td>
+  </tr>
+  <tr>
+    <td> Number</td>
+    <td>oacPurposeNumberExists </td>
+  </tr>
+  <tr>
+    <td>oaSiteDef</td>
+    <td>Name</td>
+    <td>oacSiteDefExists</td>
+  </tr>
+  <tr>
+    <td>oaViaDef</td>
+    <td>Name</td>
+    <td>oacViaDefExists </td>
+  </tr>
+  <tr>
+    <td>oaViaSpec</td>
+    <td>Layer1 and layer2</td>
+    <td>oacViaSpecExists </td>
+  </tr>
+  <tr>
+    <td>oaViaVariant (in an oaTech) </td>
+    <td>Name</td>
+    <td>oacViaVariantNameExists </td>
+  </tr>
+  <tr>
+    <td>oaStdViaVariant<br>
+    oaCustomViaVariant</td>
+    <td>(viaDef, params)</td>
+    <td>oacViaVariantViaDefParamsExists</td>
+  </tr>
+</table>
+<p><a name="resolve"></a></p>
+<h3>Resolving Conflicts (Due to Out-of-Context Edits) </h3>
+<p>Conflicting technology objects or technology attribute values  can be introduced  if one of the techs in a graph is edited out of context of the rest of the graph. These conflicts are made apparent when  the oaTech::open, oaTech::validate, or oaTech::setRefs functions are called. When OpenAccess encounters conflicts in a graph during one of these operations, observer notifications are sent. </p>
+<p>For conflicting technology objects, OpenAccess issues onConflict observer notifications. One observer is issued for each conflicting technology object. Another type of conflict occurs when <a href="#excluding_layers">excluded layers</a> are present. OpenAccess issues an <a href="../tech/classoaObserver_3oaTech_4.html#oaObserver_oaTech_::onExcludedLayerConflict">onExcludedLayerConflict</a> in this case. </p>
+<table width="80%" border="1" cellpadding="2" cellspacing="2">
+  <tr>
+    <th bgcolor="#FFFFCC" scope="col"><div align="left">Technology Database Object</div></th>
+    <th width="26%" bgcolor="#FFFFCC" scope="col"><div align="left">Matching Characteristics </div></th>
+    <th width="44%" bgcolor="#FFFFCC" scope="col"><div align="left">Observer</div></th>
+    <th width="44%" bgcolor="#FFFFCC" scope="col"><div align="left">Conflict Type </div></th>
+  </tr>
+  <tr>
+    <td width="30%">oaAnalysisLib</td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacAnalysisLibNameTechConflictType</td>
+  </tr>
+  <tr>
+    <td>oaConstraint</td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacConstraintNameTechConflictType</td>
+  </tr>
+  <tr>
+    <td>oaConstraintGroup (in an oaTech)</td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacConstraintGroupNameTechConflictType</td>
+  </tr>
+  <tr>
+    <td rowspan="2">oaLayer</td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacLayerNameTechConflictType </td>
+  </tr>
+  <tr>
+    <td> Number </td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacLayerNumTechConflictType </td>
+  </tr>
+  <tr>
+    <td>oaDerivedLayer</td>
+    <td>derivation</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacDerivedLayerTechConflictType</td>
+  </tr>
+  
+  <tr>
+    <td>oaPhysicalLayer</td>
+    <td>excludedLayer</td>
+    <td>oaObserver&lt;oaTech&gt;onExcludedLayerConflict</td>
+    <td><em>No type </em></td>
+  </tr>
+  <tr>
+    <td rowspan="2">oaPurpose</td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacPurposeNameTechConflictType</td>
+  </tr>
+  <tr>
+    <td> Number</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacPurposeNumTechConflictType</td>
+  </tr>
+  <tr>
+    <td>oaSiteDef</td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacSiteDefNameTechConflictType</td>
+  </tr>
+  <tr>
+    <td>oaViaDef</td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacViaDefNameTechConflictType</td>
+  </tr>
+  <tr>
+    <td>oaViaSpec</td>
+    <td>Layer1 and layer2</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacViaSpecTechConflictType</td>
+  </tr>
+  <tr>
+    <td>oaViaVariant (in an oaTech) </td>
+    <td>Name</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacViaVariantNameTechConflictType</td>
+  </tr>
+  <tr>
+    <td>oaStdViaVariant</td>
+    <td>(viaDef, params)</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacStdViaVariantTechConflictType </td>
+  </tr>
+  <tr>
+    <td>oaCustomViaVariant</td>
+    <td>(viaDef, params)</td>
+    <td>oaObserver&lt;oaTech&gt;::onConflict</td>
+    <td>oacCustomViaVariantTechConflictType</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>For conflicting technology database attributes, each has its own conflict observer (shown in the following table). </p>
+<table width="67%" border="1" cellpadding="2" cellspacing="2">
+  <tr>
+    <th bgcolor="#FFFFCC" scope="col"><div align="left">Function</div></th>
+    <th bgcolor="#FFFFCC" scope="col"><div align="left">Conflict Observer </div></th>
+  </tr>
+  <tr>
+    <td>oaTech::setDBUPerUU</td>
+    <td>onDBUPerUUConflict</td>
+  </tr>
+  <tr>
+    <td>oaTech::setUserUnits</td>
+    <td>onUserUnitsConflict</td>
+  </tr>
+  <tr>
+    <td>oaTech::setClearanceMeasure</td>
+    <td>onClearanceMeasureConflict </td>
+  </tr>
+  <tr>
+    <td>oaTech::setDefaultManufacturingGrid</td>
+    <td>onDefaultManufacturingGridConflict </td>
+  </tr>
+  <tr>
+    <td>oaTech::setGateGrounded</td>
+    <td>onGateGroundedConflict </td>
+  </tr>
+  <tr>
+    <td>oaTech::setProcessFamily</td>
+    <td>onProcessFamilyConflict </td>
+  </tr>
+</table>
+<p>OpenAccess  allows the affected databases to be opened so that the conflicts can be resolved. The application can either resolve the conflict, or present information to  end users to allow them to resolve the conflict. The easiest way to resolve conflicts is to determine which of the conflicted objects or attribute values is preferred and delete the other ones. Note that these changes might not  be possible if the application does not have edit access to the tech databases. The application should not proceed until the conflict is resolved.</p>
+<p>The oaTech::validate can be used to  check for conflicts. This function  issues observer notifications and returns  FALSE if there are duplicate technology objects or duplicate technology attributes with conflicting explicit values in the graph of techs. After some conflicts are resolved, an application can use this function to determine if there are any remaining conflicts. (End users can also use this function directly.) </p>
+<p>When all the conflicts are resolved, the setRefs function can be used again to create the graph of techs.</p>
+<p><a name="detecting_processfamily_conflicts"></a></p>
+<h5>processFamily Attribute Conflicts</h5>
+<p>If the processFamily string attribute for a given technology database is not set, or is set to an empty string, that technology database is not in conflict with other technology databases that have non-null processFamily attributes. This allows inclusion of generic technology databases that are not process specific in a graph of techs.</p>
+<p>In the following figure, the empty processFamily attribute does not cause a conflict. However, the CMOS and BICMOS do represent a conflict.</p>
+<h4>Figure 12: processFamily Attribute</h4>
+<p><img src="images/figprocessfamily.gif" border="0" alt="OpenAccess detects processFamily conflicts"></p>
+<p>Applications that are compiled against earlier versions of the OpenAccess shared libraries cannot detect processFamily conflicts that occur due to out-of-context edits. Applications compiled against earlier shared libraries also cannot edit a database if it contains a processFamily attribute.</p>
+<p><a name="excluding_layers"></a></p>
+
+<h3>Excluding Incompatible Layers</h3>
+<p>Layers can be excluded by name from a graph of technology databases. This capability provides safeguards to ensure that a graph of technology databases do not have inadvertent references to incompatible layers. The following figure shows how the layer exclusion feature might be used.</p>
+<h4>Figure 13: Layer Exclusion</h4>
+<p><img src="images/figlayerexclusion.gif" width="734" height="567"></p>
+<p>The <a href="../tech/classoaPhysicalLayer.html">oaPhysicalLayer</a> class supports layer exclusion with the following APIs:</p>
+<ul>
+  <li>oaPhysicalLayer::setExcludedLayers specifies the list of layers excluded from the graph of techs</span></li>
+  <li>oaPhysicalLayer::getExcludedLayers returns the excluded layer list for the layer</li>
+  <li>oaPhysicalLayer::hasExcludedLayers checks whether a layer has an excluded layers list</li>
+  <li>oaPhysicalLayer::unsetExcludedLayers discards the excluded layers list for the layer</li>
+  <li>oaObserver&lt;oaTech&gt;::onExcludedLayerConflict receives a notification when excluded layer conflicts occur</li>
+  <li>oaPhysicalLayer::getExcludedLayerNames() gets the exclusion list for a physical layer</li>
+</ul>
+<p>The layer exclusion feature identifies layers that are incompatible within a graph of techs. It is not intended for defining large numbers of incompatible layers among several foundry processes. For example, if a foundry encodes the name of the process in the names of its layers, listing all the incompatible layers in all the other processes is not recommended. The correct way to prevent process incompatibilities among a graph of techs is by attaching a processFamily attribute to each member of the graph.</p>
+<p>Excluding layers does not ensure that a given oaDesign that references a given graph of techs can be instantiated in another oaDesign that references a different graph of techs. Layer exclusion is implemented by checking layers within a graph of techs, not by performing checks among multiple graphs.</p>
+<p><a href="../tech/classoaPhysicalLayer.html">oaPhysicalLayer</a>, <a href="../tech/classoaSizedLayer.html">oaSizedLayer</a> and <a href="../tech/classoaDerivedLayer.html">oaDerivedLayer</a> objects are all subject to the same layer exclusion criteria.</p><a name="setting_layer_exclusion"></a>
+<h4>Setting or Unsetting a Layer Exclusion List</h4>
+<p>The <code>setExcludedLayers()</code> API uses the <a href="../tech/classoaLayerNameArray.html">oaLayerNameArray</a> utility class to create an excludedLayerNames list. A layer name can be included only once in the list. An exception is thrown if a layer included in the list already exists in the local technology database or exists in any of the databases among the graph of techs that the current tech database belongs to. It is also an error to attempt to set an exclusion list on a layer that is already in a conflicted state.</p>
+<p>The API call for unsetting the excludedLayerNames list is <a href="../tech/classoaPhysicalLayer.html">oaPhysicalLayer::unsetExcludedLayers()</a>, or you can call oaPhysicalLayer::setExcludedLayers() with an empty excludedLayerNames array to clear the excluded layers list.</p>
+<h2><a name="get_ref_tech_info"></a>Getting Information About Referenced Technology Databases</h2>
+<p>OpenAccess creates oaTechHeader objects automatically as needed to support references to technology databases. You can get an ordered list of technology databases that are referenced by the current technology database with the following function:</p>
+<blockquote>
+<pre>void    oaTech::getTechHeaders(oaTechHeaderArray     &refHeaders,
+                               oaBoolean             local) const</pre>
+</blockquote>
+<p>The returned array is ordered in a depth first manner, as described in <a href="#fig6_searchOrder">Figure 6: Order of References and Search Order</a>. </p>
+<p>If the <em>local</em> argument is set to true, the function returns only the technology database headers that are directly referenced by the current technology database.&nbsp; If <em>local</em> is false, the function returns the complete set of technology database headers that comprise the graph  rooted at the current technology database. </p>
+<p>For example, in the following figure, assume that the current technology database is the Standard Cell oaTech. In this case, if <em>local</em> is set to true, the returned list  includes only the headers from the Standard Cell oaTech to the Foundry 7LM Variant oaTech. However, if <em>local</em> is set to false, the list  includes  the  headers from the Standard Cell oaTech to the Foundry 7LM Variant oaTech, and from the Foundry 7LM Variant oaTech to the Foundry oaTech.</p>
+<h4>Figure 14: Use of getTechHeaders </h4>
+<p><img src="images/tech_chain_getHeaders.gif" width="635" height="638"></p>
+<p>You can also get a list of the technology databases that have references to, or use, the current technology database. The following function returns an ordered collection of other open technology databases that contain references to the current technology database:</p>
+<blockquote>
+  <pre>oaCollection&lt;oaTechHeader, oaTech>	oaTech::getUsedIn() const</pre>
+</blockquote>
+<h2><a name="find_tech_obj"></a>Finding Technology  Objects</h2>
+<p>OpenAccess provides functions to find technology objects within a graph of technology databases. You can also search for technology objects within a single technology database. The default search supported by the <em>::find</em> function for each technology object searches throughout the graph of technology databases that is rooted at the current technology database. This is done is a depth first manner, as described in <a href="#fig6_searchOrder">Figure 6: Order of References and Search Order</a>. </p>
+<p>For example, the following  function can find and return an oaViaDef from any technology database in the graph. </p>
+<blockquote>
+  <pre>oaViaDef*  find(const oaTech *tech, const oaString &name)</pre>
+</blockquote>
+<p>Whereas the following function returns an oaViaDef from the current technology database only if local is set to true. </p>
+<blockquote>
+  <pre>oaViaDef*  find(const oaTech *tech, const oaString &name, oaBoolean local)</pre>
+</blockquote>
+<p>Returning collections of technology objects is handled in a similar, but not identical manner. For example, the following returns a collection of all operating points in all oaTech databases in the graph rooted at the current oaTech database. </p>
+<blockquote>
+  <pre>oaCollection&lt;oaOpPoint, oaTech> oaTech::getOpPoints()  const</pre>
+</blockquote>
+<p>A new function  enables you to specify whether the collection includes all objects in the graph, or only  objects that are local to the current oaTech database. You can provide the filterFlags argument to this function to specify that you want to return the collection of operating points only in the current oaTech. To search only the current technology database, use <em>oacOpPointIterLocal</em> as the filterFlag.&nbsp;To search all the referenced technology databases, use <em>oacOpPointIterAll</em>. </p>
+<blockquote>
+  <pre>oaCollection&lt;oaOpPoint, oaTech> oaTech::getOpPoints(oaUInt4    filterFlags)  const</pre>
+</blockquote>
+<p><strong>Important: </strong>OpenAccess will continue to support the oaTech::getOpPoints  (     ) function   for compatibility purposes. However, it is recommended that you use the function with the <em>filterFlags</em> argument instead. This is true for any of the oaTech get functions that return technology object collections.</p>
+<p>If the state of the technology graph changes, the contents of any current oaCollections that search the referenced technology databases become undefined. </p>
+<h2><a name="tech_in_design"></a>Using Technology Objects in Design Databases </h2>
+<p>Technology database objects are used in the design database. For example, an oaViaDef technology object is used to create an oaVia, and an oaSiteDef technology object is used to create an oaRow.</p>
+<p>When an application creates a design object that uses a technology object, OpenAccess refers to an in-memory technology object. For example, oaCustomVia::create() uses oaCustomViaDef* as a parameter:</p>
+<blockquote>
+  <pre>oaCustomVia * oaCustomVia::create(oaBlock                  *block,  
+                                  const oaCustomViaDef     *viaDef,  
+                                  const oaTransform        &xform,  
+                                  const oaParamArray       *params = NULL 
+                                  )  [static] 
+</pre>
+</blockquote>
+<p>The oaCustomViaDef object can be in any of the following locations:</p>
+<ul>
+  <li>In the  oaTech database in the library containing the design</li>
+  <li>In a referenced oaTech database within the graph of technology databases rooted at the primary oaTech database for the design</li>
+  <li>In an attached oaTech database</li>
+</ul>
+<p>The <a href="../design/classoaCoreBoxSpec.html">oaCoreBoxSpec</a> object is handled a little differently. For this object, the technology object information can be set after the object is created. The oaCoreBoxSpec::setSiteDef() function has two variants. The first one  takes an oaSiteDef object and works like the oaCustomVia::create function above. The second should specify an oaSiteDef name, which OpenAccess uses to look up the oaSiteDef across the graph of technology databases. </p>
+<blockquote>
+  <pre>void oaCoreBoxSpec::setSiteDef(oaSiteDef     *siteDef)</pre>
+  <pre>void oaCoreBoxSpec::setSiteDef(const oaString  &name) [inline]</pre>
+</blockquote>
+<p>OpenAccess prevents users from creating design objects that use technology objects that have conflicts across the graph of technology databases if all the objects are in memory. If technology databases are edited out of context, conflicts might occur and it is the responsibility of the application to handle these conflicts. Refer to <a href="#workWith">Working with Technology Objects, Technology Attributes, and Constraints</a> for more information. </p>
+<h2><a name="tech_in_tech"></a>Using Technology Objects in Different Technology Databases </h2>
+<p>The <a href="../tech/classoaDerivedLayer.html">oaDerivedLayer</a>, <a href="../tech/classoaSizedLayer.html">oaSizedLayer</a>, <a href="../tech/classoaViaDef.html">oaViaDef</a>, and <a href="../tech/classoaViaSpec.html">oaViaSpec</a> objects each use oaLayer objects as part of their object definition. These layer objects can be in  referenced oaTech databases. </p>
+<p>For example, an oaStdViaDef is created in the specified oaTech database. The layers for  the oaStdViaDef can be in that same oaTech database, or in a referenced oaTech database in the graph rooted at that oaTech.</p>
+<pre>
+oaStdViaDef * oaStdViaDef::create(oaTech              *tech,
+                                  const oaString      &amp;name,  
+                                  oaPhysicalLayer     *layer1,  
+                                  oaPhysicalLayer     *layer2,  
+                                  const oaViaParam    &amp;params,
+                                  oaPhysicalLayer     *implant1 = NULL,
+                                  oaPhysicalLayer     *implant2 = NULL 
+                                  ) </pre>
+<p>OpenAccess  provides a function to find an oaViaDef by name across a graph of technology databases. </p>
+<pre>
+oaViaDef * oaViaDef::find(const oaTech      *tech, 
+                          const oaString    &amp;name,
+                          oaBoolean         local
+                          )  
+</pre>
+<p><strong>Note:</strong> If the <em>local</em> argument is set to true, the function searches only in the current technology database. </p>
+<h2><a name="design_constraints"></a>Using  Constraint Groups to Organize Constraints </h2>
+<p>A design typically has a number of conditions that must be met in order for the design to be correct. Many applications refer to these as rules, but OpenAccess uses the more generic term, <EM>constraints</EM>. This section describes how constraints can be used in incremental technology databases. For a general understanding of constraints, refer to <a href="constraints.html">Creating and Modeling Process Rules and Constraints</a> first. </p>
+<p>In OpenAccess, a <em>constraint group</em> lets you apply a collection of constraints to specific objects in  an oaDesign, oaTech, or oaWafer database. A constraint group can contain members that are individual constraints or constraint groups. Constraints and constraint groups cannot have conflicting names across the graph of technology databases. </p>
+<p>A number of constraint groups are built into OpenAccess. Every object that can have constraints has a built-in constraint group that is returned by oaObject::getConstraintGroup. The classes oaTech, oaModule, oaDesign, oaBoundary, and oaBlock are container classes that each have an additional built-in default constraint group that is returned by the getDefaultConstraintGroup function on that class. An oaTech also has a built-in foundry constraint group that is returned by oaTech::getFoundryRules.</p>
+<p>The built-in default and foundry constraint groups are automatically linked across the set of technology databases in a graph. These built-in constraint groups have an implicit member that contains a header to bind to the built-in constraint group in the next referenced technology database in the graph.</p>
+<h4>Figure 15: Implicit Constraint Group Members</h4>
+<p class="style1"><img src="images/linked_constraintGroups.gif" width="448" height="674"></p>
+<p>Applications  can  create user-defined constraint groups to organize the access to their constraints and to provide a way to reuse a set of constraints. Applications create user-defined constraint groups with the oaConstraintGroup::create function. </p>
+<p>User-defined constraint groups do not have the automatic implicit constraint groups. This must be done manually. </p>
+<h3><a name="constraint_groups_tech"></a>Constraint Groups in oaTech Databases</h3>
+<p>A constraint group (built-in or user-defined) in an oaTech database can have members that are individual constraints, or members that are themselves constraint groups. Members that are individual constraints (built-in or user-defined) must be in the same oaTech database as the constraint group. Members that are themselves constraint groups can be in </p>
+<ul>
+  <li>The same oaTech database as the parent constraint group. This is true for both built-in and user defined constraint groups </li>
+  <li> A referenced oaTech database in the graph. This is true only for user-defined constraint groups. </li>
+</ul>
+<h4>Figure 16: Constraint Groups in oaTech Databases </h4>
+<p><img src="images/tech__constraints.gif" width="805" height="226"></p>
+<p>All constraint groups within a graph must have unique names or there is a conflict.&nbsp; Refer to <a href="#resolve">Resolving Conflicts</a> for more information. </p>
+<h3><a name="constraint_groups_design"></a>Constraint Groups in oaDesign Databases </h3>
+<p>A constraint group (built-in or user-defined) in an oaDesign  database can have members that are individual constraints, or members that are themselves constraint groups. Members that are individual constraints (built-in or user-defined) can be in </p>
+<ul>
+  <li>The same oaDesign  database as the constraint group</li>
+  <li>The  oaTech for the oaDesign  database (the oaTech contained in the design library) </li>
+  <li>An attached oaTech for the oaDesign  database </li>
+</ul>
+<p>Members that are themselves constraint groups can be in </p>
+<ul>
+  <li>The same oaDesign  database as the parent constraint group. This is true for both built-in and user defined constraint groups.</li>
+  <li>The oaTech database that is in the same library as the parent constraint group. This is true for both built-in and user defined constraint groups.</li>
+  <li>An attached oaTech for the oaDesign  database </li>
+  <li> A referenced oaTech database in the graph. This is true only for user-defined constraint groups.</li>
+</ul>
+<h4>Figure 17: Constraint Groups in oaDesign  Databases</h4>
+<p><img src="images/tech__constraints_design1.gif" width="587" height="471"></p>
+<p>If the oaDesign or oaWafer database in the design library is using an attached oaTech database, the same  rules apply, as shown in the following figure.</p>
+<h4>Figure 18: Constraint Groups in oaDesign  with Attached oaTech Databases</h4>
+<p><img src="images/tech__constraints_attached.gif" width="587" height="471"></p>
+<h3><a name="constraint_group_wafer"></a>Constraint Groups in Wafer Databases</h3>
+<p>A constraint group (built-in or user-defined) in an oaWafer database can have members that are individual constraints, or members that are themselves constraint groups. In either case, the members must be in same the oaWafer database as the parent constraint group. </p>
+<h3><a name="constraint_group_headers"></a>Constraint Group Headers </h3>
+<p>OpenAccess creates constraint group headers (<a href="../base/classoaConstraintGroupHeader.html">oaConstraintGroupHeaders</a>) as needed when an application defines a constraint group member that is a constraint group in a referenced oaTech database. The existence of an oaConstraintGroupHeader object indicates that the constraint group it represents is currently being used by a database object in some way in the design hierarchy. An oaConstraintGroupHeader object provides direct access to the collection of all of the constraint group members that reference the constraint group  it represents:</p>
+<blockquote>
+  <pre>oaCollection&lt;oaConstraintGroup, oaTech>	getConstraintGroups() const</pre>
+</blockquote>
+<p>In the following example, OpenAccess creates two oaConstraintGroupHeaders for oaTech1. One of the oaConstraintGroupHeaders contains information about the member of ConstraintGroupA that is a user-defined ConstraintGroup in oaTech2. The other contains information about the member that is a user defined ConstraintGroup in oaTech3. </p>
+<h4>Figure 19: Constraint Group Headers in Referenced oaTech Databases </h4>
+<p class="style1"><img src="images/tech__constraints_headers.gif" width="512" height="340"></p>
+<h3><a name="finding_constraint_groups"></a>Finding Constraint Groups and Constraint Group Members </h3>
+<p>OpenAccess provides functions to find constraint groups across a graph of technology databases. Alternatively, you can search for constraint groups within a single technology database. </p>
+<p>The default search supported by the <em>::find</em> function for constraint groups searches across the technology database graph that is rooted at the current technology database. This is done is a depth first manner, as described in <a href="#fig6_searchOrder">Figure 6: Order of References and Search Order</a>. </p>
+<p>For example, the following find function returns all the constraint groups  in the graph rooted at the current technology database: </p>
+<blockquote>
+  <pre>
+static oaConstraintGroup    *find(const oaObject	*database,
+                                  const oaString	&name)</pre>
+</blockquote>
+<p>Whereas the following function returns only constraint groups in the current technology database.</p>
+<blockquote>
+  <pre>
+static oaConstraintGroup    *find(const oaObject        *database,
+                                  const oaString        &name,
+                                  oaBoolean             local)</pre>
+</blockquote>
+<p>Returning collections of constraint groups is handled in a similar, but not identical manner. For example, the following returns a collection of matching constraint groups  across the graph (by default):</p>
+<blockquote>
+  <pre>oaCollection&lt;oaConstraintGroup, oaTech> oaTech::getConstraintGroups(oaUInt4   filterFlags)   const</pre>
+</blockquote>
+<p>If the filterFlags argument is set to 
+
+  <em>oacTechConstraintGroupIterAll</em>, all the referenced technology databases are searched. To search only the current technology database, specify <em>oacTechConstraintGroupIterLocal</em>.&nbsp; Note that there is also an 
+getConstraintGroups() function that returns the collection of constraint groups in the current technology database. This function is provided for compatibility purposes, and it is recommended that you use the function with the filterFlags argument instead. </p>
+<p>To find all the constraint group members in a constraint group, use the following function:</p>
+<blockquote>
+  <pre>oaCollection&lt;oaConstraintGroupMem, oaConstraintGroup> oaConstraintGroup::getMembers( )    const</pre>
+</blockquote>
+<h3><span class="style1"><a name="trans_support"></a></span>Translator Support for Incremental Technology Databases</h3>
+<p>The <a href="../translators/lef2oa.html"><code>lef2oa</code></a>, <a href="../translators/def2oa.html"><code>def2oa</code></a>,  <a href="../stream/streamincmds.html"><code>strm2oa</code></a>, and verilog2oa translators can  create   incremental technology databases with the <code>-techRefs</code> option. Refer to the individual translator documentation for more information. </p>
+<h4><a name="lef_use_model"></a>Use Model for the lef2oa Translator With Regards to Incremental Technology Databases </h4>
+<p>The <code>lef2oa</code> translator should <em>not</em> add routing layers  or default vias in a derived tech if one of the referenced techs has a LEFDefaultRouteSpec constraint group.</p>
+<p>The <code>lef2oa</code> translator  creates an explicitly named   constraint group called <em>LEFDefaultRouteSpec</em> to store information about layers and default vias (VIAs in LEF that   have the DEFAULT keyword). Because a graph of technology databases can  contain only a single   constraint group with that name, <code>lef2oa</code> cannot add or change layers or default vias in   a derived tech if one of the referenced techs already contains the   LEFDefaultRouteSpec constraint group. &nbsp;This is not a problem if the   layer and default via definitions in the LEF input match the definitions in the referenced tech.</p>
+<p>The expected use model is that the base tech hierarchy contains a full set of layer and default via definitions (the last tech in that hierarchy can be created with <code>lef2oa</code>), and subsequent derived technology databases created by <code>lef2oa</code> are used only to add sites, via-rules, non-default vias, non-default-rules, and macros.</p>
+<p>Alternatively, you can create an incomplete base tech with <code>lef2oa</code>, then add layers and default vias to a derived tech using <code>lef2oa</code>. Note that you will have to remove the LEFDefaultRouteSpec using the OpenAccess Tcl bindings after running the first <code>lef2oa.</code></p>
+<p>&nbsp; </p>
+<p><a
+href="#pagetop">Return to top of page</a></p>
+    <p><a
+href="index.html">Return to Programmers Guide topics</a></p>
+    <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+    <noscript> 
+  <em> This page requires JavaScript enabled.</em>  </div> 
+    </noscript> 
+
+    
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1> Cut Columns <br /> Cut Rows <br /> Cut Spacing</h1>
+<hr />
+
+<h2>Description</h2>
+
+<p>When large via cuts need to be implemented as a series of small rectangles,
+the spacing, columns, and rows via parameters determine the number of
+cut rectangles and the dimensions of the entire cut grid.</p>
+
+<ul>
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setCutColumns">setCutColumns</a>  specifies the
+number of columns in the cut. </li>
+<br /><br />
+
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setCutRows">setCutRows</a> specifies the number
+of rows in the cut. </li><br /><br />
+
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setCutSpacing">setCutSpacing</a> specifies the
+spacing between the cuts in multiple cut vias as a vector, with X and Y
+spacing values in DBUs.</li>
+</ul>
+
+<p>For vias with multiple cut rectangles, the default origin is in the 
+center of the bottom left cut rectangle. See
+<a href="viaOriginOffset.html">Origin Offset</a> to move this default.</p>
+
+
+<p>Use the corresponding <em>get</em> functions to return this information
+from the database.</p>
+
+<h2 class="spabove">Determining Total Width and Total Height</h2>
+
+<p>The number of columns and spacing also determine the total width of the
+cut, using the formula:</p>
+
+<pre>
+	(cutWidth x numOfCols) + (cutSpacing x (numCols - 1)) 
+</pre>
+
+<p>For example, using the following sample values:</p>
+
+<ul>
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setCutWidth">setCutWidth</a> = 1000</li>
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setCutColumns">setCutColumns</a> = 4</li>
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setCutSpacing">setCutSpacing</a> = 100</li>
+</ul>
+
+<p>The total width is:</p>
+
+<pre>
+	(1000 x 4) + (100 x 3) = 4300
+
+
+</pre>
+
+<p>Row and spacing values apply when determining the total height of the
+cut:</p>
+
+<pre>
+	(cutWidth x numOfRows) + (cutSpacing x (numRows - 1)) 
+
+</pre>
+
+<p>For example:</p>
+
+<ul>
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setCutHeight">setCutHeight</a> = 1000</li>
+<li>setCutRows = 3</li>
+<li>setCutSpacing = 100</li>
+</ul>
+
+<p>The total height is:</p>
+
+<pre>
+	(1000 x 3) + (100 x 2) = 3200
+
+</pre>
+
+
+<h2 class="spabove">Parameter Example</h2>
+
+<p><img src="images/figviaCutSpacingColumnRow.gif" alt="Cut Locations"></p>
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="viaparams.html">Return to Via Parameters</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

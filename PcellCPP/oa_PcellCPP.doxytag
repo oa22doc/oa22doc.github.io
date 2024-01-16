@@ -1,0 +1,361 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+<tagfile>
+  <compound kind="page">
+    <filename>index</filename>
+    <title></title>
+    <name>index</name>
+  </compound>
+  <compound kind="file">
+    <name>index.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/oaPcellCPP/</path>
+    <filename>index_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDesignInterfaces.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/design/</path>
+    <filename>oaDesignInterfaces_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDesignInterfaces.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/design/</path>
+    <filename>oaDesignInterfaces_8h</filename>
+    <class kind="class">IEvalText</class>
+    <class kind="class">IPcell</class>
+    <class kind="class">IPcellGen</class>
+    <class kind="class">IText</class>
+    <class kind="class">ITextInvalidate</class>
+    <class kind="class">PcellFile</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDesignInterface_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPcellCPPInterfaces.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/oaPcellCPP/</path>
+    <filename>oaPcellCPPInterfaces_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPcellCPPInterfaces.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/PcellCPP/</path>
+    <filename>oaPcellCPPInterfaces_8h</filename>
+    <class kind="class">IPcellCPPDefMgr</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaIPcellCPPInterfaces_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPcellCPPInterfaces.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/PcellCPP/</path>
+    <filename>oaPcellCPPInterfaces_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPcellCPPInterfaces_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IEvalText</name>
+    <filename>classIEvalText.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~IEvalText</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>onEval</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaString &amp;textIn, oaString &amp;textOut)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IPcell</name>
+    <filename>classIPcell.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~IPcell</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oaPcellDef *</type>
+      <name>getPcellDef</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>(oaString &amp;name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>onBind</name>
+      <anchor>IPcell::onBind</anchor>
+      <arglist>(oaDesign *design, oaPcellDef *pcellDef)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>onUnbind</name>
+      <anchor>IPcell::onUnbind</anchor>
+      <arglist>(oaDesign *design, oaPcellDef *pcellDef)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>onEval</name>
+      <anchor>IPcell::onEval</anchor>
+      <arglist>(oaDesign *design, oaPcellDef *pcellDef)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>onRead</name>
+      <anchor>IPcell::onRead</anchor>
+      <arglist>(oaDesign *design, oaMapFileWindow &amp;mapWindow, oaUInt4 &amp;loc, oaPcellDef *pcellDef)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>onWrite</name>
+      <anchor>IPcell::onWrite</anchor>
+      <arglist>(oaDesign *design, oaMapFileWindow &amp;mapWindow, oaUInt4 &amp;loc, oaPcellDef *pcellDef)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oaUInt4</type>
+      <name>calcDiskSize</name>
+      <anchor>a8</anchor>
+      <arglist>(oaPcellDef *pcellDef) const=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IPcellCPPDefMgr</name>
+    <filename>classIPcellCPPDefMgr.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>open</name>
+      <anchor>a0</anchor>
+      <arglist>(oaLib *lib)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>close</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>save</name>
+      <anchor>a2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>destroy</name>
+      <anchor>a3</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oaBoolean</type>
+      <name>findDef</name>
+      <anchor>a4</anchor>
+      <arglist>(const oaString &amp;platformName, const oaString &amp;pgName, oaString &amp;dmFileName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>createDef</name>
+      <anchor>a5</anchor>
+      <arglist>(const oaString &amp;platformName, const oaString &amp;pgName, const oaString &amp;dmFileName, const oaString &amp;sharedLibPath)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setDef</name>
+      <anchor>a6</anchor>
+      <arglist>(const oaString &amp;platformName, const oaString &amp;pgName, const oaString &amp;dmFileName, const oaString &amp;sharedLibPath)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>destroyDef</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaString &amp;platformName, const oaString &amp;pgName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getPlatforms</name>
+      <anchor>a8</anchor>
+      <arglist>(oaArray&lt; oaString &gt; &amp;platformNames)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getDefs</name>
+      <anchor>a9</anchor>
+      <arglist>(const oaString &amp;platformName, oaArray&lt; oaString &gt; &amp;pgNames)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IPcellGen</name>
+    <filename>classIPcellGen.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>genPcell</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaString &amp;masterType, oaDesign *design, oaPcellDef *pcellDef)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IText</name>
+    <filename>classIText.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getName</name>
+      <anchor>IText::getName</anchor>
+      <arglist>(oaString &amp;name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getBBox</name>
+      <anchor>IText::getBBox</anchor>
+      <arglist>(const oaText *text, oaBox &amp;bBox)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getBBox</name>
+      <anchor>IText::getBBox2</anchor>
+      <arglist>(const oaTextDisplay *textDisplay, oaBox &amp;bBox)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchor>IText::init</anchor>
+      <arglist>(ITextInvalidate *textInvalidate)=0</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>disableRefCounting</name>
+      <anchor>a4</anchor>
+      <arglist>(bool val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ITextInvalidate</name>
+    <filename>classITextInvalidate.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>invalidate</name>
+      <anchor>ITextInvalidate::invalidate</anchor>
+      <arglist>(oaText *text)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>invalidate</name>
+      <anchor>ITextInvalidate::invalidate2</anchor>
+      <arglist>(oaTextDisplay *textDisplay)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>invalidate</name>
+      <anchor>ITextInvalidate::invalidate3</anchor>
+      <arglist>(oaBlock *blk)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PcellFile</name>
+    <filename>classPcellFile.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>PcellFile</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaString &amp;fileName)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~PcellFile</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>open</name>
+      <anchor>PcellFile::open</anchor>
+      <arglist>(oaChar mode)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>close</name>
+      <anchor>PcellFile::close</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>read</name>
+      <anchor>PcellFile::read</anchor>
+      <arglist>(oaDesign *subMaster, oaUInt8 offset)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt8</type>
+      <name>append</name>
+      <anchor>PcellFile::append</anchor>
+      <arglist>(oaDesign *subMaster)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt8</type>
+      <name>getSize</name>
+      <anchor>a6</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+</tagfile>

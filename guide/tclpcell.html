@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Implementing Pcells Through Tcl (Beta)</h1>
+<hr>
+<p>OpenAccess implements Pcells in Tcl by using the oaPcellScript and oaTclEngine plug-ins. The oaPcellScript plug-in is a Pcell evaluator that uses a scripting engine to interpret a Pcell evaluation procedure written in a scripting language that supports the OpenAccess binding. Provided the necessary scripting engine, the Pcell evaluator can work with different types of scripting languages. The oaTclEngine is a scripting engine included with OpenAccess that provides the OpenAccess binding through the oaTcl shared library. See <a href="../Tcl/index.html">Tcl Bindings for OpenAccess APIs</a> for information about installing the oaTcl shared library. The oaTclEngine plug-in supports Tcl version 8.4 or later.</p>
+
+<p>Using these two plug-ins, applications can create Tcl based Pcells by defining a procedure definition to generate design content based on a set of parameters. This document explains how a Tcl Pcell can be created using the OpenAccess Tcl binding or using the OpenAccess C++ API.</p>
+
+<h2>Understanding the Pcell Evaluation Procedure</h2>
+<p>An application must create a procedure definition that consists of an argument list with a single argument and a body. The argument is the design where the content will be generated. The following Tcl procedure definition shows how to retrieve the parameters from a design and use them to generate a rectangle in the design.</p>
+
+<pre>
+{design} {set paramArray [oa::getParams $design]
+              set param [oa::Param]
+              oa::find $paramArray locX param
+              set locXVal [oa::getDoubleVal $param]
+              oa::find $paramArray locY param
+              set locYVal [oa::getDoubleVal $param]
+              oa::find $paramArray width param
+              set widthVal [oa::getDoubleVal $param]
+              oa::find $paramArray height param
+              set heightVal [oa::getDoubleVal $param]
+              set topBlock [oa::getTopBlock $design]
+              if {$topBlock == ""} {
+                set topBlock [oa::BlockCreate $design]
+              }
+              set x1 $locXVal
+              set y1 $locYVal
+              set x2 [expr $x1 + $widthVal]
+              set y2 [expr $y1 + $heightVal]
+              set bbox [list [list $x1 $y1] [list $x2 $y2]]
+              oa::RectCreate $topBlock 1 2 $bbox
+		}
+</pre>
+
+<h2>Creating a Tcl Pcell superMaster in Tcl</h2>
+<p>A Tcl Pcell superMaster can be created in the Tcl environment using the oaTclEngine. You must start a Tcl shell and load the oaTcl binding in order to create an OpenAccess Tcl Pcell superMaster. Use the following steps:</p>
+<ol>
+<li>Set a <em>body</em> variable that defines the procedure body.</li>
+<li>Set the <code>procDef</code> variable equal to the procedure definition <code>"{design} \{$body\}"</code>.</li> 
+<li>Set the view type variable and open the design library in write mode for creating the superMaster.</li>
+<li>Retrieve an oaPcellDef from oaPcellScript by using
+<pre>
+    set def [oa::PcellLinkGetPcellDef oaPcellScript]</pre></li>
+<li>Specify the scripting engine by using oa::addData and the data value named <code>ScriptEngineName</code>.</li>
+<li>Specify the procedure definition by using the data value named <code>GenCellProc</code>.</li>
+<li>Create the superMaster parameters by calling <code>oa::Param</code> and <code>oa::setDoubleVal</code> (or other appropriate type for your parameters).</li>
+<li>Create a parameter array to specify the parameters for this Pcell by calling <code>oa::ParamArray</code>.</li>
+<li>Call <code>oa::defineSuperMaster</code> on the superMaster with the modified oaPcellDef and oaParamArray.</li>
+<li>Save the design.</li>
+</ol>
+
+<p>The following Tcl script implements these steps. </p>
+
+<pre>
+set body    {set paramArray [oa::getParams $design]
+              set param [oa::Param]
+              oa::find $paramArray locX param
+              set locXVal [oa::getDoubleVal $param]
+              oa::find $paramArray locY param
+              set locYVal [oa::getDoubleVal $param]
+              oa::find $paramArray width param
+              set widthVal [oa::getDoubleVal $param]
+              oa::find $paramArray height param
+              set heightVal [oa::getDoubleVal $param]
+              set topBlock [oa::getTopBlock $design]
+              if {$topBlock == ""} {
+                set topBlock [oa::BlockCreate $design]
+              }
+              set x1 $locXVal
+              set y1 $locYVal
+              set x2 [expr $x1 + $widthVal]
+              set y2 [expr $y1 + $heightVal]
+              set bbox [list [list $x1 $y1] [list $x2 $y2]]
+              oa::RectCreate $topBlock 1 2 $bbox}
+set procDef  "{design} \{$body\}"
+
+
+set viewType [oa::ViewTypeGet maskLayout]
+set master  [oa::DesignOpen testLib tclSuperMaster2 layout $viewType w]
+ 
+
+set def     [oa::PcellLinkGetPcellDef oaPcellScript]
+
+
+oa::addData $def ScriptEngineName oaTclEngine
+oa::addData $def GenCellProc $procDef
+
+
+set p1      [oa::Param locX 0]
+oa::setDoubleVal $p1 0.0
+set p2      [oa::Param locY 0.0]
+oa::setDoubleVal $p2 0.0
+set p3      [oa::Param width 0.0]
+oa::setDoubleVal $p3 3.0
+set p4      [oa::Param height 0.0]
+oa::setDoubleVal $p4 1.0
+ 
+
+set paramArray    [oa::ParamArray 4]
+oa::append  $paramArray $p1
+oa::append  $paramArray $p2
+oa::append  $paramArray $p3
+oa::append  $paramArray $p4
+ 
+
+oa::defineSuperMaster $master $def $paramArray 
+oa::save $master
+</pre>
+<h3>Controlling Error Logging</h3>
+<p>By default, errors that occur during Pcell evaluation are logged to the Tcl interpreter. You can disable this error logging to suppress errors encountered during the evaluation of a Pcell script by using:</p>
+<pre>
+    setPcellErrorLogging false
+</pre>
+<p>You enable error logging by using:</p>
+<pre>
+    setPcellErrorLogging true
+</pre>
+<p>If error logging is disabled, errors are silently ignored.</p>
+
+
+
+<h2>Creating a Tcl Pcell superMaster in C++</h2>
+<p>An application can create a Tcl Pcell by using the oaPcellScript plug-in in a way that is similar to how the oaPcellCPP plug-in is used (see <a href="writecppgen.html">Writing a C++ Pcell Generator<a>). The following steps explain the C++ code for creating a Tcl Pcell supermaster.</p>
+<ol>
+<li>Define a function that returns the Tcl procedure definition as an oaString type.</li>
+<li>Get the view type and open the design library in write mode for creating the superMaster.</li>
+<li>Retrieve an oaPcellDef from oaPcellScript by using <code>oaPcellLink::getPcellDef("oaPcellScript")</code>.</li>
+<li>Specify the scripting engine by using the data value named <code>ScriptEngineName</code>.</li>
+<li>Specify the content generator procedure definition by using the data value named <code>GenCellProc</code>.</li>
+<li>Create an oaParamArray to specify the parameters for this Pcell</li>
+<li>Call <code>oaDesign::defineSuperMaster()</code> on the superMaster with the modified oaPcellDef and oaParamArray.</li>
+<li>Save the design.</li>
+</ol>
+
+<p>The following code implements these steps.</p>
+
+<pre>
+oaNativeNS      ns;
+  oaScalarName    libName(ns, "testLib");
+  oaScalarName    cellName(ns, "tclPcellMaster");
+  oaScalarName    viewName(ns, "layout");
+  oaViewType      *viewType = oaViewType::get(oacMaskLayout);
+ 
+
+  oaDesign  *sMaster = oaDesign::open(libName, cellName, viewName, viewType, 'w'); 
+  oaString  gcProc("{design} {\n\
+                      set paramArray [oa::getParams $design]\n\
+                      set param [oa::Param]\n\
+                      oa::find $paramArray locX param\n\
+                      set locXVal [oa::getDoubleVal $param]\n\
+                      oa::find $paramArray locY param\n\
+                      set locYVal [oa::getDoubleVal $param]\n\
+                            oa::find $paramArray width param\n\
+                      set widthVal [oa::getDoubleVal $param]\n\
+                            oa::find $paramArray height param\n\
+                      set heightVal [oa::getDoubleVal $param]\n\
+                      set topBlock [oa::getTopBlock $design]\n\
+                      if {$topBlock == \"\"} {\n\
+                        set topBlock [oa::BlockCreate $design]\n\
+                      }\n\
+                      set x1 $locXVal\n\
+                      set y1 $locYVal\n\
+                      set x2 [expr $x1 + $widthVal]\n\
+                      set y2 [expr $y1 + $heightVal]\n\
+                      set bbox [list [list $x1 $y1] [list $x2 $y2]]\n\
+                      oa::RectCreate $topBlock 1 2 $bbox\n\
+                  }");
+    oaString      seName("oaTclEngine");
+    oaPcellDef    *pDef = oaPcellLink::getPcellDef("oaPcellScript");
+ 
+
+    pDef->addData("ScriptEngineName", seName);
+    pDef->addData("GenCellProc", gcProc);
+ 
+
+    oaParam p1;
+    p1.setName("locX");
+    p1.setDoubleVal(0.0);
+ 
+
+    oaParam p2;
+    p2.setName("locY");
+    p2.setDoubleVal(0.0);
+
+
+    oaParam p3;
+    p3.setName("width");
+    p3.setDoubleVal(3.0);
+
+
+    oaParam p4;
+    p4.setName("height");
+    p4.setDoubleVal(1.0);
+ 
+
+    oaParamArray    paramArray;
+    paramArray.append(p1);
+    paramArray.append(p2);
+    paramArray.append(p3);
+    paramArray.append(p4);
+
+
+    sMaster->defineSuperMaster(pDef, paramArray);
+    sMaster->save();
+</pre>
+
+<p><a href="#pagetop">Return to top of page</a></p> 
+  <p><a href="index.html">Return to Programmers Guide topics</a></p> 
+  <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p> 
+  <p><br> 
+    <a href="../base/titlecopy.html">Copyright &copy; 2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p> 
+
+</body>
+</html>

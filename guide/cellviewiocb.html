@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a> oaDesign Observer Notification and Binding</h1>
+<hr />
+<p>OpenAccess calls various callback functions when you open, reopen, revert, 
+save, or purge a design. As with all callbacks, an application registers the 
+desire to receive these callbacks by creating its own class that is derived 
+from the callback class defined in the API. The application then constructs an 
+instance of the derived callback class. The constructor registers the callback 
+instance, and the database calls the virtual functions it has defined when the 
+appropriate events occur.</p>
+
+<p>The callbacks discussed here are the functions on the 
+<a href="../design/classoaObserver_3oaDesign_4.html">oaObserver&lt;oaDesign&gt;</a> class. 
+The application must create a class derived from 
+oaObserver&lt;oaDesign&gt;, then 
+implement the virtual functions such as <a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a> or 
+<a href="../design/classoaObserver_3oaDesign_4.html#onPreSave">onPreSave</a>.</p>
+
+<h2 class="spabove"><a name="1">oaDesign Notifications</a></h2>
+
+<p>This table shows where each of the oaObserver&lt;oaDesign&gt;  functions are invoked by listing a pair of <a href="../design/classoaDesign.html">oaDesign</a> operations (first and second function calls on a given design) and showing the functions (callbacks) that will be triggered by those operations.</p>
+
+<table border=0 summary="&nbsp;">
+<tr>
+<td width=35>Key:</td>
+<td width=15><code>w</code></td>
+<td>write</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td><code>a</code></td>
+<td>append</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td><code>r</code></td>
+<td>read</td>
+</tr>
+</table>
+
+<table border=1 cellpadding=6 summary="&nbsp;">
+<tr>
+<td colspan="3"><em>- First call on a given design -</em></td>
+<td colspan="3"><em>- Second call on the given design -</em></td>
+<td colspan="2">&nbsp;</td>
+</tr>
+<tr align=center>
+<th>Action</th>
+<th>Mode Used</th>
+<th>Callbacks</th>
+<th>Action</th>
+<th>Mode used</th>
+<th>Callback</th>
+<th>Final Mode</th>
+<th>Resulting Status </th>
+</tr>
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w<br />a<br />r<br /></td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>close</td>
+<td>&nbsp;</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPurge">onPurge</a></td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>open</td>
+<td>w<br />r</td>
+<td>&nbsp;</td>
+<td>w</td>
+<td>No change in database</td>
+</tr>
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>open</td>
+<td>a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReOpen</a></td>
+<td><br />a</td>
+<td>No change in database</td>
+</tr>
+
+<tr align=center valign=top>
+<td>open</td>
+<td>a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>open</td>
+<td>a<br />r</td>
+<td>&nbsp;</td>
+<td>a</td>
+<td>No change in database</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>open</td>
+<td>w</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br>
+  <a href="../design/classoaObserver_3oaDesign_4.html#onTruncate">onTruncate</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReOpen</a></td>
+<td>w</td>
+<td>Database contents discarded</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>open</td>
+<td>r</td>
+<td>&nbsp;</td>
+<td>r</td>
+<td>&nbsp;</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>open</td>
+<td>a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReOpen</a></td>
+<td>a</td>
+<td>No change in database</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>open</td>
+<td>w</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onTruncate">onTruncate</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReOpen</a></td>
+<td>w</td>
+<td>Database contents discarded</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w<br />a<br />r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>reopen</td>
+<td>w<br />a<br />r</td>
+<td>&nbsp;</td>
+<td>w<br />a<br /></td>
+<td>If reopened in same mode</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>reopen</td>
+<td>a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReopen</a></td>
+<td>a</td>
+<td>No change in database</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w<br />a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>reopen</td>
+<td>r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onTruncate">onTruncate</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReopen</a></td>
+<td>r</td>
+<td>Reread from disk</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>reopen</td>
+<td>w</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onTruncate">onTruncate</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReopen</a></td>
+<td>w</td>
+<td>Database contents discarded</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>reopen</td>
+<td>w</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onTruncate">onTruncate</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReopen</a></td>
+<td>w</td>
+<td>Database contents discarded</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>reopen</td>
+<td>a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreReopen">onPreReopen</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostReopen">onPostReopen</a></td>
+<td>a</td>
+<td>No change in database</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>reopen</td>
+<td>r</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w<br />a</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>save</td>
+<td>&nbsp;</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreSave">onPreSave</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostSave">onPostSave</a></td>
+<td>a</td>
+<td>Disk file changed</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w<br />a<br />r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>purge</td>
+<td>&nbsp;</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPurge">onPurge</a></td>
+<td>w<br />a<br />r</td>
+<td>No change in mode</td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w<br />a<br>
+  r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>revert</td>
+<td>&nbsp;</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onTruncate">onTruncate</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>w<br />
+  a<br>
+r</td>
+<td><p>Reread from disk</p>
+  <p>Database contents discarded</p></td>
+</tr>
+
+
+<tr align=center valign=top>
+<td>open</td>
+<td>w<br />a<br />r</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onFirstOpen">onFirstOpen</a></td>
+<td>saveAs</td>
+<td>&nbsp;</td>
+<td><a href="../design/classoaObserver_3oaDesign_4.html#onPreSaveAs">onPreSaveAs</a><br />
+  <a href="../design/classoaObserver_3oaDesign_4.html#onPostSaveAs">onPostSaveAs</a></td>
+<td>w<br />a<br />r</td>
+<td>No change in mode<br /><br />No change in database</td>
+</tr>
+</table>
+<p></p>
+<h2 class="spabove"><a name="3">Binding</a></h2>
+<p>Binding is defined as connecting an object in one database to a related object in another database. When binding is done, the first object is represented in memory with a pointer to the object to which it is bound. </p>
+<p>Binding occurs between Design databases and a Tech database for numerous types of objects. For example, <a href="../design/classoaViaHeader.html#oaViaHeader::getViaDef">oaViaHeader::getViaDef </a>requires a binding between these two objects.</p>
+<p>The current version of OpenAccess always binds a cross-database reference if the referenced object is in memory. Hence, when an oaDesign is first opened, all  instances and instHeaders that point to it are bound. In addition, all the instTerms on those instances are bound if a corresponding Terminal exists on the newly-read master. <span class="style1">
+<!-- beginning of footer -->
+</span></p>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

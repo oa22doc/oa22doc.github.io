@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minProtrusionNumCut (oacMinProtrusionNumCut)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in oacMinProtrusionNumCut layer constraint specifies the number of via cuts required for connecting a thin wire to a wide wire or pin. Two parameters specify the wide wire width and length that must be exceeded in order for the constraint to apply. An optional third parameter specifies the maximum distance from the wide metal to the first via cut. oacMinProtrusionNumCut is specified for cut layers only.</p>
+    <p>Multiple oacMinProtrusionNumCut constraints, based on different width, length, and distance triplets, can be defined in an AND constraint group. The semantics of the AND type constraint group require that all constraints in the group must be met. The series of constraints is ordered first by width, then by length, and then by distance.</p>
+    <p>This constraint applies when the width of the wide wire is greater than the width parameter value, the length of the wide wire is greater than the length parameter value, and optionally, when the distance from the wide wire to the first via cut on the protruded piece of metal is less than the distance parameter value.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>This oaIntValue specifies the number of cuts required.</p>
+        <p>
+        Units: Count</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>width</b><br />oacWidthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)</td>
+        <td>
+          <p>This parameter specifies the width value against which the wire width is compared.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>length</b><br />oacLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)</td>
+        <td>
+          <p>This parameter specifies the length value against which the wire width is compared.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>distance</b><br />oacDistanceConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This parameter specifies the distance value against which the distance from the wide wire to the first via cut on the protruded piece of metal is compared.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>oaArea</b><br />oacAreaConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU Square</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>The number of cuts can also depend on the area of the wires. </p>
+          <p>If width &lt; width of default routing wire and is specified along with area, the minimum cut requirement on the routing vias varies as per the area of the routing wire on the layer.</p>
+          <p>If only area and width are specified, this rule checks only the thin wire connected to a wide-wire whereas the wide-wire is not checked</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>neighborLayerMetal</b><br />oacNeighborLayerMetalConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">UpperLowerLayerMetalType</td>
+        <td>
+          <p>This parameter specifies the cut layers to which this constraint applies. If this parameter is not specified, the constraint applies to both upper and lower metal layers.</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaNeighborLayerMetalType.html">oaNeighborLayerMetalType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacUpperLowerLayerMetalType</td>
+              <td valign="top">upperLower</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacUpperLayerMetalType</td>
+              <td valign="top">upper</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacLowerLayerMetalType</td>
+              <td valign="top">lower</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/figMinProtrusionNumCutRule.gif" alt="figMinProtrusionNumCutRule.gif" />
+      <br />
+    </p>
+    <h2>Manufacturing Reasons</h2>
+    <p>In general, wide wires carry more current. If you are transitioning between two wide layers, an adequate number of via cuts are required to carry the equivalent amount of current.
+In addition, having many via cuts instead of just one increases reliability. Air pockets can be created in the metal during processing, and over time, these pockets tend to move towards the vias. While an open results if the pocket moves under one via, the first via stops the pocket from drifting, and having additional vias allows the circuit to continue operating.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

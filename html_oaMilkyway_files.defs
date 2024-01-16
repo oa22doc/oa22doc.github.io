@@ -1,0 +1,29 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	oaMilkyway Translator Class Index
+
+BUILDINFO
+All OpenAccess translators are comprised of a translator executable that instantiates a translator 
+component to perform the actual translation. Potentially, applications may derive from the translator 
+components to create new translators that extend the behavior of the translators shipped with OpenAccess. 
+Because the interfaces to the translator components change frequently, the translator components are always 
+shipped as archive libraries. Translator components and the public classes they depend upon are not required 
+to be drop-in compatible, however they should remain compile-time compatible as much as possible. 
+In other words, it is permissible to make a change that will require a derived translator to recompile, however, if a 
+change requires a code change on the part of the derived translator, this change must be communicated to 
+the product groups before it is implemented.  
+
+The classes documented here are the oaMilkyway translator component classes and the public classes that they depend upon. 
+The documentation on these pages is intended to assist developers in maintaining the translator components and 
+it is not intended to aid the construction of derived translators.
+
+For more information, see the <a href="index.html">oaMilkyway Translator Documentation Index</a>. Also see Translator 
+topics on the <a href="../index.html">OpenAccess C++ API Documentation</a> topics page for more information on OpenAccess 
+Translators.
+
+
+

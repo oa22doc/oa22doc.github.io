@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Automatically Updating 2.0.x Libraries to 2.2 </h1>
+<hr >
+<p> The <code>oa20to22</code> translator lets you create an OpenAccess 2.2 design library from an OpenAccess 2.0.x design library. </p>
+<p> <strong>Note:</strong> On Windows, make sure that the Cadence cdsCommon DLLs are in your path. (The cdsCommon DLLs are typically included in <code><em>&lt;install_dir&gt;</em>/tools/bin</code>.) This is not required on the UNIX platforms. </p>
+<p><STRONG>Important: </STRONG>Due to the unique nature of 2.0 to 2.2 translation, <CODE>oa20to22</CODE> makes direct calls to the OpenAccess 2.0 and 2.2 implementation. Developers are strongly discouraged from using such calls, as they are not guaranteed to be consistent from one release to the next.</p>
+<p>Usage:<br>
+<code>oa20to22 -srcCdsLib <em>path</em> -lib <em>library</em> -libPath <em>path</em> -DMSystem oaDMFileSys -log <em>file</em></code></p>
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th colspan="2"><div align="left">Required Arguments </div></th>
+</tr>
+<tr>
+<td width="224">-srcCdsLib <em>path</em> </td>
+<td width="618"><code>cds.lib</code> file that contains the definition of the 2.0 library to translate</td>
+</tr>
+<tr>
+<td>-lib <em>library</em></td>
+<td>Source and destination library name.</td>
+</tr>
+<tr bgcolor="#eeffcc">
+<td colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr>
+<td valign="top">-dataModel <em>dataModel value</em></td>
+<td>Specifies a dataModel value of 0, 1, 2, or 3, which determines the data model for the OpenAccess database and determines how properties are mapped to the database. If this option is omitted, the default dataModel value of 1 is used unless the OA_DATAMODEL environment variable is set or a file named OA.DATAMODEL is found in the  data directory of your OpenAccess installation hierarchy. See the discussion <a href="../guide/compat.html#transDataModel">Specifying a DataModelRev for a Flow</a> for more information.
+</td>
+</tr>
+<tr>
+<td valign="top">-DMAttributes <em>attributeList</em></td>
+<td>Specifies a list of DM attributes that are used for the new library that the translator creates. Attributes are specified as name=value pairs. There must be no space on either side of the equal sign, two or more pairs must be space-separated, and the list must be enclosed in quotes. For example:
+<pre>
+    verilog2oa ... -DMAttributes "name1=value name2=value name3=value"
+</pre>
+</td>
+</tr>
+<tr>
+<td valign="top">-DMSystem <em>sysName</em></td>
+<td>Name of the DM library system for the translated library, such as<br>
+<code>oaDMFileSys</code> for compatibility with previous releases or <code>oaDMTurbo</code> for the Turbo DM system</td>
+</tr>
+<tr>
+<td valign="top">-help | -h</td>
+<td>Prints help</td>
+</tr>
+<tr>
+<td valign="top">-libDefFile <em>filename</em></td>
+<td>Specifies the lib.defs file to load. The path to the lib.defs file can be a full or relative path. If this option is omitted, the default search mechanism of the DM system is used to find and load the lib.defs file.</td>
+</tr>
+<tr>
+<td valign="top">-libPath <em>path</em></td>
+<td>Path to which the destination library is written</td>
+</tr>
+<tr>
+<td valign="top">-logFile <em>file</em></td>
+<td>Name of the log file. The default is <code>oa20to22.log</code> in the current working directory.</td>
+</tr>
+<tr>
+<td valign="top">-noInfo <em>msgIds</em></td>
+<td>Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file.</td>
+</tr>
+<tr>
+<td valign="top">-noWarning <em>msgIds</em></td>
+<td>Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file and are not included in the total of WARNING messages displayed in the summary.</td>
+</tr>
+<tr>
+<td valign="top">-overwrite</td>
+<td>Replaces an existing design with the translated data. If this option is omitted, the default behavior is to update the existing library.</td>
+</tr>
+<tr>
+<td valign="top">-shared</td>
+<td>Allows other applications to access the output library while this application is running.</td>
+</tr>
+<tr>
+<td valign="top">-templateFile <em>file</em></td>
+<td><p>Specifies a file containing arguments to <code>oa20to22</code>. You can specify a template file instead of entering a string of arguments on the command line. </p>
+<p>If you specify a template file, arguments on the command line have precedence over arguments specified in the file. So, if the same argument exists in the template file and in the command line, the translator uses the argument on the command line.</p>
+<p>Specify arguments in a template file as follows:</p>
+<ul>
+<li> Enter arguments in the template file without a dash (-) before the argument.</li>
+<li> Enter each argument and value pair on a single line.</li>
+<li> Separate the argument from its value using a space or a tab.</li>
+<li> Designate comment lines with a <em>#</em> sign as the first character in the line.</li>
+</ul>
+<p><strong>Sample Template File</strong></p>
+<pre>
+# oa20to22 command line arguments
+
+logFile        myoa20to22.log
+libPath        /usr/tbd/mylib
+</pre>
+<tr>
+<td valign="top">-version | -v</td>
+<td> Prints version information</td>
+</tr>
+</table>
+
+<p>Command line arguments specifying library, cell, and view names are interpreted according to the Native name space. See <a href="../guide/namemap.html#9">Native Name Space</a> in the Name Mapping article of the Programmers Guide for details about the native name space.</p>
+
+<p><strong>Note: </strong> If you want to update client source code to reflect changes to the object names in OpenAccess 2.2, refer to <a href="../migration/mig.html">Migrating Your 2.0 Applications to OpenAccess 2.2</a>.</p>
+<h2>Updates Performed by oa20to22 </h2>
+<p> The following modifications occur during the translation.</p>
+<h3>Technology</h3>
+<h4>Replace RouteSpecs with ConstraintGroups </h4>
+<ul>
+<li><em>oaRouteSpecs</em> in your design are replaced by <em>oaConstraintGroups </em>of the same name. The following tables outlines the changes.<br>
+<br>
+<table border="1" cellpadding="4">
+<tr bgcolor="#CCCCCC">
+<td><strong>2.0 Value </strong></td>
+<td><strong>2.2 Simple Constraint Type </strong></td>
+</tr>
+<tr>
+<td width="421">viaDefArray</td>
+<td width="421"> oacValidRoutingVias</td>
+</tr>
+<tr>
+<td>layerSpecArray</td>
+<td>oacValidRoutingLayer</td>
+</tr>
+</table>
+<br>
+</li>
+<li>The width and spacing values (both regular and diagonal) for each layer in the <em>layerSpecArray</em> become corresponding constraints on the layer. The <em>isHard</em> attributes for  layer constraints are set according to the <em>isWidthFixed</em> and <em>isSpacingFixed</em> values of the layer spec. <br>
+<br>
+<table border="1" cellpadding="4">
+<tr bgcolor="#CCCCCC">
+<td><span class="style11">2.0 Layer Value in the layerSpecArray</span></td>
+<td><span class="style11">2.2 Layer Constraint Type</span></td>
+</tr>
+<tr>
+<td width="421">layer width in layerSpecArray </td>
+<td width="421">oacMinWidth </td>
+</tr>
+<tr>
+<td>layer spacing in layerSpecArray</td>
+<td>oacMinSpacing</td>
+</tr>
+<tr>
+<td>diagWidth in layerSpecArray</td>
+<td>oacMinDiagonalWidth</td>
+</tr>
+<tr>
+<td>diagSpacing in layerSpecArray</td>
+<td>oacMinDiagonalSpacing</td>
+</tr>
+</table>
+<br>
+</li>
+<li>Single layer rules are translated into oaLayerConstraints, as follows.<br>
+<br>
+<table border="1" cellpadding="4">
+<tr bgcolor="#CCCCCC">
+<td><span class="style11">2.0 Rule Type </span></td>
+<td><span class="style11">2.2 Constraint Type</span></td>
+</tr>
+<tr>
+<td width="421">oacMinAreaRule</td>
+<td width="421">oacMinArea</td>
+</tr>
+<tr>
+<td>oacMinEnclosedAreaRule</td>
+<td>oacMinEnclosedArea</td>
+</tr>
+<tr>
+<td>oacMinDensityRule</td>
+<td>oacMinDensity</td>
+</tr>
+<tr>
+<td>oacMaxDensityRule</td>
+<td>oacMaxDensity</td>
+</tr>
+<tr>
+<td>oacMinEdgeLengthRule</td>
+<td>oacMinEdgeLength`</td>
+</tr>
+<tr>
+<td>oacMinSpaceRule</td>
+<td>oacMinSpacing</td>
+</tr>
+<tr>
+<td>oacMinDiagonalSpaceRule</td>
+<td>oacMinDiagonalSpacing</td>
+</tr>
+<tr>
+<td>oacMinDiffPontentialSpaceRule</td>
+<td>oacMinDiffPotentialSpacing</td>
+</tr>
+<tr>
+<td>oacMinEnclosedSpaceRule</td>
+<td>oacMinEnclosedSpacing</td>
+</tr>
+<tr>
+<td>oacMinFillPatternSpaceRule</td>
+<td>oacMinFillPatternSpacing</td>
+</tr>
+<tr>
+<td>oacMinProximitySpaceRule</td>
+<td>oacMinProximitySpacing</td>
+</tr>
+<tr>
+<td>oacMinProtudedProximitySpaceRule</td>
+<td>oacMinProtrudedProximitySpacing</td>
+</tr>
+<tr>
+<td>oacMinSameNetSpaceRule</td>
+<td>oacMinSameNetSpacing</td>
+</tr>
+<tr>
+<td>oacMinAdjacentViaSpaceRule</td>
+<td>oacMinAdjacentViaSpacing</td>
+</tr>
+<tr>
+<td>oacMergeSpaceAllowedRule</td>
+<td>oacMergeSpaceAllowed</td>
+</tr>
+<tr>
+<td>oacMinWidthRule</td>
+<td>oacMinWidth</td>
+</tr>
+<tr>
+<td>oacMinDiagonalWidthRule</td>
+<td>oacMinDiagonalWidth</td>
+</tr>
+<tr>
+<td>oacMinProtrusionWidtRule</td>
+<td>oacMinProtrusionWidth</td>
+</tr>
+<tr>
+<td>oacMaxWidthRule</td>
+<td>oacMaxWidth</td>
+</tr>
+<tr>
+<td>oacMinNumCutRule</td>
+<td>oacMinNumCut</td>
+</tr>
+<tr>
+<td>oacMinProtrusionNumCutRule</td>
+<td>oacMinProtrusionNumCut</td>
+</tr>
+<tr>
+<td>oacDefaultAntennaRule</td>
+<td>Default model in oacAntenna</td>
+</tr>
+<tr>
+<td>oacSecondAntennaRule</td>
+<td>Second model in oacAntenna</td>
+</tr>
+<tr>
+<td>oacPeakACCurrentDensityRule</td>
+<td>Converted into layer attribute</td>
+</tr>
+<tr>
+<td>oacAvgACCurrentDensityRule</td>
+<td>Converted into layer attribute</td>
+</tr>
+<tr>
+<td>oacRmsACCurrentDensityRule</td>
+<td>Converted into layer attribute</td>
+</tr>
+<tr>
+<td>oacAvgDCCurrentDensityRule</td>
+<td>Converted into layer attribute</td>
+</tr>
+<tr>
+<td>oacMinButtedAreaRule</td>
+<td>Obsolete</td>
+</tr>
+</table>
+<br>
+</li>
+<li> Double layer rules are translated into <em>oaLayerPairConstraints</em>. The rule type and constraint type mapping is as follows.<br>
+<br>
+<table border="1" cellpadding="4">
+<tr bgcolor="#CCCCCC">
+<td><span class="style11">2.0 Rule Type </span></td>
+<td><span class="style11">2.2 Constraint Type</span></td>
+</tr>
+<tr>
+<td width="421">oacMinClearanceRule</td>
+<td width="421">oacMinClearance</td>
+</tr>
+<tr>
+<td>oacMinSameNetClearanceRule</td>
+<td>oacMinSameNetClearance </td>
+</tr>
+<tr>
+<td>oacMinExtRule</td>
+<td>oacMinExtension </td>
+</tr>
+<tr>
+<td>oacCoincidentExtRule </td>
+<td>oacCoincidentExtensionAllowed </td>
+</tr>
+<tr>
+<td>oacMinOverlapRule</td>
+<td>oacMinOverlap </td>
+</tr>
+<tr>
+<td>oacViaStackingAllowedRule </td>
+<td>oacViaStackingAllowed</td>
+</tr>
+<tr>
+<td>oacMinOppositeExtRule</td>
+<td>oacMinDualExtension </td>
+</tr>
+<tr>
+<td>oacMinButtedClearanceRule</td>
+<td> Obsolete </td>
+</tr>
+</table>
+</li>
+</ul>
+<ul>
+<li>The 2.0 <em>RouteSpec</em> associations for <em>oaNets</em> and <em>oaRoutes</em> are replaced by constraint groups with the same names that are members of the constraint group for the <em>oaNets</em> or <em>oaRoutes</em>.</li>
+<li>The via stack limits on a technology database are translated into <em>oaSimpleConstraints</em> of constraint type <em>oacViaStackLimit</em>. The constraint value is the maximum number of vias allowed in the stack, and the parameters are the top and bottom layer of the stack.</li>
+<li>All constraints created in the technology database belong to the foundry rules constraint group. </li>
+<li>The <em>isError</em> attribute in <em>oaDerivedLayer</em> is converted to a layer constraint of type <em>oacErrorLayer</em> on the derived layer.</li>
+<li>The routing grid pitch and offset on physical layers are translated into <em>oaLayerConstraints</em> according to their preferred routing direction.<br>
+  <br>
+  <table border="1" cellpadding="4">
+      <tr bgcolor="#CCCCCC">
+        <td><strong>Preferred Routing </strong></td>
+              <td><strong>2.2 Direction Constraint Type </strong></td>
+      </tr>
+      <tr>
+        <td width="322">oacRouteDirHorz &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
+              <td width="552"><P class=MsoNormal><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">oacVerticalRouteGridPitch <BR>
+              oacVerticalRouteGridOffset<o:p></o:p></SPAN></FONT></P></td>
+      </tr>
+      <tr>
+        <td>oacRouteDirVert &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+              <td><P class=MsoNormal><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">oacHorizontalRouteGridPitch &nbsp;&nbsp;&nbsp; <BR>
+              oacHorizontalRouteGridOffset<o:p></o:p></SPAN></FONT></P></td>
+      </tr>
+      <tr>
+        <td>oacRouteDirLeftDiag &nbsp;&nbsp; </td>
+              <td><P class=MsoNormal><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">oac45RouteGridPitch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<BR>
+              oac45RouteGridOffset <o:p></o:p></SPAN></FONT></P></td>
+      </tr>
+      <tr>
+        <td>oacRouteDirRightDiag</td>
+              <td><P class=MsoNormal><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">oac135RouteGridPitch &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<BR>
+              oac135RouteGridOffset<o:p></o:p></SPAN></FONT></P></td>
+      </tr>
+    </table>
+  <br>
+</li>
+<li>When one of the side gate or diode area ratios is non-zero in a 2.0 <em>oaAntennaRule</em>, both the side ratios values are used in the new 2.2 <em>oaAntennaRatioValue, </em> and the <code>isSide</code> attribute is set to true. Otherwise, the regular gate and diode area ratios are used and the <code>isSide</code> attribute is set to false. </li>
+<li>The cumulative antenna area ratios for via and metal on a technology database are translated into <em>oaSimpleConstraints</em> of constraint type <em>oacCumViaAntenna</em> and <em>oacCumMetalAntenna</em>. The default and second antenna models become the corresponding values in the <em>oaAntennaRatioArray</em> for these constraints. <code>oa20to22</code> only creates these constraints when one of the area ratios is non-zero. The <code>isSide</code> attribute is set on the 2.2 antenna ratio value when either of the ratio&rsquo;s <code>isSide</code> attributes is set on the 2.0 cumulative ratio values.</li>
+</ul>
+<h4>ViaSpec Changes</h4>
+<ul>
+<li><em>viaSpec</em> now uses <em>oaViaDef2DTblValue</em> to contain the width and <em>viaDefArray</em> information. Only one <em>viaSpec</em> is allowed for a layer pair combination. All 2.0 <em>viaSpecs</em> with the same layer pair combination are consolidated into a single 2D lookup table for the <em>oaViaDef2DTblValue</em>. The <em>minWidth</em> and <em>maxWidth</em> for layer 1 are in the <em>rowHeader, </em> and the <em>minWidth</em> and <em>maxWidth</em> for layer 2 are in the <em>colHeader</em> of the 2D lookup table. The <em>viaDefArray</em> is appended to each entry with the corresponding row and column header for the layer widths. When there is no range specified for a 2.0 <em>viaSpec</em>, it is appended to the default <em>viaDefArray</em> of the corresponding 2.2 <em>viaSpec</em>. </li>
+</ul>
+<h4>Rule to Constraint Conversion</h4>
+<ul>
+<li>Each 2.2 <em>oaConstraint</em> type has a set of allowed value types. When the value of a 2.0 rule is not one of the allowed value types in its corresponding constraint type, an error is issued and the rule is not translated.</li>
+<li>The application attribute extensions on a 2.0 <em>oaRule</em> are translated into extensions on the corresponding 2.2 <em>oaConstraint</em>.</li>
+</ul>
+<hr>
+<h3>Route Changes</h3>
+<ul>
+<li>The shielding net information has been moved from <em>oaRoute</em> to <em>oaShape</em> and <em>oaVia</em> in 2.2. The shielding net information is copied from the 2.0 route to each <em>oaPathSeg</em> and <em>oaVia</em> in the new 2.2 route.</li>
+<li>An <em>oaRouteSeg</em> is translated to an <em>oaPathSeg</em> on a layer purpose pair determined by the layer number of the <em>oaRouteSeg</em> and <em>oaRoutePurpose</em>. The route purpose's <em>oaRoutePurposeDrawing</em> is mapped into <em>oavPurposeNumberDrawing,</em> and <em>oaRoutePurposeFill</em> is mapped into <em>oavPurposeNumberFill</em>. </li>
+</ul>
+<h4>Blockage and Boundary Changes</h4>
+<ul>
+  <li>A placement blockage is translated into an <em>oaAreaBlockage,</em> and other types of blockages are translated into <em>oaLayerBlockages</em>. </li>
+  <li><em>oaCellViewBoundary</em> objects are renamed to <em>oaAreaBoundary</em> objects</li>
+</ul>
+<h4>Guide Changes </h4>
+<p>In 2.2, an <em>oaGuide</em> is created with start and end points instead of start and end conn objects. The translator uses the 2.0 start conn object to derive a start point, and the 2.0 end conn object to derive the end point. Only shapes, routes, instances, terminals, instance terminals, pins, and instance pins are handled in this manner. For other objects, the location of the guide defaults to (0, 0).</p>
+<table border="1" cellpadding="4">
+  <tr bgcolor="#CCCCCC">
+    <td><strong>Object</strong></td>
+    <td><strong>2.2 Guide Placement </strong></td>
+  </tr>
+  <tr>
+    <td width="421">Shapes</td>
+    <td width="421">The guide is placed on the center point of the bounding box. </td>
+  </tr>
+  <tr>
+    <td>Routes</td>
+    <td>The guide is placed on the end point of the route.</td>
+  </tr>
+  <tr>
+    <td>Terminal</td>
+    <td>The guide is placed on the center of the bounding box of the first pin's figure if it contains pins, otherwise (0, 0) is used. </td>
+  </tr>
+  <tr>
+    <td>Instance terminal</td>
+    <td><p>The guide is placed on the center point of the first pin on the instance terminal if the instance is bound and the terminal has a pin, otherwise the guide is placed on the instance origin. </p></td>
+  </tr>
+  <tr>
+    <td>Pin</td>
+    <td>The guide is placed on the center of the bounding box of the pin's figure.</td>
+  </tr>
+  <tr>
+    <td>Instance Pin</td>
+    <td>The guide is placed on the center of the instance pin if the instance is bound, otherwise the guide is placed on the instance origin.</td>
+  </tr>
+  <tr>
+    <td>All other objects </td>
+    <td>The guide defaults to (0,0) </td>
+  </tr>
+</table>
+<h4>Steiner Changes </h4>
+<p>In 2.2, an <em>oaSteiner</em> contains a bounding box and can be associated with a layer. When translating 2.0 versions of <em>oaSteiner</em> and <em>oaSteinerPin</em>, no layer is used during creation. The bounding box is used if it is a steiner pin, otherwise, (0, 0) is used. </p>
+<hr>
+<h3>Connectivity</h3>
+<ul>
+<li>Pins that do not belong to a pin group are interpreted as mustJoins in 2.2. For a pin that has no pin group in a terminal that contains multiple pins or pin groups, a new net and terminal are created, and the new terminal is set as a mustJoin terminal to the original terminal.</li>
+<li>Instance pins are not translated.</li>
+<li>When a pin's figure is a route in 2.0, the route is not converted, but its elements are converted and attached to the 2.2 pin. This implies that all elements in the route become strongly connected. </li>
+<li><em>PinGroups</em> are eliminated. For <em>oaStrongPin</em> group, a single pin is created and all the pin figures are added to this pin. For <em>oaWeakPin</em> group, the relationship is implied by pins on the same terminal. </li>
+</ul>
+<hr>
+<h3>Properties and Extensions </h3>
+<ul>
+<li>An <em>oaDDObjectDB</em> attached to a library is translated into an <em>oaDMData</em> object by copying its properties and application extension objects. When an <em>oaDDObjectDB</em> is attached to a cell or a view in a cell, its corresponding <em>oaDMData</em> is created in the <em>oaCell</em> and <em>oaCellView</em> objects, respectively. The groups on <em>oaDDObjectDBs</em> are  copied.</li>
+<li>Properties on <em>oaCellviews</em> are transferred to <em>oaDesigns</em>.</li>
+</ul>
+<hr>
+<h3>Pcells</h3>
+<p>After translation, a Pcell instance is  created with a standard design as the master. The expansion of the Pcell is  triggered when the design is read. If the design is subsequently saved, the expanded state is also saved and expansion will not be triggered again. </p>
+<p>For more information about Pcell expansion, refer to <a href="../guide/pcelluser.html#pcell_expand">Conversion Between Pcells and Standard oaDesigns</a> in the <em>Support for Pcells</em> section of the Programmers Guide. </p>
+<hr>
+<h3>Miscellaneous</h3>
+<ul>
+<li>Values that an application sets on a 2.0 oaCMap are not translated to the 2.2 oaCMap. </li>
+<li> Pseudo hierarchy names are not allowed in 2.2. When they are used as instance or net names, they are converted by replacing ‘/' with “#2f”. </li>
+<li><em>oaMarker</em> severity values are mapped to <em>oaMarkerSeverity</em> values as follows.<br>
+<br>
+<table border="1" cellpadding="4">
+<tr bgcolor="#CCCCCC">
+<td><strong>oaMarker Severity Value </strong></td>
+<td><strong>2.2 oaMarkerSeverity Value </strong></td>
+</tr>
+<tr>
+<td width="421">0</td>
+<td width="421"> oacAnnotationMarkerSeverity </td>
+</tr>
+<tr>
+<td>1</td>
+<td> oacInfoMarkerSeverity </td>
+</tr>
+<tr>
+<td>2</td>
+<td> oacAcknowledgeWarningMarkerSeverity </td>
+</tr>
+<tr>
+<td>3</td>
+<td> oacWarningMarkerSeverity </td>
+</tr>
+<tr>
+<td>4</td>
+<td> oacWarningMarkerSeverity </td>
+</tr>
+<tr>
+<td>5</td>
+<td> oacErrorMarkerSeverity </td>
+</tr>
+<tr>
+<td>6</td>
+<td> oacSignedOffCriticalErrorMarkerSeverity </td>
+</tr>
+<tr>
+<td>7</td>
+<td> oacSignedOffCriticalErrorMarkerSeverity </td>
+</tr>
+<tr>
+<td>8</td>
+<td> oacFatalErrorMarkerSeverity </td>
+</tr>
+<tr>
+<td>Greater than 8 </td>
+<td> oacInfoMarkerSeverity </td>
+</tr>
+</table> 
+</li>
+</ul>
+<p>&nbsp;</p>
+<blockquote>
+<p><a href="#pagetop">Return to top of page</a></p>
+</blockquote>
+<div style="text-align: center">
+<blockquote>
+<p><img src="images/uprevfooter.gif"><br />
+</p>
+</blockquote>
+</div>
+<blockquote>
+<p><br/>
+</p>
+<p class="copyright"><a href="../base/titlecopy.html"><em>Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a>
+<br />
+All rights reserved.</p>
+</blockquote>
+<blockquote>
+<p>
+<noscript>
+<em class="red">This page requires JavaScript enabled.</em>
+</noscript>
+</p>
+</blockquote>
+      
+</body>
+</html>

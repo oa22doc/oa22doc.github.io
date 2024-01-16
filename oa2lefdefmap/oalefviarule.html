@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|viarule'/>
+<a name='68000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="ViaRule"></a>Via Rule</h1>
+<pre>
+ VIARULE viaRuleName
+
+      <a href='#68001'>LAYER</a> layerName ;
+            DIRECTION {HORIZONTAL | VERTICAL} ;
+            [WIDTH minWidth TO maxWidth ;]
+      LAYER layerName ;
+            DIRECTION {HORIZONTAL | VERTICAL} ;
+            [WIDTH minWidth TO maxWidth ;]
+      {<a href='#68002'>VIA</a> viaName ;} ...
+      [<a href='#68005'>PROPERTY</a> propName propVal ;] ...
+
+ END viaRuleName
+</pre>
+<p>The LEF VIARULE associates a layer and width pair with a set of vias specified by viaName. These vias must already exist in the technology database.</p>
+<p>For dataModel 4, the VIARULE is mapped by adding the specified vias to the <a href="../guide/oacValidRoutingViasConstraint.html">oacValidRoutingVias</a> constraint in the LEFSpecialRouteSpec constraint group. The value of the constraint is an <a href="../tech/classoaViaTopology2DTblValue.html">oaViaTopology2DTblValue</a> that is a two  dimensional table of <a href="../tech/classoaViaTopologyArrayValue.html">oaViaTopologyArrayValues</a>. This is similar to how the  oaViaDef2DTblValue table is used on the oaViaSpec for dataModel 3.</p>
+<p>The <a href="../guide/oacValidRoutingViasConstraint.html">oacValidRoutingVias</a> constraint also has a parameter of the type  which represents the ViaLayerDirection. The value of that param is  @oaIntDualIntArrayTblValue.</p>
+<p>For dataModel 3, the VIARULE statement is mapped by adding the specified vias to the @oaViaSpec for the given layer pair. The oaViaSpec has an @oaViaDef2DTblValue that is a two dimensional table of @oaViaDef arrays that are indexed by the two WIDTH values. If WIDTH is not specified, the specified vias are added to the default value of the table.</p>
+</div>
+<a name='lef|viarule|layer'/>
+<a name='68001'/>
+<h2 class='topicSyntax'>
+LAYER layerName ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECTION {HORIZONTAL | VERTICAL} ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[WIDTH minWidth TO maxWidth ;]<BR/>
+&nbsp;LAYER layerName ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DIRECTION {HORIZONTAL | VERTICAL} ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[WIDTH minWidth TO maxWidth ;]</h2>
+<div style='margin-left:40px;'>
+<p>The VIARULE LAYER attribute is stored in OpenAccess by using the oaViaSpec::layer1 or oaViaSpec::layer2 attribute, dependent on the oaPhysicalLayer::maskNumber attribute. The oaPhysicalLayer with the lowest maskNumber is stored in oaViaSpec::layer1.</p>
+<p>The VIARULE LAYER DIRECTION attribute is stored in OpenAccess as well, as a param of the ValidRoutingVias constraint. Previously, LEFIn does not store that and in those cases the directions can be derived from the  defaultRoutingDirection of the physical layers.</p>
+</div>
+<a name='lef|viarule|property'/>
+<a name='68005'/>
+<h2 class='topicSyntax'>
+PROPERTY propName propVal</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oalefproperties.html">PROPERTIES</a>.</p>
+</div>
+<a name='lef|viarule|via'/>
+<a name='68002'/>
+<h2 class='topicSyntax'>
+VIA viaName</h2>
+<div style='margin-left:40px;'>
+<p>Note : During the search, if an oaStdViaDef with the same name exist we search for the oaCustomViaDef with &lt;name&gt;_via, since we rename LEF VIAs in the same way for conflicts.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

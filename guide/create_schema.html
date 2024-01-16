@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>Creating Schema Definitions </h1>
+<hr>
+<p>In order to facilitate the sharing of information about design changes, OpenAccess provides a way to describe  OpenAccess objects in terms of their relationships, attributes, and attribute values. Such a description of a data model is known as its schema definition. </p>
+<p>Developers can create schema definitions for OpenAccess managed objects, oaAppDefs, oaAppObjects, or a different data model altogether.</p>
+<p>This document describes:</p>
+<ul>
+  <li><a href="#sdClasses">Schema Definition Classes</a></li>
+  <li><a href="#createNamespace">Creating a Namespace</a></li>
+  <li><a href="#createPathSegSchema">Creating a Schema Definition for a  Path Segment</a></li>
+</ul>
+<h2><a name="sdClasses"></a>Schema Definition Classes </h2>
+<p>The sd prefixed public classes provide the ability to create schema definitions. The <a href="../base/classsdBase.html">sdBase</a> class is the base class for all the schema definition classes that can be used to define the schema of a design. </p>
+<p><img src="images/sdBaseClasses.jpg" width="721" height="164"></p>
+<p>The following table outlines the classes that inherit from sdBase. </p>
+<table width="100%" border="1">
+  <tr>
+    <th width="215" bgcolor="ccccdd" scope="col"><div align="left">Class Name </div></th>
+    <th width="819" bgcolor="ccccdd" scope="col"><div align="left">Description</div></th>
+  </tr>
+  <tr>
+    <td><a href="../base/classsdObject.html">sdObject</a></td>
+    <td>Defines the types of the public objects in the  data model.</td>
+  </tr>
+  <tr>
+    <td><a href="../base/classsdAttribute.html">sdAttribute</a></td>
+    <td>Defines the types of attributes that can be  defined on  public objects.</td>
+  </tr>
+  <tr>
+    <td><a href="../base/classsdRelationshipBase.html">sdRelationshipBase</a></td>
+    <td>Defines the types of  relationships that can exist between public objects. </td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../base/classsdRelationship.html">sdRelationship</a></td>
+    <td>Defines a relationship between a single &quot;from&quot; class and a single &quot;to&quot; class. For example, a relationship from an  oaNet  to an oaInstTerm.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../base/classsdRelationshipSet.html">sdRelationshipSet</a></td>
+    <td>Defines a relationship between a single &quot;from&quot; class and multiple &quot;to&quot; classes. The 'to' set of classes is a list of valid classes that can have this relationship. For example, the relationship on the beginning connection of an oaRoute can be one of oaTerm, oaInstTerm, oaSteiner, oaPin, oaShape, or oaVia. </td>
+  </tr>
+  <tr>
+    <td><a href="../base/classsdValue.html">sdValue</a></td>
+    <td>Defines the types of values for attributes. These values can be simple or complex. </td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../base/classsdLeafValue.html">sdLeafValue</a></td>
+    <td>Defines a basic type, such as an unsigned integer. </td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../base/classsdHierValue.html">sdHierValue</a></td>
+    <td>Defines a composite type, such as an oaBox or oaPoint. </td>
+  </tr>
+</table>
+<h2><a name="createNamespace"></a>Creating a Namespace</h2>
+<p>A <em>namespace</em> refers to a set  of rules for creating and interpreting legal names within an  application. Namespaces (<a href="../base/classsdNameSpace.html">sdNameSpaces</a>) can be used to categorize schema definitions in OpenAccess. For example, schema definitions for  different data models would most likely have their own namespaces. The <a href="../base/classsdSession.html">sdSession</a> object manages all the sdNameSpaces registered.</p>
+<p>Before creating your own schema definitions,  create a separate namespace for them. For example:</p>
+<pre>sdNameSpace *appSchema = new sdNameSpace(&quot;appSchema&quot;, 1);</pre>
+<p>A namespace can use the schema of another namespace. 
+<h2><a name="createPathSegSchema"></a>Creating a Schema Definition for a Path Segment</h2>
+<p>This example creates a schema definition called mySegment that defines a path segment. The following aspects of a path segment are considered: </p>
+<ul>
+  <li>The begin and end points for the path segment</li>
+  <li>The style of the path segment </li>
+</ul>
+<p>First, the sdObject for the path segment must be created. Each sdObject must have an integer identifier and string name combination that is unique. In the example below, the integer <em>0</em> and the string <em>mySegment</em> mark this particular sdObject as the definition for path segments. The schema object is created in the <code>appSchema</code> namespace. </p>
+<pre>sdObject *mySegment = new sdObject(0, "mySegment", "My path segment example", true, appSchema, ...);</pre>
+<p>The oaPathSeg class inherits from oaShape. This is represented in the schema by specifying a super object when creating the sdObject for the path segment. Note that the schema definitions for any super objects must be created before they can be used in the constructors for other sdObjects. The sdObject constructor has the following arguments:</p>
+<pre>
+sdObject::sdObject(unsigned int          id,
+                   const std::string     &name,
+                   const std::string     &description,
+                   bool                  concrete,
+                   sdNameSpace           *nameSpace,
+                   const ObjectVector    &superObjects
+	)  </pre>
+<p>A path segment has  begin and end point attributes. An sdAttribute must belong to an sdObject, such as <em>mySegment</em>. Each sdAttribute: </p>
+<ul>
+  <li> Must have an integer identifier that is unique among all  attributes within the namespace</li>
+  <li>Should have a  name that is unique among all  attributes and relationships of the object</li>
+</ul>
+<p>The following create the sdAttributes for the begin and end points:</p>
+<pre>sdAttribute(0, "segmentBeginPoint", "path segment begin point", ..., appSchema, mySegment, pointValue);
+sdAttribute(1, "segmentEndPoint", "path segment end point", ..., appSchema, mySegment, pointValue);
+</pre>
+<p>Where <em>pointValue</em> is an sdValue that defines the begin or end point. The sdAttribute constructor has the following arguments:</p>
+<pre>
+sdAttribute(unsigned int                id,
+            const std::string           &name,
+            const std::string           &description,
+            const Actions               &actions,
+            sdAttributeContainerType    containerType,
+            bool                        isObjectIdentifier,
+            sdNameSpace                 *nameSpace,
+            const sdObject              *object,
+            const sdValue               *value);</pre>
+<p>An sdRelationship is used to express the path segment style. Each sdRelationship:</p>
+<ul>
+  <li> Must have an integer identifier that is unique among all  relationships within the namespace</li>
+  <li>Should have a  name that is unique among all    relationships and attributes of the object</li>
+</ul>
+<p>The following creates the sdRelationship for the  style for the path segment: </p>
+<pre>sdObject *segmentStyle = new sdObject(1, "segmentStyle", "path segment style example", true, appSchema, ...);
+sdRelationship(0, "style", "path segment style", ..., appSchema, mySegment, segmentStyle);
+</pre>
+<p>The sdRelationship constructor has the following arguments:
+<pre>sdRelationship(unsigned int                     id,
+               const std::string                &name,
+               const std::string                &relDescription,
+               sdRelationshipOrderingType       orderType,
+               const Actions                    &actions,
+               sdRelationshipAssociationType    associationType,
+               sdRelationshipMultiplicityType   multiplicityType,                           
+               sdRelationshipContainerType      containerType, 
+               sdNameSpace                      *nameSpace,
+               const sdObject                   *from,
+               const sdObject                   *to);
+</pre>
+<p>
+<div style="text-align: center"> <img src="../pgfooter.gif"><br />
+</div>
+<br />
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br />
+  All rights reserved.</p>
+</body>
+</html>

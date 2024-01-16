@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Writing a C++ Pcell Generator</h1>
+<hr>
+<p>OpenAccess includes a Pcell evaluator plug-in named oaPcellCPP. This Pcell evaluator is for C++ based Pcells. Applications can provide Pcell generators to create content on a design through this evaluator. This Pcell evaluator uses the IPcellGen interface, which applications implement to create a Pcell generator. A Pcell generator is provided by applications in the form of a shared library. This implementation is similar to those for the primary plug-ins oaDMTurbo and oaDMFileSys. The difference between the IPcellGen plug-in and the oaDMTurbo and oaDMFileSys plug-ins is that the IPcellGen plug-in is associated with a design library instead of an OpenAccess installation.</p>
+
+<h2>Pcell Generators</h2>
+
+<p>All the shared libraries for Pcell generators must be in the design library as an oaDMFile in order for the oaPcellCPP superMaster to function properly. oaPcellCPP organizes Pcell generators by the PcellGen definitions in a design library. A PcellGen definition consists of a name, the name of a platform that its shared library supports, and the name of the oaDMFile associated with the shared library. The platform name used by oaPcellCPP to lookup a Pcell generator is obtained at runtime through the <a href="../base/classoaBuildInfo.html#oaBuildInfo::getPlatformName">oaBuildInfo::getPlatformName()</a> API. </p>
+<h2>PcellGen Definition Manager</h2>
+
+<p>A PcellGen definition manager, <a href="../PcellCPP/classIPcellCPPDefMgr.html">IPcellCPPDefMgr</a>, is the interface provided by oaPcellCPP to facilitate Pcell generator definition management. An application uses this interface to create, modify, locate, and remove Pcell generators in a library.</p>
+
+<p>An application must setup the PcellGen definitions before any superMaster is created, and modification to the definitions must be done before any superMaster is opened. Once a supermaster is opened, the associated shared library for the Pcell generator is loaded, and it cannot be unloaded and reloaded in the same process.</p>
+
+<p>An application can create a IPcellCPPDefMgr by including the header file <code>oaPcellCPPInterfaces.h</code> and using a smart pointer as follows:</p>
+<pre>
+	SPtr&lt;IPcellCPPDefMgr&gt;	defMgr("oaPcellCPP");
+</pre>
+
+<p>The following example shows how you create a Pcell generator definition by using this definition manager:</p>
+<pre>
+    oaNativeNS	ns;
+    oaScalarName	libName(ns, "myLib");
+    oaLib		*lib = oaLib::find(libName);
+    SPtr&lt;IPcellCPPDefMgr&gt;	pgDefMgr("oaPcellCPP");
+    try {
+	pgDefMgr-&gt;open(lib);
+	pgDefMgr-&gt;createDef("Win32", "gateGen", "gateGen_win32", "gateGen.dll");
+	pgDefMgr-&gt;createDef("sunos_58_32 Forte_8", "gateGen", "gateGen_sun32", "libgateGen.so");
+	pgDefMgr-&gt;save();
+	pgDefMgr-&gt;close();
+    }
+    catch (IException	&amp;err) {
+	pgDefMgr-&gt;close();
+	printf("Error in PG def Mgr: %s\n", err.getMsg());
+    }
+</pre>
+
+<h2>Implementing A Pcell generator</h2>
+<p>An application implements a Pcell generator by creating a shared library that can be loaded by oaPcellCPP at runtime. The shared library is platform dependent and the application must provide a shared library for each  platform that the application supports. The shared library needs to do the following:</p>
+<ul>
+<li>Implement the entry point function getClassObject to return its IPcellGen object</li>
+<li>Optionally implement an ICompatibility::validate function to verify whether or not the version of OpenAccess is compatible with the plug-in. </li>
+<li>Define a new class inherited from IPcellGen</li>
+</ul>
+
+<p>After the shared library is created, a PcellGen definition for this generator must be defined in the library where superMasters will be created using this generator.</p>
+ 
+<h2>Implementing the Entry Point Function</h2>
+<p>Each IPcellGen plug-in shared library must implement the entry point function <code>getClassObject()</code>. This function must have the function prototype:</p>
+<pre>
+	extern "C" long	getClassObject(const char		*classID,
+						  const Guid		&amp;interfaceID,
+						  void			**ptr);
+</pre>
+
+<p>In a primary plugIn, <code>getClassObject()</code> returns a factory, but in a Pcell generator plugIn, this function returns the IPcellGen object directly. <code>getClassObject()</code> is implemented this way to avoid the overhead of every generator implementing its IFactory interface. The utility class Factory from oaCommon is only suitable for primary plugIns. oaPcellCPP calls getClassObject() when it needs an IPcellGen object for its superMaster.</p>
+<h2>Implementing a Function to Validate Compatibility</h2>
+<p>A plug-in can optionally implement an ICompatibility::validate function to verify whether or not the version of OpenAccess is compatible with the plug-in.
+  The validate() function should check the OpenAccess API version and either throw   an exception with a description of the requirements or simply return   false. <span class="style1">REVIEWERS: Need to describe how an app might check if an interface has an ICompatibility component and if so, how to use it. </span><br>
+</p>
+<pre>virtual bool                validate();</pre>
+<h2>Implementing the IPcellGen Interface</h2>
+<p>An application must derive an object from IPcellGen. It can use the utility class PlugInBase to implement the IBase interfaces. An application overwrites the genPcell member function to create content in the design passed to this function. The design is usually a subMaster with a parameter list that can be obtained through the  oaDesign::getParam() API. It is suggested that applications implement one Pcell generator per library, and use the argument <code>masterType</code> passed to the genPcell function to differentiate various content generators.</p>
+<h2>Creating oaPcellCPP superMaster</h2>
+<p>Before an oaPcellCPP supermaster is created, an oaPcellDef must be obtained from the oaPcellCPP evaluator, and  the Pcell generator name and master type must be set as data values in the oaPcellDef. The Pcell generator name is specified with the data value named <code>PcellGenName</code>, and the master type is specified with the data value named <code>MasterType</code>.</p>
+
+<p>A Pcell generator needs to publish its name, available master types, and its parameter list to its user for the superMaster creation. The following is an example of how you create an oaPcellCPP supermaster using a Pcell generator named <em>gateGen</em>,  a supported master type of <code>nand</code>, and a parameter list that is an integer parameter name <em>numInputs</em>:</p>
+<pre>
+    oaParam	p1;
+    p1.setName("numInputs");
+    p1.setIntVal(2);
+
+    oaParamArray    paramArray(1);
+    paramArray.append(p1);
+
+    oaNativeNS		ns;
+    oaScalarName	libName(ns, "myLib"); 
+   oaScalarName	cellName(ns, "cppPcell_master");
+    oaScalarName	viewName(ns, "layout");
+    oaViewType	*viewType	 = oaViewType::get(oacMaskLayout);
+    oaDesign		*superMaster	= oaDesign::open(libName, cellName,
+						     	     viewName,
+     viewType, 'w');
+
+    oaPcellDef		*def = oaPcellLink::getPcellDef("oaPcellCPP");
+
+    def->addData("PcellGenName", "gateGen");
+    def->addData("MasterType", "nand");
+
+    superMaster-&gt;defineSuperMaster(def, paramArray);
+    superMaster-&gt;save();
+</pre>
+
+
+<p><a href="#pagetop">Return to top of page</a></p>
+ <p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

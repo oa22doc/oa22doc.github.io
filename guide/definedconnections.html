@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1><a name="pagetop"></a>Defined Connections </h1>
+ <hr>
+ <p>OpenAccess let applications  specify the rules for inherited connections using connection definitions (on nets and terminals) and assignments (on instances) in both the block and module domains. These connection definitions and assignments become visible in the occurrence domain on corresponding occurrence nets, terminals, and instances. While the connection definitions and assignments can only be added, updated, or removed from the block and module domains, the changes are propagated automatically to the occurrence domain.</p>
+ <p>This document uses the following terminology: </p>
+ <ul>
+   <li>Net, Term &ndash; Indicates single-bit nets/terminals that can either be scalar nets/terminals or bus-net bits/bus-term bits in the appropriate (block, module, or occurrence) domain respectively.</li>
+   <li>connectDef &ndash; refers to a connectDef object in the occurrence domain (an oaOccConnectDef object)  unless specified otherwise.</li>
+ </ul>
+ <p>Refer to the documentation for <a href="../design/classoaConnectDef.html">oaConnectDef</a>, <a href="../design/classoaModConnectDef.html">oaModConnectDef</a> and <a href="../design/classoaOccConnectDef.html">oaOccConnectDef</a> and their derived classes for information on connection definitions in the block, module, and occurrence domains respectively. Refer to the documentation for <a href="../design/classoaAssignment.html">oaAssignment</a>, <a href="../design/classoaModAssignment.html">oaModAssignment</a> and <a href="../design/classoaOccAssignment.html">oaOccAssignment</a> and their derived classes for information on assignments in the block, module, and occurrence domains respectively.</p>
+  <p>Both connection definition and assignment objects have corresponding observers that inform the application when these objects are created, modified, or destroyed.</p>
+  <p>An application can  set up  inherited connections  by associating the proper connection definitions and assignments with nets, terminals, and instances  in the hierarchy. The database can  use this specification and a set of look-up rules to determine what the assigned occurrence net is for a user specified terminal, instTerm, or a net in the occurrence domain. (Determining the assigned occurrence net for another occurrence net is provided for diagnostic use only.)</p>
+  <p>OpenAccess does not assign the occurrence net automatically. Applications need to query the assigned net and make the actual connection  as needed.</p>
+  <p>The query for an assigned net  always returns the occurrence net using the inherited connections specification regardless of whether or not an explicit connection existed. This is because the query is directly related to the user specification and should not depend on whether or not an instTerm has a physical connection. If an application needs to consider the explicitly connected net, it must make that check independently, then query the assigned occurrence net as needed.</p>
+  <p>The query for the assigned net also helps to ensure that the net meets the inherited connection specification after the application has assigned the net.</p>
+  <p>The OpenAccess implementation supports the concept of scoped global nets. A scoped global net  is implemented at a level in the hierarchy and has a connectDef that maps it to a non-global net. The scoped global net appears as a global net at all occurrence levels below the hierarchy in which there is a connectDef associated with the global net that indicates that a non-global net should be used instead.</p>
+  <p>The sections that follow present  the look-up rules that OpenAccess uses to determine the assigned occurrence net for a terminal, instTerm, or a net in the occurrence domain.</p>
+  <h2>Obtaining the connectDef from an occTerm, occInstTerm, or an occNet</h2>
+  <p>OpenAccess must first get access to the effective connectDef that applies to the occTerm, occInstTerm, or occNet. If an effective connectDef cannot be found, this implies that the inherited connections specification has not been set up correctly by the application. In this case, a NULL value is returned without attempting to search for an assigned occurrence net in the hierarchy.</p>
+  <p>The rules for obtaining the connectDef for each of these objects are different  and are outlined in the sections that follow:</p>
+  <ul>
+    <li><a href="#occTerm">Obtaining a connectDef from an occTerm</a></li>
+    <li><a href="#occInstTerm">Obtaining a connectDef from an occInstTerm</a></li>
+    <li><a href="#occNet">Obtaining a connectDef from an occNet</a></li>
+  </ul>
+  <p>Once the connectDef is determined, the search for the occurrence net uses the common rules for determining inherited connections with a bottom-up hierarchy traversal as demonstrated in the <a href="#flow">process flow</a>. </p>
+  <h3><a name="occTerm"></a>Obtaining a connectDef from an occTerm</h3>
+  <p>OpenAccess determines if the occTerm has an associated connectDef. If so, the connectDef  is used to determine the assigned net. If the occTerm does not have an associated connectDef, OpenAccess checks the occTerm&rsquo;s internal net  to see if it has an associated connectDef. If so, this connectDef is used to determine the assigned net; Otherwise the connectDef cannot be determined and a NULL is returned for the assigned occurrence net.</p>
+  <p>The hierarchy traversal and search for the assigned net  begins by going a level up in the hierarchy and searching for assignments on the occInst whose occurrence&rsquo;s occTerm was queried.</p>
+  <h3><a name="occInstTerm"></a>Obtaining a connectDef from an occInstTerm</h3>
+  <p>OpenAccess obtains  the modTerm from the module of the modInst that corresponds to the modInstTerm whose occurrence occInstTerm is being queried for an assigned occurrence net. Next, OpenAccess determines if the modTerm has an associated connectDef (oaModConnectDef). If so, then the connectDef  is used to determine the assigned net. If the modTerm does not have an associated connectDef, the modTerm&rsquo;s internal net is checked to see if it has an associated connectDef. If so,  this connectDef is used to determine the assigned net; Otherwise the connectDef cannot be determined and a NULL is returned for the assigned occurrence net.</p>
+  <p>The hierarchy traversal and search for the assigned  net begins at the current level of the hierarchy by searching for assignments on the occInst associated with the occInstTerm being queried.</p>
+  <h3><a name="occNet"></a>Obtaining a connectDef from an occNet</h3>
+  <p>OpenAccess determins if the occNet has an associated connectDef. If so, this connectDef is used to determine the assigned occurrence net; Otherwise  NULL is returned as the assigned net cannot be determined.</p>
+  <p>The hierarchy traversal and search for the assigned net begins by going a level up in the hierarchy and searching for assignments on the occInst whose occurrence&rsquo;s occNet was queried.</p>
+  <h2>Example: Determining the Assigned occNet using the Inherited Connections Specification</h2>
+  <h3>Assumptions</h3>
+  <ul>
+    <li>The connectDef has been determined  or a NULL has been already returned.</li>
+    <li>The process flow starts at the correct level of the hierarchy. </li>
+    <li>The first occInst considered is  one of the following: 
+      <ul>
+        <li>The occInst whose occurrence (one level down) had the occTerm or occNet that was queried for the assigned net.</li>
+        <li>The occInst whose occInstTerm was queried for the assigned occurrence net (at same level).</li>
+      </ul>
+    </li>
+    <li>The client uses an &lsquo;ignoreDefault&rsquo;  boolean   when making the query for the assigned occurrence net. The boolean indicates whether or not the default net name from the inherited connection specification should be ignored.</li>
+  </ul>
+  <h3><a name="flow"></a>Process Flow </h3>
+  <p><img src="images/connectionDefFlowchart.gif"></p>
+  <p></p>
+  <p> </p>
+  <p><a
+href="#pagetop">Return to top of page</a></p>
+    <p><a
+href="index.html">Return to Programmers Guide topics</a></p>
+    <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+</li>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1><a name="pagetop"></a>Understanding Routes</h1>
+ <hr>
+ <p>Routes represent the design geometry in terms of point-to-point physical interconnects on the same layer or spanning multiple layers. Individual routes cannot branch. In OpenAccess, routes are persistent objects generated from the <a href="../design/classoaRoute.html">oaRoute</a> class. Routes represent the majority of symbolic or signal routing for a design. </p>
+ <p>Think of a route as a composite figure containing an ordered set of objects, which can include PathSegs, vias, and guides, all of which can span multiple layers. A route has two ends that you can logically connect to two qualified objects. A route object is derived from a connection figure (<a href="../design/classoaConnFig.html">oaConnFig</a>) and can potentially be part of a net. The route&rsquo;s net applies to all its component objects. </p>
+ <p>Because nets branch, the net geometry is often composed of multiple routes. OpenAccess lets routing applications set and query the net branching topology  when implementing physical routes using the routeTopology attribute on the physical route objects (oaPathSegs and oaVias). By putting the routeTopology attribute at the route object level, OpenAccess provides support for both symbolic and geometric routing because the route object might or might not be an oaRoute component. Typically, routing applications use steiners as branching points. An <a href="../design/classoaSteiner.html">oaSteiner</a> object is a connection object that be the begin or end connection object for a route, thus allowing several routes to fan in or fan out from that point. </p>
+ <p><img src="images/routeBranchGif.gif" width="422" height="555"></p>
+ <p> In OpenAccess, geometric routes, such as those for power, ground or other custom nets, are implied by the application&rsquo;s direct use of pathSegs, vias, guides, or other shapes that are not part of oaRoutes.</p>
+ <p>An application can use routes to work through phases of the routing process as follows:</p>
+  <ul>
+    <li>First create empty routes and populate them with <a href="../design/classoaGuide.html">oaGuide</a> objects. Guides specify connections between objects intended to be wired together later in the design process. </li>
+    <li>Eventually, populate the routes and guides  with the physical interconnects (<a href="../design/classoaPathSeg.html">oaPathSeg</a> and <a href="../design/classoaVia.html">oaVia</a> objects). </li>
+</ul>
+  <p><strong>Note:</strong> For more information about PathSegs, see <a href="pathSegs.html">Physical Routing Segments (Orthogonal or Diagonal)</a>.</p>
+  <p>Applications can specify a set of constraints (<a href="../base/classoaConstraintGroup.html">oaConstraintGroup</a>) that the route geometry must satisfy. The application must ensure that the constraints are satisfied.</p>
+  <h2>Working with Routes</h2>
+  <h3>Creating Routes</h3>
+  <p>A route is created in a  physical block with the <a href="../design/classoaRoute.html#oaRoute::create">oaRoute::create()</a> method. At a minimum, applications must specify the block to which the route will belong. Applications can optionally specify:</p>
+  <ul>
+    <li>The net to which the route will belong</li>
+    <li> The topology for the route </li>
+    <li> The initial route status</li>
+    <li>An indication of whether of not the route is a global route</li>
+  </ul>
+  <p>Routes are always empty when created and need to be populated with a set of objects that comprise the route.</p>
+  <h4>Abutment</h4>
+  <p>A design might satisfy a connection on a net by abutment, where no additional wire is needed because the pins to be connected overlap. In this case, the application should indicate that the connection is fully routed by creating an empty route. If there are abutted pins and additional routing on the net, there should be two empty routes (for the two abutted pins) that connect to a steiner. An additional non-empty route would also connect to that steiner. </p>
+  <h3>Populating, Accessing, and Removing Objects in a Route</h3>
+  <p>Routes can be populated with the following objects:</p>
+  <ul>
+    <li>pathSegs (oaPathSegs)</li>
+    <li>vias (oaVias, standard or custom)</li>
+    <li> guides (oaGuides) </li>
+  </ul>
+  <p>However, the following restrictions apply. Objects added to routes </p>
+  <ul>
+    <li>Should not implement pins </li>
+    <li>Should not be the connection object of an existing route</li>
+    <li>Must reside in the same block as the route</li>
+    <li>Must belong to the same net as the route if both the route and the object to be added belong to nets</li>
+  </ul>
+  <p>The <a href="../design/classoaRouteObjectArray.html">oaRouteObjectArray</a> utility class lets you assign a set of objects to an existing route or access the set of objects for an existing route. </p>
+  <p>An application can  populate an oaRouteObjectArray with the set of objects to be assigned to a route, then use  <a href="../design/classoaRoute.html#oaRoute::setObjects">oaRoute::setObjects()</a>  to communicate the assignment to the route object. The same object should not be specified more than once in the oaRouteObjectArray. An exception is thrown if this criteria is not met, or if the object does not qualify to be a route object. </p>
+  <p>If an object being added already belongs to a route, it is first removed from that route and then added to the specified route. On successful assignment, all objects that became part of the route  implicitly inherit the route's net and will return the route's net if queried. Applications can access the current set of objects that belong to a route with the <a href="../design/classoaRoute.html#oaRoute::getObjects">oaRoute::getObjects()</a> method, which populates the specified oaRouteObjectArray object.</p>
+  <p>A application can remove all the objects in a route with <a href="../design/classoaRoute.html#oaRoute::unsetObjects">oaRoute::unsetObjects()</a>. This operation  disassociates the route from its objects, but both the route and the objects still exist. All the disassociated objects  acquire the route's net and explicitly belong to it. An application can optionally destroy all the route objects with <a href="../design/classoaRoute.html#oaRoute::destroyObjects">oaRoute::destroyObjects()</a>. Note that the route itself  continues to exist while its objects are removed from the database.</p>
+  <p>To remove objects selectively from a route, an application can do the following: </p>
+  <ul>
+    <li>Access the existing set of objects in a route with oaRoute::getObjects(), which populates the object array.</li>
+    <li>Selectively remove the  objects from the array.</li>
+    <li>Set the objects back on the route with oaRoute::setObjects().</li>
+  </ul>
+  <h3>Specifying, Accessing, and Removing  Route Connection Objects</h3>
+  <p>You can associate a  route  with two end connection objects representing the beginning and end of the route. The begin connection object refers to the first object that is part of the route, and the end connection object refers to the last object that is part of the route. </p>
+  <p>The following objects can be used as end connection objects for routes:</p>
+  <ul>
+    <li>Shapes (concrete oaShape objects)</li>
+    <li>Vias (concrete oaVia objects)</li>
+    <li>Pins (oaPin objects)</li>
+    <li>Terms (oaTerm objects)</li>
+    <li>instTerms (oaInstTerm objects)</li>
+    <li>Steiners (oaSteiner objects) </li>
+  </ul>
+  <p>However, the following restrictions apply. Connection objects </p>
+  <ul>
+    <li>Cannot already be  part of any route</li>
+    <li>Must be in the same block as the route in question</li>
+  </ul>
+  <p>The application must ensure that the begin connection object or its physical implementation does (or will eventually) connect to the first object in the route, and that the end connection object or its physical implementation does (or will eventually) connect  to the last object in the route. </p>
+  <p>You can use <a href="../design/classoaRoute.html#oaRoute::setBeginConn">oaRoute::setBeginConn()</a>  to specify the begin connection object for a route, and <a href="../design/classoaRoute.html#oaRoute::setEndConn">oaRoute::setEndConn()</a>  to specify the end connection object. If an application specifies a begin or end connection object for a route that already has that begin or end connection object, the existing connection object association with the route is removed, and an association with the specified object is established. </p>
+  <p>A qualifying connection object can  have multiple routes terminating at or originating from it. The getConnRoutes() methods  on each of the qualifying connection object classes (oaShape, oaVia, oaPin, oaTerm, oaInstTerm, and oaSteiner)  return the collection of routes that either begin or end on a particular connection object.</p>
+  <p>You can access route connection objects from a route with <a href="../design/classoaRoute.html#oaRoute::getBeginConn">oaRoute::getBeginConn()</a> and <a href="../design/classoaRoute.html#oaRoute::getEndConn">oaRoute::getEndConn()</a>. You can remove route connection objects with <a href="../design/classoaRoute.html#oaRoute::unsetBeginConn">oaRoute::unsetBeginConn()</a> and <a href="../design/classoaRoute.html#oaRoute::unsetEndConn">oaRoute::unsetEndConn()</a>.</p>
+  <h3>Specifying and Accessing Miscellaneous Route Attributes</h3>
+  <p>The oaRoute class provides additional methods that let you  specify and access other useful information for  route objects.</p>
+  <ul>
+    <li>The <a href="../design/classoaRoute.html#oaRoute::setGlobal">setGlobal()</a> and <a href="../design/classoaRoute.html#oaRoute::isGlobal">isGlobal()</a> methods let applications  mark and recognize global routes. Global routes are usually generated by the global routing application to provide guidance to detailed routers.</li>
+    <li>The <a href="../design/classoaRoute.html#oaRoute::isContiguous">isContiguous()</a> method determines whether the end points of each figure in the route are contiguous and checks for layer contiguity with sensitivity to via directions.</li>
+    <li>The <a href="../design/classoaRoute.html#oaRoute::hasGuide">hasGuide()</a> method determines whether the route has one or more guides (non-physical elements).</li>
+    <li>The <a href="../design/classoaRoute.html#oaRoute::setRouteStatus">setRouteStatus()</a> and <a href="../design/classoaRoute.html#oaRoute::getRouteStatus">getRouteStatus()</a> methods let applications  specify and access the routed status of a route.</li>
+  </ul>
+  
+  <pre>&nbsp;</pre>
+  <p><a
+href="#pagetop">Return to top of page</a></p>
+    <p><a
+href="index.html">Return to Programmers Guide topics</a></p>
+    <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+
+</li>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+<!-- start header -->
+<html><head>
+<title>OpenAccess to LEF/DEF Mapping</title>
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+</head>
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+  <tr>
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+ </tr>
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+  </tr>
+</table>
+</div>
+
+  <div style="position:relative;left:275px;margin-top:10px">
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+	        <td><div align="left">&nbsp;</div></td>
+	        <td><div align="left">&nbsp;</div></td>
+	        <td><div align="left">&nbsp;</div></td>
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+	    </tr>
+    </table>
+  </div>
+
+<h1>OpenAccess to LEF Mapping</h1>
+<p>Anywhere oa&lt;object&gt;::&lt;attributeName&gt; is used in this document set, you can set and get the attribute
+by using oa&lt;object&gt;::Set&lt;attributeName&gt; and
+oa&lt;object&gt;::Get&lt;attributeName&gt;.</p>
+
+<p>When coordinate, distance, or area values are specified in LEF, they map to OpenAccess using DB units. This means they must be converted to and from
+the LEF SI units before storing them in OpenAccess. (see <a href="oalefunits.html">UNITS</a>.) The utility functions oaTech::dbuToUU, oaTech::uuToDBU, oaTech::dbuToUUArea, and oaTech::uuToDBUArea can
+be used for this purpose. All other values are stored in OpenAccess in SI units, and
+do not require conversion to and from LEF units.</p>
+
+<p>On output of LEF, only layers that have materials metal, cut, N/PImplant (5.6 only), N/PDiff, or poly are output. If objects in the database contain other layers, the entire object is silently ignored.</p>
+
+<p>Information that is specific to LEF, and not supported in OpenAccess, is stored by 
+using oaProperties. Global technology information is stored on an
+oaHierProp named <a href="oaleflegacy.html">&quot;LEF_Legacy&quot;</a>.</p>
+
+<p>Following is an alphabetical list of the LEF constructs. Each construct links to a page that describes  how data stored in an OpenAccess database maps to the LEF construct.</p>
+
+<table border="0" cellpadding="4">
+<tr>
+<td><a href="oalefbusbitchars.html">BUSBITCHARS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefmacro.html">MACRO</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefunits.html">UNITS</a></td>
+</tr>
+
+<tr>
+<td><a href="oalefclearancemeasure.html">CLEARANCEMEASURE</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefmanufacturinggrid.html">MANUFACTURINGGRID</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefuseminspacingobs.html">USEMINSPACING OBS</a></td>
+</tr>
+
+<tr>
+<td><a href="oalefdividerchar.html">DIVIDERCHAR</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefmaxviastack.html">MAXVIASTACK</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefuseminspacingpin.html">USEMINSPACING PIN</a></td>
+</tr>
+
+
+<tr>
+<td><a href="oaleflayercut.html">LAYER (Cut)</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefnondefaultrule.html">NONDEFAULTRULE</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefversion.html">VERSION</a></td>
+</tr>
+
+
+<tr>
+<td><a href="oaleflayerimplant.html">LAYER (Implant)</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefnowireextensionatpin.html">NOWIREEXTENSIONATPIN</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefvia.html">VIA</a></td>
+</tr>
+
+
+<tr>
+<td><a href="oaleflayermstrslice.html">LAYER (Masterslice)</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefpropertydefinitions.html">PROPERTYDEFINITIONS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefviarule.html">VIARULE</a></td>
+</tr>
+
+
+<tr>
+<td><a href="oaleflayeroverlap.html">LAYER (Overlap)</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefsite.html">SITE</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefviarulegenerate.html">VIARULE GENERATE</a></td>
+</tr>
+
+
+<tr>
+<td><a href="oaleflayerrouting.html">LAYER (Routing)</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oalefspacing.html">SPACING</a></td>
+<td width="30">&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+
+</table> 
+
+<h3><a name="unsupported_lef"></a>LEF Constructs Not Supported</h3>
+<p>Some constructs in LEF 5.3 and earlier versions are obsolete in LEF 5.4 and 
+5.5. When processing a 5.3 file, the translator ignores constructs that are 
+obsolete in 5.4 and subsequent versions. </p>
+<p>Constructs supporting gate array style designs are not supported for LEF in 
+OpenAccess.</p>
+<p>In addition, the following specific constructs are not supported.</p>
+<pre>ARRAY arrayName 
+    { SITE sitePattern ; 
+    | CANPLACE sitePattern ; 
+    | CANNOTOCCUPY sitePattern ; 
+    | TRACKS trackPattern ; 
+    | FLOORPLAN floorplanName 
+        {{CANPLACE | CANNOTOCCUPY} 
+          sitePattern;}... 
+        END floorplanName }... 
+    [GCELLGRID gcellPattern ;]... 
+    [DEFAULTCAP tableSize 
+        {MINPINS numPins WIRECAP cap ;}... 
+    END DEFAULTCAP] 
+END arrayName 
+</pre>
+<p>The LEF extension defined with the BEGINEXT statement  and the LEF ENDLIBRARY information are not stored in OpenAccess.</p>
+
+<p>In the MACRO statement, the following are not supported.</p>
+<pre>
+   {SITE sitePattern}... 
+   
+   sitePattern = siteName origX origY orient stepPattern 
+
+   stepPattern = DO numX BY numY STEP spaceX spaceY 
+
+   trackPattern = 
+       {X | Y} start DO numTracks STEP space 
+       LAYER layerName... 
+
+   gcellPattern = 
+       X start DO numColumns+1 STEP space | 
+       Y start DO numRows+1 STEP space
+</pre>
+<p>OpenAccess is always case sensitive, and therefore, the NAMESCASESENSITIVE statement is ignored.</p>
+
+<p><br></p>
+
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008</em></a>
+<br >All rights reserved.</p></font>
+</body>
+</html>

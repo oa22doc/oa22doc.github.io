@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h2>Summary of API Changes</h2>
+		<p>Following is a summary of the API changes between the OpenAccess p054 release
+			and the p049 release.</p>
+		<P><SPAN style="COLOR: rgb(0,102,204)"><SPAN style="COLOR: rgb(0,102,204)">#################################<BR># The
+following classes were modified #<BR>#################################<BR></P>
+		<PRE>	<a href="oaStrm/classCellMapOut.html">CellMapOut</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classCellMapOut.html#a11">isTranslated(oaUInt4 index) const</a> <BR>
+		<a href="oaStrm/classCellMapOut.html#a3">setTranslated(oaUInt4 index)</a> <BR>
+	<a href="oaStrm/classLayerMapIn.html">LayerMapIn</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classLayerMapIn.html#a15">getNumUsed() const</a> <BR>
+		<a href="oaStrm/classLayerMapIn.html#a4">read(const oaString &amp;fileName)</a> <BR>
+	<a href="oaStrm/classPropMapIn.html">PropMapIn</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classPropMapIn.html#a2">add(oaUInt2 strmId, oaUInt2 objType, const oaString &amp;propName)</a> <BR>
+		<a href="oaStrm/classPropMapIn.html#a3">read(const oaString &amp;fileName)</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		add(oaUInt2 strmId, oaUInt2 objType, oaString &amp;propName)<BR>
+	<a href="oaStrm/classPropMapOut.html">PropMapOut</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classPropMapOut.html#a2">add(const oaString &amp;propName, oaUInt2 objType, oaUInt2 strmId)</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		add(oaString &amp;propName, oaUInt2 objType, oaUInt2 strmId)<BR>
+</PRE>
+		<P><BR>
+			################################# </SPAN></SPAN></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following new classes were added
+#<BR>#################################<BR></P>
+		<PRE>	<a href="oaStrm/classStrmLayerMapParser.html">StrmLayerMapParser</a> <BR>
+</PRE>
+		<P><BR>
+			################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<BR><PRE>	<a href="oaStrm/classOptionsOut.html">OptionsOut</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classOptionsOut.html#a69">outputUnplacedInstances() const</a> <BR>
+		<a href="oaStrm/classOptionsOut.html#a35">setOutputUnplacedInstances(oaBoolean val)</a> <BR>
+	<a href="oaStrm/classStrmOut.html">StrmOut</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classStrmOut.html#b54">isValidLPP(oaShape *shape, oaUInt2 strmLayer, oaUInt2 strmType) const</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b55">isValidLPP(const oaBox &amp;box, oaUInt2 strmLayer, oaUInt2 strmType) const</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b32">writeOaStdViaCutStruct(oaViaParam &amp;params, oaDesign *design, oaBoolean floating)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b35">writeStructBegin(const oaString &amp;name, oaDesign *design)</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		writeOaStdViaCutStruct(oaViaParam &amp;params, oaBoolean floating)<BR>
+		writeStructBegin(const oaString &amp;name)<BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were added #<BR>#################################<BR><PRE>	<a href="oaStrm/oaStrmLayerMapParser_8h.html#a4">StrmQualifierEnum</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>	<a href="oaStrm/oaStrmMsgs_8h.html#a77">MsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="oaStrm/oaStrmMsgs_8h.html#a77a72">cNegativeMag</a> <BR>
+		<a href="oaStrm/oaStrmMsgs_8h.html#a77a75">cQualifierNameInvalid</a> <BR>
+		<a href="oaStrm/oaStrmMsgs_8h.html#a77a76">cFloatingInvalidPurpose</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums have changed values
+#<BR>#################################<BR><PRE>	<a href="oaStrm/oaStrmMsgs_8h.html#a77">MsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Changed Values</SPAN><BR>
+		<a href="oaStrm/oaStrmMsgs_8h.html#a77a73">cTranslateAsBoundary</a>     New Value:  80071 Last Value:  80070<BR>
+		<a href="oaStrm/oaStrmMsgs_8h.html#a77a74">cFloatingLayerInLayerMap</a>     New Value:  80072 Last Value:  80071<BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<SPAN style="COLOR: rgb(0,102,204)">
+			<SPAN style="COLOR: rgb(0,102,204)">
+				<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<BR><PRE>	<a href="oaStrm/classCellMapOut.html">CellMapOut</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classCellMapOut.html#a2">add(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, const oaString &amp;structName, oaBoolean floating=false)</a> <BR>
+		<a href="oaStrm/classCellMapOut.html#a3">find(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, oaBoolean floating=false) const</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		add(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, const oaString &amp;structName)<BR>
+		find(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName) const<BR>
+	<a href="oaStrm/classCellMapOutHashTbl.html">CellMapOutHashTbl</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classCellMapOutHashTbl.html#a1">find(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, oaBoolean floating) const</a> <BR>
+	<a href="oaStrm/classLayerMapIn.html">LayerMapIn</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		findLpp(oaLayerNum layer, oaPurposeNum purpose) const<BR>
+	<a href="oaStrm/classLayerMapOut.html">LayerMapOut</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classLayerMapOut.html#a2">add(oaLayerNum layer, oaPurposeNum purpose, oaUInt2 strmLayer, oaUInt2 strmType, oaBoolean floating=false)</a> <BR>
+		<a href="oaStrm/classLayerMapOut.html#a3">find(oaLayerNum layer, oaPurposeNum purpose, oaBoolean floating=false) const</a> <BR>
+		<a href="oaStrm/classLayerMapOut.html#a4">find(oaLayerNum layer, oaPurposeNum purpose, StrmLayerNumArray &amp;strmLayers, StrmTypeArray &amp;strmTypes, oaBoolean floating=false) const</a> <BR>
+		<a href="oaStrm/classLayerMapOut.html#a5">remove(oaLayerNum layer, oaPurposeNum purpose, oaBoolean floating=false) const</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		add(oaLayerNum layer, oaPurposeNum purpose, oaUInt2 strmLayer, oaUInt2 strmType)<BR>
+		find(oaLayerNum layer, oaPurposeNum purpose, StrmLayerNumArray &amp;strmLayers, StrmTypeArray &amp;strmTypes) const<BR>
+		find(oaLayerNum layer, oaPurposeNum purpose) const<BR>
+		remove(oaLayerNum layer, oaPurposeNum purpose)<BR>
+	<a href="oaStrm/classLayerMapOutHashTbl.html">LayerMapOutHashTbl</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classLayerMapOutHashTbl.html#a1">find(oaLayerNum layer, oaPurposeNum purpose, oaBoolean floating=false) const</a> <BR>
+	<a href="oaStrm/classStrmOut.html">StrmOut</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaStrm/classStrmOut.html#b114">getCellName(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, oaString &amp;name, oaBoolean floating)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b117">isCustomViaDefMaster(oaCell *cell)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b49">mapLayer(oaLayerNum layer, oaPurposeNum purpose, StrmLayerNumArray &amp;strmLayer, StrmTypeArray &amp;strmType, oaBoolean floating=false, oaBoolean exclusive=false)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b2">translate(const oaScalarName &amp;lib, const oaScalarName &amp;cell, const oaScalarName &amp;view, oaInt4 depth, oaBoolean force=false, StrmFloatingEnum floating=strmcUnspecified)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b3">translateDesign(oaDesign *design, const oaString &amp;structName, oaUInt4 depth, StrmFloatingEnum floating=strmcUnspecified)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b37">writeOaDesign(oaDesign *design, const oaString &amp;name, const oaBoolean labelPins=false, StrmFloatingEnum floating=strmcUnspecified)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b7">writeOaLPPHeader(oaLPPHeader *header, StrmFloatingEnum floating=strmcUnspecified)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b34">writeOaPcell(oaDesign *design, oaBoolean floating)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b33">writeOaStdViaCutAref(oaViaParam &amp;params, oaBoolean floating)</a> <BR>
+		<a href="oaStrm/classStrmOut.html#b32">writeOaStdViaCutStruct(oaViaParam &amp;params, oaBoolean floating)</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		getCellName(const oaString &amp;libName, const oaString &amp;cellName, const oaString &amp;viewName, oaString &amp;name)<BR>
+		getCellName(const oaDesign *design, oaString &amp;name)<BR>
+		mapLayer(oaLayerNum layer, oaPurposeNum purpose, StrmLayerNumArray &amp;strmLayer, StrmTypeArray &amp;strmType)<BR>
+		translate(const oaScalarName &amp;lib, const oaScalarName &amp;cell, const oaScalarName &amp;view, oaInt4 depth, oaBoolean force=false)<BR>
+		translateDesign(oaDesign *design, const oaString &amp;structName, oaUInt4 depth)<BR>
+		writeOaDesign(oaDesign *design, const oaString &amp;name, const oaBoolean labelPins=false)<BR>
+		writeOaLPPHeader(oaLPPHeader *header)<BR>
+		writeOaPcell(oaDesign *design)<BR>
+		writeOaStdViaCutAref(oaViaParam &amp;params)<BR>
+		writeOaStdViaCutStruct(oaViaParam &amp;params)<BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+				<P></P>
+				<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were added #<BR>#################################<BR><PRE>	<a href="oaStrm/oaStrm_8h.html#a103">StrmFloatingEnum</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+				<P></P>
+				<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>	<a href="oaStrm/oaStrmMsgs_8h.html#a74">MsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="oaStrm/oaStrmMsgs_8h.html#a74a73">cFloatingLayerInLayerMap</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+				<P></P>
+			</SPAN>
+		</SPAN>
+		<P></P>
+	</body>
+</html>

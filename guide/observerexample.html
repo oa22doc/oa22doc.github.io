@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a><STRONG><A id=observer_example 
+name=observer_template_example></a>Observer&lt;&gt; Template Code Example</STRONG></h1>
+<hr />
+<p>Occasionally users may wish to declare and implement an observer template class that can then be used by several user observers. This method can allow each of the user's observers to share a common observer notification function code base. </p> 
+
+<P>The example below uses this technique to derive a user object sentinel (object observer or watcher) template class from the oaObserver template class. The sentinel template class has the following features and functionality: </P>
+<UL>
+  <LI>the sentinel constructor sets the priority of all sentinel observers to 1, and initially disables all instantiated observers -- it is assumed that the user will write separate enable/disable functions to synchronously set or reset the enabled status of all sentinel observers.<BR>
+  <LI>since the sentinel template derives from the oaObserver template, it has available to it the four standard notification</a> functions. The sentinel class implements three of the four standard notifications functions. Each implemented notification function throws an user-defined cObjChange exception.<BR>
+  <LI>the sentinel template is used to construct four static member net-related object observers (oaNet, oaTerm, oaInst and oaInstTerm observers). Note that the sentinel template can be used to instantiate observers for any of the objects that are listed in the <a href="../base/classoaObserver.html#observer_table">OpenAccess Observer Table</a>  that provide standard notifications -- these are the objects whose observers can be derived from the oaObserver&lt;&gt; template (objects of classes that have an oaTraits&lt;&gt; template specialization with a declared modTypeType enum). </LI>
+</UL>
+<P>
+<PRE>template
+&lt;class T&gt;
+class ObjSentinel : public oaObserver&lt;T&gt; {
+public:
+ObjSentinel() : oaObserver&lt;T&gt; (1, false) {}
+   ~ObjSentinel() {}
+   void onPostCreate (T *object);
+   void onPreModify  (T *object, 
+                      typename oaTraits&lt;T&gt;::modTypeType modType);
+   void onPreDestroy (T *object);
+private:
+   static ObjSentinel&lt;oaNet&gt;     m_netSentinel;
+   static ObjSentinel&lt;oaTerm&gt;    m_termSentinel;
+   static ObjSentinel&lt;oaInst&gt;    m_instSentinel;
+   static ObjSentinel&lt;oaOccTerm&gt; m_itermSentinel;
+};
+<P>template&lt;class T&gt;
+inline void&gt;
+ObjSentinel&lt;T&gt;::onPostCreate(T *object)
+{
+  throw NetException(cObjChange);
+}
+
+template&lt;class T&gt;
+inline void
+ObjSentinel&lt;T&gt;::onPreModify(T *object, 
+                            typename oaTraits&lt;T&gt;::modTypeType modType)
+{
+  throw NetException(cObjChange);
+}</P>template&lt;class T&gt;
+inline void
+ObjSentinel&lt;T&gt;::onPreDestroy(T *object)
+{
+  throw NetException(cObjChange);
+}<br />
+  <br />
+  <br />
+</PRE>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

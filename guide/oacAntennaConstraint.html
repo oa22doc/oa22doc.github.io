@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>antenna (oacAntenna)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in layer constraint definition oacAntenna specifies the maximum antenna ratios for one or more antenna models (oxide thicknesses) for a particular layer.  This constraint holds a value that specifies the maximum allowed ratio of the layer's antenna area to the gate area (gateAreaRatio), and specifies how that maximum ratio changes if a diode is present on the wire (diodeAreaRatio). The equation for calculating the metal/gate antenna ratio for a single metal layer for top area calculations (isSide() is false), or a cut layer is:</p>
+    <p>
+{ [ ( oacAntennaMetalFactorConstraintParam * metal_area) *  oacAntennaDiffMetalReduceFactorConstraintParam  ] - oacAntennaDiffMinusFactorConstraintParam  * diff_area } / (gate_area +  oacAntennaDiffPlusFactorConstraintParam * diff_area)</p>
+    <p>The equation for calculating the metal/gate antenna ratio for a single metal layer for side area calculations (isSide() is true) is:</p>
+    <p>{ [ ( oacAntennaSideFactorConstraintParam * metal_area) *  oacAntennaDiffMetalReduceFactorConstraintParam ] - oacAntennaDiffMinusFactorConstraintParam  * diff_area } / (gate_area +  oacAntennaDiffPlusFactorConstraintParam * diff_area)</p>
+    <p>Often the cumulative area ratio (CAR) for a given metal layer is calculated by adding the partial area ratio (PAR) for that layer to the CAR for the metal layer below it. An alternative is to include the CAR of the cut layer below in calculating the CAR for a specified metal layer. Similarly, the CAR for a given cut layer is often calculated by including the CAR of the cut layer below it, but an alternative is to calculate the CAR for a given cut layer by including the CAR of the metal layer below it. You can specify whether, for a given layer's cumulative antenna ratio calculation, to include the CAR of the layer immediately below (cut for metal layers, metal for cut layers) or the like layer below (metal for metal layers, cut for cut layers). This oacAntenna attribute for a layer is specified using oacAntennaCumRoutingPlusCutConstraintParamType.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/tech/classoaAntennaRatioValue.html">oaAntennaRatioValue</a>, <a href="../../html/tech/classoaAntennaRatioArrayValue.html">oaAntennaRatioArrayValue</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaTech.html">oaTech</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/tech/classoaAntennaRatioValue.html">oaAntennaRatioValue</a>
+        </b>
+        <p>oacCumViaAntenna constraints have an oaAntennaRatioValue if only the default antenna model is represented. The oaAntennaRatioValue object has functions to set and retrieve both the gate and diode area ratios.</p>
+        <p>The gate area ratio is a float indicating the maximum cumulative antenna ratio, where the antenna area is the area of the metal wire that is not connected to the diffusion diode.</p>
+        <p>The diode area ratio is the maximum cumulative antenna ratio calculated where the antenna area is the area of the metal wire that is connected to the diffusion diode. This ratio can be dependent on the diode area and is represented by a one dimensional lookup table whose key is the diode area in database units squared, and value is the cumulative antenna ratio. In the simplest case, this table degenerates to one value.</p>
+        <p>The oaAntennaRatioValue object also contains isSide() method for indicating whether the antenna area should be calculated as the perimeter (the area of the sides of the process antenna) or the drawn area (the top surface area of the process antenna).</p>
+        <p>
+        Units: Antenna</p>
+      </li>
+      <li>
+        <b>
+          <a href="../../html/tech/classoaAntennaRatioArrayValue.html">oaAntennaRatioArrayValue</a>
+        </b>
+        <p>The oaAntennaRatioArrayValue is used when more than one antenna model is represented. The oaAntennaRatioArrayValue object simply represents a set of oaAntennaRatioValues that can be set and retrieved by antenna model.</p>
+        <p>
+        Units: Antenna</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>antennaAreaFactor</b><br />oacAntennaAreaFactorConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaFltValue.html">oaFltValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Float Factor</td>
+        <td style="vertical-align: middle; text-align:center;">1</td>
+        <td>
+          <p>The antennaAreaFactor parameter specifies a factor for calculating the antenna area. This factor is the sideFactor if isSide() is true, or it is the areaFactor if isSide() is false. The usual range value for this factor parameter is between 0 and 1.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>antennaDiffPlusFactor</b><br />oacAntennaDiffPlusFactorConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaFltValue.html">oaFltValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Float Factor</td>
+        <td style="vertical-align: middle; text-align:center;">0.0</td>
+        <td>
+          <p>The antennaDiffPlusFactor is a parameter that determines how the diffusion area connected to the net is added to the area of the gate for antenna/gate ratio calculations.
+  The AntennaDiffMinusFactor determines how the diffusion area connected to the net is subtracted from the antenna area when calculating antenna/gate ratio for both
+metal and cut layers.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>antennaDiffAreaReduceFactor</b><br />oacAntennaDiffAreaReduceFactorConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaFlt1DTblValue.html">oaFlt1DTblValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Float Factor</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>The AntennaDiffAreaReduceFactor parameter multiplies the conductor area by a floating point factor that depends on the diffusion area attached to the net. If the diffMinusFactor described above is nonzero, the subtraction of the diffusion area times the diffMinusFactor must occur after the metal and cut areas are multiplied by the diffAreaReduceFactor. Note that diffAreaReduceFactor is a piecewise-linear model that is based on diffusion area, and it is typically between 0.0 and 1.0. This factor applies to the metal and cut area sum used in the single and cumulative metal antenna constraints. It can also be defined for the cumulative via ratio constraint.</p>
+        </td>
+      </tr>
+    </table>
+    <h2>Manufacturing Reasons</h2>
+    <p>Antenna rules limit the electrical charges that build up during metal processing, such as plasma etching processes. Without these limits, the probability that the built-up charges might break through gate oxides increases greatly. Some processes have multiple gate oxides. These different thicknesses allow for different amounts of charge resistance. This is why multiple oxide models are available.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

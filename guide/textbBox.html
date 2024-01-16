@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>How to Write   a  Plug-in to Calculate Bounding Boxes for Text </h1>
+<p>This document describes</p>
+<ul>
+  <li><a href="#bBox">Bounding Boxes (bBoxes) for Text</a></li>
+  <li><a href="#bBox_infra">bBox Plug-In Infrastructure</a></li>
+  <li><a href="#create_plug">Creating a Text bBox Calculator Plug-in</a></li>
+  <li><a href="#example">Example</a></li>
+  <li><a href="#in_memory">Creating an In-Memory Text bBox Calculator</a></li>
+</ul>
+<h2><a name="bBox"></a>Bounding Boxes (bBoxes) for Text </h2>
+<p>Graphical applications require a great deal of flexibility in the way that they display text labels for design elements. OpenAccess  provides three types of objects that support the  display of text labels:</p>
+<ul>
+  <li><a href="../design/classoaText.html">oaText</a></li>
+  <li><a href="../design/classoaEvalText.html">oaEvalText</a></li>
+  <li><a href="../design/classoaTextDisplay.html">oaTextDisplay </a></li>
+</ul>
+<p>These objects are categorized as shapes because they all have  characteristics common to shapes such as a layers, purposes, transforms, and  bounding boxes (bBoxes). Unique to the text shapes are attributes such as font, text  alignment, and height. These attributes determine how the text string appears in  graphical applications. OpenAccess also uses these attributes to determine the bBox for the text based on an internal algorithm. This calculated bBox is  used by editing applications for object selection as well as by the OpenAccess region query plug-in. </p>
+<p>Applications can apply special formatting to text labels. For example, the application might use custom fonts. In such cases, the bBox calculated by OpenAccess might not be appropriate. </p>
+<p>OpenAccess provides a plug-in infrastructure that lets  an application calculate its own bBoxes for text labels. It is recommended that the application provide  this capability with a plug-in component, and this document is tailored to this approach. </p>
+<p>It is also possible to provide a text bBox calculator as an in-memory component, as explained in <a href="#in_memory">Creating an In-Memory Text bBox Calculator</a> near the end of this document. </p>
+<h2><a name="bBox_infra"></a>bBox Plug-In Infrastructure</h2>
+<p>A text bBox calculator is responsible for calculating the bounding boxes of oaText, oaTextDisplay, and oaEvalText objects. The following sections describe how OpenAccess, an application built on OpenAccess, and a text bBox calculator plug-in should communicate and transfer data.</p>
+<ul>
+  <li><a href="#oaText">Calculation of bBoxes for oaText Objects</a></li>
+  <li><a href="#oaTextDisplay">Calculat</a><a href="#oaText">ion</a><a href="#oaTextDisplay"> of bBoxes for oaTextDisplay Objects</a></li>
+  <li><a href="#oaEvalText">Calculat</a><a href="#oaText">ion</a><a href="#oaEvalText"> of bBoxes for oaEvalText Objects</a></li>
+</ul>
+<p>The actual tasks involved in creating the plug-in as well as an example follow these sections. </p>
+<h3><a name="oaText"></a>Calculation of bBoxes for oaText Objects </h3>
+<p>An application starts the process by modifying an <a href="../design/classoaText.html">oaText</a> object, for example, by calling the <a href="../design/classoaText.html#oaText::setHeight">oaText::setHeight</a> function. This triggers OpenAccess to call IText::getBBox(), which starts the process of recalculating the bBox. The oaText object is passed through the <a href="../PcellCPP/classIText.html">IText</a> interface to the bBox calculator. The calculator then accesses attributes such as the height and origin of the oaText  object in order to calculate the bBox. </p>
+<p>The bounding box is  returned to OpenAccess through the IText interface. OpenAccess  caches and persistently stores this bBox on the object. Note that the plug-in is responsible for calculating  bBoxes for all text objects&#8212;not only the ones that have been formatted by the application. </p>
+<p><img src="images/IText_flow.gif" width="1031" height="323"></p>
+<h4><a name="invalidate"></a>Invalidating a bBox </h4>
+<p>An application might alter a text label in a way that is not understood directly by OpenAccess. For example, the application might use TrueType fonts  to visually display  text labels. If there are changes to the TrueType display attributes and the application wants these changes reflected in the bBox, the application must invalidate the text bBox, which causes the plug-in to  recalculate it. The <a href="../PcellCPP/classITextInvalidate.html">ITextInvalidate</a> class provides this functionality. When a text bBox calculator plug-in is registered or loaded, it receives a handle to the ITextInvalidate interface through the IText::init function. The plug-in should provide a way to pass this ITextInvalidate object to the application, which can then call the appropriate ITextInvalidate::invalidate function. </p>
+<h3><a name="oaTextDisplay"></a>Calculation of bBoxes for oaTextDisplay Objects </h3>
+<p>Graphical applications can use <a href="../design/classoaTextDisplay.html">oaTextDisplay</a> objects to display text strings that represent attributes and properties of  design objects. </p>
+<p>An oaTextDisplay object can be one of the following: </p>
+<ul>
+  <li>Property on an object (<a href="../design/classoaPropDisplay.html">oaPropDisplay</a>) </li>
+  <li>Property on an oaInst master (<a href="../design/classoaInstPropDisplay.html">oaInstPropDisplay</a>) </li>
+  <li>Attribute of an object (<a href="../design/classoaAttrDisplay.html">oaAttrDisplay</a>) </li>
+  <li>Attribute of an oaInst master (<a href="../design/classoaInstAttrDisplay.html">oaInstAttrDisplay</a>) </li>
+  <li>oaTextOverride  that overrides an oaText object in an oaInst master  (<a href="../design/classoaTextOverride.html">oaTextOverride</a>) </li>
+</ul>
+<p>If the application changes the attribute of the object being displayed, the bBox must be recalculated. The flow of information is the same as the flow of information for oaText objects shown in the previous figure. The  difference is in the various actions that trigger the flow (represented by <img src="images/number_one..gif" width="19" height="18" align="absmiddle"> in the following figure.) </p>
+<p><img src="images/IText_flow_display.gif" width="1032" height="293"></p>
+<p>In another scenario, the application might change the name of the owning net for an oaAttrDisplay object, in which case the bBox must be recalculated. Because oaAttrDisplay objects display name mapped strings, the plug-in must select the appropriate name space to perform the  name mapping and calculate the bBox based on the name mapped string.</p>
+<p>Note that the application can also invalidate the bBox as described in <a href="#invalidate">Invalidating a bBox</a>. </p>
+<h3><a name="oaEvalText"></a>Calculation of bBoxes for oaEvalText Objects</h3>
+<p>For <a href="../design/classoaEvalText.html">oaEvalText</a> objects,  another plug-in is used for evaluating the text string. This plug-in is accessed whenever  getText is called on an oaEvalText object. </p>
+<p>An application starts the process by modifying the oaEvalText object. This triggers OpenAccess to call IText::getBBox(). The oaEvalText object is passed through the IText interface to the bBox calculator. The bBox calculator  calls getText, which calls the text evaluator plug-in. The evaluator plug-in passes the evaluated text string  back to oaEvalText, and then to the bBox plug-in. The bBox is  returned to OpenAccess through the IText interface. OpenAccess  caches and persistently stores this bBox on the object.</p>
+<p><img src="images/IText_flow_Eval.gif" width="1026" height="345"></p>
+<p>Note that the application can also invalidate the bBox as described in <a href="#invalidate">Invalidating a bBox</a>. </p>
+<h2><a name="create_plug"></a>Creating a Text bBox Calculator Plug-in</h2>
+<p>Before starting this project, you might want to read <a href="writingplugin.html">How to Write a Plug-In</a>, which is a more generic document describing the general concept of plug-ins and how they work.</p>
+<p>You can create a text bBox calculator plug-in by creating a shared library that is loaded by OpenAccess at runtime. The shared library must do the following:</p>
+<ul>
+<li><a href="#factory">Create a plug-in factory</a></li>
+<li><a href="#entryPoint">Implement the entry point function <em>getClassObject</em></a></li>
+<li><a href="#defineClass">Define a new class derived from IText</a></li>
+</ul>
+<p>In addition, you must <a href="#plgFile">Create a plug-in registration file</a>.
+<h3><a name="factory"></a>Creating a Plug-in Factory</h3>
+<p>OpenAccess provides the  <a href="../common/classFactory.html">oaCommon::Factory&lt;T></a>&nbsp;templated class for defining a factory object for a plug-in. The factory object is used to create instances of a plug-in. Each plug-in has a classID, which is stored in a factory table. When OpenAccess needs to create an instance of a plug-in, it uses the classID to find the factory for the plug-in. For more information about creating a plug-in factory, see  <a href="writingplugin.html#factory">Understanding the Plug-in Factory</a> in <em>How to Write a Plug-in</em>. </p>
+
+<h3><a name="entryPoint"></a>Implementing the Entry Point Function</h3>
+<p>You must also implement the getClassObject entry point function. When called, this function returns a pointer to the plug-in factory. For more information about implementing the getClassObject entry point function, see  <a href="writingplugin.html#entrypoint">Implementing the Entry Point Function</a> in <em>How to Write a Plug-in</em>.</p>
+<h3><a name="defineClass"></a>Defining a Class Derived from PlugInBase&lt;IText&gt; </h3>
+<p>To create a text bBox calculator  plug-in, you must define a new class derived from the PlugInBase&lt;IText> class.  The new class must implement all virtual functions of the IText class. Refer to the API documentation for IText for a detailed description about these virtual functions. </p>
+<ul>
+  <li><a href="../PcellCPP/classIText.html#IText::getName">getName(oaString &name)</a></li>
+  <li><a href="../PcellCPP/classIText.html#IText::getBBox">getBBox(const oaText *text, oaBox &bBox)</a></li>
+  <li><a href="../PcellCPP/classIText.html#IText::getBBox2">getBBox(const oaTextDisplay *text, oaBox &bBox)</a></li>
+  <li><a href="../PcellCPP/classIText.html#IText::init">init(oaITextInvalidate *textInvalidate)</a></li>
+</ul>
+<h4>Link Between OpenAccess and the Plug-In </h4>
+<p>Applications can use the <a href="../design/classoaTextLink.html">oaTextLink</a> class to register a text bBox calculator plug-in. Only one such plug-in can be registered per session. If an application registers a plug-in, it is recommended that this be done after the call to oaDesignInit, but before a design is opened. </p>
+<p>This function registers the text bBox calculator plug-in: </p>
+<pre>setIText(const oaString &amp;plugInName) </pre>
+<p>If an application does not register a plug-in, OpenAccess loads the default bBox calculator plug-in. An application can denote their bBox plug-in as the default plug-in. Refer to <a href="#7">Step 7 </a> in the Example for details. </p>
+<h3><a name="plgFile"></a>Creating the Plug-in Registration File </h3>
+<p>The plug-in registration file registers the plug-in shared library. The registration file can be installed in $(OA_HOME)/data/plugins when the plug-in shared library is installed. Alternatively,  the OA_PLUGIN_PATH environment variable can be used to reference a .plg file outside of $(OA_HOME)/data/plugins. Refer to <a href="writingplugin.html#registration">Writing the Plug-In Registration File</a> in <em>How to Write a Plug-In</em> for more information. </p>
+<h2><a name="example"></a>Example: Creating  a Plug-in Text bBox Calculator Named myIText</h2>
+<p>A plug-in is a shared library that is installed in the OpenAccess installation hierarchy in the $(OA_HOME)/data/plugins directory. Applications load the plug-in at runtime to select a customized implementation. The following  describes the steps for creating a plug-in. </p>
+<ol>
+<li>Define the entry point function getClassObject():
+  <pre>
+extern "C" long getClassObject(const char  *classID,
+                               const Guid  &amp;interfaceID,
+                               void        **ptr);
+  </pre>
+</li>
+<li>Implement the entry point function as:
+<pre>
+long
+getClassObject(const char  *classID,
+               const Guid  &interfaceID,
+               void        **ptr)
+{
+    return FactoryBase::getClassObject(classId, interfaceID, ptr);
+}
+</pre>
+</li>
+<li>Define a new class derived from PlugInBase&lt;IText>, and implement the required functions. <br>
+  For example:
+  <pre>
+class myIText : public PlugInBase&lt;IText> {
+  public:
+    virtual void getBBox(const oaText  *text,
+                         oaBox         &box);
+
+    virtual void getBBox(const oaTextDisplay  *textDisplay,
+                         oaBox                &box);
+
+    virtual void getName(oaString  &name);
+
+    virtual void init(ITextInvalidate  *textInvalidate); 
+	.
+	.
+	. 
+     
+};
+  </pre>
+</li>
+<li>Optionally implement an ICompatibility::validate function to verify whether or not the version of OpenAccess is compatible with the plug-in.
+  The validate() function should check the OpenAccess API version and either throw   an exception with a description of the requirements or simply return   false. <span class="style1">REVIEWERS: Need to describe how an app might check if an interface has an ICompatibility component and if so, how to use it. </span><br>
+  <pre>virtual bool                validate();</pre>
+</li>
+<li>Declare a Factory static member variable (inside the class myIText):<br>
+  <br>
+  <code>class myIText : public PlugInBase&lt;IText> { <br>
+    &nbsp;&nbsp; .<br>
+    &nbsp;&nbsp; .<br>
+    &nbsp;&nbsp; .<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; private:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static Factory&lt;myIText&gt;	myFactory;<br>
+    };</code><br>
+  <br>
+  <strong>Note:</strong> Factory is a class defined in the oaCommon namespace that resides in the oaCommon library. <br>
+  <br>
+</li>
+<li>Initialize the Factory static member variable (of class myIText):<br>
+  <br>
+  <pre>Factory&lt;myIText&gt;	 myIText::myFactory("myIText")<br>
+</pre>
+</li>
+<li>Write the plug-in registration file <code>myIText.plg</code> with the following contents: 
+  <pre>
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;plugIn lib="myAppTextLibrary"/&gt;
+</pre>
+  The registration file can be installed in $(OA_HOME)/data/plugins when the plug-in shared library is installed. Alternatively,  the OA_PLUGIN_PATH environment variable can be used to reference a .plg file outside of $(OA_HOME)/data/plugins. Refer to <a href="writingplugin.html#registration">Writing the Plug-In Registration File</a> in <em>How to Write a Plug-In</em> for more information. <br>
+  <br>
+</li>
+<li><a name="7"></a>(Optional) Designate that your bBox calculator is the default plug-in by editing $(OA_HOME)/data/oaTextSystem.plg as follows: <br>
+  <br>
+  <pre>
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;plugIn treatAs="myAppTextLibrary"/&gt;
+</pre>
+</li>
+</ol>
+
+<h2><a name="in_memory"></a>Creating an In-Memory Text bBox Calculator</h2>
+<p>To create an in-memory text bBox calculator:</p>
+<ol>
+  <li>Define a new class derived from PlugInBase&lt;IText>, and implement the required functions. <br>
+For example:
+<pre>
+class myIText : public PlugInBase&lt;IText> {
+  public:
+    virtual void getBBox(const oaText  *text,
+                         oaBox         &box);
+
+    virtual void getBBox(const oaTextDisplay  *textDisplay,
+                         oaBox                &box);
+
+    virtual void getName(oaString  &name);
+
+    virtual void init(ITextInvalidate  *textInvalidate);
+    virtual bool validate();
+};</pre>
+</li>
+  <li>Instantiate an object of the class defined in the previous step:
+    <pre> myIText   *myText = new myIText;</pre>
+<br>
+  </li>
+  <li>Register your in-memory  bBox calculator, as follows: </li>
+</ol>
+<blockquote>
+  <pre>oaTextLink::setIText(myText);</pre>
+</blockquote>
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

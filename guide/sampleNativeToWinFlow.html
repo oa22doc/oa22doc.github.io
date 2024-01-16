@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Sample Namespace Implementation: oaNative to oaWinNS</h1>
+
+<hr />
+
+<p>The following example shows the flow when converting a scalar name string
+from the <a href="../base/classoaNativeNS.html">oaNative</a> namespace to a name
+string in the Windows name space (<a href="../base/classoaWinNS.html">oaWinNS</a>).
+This flow uses the <a href="../base/classoaNameSpace.html#oaNameSpace::getType">getType()</a> 
+function to implement the name type and the
+<a href="../base/classoaNameSpace.html#oaNameSpace::get">get()</a> function to implement the
+name strings.</p>
+
+<ol>
+<li>Implement the code that checks the name type. Because the Windows namespace
+only supports scalar names, throw an exception for all other name types.</li>
+<br /><br />
+
+<li>Once you have a valid name type, implement code that determines if the
+name string is an escaped keyword.</li><br /><br />
+
+<ul>
+<li>If the name string is a keyword in oaWinNS and it is escaped, the name
+string is valid in oaWinNS and the processing of this name is complete.</li>
+<br /><br />
+
+<li>If the name string is a keyword in oaWinNS and it is <em>not</em> escaped,
+oaNative throws an exception.</li>
+<br /><br />
+</ul>
+
+<li>If a name string is not a keyword, check each character in the name to
+determine if it is a valid character in the oaWinNS namespace. Character
+validation follows the flow shown in the figure below. Because bus characters
+are not allowed in the Windows namespace, oaNative throws an exception if an
+oaNative bus character is found in the name string. Case sensitivity is
+considered when validating the keywords as well as when validating each
+character.</li><br /><br />
+</ol>
+<div class="indent">
+<p><img src="images/figFlowNativeToWin.gif" 
+alt="Converting oaNative name string to oaWinNS"></p>
+</div>
+
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="derivingnamespaces.html#flowOut">Return to Deriving Namespaces</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

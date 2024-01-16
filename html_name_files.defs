@@ -1,0 +1,28 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Name Class Index
+
+HTMLFILES = \
+	classoaName.html
+	classoaNameBase.html
+	classoaNameMem.html
+	classoaNameSpace.html
+	classoaNameType.html
+	classoaSimpleName.html
+	classoaBundleName.html
+
+BUILDINFO
+All OpenAccess names are represented by a string plus the "name space" where the rules for interpreting that string are 
+defined. The standard algorithmic one-to-one name mapping implemented in the OpenAccess database ensures that names 
+can be mapped among all name spaces, that names do not collide, and the meaning of names is not altered when they are mapped.
+
+See <a href="../guide/namemap.html">Name Mapping</a> and 
+<a href="../guide/derivingnamespaces.html">Deriving Your Own Namespace</a> for more information.
+
+
+
+	

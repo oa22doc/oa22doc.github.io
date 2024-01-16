@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>Global Nets </h1>
+<hr>
+<p>The consistency of the global state of a net is  preserved across the <a href="emh.html">OpenAccess hierarchy domains</a>. This document explains how global nets can be used in OpenAccess. </p>
+<ul>
+  <li><a href="#createModGlobal">Creating Global Nets in the Module Domain </a></li>
+  <li><a href="#changeModToGlobal">Changing an Existing Net into a Global</a></li>
+  <li><a href="#removeModGlobal">Removing the Global State of a Net in the Module Domain</a></li>
+  <li><a href="#destroyModGlobal">Destroying a Global Net in the Module Domain</a></li>
+  <li><a href="#setBlockGlobal">Setting the Global State of a Block Net</a></li>
+  <li><a href="#unsetBlockGlobal">Unsetting the Global State of a Block Net</a></li>
+  <li><a href="#destroyBlockGlobal">Destroying a Global Net in the Block Domain</a></li>
+  <li><a href="#connectThruInstTerm">Connecting Global Nets Through oaModInstTerms in the Module Domain</a></li>
+  <li><a href="#connectThruTerm">Connecting Global Nets  through oaModTerms in the Module Domain</a></li>
+  <li><a href="#spanOccNet">The Span of a Global oaOccNet</a></li>
+  <li><a href="#returnGNets">Returning the Set of Global Nets in an Occurrence Hierarchy</a></li>
+</ul>
+<h3><a name="createModGlobal"></a>Creating Global Nets in the Module Domain </h3>
+<p>A global net created in the module domain results in a  global net in the block domain. However,  OpenAccess does not create a corresponding net in the top module. An application must explicitly create such a net. </p>
+<p>The following example shows a global tie1  net that was created in module A. This resulted in a single, global net in  the block domain.&nbsp; Note that there is no  corresponding global tie1 net in the top module. </p>
+<p><img src="images/modGlobalNet.gif" width="539" height="228"></p>
+<h5>Creating a Global Net  in the Top Module When a Global Net with the Same Name Already Exists</h5>
+<p>An application can explicitly create a global  net in the top module when a global net  with the same name already exists.&nbsp; Doing so simply reflects the existing oaOccNet  into the module domain and has no effect on the global set.&nbsp; It is an error to attempt to create a local  oaModNet in the top module with the same name as a global net.</p>
+<h3><a name="changeModToGlobal"></a>Changing an Existing Net into a Global</h3>
+<p>When an existing, non-global net in the module domain is set  to global, all of the oaOccNets that are unfolded from that oaModNet are set to global  and added to the corresponding global set.&nbsp;  This process is incremental and on a per net basis.&nbsp; Other nets in other modules with the same  name as the global net that are not marked global are not added to the global  set even if those other nets are in the module hierarchy of the net that is set  global.</p>
+<p>In the  following example, the tie1 net in module C is  an ordinary  local net.&nbsp;</p>
+<p><img src="images/modGlobalNetSetExisting.gif" width="706" height="355"></p>
+<p>If the application sets the tie1 net in module C to be global, the following connections are made in the block domain.</p>
+<p><img src="images/modGlobalNetSetExisting2.gif" width="559" height="328"></p>
+<h3><a name="removeModGlobal"></a>Removing the Global  State of a Net in the Module Domain</h3>
+<p>When the global state of a module net is unset, all the oaOccNets  that are unfolded from that oaModNet have their global state unset and those  oaOccNets are removed from the global set. &nbsp;This process is incremental and has no effect  on nets with the same name that are either lower or higher in the module  hierarchy.&nbsp; It is an error to attempt to  unset the global state of an oaModNet in the top module.</p>
+<p>Consider the example in the previous section. If you begin at  a state where all the tie1 nets are global (the second figure) then unset the global state of the tie1 net in module C, the design returns the state shown in the first figure. </p>
+<h3><a name="destroyModGlobal"></a>Destroying a Global  Net in the Module Domain</h3>
+<p>From the perspective of maintaining the global set, destroying  a global net in the module domain is similar to unsetting its global state: all  the oaOccNets unfolded from the oaModNet are removed from the corresponding global  set. The remaining global set continues  to be reflected as a single global net in the block domain.</p>
+<h3><a name="setBlockGlobal"></a>Setting the Global  State of a Block Net</h3>
+<p>Setting the global state of a block net sets the global  state of every oaOccNet with the same local name, and adds those oaOccNets to the  global set. </p>
+<p>When a block net includes connectivity from an oaOccNet with a  different local name, setting the  global state of the block net does not change the global state of that oaOccNet,  and it is not included in the global set.</p>
+<p>Refer to <a href="#connectThruInstTerm">Connecting Global Nets Through oaModInstTerms in the Module Domain</a> and <a href="#connectThruTerm">Connecting Global Nets through oaModTerms in the Module Domain</a> to learn more about a block net that includes connectivity from an oaOccNet with a different name. </p>
+<h3><a name="unsetBlockGlobal"></a>Unsetting the Global  State of a Block Net</h3>
+<p>Unsetting the global state of a block net unsets the global  state of every oaOccNet in the global set and removes all oaOccNets from the global  set.&nbsp; The block net continues to exist as  an ordinary net.&nbsp; The  nets that were previously in the global set are reflected into the block domain  as disjoint block nets.</p>
+<p>When a global block net includes connectivity from a  non-global oaOccNet, unsetting the global  state of the block net does not change the global state of that oaOccNet because  it is not included in the global set. </p>
+<p>Refer to <a href="#connectThruInstTerm">Connecting Global Nets Through oaModInstTerms in the Module Domain</a> and <a href="#connectThruTerm">Connecting Global Nets through oaModTerms in the Module Domain</a> to learn more about a block net that includes connectivity from a non-global oaOccNet </p>
+<h3><a name="destroyBlockGlobal"></a>Destroying a Global  Net in the Block Domain</h3>
+<p>Destroying the global net that is the reflection of the global  set in the block domain destroys all the nets in the global set.</p>
+<h3><a name="connectThruInstTerm"></a>Connecting Global Nets Through oaModInstTerms in the Module Domain</h3>
+<p>When a global net in the module domain is connected to an  oaModInstTerm, the span of the local net in the instance master that is connected to  the corresponding terminal is merged into the span of the global oaOccNet.&nbsp; However, none of the nets in that local span  are marked global and none of the nets are added to the global set.&nbsp; As a result, the block net that is the  reflection of the global set  reflects the connectivity of the global set  plus the span of any local nets connected to members of the set, but the local  nets remain local. In particular,  oaOccNet::getGlobalNets() does not return any local nets that are connected to  a global net through oaModTerms and oaModInstTerm. </p>
+<p>In the following example, the global tie1 net in module B is connected through an  oaModInstTerm/oaModTerm to the local net cNet in module C. This does not change the number of elements  in the global set, and cNet is not marked global. Nets reflected into the block domain by  oaOccNets that correspond to cNet and which are not connected to the global  oaOccNet remain as distinct block nets.&nbsp;  The connectivity of nets reflected into the block domain by oaOccNets that  correspond to cNet that are connected to the global oaOccNet is merged into the  connectivity of the global block net.</p>
+<p><img src="images/modGlobalNetInstTerm.gif" width="557" height="365"></p>
+<h3><a name="connectThruTerm"></a>Connecting Global Nets  through oaModTerms in the Module Domain</h3>
+<p>When a global net is ported through a terminal and when  connectivity is established to that terminal through an oaModInstTerm, the local  nets in the upper level of hierarchy that are connected to the global net  through the oaModInstTerm remain local and the connectivity of the block nets  reflected by the local oaOccNets is merged into the corresponding global block  net.&nbsp; This behavior corresponds to the  behavior described in the previous section.&nbsp; When two spans are merged  in this manner, the global net is always chosen as the net to represent the merged  span in the block domain.</p>
+<p>Consider the following example. In the initial state, there is a global net tie1 in module C  that does not exist anywhere else in the module hierarchy. The global set is reflected into the block  domain as a single global net named tie1.&nbsp;The global tie1 net in module C is ported through a terminal,  but there are no oaModInstTerms of that terminal.&nbsp;There are also two instances of module C in module B, and module B has  some connectivity to the top module through oaModTerms and oaModInstTerms.</p>
+<p><img src="images/modGlobalNetTerm.gif" width="478" height="367"></p>
+<p>When an oaModInstTerm is created that connects bNet in module B  to the terminal of tie1 of instance C1 of module C, the following state is the  result.</p>
+<p><img src="images/modGlobalNetTerm1.gif" width="486" height="364"></p>
+<p>Connecting bNet to tie1 though an oaInstTerm on C1 causes the  block nets topNet1 and topNet2 to be merged into the global tie1 net in the  block. However, the module nets topNet1,  topNet2, and bNet remain as local nets.&nbsp;The oaOccNets unfolded from topNet1, topNet2, and bNet are not part of the  global set. </p>
+<h3><a name="spanOccNet"></a>The Span of a Global oaOccNet</h3>
+<p>The span of an oaOccNet is defined as the set of nets that  are transitively connected to the given oaOccNet through oaOccTerms and  oaOccInstTerms.&nbsp; Because global nets are joined  implicitly through their name and their global state (not through oaOccTerms and  oaOccInstTerms), the span of a global oaOccNet is always the oaOccNet itself.&nbsp; The oaOccNet::getSpan() function returns a collection  with exactly one element when called on a global oaOccNet unless that oaOccNet is  also connected to other local oaOccNets through oaOccTerms and oaOccInstTerms. </p>
+<h3> <a name="returnGNets"></a>Returning the Set of Global Nets in an Occurrence Hierarchy</h3>
+<p>Global nets are used to implement connections to oaInstTerms in different levels of the hierarchy without threading the signal though all the hierarchical interfaces. (In Verilog, these are called out-of-module references.)</p>
+<p>Applications can  return the set of global nets in an occurrence hierarchy.</p>
+<ul>
+  <li>To get a representative net for each global name in an occurrence hierarchy:<br>
+      <br>
+      <code>oaCollection&lt;oaOccNet, oaOccurrence> oaOccurrence::getNets(oacNetIterGlobal)<br>
+      <br>
+    </code></li>
+  <li>To get all the oaOccNets in the hierarchy with the same name:<br>
+      <br>
+      <code>oaCollection&lt;oaOccNet, oaOccNet> oaOccNet::getGlobalNets()</code></li>
+</ul>
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

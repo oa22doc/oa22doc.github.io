@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a> Using Transforms</h1>
+<hr/>
+<p> OpenAccess  provides the <a href="../base/classoaTransform.html"><code>oaTransform</code></a> class to implement two-dimensional 
+transformations, including orientation (angle and mirroring information) and 
+translation (offset in X and Y directions). Transforms are used:</p>
+
+<ul>
+<li>when coordinates of an object in a lower-level design are required in a 
+parent frame</li>
+
+<li>when moving or rotating objects in a graphical application</li>
+</ul>
+<p>Note: OpenAccess only performs  fundamental arithmetic computations when  calculating    new coordinate values. It does not check for overflow.  If overflow occurs, it will be handled in the default manner  by the OS.</p>
+<p>An <a href="../base/classoaTransform.html"><code>oaTransform</code></a> object 
+can be constructed with both offset and orientation changes.</p>
+
+
+<h3 class="spabove"><a name="1">Orientation</a></h3>
+
+<p>The following figure illustrates the results of transforming an object 
+using an <a href="../base/classoaTransform.html"><code>oaTransform</code></a> object  set to various orientations. The orientations are set through the use of an <a href="../base/classoaOrient.html">oaOrient</a> object, which is constructed with one of the <a href="../base/classoaOrient.html#_details">oaOrientEnum</a> values (listed in the figure below), and passed to the oaTransform. Rotations are about the 0,0 point of the design containing the object being 
+transformed.</p>
+
+<p class="center"><img src="./images/figorientations.gif" alt="oaTransform Orientations and Rotations"></p>
+
+
+<h3 class="spabove"><a name="2">Translation</a></h3>
+
+<p>The following figure shows the results of applying an 
+<a href="../base/classoaTransform.html"><code>oaTransform</code></a> with different 
+translation values. After translation, the center of the figure coincides with 
+the given offset point.</p>
+
+<p class="center"><img src=images/figtranslations.gif alt="oaTransform Translations"></p>
+
+
+<h2 class="spabove"><a name="3">Concatenating Transforms</a></h2>
+
+
+<p>When multiple simple transforms are required on a single object, you can 
+apply the transformations individually or concatenate the transforms, then apply them  once on the object. Both methods produce the same result.</p>
+
+<p>For example, you can translate a point with the coordinates <b>(2, 3)</b> 
+to the coordinates <b>(4, 5)</b> by moving two units in the X direction and 
+two units in the Y direction. You could then translate the point to the 
+coordinates <b>(6, 7)</b>, by moving two more units in the X direction and 
+two more units in the Y direction. For a simpler operation with the same 
+result, you could concatenate the transforms, moving the point four units in 
+the X direction and four units in the Y direction in one transformation.</p>
+<p>In general, <a href="../base/classoaTransform.html"><code>oaTransform</code></a> concatenation
+  is not commutative. That is, applying the transforms in a  different order
+  may produce different results if either of the transforms  involves an orientation
+  change. When a single transform contains both an orientation change and a translation,
+  the orientation change will be applied before the translation.</p>
+<p>For example, given <a href="../base/classoaTransform.html"><code>oaTransform</code></a> objects 
+<code>trans1</code>, <code>trans2</code> and <code>result</code>, the 
+following concatenation result is 
+equivalent to performing <code>trans1</code> followed by performing 
+<code>trans2</code>.</p>
+
+<pre>
+	trans1.concat(trans2, result)
+</pre>
+
+<p>In the next example, two transformations (one translation and one rotation) 
+are applied sequentially to the <a href="../design/classoaRect.html"><code>oaRect</code></a> object.</p>
+
+<pre>
+	oaTransform translation(1, 1); 
+	oaTransform rotation(oacR90); 
+
+	oaBox box(-5, -5 , 5, 5); 
+	oaRect *rect = oaRect::create(block, layer, purpose, box); 
+
+	rect-&gt;move(translation); 
+	rect-&gt;move(rotation); </pre>
+The result is the same when the two transforms are concatenated and then 
+applied, as follows.</pre>
+<pre>
+	oaTransform intermediate; 
+	trans1.concat(rotation, intermediate); 
+
+	oaTransform result; 
+	intermediate.concat(result) 
+
+	rect-&gt;transform(result); 
+</pre>
+
+
+<h3 class="spabove"><a name="4">Hierarchical Transforms</a></h3>
+
+<p>Transforms are commonly used to transform an object  lower in a 
+hierarchy to  coordinates relative to a parent in the hierarchy.</p>
+
+<p>One way to accomplish this type of hierarchical transformation is to descend through the hierarchy, concatenating 
+transforms at each level, to create a transform that conceptually views an 
+object in the current instance in the hierarchy as if it were at the top 
+level. At each step in the hierarchy, the code should apply the transform 
+of the instance it is currently stepping into, then apply the transform 
+that will take the object to the top of the hierarchy.</p>
+
+<p>For example:</p>
+
+<pre>
+	inst-&gt;getTransform(instTrans);
+	instTrans.concat(upperTrans, newTrans);
+</pre>
+
+
+<h3 class="spabove"><a name="5">Rotating About a Specified Point</a></h3>
+
+<p>When you need to rotate an object around its center through an angle, you 
+cannot directly apply a rotational transform. To achieve this result, you 
+must:</p>
+
+<ol>
+<li>Translate the object to the origin <code>(0, 0)</code></li>
+<li>Apply the rotation transform</li>
+<li>Translate the object back to its original location</li>
+</ol>
+
+<p>For example, the following combined transform rotates a figure whose 
+center is located at <em>centerPt</em> by an angle of 90 degrees.</p>
+
+<pre>
+	oaTransform translation(-centerPt); 
+	oaTransform rotation(oacR90); 
+
+	oaTransform intermediate; 
+	translation.concat(rotation, intermediate); 
+
+	oaTransform invTranslation(centerPt); 
+
+	oaTransform result; 
+	intermediate.concat(invTranslation, result); 
+</pre>
+
+<p>The value <code>result</code> holds the required transformation.</p>
+
+
+<div class="indent">
+<table border=0 summary="&nbsp;">
+<tr>
+<td colspan="3"><img src=images/figaboutcenter.gif alt="Rotated About Center"></td>
+</tr>
+
+<tr>
+<td>Original Figure</td>
+<td width="220" align="center">------------&gt;</td>
+<td align="right">Rotated About Its Center</td>
+</tr>
+</table>
+</div>
+
+<p>You can  achieve the same result by applying the transforms 
+sequentially on the object.</p>
+
+<p class="spabove">Note: If you rotate an object without first translating it from 
+its original position, the resultant figure is rotated about the origin of 
+the coordinate system, not  the center of the figure, as shown below.</p>
+
+<div class="indent">
+<table border="0" summary="&nbsp;">
+<tr>
+<td colspan="3"><img src="images/figaboutorigin.gif" alt="Rotated About Origin"></td>
+</tr>
+
+<tr>
+<td width="111">Original Figure</td>
+<td width="223" align="center">------------&gt;</td>
+<td width="171" align="left">Rotated About Origin</td>
+</tr>
+</table>
+</div>
+
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

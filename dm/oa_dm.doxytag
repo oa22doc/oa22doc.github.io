@@ -1,0 +1,4609 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+<tagfile>
+  <compound kind="file">
+    <name>oaCell.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaCell_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCell.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaCell_8h</filename>
+    <class kind="class">oaCell</class>
+    <class kind="class">oaTraits&lt; oaCell &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCell_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCellView.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaCellView_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCellView.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaCellView_8h</filename>
+    <class kind="class">oaCellView</class>
+    <class kind="class">oaTraits&lt; oaCellView &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCellView_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDM.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDM_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDM_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMAttribute.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMAttribute_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMAttribute.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMAttribute_8h</filename>
+    <class kind="class">oaDMAttr</class>
+    <class kind="class">oaDMAttrArray</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMAttribute_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMAttribute.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMAttribute_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMAttribute_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMCollection.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMCollection_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMCollection.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMCollection_8h</filename>
+    <class kind="class">oaCollection&lt; oaAppDef, oaDMData &gt;</class>
+    <class kind="class">oaCollection&lt; oaAppObject, oaDMData &gt;</class>
+    <class kind="class">oaCollection&lt; oaAppObjectDef, oaDMData &gt;</class>
+    <class kind="class">oaCollection&lt; oaDMData, oaDMData &gt;</class>
+    <class kind="class">oaCollection&lt; oaGroup, oaDMData &gt;</class>
+    <class kind="class">oaCollection&lt; oaGroup, oaLib &gt;</class>
+    <class kind="class">oaCollection&lt; oaLib, oaLib &gt;</class>
+    <class kind="class">oaIter&lt; oaDMData &gt;</class>
+    <class kind="class">oaIter&lt; oaLib &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMCollection_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMCollection.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMCollection_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMCollection_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMData.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMData_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMData.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMData_8h</filename>
+    <class kind="class">oaCellDMData</class>
+    <class kind="class">oaCellViewDMData</class>
+    <class kind="class">oaDMData</class>
+    <class kind="class">oaLibDMData</class>
+    <class kind="class">oaTraits&lt; oaCellDMData &gt;</class>
+    <class kind="class">oaTraits&lt; oaCellViewDMData &gt;</class>
+    <class kind="class">oaTraits&lt; oaDMData &gt;</class>
+    <class kind="class">oaTraits&lt; oaLibDMData &gt;</class>
+    <class kind="class">oaTraits&lt; oaViewDMData &gt;</class>
+    <class kind="class">oaViewDMData</class>
+    <member kind="variable">
+      <type>BEGIN_OA_NAMESPACE class</type>
+      <name>oaDMContainer</name>
+      <anchor>a0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMEnumWrapper.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMEnumWrapper_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMEnumWrapper_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMException.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMException_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMException.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMException_8h</filename>
+    <class kind="class">oaDMError</class>
+    <class kind="class">oaDMException</class>
+    <class kind="class">oaDMPlugInError</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMException_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMException.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMException_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMException_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMFile.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMFile_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMFile.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMFile_8h</filename>
+    <class kind="class">oaDMFile</class>
+    <class kind="class">oaDMLockStatus</class>
+    <class kind="class">oaTraits&lt; oaDMFile &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMFile_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMModTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMModTypes_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMModTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="enumeration">
+      <name>oaCellModTypeEnum</name>
+      <anchor>a4</anchor>
+      <init>0</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaViewModTypeEnum</name>
+      <anchor>a5</anchor>
+      <init>0</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaCellViewModTypeEnum</name>
+      <anchor>a6</anchor>
+      <init>1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetViewCellViewModType</name>
+      <anchor>a6a1</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaDMFileModTypeEnum</name>
+      <anchor>a7</anchor>
+      <init>1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetLeaderDMFileModType</name>
+      <anchor>a7a2</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaDMLibModTypeEnum</name>
+      <anchor>a8</anchor>
+      <init>1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetAttributesLibModType</name>
+      <anchor>a8a3</anchor>
+      <init> 2</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMMsgs.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMMsgs_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMMsgs_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavDMMsgIdStartValue</name>
+      <anchor>a1</anchor>
+      <init>3000</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumDMMsgIds</name>
+      <anchor>a2</anchor>
+      <init>120</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaDMMsgIds</name>
+      <anchor>a123</anchor>
+      <init>120</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLib</name>
+      <anchor>a123a3</anchor>
+      <init> oavDMMsgIdStartValue</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNotALib</name>
+      <anchor>a123a4</anchor>
+      <init> 3001</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibNameExists</name>
+      <anchor>a123a5</anchor>
+      <init> 3002</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibNotFound</name>
+      <anchor>a123a6</anchor>
+      <init> 3003</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellNotFound</name>
+      <anchor>a123a7</anchor>
+      <init> 3004</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacViewNotFound</name>
+      <anchor>a123a8</anchor>
+      <init> 3005</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibCouldNotCreate</name>
+      <anchor>a123a9</anchor>
+      <init> 3006</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibCouldNotOpen</name>
+      <anchor>a123a10</anchor>
+      <init> 3007</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibDataTypeName</name>
+      <anchor>a123a11</anchor>
+      <init> 3008</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDMObject</name>
+      <anchor>a123a12</anchor>
+      <init> 3009</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidContainer</name>
+      <anchor>a123a13</anchor>
+      <init> 3010</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidCell</name>
+      <anchor>a123a14</anchor>
+      <init> 3011</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidView</name>
+      <anchor>a123a15</anchor>
+      <init> 3012</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidViewType</name>
+      <anchor>a123a16</anchor>
+      <init> 3013</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacViewTypeExists</name>
+      <anchor>a123a17</anchor>
+      <init> 3014</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidReservedViewTypeName</name>
+      <anchor>a123a18</anchor>
+      <init> 3015</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidCellView</name>
+      <anchor>a123a19</anchor>
+      <init> 3016</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellViewNotInSameLib</name>
+      <anchor>a123a20</anchor>
+      <init> 3017</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCVExists</name>
+      <anchor>a123a21</anchor>
+      <init> 3018</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCVSetViewPrimaryFileExists</name>
+      <anchor>a123a22</anchor>
+      <init> 3019</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCVSetViewPrimaryFileLocked</name>
+      <anchor>a123a23</anchor>
+      <init> 3020</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDMFile</name>
+      <anchor>a123a24</anchor>
+      <init> 3021</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFileExists</name>
+      <anchor>a123a25</anchor>
+      <init> 3022</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFileDoesNotExistOnDisk</name>
+      <anchor>a123a26</anchor>
+      <init> 3023</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFileCouldNotCreate</name>
+      <anchor>a123a27</anchor>
+      <init> 3024</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFileCannotLockFollower</name>
+      <anchor>a123a28</anchor>
+      <init> 3025</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFileCannotUnlockFollower</name>
+      <anchor>a123a29</anchor>
+      <init> 3026</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFileCannotSetLeaderOnLocked</name>
+      <anchor>a123a30</anchor>
+      <init> 3027</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibAccessName</name>
+      <anchor>a123a31</anchor>
+      <init> 3028</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibModeName</name>
+      <anchor>a123a32</anchor>
+      <init> 3029</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3030</name>
+      <anchor>a123a33</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3031</name>
+      <anchor>a123a34</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefFileRecursiveInclude</name>
+      <anchor>a123a35</anchor>
+      <init> 3032</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3033</name>
+      <anchor>a123a36</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3034</name>
+      <anchor>a123a37</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3035</name>
+      <anchor>a123a38</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3036</name>
+      <anchor>a123a39</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3037</name>
+      <anchor>a123a40</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3038</name>
+      <anchor>a123a41</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3039</name>
+      <anchor>a123a42</anchor>
+      <init></init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3040</name>
+      <anchor>a123a43</anchor>
+      <init> 3040</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFailedToGetDMInterface</name>
+      <anchor>a123a44</anchor>
+      <init> 3041</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInterfaceException</name>
+      <anchor>a123a45</anchor>
+      <init> 3042</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotHaveMultiLevelFollowers</name>
+      <anchor>a123a46</anchor>
+      <init> 3043</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacPrimaryCannotBeFollower</name>
+      <anchor>a123a47</anchor>
+      <init> 3044</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLeaderFollowerNotInSameParent</name>
+      <anchor>a123a48</anchor>
+      <init> 3045</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFailedToGetLockingInterface</name>
+      <anchor>a123a49</anchor>
+      <init> 3046</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidVCCapName</name>
+      <anchor>a123a50</anchor>
+      <init> 3047</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidVersionCompName</name>
+      <anchor>a123a51</anchor>
+      <init> 3048</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidVCOperationName</name>
+      <anchor>a123a52</anchor>
+      <init> 3049</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidVCMessageTypeName</name>
+      <anchor>a123a53</anchor>
+      <init> 3050</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidVCObserverResultName</name>
+      <anchor>a123a54</anchor>
+      <init> 3051</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidVCQueryDepthName</name>
+      <anchor>a123a55</anchor>
+      <init> 3052</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionControlNotInstalled</name>
+      <anchor>a123a56</anchor>
+      <init> 3053</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibAccessCannotUpgrade</name>
+      <anchor>a123a57</anchor>
+      <init> 3054</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibReleaseNoAccess</name>
+      <anchor>a123a58</anchor>
+      <init> 3055</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibHasNoAccess</name>
+      <anchor>a123a59</anchor>
+      <init> 3056</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibAccessDenied</name>
+      <anchor>a123a60</anchor>
+      <init> 3057</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotOpenOpenedLib</name>
+      <anchor>a123a61</anchor>
+      <init> 3058</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibName</name>
+      <anchor>a123a62</anchor>
+      <init> 3059</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3060</name>
+      <anchor>a123a63</anchor>
+      <init> 3060</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibDefList</name>
+      <anchor>a123a64</anchor>
+      <init> 3061</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibDefListMem</name>
+      <anchor>a123a65</anchor>
+      <init> 3062</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibDefListMemMove</name>
+      <anchor>a123a66</anchor>
+      <init> 3063</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibDefListMemCreate</name>
+      <anchor>a123a67</anchor>
+      <init> 3064</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefExists</name>
+      <anchor>a123a68</anchor>
+      <init> 3065</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefListRefExists</name>
+      <anchor>a123a69</anchor>
+      <init> 3066</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacUndefinedLibDefListMode</name>
+      <anchor>a123a70</anchor>
+      <init> 3067</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefListFileNotWritable</name>
+      <anchor>a123a71</anchor>
+      <init> 3068</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefListFileNotReadable</name>
+      <anchor>a123a72</anchor>
+      <init> 3069</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSaveReadOnlyLibDefList</name>
+      <anchor>a123a73</anchor>
+      <init> 3070</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3071</name>
+      <anchor>a123a74</anchor>
+      <init> 3071</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3072</name>
+      <anchor>a123a75</anchor>
+      <init> 3072</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDMDataTypeName</name>
+      <anchor>a123a76</anchor>
+      <init> 3073</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacOpenUndefinedModeDMData</name>
+      <anchor>a123a77</anchor>
+      <init> 3074</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNotADMData</name>
+      <anchor>a123a78</anchor>
+      <init> 3075</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDMDataObject</name>
+      <anchor>a123a79</anchor>
+      <init> 3076</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDMData</name>
+      <anchor>a123a80</anchor>
+      <init> 3077</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMDataDoesNotExist</name>
+      <anchor>a123a81</anchor>
+      <init> 3078</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotLockDMData</name>
+      <anchor>a123a82</anchor>
+      <init> 3079</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacOpenOnDMDataBeingPurged</name>
+      <anchor>a123a83</anchor>
+      <init> 3080</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCloseOnDMDataBeingPurged</name>
+      <anchor>a123a84</anchor>
+      <init> 3081</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacPurgeOnDMDataBeingPurged</name>
+      <anchor>a123a85</anchor>
+      <init> 3082</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSaveReadOnlyDMData</name>
+      <anchor>a123a86</anchor>
+      <init> 3083</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDestroyDMDataOpen</name>
+      <anchor>a123a87</anchor>
+      <init> 3084</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDestroyDMDataDoesNotExist</name>
+      <anchor>a123a88</anchor>
+      <init> 3085</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMDataCannotGetReadAccess</name>
+      <anchor>a123a89</anchor>
+      <init> 3086</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMDataCannotGetWriteAccess</name>
+      <anchor>a123a90</anchor>
+      <init> 3087</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMDataHasReadNeedWriteAccess</name>
+      <anchor>a123a91</anchor>
+      <init> 3088</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDMDataTypeForTimeStamp</name>
+      <anchor>a123a92</anchor>
+      <init> 3089</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidLibAccessLevelName</name>
+      <anchor>a123a93</anchor>
+      <init> 3090</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibExists</name>
+      <anchor>a123a94</anchor>
+      <init> 3091</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3092</name>
+      <anchor>a123a95</anchor>
+      <init> 3092</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3093</name>
+      <anchor>a123a96</anchor>
+      <init> 3093</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3094</name>
+      <anchor>a123a97</anchor>
+      <init> 3094</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReleaseLockNoLock</name>
+      <anchor>a123a98</anchor>
+      <init> 3095</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacUnableToCreateTempFile</name>
+      <anchor>a123a99</anchor>
+      <init> 3096</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellViewOwnerDoesNotExist</name>
+      <anchor>a123a100</anchor>
+      <init> 3097</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCVSetViewPrimaryFileDoesNotExist</name>
+      <anchor>a123a101</anchor>
+      <init> 3098</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3099</name>
+      <anchor>a123a102</anchor>
+      <init> 3099</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefFileUndefinedVarLibPath</name>
+      <anchor>a123a103</anchor>
+      <init> 3100</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefFileUndefinedVarIncludePath</name>
+      <anchor>a123a104</anchor>
+      <init> 3101</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefFileUndefinedVarWritePath</name>
+      <anchor>a123a105</anchor>
+      <init> 3102</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefFileCannotAppendSymbolicLink</name>
+      <anchor>a123a106</anchor>
+      <init> 3103</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNoWriteAccessOnReadOnlyLib</name>
+      <anchor>a123a107</anchor>
+      <init> 3104</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3105</name>
+      <anchor>a123a108</anchor>
+      <init> 3105</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefListDirNotWritable</name>
+      <anchor>a123a109</anchor>
+      <init> 3106</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMismatchViewType</name>
+      <anchor>a123a110</anchor>
+      <init> 3107</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDMSystemName</name>
+      <anchor>a123a111</anchor>
+      <init> 3108</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotOpenLibDataFile</name>
+      <anchor>a123a112</anchor>
+      <init> 3109</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDataFileSyntaxError</name>
+      <anchor>a123a113</anchor>
+      <init> 3110</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidSaveRecoverTypeName</name>
+      <anchor>a123a114</anchor>
+      <init> 3111</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSaveRecoverFileDoesNotExistOnDisk</name>
+      <anchor>a123a115</anchor>
+      <init> 3112</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSaveRecoverDMDataFileAlreadyOpened</name>
+      <anchor>a123a116</anchor>
+      <init> 3113</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacObsoleteDMMsg3114</name>
+      <anchor>a123a117</anchor>
+      <init> 3114</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSaveRecoverViewDMDataNotSupported</name>
+      <anchor>a123a118</anchor>
+      <init> 3115</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFailedToGetLibDefInterface</name>
+      <anchor>a123a119</anchor>
+      <init> 3116</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacPlugInInterfaceException</name>
+      <anchor>a123a120</anchor>
+      <init> 3117</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefMemMoveAfterSelf</name>
+      <anchor>a123a121</anchor>
+      <init> 3118</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDefListExists</name>
+      <anchor>a123a122</anchor>
+      <init> 3119</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMObject.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMObject_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMObject.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMObject_8h</filename>
+    <class kind="class">oaDMContainer</class>
+    <class kind="class">oaDMObject</class>
+    <class kind="class">oaDMObjectIter</class>
+    <class kind="class">oaDMObjectStatusRef</class>
+    <class kind="class">oaDMObjectStatusRefIter</class>
+    <class kind="class">oaDMObjectVersionRef</class>
+    <class kind="class">oaDMObjectVersionRefIter</class>
+    <class kind="class">oaTraits&lt; oaDMContainer &gt;</class>
+    <class kind="class">oaTraits&lt; oaDMObject &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMObject_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMObject.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMObject_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMObject_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMObserver.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMObserver_8dox</filename>
+    <member kind="variable">
+      <type>oaUInt4</type>
+      <name>scopeID</name>
+      <anchor>a0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMObserver.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMObserver_8h</filename>
+    <class kind="class">oaObserver&lt;oaDMData, oacObserverVersion1&gt;</class>
+    <class kind="class">oaObserver&lt;oaLib, oacObserverVersion1&gt;</class>
+    <class kind="class">oaObserver&lt;oaLibDefList, oacObserverVersion1&gt;</class>
+    <class kind="class">oaObserver&lt;oaViewType, oacObserverVersion1&gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMObserver_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMObserver.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMObserver_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMObserver_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMTraits.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMTraits_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMTraits.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMTraits_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMTraits_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDMTypes.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaDMTypes_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDMTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaDMTypes_8h</filename>
+    <class kind="class">oaDMDataType</class>
+    <class kind="class">oaLibDataType</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_DM_DLL_API</name>
+      <anchor>a1</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_DM_DLL_PVT</name>
+      <anchor>a2</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumLibDataTypes</name>
+      <anchor>a3</anchor>
+      <init>19</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumNewLibDataTypes</name>
+      <anchor>a4</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVarLibDataTypes</name>
+      <anchor>a5</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumDMDataTypes</name>
+      <anchor>a6</anchor>
+      <init>15</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumNewDMDataTypes</name>
+      <anchor>a7</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVarDMDataTypes</name>
+      <anchor>a8</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusControlled</name>
+      <anchor>a9</anchor>
+      <init>0x00000001u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusEditable</name>
+      <anchor>a10</anchor>
+      <init>0x00000002u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusUpToDate</name>
+      <anchor>a11</anchor>
+      <init>0x00000004u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusAdded</name>
+      <anchor>a12</anchor>
+      <init>0x00000008u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusDeleted</name>
+      <anchor>a13</anchor>
+      <init>0x00000010u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusModified</name>
+      <anchor>a14</anchor>
+      <init>0x00000020u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusLocked</name>
+      <anchor>a15</anchor>
+      <init>0x00000040u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusMerged</name>
+      <anchor>a16</anchor>
+      <init>0x00000080u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusConflict</name>
+      <anchor>a17</anchor>
+      <init>0x00000100u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusMissing</name>
+      <anchor>a18</anchor>
+      <init>0x00000200u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusRemote</name>
+      <anchor>a19</anchor>
+      <init>0x00000400u</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacVCStatusAll</name>
+      <anchor>a20</anchor>
+      <init>0xFFFFFFFFu</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibDataTypeEnum</name>
+      <anchor>a61</anchor>
+      <init>21</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibDataType</name>
+      <anchor>a61a21</anchor>
+      <init> UINT_MAX</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibAppObjectDataType</name>
+      <anchor>a61a22</anchor>
+      <init> UINT_MAX - 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibPropDataType</name>
+      <anchor>a61a23</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibGroupDataType</name>
+      <anchor>a61a24</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibGroupMemDataType</name>
+      <anchor>a61a25</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibAvatarDataType</name>
+      <anchor>a61a26</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibValueDataType</name>
+      <anchor>a61a27</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibConstraintParamDefDataType</name>
+      <anchor>a61a28</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibConstraintParamDataType</name>
+      <anchor>a61a29</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibConstraintDefDataType</name>
+      <anchor>a61a30</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibConstraintDataType</name>
+      <anchor>a61a31</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibConstraintGroupDataType</name>
+      <anchor>a61a32</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibConstraintGroupMemDataType</name>
+      <anchor>a61a33</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibConstraintGroupHeaderDataType</name>
+      <anchor>a61a34</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellDataType</name>
+      <anchor>a61a35</anchor>
+      <init> 12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacViewDataType</name>
+      <anchor>a61a36</anchor>
+      <init> 13</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellViewDataType</name>
+      <anchor>a61a37</anchor>
+      <init> 14</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFileDataType</name>
+      <anchor>a61a38</anchor>
+      <init> 15</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibFeatureDataType</name>
+      <anchor>a61a39</anchor>
+      <init> 16</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibFeaturePolicyDataType</name>
+      <anchor>a61a40</anchor>
+      <init> 17</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibGroupDefDataType</name>
+      <anchor>a61a41</anchor>
+      <init> 18</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaDMDataTypeEnum</name>
+      <anchor>a62</anchor>
+      <init>17</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMDataDataType</name>
+      <anchor>a62a42</anchor>
+      <init> UINT_MAX</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMAppObjectDataType</name>
+      <anchor>a62a43</anchor>
+      <init> UINT_MAX - 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMPropDataType</name>
+      <anchor>a62a44</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMGroupDataType</name>
+      <anchor>a62a45</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMGroupMemDataType</name>
+      <anchor>a62a46</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMAvatarDataType</name>
+      <anchor>a62a47</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMValueDataType</name>
+      <anchor>a62a48</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMConstraintParamDefDataType</name>
+      <anchor>a62a49</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMConstraintParamDataType</name>
+      <anchor>a62a50</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMConstraintDefDataType</name>
+      <anchor>a62a51</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMConstraintDataType</name>
+      <anchor>a62a52</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMConstraintGroupDataType</name>
+      <anchor>a62a53</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMConstraintGroupMemDataType</name>
+      <anchor>a62a54</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMConstraintGroupHeaderDataType</name>
+      <anchor>a62a55</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFeatureDataType</name>
+      <anchor>a62a56</anchor>
+      <init> 12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMFeaturePolicyDataType</name>
+      <anchor>a62a57</anchor>
+      <init> 13</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDMGroupDefDataType</name>
+      <anchor>a62a58</anchor>
+      <init> 14</init>
+    </member>
+    <member kind="function">
+      <type>OA_DM_DLL_API void</type>
+      <name>oaDMInit</name>
+      <anchor>oaDMInit</anchor>
+      <arglist>(oaUInt4 apiMajorRev=oacAPIMajorRevNumber, oaUInt4 apiMinorRev=oacAPIMinorRevNumber)</arglist>
+    </member>
+    <member kind="function">
+      <type>OA_DM_DLL_API void</type>
+      <name>oaDMInit</name>
+      <anchor>oaDMInit1</anchor>
+      <arglist>(oaUInt4 apiMajorRev, oaUInt4 apiMinorRev, oaUInt4 dataModelRev)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaLib.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaLib_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaLib.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaLib_8h</filename>
+    <class kind="class">oaLib</class>
+    <class kind="class">oaLibAccess</class>
+    <class kind="class">oaLibAccessLevel</class>
+    <class kind="class">oaLibMode</class>
+    <class kind="class">oaTraits&lt; oaLib &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaLib_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaLibDefList.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaLibDefList_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaLibDefList.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaLibDefList_8h</filename>
+    <class kind="class">oaLibDefList</class>
+    <class kind="class">oaTraits&lt; oaLibDefList &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaLibDefList_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibDefListWarningTypeEnum</name>
+      <anchor>a10</anchor>
+      <init>9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNoDefaultLibDefListWarning</name>
+      <anchor>a10a1</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotOpenDefaultLibDefListWarning</name>
+      <anchor>a10a2</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSyntaxErrorLibDefListWarning</name>
+      <anchor>a10a3</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotOpenIncludeLibDefListWarning</name>
+      <anchor>a10a4</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacRecursiveIncludeLibDefListWarning</name>
+      <anchor>a10a5</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMultiDefinitionsLibDefListWarning</name>
+      <anchor>a10a6</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotOpenLibLibDefListWarning</name>
+      <anchor>a10a7</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacUndefinedVarLibDefListWarning</name>
+      <anchor>a10a8</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLibNameUndefinedLibDefListWarning</name>
+      <anchor>a10a9</anchor>
+      <init> 8</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaLibDefListMem.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaLibDefListMem_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaLibDefListMem.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaLibDefListMem_8h</filename>
+    <class kind="class">oaLibDef</class>
+    <class kind="class">oaLibDefListMem</class>
+    <class kind="class">oaLibDefListRef</class>
+    <class kind="class">oaTraits&lt; oaLibDef &gt;</class>
+    <class kind="class">oaTraits&lt; oaLibDefListMem &gt;</class>
+    <class kind="class">oaTraits&lt; oaLibDefListRef &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaLibDefListMem_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_NAMESPACE class</type>
+      <name>oaDMAttrArray</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaLibInterfaceAccess.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaLibInterfaceAccess_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaLibInterfaceAccess.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaLibInterfaceAccess_8h</filename>
+    <class kind="class">InterfaceAccess&lt; oa::oaLib &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaLibInterfaceAccess_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInDMTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInDMTypes_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInDMTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemPreservesFollowersCap</name>
+      <anchor>a1</anchor>
+      <init>&quot;PreservesFollowers&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemSupportsViewFilesCap</name>
+      <anchor>a2</anchor>
+      <init>&quot;SupportsViewFiles&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemMaxNameLengthMetric</name>
+      <anchor>a3</anchor>
+      <init>&quot;MaxNameLength&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemMaxCellViewsMetric</name>
+      <anchor>a4</anchor>
+      <init>&quot;MaxCellViews&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumLibAccessLevels</name>
+      <anchor>a5</anchor>
+      <init>3</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumDMLockStatus</name>
+      <anchor>a6</anchor>
+      <init>3</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumLibModes</name>
+      <anchor>a7</anchor>
+      <init>3</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumLibAccessEnums</name>
+      <anchor>a8</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCMessageTypes</name>
+      <anchor>a9</anchor>
+      <init>5</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCOperations</name>
+      <anchor>a10</anchor>
+      <init>12</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCCaps</name>
+      <anchor>a11</anchor>
+      <init>15</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCObserverResults</name>
+      <anchor>a12</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCQueryDepths</name>
+      <anchor>a13</anchor>
+      <init>5</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVersionComps</name>
+      <anchor>a14</anchor>
+      <init>5</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumSaveRecoverTypes</name>
+      <anchor>a15</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibAccessLevelEnum</name>
+      <anchor>a74</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNoLibAccessLevel</name>
+      <anchor>a74a16</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReadLibAccessLevel</name>
+      <anchor>a74a17</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWriteLibAccessLevel</name>
+      <anchor>a74a18</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaDMLockStatusEnum</name>
+      <anchor>a75</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNotLocked</name>
+      <anchor>a75a19</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLockedByCurrentProcess</name>
+      <anchor>a75a20</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLockedByForeignProcess</name>
+      <anchor>a75a21</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibModeEnum</name>
+      <anchor>a76</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSharedLibMode</name>
+      <anchor>a76a22</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNonSharedLibMode</name>
+      <anchor>a76a23</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReadOnlyLibMode</name>
+      <anchor>a76a24</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibAccessEnum</name>
+      <anchor>a77</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReadLibAccess</name>
+      <anchor>a77a25</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWriteLibAccess</name>
+      <anchor>a77a26</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCMessageTypeEnum</name>
+      <anchor>a78</anchor>
+      <init>5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeInfo</name>
+      <anchor>a78a27</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeWarning</name>
+      <anchor>a78a28</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeError</name>
+      <anchor>a78a29</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeStatus</name>
+      <anchor>a78a30</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeQueryOk</name>
+      <anchor>a78a31</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCOperationEnum</name>
+      <anchor>a79</anchor>
+      <init>12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetStatus</name>
+      <anchor>a79a32</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetControlledObjects</name>
+      <anchor>a79a33</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetControlledLibs</name>
+      <anchor>a79a34</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetVersions</name>
+      <anchor>a79a35</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetWorkingVersion</name>
+      <anchor>a79a36</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetWorkingVersions</name>
+      <anchor>a79a37</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationUpdate</name>
+      <anchor>a79a38</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationMakeEditable</name>
+      <anchor>a79a39</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationCancelEdit</name>
+      <anchor>a79a40</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationCommitEdits</name>
+      <anchor>a79a41</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationSetControlled</name>
+      <anchor>a79a42</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationUnsetControlled</name>
+      <anchor>a79a43</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCCapEnum</name>
+      <anchor>a80</anchor>
+      <init>15</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCommitMayChangeFilesVCCap</name>
+      <anchor>a80a44</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacHasVersionsVCCap</name>
+      <anchor>a80a45</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetStatusVCCap</name>
+      <anchor>a80a46</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetControlledObjectsVCCap</name>
+      <anchor>a80a47</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetControlledLibsVCCap</name>
+      <anchor>a80a48</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetVersionsVCCap</name>
+      <anchor>a80a49</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetWorkingVersionVCCap</name>
+      <anchor>a80a50</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetWorkingVersionsVCCap</name>
+      <anchor>a80a51</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsUpdateVCCap</name>
+      <anchor>a80a52</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsMakeEditableVCCap</name>
+      <anchor>a80a53</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsLockVCCap</name>
+      <anchor>a80a54</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsCancelEditVCCap</name>
+      <anchor>a80a55</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsCommitEditsVCCap</name>
+      <anchor>a80a56</anchor>
+      <init> 12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsSetControlledVCCap</name>
+      <anchor>a80a57</anchor>
+      <init> 13</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsUnSetControlledVCCap</name>
+      <anchor>a80a58</anchor>
+      <init> 14</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCObserverResultEnum</name>
+      <anchor>a81</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCObserverResultOk</name>
+      <anchor>a81a59</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCObserverResultAbort</name>
+      <anchor>a81a60</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCQueryDepthEnum</name>
+      <anchor>a82</anchor>
+      <init>6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFileVCQueryDepth</name>
+      <anchor>a82a61</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellVCQueryDepth</name>
+      <anchor>a82a62</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacViewVCQueryDepth</name>
+      <anchor>a82a63</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellViewVCQueryDepth</name>
+      <anchor>a82a64</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellViewFileVCQueryDepth</name>
+      <anchor>a82a65</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMaxQueryDepth</name>
+      <anchor>a82a66</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVersionCompEnum</name>
+      <anchor>a83</anchor>
+      <init>5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompEqual</name>
+      <anchor>a83a67</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompEarlier</name>
+      <anchor>a83a68</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompLater</name>
+      <anchor>a83a69</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompDifferentBranch</name>
+      <anchor>a83a70</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompIncompatable</name>
+      <anchor>a83a71</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaSaveRecoverTypeEnum</name>
+      <anchor>a84</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacAutoSaveType</name>
+      <anchor>a84a72</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCriticalSaveType</name>
+      <anchor>a84a73</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaSaveRecover.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaSaveRecover_8h</filename>
+    <class kind="class">oaSaveRecoverType</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaSaveRecover_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaSaveRecoverType.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaSaveRecoverType_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaVCCap.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaVCCap_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaVCCap.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaVCCap_8h</filename>
+    <class kind="class">oaVCCap</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaVCCap_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaVCObserver.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaVCObserver_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaVCObserver.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaVCObserver_8h</filename>
+    <class kind="class">oaVCMessageType</class>
+    <class kind="class">oaVCObserver</class>
+    <class kind="class">oaVCObserverCollection</class>
+    <class kind="class">oaVCObserverIter</class>
+    <class kind="class">oaVCObserverResult</class>
+    <class kind="class">oaVCOperation</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaVCObserver_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaVCQueryDepth.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaVCQueryDepth_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaVCQueryDepth.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaVCQueryDepth_8h</filename>
+    <class kind="class">oaVCQueryDepth</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaVCQueryDepth_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaVCSystem.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaVCSystem_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaVCSystem.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaVCSystem_8h</filename>
+    <class kind="class">oaVCSystem</class>
+    <class kind="class">oaVCVersion</class>
+    <class kind="class">oaVCVersionIter</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaVCSystem_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaVCSystem.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaVCSystem_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaVCSystem_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaVersionComp.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaVersionComp_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaVersionComp.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaVersionComp_8h</filename>
+    <class kind="class">oaVersionComp</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaVersionComp_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaView.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/dm/</path>
+    <filename>oaView_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaView.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/dm/</path>
+    <filename>oaView_8h</filename>
+    <class kind="class">oaReservedViewType</class>
+    <class kind="class">oaTraits&lt; oaView &gt;</class>
+    <class kind="class">oaTraits&lt; oaViewType &gt;</class>
+    <class kind="class">oaView</class>
+    <class kind="class">oaViewType</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaView_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumReservedViewTypes</name>
+      <anchor>a1</anchor>
+      <init>16</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumDesignViewTypes</name>
+      <anchor>a2</anchor>
+      <init>5</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaReservedViewTypeEnum</name>
+      <anchor>a19</anchor>
+      <init>16</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMaskLayout</name>
+      <anchor>a19a3</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSchematic</name>
+      <anchor>a19a4</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSchematicSymbol</name>
+      <anchor>a19a5</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNetlist</name>
+      <anchor>a19a6</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWafer</name>
+      <anchor>a19a7</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVerilogAMSText</name>
+      <anchor>a19a8</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVHDLAMSText</name>
+      <anchor>a19a9</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVerilogText</name>
+      <anchor>a19a10</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVHDLText</name>
+      <anchor>a19a11</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVerilogAText</name>
+      <anchor>a19a12</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacHierDesign</name>
+      <anchor>a19a13</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSystemVerilogText</name>
+      <anchor>a19a14</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSPECTREText</name>
+      <anchor>a19a15</anchor>
+      <init> 12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSPICEText</name>
+      <anchor>a19a16</anchor>
+      <init> 13</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacHSPICEText</name>
+      <anchor>a19a17</anchor>
+      <init> 14</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCDLText</name>
+      <anchor>a19a18</anchor>
+      <init> 15</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaCell</name>
+    <filename>classoaCell.html</filename>
+    <base>oaDMContainer</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;out) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaCellView, oaCell &gt;</type>
+      <name>getCellViews</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCell *</type>
+      <name>find</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaLib *lib, const oaScalarName &amp;name)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCell *</type>
+      <name>get</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaLib *lib, const oaScalarName &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacCellDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaCellDMData</name>
+    <filename>classoaCellDMData.html</filename>
+    <base>oaDMData</base>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a0</anchor>
+      <arglist>(oaScalarName &amp;cellName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;cellName) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellDMData *</type>
+      <name>open</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, oaChar mode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellDMData *</type>
+      <name>recover</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellDMData *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d4</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d5</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d6</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaCellView</name>
+    <filename>classoaCellView.html</filename>
+    <base>oaDMContainer</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCell *</type>
+      <name>getCell</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaView *</type>
+      <name>getView</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMFile *</type>
+      <name>getPrimary</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setView</name>
+      <anchor>oaCellView::setView1</anchor>
+      <arglist>(const oaView *view)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setView</name>
+      <anchor>a5</anchor>
+      <arglist>(const oaView *view, oaBoolean mustExist)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellView *</type>
+      <name>find</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaCell *cell, const oaView *view)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellView *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaLib *lib, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellView *</type>
+      <name>get</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaCell *cell, const oaView *view)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellView *</type>
+      <name>get</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaLib *lib, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, const oaViewType *viewType)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacCellViewDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaCellViewDMData</name>
+    <filename>classoaCellViewDMData.html</filename>
+    <base>oaDMData</base>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a0</anchor>
+      <arglist>(oaScalarName &amp;cellName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;cellName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a2</anchor>
+      <arglist>(oaScalarName &amp;viewName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;viewName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaViewType *</type>
+      <name>getViewType</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellViewDMData *</type>
+      <name>open</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, const oaViewType *viewType, oaChar mode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellViewDMData *</type>
+      <name>open</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaChar mode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellViewDMData *</type>
+      <name>recover</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCellViewDMData *</type>
+      <name>find</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d4</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d5</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d6</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d7</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMAttr</name>
+    <filename>classoaDMAttr.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMAttr</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaDMAttr</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;nameIn, const oaString &amp;value)</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getValue</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a4</anchor>
+      <arglist>(const oaString &amp;nameIn)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setValue</name>
+      <anchor>a5</anchor>
+      <arglist>(const oaString &amp;valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>operator==</name>
+      <anchor>a6</anchor>
+      <arglist>(const oaDMAttr &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>operator!=</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaDMAttr &amp;other) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMAttrArray</name>
+    <filename>classoaDMAttrArray.html</filename>
+    <base>oaArray&lt; oaDMAttr &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>oaDMAttrArray</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 sizeIn=0)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMContainer</name>
+    <filename>classoaDMContainer.html</filename>
+    <base>oaDMObject</base>
+    <member kind="function">
+      <type>oaCollection&lt; oaDMFile, oaDMContainer &gt;</type>
+      <name>getDMFiles</name>
+      <anchor>a0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectStatusRefIter</type>
+      <name>getVCStatus</name>
+      <anchor>a1</anchor>
+      <arglist>(oaVCQueryDepth depth, oaUInt4 mask=oacVCStatusAll) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4</type>
+      <name>getVCStatus</name>
+      <anchor>a2</anchor>
+      <arglist>(oaUInt4 mask=oacVCStatusAll) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMData</name>
+    <filename>classoaDMData.html</filename>
+    <base>oaObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>close</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>purge</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchor>a3</anchor>
+      <arglist>(oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reopen</name>
+      <anchor>a4</anchor>
+      <arglist>(oaChar mode)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>revert</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a6</anchor>
+      <arglist>(oaScalarName &amp;libName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;libName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLib *</type>
+      <name>getLib</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaChar</type>
+      <name>getMode</name>
+      <anchor>a9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4</type>
+      <name>getRefCount</name>
+      <anchor>a10</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaTimeStamp</type>
+      <name>getTimeStamp</name>
+      <anchor>a11</anchor>
+      <arglist>(oaDMDataType type) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isModified</name>
+      <anchor>a12</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isRecovered</name>
+      <anchor>a13</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getFeatures</name>
+      <anchor>oaDMData::getFeatures</anchor>
+      <arglist>(oaUInt4 &amp;dataModelRev, oaFeatureArray &amp;features)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaGroup, oaDMData &gt;</type>
+      <name>getGroups</name>
+      <anchor>a15</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaGroup, oaDMData &gt;</type>
+      <name>getGroups</name>
+      <anchor>a16</anchor>
+      <arglist>(oaGroupDef *def) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaGroup, oaDMData &gt;</type>
+      <name>getGroupsByName</name>
+      <anchor>a17</anchor>
+      <arglist>(const oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaAppDef, oaDMData &gt;</type>
+      <name>getAppDefsByDataType</name>
+      <anchor>a18</anchor>
+      <arglist>(oaDMDataType dataType) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaAppObject, oaDMData &gt;</type>
+      <name>getAppObjects</name>
+      <anchor>a19</anchor>
+      <arglist>(const oaAppObjectDef *def) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaAppObjectDef, oaDMData &gt;</type>
+      <name>getAppObjectDefs</name>
+      <anchor>a20</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDMData *</type>
+      <name>open</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaDMContainer *container, oaChar mode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDMData *</type>
+      <name>recover</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaDMContainer *container, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDMData *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaDMContainer *container)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaDMContainer *container)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d4</anchor>
+      <arglist>(const oaDMContainer *container, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d5</anchor>
+      <arglist>(const oaDMContainer *container)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d6</anchor>
+      <arglist>(const oaDMContainer *container, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaUInt4</type>
+      <name>getRevNumber</name>
+      <anchor>d7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCollection&lt; oaDMData, oaDMData &gt;</type>
+      <name>getOpenDMDataObjs</name>
+      <anchor>d8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s2s0</anchor>
+      <init> oacDMDataDataType</init>
+    </member>
+    <member kind="enumvalue">
+      <name>domain</name>
+      <anchor>s3s1</anchor>
+      <init> oacNoDomain</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMDataType</name>
+    <filename>classoaDMDataType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMDataType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaDMDataTypeEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaDMDataType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaDMDataType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaDMDataTypeEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMError</name>
+    <filename>classoaDMError.html</filename>
+    <base>oaDMException</base>
+  </compound>
+  <compound kind="class">
+    <name>oaDMException</name>
+    <filename>classoaDMException.html</filename>
+    <base>oaException</base>
+    <member kind="function" protection="public" virtualness="virtual">
+      <type>virtual const oaString &amp;</type>
+      <name>getFormatString</name>
+      <anchor>b0</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMFile</name>
+    <filename>classoaDMFile.html</filename>
+    <base>oaDMObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a1</anchor>
+      <arglist>(oaSaveRecoverType type)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMContainer *</type>
+      <name>getParent</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getPath</name>
+      <anchor>a4</anchor>
+      <arglist>(oaString &amp;path) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getPath</name>
+      <anchor>a5</anchor>
+      <arglist>(oaSaveRecoverType type, oaString &amp;path) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMFile *</type>
+      <name>getLeader</name>
+      <anchor>a6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isLeader</name>
+      <anchor>a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isPrimary</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>existsOnDisk</name>
+      <anchor>a9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>existsOnDisk</name>
+      <anchor>a10</anchor>
+      <arglist>(oaSaveRecoverType type) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt8</type>
+      <name>getOnDiskSize</name>
+      <anchor>a11</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setLeader</name>
+      <anchor>a12</anchor>
+      <arglist>(oaDMFile *leader)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>getLock</name>
+      <anchor>oaDMFile::getLock</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>releaseLock</name>
+      <anchor>a14</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMLockStatus</type>
+      <name>getLockStatus</name>
+      <anchor>a15</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCVersion</type>
+      <name>getVersion</name>
+      <anchor>oaDMFile::getVersion</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaDMFile, oaDMFile &gt;</type>
+      <name>getFollowers</name>
+      <anchor>a17</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDMFile *</type>
+      <name>find</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaDMContainer *parent, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDMFile *</type>
+      <name>create</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaDMContainer *parent, const oaString &amp;name, const oaString &amp;srcPath)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDMFile *</type>
+      <name>create</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaDMContainer *parent, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacDMFileDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMLockStatus</name>
+    <filename>classoaDMLockStatus.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMLockStatus</name>
+      <anchor>a0</anchor>
+      <arglist>(oaDMLockStatusEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaDMLockStatusEnum</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMObject</name>
+    <filename>classoaDMObject.html</filename>
+    <base>oaObject</base>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isContainer</name>
+      <anchor>a0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLib *</type>
+      <name>getLib</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getTempFile</name>
+      <anchor>a2</anchor>
+      <arglist>(oaString &amp;path, oaBoolean sameFileSystem=false) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4</type>
+      <name>getVCStatus</name>
+      <anchor>oaDMObject::getVCStatus</anchor>
+      <arglist>(oaUInt4 mask=oacVCStatusAll) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCVersionIter</type>
+      <name>getVersions</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>update</name>
+      <anchor>oaDMObject::update</anchor>
+      <arglist>(const oaVCVersion &amp;version, oaBoolean recurse=true, const oaChar *options=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>makeEditable</name>
+      <anchor>oaDMObject::makeEditable</anchor>
+      <arglist>(oaBoolean lock, oaBoolean recurse=true, const oaChar *options=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>cancelEdit</name>
+      <anchor>oaDMObject::cancelEdit</anchor>
+      <arglist>(oaBoolean recurse=true, const oaChar *options=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>commitEdits</name>
+      <anchor>oaDMObject::commitEdits</anchor>
+      <arglist>(const oaChar *comment, oaBoolean recurse=true, oaBoolean keepEditable=false, const oaChar *options=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setControlled</name>
+      <anchor>oaDMObject::setControlled</anchor>
+      <arglist>(oaBoolean recurse=true, const oaChar *options=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>unsetControlled</name>
+      <anchor>a10</anchor>
+      <arglist>(oaBoolean recurse=true, oaBoolean keepLocalRep=true, const oaChar *options=NULL)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dbType</name>
+      <anchor>s1s0</anchor>
+      <init> oacLibDBType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMObjectIter</name>
+    <filename>classoaDMObjectIter.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMObjectIter</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaDMObjectIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaDMObjectIter</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectIter &amp;</type>
+      <name>operator=</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaDMObjectIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObject *</type>
+      <name>getNext</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMObjectStatusRef</name>
+    <filename>classoaDMObjectStatusRef.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMObjectStatusRef</name>
+      <anchor>a0</anchor>
+      <arglist>(oaDMObject *obj=NULL, oaUInt4 stat=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObject *&amp;</type>
+      <name>getObject</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObject *</type>
+      <name>getObject</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4 &amp;</type>
+      <name>getStatus</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4</type>
+      <name>getStatus</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMObjectStatusRefIter</name>
+    <filename>classoaDMObjectStatusRefIter.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMObjectStatusRefIter</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaDMObjectStatusRefIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaDMObjectStatusRefIter</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectStatusRefIter &amp;</type>
+      <name>operator=</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaDMObjectStatusRefIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectStatusRef</type>
+      <name>getNext</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMObjectVersionRef</name>
+    <filename>classoaDMObjectVersionRef.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMObjectVersionRef</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaDMObject *obj, const oaVCVersion &amp;ver)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaDMObjectVersionRef</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaDMObject *obj=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaDMObject *&amp;</type>
+      <name>getObject</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaDMObject *</type>
+      <name>getObject</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCVersion &amp;</type>
+      <name>getVersion</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCVersion</type>
+      <name>getVersion</name>
+      <anchor>a5</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMObjectVersionRefIter</name>
+    <filename>classoaDMObjectVersionRefIter.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaDMObjectVersionRefIter</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaDMObjectVersionRefIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaDMObjectVersionRefIter</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectVersionRefIter &amp;</type>
+      <name>operator=</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaDMObjectVersionRefIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectVersionRef</type>
+      <name>getNext</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDMPlugInError</name>
+    <filename>classoaDMPlugInError.html</filename>
+    <base>oaDMError</base>
+    <member kind="function">
+      <type></type>
+      <name>oaDMPlugInError</name>
+      <anchor>a0</anchor>
+      <arglist>(oaDMMsgIds msgIdIn, const oaString &amp;systemName, const oaString &amp;libNameStr, oaUInt4 plugInMsgIdIn, const oaString &amp;plugInMsgStr)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4</type>
+      <name>getPlugInMsgId</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLib</name>
+    <filename>classoaLib.html</filename>
+    <base>oaDMContainer</base>
+    <member kind="function">
+      <type>void</type>
+      <name>close</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;out) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getPath</name>
+      <anchor>a3</anchor>
+      <arglist>(oaString &amp;path) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getFullPath</name>
+      <anchor>a4</anchor>
+      <arglist>(oaString &amp;fullPath) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getWritePath</name>
+      <anchor>oaLib::getWritePath</anchor>
+      <arglist>(oaString &amp;writePath) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLibMode</type>
+      <name>getMode</name>
+      <anchor>oaLib::getMode</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getDMSystemName</name>
+      <anchor>a7</anchor>
+      <arglist>(oaString &amp;dmSystem) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getAttributes</name>
+      <anchor>a8</anchor>
+      <arglist>(oaDMAttrArray &amp;attrs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isReadable</name>
+      <anchor>a9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isWritable</name>
+      <anchor>a10</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isMarkedToBeClosed</name>
+      <anchor>a11</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setAttributes</name>
+      <anchor>a12</anchor>
+      <arglist>(const oaDMAttrArray &amp;attrs)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>getAccess</name>
+      <anchor>oaLib::getAccess</anchor>
+      <arglist>(oaLibAccess accessType, oaUInt4 timeout=0)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>releaseAccess</name>
+      <anchor>oaLib::releaseAccess</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLibAccessLevel</type>
+      <name>getAccessLevel</name>
+      <anchor>a15</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>hasVC</name>
+      <anchor>a16</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt8</type>
+      <name>calcVMSize</name>
+      <anchor>a17</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectIter</type>
+      <name>getControlledObjects</name>
+      <anchor>oaLib::getControlledObjects</anchor>
+      <arglist>(oaVCQueryDepth depth=oacCellViewFileVCQueryDepth, oaDMObject *top=NULL, oaBoolean localOnly=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDMObjectVersionRefIter</type>
+      <name>getWorkingVersions</name>
+      <anchor>oaLib::getWorkingVersions</anchor>
+      <arglist>(oaVCQueryDepth depth=oacCellViewFileVCQueryDepth) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaCell, oaLib &gt;</type>
+      <name>getCells</name>
+      <anchor>a20</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaView, oaLib &gt;</type>
+      <name>getViews</name>
+      <anchor>a21</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaView, oaLib &gt;</type>
+      <name>getViewsByName</name>
+      <anchor>a22</anchor>
+      <arglist>(const oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaCellView, oaLib &gt;</type>
+      <name>getCellViews</name>
+      <anchor>a23</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaGroup, oaLib &gt;</type>
+      <name>getGroups</name>
+      <anchor>a24</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaGroup, oaLib &gt;</type>
+      <name>getGroups</name>
+      <anchor>a25</anchor>
+      <arglist>(oaGroupDef *def) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaGroup, oaLib &gt;</type>
+      <name>getGroupsByName</name>
+      <anchor>a26</anchor>
+      <arglist>(const oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLib *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaScalarName &amp;name, const oaString &amp;libPath, oaLibMode mode=oacSharedLibMode, const oaString &amp;dmSystem=&quot;oaDMSystem&quot;, const oaDMAttrArray *dmAttrList=NULL)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLib *</type>
+      <name>open</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaScalarName &amp;name, const oaString &amp;libPath, const oaString &amp;writePath=&quot;&quot;, oaLibMode mode=oacSharedLibMode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLib *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaScalarName &amp;name)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaString &amp;libPath)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCollection&lt; oaLib, oaLib &gt;</type>
+      <name>getOpenLibs</name>
+      <anchor>d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacLibDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibAccess</name>
+    <filename>classoaLibAccess.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaLibAccess</name>
+      <anchor>a0</anchor>
+      <arglist>(oaLibAccessEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaLibAccess</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaLibAccessEnum</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibAccessLevel</name>
+    <filename>classoaLibAccessLevel.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaLibAccessLevel</name>
+      <anchor>a0</anchor>
+      <arglist>(oaLibAccessLevelEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaLibAccessLevel</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaLibAccessLevelEnum</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibDataType</name>
+    <filename>classoaLibDataType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaLibDataType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaLibDataTypeEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaLibDataType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaLibDataType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaLibDataTypeEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibDef</name>
+    <filename>classoaLibDef.html</filename>
+    <base>oaLibDefListMem</base>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a0</anchor>
+      <arglist>(oaScalarName &amp;libName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibPath</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;path) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibWritePath</name>
+      <anchor>a2</anchor>
+      <arglist>(oaString &amp;writePath) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setLibWritePath</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaString &amp;writePath)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLibMode</type>
+      <name>getLibMode</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setLibMode</name>
+      <anchor>a5</anchor>
+      <arglist>(oaLibMode libMode)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibAttributes</name>
+      <anchor>a6</anchor>
+      <arglist>(oaDMAttrArray &amp;attrs) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addLibAttribute</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaString &amp;attrName, const oaString &amp;attrVal)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeLibAttribute</name>
+      <anchor>a8</anchor>
+      <arglist>(const oaString &amp;attrName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDef *</type>
+      <name>create</name>
+      <anchor>oaLibDef::create</anchor>
+      <arglist>(oaLibDefList *defList, const oaScalarName &amp;libName, const oaString &amp;libPath, const oaString &amp;writePath=&quot;&quot;, oaLibMode libMode=oacSharedLibMode, const oaDMAttrArray *libAttrs=NULL, oaLibDefListMem *followingMem=NULL)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDef *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaLibDefList *defList, const oaScalarName &amp;libName)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibDefList</name>
+    <filename>classoaLibDefList.html</filename>
+    <base>oaSessionObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>open</name>
+      <anchor>oaLibDefList::open</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchor>oaLibDefList::save</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveAs</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaString &amp;path)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getPath</name>
+      <anchor>a3</anchor>
+      <arglist>(oaString &amp;path) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getFullPath</name>
+      <anchor>a4</anchor>
+      <arglist>(oaString &amp;path) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaChar</type>
+      <name>getMode</name>
+      <anchor>a5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaLibDefListMem, oaLibDefList &gt;</type>
+      <name>getMembers</name>
+      <anchor>oaLibDefList::getMembers</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>openLibs</name>
+      <anchor>oaLibDefList::openLibs1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>openLibs</name>
+      <anchor>oaLibDefList::openLibs2</anchor>
+      <arglist>(const oaString &amp;path)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDefList *</type>
+      <name>getTopList</name>
+      <anchor>d2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>getDefaultPath</name>
+      <anchor>d3</anchor>
+      <arglist>(oaString &amp;path)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>getDefaultFileName</name>
+      <anchor>oaLibDefList::getDefaultFileName</anchor>
+      <arglist>(oaString &amp;libDefName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDefList *</type>
+      <name>create</name>
+      <anchor>d5</anchor>
+      <arglist>(const oaString &amp;filePath)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDefList *</type>
+      <name>get</name>
+      <anchor>oaLibDefList::get</anchor>
+      <arglist>(const oaString &amp;filePath, oaChar mode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDefList *</type>
+      <name>find</name>
+      <anchor>d7</anchor>
+      <arglist>(const oaString &amp;filePath)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCollection&lt; oaLibDefList, oaLibDefList &gt;</type>
+      <name>getLibDefLists</name>
+      <anchor>d8</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibDefListMem</name>
+    <filename>classoaLibDefListMem.html</filename>
+    <base>oaSessionObject</base>
+    <member kind="function">
+      <type>oaLibDefList *</type>
+      <name>getList</name>
+      <anchor>a0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>moveAfter</name>
+      <anchor>a1</anchor>
+      <arglist>(oaLibDefListMem *member)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>moveToFirst</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>moveToLast</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>oaLibDefListMem::destroy</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibDefListRef</name>
+    <filename>classoaLibDefListRef.html</filename>
+    <base>oaLibDefListMem</base>
+    <member kind="function">
+      <type>void</type>
+      <name>getRefListPath</name>
+      <anchor>a0</anchor>
+      <arglist>(oaString &amp;path) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDefListRef *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaLibDefList *libList, const oaString &amp;refListPath, oaLibDefListMem *followingMem=NULL)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDefListRef *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaLibDefList *defList, const oaString &amp;refListPath)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibDMData</name>
+    <filename>classoaLibDMData.html</filename>
+    <base>oaDMData</base>
+    <member kind="function" static="yes">
+      <type>oaLibDMData *</type>
+      <name>open</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaScalarName &amp;libName, oaChar mode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDMData *</type>
+      <name>recover</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaScalarName &amp;libName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaLibDMData *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaScalarName &amp;libName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaScalarName &amp;libName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d4</anchor>
+      <arglist>(const oaScalarName &amp;libName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d5</anchor>
+      <arglist>(const oaScalarName &amp;libName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d6</anchor>
+      <arglist>(const oaScalarName &amp;libName, oaSaveRecoverType saveRecoverType)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLibMode</name>
+    <filename>classoaLibMode.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaLibMode</name>
+      <anchor>a0</anchor>
+      <arglist>(oaLibModeEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaLibMode</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaLibMode</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaLibModeEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaObserver&lt; oaDMData, oacObserverVersion1 &gt;</name>
+    <filename>classoaObserver_3oaDMData_4.html</filename>
+    <base>oaBaseObserver</base>
+    <member kind="function">
+      <type></type>
+      <name>oaObserver</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 priorityIn, oaBoolean enabledIn=true)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaObserver</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onFirstOpen</name>
+      <anchor>a2</anchor>
+      <arglist>(oaDMData *dmData)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPurge</name>
+      <anchor>a3</anchor>
+      <arglist>(oaDMData *dmData)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onTruncate</name>
+      <anchor>a4</anchor>
+      <arglist>(oaDMData *dmData)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreReopen</name>
+      <anchor>a5</anchor>
+      <arglist>(oaDMData *dmData, oaChar newMode)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostReopen</name>
+      <anchor>a6</anchor>
+      <arglist>(oaDMData *dmData, oaChar oldMode)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreSave</name>
+      <anchor>a7</anchor>
+      <arglist>(oaDMData *dmData)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostSave</name>
+      <anchor>a8</anchor>
+      <arglist>(oaDMData *dmData, oaBoolean succeeded)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaObserver&lt; oaLib, oacObserverVersion1 &gt;</name>
+    <filename>classoaObserver_3oaLib_4.html</filename>
+    <base>oaBaseObserver</base>
+    <member kind="function">
+      <type></type>
+      <name>oaObserver</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 priorityIn, oaBoolean enabledIn=true)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaObserver</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostCreate</name>
+      <anchor>a2</anchor>
+      <arglist>(oaLib *lib)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostOpen</name>
+      <anchor>a3</anchor>
+      <arglist>(oaLib *lib)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreClose</name>
+      <anchor>a4</anchor>
+      <arglist>(oaLib *lib)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreModify</name>
+      <anchor>a5</anchor>
+      <arglist>(oaLib *lib, oaDMLibModTypeEnum modType)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostModify</name>
+      <anchor>a6</anchor>
+      <arglist>(oaLib *lib, oaDMLibModTypeEnum modType)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaObserver&lt; oaLibDefList, oacObserverVersion1 &gt;</name>
+    <filename>classoaObserver_3oaLibDefList_4.html</filename>
+    <base>oaBaseObserver</base>
+    <member kind="function">
+      <type></type>
+      <name>oaObserver</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 priorityIn, oaBoolean enabledIn=true)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaObserver</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual oaBoolean</type>
+      <name>onPreOpenLibs</name>
+      <anchor>a2</anchor>
+      <arglist>(oaLibDefList *defList)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostOpenLibs</name>
+      <anchor>a3</anchor>
+      <arglist>(oaLibDefList *defList)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual oaBoolean</type>
+      <name>onLoadWarnings</name>
+      <anchor>oaLibDefList::onLoadWarnings</anchor>
+      <arglist>(oaLibDefList *defList, const oaString &amp;msg, oaLibDefListWarningTypeEnum type)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostCreate</name>
+      <anchor>a5</anchor>
+      <arglist>(oaLibDefList *defList)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreDestroy</name>
+      <anchor>a6</anchor>
+      <arglist>(oaLibDefList *defList)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreSave</name>
+      <anchor>a7</anchor>
+      <arglist>(oaLibDefList *defList)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostSave</name>
+      <anchor>a8</anchor>
+      <arglist>(oaLibDefList *defList)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreSaveAs</name>
+      <anchor>a9</anchor>
+      <arglist>(oaLibDefList *defList, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostSaveAs</name>
+      <anchor>a10</anchor>
+      <arglist>(oaLibDefList *defList, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>hasObservers</name>
+      <anchor>d3</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaObserver&lt; oaViewType, oacObserverVersion1 &gt;</name>
+    <filename>classoaObserver_3oaViewType_4.html</filename>
+    <base>oaBaseObserver</base>
+    <member kind="function">
+      <type></type>
+      <name>oaObserver</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 priorityIn, oaBoolean enabledIn=true)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaObserver</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostCreate</name>
+      <anchor>a2</anchor>
+      <arglist>(oaViewType *viewType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>hasObservers</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaReservedViewType</name>
+    <filename>classoaReservedViewType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaReservedViewType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaReservedViewTypeEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaReservedViewType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaReservedViewType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaReservedViewTypeEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaSaveRecoverType</name>
+    <filename>classoaSaveRecoverType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaSaveRecoverType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaSaveRecoverTypeEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaSaveRecoverType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaSaveRecoverType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaSaveRecoverTypeEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCCap</name>
+    <filename>classoaVCCap.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCCap</name>
+      <anchor>a0</anchor>
+      <arglist>(oaVCCapEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCCap</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVCCap</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaVCCapEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCMessageType</name>
+    <filename>classoaVCMessageType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCMessageType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaVCMessageTypeEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCMessageType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVCMessageType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaVCMessageTypeEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCObserver</name>
+    <filename>classoaVCObserver.html</filename>
+    <base>oaBaseObserver</base>
+    <member kind="function">
+      <type></type>
+      <name>oaVCObserver</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 priorityIn, oaBoolean enabledIn=true)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaVCObserver</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onVCPlugInLoad</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaString &amp;plugInName)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual oaVCObserverResult</type>
+      <name>onVCMessageOut</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaString &amp;plugInName, oaDMObject *object, oaVCOperation operation, oaVCMessageType msgType, const oaString &amp;text)</arglist>
+    </member>
+    <member kind="friend" protection="protected">
+      <type>friend class</type>
+      <name>oaVCObserverCollectionPvt</name>
+      <anchor>l0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCObserverCollection</name>
+    <filename>classoaVCObserverCollection.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCObserverCollection</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCObserverCollection</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaVCObserverCollection &amp;copy)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaVCObserverCollection</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCObserverCollection &amp;</type>
+      <name>operator=</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaVCObserverCollection &amp;rhs)</arglist>
+    </member>
+    <member kind="friend">
+      <type>friend class</type>
+      <name>oaVCObserverIter</name>
+      <anchor>l0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCObserverIter</name>
+    <filename>classoaVCObserverIter.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCObserverIter</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaVCObserverCollection &amp;coll)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCObserverIter</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaVCObserverIter &amp;copy)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaVCObserverIter</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCObserverIter &amp;</type>
+      <name>operator=</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaVCObserverIter &amp;rhs)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCObserverResult</name>
+    <filename>classoaVCObserverResult.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCObserverResult</name>
+      <anchor>a0</anchor>
+      <arglist>(oaVCObserverResultEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCObserverResult</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVCObserverResult</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaVCObserverResultEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCOperation</name>
+    <filename>classoaVCOperation.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCOperation</name>
+      <anchor>a0</anchor>
+      <arglist>(oaVCOperationEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCOperation</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVCOperation</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaVCOperationEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCQueryDepth</name>
+    <filename>classoaVCQueryDepth.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCQueryDepth</name>
+      <anchor>a0</anchor>
+      <arglist>(oaVCQueryDepthEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCQueryDepth</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVCQueryDepth</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaVCQueryDepthEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCSystem</name>
+    <filename>classoaVCSystem.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oaBoolean</type>
+      <name>testCapability</name>
+      <anchor>a2</anchor>
+      <arglist>(oaVCCap cap) const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oaBoolean</type>
+      <name>getControlledLibs</name>
+      <anchor>a3</anchor>
+      <arglist>(oaArray&lt; oaLib * &gt; &amp;libs) const=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaVCSystem *</type>
+      <name>get</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaChar *name)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCVersion</name>
+    <filename>classoaVCVersion.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCVersion</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCVersion</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaChar *sysName, const oaChar *displayName=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVCVersion</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaVCVersion &amp;ver)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVCVersion</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getVCSystemName</name>
+      <anchor>a5</anchor>
+      <arglist>(oaString &amp;sysName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDisplayName</name>
+      <anchor>a6</anchor>
+      <arglist>(const oaChar *sysName, const oaChar *displayName)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getDisplayName</name>
+      <anchor>a7</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVersionComp</type>
+      <name>compare</name>
+      <anchor>a8</anchor>
+      <arglist>(const oaVCVersion *other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCVersion &amp;</type>
+      <name>operator=</name>
+      <anchor>a9</anchor>
+      <arglist>(const oaVCVersion &amp;ver)</arglist>
+    </member>
+    <member kind="function">
+      <type>void *</type>
+      <name>getRaw</name>
+      <anchor>a10</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVCVersionIter</name>
+    <filename>classoaVCVersionIter.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVCVersionIter</name>
+      <anchor>a0</anchor>
+      <arglist>(const oaVCVersionIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVCVersionIter</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCVersionIter &amp;</type>
+      <name>operator=</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaVCVersionIter &amp;iter)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaVCVersion</type>
+      <name>getNext</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaVersionComp</name>
+    <filename>classoaVersionComp.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaVersionComp</name>
+      <anchor>a0</anchor>
+      <arglist>(oaVersionCompEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaVersionComp</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaVersionComp</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaVersionCompEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaView</name>
+    <filename>classoaView.html</filename>
+    <base>oaDMContainer</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;out) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaViewType *</type>
+      <name>getViewType</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaCellView, oaView &gt;</type>
+      <name>getCellViews</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaView *</type>
+      <name>find</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaLib *lib, const oaScalarName &amp;name, const oaViewType *viewType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaView *</type>
+      <name>get</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaLib *lib, const oaScalarName &amp;name, const oaViewType *viewType)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacViewDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaViewDMData</name>
+    <filename>classoaViewDMData.html</filename>
+    <base>oaDMData</base>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a0</anchor>
+      <arglist>(oaScalarName &amp;viewName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;viewName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaViewType *</type>
+      <name>getViewType</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaViewDMData *</type>
+      <name>open</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;viewName, const oaViewType *viewType, oaChar mode)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaViewDMData *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;viewName, const oaViewType *viewType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;viewName, const oaViewType *viewType)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d5</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;viewName, const oaViewType *viewType)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaViewType</name>
+    <filename>classoaViewType.html</filename>
+    <base>oaSessionObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a0</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaViewType *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaViewType *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaViewType *</type>
+      <name>get</name>
+      <anchor>oaViewType::get</anchor>
+      <arglist>(oaReservedViewType type)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCollection&lt; oaViewType, oaSession &gt;</type>
+      <name>getViewTypes</name>
+      <anchor>d3</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+</tagfile>

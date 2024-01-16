@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h2>Summary of API Changes</h2>
+		<p>Following is a summary of the API changes between the OpenAccess p054 release
+			and the p049 release.</p>
+		<SPAN style="COLOR: rgb(0,102,204)">
+			<SPAN style="COLOR: rgb(0,102,204)">
+				<SPAN style="COLOR: rgb(0,102,204)">
+					<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>	<a href="oaLefDef/oaLefDefMsgs_8h.html#a154">LefDefMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="oaLefDef/oaLefDefMsgs_8h.html#a154a152">cPhysOnlyInstTermNetMustBeInSameOcc</a> <BR>
+		<a href="oaLefDef/oaLefDefMsgs_8h.html#a154a153">cMultipleInfluenceMaxRange</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN>
+				</SPAN>
+			</SPAN>
+		</SPAN></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)"><SPAN style="COLOR: rgb(0,102,204)"><SPAN style="COLOR: rgb(0,102,204)">#################################<BR># The
+following classes were modified #<BR>#################################<BR></P>
+		<PRE>	<a href="oaLefDef/classLefOutLayer.html">LefOutLayer</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaLefDef/classLefOutLayer.html#b64">outputEnclosure(oaConstraint *c, oaUInt4 length, oaUInt4 extraCut, oaString side, oaBoolean hard, oaBoolean nonWidth=false)</a> <BR>
+</PRE>
+		<P><FONT color="#0066cc">#################################</FONT></SPAN></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums have changed values
+#<BR>#################################<BR><PRE>	<a href="oaLefDef/oaLefDefBase_8h.html#a11">DirectionEnum</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Changed Values</SPAN><BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a3">cDirectionRight</a>     New Value:  0 Last Value:  6<BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a4">cDirectionUpRight</a>     New Value:  1 Last Value:  7<BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a5">cDirectionUp</a>     New Value:  2 Last Value:  0<BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a6">cDirectionUpLeft</a>     New Value:  3 Last Value:  1<BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a7">cDirectionLeft</a>     New Value:  4 Last Value:  2<BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a8">cDirectionDownLeft</a>     New Value:  5 Last Value:  3<BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a9">cDirectionDown</a>     New Value:  6 Last Value:  4<BR>
+		<a href="oaLefDef/oaLefDefBase_8h.html#a11a10">cDirectionDownRight</a>     New Value:  7 Last Value:  5<BR>
+	<a href="oaLefDef/oaLefDefMsgs_8h.html#a150">LefDefMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Changed Values</SPAN><BR>
+		<a href="oaLefDef/oaLefDefMsgs_8h.html#a150a148">cMacroIllegalSize</a>     New Value:  50145 Last Value:  50146<BR>
+		<a href="oaLefDef/oaLefDefMsgs_8h.html#a150a149">cDifferentCumAntennaValue</a>     New Value:  50146 Last Value:  50145<BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<BR><PRE>	<a href="oaLefDef/classLefInLayer.html">LefInLayer</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaLefDef/classLefInLayer.html#b69">getIndex(T &amp;table, oaInt4 header)</a> <BR>
+		<a href="oaLefDef/classLefInLayer.html#b43">setEnclosureConstraint(oaBoolean hard, oaUInt4 index)</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		getIndex(oa1DLookupTbl&lt; oaInt4, oaInt4 &gt; &amp;table, oaInt4 header)<BR>
+		setEnclosureConstraint(oaBoolean hard, oaUInt4 index, oaBoolean nonWidth=false)<BR>
+	<a href="oaLefDef/classLefOutLayer.html">LefOutLayer</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaLefDef/classLefOutLayer.html#b35">writeEnclosure(oaString side, oaBoolean hard)</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		writeEnclosure(oaBoolean hard)<BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>	<a href="oaLefDef/oaLefDefMsgs_8h.html#a150">LefDefMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="oaLefDef/oaLefDefMsgs_8h.html#a150a149">cMacroIllegalSize</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<BR><PRE>	<a href="oaLefDef/classLefInLayer.html">LefInLayer</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaLefDef/classLefInLayer.html#b41">parseEnclosure()</a> <BR>
+		<a href="oaLefDef/classLefInLayer.html#b42">parsePreferEnclosure()</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		parseEnclosure(oaBoolean hard)<BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following classes were modified #<BR>#################################<BR><PRE>	<a href="oaLefDef/classDefInOptions.html">DefInOptions</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaLefDef/classDefInOptions.html#a17">doUseDefaultStdVias() const</a> <BR>
+		<a href="oaLefDef/classDefInOptions.html#a7">setUseDefaultStdVias(oaBoolean newUseCustomVias)</a> <BR>
+	<a href="oaLefDef/classLefDefBase.html">LefDefBase</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaLefDef/classLefDefBase.html#a21">findLayer(oaLayerNum layerNum)</a> <BR>
+	<a href="oaLefDef/classLefOutGeom.html">LefOutGeom</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<a href="oaLefDef/classLefOutGeom.html#a2">writeFig(oaFig *fig, oaBoolean pathToPolygon=false)</a> <BR>
+		<a href="oaLefDef/classLefOutGeom.html#b0">writeLayer(oaBoolean pathToPolygon=false)</a> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		writeFig(oaFig *fig)<BR>
+		writeLayer()<BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		<P><SPAN style="COLOR: rgb(0,102,204)">#################################<BR>#
+The following enums were modified #<BR>#################################<BR><PRE>	<a href="oaLefDef/oaLefDefMsgs_8h.html#a149">LefDefMsgIds</a> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<a href="oaLefDef/oaLefDefMsgs_8h.html#a149a148">cDifferentCumAntennaValue</a> <BR>
+</PRE>
+<P><BR>################################# </SPAN></P>
+		<P></P>
+		</SPAN></SPAN>
+		<P></P>
+	</body>
+</html>

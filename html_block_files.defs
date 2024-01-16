@@ -1,0 +1,26 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME
+	Block Domain Class Index
+
+HTMLFILES
+	classoaBlockObject.html
+	classoaNetTermArrayBase.html
+	classoaNetTermPair.html
+	classoaSegStyle.html
+	classoaViaVariant.html
+	classoaViaVariantHeader.html
+	classoaViaTopology.html
+	classoaViaTopology2DTblValue.html
+	classoaViaTopologyArray.html
+	classoaViaTopologyArrayValue.html
+	classoaViaTopologyType.html
+
+BUILDINFO
+Block objects specify the physical aspects of a design. These include the block domain connectivity and all geometric aspects of the design, which are represented by the classes derived from <a href="classoaFig.html">oaFig</a>. This category includes all the classes that can be stored in an <a href="classoaBlock.html">oaBlock</a> and the classes that are used to describe those objects.
+
+See <a href="../guide/pathSegs.html">Physical Routing Segments</a> and <a href="../guide/transforms.html">Using Transforms</a> in the Programmers Guide for more information.
+

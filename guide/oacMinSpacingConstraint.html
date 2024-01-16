@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minSpacing (oacMinSpacing)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in oacMinSpacing layer constraint determines the minimum orthogonal spacing required between two geometries on a specified layer. The distance is specified in database units. This constraint can be specified simply as the minimum spacing between any two adjacent geometries, specified as dependent on the spacing direction (vertical or horizontal) for adjacent geometries, specified as dependent on the wider of two geometries plus the parallel run length, and specified as dependent on the width of both geometries plus the parallel run length. The spacing can be either a Euclidian or Manhattan measure.</p>
+    <p>Optional parameters determine whether the constraint applies dependent on the type of connectivity and dependent on whether the shapes belong to power or ground nets.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/base/classoaIntValue.html">oaIntValue</a>, <a href="../../html/base/classoaInt1DTblValue.html">oaInt1DTblValue</a>, <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaRect.html">oaRect</a>, <a href="../../html/design/classoaPath.html">oaPath</a>, <a href="../../html/design/classoaPolygon.html">oaPolygon</a>, <a href="../../html/design/classoaPathSeg.html">oaPathSeg</a>, <a href="../../html/design/classoaRoute.html">oaRoute</a>, <a href="../../html/design/classoaPin.html">oaPin</a>, <a href="../../html/design/classoaAreaBoundary.html">oaAreaBoundary</a>, <a href="../../html/design/classoaPRBoundary.html">oaPRBoundary</a>, <a href="../../html/design/classoaLayerBlockage.html">oaLayerBlockage</a>, <a href="../../html/design/classoaAreaBlockage.html">oaAreaBlockage</a>, <a href="../../html/design/classoaScalarNet.html">oaScalarNet</a>, <a href="../../html/design/classoaBusNetBit.html">oaBusNetBit</a>, <a href="../../html/design/classoaScalarInst.html">oaScalarInst</a>, <a href="../../html/design/classoaVectorInst.html">oaVectorInst</a>, <a href="../../html/design/classoaArrayInst.html">oaArrayInst</a>, <a href="../../html/base/classoaAppObject.html">oaAppObject</a></td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>If the oaIntValue is specified, the value represents the minimum spacing in database units required between the two geometries.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+      <li>
+        <b>
+          <a href="../../html/base/classoaInt1DTblValue.html">oaInt1DTblValue</a>
+        </b>
+        <p>If an oaInt1DTblValue is specified, the lookup key ("width") in the table represents the width of the wider of the two shapes, and the value for the table represents the minimum spacing required between the two shapes in database units. The width of the shape is defined as the smaller of the shape's two dimensions.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+      <li>
+        <b>
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>
+        </b>
+        <p>If an oaInt2DTblValue is specified, the interpretation of the keys depends on the value of the parameter oacWidthLengthTableType. If the value is oacWidthWidthTableType, both the rows and the columns represent the widths of the two shapes being analyzed. If the value is oacWidthParallelRunLengthTableType, the row lookup key ("width") in the table represents the width of the wider of the two shapes, the column lookup key ("length") in the table represents the parallel run length between the two shapes, and the value for the table represents the minimum spacing required between the two shapes in database units. The parallel run length between the two shapes is calculated as the distance in the lengthwise direction for which the two shapes are directly orthogonal (meaning that a line running perpendicular to the length would intersect both shapes at an angle of 90 degrees). If the value is oacTwoWidthParallelRunLengthTableType, the rows represent the widths and the columns represent the parallel run length</p>
+        <p>
+        Units: DBU</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>widthLengthTableType</b><br />oacWidthLengthTableTypeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)<br />(only valid for value types:
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>)
+        </td>
+        <td>
+          <p>oacWidthLengthTableTypeConstraintParamType is the table type. This parameter determines how the value of the constraint is interepreted. The value can be based on the widths of two shapes, based on the wider of two adjacent geometries and their parallel run length, or based on the width of both geometries and the parallel run length. The valid value for this parameter is an oaIntValue.</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaWidthLengthTableType.html">oaWidthLengthTableType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacWidthParallelRunLengthTableType</td>
+              <td valign="top">widthParallelRunLengthTableType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacWidthWidthTableType</td>
+              <td valign="top">widthWidthTableType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacTwoWidthParallelRunLengthTableType</td>
+              <td valign="top">twoWidthParallelRunLengthTableType</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>distanceMeasureType</b><br />oacDistanceMeasureTypeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)</td>
+        <td>
+          <p>oacDistanceMeasureTypeConstraintParamType is the distance measure type, which determines whether the spacing values specified in the table values of the constraint are in either a Euclidian or Manhattan metric. The allowed value type for this parameter is an oaIntValue that is represented by an oaDistanceMeasureType enumeration.</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaDistanceMeasureType.html">oaDistanceMeasureType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacEuclidianDistanceMeasureType</td>
+              <td valign="top">euclidian</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacManhattanDistanceMeasureType</td>
+              <td valign="top">manhattan</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>oaSpacingDirection</b><br />oacSpacingDirectionConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">any</td>
+        <td>
+          <p>oacSpacingDirectionConstraintParamType is the spacing direction that represents the direction in which the constraint applies. This parameter is an oaIntValue type that uses one of the oaSpacingDirectionType enumeration values.</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaSpacingDirectionType.html">oaSpacingDirectionType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacAnySpacingDirectionType</td>
+              <td valign="top">any</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacHorizontalSpacingDirectionType</td>
+              <td valign="top">horizontal</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacVerticalSpacingDirectionType</td>
+              <td valign="top">vertical</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>oaConnectivityType</b><br />oacConnectivityTypeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">any</td>
+        <td>
+          <p>The optional oacConnectivityTypeConstraintParamType parameter uses an oaIntValue represented by one of the oaConnectivityType enumerations. If sameNetConnectivityType is specified, the constraint only applies to shapes on the same net. If contiguousShapesConnectivity is specified, the constraint only applies to contiguous (same metal) shapes. If not specified, the default value for this parameter is anyConnectivityType.</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaConnectivityType.html">oaConnectivityType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacAnyConnectivityType</td>
+              <td valign="top">anyConnectivityType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacSameNetConnectivityType</td>
+              <td valign="top">sameNetConnectivityType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacContiguousShapesConnectivityType</td>
+              <td valign="top">contiguousShapesConnectivityType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacDirectShapesConnectivityType</td>
+              <td valign="top">directShapesConnecitivtyType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacSameViaConnectivityType</td>
+              <td valign="top">sameViaConnectivityType</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>oaPGNet</b><br />oacPGNetConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>The optional oacPGNetConstraintParamType parameter uses a Boolean value. If true, this constraint only applies to power and ground nets. If not specified, the default value for this parameter is false.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>inLayerDirection</b><br />oacInLayerDirectionConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/tech/classoaLayerValue.html">oaLayerValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Layer Number</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>The parameter specifies the direction in which the minimum spacing constraint applies. The direction is indicated by a shape on the specified layer which touches both shapes.</p>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/figMinSpaceRule.gif" alt="figMinSpaceRule.gif" />
+      <br />
+    </p>
+    <h2>Manufacturing Reasons</h2>
+    <p>Minimum spacing constraints help to ensure that geometries are not merged together during fabrication.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

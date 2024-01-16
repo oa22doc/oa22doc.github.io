@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+                <h1>Verilog to OpenAccess Translator (verilog2oa)</h1>
+                <hr>
+                <h2><a name="cmd">Overview</a></h2>
+                <p>You translate Verilog data to the OpenAccess database format by using the <code>verilog2oa</code> application. A destination library and a Verilog file are required to begin a translation. The translator reads Verilog-2001 (IEEE 1364-2001), which is a superset of Verilog-1995 (IEEE 1364-1995). Therefore, the translator also reads Verilog-1995. verilog2oa translates the netlist information in a Verilog file to one or more OpenAccess Designs.</p>
+
+<p>The basic command-line syntax for using the translator is:</p>
+<pre>
+    verilog2oa -lib <em>library</em> -verilog <em>file</em> [Optional Arguments]
+</pre>
+
+<P><a name="top_module_detection"></a>Running <code>verilog2oa</code> using the default behavior (without optional arguments) translates all the modules in the Verilog into oaModules in a single oaDesign. The translator accomplishes this automatically by selecting the <em>top</em> module using the following algorithm:</p>
+<ul>
+<li>If there is a single, uninstantiated module, it is the <em>top</em>.</li>
+<li>If there are multiple uninstantiated modules, the one with the most levels of hierarchy beneath it is the <em>top</em>.</li>
+<li>If no unique module can be determined based on hierarchy, the <em>top</em> is the last of the modules in the input file.</li>
+</ul>
+
+<p>You can override this automatic selection by using the –top option. Any modules that are never instantiated underneath the <em>top</em> module’s hierarchy are deleted before the design is saved.</p>
+
+<P><code>verilog2oa</code>  is designed for structural Verilog. Not all features of the Verilog language are handled. By default, unimplemented features of the language cause an error. The <code>tolerate</code> option reduces these errors to warnings, but the result might not be a complete or accurate representation of the netlist. </P>
+
+<P>See <a href="../verilogmap/verilog2oamap.html">Verilog to OpenAccess Mapping</a> for details about how Verilog statements and constructs map to OpenAccess database objects.</P>
+<P>Use the <code>-help</code> or <code>-h</code> argument to display command-line help. The command-line arguments are described in the following table.</P>
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th colspan="2" align="left">Required Arguments </th>
+</tr>
+<tr>
+<td width="147" valign="top">-lib <em>library</em></td>
+<td width="827" valign="top"><p>Specifies the destination OpenAccess library for the translated Verilog data. The destination library is created if it does not already exist. For information about how the translator finds a library  using the library definitions file, see <a href="../guide/usinglibs.html">How Translators Use Libraries</a>. See also the -libDefFile option for specifying a particular lib.defs file.</p></td>
+</tr>
+<tr>
+<td valign="top">-verilog <em>fileList</em></td>
+<td valign="top"><p>Verilog file to translate. You can specify multiple files with a quoted, space-separated list. </p></td>
+</tr>
+<tr bgcolor="#eeffcc">
+<td valign="top" valign="top" colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-blackBox</td>
+<td valign="top">Creates a separate design for each <em>empty </em> Verilog module. Empty Verilog modules are modules that have no instances and no assign statements. Empty Verilog modules can have ports, wires and (if running with <code>tolerate</code>) non-structural Verilog statements. Instances of black box modules become design instances. This  option is used when leaf libraries are not available as OpenAccess Designs, and the input Verilog contains definitions for the leaf cells.
+</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-dataModel <em>dataModel value</em></td>
+<td>Specifies a dataModel value of 0, 1, 2, or 3, which determines the data model for the OpenAccess database and determines how properties are mapped to the database. If this option is omitted, the default dataModel value of 1 is used unless the OA_DATAMODEL environment variable is set or a file named OA.DATAMODEL is found in the  data directory of your OpenAccess installation hierarchy. See the discussion <a href="../guide/compat.html#transDataModel">Specifying a DataModelRev for a Flow</a> for more information.
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-designPerMod</td>
+<td valign="top">Creates a separate design for each Verilog module. </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-DMAttributes <em>attributeList</em></td>
+<td valign="top">Specifies a list of DM attributes that are used for the library that verilog2oa creates when it creates a new library. Attributes are specified as name=value pairs. There must be no space on either side of the equal sign, two or more pairs must be space-separated, and the list must be enclosed in quotes. For example:
+<pre>
+    verilog2oa ... -DMAttributes "name1=value name2=value name3=value"
+</pre>
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"><span class="code">-DMSystem <em>sysName</em></span></td>
+<td valign="top">Specifies the DMSystem to use when verilog2oa creates a new library. The DM plug-ins included with  OpenAccess are oaDMTurbo or oaDMFileSys. The default DM system is oaDMSystem, which automatically selects between oaDMTurbo or oaDMFileSys. Use of the oaDMTurbo plug-in is not recommended.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-globals module</td>
+<td valign="top">Specifies the name of the module in which to define global nets if global nets exist. If unspecified, the module name defaults to <code>globals</code>.</td>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-help | -h</td>
+<td valign="top">Prints command-line help.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-leafLibs <em>libraryList</em></td>
+<td valign="top">If you use this option, a warning is issued. This option is deprecated. Use the -refLibs option instead.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-leafViews <em>viewList</em></td>
+<td valign="top">If you use this option, a warning is issued. This option is deprecated. Use the -refViews option instead.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-libDefFile <em>filename</em></td>
+<td valign="top">Specifies the lib.defs file to load. The path to the lib.defs file can be a full or relative path. If this option is omitted, the default search order is used to find and load the lib.defs file.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-libPath <em>path</em></td>
+<td valign="top">Specifies the full path name (including the library name) for the library. Use this argument only if the library does not exist. If not specified, the new library is created at ./&lt;library&gt;, where &lt;library&gt; is the value of the -lib argument.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-logFile <em>file</em></td>
+<td valign="top">Specifies the log filename. If this option is omitted, the log filename defaults to verilog2oa.log.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noInfo <em>msgIds</em></td>
+<td valign="top">Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noWarning <em>msgIds</em></td>
+<td valign="top">Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file and are not included in the total of WARNING messages displayed in the summary. You can browse the <a href="VerilogMsgs.html">list of error and warning messages</a> to determine which you want to suppress.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-overwrite</td>
+<td valign="top">Replaces an existing design with the translated data. If this option is omitted, and the specified design exists, an error is generated.</td>
+</tr>
+<tr>
+<td valign="top">-refLibs <em>libList</em></td>
+<td valign="top">Specifies one or more libraries in which to search for leaf cells. You can specify multiple libraries with a quoted, space-separated list. By default, the <code>refLibs</code> list is empty.<br><br>
+
+The translator can attach technology information to the output library if the first reference library is a technology database. See <a href="#attachtech">Attaching Technology Information to a Library</a>.<br><br>
+
+<code>refLibs</code> are searched in the order they appear on the command line. If the leaf name is not found, the optional <code>refViews</code> are searched next. The output library is not part of the <code>refLibs</code> list unless you explicitly specify it. If any cell name in the <code>refLibs</code> library matches the Verilog module name, the module is considered a leaf cell.<br>
+<br>Refer to <a href="../verilogmap/verilog2oamap.html#leaf_search">Searching for Leafs in refLibs and refViews</a> for more information.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-refViews <em>viewList</em></td>
+<td valign="top">Specifies a particular view in which to search for leaf cells. You can specify multiple views with a quoted, space-separated list.<br><br>
+The default view list has a single view name: <code>abstract</code>.<br><br>
+<code>refViews</code> are searched in the order they appear on the command line. <code>refViews</code> are searched after the arguments for <code>-refLib</code> are searched. If no appropriate view is available, a stub module with the name of the first view name in the <code>refViews</code> list is generated for the leaf.<br><br>
+Refer to <a href="../verilogmap/verilog2oamap.html#leaf_search">Searching for Leafs in refLibs and refViews</a> for more information.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-shared</td>
+<td>Allows other applications to access the output library while this application is running.<br><strong>Note</strong>: The additional synchronization overhead required for shared library access can increase translation time.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-tieLow <em>net</em></td>
+<td valign="top">By default literal zeros, such as <code>1'b0</code> connected to ports, are mapped to a global net named <code>tie0</code> with the oaSigType of <code>TieLo</code>. Literal numbers larger than a single bit are mapped to bundles of the <code>tie0</code> and <code>tie1</code> nets by using the number's bit pattern. You can change the name of this global net with this <code>tieLow</code> option. </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-tieHigh <em>net</em></td>
+<td valign="top">By default literal ones, such as <code>1'b1</code> connected to ports, are mapped to a global net named <code>tie1</code> with the oaSigType of <code>TieHi</code>. Literal numbers larger than a single bit are mapped to bundles of the <code>tie0</code> and <code>tie1</code> nets by using the number's bit pattern. You can change the name of these global nets with this <code>tieHigh</code> option. </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-templateFile file</td>
+<td valign="top"><p>Specifies a file containing arguments to <code>verilog2oa</code>. You can specify a template file instead of entering a string of arguments on the command line. </p>
+<p>If you specify a template file, arguments on the command line have precedence over arguments specified in the file. So, if the same argument exists in the template file and in the command line, the translator uses the argument on the command line.</p>
+<p>Specify arguments in a template file as follows:</p>
+<ul>
+<li> Enter arguments in the template file without a dash (-) before the argument.</li>
+<li> Enter each argument and value pair on a single line.</li>
+<li> Separate the argument from its value using a space or a tab.</li>
+<li> Designate comment lines with a <em>#</em> sign as the first character in the line.</li>
+</ul>
+<p><strong>Sample Template File</strong></p>
+<pre>
+# verilog2oa command line arguments
+
+logFile        myverilog2oa.log
+noWarnings     "40019 40068"
+overwrite
+</pre>
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-tolerate</td>
+<td valign="top"><code>verilog2oa</code> is designed for structural digital Verilog.&nbsp; Not all features of the Verilog-2001 language are handled.&nbsp; By default, unimplemented features of the language cause errors. The <code>tolerate</code> option reduces these errors to warnings, but the result may not be a complete or accurate representation of the netlist. </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-top <em>module</em></td>
+<td valign="top">Turns off the automatic top-module detection capability of <code>verilog2oa</code> and lets you explicitly select the top-module you want. </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-validateInstTerms</td>
+<td valign="top">Turns on additional validation to verify that all oaModInstTerms are bound to oaModTerms. Using this option forces binding, which can slow the translation.
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-v</td>
+<td valign="top"> Prints tool, format, and library version information.  </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-version</td>
+<td valign="top"> Prints tool and format version information.  </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-view <em>view</em></td> 
+<td valign="top">Specifies the view name for all created modules. If not specified, the default name is <code>netlist</code>. </td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-viewType <em>viewTypeName</em></td>
+<td valign="top">Specifies the view type for all created modules. viewTypeName is a string that corresponds to a valid <a href="../dm/classoaReservedViewType.html">oaReservedViewType</a>. The default view type is <code>netlist</code>.<br><br>
+<span style="font-weight:bold">Note:</span> While the data created by verilog2oa is netlist data, the designs it creates should be set to the viewType that is appropriate for the intended use. If these designs will go into implementation, the viewType should be <code>maskLayout</code>.</td>
+</tr>
+</table>
+
+<p><strong>Note</strong>: Command line arguments specifying library, cell, and view names are interpreted according to the Native name space. See <a href="../guide/namemap.html#9">Native Name Space</a> in the Name Mapping article of the Programmers Guide for details about the native name space.</p>
+
+<h2>-lib and -libPath Arguments</h2>
+<p>The <code>-lib</code> argument is required to specify the OpenAccess library you want to create. If the library with the logical name you specify is defined to the library server, the new OpenAccess data is written to that existing library. The –lib argument is required to specify the name of the output library. If the library named by the –lib option is defined in the specified lib.defs file, verilog2oa appends to that library. Otherwise, verilog2oa creates the library and adds an entry for the library to the specified lib.defs file.</p>
+
+<p>If your library definitions file has errors, or any of the referenced libraries cannot be opened, either an error message is generated and translation halted or, if the library is not required to complete the translation, translation proceeds without an error or warning. For more information about this behavior, see the <a href="../guide/usinglibs.html#libDefErrors">Handling Errors in lib.defs Files</a> section in the Programmers Guide chapter <em>How Translators Use Libraries</em>.</p>
+
+<p>The –libPath option is used only when the library is being created (although it is a valid but ignored option when the library is not being created). When the library is being created, if the directory specified by the –libPath option exists, it must be empty. A library is created using the specified logical library name and the specified file system library path. The -libPath value is interpreted as a complete path. The basename of that path becomes the OpenAccess library. For example, if the -libPath value is /usr/mySpace/lib1, the directory <em>lib1</em> is created under /usr/mySpace and /usr/mySpace/lib1/lib.db is written. If "." is given as the -libPath value, the current working directory becomes an OpenAccess library. By default, the translator sets the -libPath value to ./&lt;libName&gt;, where &lt;libName&gt; is given by the –lib command line argument.</p>
+
+<a name="attachtech"></a>
+<h2>Attaching Technology Information to a Library</h2>
+<p>verilog2oa can attach technology information to the library it creates if:</p>
+<ul>
+<li>The –refLibs option is used to specify a reference library.</li>
+<li>The first reference library in the refLibs list has a Tech database.</li>
+<li>The output library is being created and does not exist before verilog2oa runs.</li>
+</ul> 
+<p>verilog2oa creates a reference to the Tech DB in the first library that is specified by the -refLibs option.</p>
+
+<a name="verilogandlefdef"></a>
+<h2>Creating a Design by Merging Verilog and LEF/DEF Information</h2>
+<p>If you need to create a design from Verilog and LEF/DEF information, you must use <a href="verilogannotate.html">verilogAnnotate</a>, verilog2oa, and the <a href="../translators/index.html">LEF/DEF translators</a> in the proper sequence in order to achieve the correct results.</p>
+
+<p><strong>To create the tech library, annotate correct port order and port structure, create the design library, and create the design database.</strong></p>
+<ol>
+<li>Use the command string: <br><br><code>lef2oa -lib lib1 -lef lib.lef</code>
+<br><br>This creates views named <em>abstract</em> in library lib1. View names default to <em>abstract</em> if the lef2oa -view option is not specified. Each entry in lib.lef represents one cell.<br><br></li>
+
+<li>Use the command string: <br><br><code>verilogAnnotate -verilog lib.v -libs lib1</code>
+<br><br><a href="verilogannotate.html">verilogAnnotate</a> annotates the port ordering, port structure, and buses of the cells in lib1. lib.v must have a Verilog module defined for every cell in library lib1. The -refViews option is not needed unless lib1 includes other layout types that must be annotated with the correct port order.
+<br><br><strong>Note: </strong>verilogAnnotate does not create a new design; it only annotates an existing design.<br><br></li>
+
+<li>Use the command string: <br><br><code>verilog2oa -lib lib2 -verilog design2.v -refLibs "lib1"<br> -view layout -cell top -viewType maskLayout</code>
+<br><br>This assumes that design2.v has a definition of cell <em>top</em> (and possibly some intermediate modules) and the leaf cells it references are the cells defined in lib1. Notice that the -refViews "layout" option is not needed since the views created in the first step are named <em>abstract</em> not <em>layout</em>. verilog2oa assumes views are named <em>abstract</em> if -refViews is not specified. In this case, specifying -refViews <em>layout</em> would create separate views in lib2 for those leaf cells if definitions of the same leaf cells in design2.v exist in lib.lef.<br><br></li>
+
+<li>Use the command string: <br><br><code>def2oa -lib lib2 -def design.def -techLib lib1 -cell top -view layout</code>
+<br><br>This assumes that design.def has a definition of cell <em>top</em>,  all of the leaf cells that it references are in lib1 (because lib1 is specified as the techLib library), and the leaf cells are named <em>abstract</em>. Options such as -masterViews and -masterLibs must be used if these assumptions are not correct.
+</ol>
+
+<h2>How the Translator Uses Namespaces</h2>
+<p>A namespace is a set of rules that define the legal characters and determine how names are interpreted. This translator uses the oaNative namespace to interpret library, cell, and view names in the command line. Other names that refer to name-mapped OpenAccess objects, such as net and module names, use the Verilog namespace. The filename that the translator uses as its input or output is always a simple string and is not interpreted in any namespace.</p>
+
+<p>Consider the following example where you want to:</p>
+<ul>
+<li>Write a library called “medium”</li>
+<li>Assign the tie-off net names as “!VDD” and  ”!VSS”
+<li>Translate a top level module of the design that is called “a/b” and that starts from an input file named “medium.v”.</li>
+</ul>
+
+<p>The word “medium” is a keyword in Verilog but the translator does not interpret library names in the Verilog namespace, so there is no need to escape the library name. The filename is a simple string, so there is no need to escape it. However, the tie-off nets and the <em>top</em> level module name are interpreted in the context of the Verilog namespace, and these names contain illegal characters in that context; so these names must be escaped.  The command line to perform this translation is:</p>
+<pre>
+    verilog2oa –lib medium –verilog medium.v –tieHigh ‘\!VDD ‘ –tieLow ‘\!VSS ‘ –top ‘\a/b ‘
+</pre>
+
+<p>The trailing spaces after the escaped name are required by the Verilog escaping rules.
+</p>
+
+<h2>Error and Warning Messages</h2>
+
+<p>Translators emit messages that report translation progress, report warnings about unusual data or conditions, or report problems with files or data that caused partial or complete translation failure. These messages are written to a log file so you can review translation status, identify error and warning conditions, and consider whether additional actions are needed.</p>
+
+<p>OpenAccess translators use a standard message format to ensure comprehensive and consistent messaging. This message format consists of three elements, which are: message type keyword,  message prefix, and message text. The message text can be further divided into three parts. The first part indicates what caused the message, the second indicates the consequence of the problem or condition, and the third part suggests an action you can take to remedy the problem or condition.</p>
+
+<p>In addition to the three standard elements, messages can also include two optional elements. An optional filename/line number element is included, when available, to more precisely identify the source of a problem or condition within the source data file. A context string is another optional element that is included, when available, to identify the type of data object that caused the message to be emitted. The following example shows a typical error message that includes the optional filename and line number element.</p>
+
+<pre>
+    ERROR: (OALEFDEF-50004): file.lef(123): A cell was not specified. Translation was terminated. 
+    You must specify a cell.
+</pre>
+ 
+<p>One benefit of this message format is that it allows you to sort, filter, and examine only those types of messages that interest you. The keyword at the start of each message is either ERROR or WARNING and is always all uppercase. The message prefix identifies the translator family and the specific message source within the translator. The message prefix is a stable value that will not change between versions even when the message text gets updated. This makes it suitable for routine sorting and filtering.</p>
+
+<p>If you seek assistance for resolving an issue related to a translator error or warning message, be sure to retain the message type keyword (ERROR or WARNING), and retain the message prefix to identify the translator family and the message source. Also make note of the filename/line number and context information if these are included in the message.</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+                <div style="text-align: center"> <img src="images/footer.gif"><br/>
+	</div>
+        <p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; <a href="titlecopy.html">2004-2010 Cadence Design Systems, Inc.</a></a>
+			<br>
+			All rights reserved.</p>
+		<noscript>
+			<p><em class="red">This page requires JavaScript enabled.</em></p>
+		</noscript>
+	</body>
+</html>

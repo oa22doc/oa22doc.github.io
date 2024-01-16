@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|layer cut'/>
+<a name='57067'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="LayerCut"></a>Layer (Cut)</h1>
+<pre>
+ LAYER layerName
+
+    TYPE CUT ;
+
+    [<a href='#57016'>ENCLOSURE</a> [ABOVE | BELOW] overhang1 overhang2
+       [WIDTH minWidth [EXCEPTEXTRACUT cutWithin]
+       | LENGTH minLength] ;] ...
+    [PREFERENCLOSURE [ABOVE | BELOW overhang1 overhang2 [WIDTH minWidth] ;] ...
+    [<a href='#57048'>ANTENNAMODEL</a> {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4} ;] ...
+    [<a href='#57049'>ANTENNAAREARATIO</a> ;] ...
+    [<a href='#57050'>ANTENNADIFFAREARATIO</a> {value | PWL (( d1 r1) ( d2 r2 ) ...) } ;] ...
+    [<a href='#57051'>ANTENNACUMAREARATIO</a> value ;] ...
+    [<a href='#57052'>ANTENNACUMDIFFAREARATIO</a> {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...)} ;] ...
+    [<a href='#57053'>ANTENNAAREAFACTOR</a> value [DIFFUSEONLY] ;]
+    [PROPERTY <a href='#57060'>LEF57_ANTENNACUMROUTINGPLUSCUT</a> "ANTENNACUMROUTINGPLUSCUT ;" ;]
+    [PROPERTY <a href='#57061'>LEF57_ANTENNAGATEPLUSDIFF</a> "ANTENNAGATEPLUSDIFF plusDiffFactor ;" ;]
+    [PROPERTY <a href='#57062'>LEF57_ANTENNAAREAMINUSDIFF</a> "ANTENNAAREAMINUSDIFF minusDiffFactor ;" ;]
+    [PROPERTY <a href='#57063'>LEF57_ANTENNAAREADIFFREDUCEPWL</a> "ANTENNAAREADIFFREDUCEPWL
+         (( diffArea1 diffAreaFactor1 ) (diffArea2 diffAreaFactor2 ) ... ) ;" ;]
+    [<a href='#57064'>PROPERTY</a> propName propVal ;] ...
+    [<a href='#57085'>ANTENNACUMROUTINGPLUSCUT</a> ;]
+    [PROPERTY <a href='#57085'>LEF57_ANTENNACUMROUTINGPLUSCUT</a> "ANTENNACUMROUTINGPLUSCUT ;" ; ;]
+    [<a href='#57086'>ANTENNAGATEPLUSDIFF</a> plusDiffFactor ;]
+    [PROPERTY <a href='#57086'>LEF57_ANTENNAGATEPLUSDIFF</a> "ANTENNAGATEPLUSDIFF plusDiffFactor ;" ; ;]
+    [<a href='#57087'>ANTENNAAREAMINUSDIFF</a> minusDiffFactor ;]
+    [PROPERTY <a href='#57087'>LEF57_ANTENNAAREAMINUSDIFF</a> "ANTENNAAREAMINUSDIFF minusDiffFactor  ;" ;]
+    [<a href='#57088'>ANTENNAAREADIFFREDUCEPWL</a> (( diffArea1 metalDiffFactor1 )
+                              ( diffArea2 metalDiffFactor2 ) ... ) ;]
+    [PROPERTY <a href='#57088'>LEF57_ANTENNAAREADIFFREDUCEPWL</a>
+         "ANTENNAAREADIFFREDUCEPWL (( diffArea1 metalDiffFactor1 )
+                                    ( diffArea2 metalDiffFactor2 ) ... ) ;" ; ;]
+    [<a href='#57065'>ACCURRENTDENSITY</a> {PEAK | AVERAGE | RMS}
+        { value
+        | FREQUENCY freq_1 freq_2 ... ;
+            [WIDTH width_1 width_2 ... ;]
+             TABLEENTRIES
+                 v_freq_1_width_1 v_freq_1_width_2 ...
+                 v_freq_2_width_1 v_freq_2_width_2 ...
+        } ;]
+    [<a href='#57066'>DCCURRENTDENSITY</a> AVERAGE
+        { value
+        | WIDTH width_1 width_2 ... ;
+            TABLEENTRIES value_1 value_2 ...
+        } ;]
+    [<a href='#57068'>SPACING</a> cutSpacing
+        [<a href='#57069'>CENTERTOCENTER</a>]
+        [<a href='#57070'>SAMENET</a>]
+        [ <a href='#57071'>LAYER</a> secondLayerName [STACK]
+        | <a href='#57072'>ADJACENTCUTS</a> {2 | 3 | 4} WITHIN distance [ EXCEPTSAMEPGNET ]
+        | <a href='#57073'>PARALLELOVERLAP</a>
+        | <a href='#57074'>AREA</a> cutArea ]
+    ;] ...
+    [<a href='#57075'>SPACINGTABLE</a> ORTHOGONAL
+         {WITHIN cutWithin SPACING orthoSpacing } ... ;]
+    [<a href='#57076'>WIDTH</a> minWidth]
+    [<a href='#57077'>ARRAYSPACING</a>
+        [LONGARRAY]
+        [WIDTH viaWidth]
+        CUTSPACING cutSpacing
+            {ARRAYCUTS arrayCuts  SPACING arraySpacing} ...;]
+    [<a href='#57078'>RESISTANCE</a> resistancePerCut ;]
+    [PROPERTY <a href='#57093'>LEF57_SPACING</a> "SPACING cutSpacing 
+                             [CENTERTOCENTER]
+                             [SAMENET | SAMEMETAL]
+                             [LAYER secondLayerName [STACK]
+                             | ADJACENTCUTS {2 | 3 | 4} WITHIN cutWithin [EXCEPTSAMEPGNET]
+                             | PARALLELOVERLAP 
+                             | AREA cutArea] ;" ;]
+
+ END layerName
+</pre>
+<p>Cut layers are stored in OpenAccess as oaPhysicalLayers with the material attribute set to oacCutMaterial.</p>
+</div>
+<a name='lef|layer cut|accurrentdensity'/>
+<a name='57065'/>
+<h2 class='topicSyntax'>
+ACCURRENTDENSITY {PEAK | AVERAGE | RMS}<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ value<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;| FREQUENCY freq_1 freq_2 ... ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[WIDTH width_1 width_2 ... ;]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TABLEENTRIES<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v_freq_1_width_1 v_freq_1_width_2 ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v_freq_2_width_1 v_freq_2_width_2 ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;}</h2>
+<div style='margin-left:40px;'>
+<p>The LEF ACCURRENTDENSITY rule is stored in OpenAccess using the oaPhysicalLayer attributes shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>ACCURRENTDENSITY</th>
+<th class='borders'>oaPhysicalLayer attribute</th>
+</tr>
+<tr>
+<td class='borders'>PEAK</td>
+<td class='borders'>PeakACCurrentDensity</td>
+</tr>
+<tr>
+<td class='borders'>AVERAGE</td>
+<td class='borders'>AvgACCurrentDensity</td>
+</tr>
+<tr>
+<td class='borders'>RMS</td>
+<td class='borders'>RmsACCurrentDensity</td>
+</tr>
+</table>
+<h3><a id="ACCURRENTDENSITYPEAKAVERAGERMSValue"></a>ACCURRENTDENSITY {PEAK | AVERAGE | RMS} value</h3>
+<p>The simple ACCURRENTDENSITY rule is stored in OpenAccess as an oaFloatValue for the oaPhysicalLayer attribute determined from the previous table.</p>
+<h3><a id="ACCURRENTDENSITYPEAKAVERAGERMSFREQUENCYFreq_1Freq_2TABLEENTRIESV_freq_1V_freq_1"></a>ACCURRENTDENSITY {PEAK | AVERAGE | RMS}<br /> FREQUENCY freq_1 freq_2 ... ;<br /> TABLEENTRIES v_freq_1 v_freq_1 ... ;</h3>
+<p>The frequency dependant ACCURRENTDENSITY rule is stored in OpenAccess as an oaFloat1DTblValue for the oaPhysicalLayer attribute determined from the previous table. The values are stored in an oa1DLookupTbl&lt;oaFloat, oaFloat&gt;, with header:frequency and value:density.</p>
+<h3><a id="ACCURRENTDENSITYPEAKAVERAGERMSFREQUENCYFreq_1Freq_2WIDTHWidth_1Width_2TABLEENTRIESV_freq_1_width_1V_freq_1_width_2V_freq_2_width_1V_freq_2_width_2"></a>ACCURRENTDENSITY {PEAK | AVERAGE | RMS}<br /> FREQUENCY freq_1 freq_2 ... ;<br /> WIDTH width_1 width_2 ... ;<br /> TABLEENTRIES v_freq_1_width_1 v_freq_1_width_2 ...<br />    v_freq_2_width_1 v_freq_2_width_2 ... ;</h3>
+<p>The frequency and area dependant ACCURRENTDENSITY rule is stored in OpenAccess as an oaCurDensTblValue for the oaPhysicalLayer attribute determined from the previous table. The values are stored in an oa2DLookupTbl&lt;oaFloat, oaUInt4, oaFloat&gt;, with row:frequency, col:width and value:density.</p>
+</div>
+<a name='lef|layer cut|antenna'/>
+<a name='57047'/>
+<h2 class='topicSyntax'>
+</h2>
+<div style='margin-left:40px;'>
+<h2><a id="ANTENNA"></a>ANTENNA</h2>
+<p>The ANTENNA attributes are stored in OpenAccess using an oaAntennaRatioArrayValue for the <a href="../guide/oacAntennaConstraint.html">oacAntenna</a> constraint on this layer. The oaAntennaRatioArrayValue contains an oaAntennaRatioValue for each of the four antenna models.</p>
+</div>
+<a name='lef|layer cut|antenna|antennamodel'/>
+<a name='57048'/>
+<h3 class='topicSyntax'>
+ANTENNAMODEL {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4}</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNAMODEL determines which oaAntennaModel is used in OpenAccess to store the LAYER ANTENNA statements. The ANTENNA attributes are stored using an oaAntennaRatioArrayValue for the oacAntenna constraint on the layer. The oaAntennaRatioArrayValue contains an oaAntennaRatioValue for each of the four antenna models. The mapping of LEF ANTENNAMODEL to OpenAccess oaAntennaModelEnum is shown in the following table. The default, if a LEF ANTENNAMODEL is not specified, is to use oacDefaultAntennaModel. Only a single parameter is stored in OpenAccess for the OXIDE model. The first detected is the value stored. If other OXIDE models are specified, they are assumed to be the same.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>LEF ANTENNAMODEL</th>
+<th class='borders'>oaAntennaModel</th>
+</tr>
+<tr>
+<td class='borders'>OXIDE1 (default)</td>
+<td class='borders'>oacDefaultAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE2</td>
+<td class='borders'>oacSecondAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE3</td>
+<td class='borders'>oacThirdAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE4</td>
+<td class='borders'>oacFourthAntennaModel</td>
+</tr>
+</table>
+</div>
+<a name='lef|layer cut|antenna|antennaarearatio'/>
+<a name='57049'/>
+<h3 class='topicSyntax'>
+ANTENNAAREARATIO</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNAAREARATIO is stored in OpenAccess using the <a href="../guide/oacAntennaConstraint.html">oacAntenna</a> constraint in the foundryRules constraint group. The value is stored in the GateAreaRatio attribute of the ruleType determined from the ANTENNAMODEL.</p>
+</div>
+<a name='lef|layer cut|antenna|antennadiffarearatio'/>
+<a name='57050'/>
+<h3 class='topicSyntax'>
+ANTENNADIFFAREARATIO {value | PWL (( d1 r1) ( d2 r2 ) ...) }</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNADIFFAREARATIO is stored in OpenAccess  using the oacAntenna constraint in the foundryRules constraint group. The value is stored in the DiodeAreaRatio attribute of the ruleType, which is determined from the ANTENNAMODEL (see the previous table).</p>
+</div>
+<a name='lef|layer cut|antenna|antennacumarearatio'/>
+<a name='57051'/>
+<h3 class='topicSyntax'>
+ANTENNACUMAREARATIO value</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNACUMAREARATIO is stored in OpenAccess by using the oacCumMetalAntenna constraint in the foundryRules constraint group. The value is stored in the GateAreaRatio attribute of the antenna model determined from the ANTENNAMODEL (see the table above).</p>
+</div>
+<a name='lef|layer cut|antenna|antennacumdiffarearatio'/>
+<a name='57052'/>
+<h3 class='topicSyntax'>
+ANTENNACUMDIFFAREARATIO {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...)}</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNACUMDIFFAREARATIO is stored in OpenAccess by using the oacCumMetalAntenna constraint in the foundryRules constraint group. The value is stored in the DiodeAreaRatio attribute of the antenna model determined from the ANTENNAMODEL (see the table above).</p>
+</div>
+<a name='lef|layer cut|antenna|antennaareafactor'/>
+<a name='57053'/>
+<h3 class='topicSyntax'>
+ANTENNAAREAFACTOR value [DIFFUSEONLY]</h3>
+<div style='margin-left:60px;'>
+<p>The ANTENNAAREAFACTOR is stored in OpenAccess using an oaFltValue for the oacAntennaAreaFactorConstraintParamType constraint parameter on the antenna constraints to which it applies. Since only one antenna calculation method is supported in OpenAccess (side vs non-side), only one of the above factor values is stored in OpenAcess, whereby non-side values have priority in case both are specified.</p>
+<p>A single parameter is stored in OpenAccess for all OXIDE models. If multiple OXIDE values are specified, they are all assumed to be the same, and only the first value is stored.</p>
+</div>
+<a name='lef|layer cut|antenna|property lef57_antennacumroutingpluscut'/>
+<a name='57060'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNACUMROUTINGPLUSCUT "ANTENNACUMROUTINGPLUSCUT ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNACUMROUTINGPLUSCUT attribute is stored using an oaBooleanValue for the oacAntennaCumRoutingPlusCutConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer cut|antenna|property lef57_antennagateplusdiff'/>
+<a name='57061'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNAGATEPLUSDIFF "ANTENNAGATEPLUSDIFF plusDiffFactor ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAGATEPLUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffPlusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer cut|antenna|property lef57_antennaareaminusdiff'/>
+<a name='57062'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNAAREAMINUSDIFF "ANTENNAAREAMINUSDIFF minusDiffFactor ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREAMINUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffMinusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer cut|antenna|property lef57_antennaareadiffreducepwl'/>
+<a name='57063'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNAAREADIFFREDUCEPWL "ANTENNAAREADIFFREDUCEPWL<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(( diffArea1 diffAreaFactor1 ) (diffArea2 diffAreaFactor2 ) ... ) ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREADIFFREDUCEPWL attribute is stored in OpenAccess using an oaFlt1DTblValue for the oacAntennaDiffAreaReduceFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer cut|antenna|property'/>
+<a name='57064'/>
+<h3 class='topicSyntax'>
+PROPERTY propName propVal</h3>
+<div style='margin-left:60px;'>
+<p>See <a href="oalefproperties.html">PROPERTIES</a></p>
+</div>
+<a name='lef|layer cut|antenna|antennacumroutingpluscut'/>
+<a name='57085'/>
+<h3 class='topicSyntax'>
+ANTENNACUMROUTINGPLUSCUT</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNACUMROUTINGPLUSCUT attribute is stored using an oaBooleanValue for the oacAntennaCumRoutingPlusCutConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer cut|antenna|antennagateplusdiff'/>
+<a name='57086'/>
+<h3 class='topicSyntax'>
+ANTENNAGATEPLUSDIFF plusDiffFactor</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAGATEPLUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffPlusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer cut|antenna|antennaareaminusdiff'/>
+<a name='57087'/>
+<h3 class='topicSyntax'>
+ANTENNAAREAMINUSDIFF minusDiffFactor</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREAMINUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffMinusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer cut|antenna|antennaareadiffreducepwl'/>
+<a name='57088'/>
+<h3 class='topicSyntax'>
+ANTENNAAREADIFFREDUCEPWL (( diffArea1 metalDiffFactor1 )<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( diffArea2 metalDiffFactor2 ) ... )</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREADIFFREDUCEPWL attribute is stored in OpenAccess using an oaFlt1DTblValue for the oacAntennaDiffAreaReduceFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer cut|arrayspacing'/>
+<a name='57077'/>
+<h2 class='topicSyntax'>
+ARRAYSPACING<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;[LONGARRAY]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;[WIDTH viaWidth]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;CUTSPACING cutSpacing<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ARRAYCUTS arrayCuts  SPACING arraySpacing} ...;</h2>
+<div style='margin-left:40px;'>
+<p>PROPERTY LEF57_ARRAYSPACING      &quot;ARRAYSPACING          [LONGARRAY]          [WIDTH viaWidth]          CUTSPACING cutSpacing          {ARRAYCUTS arrayCuts  SPACING arraySpacing} ...;&quot;</p>
+<p>The ARRAYSPACING is stored in OpenAccess using an oaInt1DTblValue for the <a href="../guide/oacMinLargeViaArraySpacingConstraint.html">oacMinLargeViaArraySpacing</a> constraint in the foundryRules constraint group. The first value is stored in the table as the default value and at 0 cuts. Additional ARRAYCUTS/SPACING pairs are added to the table.</p>
+<p>The ARRAYSPACING LONGARRAY maps to an oaBooleanValue for the <a href="../guide/oacRectangularLargeViaArraysAllowedConstraint.html">oacRectangularLargeViaArraysAllowed</a> constraint in the foundryRules constraint group. If the keyword is present, a value of true is stored. If the keyword is not present, the constraint is not stored.</p>
+<p>The ARRAYSPACING WIDTH is stored using an oaIntValue for the oacMinLargeViaArrayWidth constraint in the foundryRules constraint group. The ARRAYSPACING CUTSPACING is stored using an oaIntValue for the oacMinLargeViaArrayCutSpacing constraint in the foundryRules constraint group.</p>
+<p>The ARRAYSPACING LONGARRAY is stored in OpenAccess using an oaBooleanValue for the oacRectangularLargeViaArraysAllowed constraint in the foundryRules constraint group. If the keyword is present, a value of true is stored. If the value is not present, the constraint is not stored.</p>
+</div>
+<a name='lef|layer cut|dccurrentdensity'/>
+<a name='57066'/>
+<h2 class='topicSyntax'>
+DCCURRENTDENSITY AVERAGE<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ value<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;| WIDTH width_1 width_2 ... ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TABLEENTRIES value_1 value_2 ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;}</h2>
+<div style='margin-left:40px;'>
+<p>The basic DCCURRENTDENSITY rule is stored in OpenAccess as an oaFloatValue for the AvgDCCurrentDensity attribute on the oaPhysicalLayer.</p>
+<p>The area dependant DCCURRENTDENSITY rule is stored in OpenAccess as an oaIntFltTblValue for the AvgDCCurrentDensity attribute on the oaPhysicalLayer. The values are stored in an oa1DLookupTbl&lt;oaInt4, oaFloat&gt;, with header:width and value:density.</p>
+</div>
+<a name='lef|layer cut|enclosure'/>
+<a name='57016'/>
+<h2 class='topicSyntax'>
+ENCLOSURE [ABOVE | BELOW] overhang1 overhang2<BR/>
+&nbsp;&nbsp;&nbsp;[WIDTH minWidth [EXCEPTEXTRACUT cutWithin]<BR/>
+&nbsp;&nbsp;&nbsp;| LENGTH minLength] ;] ...<BR/>
+[PREFERENCLOSURE [ABOVE | BELOW overhang1 overhang2 [WIDTH minWidth] ;] ...</h2>
+<div style='margin-left:40px;'>
+<p>The ENCLOSURE for cut layers is stored in OpenAccess using an oaIntDualIntArrayTblValue indexed by width for the <a href="../guide/oacMinDualExtensionConstraint.html">oacMinDualExtension</a>  constraint in the oacPrecedenceGroupOperator constraint group, on the metal  layers above and below the cut layer.</p>
+<p>Normal ENCLOSURE attributes map to hard constraints, and PREFERENCLOSURE attributes map to soft constraints in the foundryRules constraint group.</p>
+<p>The LENGTH and EXCEPTEXTRACUT parameters are stored as parameters. If multiple, width based, rules with the same parameters for LENGTH and EXCEPTEXTRACUT are present they are grouped together in an oaIntDualIntArrayTblValue, which is indexed by WIDTH.</p>
+<p>If multiple rules with different LENGTH and EXCEPTEXTRACUT parameters exist, they are stored as individual constraints grouped together in an oacPrecedenceGroupOperator oaConstraintGroup. The name of the constraintGroupDef used to create the constraint group is the same as the string value for the oaLayerPairConstraintGroupType enum oacMinDualExtension.</p>
+</div>
+<a name='lef|layer cut|property lef57_spacing'/>
+<a name='57093'/>
+<h2 class='topicSyntax'>
+PROPERTY LEF57_SPACING "SPACING cutSpacing <BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CENTERTOCENTER]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SAMENET | SAMEMETAL]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[LAYER secondLayerName [STACK]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| ADJACENTCUTS {2 | 3 | 4} WITHIN cutWithin [EXCEPTSAMEPGNET]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| PARALLELOVERLAP <BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| AREA cutArea] ;"</h2>
+<div style='margin-left:40px;'>
+<p>The ADJACENTCUTS SPACING for cut layers is stored in OpenAccess using an oaIntValue for the oacMinAdjacentViaSpacing constraint in the foundryRules constraint group. The number of cuts and WITHIN distance are stored as oaIntValues for the oacNumCutsConstraintParamType and oacDistanceConstraintParamType constraint parameters.</p>
+<p>In dataModel 4 and later, the CENTERTOCENTER, SAMENET, STACK, and EXCEPTSAMEPGNET keywords are stored as parameters of the constraint. In earlier dataModels, the CENTERTOCENTER and SAMENET keywords do not map to OpenAccess, and a warning is issued if they are found in this context.</p>
+</div>
+<a name='lef|layer cut|resistance'/>
+<a name='57078'/>
+<h2 class='topicSyntax'>
+RESISTANCE resistancePerCut ;</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER RESISTANCE attribute is stored in an oaFloatProp named <q>RESISTANCE</q> on the oaPhysicalLayer.</p>
+<p>Note: Resistance-per-cut goes on a layer (vias inherit resistance values if they do not have their own local values).</p>
+</div>
+<a name='lef|layer cut|spacing'/>
+<a name='57068'/>
+<h2 class='topicSyntax'>
+SPACING cutSpacing</h2>
+<div style='margin-left:40px;'>
+<p>SPACING cutSpacing is a simple LEF cut layer spacing rule. For dataModel 4,  the SPACING for cut layers is stored in OpenAccess using an oaIntValue for  the <a href="../guide/oacMinViaSpacingConstraint.html">oacMinViaSpacing</a> constraint in the foundryRules constraint group.</p>
+</div>
+<a name='lef|layer cut|spacing|centertocenter'/>
+<a name='57069'/>
+<h3 class='topicSyntax'>
+CENTERTOCENTER</h3>
+<div style='margin-left:60px;'>
+<p>In DM4 and later, this mapping is no longer supported.</p>
+</div>
+<a name='lef|layer cut|spacing|samenet'/>
+<a name='57070'/>
+<h3 class='topicSyntax'>
+SAMENET</h3>
+<div style='margin-left:60px;'>
+<p>SPACING cutSpacing is a simple LEF cut layer spacing rule. It maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinSpacingConstraint.html">oacMinSpacing</a> constraint in the foundryRules constraint group. If the SAMENET keyword is specified, the oacMinSameNetClearance constraint is used instead.</p>
+</div>
+<a name='lef|layer cut|spacing|layer'/>
+<a name='57071'/>
+<h3 class='topicSyntax'>
+LAYER secondLayerName [STACK]</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER SPACING for cut layers is stored in OpenAccess using an oaIntValue for the oacMinClearance constraint in the foundryRules constraint group. If the SAMENET keyword is specified the oacMinSameNetClearance constraint is used instead.</p>
+<p>The SAMENET keyword, CENTERTOCENTER keywords and STACK keywords are stored as parameters of the constraint</p>
+</div>
+<a name='lef|layer cut|spacing|adjacentcuts'/>
+<a name='57072'/>
+<h3 class='topicSyntax'>
+ADJACENTCUTS {2 | 3 | 4} WITHIN distance [ EXCEPTSAMEPGNET ]</h3>
+<div style='margin-left:60px;'>
+</div>
+<a name='lef|layer cut|spacing|paralleloverlap'/>
+<a name='57073'/>
+<h3 class='topicSyntax'>
+PARALLELOVERLAP</h3>
+<div style='margin-left:60px;'>
+<p>The PARALLELOVERLAP spacing maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinParallelViaSpacingConstraint.html">oacMinParallelViaSpacing</a> constraint in the foundryRules constraint group. The CENTERTOCENTER and SAMENET keywords are not stored in OpenAccess.</p>
+</div>
+<a name='lef|layer cut|spacing|area'/>
+<a name='57074'/>
+<h3 class='topicSyntax'>
+AREA cutArea</h3>
+<div style='margin-left:60px;'>
+<p>The SAMENET keyword, CENTERTOCENTER keywords and STACK keyword are stored as a parameter of the constraint</p>
+</div>
+<a name='lef|layer cut|spacingtable'/>
+<a name='57075'/>
+<h2 class='topicSyntax'>
+SPACINGTABLE ORTHOGONAL<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{WITHIN cutWithin SPACING orthoSpacing } ...</h2>
+<div style='margin-left:40px;'>
+<p>The SPACINGTABLE maps to OpenAccess using an oaInt1DTblValue for the <a href="../guide/oacMinOrthogonalViaSpacingConstraint.html">oacMinOrthogonalViaSpacing</a> constraint in the foundry rules constraint group.</p>
+<p>The oa1DLookupTbl stored in the value uses oacInclusiveSnapUpInterpolateType as the interpolation type, and uses oacSnapUpExtrapolateType as the extrapolation type. The table header name is orthoSpacing, and its default value is 0, which indicates that the table is not used outside the specified ranges.</p>
+<p>An oaIntValue is stored for the oacDistanceWithinConstraintParamType parameter to indicate the maximum distance within which this constraint is used. This is equal to the largest WITHIN value in the table.</p>
+</div>
+<div style='margin-left:40px;'>
+<p>The SPACINGTABLE maps to OpenAccess using an oaInt1DTblValue for the <a href="../guide/oacMinOrthogonalViaSpacingConstraint.html">oacMinOrthogonalViaSpacing</a> constraint in the foundry rules constraint group.</p>
+<p>The oa1DLookupTbl stored in the value uses oacInclusiveSnapUpInterpolateType as the interpolation type, and uses oacSnapUpExtrapolateType as the extrapolation type. The table header name is orthoSpacing, and its default value is 0, which indicates that the table is not used outside the specified ranges.</p>
+<p>An oaIntValue is stored for the oacDistanceWithinConstraintParamType parameter to indicate the maximum distance within which this constraint is used. This is equal to the largest WITHIN value in the table.</p>
+</div>
+<a name='lef|layer cut|width'/>
+<a name='57076'/>
+<h2 class='topicSyntax'>
+WIDTH minWidth</h2>
+<div style='margin-left:40px;'>
+<p>WIDTH is stored in OpenAccess using an oaIntValue for the <a href="../guide/oacMinWidthConstraint.html">oacMinWidth</a> constraint in the foundryRules constraint group.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

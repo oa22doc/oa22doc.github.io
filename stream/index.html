@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Stream Translators</h1>
+<hr >
+
+<h2>About the Stream Translators</h2>
+<p>You can translate Stream data to and from the OpenAccess database with the following command-line executables.</p>
+<ul>
+    <li><a href="streamincmds.html">strm2oa</a> translates Stream data to the OpenAccess database.</li>
+    <li><a href="streamoutcmds.html">oa2strm</a> translates OpenAccess data to Stream. </li>
+</ul>
+<h3>Library Definition File </h3>
+<p>The translator uses the library definition file when searching for or creating a new library. The library list is defined in an ASCII file. The paths to the library directories specified in the library definition file can be either absolute or relative. If you define a relative path, the location of the library definition file is appended to the beginning of the path. The following is a simple example. </p>
+<pre>#tools/oa/demo lib.defs file 
+DEFINE lib ./lib 
+DEFINE techlib /opt/OABuilds/sun4v/oa/tools.sun4v/oa/demo/technology </pre>
+<p><strong>Note:</strong> There are no requirements for the naming of the library definition file. </p>
+<p>&nbsp;</p>
+<div style="text-align: center">
+<img src="images/streamtransfooter.jpg"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</a>
+<br >
+All rights reserved.</p>
+<noscript>
+<p><em class="red">This page requires JavaScript enabled.</em></p>
+</noscript>
+</body>
+</html>

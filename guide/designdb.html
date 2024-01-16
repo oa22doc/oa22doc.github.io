@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Design Database Package (oaDB)</h1>
+<hr />
+
+<h2>Introduction</h2>
+
+<p>Design databases, also known as cellView databases, contain various types 
+of data that represent portions of hierarchical designs. Types of data 
+include:</p>
+
+<div class="indent">
+<table border=0 cellpadding=8 summary="&nbsp;">
+<tr>
+<td>Logical data</td>
+<td>Instances indicate the design hierarchy; nets and terminals indicate the 
+intended connectivity of the objects of the instances in the design</td>
+</tr>
+
+<tr>
+<td>Geometric data</td>
+<td>Objects have coordinates on them and can be drawn directly by an appropriate 
+graphical viewing program</td>
+</tr>
+
+<tr>
+<td>Routes</td>
+<td>Provide a detailed description of the routed wires in a design</td>
+</tr>
+
+<tr>
+<td>Floorplanning data</td>
+<td>Indicates where instances are to be placed and wires are to be run on the chip 
+floorplan</td>
+</tr>
+
+<tr>
+<td>Markers</td>
+<td>Flag design rule violations back to designers</td>
+</tr>
+
+<tr>
+<td>Parasitics</td>
+<td>Provide an electrical model of the wires in the design to use for circuit 
+analysis</td>
+</tr>
+
+<tr>
+<td>Properties and Groups</td>
+<td>Properties can be attached to any objects in a cellView database to add 
+named, application-assigned information to an object; all objects can be 
+placed into groups</td>
+</tr>
+</table>
+</div>
+
+
+<h2 class="spabove"><a name="1">Types of Stored Databases</a></h2>
+
+<p>There are several types of database information that can be stored in 
+OpenAccess databases. Some of the most common are netlists, schematics, and 
+layouts. These are very different kinds of data, in some respects, yet the 
+tool uses the same set of objects to represent these data types. For example, 
+the meaning of a <em>shape</em> in the database is different for the schematics 
+and layout data types: in schematics, it is simply making a drawing; in 
+layout, it is actually defining how you build the chip.</p>
+
+<p>The following table shows the differences and similarities between these 
+database types.</p>
+
+
+<table border=1 cellpadding=8 summary="&nbsp;">
+<tr>
+<th>Netlists</th>
+<th>Schematics</th>
+<th>Layouts</th>
+</tr>
+
+<tr>
+<td>Nets can be multi-bit</td>
+<td>Nets can be multi-bit</td>
+<td>All nets are single-bit</td>
+</tr>
+
+<tr>
+<td>There are no shapes</td>
+<td>Shapes are primarily for documentation purposes</td>
+<td>Most shapes show exactly how to create the chip</td>
+</tr>
+
+<tr>
+<td>Cannot be directly drawn</td>
+<td>Efficiently expresses the logic</td>
+<td>Hard to interpret visually</td>
+</tr>
+
+<tr>
+<td>No layers</td>
+<td>Layers are used to help draw interesting variants</td>
+<td>Many layers reflect chip process layers</td>
+</tr>
+</table>
+
+
+<h2 class="spabove"><a name="2">Categories of Objects in CellViews</a></h2>
+
+<p>The following categories of objects can be used within cellViews:</p>
+
+<ul>
+<li><a href="#3">Instances</a></li>
+<li><a href="#4">Connectivity</a></li>
+<li><a href="#5">Figures</a></li>
+<li><a href="#6">Shapes</a></li>
+<li><a href="#7">Routes</a></li>
+<li><a href="#8">Vias</a></li>
+<li><a href="#9">Pins and Instance Pins</a></li>
+<li><a href="#10">Markers</a></li>
+<li><a href="#11">Parasitics</a></li>
+<li><a href="#12">Scan chains</a></li>
+<li><a href="#13">Floorplanning Objects</a></li>
+</ul>
+
+
+<h3 class="spabove"><a name="3">Instances</a></h3>
+
+<p>Instances are represented with the <a href="../design/classoaInst.html"><code>oaInst</code></a> class and its subclasses. An instance represents the 
+inclusion of one cellView as a part of the contents of another. The cellView 
+containing the instance is the <em>parent</em> cellView. The cellView that is 
+included is the <em>master</em> cellView of the instance.</p>
+
+<p>Instances can create hierarchical designs. The master of an instance can, 
+in turn, contain instances of other masters. This hierarchy can continue for 
+as many levels as needed to express a complete design. For example, instances 
+can include instances of major blocks of a design or individual standard 
+cells, or any other components for which a cellView is available.</p>
+
+<p>Instances can also be used to represent complex pin figures. These are 
+often used in schematics where a shape more complicated than a polygon is 
+desired.</p>
+
+<p>Instances always have an <a href="../design/classoaInstHeader.html"><code>oaInstHeader</code></a>. The InstHeader contains the attributes that 
+are constant for all instances of a given master cellView.</p>
+
+<p>Instances of pCells refer to a set of parameters values that are used to 
+tailor the pCell for each specific instance.</p><br />
+
+
+<p>The <a href="../design/classoaInst.html"><code>oaInst</code></a> class is a base 
+class for more specific types of instances.</p>
+
+<ul>
+<li><a href="../design/classoaScalarInst.html"><code>oaScalarInst</code></a> 
+represents instances that have a scalar name without a bit index and that 
+represent a single instance of the included cellView</li>
+
+<li><a href="../design/classoaVectorInst.html"><code>oaVectorInst</code></a> 
+represents instances that have bit indices and that represent multiple copies 
+of the included cellview</li>
+
+<li><a href="../design/classoaArrayInst.html"><code>oaArrayInst</code></a> represents
+instances for which the geometry of the included cellView is repeated multiple 
+times in a two-dimensional array. This type of instance is not commonly used; 
+when present, this class is typically used for memories</li>
+</ul>
+
+<h3 class="spabove"><a name="4">Connectivity</a></h3>
+
+<p>The connections between instances in a design are represented by the 
+<a href="../design/classoaNet.html"><code>oaNet</code></a> class. Nets represent the 
+logical connectivity in the design. Nets connect to terminals, which are the 
+logical connection points that are used by higher-level instances of the net's 
+cellView. Nets also connect to instTerms that represent connections to the 
+lower-level instances in the net's cellView.</p><br>
+
+<p>The <a href="../design/classoaNet.html"><code>oaNet</code></a> class is a base 
+class for more specific types of nets:</p>
+
+<ul>
+<li><a href="../design/classoaScalarNet.html"><code>oaScalarNet</code></a> represents
+single-bit nets that do not have a bit index associated with them</li>
+
+<li><a href="../design/classoaBusNet.html"><code>oaBusNet</code></a> represents nets 
+that have a bit range associated with them</li>
+
+<li><a href="../design/classoaBundleNet.html"><code>oaBundleNet</code></a> represents
+a multi-bit net composed of one or more oaScalarNets, one or more oaBusNets, 
+or a combination of oaScalarNets and oaBusNets.</li>
+</ul>
+
+<p>When nets are connected externally to a given cellView by higher-level 
+parts of the design, they are connected to terminals, which are represented 
+by the <a href="../design/classoaTerm.html"><code>oaTerm</code></a> class.</p><br />
+
+<p><a href="../design/classoaTerm.html"><code>oaTerm</code></a> is also a base class 
+for more specific types of terminals:</p>
+
+<ul>
+<li><a href="../design/classoaScalarTerm.html"><code>oaScalarTerm</code></a> 
+represents single-bit terminals that do not have a bit index associated with 
+them</li>
+
+<li><a href="../design/classoaBusTerm.html"><code>oaBusTerm</code></a> represents
+a vector terminal</li>
+
+<li><a href="../design/classoaBundleTerm.html"><code>oaBundleTerm</code></a> 
+represents a multi-bit terminal composed of one or more oaScalarTerms, one 
+or more oaBusTerms, or a combination of oaScalarTerms and oaBusTerms</li>
+</ul>
+
+
+<p><a href="../design/classoaInstTerm.html"><code>oaInstTerm</code></a> objects
+can be created on an instance to correspond to terminals in the master cellView
+of the instance.
+<a href="../design/classoaInstTerm.html"><code>oaInstTerm</code></a> objects can also
+be created with terminal names rather than
+<a href="../design/classoaTerm.html"><code>oaTerm</code></a> objects. When an
+instTerm is created by name, a terminal with that name does not need to exist
+at that time on the master. When such an InstTerm is created, it is unbound. If
+the master changes at some point to have a terminal with the specified name,
+the instTerm can be bound in future uses of that master.</p>
+
+
+<h3 class="spabove"><a name="5">Figures</a></h3>
+
+<p>There are a number of different classes in the cellView database that 
+represent geometric objects that have coordinates.</p>
+
+<p><a href="../design/classoaFig.html"><code>oaFig</code></a> is the base class from
+which all geometric objects are derived. Some examples of geometric objects 
+are shapes, instances, and routes.</p>
+
+<p>All figures have a <em>bounding box</em>, which is the smallest rectangle 
+that contains all of the figure's geometry.</p>
+
+
+<h3 class="spabove"><a name="6">Shapes</a></h3>
+
+<p>Shapes are primitive geometric objects that can be used to create elements
+of the design. All shapes occupy a particular layer and purpose in the 
+database.</p>
+
+<p>The following shapes are used in the OpenAccess database.</p>
+
+<div class="indent">
+<table border=0 cellpadding=5 summary="&nbsp;">
+
+<tr>
+<td width=120><a href="../design/classoaArc.html"><code>oaArc</code></a></td>
+<td>A portion of an ellipse or circle</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaDonut.html"><code>oaDonut</code></a></td>
+<td>A circle with a hole</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaDot.html"><code>oaDot</code></a></td>
+<td>A small shape in a particular location in the database</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaEllipse.html"><code>oaEllipse</code></a></td>
+<td>An ellipse or circle that has no width</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaLine.html"><code>oaLine</code></a></td>
+<td>A connected sequence of lines that have no width</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaPath.html"><code>oaPath</code></a></td>
+<td>A sequence of connected line segments with specific controls over 
+	their width and how the ends of each line segment overlap</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaPolygon.html"><code>oaPolygon</code></a></td>
+<td>An arbitrary, multi-sided shape</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaText.html"><code>oaText</code></a></td>
+<td>Creates labels in a design of any font or orientation</td>
+</tr>
+
+<tr>
+<td><a href="../design/classoaTextDisplay.html"><code>oaTextDisplay</code></a></td>
+<td>Similar to <code class="red">oaText</code>, but provides an interface 
+that allows the string to be a variable function of design data</td>
+</tr>
+</table>
+</div>
+
+
+<h3 class="spabove"><a name="7">Routes</a></h3>
+
+<p>Routes are objects that are specially designed to represent routed wires 
+in a layout. A route can represent both globally routed wires and wires that
+have a detailed route. Routes represent all the parts of a wire on every 
+layer and contain the vias that connect the wire between layers.</p>
+
+<p>Each route object represents one connected part of a net's routing. A route 
+has one begin point and one end point. A complete net commonly has several
+different routes on it. Any place a net branches, it requires different routes 
+to represent each part of the net that comes into that branch. Branch points 
+in the net's routing are represented by objects called 
+<a href="../design/classoaSteiner.html"><code>oaSteiner</code></a><code>s</code> that 
+help callers understand how the different routes that make up a net are 
+interconnected.</p>
+
+
+<h3 class="spabove"><a name="8">Vias</a></h3>
+
+<p>Vias are design objects on chip design layouts that connect routing where 
+it changes layers on the chip. Instances of vias can only occur where they 
+are referenced by routes. Vias are accessed through the routes that include 
+them.</p>
+
+<p>There are two primary ways of creating vias. Custom vias have a stored cellView that contains the vias' detailed geometry. Standard vias use a set of built-in parameters that define all the common ways of building vias. Each type of via used in a given cellView has an 
+<a href="../design/classoaViaHeader.html"><code>oaViaHeader</code></a> that 
+represents information about that type. The <a href="../design/classoaViaHeader.html"><code>oaViaHeader</code></a> refers to an <a href="../tech/classoaViaDef.html"><code>oaViaDef</code></a>. All of the types of vias available in a given design 
+technology have an associated <a href="../tech/classoaViaDef.html"><code>oaViaDef</code></a>. The <a href="../tech/classoaViaDef.html"><code>oaViaDef</code></a> class is stored in the technology database. 
+The viaHeader refers to the master cellview with the contents of the via. Custom via masters can be  parameterized cells.</p>
+
+
+<h3 class="spabove"><a name="9">Pins and Instance Pins</a></h3>
+
+<p>Pins are the physical geometry that implements a terminal. Each terminal
+can have multiple pins. Each pin has a figure that represents its detailed
+geometry. That figure can be one of the following:</p>
+
+<ul>
+<li>a shape</li>
+<li>a route (often used when the pin is actually implemented as a via)</li>
+<li>an instance where a more complex set of geometry is required (only used in schematics)</li>
+</ul>
+
+<p>InstPins are to pins as instTerms are to terminals. When an instance of a 
+cellView with pins is created, the caller can create an 
+<a href="../classoaInstPin.html"><code>oaInstPin</code></a><code>s</code>
+to which the nets in the parent cellview can connect.</p>
+
+
+<h3 class="spabove"><a name="10">Markers</a></h3>
+
+<p>Markers can be added to a cellView to guide a graphical viewing program.
+Markers represent design rule violations or other areas of concern on the 
+chip that should be brought to the attention of the designer.</p>
+
+
+<h3 class="spabove"><a name="11">Parasitics</a></h3>
+
+<p>Parasitics are collections of objects that represent various types of 
+electrical models of nets in a design. There are several categories of 
+parasitics:</p>
+
+<ul>
+<li><em>Reduced</em> parasitics represent a simplified model of the electrical 
+view of the net that can be used for quicker delay calculations</li>
+
+<li><em>Distributed</em> parasitics are an arbitrary network of resistors, 
+capacitors, and inductors that represent a very detailed model of the net</li>
+
+<li><em>Cross-coupling</em> parasitics represent the capacitance and inductance between 
+different nets in a design</li>
+</ul>
+
+
+<h3 class="spabove"><a name="12">Scan Chains</a></h3>
+
+<p>The OpenAccess database has specific objects that represent scan chains. 
+These objects can represent the inputs and outputs of the scan chain plus the 
+inputs and outputs of the scan latches in the design to be hooked into the 
+scan chain. Scan chain sets can also represent different scan sets within a 
+single design.</p>
+
+
+<h3 class="spabove"><a name="13">Floorplanning Objects</a></h3>
+
+<p>There are a variety of objects used to represent floorplans for a chip. 
+These include:</p>
+
+
+<ul>
+<li><em>Gcell grids</em> are used to run the global routing</li>
+
+<li><em>Track patterns</em> layout the exact locations that detailed routing
+can use to route wires</li>
+
+<li><em>Sites</em> indicate the locations where standard cells can be 
+placed</li>
+
+<li><em>Boundaries</em> that represent regions that are allocated on a chip for various purposes</li>
+</ul>
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

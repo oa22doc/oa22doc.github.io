@@ -1,0 +1,23 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Observer Class Index
+
+HTMLFILES = \
+	classoaBaseObserver.html
+
+BUILDINFO
+OpenAccess observers are a set of classes that allow applications to request notification when certain 
+changes occur to the state and contents of open databases. This observer mechanism allows a complex application 
+to keep its internal state consistent with changes made by other code in the same process.
+
+See <a href="classoaObserver.html">oaObserver Class Template Reference</a>, 
+<a href="../guide/observers.html">OpenAccess Observers</a>, and 
+<a href="../guide/cellviewiocb.html">oaDesign Observer Notification, Binding, and Loading</a> 
+for more information.
+
+
+

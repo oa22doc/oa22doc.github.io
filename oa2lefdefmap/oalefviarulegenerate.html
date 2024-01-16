@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|viarule generate'/>
+<a name='68003'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="ViaRuleGenerate"></a>ViaRule Generate</h1>
+<pre>
+ VIARULE viaRuleName GENERATE [DEFAULT]
+
+   LAYER routingLayerName ;
+     ENCLOSURE overhang1 overhang2 ;
+     [WIDTH minWidth TO maxWidth ;]
+   LAYER routingLayerName ;
+     ENCLOSURE overhang1 overhang2 ;
+     [WIDTH minWidth TO maxWidth ;]
+   LAYER cutLayerName ;
+     RECT pt pt ;
+     SPACING xSpacing BY ySpacing ;
+    [<a href='#68004'>RESISTANCE</a> resistancePerCut ;]
+
+ END viaRuleName
+</pre>
+<p>The LEF VIARULE GENERATE construct maps to OpenAccess as an <a href="../tech/classoaStdViaDef.html">oaStdViaDef</a>, with a set of oaViaParam parameters as specified by the ENCLOSURE, RECT, and SPACING attributes.</p>
+<p>For dataModel 4, this oaStdViaDef is added to the oacValidRoutingVias constraint in the LEFSpecialRouteSpec constraint group. The value of the constraint is an <a href="../tech/classoaViaTopology2DTblValue.html">oaViaTopology2DTblValue</a>, which contains a two dimensional table of <a href="../tech/classoaViaTopologyArrayValue.html">oaViaTopologyArrayValue</a>. This is similar to how the the oaViaDef2DTblValue table is used on the oaViaSpec for dataModel 3.</p>
+<p>For dataModel 3 and below, an <a href="../tech/classoaStdViaDef.html">oaStdViaDef</a> is added to the oaViaSpec for the given layer pair. The oaViaSpec has an <a href="../tech/classoaViaDef2DTblValue.html">oaViaDef2DTblValue</a>, which contains a two dimensional table of oaViaDef arrays, indexed by the two widths. If WIDTH is not specified, the <a href="../tech/classoaStdViaDef.html">oaStdViaDef</a> is added to the default value of the table.</p>
+</div>
+<a name='lef|viarule generate|resistance'/>
+<a name='68004'/>
+<h2 class='topicSyntax'>
+RESISTANCE resistancePerCut</h2>
+<div style='margin-left:40px;'>
+<p>The VIARULE LAYER RESISTANCE attribute is stored in OpenAccess using the oaStdViaDef::resistancePerCut attribute.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

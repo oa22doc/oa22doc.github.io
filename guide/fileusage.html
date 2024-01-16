@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a> File Usage by OpenAccess Databases </h1>
+<hr />
+<p>When you save an oaDesign, it is typically written to a file in an oaCellView. That file is  the <em>primary</em> file. See <a href="libstruc.html#oaCellViews">oaCellViews</a> in <em>OpenAccess Libraries and Design Management</em> for more information about primary files.</p>
+<p>An oaDesign can have associated, non-primary files.  For example, the design might have parasitics that are stored in a separate, non-primary file. The  name of the non-primary file is determined by the design management (DM) system for the containing library and is not determined by OpenAccess.</p>
+<p>Applications can add additional files to an oaCellView that contains an oaDesign database. If these files contain additional information about the design, they should be set as followers of the design database file. See <a href="libstruc.html#lead_follow">Leader-Follower File Associations</a> in <em>OpenAccess Libraries and Design Management</em> for more information.</p>
+<p>When you save an oaTech, is it saved as a file in an oaLib. </p>
+<h2 class=spabove><a name="fileLock">File Locking</a></h2>
+<P>An oaDesign can be read by many processes simultaneously, but can only be written to (or appended to) by a single process. When an oaDesign is opened for write or append, OpenAccess locks the database file.</P>
+<P>If the oaCellView already exists and has a previous database, the database will be locked, but nothing will be written into the library at this time. If the oaCell, oaView, or oaCellView do not exist, they are created when the lock is established. If that database is closed without saving, then its oaCell, oaView, and oaCellView are  deleted if they are otherwise empty. </P>
+<P>It is possible for reader processes to have a database open at the same time as the single writer process. If readers are active when the oaDesign is opened for write, the readers continue to see the older copy of the database, even if it has not been read in completely. Processes that open the oaDesign for read (r) after it has been opened for write (w) continue to get the old database contents until the writer saves the database. Readers never get an error and never get a mix of old data and new data. Readers do not see the new data unless they close the oaDesign and reopen it.</P>
+<P>For details about how file locking is handled in the OpenAccess FileSys Design Management system, see <a href="libstruc.html#file_locking">File Locking.</a></P>
+<h2><a name="closeEmpty">Closing Empty oaDesigns</a> That Have Not Been Saved </h2>
+<P>If you close an  empty oaDesign that has never been saved, an empty primary file remains in the oaCellView. The oaCell and oaView empty containers are left behind as well.</P>
+<h2 class="spabove"><a name="on">On-Demand Loading</a></h2>
+
+<p>An oaDesign opened in 'w' mode is entirely empty. Any objects created are
+only in memory (not on disk) until the design is saved. Even after a save, 
+the design is available in memory until it is purged or all <em>opens</em> of it are closed and all
+<a href="../design/classoaInstHeader.html">instHeaders</a> to which it is bound are removed.</p>
+
+<p>OpenAccess can partially read in designs. When an oaDesign is opened in 'a' or 'r' modes, objects of a given type are
+read in as you touch a given class. <em>Touch</em> refers to actions such as
+creating an object of a specified class or iterating over the object type.</p>
+
+<p>Partial read-in does not apply to small designs (currently, those less
+than 128Kbytes). For designs over 128Kbytes, object type categories are unread until
+the first object of that type is accessed. At that time, all objects of that
+type are read into memory. The granularity of what is read at a single touch
+can be determined by the <a href="../design/classoaDesignDataType.html#oaDesignDataTypeEnum">oaDesignDataTypeEnum</a> values. For example, one entry is
+oacNetDataType. This determines that all oaNets are read together, not just
+subclasses such as oaScalarNet.</p>
+
+<p>For each partially read design, OpenAccess must keep an open file
+descriptor. This descriptor is released when a design is completely read.
+The current OpenAccess database implementation allows a maximum of 128 such
+partially read designs per session. If an additional design is opened after
+an initial 128 are opened and partially read, the smallest of the partially
+read designs is completely read, and its file descriptor is released.</p>
+<p>If  a database is  partially read over an NFS filesystem, OpenAccess creates an .oacache file to preserve the original state of the data for the reader even if the database is subsequently written by another process. OpenAccess removes these .oacache files when they are no longer needed. Note that  .oacache files are hard links and do not consume additional disk space <em>unless</em> another process overwrites the original database. </p>
+<p>Parasitic data does not follow this pattern. Parasitics can be paged in and out explicitly by API load and unload  calls. This means that not all of a design's parasitics are in memory at one time. Also, a specified net's parasitics can be paged out before a design is closed, even if the parasitics are modified.</p>
+<h2><a name="save">Saving an oaDesign </a></h2>
+<P>When an oaDesign  opened in append or write mode is saved, the data is first written to a temporary file. After the write completes, the temporary file is renamed to the persistent filename. This way, if a save operation fails for any reason, it does not corrupt the previously saved oaDesign  on disk.</P>
+<P>When you use parasitics, OpenAccess creates a temporary file that  holds any modified parasitic data that is paged out. This can happen even if the design is in read mode because it is possible to modify designs  in this mode. This temporary file is used until the containing oaDesign is closed or saved. If the oaDesign is saved, the parasitic data is copied to the persistent parasitic file. If the oaDesign is closed without saving, the temporary file is discarded and the parasitic information is lost. </P>
+<span class="style1">
+<!-- beginning of footer -->
+</span>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

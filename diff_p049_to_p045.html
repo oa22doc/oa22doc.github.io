@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h2>Summary of API Changes</h2>
+<p>Following is a summary of the API changes between the OpenAccess p049 source code and documentation release and the p045 source code and documentation release.</p>
+<span style="color:#0066cc">
+#################################<br />
+#  The following new classes are added  #<br />
+#################################<br />
+</span>
+<pre>	<a href="design/classoaAnalysisPointArray.html">oaAnalysisPointArray</a> <br>  	<a href="base/classoaBuildInfoArray.html">oaBuildInfoArray</a> <span style="color:#0066cc">
+</span>	<a href="base/classoaMemoryError.html">oaMemoryError</a> </pre>
+
+<p><span style="color:#0066cc"><br />
+#################################</span></p>
+<p><br />
+  <span style="color:#0066cc"> #################################<br />
+  #  The following classes were modified  #<br />
+  #################################<br />
+  </span></p>
+<pre>	<a href="base/classoaBuildInfo.html">oaBuildInfo</a>   <br>		<span class="style3">Added API</span><br>  		<a href="base/classoaBuildInfo.html#d1">getPackages(oaBuildInfoArray &amp;packagesIn)</a> <br>
+<br>  	<a href="design/classoaParasiticNetwork.html">oaParasiticNetwork</a><br>		<span class="style3">Added API</span><br>  		<a href="design/classoaParasiticNetwork.html#d1">create(oaDesignObject *net, const oaAnalysisPointArray &amp;aps)</a> </pre>
+<pre>	<a href="tech/classoaTech.html">oaTech</a><br>		<span class="style3">Added API</span><br>  		<a href="tech/classoaTech.html#a23">getClearanceMeasure(oaBoolean local) const</a> <br>  		<a href="tech/classoaTech.html#a19">getDBUPerUU(const oaViewType *viewType, oaBoolean local) const</a> <br>  		<a href="tech/classoaTech.html#d13">getDefaultClearanceMeasure()</a> <br>  		<a href="tech/classoaTech.html#d12">getDefaultDefaultManufacturingGrid()</a> <br>  		<a href="tech/classoaTech.html#d14">getDefaultIsGateGrounded()</a> <br>  		<a href="tech/classoaTech.html#a25">getDefaultManufacturingGrid(oaBoolean local) const</a> <br>  		<a href="tech/classoaTech.html#a21">getUserUnits(const oaViewType *viewType, oaBoolean local) const</a> <br>  		<a href="tech/classoaTech.html#a42">isClearanceMeasureSet()</a> <br>  		<a href="tech/classoaTech.html#a40">isDBUPerUUSet(const oaViewType *viewType)</a> <br>  		<a href="tech/classoaTech.html#a43">isDefaultManufacturingGridSet()</a> <br>  		<a href="tech/classoaTech.html#a27">isGateGrounded(oaBoolean local) const</a> <br>  		<a href="tech/classoaTech.html#a44">isGateGroundedSet()</a> <br>  		<a href="tech/classoaTech.html#a41">isUserUnitsSet(const oaViewType *viewType)</a> <br>  		<a href="tech/classoaTech.html#a33">setDefaultManufacturingGrid(oaDist grid)</a> <br>  		<a href="tech/classoaTech.html#a37">unsetClearanceMeasure()</a> <br>  		<a href="tech/classoaTech.html#a35">unsetDBUPerUU(const oaViewType *viewType)</a> <br>  		<a href="tech/classoaTech.html#a38">unsetDefaultManufacturingGrid()</a> <br>  		<a href="tech/classoaTech.html#a39">unsetGateGrounded()</a> <br>  		<a href="tech/classoaTech.html#a36">unsetUserUnits(const oaViewType *viewType)</a> </pre>
+<p><span style="color:#0066cc"><br />
+#################################</span></p>
+<p><span style="color:#0066cc">
+#################################<br />
+#  The following enums were modified  #<br />
+#################################</span>
+<p>
+<pre>        <a href="tech/oaTechModTypes_8h.html#a54">oaTechModTypeEnum</a><br>		<span class="style3">Added Values</span><br>  		<a href="tech/oaTechModTypes_8h.html#a54a36">oacUnsetRefsTechModType</a><span style="color:#0066cc"><br /></span>
+</pre>
+<pre>	<span style="color:#0066cc"><a href="tech/oaTechMsgs_8h.html#a119">oaTechMsgIds</a><br>	<span class="style3">	Added Values</span><br>  		<a href="tech/oaTechMsgs_8h.html#a119a67">oacObsoleteTechMsg2064</a> <br>  <br>	<span class="style4">	Removed Values</span><br>  		oacTechCannotSetRefToSelf <br />
+</span>	<a href="tech/oaTechModTypes_8h.html#a53">oaTechModTypeEnum</a><br>		<span class="style3">Added Values</span><br>  		<a href="tech/oaTechModTypes_8h.html#a53a31">oacUnsetDBUPerUUTechModType</a> <br>  		<a href="tech/oaTechModTypes_8h.html#a53a32">oacUnsetUserUnitsTechModType</a> <br>  		<a href="tech/oaTechModTypes_8h.html#a53a33">oacUnsetClearanceMeasureTechModType</a> <br>  		<a href="tech/oaTechModTypes_8h.html#a53a34">oacUnsetDefaultManufacturingGridTechModType</a> <br>  		<a href="tech/oaTechModTypes_8h.html#a53a35">oacUnsetGateGroundedTechModType</a> </pre>
+<span style="color:#0066cc"><br />
+#################################
+</span>
+</body>
+</html>

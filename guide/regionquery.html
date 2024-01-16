@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1><a name="pagetop"></a>Region Query Plug-In Architecture </h1>
+ <hr>
+ <p>The OpenAccess plug-in interface uses programming techniques similar to those used in the Microsoft ® COM technology. The region query plug-in provides an interface that is easily updated or replaced. You can initialize the query tree plug-in structure by using the following API after the call to <code>oaDesignInit()</code> and before the call to <code>oaBlock::initForRegionQuery()</code>:</p>
+ <pre>void oaRegionQuery::<a href="../design/classoaRegionQuery.html#oaRegionQuery::init">init</a>(const oaString &pluginName="oaRQSystem")</pre>
+ <p>This  loads  the default region query plug in. OpenAccess provides a default region query plug in named “oaRQXYTree”. An oacRegionQueryFailedToGetPlugIn exception is thrown if the specified plug in fails to load.  </p>
+ <p>An application can call the following function to get the name of the region query plug in currently in use. An empty string is returned if  no plug in is loaded. </p>
+ <pre>void oaRegionQuery::<a href="../design/classoaRegionQuery.html#oaRegionQuery::getPlugInName">getPlugInName</a>() </pre>
+ <h2>Region Query Initialization</h2>
+ <p>You can initialize region query structures for a block and all the  blocks bound to it:</p>
+ <pre>oaBlock::<a href="../design/classoaBlock.html#oaBlock::initForRegionQuery">initForRegionQuery</a>()</pre>
+ <p>The initialization call is optional. OpenAccess will make this call internally when it receives the  first query. This API has been made visible to the application so that the application can control when to perform the initialization, which can be time consuming.
+</p>
+ <h2>oaRegionQuery Object Separated Into Multiple Query Objects</h2>
+ <p>Each query is specialized for each OpenAccess object type. The following figure shows the oaRegionQuery subclasses available for object queries.</p>
+ <p><img src="images/rqsubclasses.gif" width="822" height="187"></p>
+ <h3>Usage Notes</h3>
+ <p>There is a unique object for each type of query. Each of these objects implements its own <code>query()</code>  and <code>abort()</code> functions. Each  object also implements <code>startRef()</code> and <code>endRef()</code> functions to control hierarchy traversal. </p>
+ <p>Users must overload the <code>query***()</code> functions to get objects. </p>
+ <h2>Region Query Code Structure</h2>
+ <ol>
+   <li>Choose the type of query you want. </li>
+   <li>Derive an application-specific class from the appropriate abstract query class. </li>
+   <li>Override the <code>query<var>&lt;Object&gt;()</var></code> function to add the processing code. </li>
+   <li>Override <code>startRef()</code> to be notified of the event or to set the return value to false if you want to skip the reference. </li>
+ </ol>
+ <p>Here is an example of a shape query class that is derived from the abstract oaShapeQuery class:</p>
+ <pre>class myShapeQuery : public oaShapeQuery {
+public:
+                     myShapeQuery() {numShapes = 0;}
+    virtual void     queryShape(oaShape	*shape) {numShapes++;}
+
+private:
+    oaUInt4          numShapes;
+};
+</pre>
+ <p>&nbsp;</p>
+ <p><a
+href="#pagetop">Return to top of page</a></p>
+ <p><a
+href="index.html">Return to Programmers Guide topics</a></p>
+    <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+</li>
+</body>
+</html>

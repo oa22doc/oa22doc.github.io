@@ -1,0 +1,395 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|macro'/>
+<a name='59000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Macro"></a>Macro</h1>
+<pre>
+ MACRO macroName
+
+   [<a href='#59001'>CLASS</a>
+     { COVER [BUMP]
+     | RING
+     | BLOCK [BLACKBOX | SOFT]
+     | PAD [INPUT | OUTPUT |INOUT | POWER | SPACER | AREAIO]
+     | CORE [FEEDTHRU | TIEHIGH | TIELOW | SPACER | ANTENNACELL | WELLTAP]
+     | ENDCAP {PRE | POST | TOPLEFT | TOPRIGHT | BOTTOMLEFT | BOTTOMRIGHT}
+     } ;]
+   [<a href='#59002'>FOREIGN</a> foreignCellName [pt [orient]] ;] ...
+   [<a href='#59003'>ORIGIN</a> pt ;]
+   [<a href='#59004'>SIZE</a> width BY height ;]
+   [<a href='#59005'>EEQ</a> macroName ;]
+   [<a href='#59006'>LEQ</a> macroName ;]
+   [<a href='#59007'>SYMMETRY</a> {X | Y | R90} ... ;]
+   [<a href='#59008'>SITE</a> siteName [sitePattern] ;] ...
+   [<a href='#59009'>PIN</a> statement] ...
+   [<a href='#59010'>OBS</a> statement] ...
+   [<a href='#59011'>DENSITY</a> statement] ...
+   [<a href='#59012'>PROPERTY</a> propName propVal ;] ...
+
+ END macroName
+</pre>
+<p>The MACRO is stored in OpenAccess as an oaDesign.</p>
+</div>
+<a name='lef|macro|class'/>
+<a name='59001'/>
+<h2 class='topicSyntax'>
+CLASS<BR/>
+&nbsp;&nbsp;&nbsp;{ COVER [BUMP]<BR/>
+&nbsp;&nbsp;&nbsp;| RING<BR/>
+&nbsp;&nbsp;&nbsp;| BLOCK [BLACKBOX | SOFT]<BR/>
+&nbsp;&nbsp;&nbsp;| PAD [INPUT | OUTPUT |INOUT | POWER | SPACER | AREAIO]<BR/>
+&nbsp;&nbsp;&nbsp;| CORE [FEEDTHRU | TIEHIGH | TIELOW | SPACER | ANTENNACELL | WELLTAP]<BR/>
+&nbsp;&nbsp;&nbsp;| ENDCAP {PRE | POST | TOPLEFT | TOPRIGHT | BOTTOMLEFT | BOTTOMRIGHT}<BR/>
+&nbsp;&nbsp;&nbsp;}</h2>
+<div style='margin-left:40px;'>
+<p>The LEF CLASS is stored by using the oaDesign::CellType attribute. The following table shows the mapping between the LEF CLASS and the oaCellTypeEnum values. For ENDCAP CORNER cells, an oaStringProp created on the oaDesign is used to indicate the appropriate corner and to set the oaCellType.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>LEF CLASS</th>
+<th class='borders'>oaCellTypeEnum</th>
+<th class='borders'>Attached oaStringProp</th>
+</tr>
+<tr>
+<td class='borders'>COVER</td>
+<td class='borders'>oacCellTypeCover</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>COVER BUMP</td>
+<td class='borders'>oacCellTypeCoverBump</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>RING</td>
+<td class='borders'>oacCellTypeBlockRing</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>BLOCK</td>
+<td class='borders'>oacCellTypeBlock</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>BLOCK BLACKBOX</td>
+<td class='borders'>oacCellTypeBlockBlackBox</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>BLOCK SOFT</td>
+<td class='borders'>oaSoftMacroCellType</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>PAD</td>
+<td class='borders'>oacCellTypePad</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>PAD INPUT</td>
+<td class='borders'>oacCellTypePad</td>
+<td class='borders'>CLASS = <q>INPUT</q></td>
+</tr>
+<tr>
+<td class='borders'>PAD OUTPUT</td>
+<td class='borders'>oacCellTypePad</td>
+<td class='borders'>CLASS = <q>OUTPUT</q></td>
+</tr>
+<tr>
+<td class='borders'>PAD INOUT</td>
+<td class='borders'>oacCellTypePad</td>
+<td class='borders'>CLASS = <q>INOUT</q></td>
+</tr>
+<tr>
+<td class='borders'>PAD POWER</td>
+<td class='borders'>oacCellTypePad</td>
+<td class='borders'>CLASS = <q>POWER</q></td>
+</tr>
+<tr>
+<td class='borders'>PAD SPACER</td>
+<td class='borders'>oacCellTypePadSpacer</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>PAD AREAIO</td>
+<td class='borders'>oacCellTypePadAreaIO</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>CORE</td>
+<td class='borders'>oacCellTypeCore</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>CORE FEEDTHRU</td>
+<td class='borders'>oacCellTypeCore</td>
+<td class='borders'>CLASS = <q>FEEDTHRU</q></td>
+</tr>
+<tr>
+<td class='borders'>CORE TIEHIGH</td>
+<td class='borders'>oacCellTypeCore</td>
+<td class='borders'>CLASS = <q>TIEHIGH</q></td>
+</tr>
+<tr>
+<td class='borders'>CORE TIELOW</td>
+<td class='borders'>oacCellTypeCore</td>
+<td class='borders'>CLASS = <q>TIELOW</q></td>
+</tr>
+<tr>
+<td class='borders'>CORE SPACER</td>
+<td class='borders'>oacCellTypeCoreSpacer</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>CORE ANTENNACELL</td>
+<td class='borders'>oacCellTypeCoreAntenna</td>
+<td class='borders'>-</td>
+</tr>
+<tr>
+<td class='borders'>ENDCAP PRE</td>
+<td class='borders'>oacCellTypeCoreSpacer</td>
+<td class='borders'>CLASS = <q>PRE</q></td>
+</tr>
+<tr>
+<td class='borders'>ENDCAP POST</td>
+<td class='borders'>oacCellTypeCoreSpacer</td>
+<td class='borders'>CLASS = <q>POST</q></td>
+</tr>
+<tr>
+<td class='borders'>ENDCAP TOPLEFT</td>
+<td class='borders'>oacCellTypeCorner</td>
+<td class='borders'>name:&quot;CORNER&quot;, value:&quot;TOPLEFT&quot;</td>
+</tr>
+<tr>
+<td class='borders'>ENDCAP TOPRIGHT</td>
+<td class='borders'>oacCellTypeCorner</td>
+<td class='borders'>name:&quot;CORNER&quot;, value:&quot;TOPRIGHT&quot;</td>
+</tr>
+<tr>
+<td class='borders'>ENDCAP BOTTOMLEFT</td>
+<td class='borders'>oacCellTypeCorner</td>
+<td class='borders'>name:&quot;CORNER&quot;, value:&quot;BOTTOMLEFT&quot;</td>
+</tr>
+<tr>
+<td class='borders'>ENDCAP BOTTOMRIGHT</td>
+<td class='borders'>oacCellTypeCorner</td>
+<td class='borders'>name:&quot;CORNER&quot;, value:&quot;BOTTOMRIGHT&quot;</td>
+</tr>
+</table>
+</div>
+<a name='lef|macro|density'/>
+<a name='59011'/>
+<h2 class='topicSyntax'>
+DENSITY statement</h2>
+<div style='margin-left:40px;'>
+<p>See the GEOM documentation</p>
+</div>
+<a name='lef|macro|eeq'/>
+<a name='59005'/>
+<h2 class='topicSyntax'>
+EEQ macroName</h2>
+<div style='margin-left:40px;'>
+<p>The LEF EEQ attribute is stored in OpenAccess using the oaDesign::EEQMaster attribute.</p>
+</div>
+<a name='lef|macro|foreign'/>
+<a name='59002'/>
+<h2 class='topicSyntax'>
+FOREIGN foreignCellName [pt [orient]]</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO FOREIGN attribute is stored in OpenAccess as a scalar instance of  the cell referred by FOREIGN in a separate cellView. A Boolean property  FOREIGNNAME set to TRUE will be added to the design. In addition, if the  FOREIGN name and MACRO name are the same, FOREIGN must use N orientation.  If there is only one FOREIGN statement with the same name as the macro, all  geometries in the design will be shifted by the transform. Multiple FOREIGNs,  where one has the same name as the MACRO, are not allowed because this causes  a recursive reference: a warning will be issued and the FOREIGN statement  will be ignored.</p>
+</div>
+<a name='lef|macro|leq'/>
+<a name='59006'/>
+<h2 class='topicSyntax'>
+LEQ macroName</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO LEQ attribute is not stored in OpenAccess.</p>
+</div>
+<a name='lef|macro|obs'/>
+<a name='59010'/>
+<h2 class='topicSyntax'>
+OBS statement</h2>
+<div style='margin-left:40px;'>
+<p>See the GEOM documentation</p>
+<p>The MACRO OBS geometries are stored in OpenAccess by using oaBlockage objects. However, shapes on a TYPE OVERLAP layer are merged and stored in the oaPRBoundary. If shapes on a TYPE OVERLAP layer are not contiguous, an error  is output, and the macro is skipped.</p>
+</div>
+<a name='lef|macro|origin'/>
+<a name='59003'/>
+<h2 class='topicSyntax'>
+ORIGIN pt</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO ORIGIN is used in OpenAccess to determine the lower-left point of the oaSnapBoundary for the oDesign. The lower-left point of the oaSnapBoundary is set to the inverse (negative) of the MACRO ORIGIN.</p>
+</div>
+<a name='lef|macro|pin'/>
+<a name='59009'/>
+<h2 class='topicSyntax'>
+PIN statement</h2>
+<div style='margin-left:40px;'>
+<pre>
+    [TAPERRULE ruleName ;]
+    [DIRECTION {INPUT | OUTPUT [TRISTATE] | INOUT | FEEDTHRU} ;]
+    [USE { SIGNAL | ANALOG | POWER | GROUND | CLOCK } ;]
+    [NETEXPR "netExprPropName defaultNetName" ;]
+    [SUPPLYSENSITIVITY powerPinName ;]
+    [GROUNDSENSITIVITY groundPinName ;]
+    [SHAPE {ABUTMENT | RING | FEEDTHRU} ;]
+    [MUSTJOIN pinName ;]
+    { PORT
+      [CLASS {NONE | CORE} ;]
+      {layerGeometries} ...
+    END ... }
+    [PROPERTY propName propVal ;] ...
+    [ANTENNAPARTIALMETALAREA value [LAYER layerName] ;] ...
+    [ANTENNAPARTIALMETALSIDEAREA value [LAYER layerName] ;] ...
+    [ANTENNAPARTIALCUTAREA value [LAYER layerName] ;] ...
+    [ANTENNADIFFAREA value [LAYER layerName] ;] ...
+    [ANTENNAMODEL {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4} ;] ...
+    [ANTENNAGATEAREA value [LAYER layerName] ;] ...
+    [ANTENNAMAXAREACAR value LAYER layerName ;] ...
+    [ANTENNAMAXSIDEAREACAR value LAYER layerName ;] ...
+    [ANTENNAMAXCUTCAR value LAYER layerName ;] ...
+</pre>
+<p>See the PIN documentation.</p>
+<p>The LEF MACRO PIN object is stored in OpenAccess using an oaTerm object. The relationship between LEF MACRO PIN objects and the corresponding OpenAccess objects is clarified in the Pin Modeling document.</p>
+</div>
+<a name='lef|macro|properties'/>
+<a name='59012'/>
+<h2 class='topicSyntax'>
+PROPERTY propName propVal</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oalefproperties.html">PROPERTIES</a></p>
+</div>
+<a name='lef|macro|site'/>
+<a name='59008'/>
+<h2 class='topicSyntax'>
+SITE siteName [sitePattern]</h2>
+<div style='margin-left:40px;'>
+<p>The SITE statement is not mapped to OpenAccess.</p>
+</div>
+<a name='lef|macro|size'/>
+<a name='59004'/>
+<h2 class='topicSyntax'>
+SIZE width BY height</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO SIZE statement determines the size of the oaSnapBoundary for the oaDesign. Together with the MACRO ORIGIN, this represents the oaSnapBoundary.</p>
+<p>Note that if snapBoundary is missing from the OpenAccess design, oa2lef uses PRBoundary for the snapBoundary. If both snapBoundary and PRBoundary are missing, the translator uses the bounding box as the snapBoundary.</p>
+</div>
+<a name='lef|macro|symmetry'/>
+<a name='59007'/>
+<h2 class='topicSyntax'>
+SYMMETRY {X | Y | R90} ...</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO SYMMETRY attribute is stored in OpenAccess by using the oaDesign::Symmetry attribute. The following table shows the mapping between LEF SYMMETRY values and the oaSymmetryEnum values.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>LEF SYMMETRY</th>
+<th class='borders'>oaSymmetryEnum</th>
+</tr>
+<tr>
+<td class='borders'>None</td>
+<td class='borders'>oacSymmetryNone</td>
+</tr>
+<tr>
+<td class='borders'>X</td>
+<td class='borders'>oacSymmetryX</td>
+</tr>
+<tr>
+<td class='borders'>Y</td>
+<td class='borders'>oacSymmetryY</td>
+</tr>
+<tr>
+<td class='borders'>X Y</td>
+<td class='borders'>oacSymmetryXY</td>
+</tr>
+<tr>
+<td class='borders'>R90 [X OR Y ...]</td>
+<td class='borders'>oacSymmetryAny</td>
+</tr>
+</table>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

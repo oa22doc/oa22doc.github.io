@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+<html><head>
+<!-- start header --><title>OpenAccess 2.2 API</title>
+
+
+
+
+
+
+
+<link href="source_diff_22.04.021_to_22.04.017_files/style.htm" rel="stylesheet" type="text/css">
+
+<link href="source_diff_22.04.021_to_22.04.017_files/print.htm" rel="stylesheet" type="text/css" media="print"></head><body bgcolor="#ffffff"><a name="pagetop"></a>
+<p>
+
+<!-- end header -->
+</p><h2>Summary of API Changes</h2>
+<p>Following is a summary of the API changes between the OpenAccess 22.04.021 release and the 22.04.017 release.</p>
+<p><span style="color: rgb(0, 102, 204);">
+#################################<br>
+#  The following new classes were added  #<br>
+#################################<br>
+<pre>	oaByteArray <br>
+	oaSaveRecoverType <br>
+	oaStringArray <br>
+</pre><br>
+#################################
+</span>
+</p><p><span style="color: rgb(0, 102, 204);">
+#################################<br>
+#  The following classes were modified  #<br>
+#################################<br>
+<pre>	oaAntennaData <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaAntennaData &amp;dataIn) <br>
+		setDiff(const oaAntennaAreaArray &amp;diff) <br>
+		setGate(const oaAntennaAreaArray &amp;gate) <br>
+		setMaxCAR(const oaAntennaAreaArray &amp;maxCAR) <br>
+		setMaxCutCAR(const oaAntennaAreaArray &amp;maxCutCAR) <br>
+		setMaxSideCAR(const oaAntennaAreaArray &amp;maxSideCAR) <br>
+		setPartialCut(const oaAntennaAreaArray &amp;partialCut) <br>
+		setPartialMetal(const oaAntennaAreaArray &amp;partialMetal) <br>
+		setPartialMetalSide(const oaAntennaAreaArray &amp;partialMetalSide) <br>
+	oaAppDef <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getName(oaString &amp;name) const <br>
+	oaAppProp <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		create(oaObject *object, const oaString &amp;name, const oaString &amp;appType, const oaByteArray &amp;valueArray) <br>
+		getValue(oaByteArray &amp;valueArray) const <br>
+		setValue(const oaByteArray &amp;valueArray) <br>
+	oaAreaBoundary <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		create(oaBlock *block, const oaString &amp;name, const oaPointArray &amp;points, const oaStringArray &amp;edgeNames) <br>
+		create(oaBlock *block, const oaPointArray &amp;points, const oaStringArray &amp;edgeNames) <br>
+	oaArrayBase <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaArrayBase&lt; T &gt; &amp;arrayIn) <br>
+	oaBitTerm <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		hide() <br>
+	oaBlockageType <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getName() const <br>
+	oaBoundary <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getEdgeNames(oaStringArray &amp;edgeNamesIn) const <br>
+		setEdges(const oaPointArray &amp;points, const oaStringArray &amp;edgeNames) <br>
+	oaCellDMData <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		destroy(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, oaSaveRecoverType saveRecoverType) <br>
+		exists(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, oaSaveRecoverType saveRecoverType) <br>
+		recover(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, oaSaveRecoverType saveRecoverType) <br>
+	oaCellViewDMData <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		destroy(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaSaveRecoverType saveRecoverType) <br>
+		exists(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaSaveRecoverType saveRecoverType) <br>
+		recover(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaSaveRecoverType saveRecoverType) <br>
+	oaClusterBoundary <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		create(oaCluster *cluster, const oaString &amp;name, const oaPointArray &amp;points, const oaStringArray &amp;edgeNames) <br>
+		create(oaCluster *cluster, const oaPointArray &amp;points, const oaStringArray &amp;edgeNames) <br>
+	oaComplex <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		oaComplex(const oaComplex &amp;c) <br>
+	oaCoreBoxSpec <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		oaCoreBoxSpec(const oaCoreBoxSpec &amp;coreBoxSpec) <br>
+	oaDMData <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		destroy(const oaDMContainer *container, oaSaveRecoverType saveRecoverType) <br>
+		exists(const oaDMContainer *container, oaSaveRecoverType saveRecoverType) <br>
+		isRecovered() const <br>
+		recover(const oaDMContainer *container, oaSaveRecoverType saveRecoverType) <br>
+		save(oaSaveRecoverType saveRecoverType) <br>
+	oaDMFile <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		destroy(oaSaveRecoverType type) <br>
+		existsOnDisk(oaSaveRecoverType type) const <br>
+		getPath(oaSaveRecoverType type, oaString &amp;path) const <br>
+	oaDMObjectIter <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaDMObjectIter &amp;iter) <br>
+	oaDMObjectStatusRefIter <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaDMObjectStatusRefIter &amp;iter) <br>
+	oaDMObjectVersionRefIter <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaDMObjectVersionRefIter &amp;iter) <br>
+	oaDesign <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		destroy(const oaScalarName &amp;libNameIn, const oaScalarName &amp;cellNameIn, const oaScalarName &amp;viewNameIn, oaSaveRecoverType type) <br>
+		exists(const oaScalarName &amp;libNameIn, const oaScalarName &amp;cellNameIn, const oaScalarName &amp;viewNameIn, oaSaveRecoverType type) <br>
+		isRecovered() const <br>
+		recover(const oaScalarName &amp;libNameIn, const oaScalarName &amp;cellNameIn, const oaScalarName &amp;viewNameIn, oaSaveRecoverType type) <br>
+		save(oaSaveRecoverType type) <br>
+	oaEnumProp <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		create(oaObject *object, const oaString &amp;name, const oaString &amp;value, const oaStringArray &amp;enums) <br>
+	oaEnumPropIter <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(oaEnumPropIter &amp;iterIn) <br>
+	oaLibDMData <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		destroy(const oaScalarName &amp;libName, oaSaveRecoverType saveRecoverType) <br>
+		exists(const oaScalarName &amp;libName, oaSaveRecoverType saveRecoverType) <br>
+		recover(const oaScalarName &amp;libName, oaSaveRecoverType saveRecoverType) <br>
+	oaOccBusTermDef <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getBusTermBits(oaUInt4 filterFlags) const <br>
+		getBusTerms(oaUInt4 filterFlags) const <br>
+	oaOccInstTerm <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		find(const oaOccInst *inst, oaUInt4 termPosition, oaDomain domain) <br>
+		find(const oaOccInst *inst, const oaOccTerm *term, oaDomain domain) <br>
+		find(const oaOccInst *inst, const oaName &amp;termName, oaDomain domain) <br>
+		getReflection(oaDomain d) const <br>
+		getTerm(oaBoolean expand, oaDomain d) const <br>
+		isBound(oaDomain d) const <br>
+	oaOccTerm <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		find(const oaOccurrence *occurrence, oaUInt4 position, oaDomain d) <br>
+		find(const oaOccurrence *occurrence, const oaName &amp;name, oaDomain d) <br>
+		getReflection(oaDomain d) const <br>
+	oaPRBoundary <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		create(oaBlock *block, const oaPointArray &amp;points, const oaStringArray &amp;edgeNames) <br>
+	oaPinConnectMethod <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getName() const <br>
+	oaRouteMethod <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getName() const <br>
+	oaSnapBoundary <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		create(oaBlock *block, const oaPointArray &amp;bBox, const oaStringArray &amp;edgeNames) <br>
+	oaTech <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		destroy(const oaScalarName &amp;libName, oaSaveRecoverType type) <br>
+		exists(oaLib *lib, oaSaveRecoverType type) <br>
+		exists(const oaScalarName &amp;libName, oaSaveRecoverType type) <br>
+		isRecovered() const <br>
+		recover(const oaScalarName &amp;libName, oaSaveRecoverType type) <br>
+		save(oaSaveRecoverType type) <br>
+	oaTechHeader <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getRefLibName(const oaNameSpace &amp;ns, oaString &amp;refLibName) const <br>
+	oaTermType <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getName() const <br>
+	oaTextDisplayIter <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaTextDisplayIter &amp;iterIn) <br>
+	oaTimeStamp <br>
+<br>		<span style="color: red; text-decoration: underline;">Removed API</span><br>
+		operator=(const oaTimeStamp &amp;st)<br>
+	oaTimer <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		getElapsed() const <br>
+	oaVCVersionIter <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaVCVersionIter &amp;iter) <br>
+	oaVhdlNS <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaVhdlNS &amp;ns) <br>
+	oaWinNS <br>
+<br>		<span style="color: green; text-decoration: underline;">Added API</span><br>
+		operator=(const oaWinNS &amp;ns) <br>
+</pre><br>
+#################################
+</span>
+</p><p><span style="color: rgb(0, 102, 204);">
+#################################<br>
+#  The following enums were added   #<br>
+#################################<br>
+<pre>	oaSaveRecoverTypeEnum <br>
+</pre><br>
+#################################
+</span>
+</p><p><span style="color: rgb(0, 102, 204);">
+#################################<br>
+#  The following enums were modified  #<br>
+#################################<br>
+<pre>	oaBusTermDefModTypeEnum <br>
+<br>		<span style="color: green; text-decoration: underline;">Added Values</span><br>
+		oacOverrideBusTermDefModType <br>
+	oaDMMsgIds <br>
+<br>		<span style="color: green; text-decoration: underline;">Added Values</span><br>
+		oacInvalidDMSystemName <br>
+		oacCannotOpenLibDataFile <br>
+		oacLibDataFileSyntaxError <br>
+		oacInvalidSaveRecoverTypeName <br>
+		oacSaveRecoverFileDoesNotExistOnDisk <br>
+		oacSaveRecoverDMDataFileAlreadyOpened <br>
+		oacRecoverDMDataFileDoesNotExist <br>
+		oacSaveRecoverViewDMDataNotSupported <br>
+	oaDesignMsgIds <br>
+<br>		<span style="color: green; text-decoration: underline;">Added Values</span><br>
+		oacDesignNoLongerExists <br>
+		oacCannotHideImplicitTerm <br>
+		oacCannotHideBlockOnlyTerm <br>
+		oacCannotBlockOverrideNonScalarizedDesign <br>
+		oacCannotBlockOverrideNetSignalType <br>
+		oacOverridingTermAlreadyExist <br>
+		oacCannotDestroyOverriddenTerm <br>
+		oacCannotEditOverriddenTerm <br>
+		oacCannotSetNameOfOverriddenTerm <br>
+		oacCannotProcessDomainArgument <br>
+		oacCannotDestroyNetOnHiddenTerm <br>
+		oacCannotEditNetOnHiddenTerm <br>
+		oacMustSpecifyValidNetTypeFilterFlag <br>
+		oacRecoverFileDoesNotExist <br>
+		oacRecoverFileAlreadyOpened <br>
+		oacPhysOnlyTermNetMustBeInSameOcc <br>
+		oacPhysOnlyInstTermNetMustBeInSameOcc <br>
+	oaTechMsgIds <br>
+<br>		<span style="color: green; text-decoration: underline;">Added Values</span><br>
+		oacOpenUndefinedModeTech <br>
+		oacRecoverTechFileAlreadyOpened <br>
+		oacRecoverTechFileDoesNotExist <br>
+</pre><br>
+#################################
+</span>
+</p></body></html>

@@ -1,0 +1,22 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME 
+	OpenAccess Change Management System (CMS)
+
+BUILDINFO
+OpenAccess CMS defines a plug-in based infrastructure that 
+lets software developers create plug-ins for incremental data exchange between 
+cooperating applications.
+
+<b>NOTE:</b> All documentation for CMS is preliminary and subject to change. CMS 
+is still in development and is considered to be of Beta quality. 
+
+See <a href="../guide/cms_prefixes.html">Overview of Change Management System 
+(CMS) Classes</a>, <a href="../guide/cms.html">Change Management System (CMS)</a>, 
+<a href="../guide/cms_plugins.html">How to Write Change Management System 
+(CMS) Plug-Ins</a>, <a href="../guide/create_schema.html">Creating Schema 
+Definitions</a>, and <a href="../guide/traverse_schema.html">Traversing and Iterating 
+Schema Definition Objects</a> for more information.

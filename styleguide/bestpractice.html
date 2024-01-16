@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Best Coding Practices</h1>
+<hr>
+
+<p>This section of the coding standards offers guidelines for writing clean and concise OpenAccess code. While these are guidelines, not rules, they are considered best practices for OpenAccess coding and development.</p>
+
+<h2><a name="for_loops"></a>Using <em>for</em> Instead of <em>while</em> Statements</h2>
+<p>It is common to see a control loop written as follows:</p>
+
+<pre>
+    oaUInt4 i = firstMem;
+    while (i != oacNullIndex &amp;&amp; (objectTbl[i] != objIndex || typeTbl[i] != objType)) {
+        i = nextTbl[i];
+    }
+</pre> 
+
+<p>Although the while statement obtains the necessary results, it is simpler, cleaner, and more obvious to use a for statement instead. For example:</p>
+
+<pre>
+    for (oaUInt4 i = firstMem; i != oacNullIndex &amp;&amp; (objectTbl[i] != objIndex || typeTbl[i] != objType); i = nextTbl[i]) {
+        ;
+    }
+</pre>
+
+<p>An alternative approach, which can be even more obvious, tests the loop bounds in the for statement and checks the search condition with a separate if statement. For example:</p>
+
+<pre>
+    for (oaUInt4 i = firstMem; i != oacNullIndex; i = nextTbl[i]) {
+        if (objectTbl[i] != objIndex || typeTbl[i] != objType) {
+            break;
+        }
+    }
+</pre>
+
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Functions</h1>
+<hr />
+
+<p>Most of  a software system is contained in its functions, so this is where the majority of the coding standards apply. The structure and of the function itself is just as important as the code within the function. This section includes the following topics:</p>
+<ul>
+<li><a href="#1">Function Formatting</a></li>
+<li><a href="#alignvariables">Aligning Variable Declarations</a></li>
+<li><a href="#2">Function Size</a></li>
+<li><a href="#3">Breaking Function Content Into Blocks</a></li>
+<li><a href="#nestclasses">Nesting Classes in Functions </a></li>
+<li><a href="#4">Comparing Pointer and Integral Types</a></li>
+</ul>
+<br />
+
+
+<h2><a name="1">Function Formatting</a></h2>
+
+<p>Precede all functions with a header comment. Use a block comment style to 
+make it easy to visually separate one function from another.</p>
+
+<p>Include the function definition immediately after the header comment. 
+Separate the definition into:</p>
+
+<ul>
+<li>Return type</li>
+<li>Function name</li>
+<li>Parameter specifications</li>
+</ul>
+
+<p>The following example shows a sample function definition.</p><br />
+
+<pre>
+// *****************************************************************************
+// oaPath::create()
+//
+// This function creates a path object in the specified cellView with the 
+// specified parameters. The new path is returned in 'path'. The specified 
+// point array is compressed to remove any coincident or collinear points. 
+// An exception is thrown if the number of points after compression is less 
+// than two.
+// *****************************************************************************
+void
+oaPath::create(oaPath                &amp;path,
+               oaCellView            &amp;cellView,
+               oaUInt4               width,
+               const oaPointArray    &amp;points,
+               oaPathStyle           style,
+               oaUInt4               startExt,
+               oaUInt4               stopExt)
+{
+    // Verify the specified cellView.
+    .
+    .
+    .
+}
+</pre>
+
+<p>Follow these guidelines when formatting a function definition.</p>
+
+<ul>
+<li>The header comment should always use the format shown in the example. 
+Begin the comment with the function name (with no parameters), followed by a single 
+empty line, and a description of the function.</li>
+
+<li>Include the return type on its own line. (The only exception is  an inline function in which you should place the keyword <span class="style1">inline</span> before 
+the return type on the same line.)  </li>
+
+<li>Include the function name immediately following the return type, with no 
+empty lines between them.</li>
+
+<li>Place each function parameter on a separate line. Left align all 
+function parameters just after the function name's opening left 
+parenthesis.</li>
+
+<li>Format the function parameter with the longest type by using the next multiple of shift-width (four character spaces) between the type and the parameter name. Left-align all other function parameter names to this parameter name with the longest type. For example, in the previous listing, the longest parameter type is <code>const oaPointArray</code>. There is exactly one tab space between <code>const oaPointArray</code> and 
+<code>&amp;points</code>. All other parameter names are left-aligned to 
+<code>&amp;points</code> using multiple tab spaces.</li>
+
+<li>Place the closing right parenthesis of the function definition at the 
+end of the line containing the last parameter.</li>
+
+<li>Place the opening brace on a separate line immediately following the last 
+parameter. Do not indent the opening brace.</li>
+
+<li>Indent the contents of the function exactly one shift-width inside the 
+braces.</li>
+
+<li>Place the closing brace for the function on a separate line. Do not indent 
+the closing brace.</li>
+
+<li>If the function is a <code>const</code> member function, place the 
+<code>const</code> keyword on the same line as the last parameter, with one 
+space between the closing right parenthesis and the <code>const</code> 
+keyword.</li>
+</ul>
+
+
+<pre>      void oaInst::getCellName(const oaNameSpace &amp;ns,
+                               oaString          &amp;cellName) const</pre>
+<h3>Avoid Inline Function Bodies in  Class Definitions</h3>
+<p>Avoid including the function body inside the class  definition. Instead, place the function body outside the class definition. </p>
+<p>The following example shows a class definition that uses an inline function body implementation.</p>
+<pre>
+
+
+// *****************************************************************************
+// myClass
+//
+// 
+// *****************************************************************************
+class myClass<oaLibDefList> {
+public:
+  void myFunction() {                         \\ Do not do this.
+                          oaString str;        
+                      
+                          str.format(format, type, elements, list);      
+                          cout &lt;&lt; endl &lt;&lt; str &lt;&lt; endl; 
+                    } 
+  .
+  .
+  .
+ 
+};                          
+</pre>
+<p>Instead, place the function body outside the class definition:</p>
+<pre>
+
+// *****************************************************************************
+// myClass
+//
+// 
+// *****************************************************************************
+class myClass {
+public:
+  void myFunction() 
+  .
+  .
+  .
+ 
+};
+
+
+void 
+myFunction() 
+{                         
+    oaString str;        
+                      
+    str.format(format, type, elements, list);      
+    cout &lt;&lt; endl &lt;&lt; str &lt;&lt; endl; 
+} 
+
+</pre>
+<h3>Commenting Related Functions </h3>
+<p>If there are several simple functions that are related, you can use a single 
+  header comment for all  the functions. In the code, separate the functions from each 
+  other with a single empty line. Use this abbreviated format 
+  only if the functions are short enough that it is still clear that the header 
+  comment refers to them all.</p>
+<p>For example:</p><br />
+
+<pre>
+// *****************************************************************************
+// oaPath::getWidth()
+// oaPath::getStyle()
+// oaPath::getStartExt()
+// oaPath::getStopExt()
+//
+// These functions return variable attributes of this path.
+// *****************************************************************************
+oaUInt4
+oaPath::getWidth()
+{
+    return oaPathData::get(index)-&gt;getWidth();
+}
+
+oaPathStyle
+oaPath::getStyle()
+{
+    return oaPathData::get(index)-&gt;getStyle();
+}
+
+oaUInt4
+oaPath::getStartExt()
+{
+    return oaPathData::get(index)-&gt;getStartExt();
+}
+
+oaUInt4
+oaPath::getStopExt()
+{
+    return oaPathData::get(index)-&gt;getStopExt();
+}
+</pre><br /><br />
+
+<h2><a name="alignvariables">Aligning Variable Declarations</a></h2>
+<p>To improve the readability of code, variable declarations are grouped together and are formatted using tabs so  that variable names align. Note that this rule does not override the rule about declaring variables in the code  as late as possible. The following code shows both correct and incorrect examples of variable formatting:</p>
+
+<pre>
+// This is correct formatting, and it is easy to read.
+oaString          str1("xyz");
+oaUInt4           myInt = 7;
+oaBlockageDataTbl *bdTbl = oaBlockageDataTbl::get(designData);
+</pre>
+
+<pre> 
+// This is poor formatting because it is difficult to read.
+oaString str1("xyz");
+oaUInt4 myInt = 7;
+oaBlockageDataTbl *bdTbl = oaBlockageDataTbl::get(designData);
+</pre>
+
+
+ 
+<p>In some cases, many related variables are declared and initialized at the same time. In these cases, you can align both the variable name and the variable value. This formatting is somewhat subjective and is used only when the variables are related because the additional white space to align both names and values can sometimes be more difficult to read. The following example shows the correct alignment of both variable names and values.</p>
+
+<pre>
+// This is correct formatting for declaring several related variables.
+oaCoord     xLoc    = 4;
+oaCoord     yLoc    = 7;
+oaOrient    orient  = oacR0;
+oaDouble    mag     = 1.5;
+</pre>
+ 
+<p></p>
+
+
+<h2><a name="2">Function Size</a></h2>
+
+<p>Keep functions short enough so that it is relatively easy to  follow the path of execution. If a function is longer than 100 
+to 200 lines, consider breaking it into multiple linear parts or breaking 
+key pieces into sub-functions.</p>
+
+<p>Limit nested loops to avoid heavy indentation and very short line lengths. 
+Instead, make some of the loops into sub-routines that can be called by the 
+function.</p><br /><br />
+
+
+<h2><a name="3">Breaking Function Content into Blocks</a></h2>
+
+<p>Breaking function contents into appropriate blocks and including concise 
+comments makes it easier for readers to get a general idea of what  a function 
+is doing without reading every line of code.</p>
+
+<p>Follow these steps to make the contents of a block as clear as possible:</p>
+
+<ol>
+<li>Break the function logic into sub-blocks. For example:
+<ul>
+<li>Verify parameters.</li>
+<li>Construct the new object.</li>
+<li>Link the new object to related objects.</li>
+<li>Notify interested parties of the new object.</li>
+</ul></li>
+
+<li>Write the code for each sub-block.</li>
+
+<li>Add a comment for each sub-block; use the comment 
+
+
+ and&nbsp; two blank lines between sub-blocks to visually separate them.</li>
+</ol>
+
+<p>The following example shows a function broken into sub-blocks.</p>
+<br />
+
+<pre>
+// *****************************************************************************
+// oaPath::create()
+//
+// This function creates a path object in the specified cellView with the 
+// specified parameters. The new path is returned in 'path'. The specified point
+// array is compressed to remove any coincident or collinear points. An exception 
+// is thrown if the number of points after compression is less than two.
+// *****************************************************************************
+void
+oaPath::create(oaPath                &amp;path,
+               oaCellView            &amp;cellView, 
+               oaUInt4               width,
+               const oaPointArray    &amp;points,
+               oaPathStyle           style,
+               oaUInt4               startExt,
+               oaUInt4               stopExt)
+{
+    // Verify the specified cellView and the parameter types.
+    oaCellViewData      *cvData = oaCellViewData::get(cellView);
+    .
+    .
+    
+
+    // Construct the new path object.
+    oaUInt4     index = oaShapeTbl::createPath(. . .); 
+    .
+    .
+
+
+    // Add the new path to the appropriate lppHeader.
+    .
+    .
+    .
+
+
+    // Invoke the createTrigger on the new path.
+    . 
+    .
+    .
+}
+</pre>
+
+
+<!-- beginning of footer -->
+<p>Within each sub-block of code, use one blank line between&nbsp;groups of related statements, and between conditional statements (if, for, while, switch, and so on) and other statements. </p>
+<p>For example: </p>
+<pre>// *****************************************************************************
+// oaNameTbl::initHashTbl()
+//
+// This function builds the hash table for this table. All names currently in 
+// this table are added to the hash table.
+/<span class="style2">/ *****************************************************************************
+void
+oaNameTbl::initHashTbl()
+{    
+    oaUInt4 approxSize = numUsed << 1;    
+    oaUInt4 hashSize = 32;
+         
+    while (hashSize < approxSize) {        
+        hashSize <<= 1;    
+    }                     
+
+    hashTbl = new oaBaseNameHashTbl(*this, hashSize);     
+                        
+    for (oaUInt4 i = 0; i < numUsed; i++) {        
+        hashTbl->add(i);    
+    }
+}</span></pre>
+<br />
+
+<h2><a name="nestclasses">Nesting Classes in Functions</a></h2>
+<p>Nesting classes within other classes or functions, though legal, is not permitted. Generally, classes are defined in order to be used in multiple places, so putting them at a higher scoping level is appropriate and necessary. Although the nested class is hidden from the global scope, this benefit is not significant enough to mitigate the additional complexity and poor readability that the nesting technique causes. Class declarations and definitions are complex enough that they greatly obscure what it is nested within the class. Further, the number of classes created tends to be a lot fewer than the number of local variables, so the pollution of the global name space is not a factor.</p>
+ 
+
+<h2><a name="4">Comparing Pointer and Integral Types</a></h2>
+<p>In general, pointers should not be explicitly compared against NULL or 0. Instead, treat them as Boolean values. For example, if <em>someThing</em> is a pointer type, the following code examples illustrate correct and incorrect methods for testing whether the pointer is non-NULL or NULL.</p>
+<pre>
+	
+    // This is correct.
+    if (someThing) { … 
+	
+    // This is incorrect.
+    if (someThing != NULL)
+        
+    // This is correct.
+    while (!someThing) { … 
+	
+    // This is incorrect.
+    while (someThing == NULL)
+
+</pre>
+
+<p>Exceptions to this rule are in contexts where a value is simply being stored, passed as an argument, or being returned. For example:</p>
+<pre>
+    // This is correct.
+    oaBoolean result = someThing != NULL;
+
+
+    // This is incorrect.
+    oaBoolean result = someThing;
+	
+    // This is correct.
+    someFunctionWithABooleanParameter(someThing != NULL); 
+	
+    // This is incorrect. 
+    someFunctionWithABooleanParameter(something);
+	
+    // This is correct.
+    return someThing != NULL; 
+    
+    // This is incorrect.
+    return something;
+	
+    // This is also correct since
+    // ! produces a Boolean.
+    return !someThing; 
+</pre>
+
+<p>One additional case where comparing a pointer to a NULL is legal is the use of the bit-wise operators &amp; or | to construct Boolean expressions.  It is not legal to use pointer types in such expressions, so they must be explicitly converted to Boolean:</p>
+<pre> 
+    result |= something != NULL; 
+</pre>
+
+<p>Comparisons of integral types (non-pointer, non-Boolean types) to zero are always explicit. In the following examples, p->getVal() returns an oaInt4.</p>
+<pre>
+    // This is correct.     
+    if (p->getVal() != 0) { ... 
+		     
+    // This is incorrrect.     
+    if (p->getVal()) {... 	
+	     
+    // This is correct.     
+    if (p->getVal() == 0) {... 
+		     
+    // This is incorrect.     
+    if (!p->getVal()) {...  </pre>
+    <p><a href="#pagetop">Return to top of page</a></p>
+
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|site'/>
+<a name='64000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Site"></a>Site</h1>
+<pre>
+ SITE siteName
+
+   <a href='#64001'>CLASS</a> {PAD | CORE} ;
+   [<a href='#64002'>SYMMETRY</a> {X | Y | R90} ... ;]
+   [<a href='#64003'>ROWPATTERN</a> {siteName siteOrient} ... ;]
+   <a href='#64004'>SIZE</a> width BY height ;
+
+ END siteName
+</pre>
+<p>The SITE CLASS attribute determines the oaSiteDefType attribute for the oaSiteDef, with the following mapping:</p>
+<table class='borders'>
+<tr>
+<td class='borders'>PAD</td>
+<td class='borders'>oacPadSiteDefType</td>
+</tr>
+<tr>
+<td class='borders'>CORE</td>
+<td class='borders'>oacCoreSiteDefType</td>
+</tr>
+</table>
+</div>
+<a name='lef|site|class'/>
+<a name='64001'/>
+<h2 class='topicSyntax'>
+CLASS {PAD | CORE} ;</h2>
+<div style='margin-left:40px;'>
+<p>The SITE CLASS attribute is stored in OpenAccess by using the oaSiteDef::SiteDefType attribute. The table below shows the mapping of LEF SITE CLASS to the oacSiteDefTypeEnum values.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>SITE CLASS</th>
+<th class='borders'>oacSiteDefTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>CORE</td>
+<td class='borders'>oacCoreSiteDefType (default)</td>
+</tr>
+<tr>
+<td class='borders'>PAD</td>
+<td class='borders'>oacPadSiteDefType</td>
+</tr>
+</table>
+</div>
+<a name='lef|site|rowpattern'/>
+<a name='64003'/>
+<h2 class='topicSyntax'>
+ROWPATTERN {siteName siteOrient} ...</h2>
+<div style='margin-left:40px;'>
+<p>The LEF SITE with a ROWPATTERN attribute is stored in OpenAccess using the oaArraySiteDef object. The siteName and siteOrient pairs are stored in an oaSitePattern, which is used to create the oaArraySiteDef. The referenced siteName must exist in the database.</p>
+</div>
+<a name='lef|site|size'/>
+<a name='64004'/>
+<h2 class='topicSyntax'>
+SIZE width BY height ;</h2>
+<div style='margin-left:40px;'>
+<p>The SITE SIZE attributes are stored in OpenAccess by using the oaSiteDef::sizeX (width) and oaSiteDef::sizeY (height) attributes.</p>
+</div>
+<a name='lef|site|symmetry'/>
+<a name='64002'/>
+<h2 class='topicSyntax'>
+SYMMETRY {X | Y | R90} ...</h2>
+<div style='margin-left:40px;'>
+<p>The SITE SYMMETRY attributes are stored in OpenAccess using the symmetry attributes on oaSiteDef, with the following mapping:</p>
+<table class='borders'>
+<tr>
+<th class='borders'>SITE SYMMETRY Attribute</th>
+<th class='borders'>oaSiteDef Attribute</th>
+</tr>
+<tr>
+<td class='borders'>X</td>
+<td class='borders'>SymmetricInX</td>
+</tr>
+<tr>
+<td class='borders'>Y</td>
+<td class='borders'>SymmetricInY</td>
+</tr>
+<tr>
+<td class='borders'>R90</td>
+<td class='borders'>SymmetricInRot</td>
+</tr>
+</table>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

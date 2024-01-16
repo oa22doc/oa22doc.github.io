@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|tracks'/>
+<a name='17000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Tracks"></a>Tracks</h1>
+<pre>
+ [TRACKS
+
+   [{X | Y} start DO numtracks STEP space
+           [LAYER layerName ...]
+       ;] ...]
+</pre>
+<p>Defines the routing grid for a standard cell-based design.</p>
+<p>The tracks information is obtained by iterating over the trackPatterns objects in the design.</p>
+<h2><a id="XY"></a>{X | Y}</h2>
+<p>This information indicates whether the track is horizontal or vertical. It is obtained by using:</p>
+<pre>
+   oaBoolean oaTrackPattern::isHorizontal() const
+</pre>
+<p>A TRUE value corresponds to <q>Y</q>, and a FALSE value corresponds to <q>X</q>. oaTrackPatthern::isHorizontal() is associated with the spacing pattern of the tracks not with the direction of the tracks. Therefore, if oaTrackPattern::isHorizontal is TRUE, the spacing pattern is horizontal, and the tracks are vertical. If oaTrackPattern::isHorizontal is FALSE, the spacing pattern is vertical, and the tracks are horizontal.</p>
+<h2><a id="Start"></a>start</h2>
+<p>This information corresponds to the starting coordinate of the oaTrackPattern. It is obtained by using:</p>
+<pre>
+   oaInt4 oaTrackPattern::getStartCoord() const
+</pre>
+<h2><a id="NumTracks"></a>numTracks</h2>
+<p>This information corresponds to the number of track lines of the oaTrackPattern, and it is obtained by using:</p>
+<pre>
+   oaUInt4 oaTrackPattern::getNumTracks() const
+</pre>
+<h2><a id="Space"></a>space</h2>
+<p>This information corresponds to the trackSpacing attribute of the oaTrackPattern, and it is obtained by using:</p>
+<pre>
+   oaUInt4 oaTrackPattern::getTrackSpacing() const
+</pre>
+<h2><a id="LAYERLayerName"></a>LAYER layerName</h2>
+<p>This information corresponds to the routingLayer attribute of the oaTrackPattern. Use the following API to obtain this information:</p>
+<pre>
+     oaBoolean oaTrackPattern::hasRoutingLayer() const
+     oaLayerNum oaTrackPattern::getRoutingLayer() const
+</pre>
+<p>layerName is retrieved from the technology database associated to the design.</p>
+<pre>
+     oaLayer *oaLayer::find(oaTech *tech, oaLayerNum number)
+     void oaLayer::getName(oaString &amp;name) const
+</pre>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

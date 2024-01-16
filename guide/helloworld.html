@@ -1,0 +1,1207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+  <h1><a name="pagetop"></a>Getting Started&mdash;A HelloWorld Example</h1> 
+  <div align="center" style='text-align:center'> 
+    <hr size=2 width="100%" align="center"> 
+  </div> 
+  <h2>Introduction</h2> 
+  <p>This document explains the development environment required to write OpenAccess applications; how you check, configure, and prepare the environment; and the elements you must incorporate to write a simple OpenAccess application. Information is provided for all supported UNIX and Windows platforms. Environment, configuration, and build information, which is unique to the Windows platform, is distinguished from information for other platforms by enclosing the Windows information in a separate panel.</p>
+
+<p>The HelloWorld example is used as a programming model. The listing included with this document is based on the HelloWorld code that is provided with the OpenAccess installation. If you build and run HelloWorld, it does the following:</p>
+<ul>
+<li>Checks for an existing library and adds a library if none exists</li>
+<li>Opens an OpenAccess database in write mode</li>
+<li>Adds library, cell, and view names</li>
+<li>Creates two nets named "Hello" and "World"</li>
+<li>Prints the library, cell, and view names</li>
+<li>Iterates over the nets and prints the net names</li>
+</ul>
+
+<p>HelloWorld is a basic example that incorporates several important concepts for writing an application that uses an OpenAccess database. The main topics  of this document are:</p> 
+  <ul type=disc>
+    <li><a href="#first">Getting Started</a>
+	  <ul>
+	  <li><a href="#checking">Checking Your Installation</a></li>
+	  <li><a href="#preparing">Preparing Your Development Environment</a></li>
+	  </ul></li>
+      <li><a href="#1">Writing OpenAccess Applications</a>  
+        <ul>
+		<li><a href="#2">Initialization Calls</a></li>
+		<li><a href="#3">oaDesign Initialization</a></li>
+		<li><a href="#4">oaTech Initialization</a></li>
+		<li><a href="#5">oaDM Initialization</a></li>
+		
+		<li><a href="#7">oaWafer Initialization</a></li>
+		<li><a href="#8">Using oaDesign::open()</a></li>
+	    <li><a href="#10">Error Handling</a></li>
+		<li><a href="#observer">Observer Notifications</a></li>
+        </ul></li>
+	<li><a href="#summary">Summary</a></li>
+	<li><a href="#building">Building the HelloWorld Example</a>
+	<ul>
+	<li><a href="#buildunix">Building HelloWorld on UNIX</a></li>
+	<li><a href="#buildwin">Building HelloWorld on Windows</a></li>
+	<li><a href="#troubleshooting">Troubleshooting</a></li>
+	</ul></li>
+    <li><a href="#Run">Running the Example</a></li> 
+    <li><a href="#code_listing">HelloWorld.cpp Listing</a></li>
+  </ul> 
+
+<a name="first"></a>
+<h2>Getting Started</h2>
+<p>Before you can begin developing an OpenAccess application, you must install the <em>Developer</em>  version of OpenAccess. Install the source files, include files, documentation, and examples. </p>
+<p>You need to build OpenAccess as well. The OpenAccess shared libraries are required in order to build the examples. </p>
+<p>Refer to the <a href="../../relnotes/install.html">OpenAccess 2.2 Installation and Configuration Notes</a> for more information about installing and building OpenAccess.</p>
+<p><a name="checking"></a></p>
+<h3>Checking Your Installation</h3>
+<p>Before you start, make sure your OpenAccess installation is complete by verifying that your installation hierarchy contains the following:</p>
+
+<ul>
+<li>Documentation</li>
+<li>Shared libraries</li>
+<li>Executables</li>
+</ul>
+<p>The documentation describes the OpenAccess API and is supplied in HTML format. On UNIX platforms, the documentation is located in your OpenAccess installation tree at &lt;install_dir&gt;/doc/html. You can begin browsing the documentation by opening index.html in the documentation directory.</p>
+
+<p>On UNIX, the OpenAccess shared libraries are located at</p>
+<pre>
+    &lt;install_dir&gt;/lib/&lt;platform_name&gt;
+</pre>
+
+<p>The &lt;platform_name&gt; depends on your computer  and operating system. A <em>sysname</em> script is provided in the <code>&lt;install_dir&gt;/bin</code> directory. Running the sysname script returns the &lt;platform_name&gt; for your computer and operating system.</p>
+
+<p>The optimized versions of the shared libraries are found at:</p>
+<pre>
+    &lt;install_dir&gt;/lib/&lt;platform_name&gt;/opt 
+</pre>
+
+<p>The debug versions of the shared libraries are found at:</p>
+<pre>
+    &lt;install_dir&gt;/lib/&lt;platform_name&gt;/dbg
+</pre>
+
+<p>The debug versions of the shared libraries perform additional checking that is not available in optimized libraries. For more information, see <a href="apipkgs.html">OpenAccess Overview</a>.</p>
+
+<p>The <code>&lt;install_dir&gt;/bin/&lt;platform_name&gt;</code> directory contains the translator executables and utility scripts such as sysname. The <code>opt</code> subdirectory contains the optimized versions of the executables, and the <code>dbg</code> subdirectory contains the debug versions.</p>
+<p>OpenAccess provides another script called <code>oaGetLibPath</code> that returns the path to the shared libraries for <code>LD_LIBRARY_PATH</code>, <code>SHLIB_PATH</code>, or <code>LIB_PATH</code> depending on which platform you use. Your application can use this script to set the library path for the OpenAccess libraries. </p>
+<p>The script in available in <code><em>&lt;install_dir&gt;</em>/bin.</code> The script has an optional mode, <code>-numBits</code>, that lets you override the bit mode specified by any environment variables. </p>
+<table border="1" cellpadding="4" bgcolor="#ffffee" width="900">
+<tr>
+<td><strong>If you install OpenAccess to the default location on Windows</strong><br>
+<ul>
+<li>Documentation is located at 
+<br>
+<code>C:\Program Files\OpenAccess\doc\html</code><br>
+You can open the documentation by choosing <em>Start &gt; Programs &gt; OpenAccess &gt; Documentation</em>.</li>
+<li>Libraries are located at 
+<br><code>C:\Program Files\OpenAccess\lib\win32\opt</code>
+<br><code>C:\Program Files\OpenAccess\lib\win32\dbg</code></li>
+<li>Translator executables are located at 
+<br><code>C:\Program Files\OpenAccess\bin\opt</code>
+<br><code>C:\Program Files\OpenAccess\bin\dbg</code></li>
+</ul></td>
+</tr>
+</table>
+<p>For additional information about installing OpenAccess, see <a href="../../relnotes/install.html">OpenAccess 2.2 Installation and Configuration Notes</a>.</p>
+
+<a name="preparing"></a>
+<h3>Preparing Your Development Environment</h3>
+<p>Your development environment must include a C++ compiler, and on UNIX, must also include the GNU make utility. A make file is provided at:</p>
+
+<pre>
+    &lt;install_dir&gt;/examples/oa
+</pre>
+<p>This file is named <em>Makefile</em> and builds all of the example applications including HelloWorld. A separate make file is provided in the HelloWorld directory and in each of the other example directories. All the example make files use the macro.defs file in the <code>&lt;install_dir&gt;/examples/oa</code> directory to determine several compiler and build configuration settings.</p>
+
+<p> If you have a different version of the make utility installed in addition to the GNU version, you can rename the GNU version to <em>gmake</em> to avoid invoking the wrong make utility. For information about the required version of the GNU make utility, and for a list of the supported compilers for using the precompiled OpenAccess libraries, see the <a href="../../relnotes/install.html#config">Configuration Information section</a> of the Installation and Configuration Notes.</p>
+
+<p>The example make files are intentionally simple and are provided to demonstrate the shared library and compiler options needed to build an application. These make files can provide a template for creating make files for your own  applications.</p>
+
+<table border="1">
+<tr>
+<td>
+<table border="0" cellpadding="4" bgcolor="#ffffee">
+<tr>
+<td><strong>Preparing your development environment on Windows</strong></td>
+</tr>
+<tr>
+<td>
+OpenAccess development on Windows requires the Microsoft Visual Studio .NET 2003 development environment.
+<br><br>Each example directory includes Visual Studio solution and project files to simplify building the examples. However, you cannot build an example by loading the solution from the example directory. Instead, you must load examples.sln from the <code>&lt;install_dir&gt;\examples\oa</code> directory and choose the example you want to build in the Visual Studio solution explorer. 
+<br><br>If you use the OpenAccess default installation directory, the examples.sln solution file is located at:
+<pre>
+    C:\Program Files\OpenAccess\examples\oa
+</pre></td>
+</tr>
+</table></td>
+</tr>
+</table>
+  
+<h2><a name="1">Writing OpenAccess Applications</a></h2>
+<p>OpenAccess classes and functions are defined in header files that should be declared in your source files before you refer to the classes or functions. The OpenAccess header files are organized according to the types of databases an application might use, so you typically need only include one of the following header files:</p>
+<ul>
+  <li>oaDesignDB.h </li>
+  <li>oaTechDB.h </li>
+  <li>oaWaferDB.h </li>
+  <li>oaDM.h </li>
+  <li>oaBase.h </li>
+</ul>
+<p>Each of these header files includes all additional headers that are required, thereby explicitly managing the dependencies between those headers. You should not  include any of the lower-level headers directly in your code.</p>
+<p><strong>oaDesignDB.h</strong> is the main header file that is required to create and interact with an OpenAccess design database. oaDesignDB.h includes oaBase.h, oaDM.h, and oaTechDB.h. oaDesignDB.h is used in the <a href="#oadesigndb">HelloWorld example</a>.</p>
+<p><strong>oaTechDB.h</strong> is the main header file for the OpenAccess technology database. It includes oaBase.h and oaDM.h. If your application only accesses a technology database, include the oaTechDB.h header file.</p>
+<p><strong>oaWaferDB.h</strong> is the main header file for the OpenAccess wafer database. It includes oaBase.h, oaDM.h, oaTechDB.h, and oaDesignDB.h. If your application accesses wafer databases, include the oaWaferDB.h header file.</p>
+<p><strong>oaDM.h</strong> is the main header file for the oaDM library. It includes oaBase.h. If your application only uses routines to access design and reference libraries, and does not access the OpenAccess databases in those libraries, include the oaDM.h header file.</p>
+<p><strong>oaBase.h</strong> is the main header file for the oaBase library.</p>
+<a name="2"></a>
+<h3>Initialization Calls</h3> 
+<p>There are several initialization calls that applications can use to communicate with  OpenAccess databases. The initialization routines automatically call any required lower-level routines. Each initialization routine can be called multiple times, but initialization is performed the first time only. Usually an application needs only one of the  initialization calls described in the sections that follow. </p>
+<p><strong>Important: </strong>The initialization functions depend on static initializations and therefore cannot be called during static initialization. </p>
+<p><a name="3"></a></p>
+<h3>oaDesign Initialization</h3>
+<p>The oaDesignInit function initializes the oaDesign package. This function is defined in oaDesignDB.h. It depends on the oaDM, oaTech, and oaBase packages, and therefore, it also initializes these. </p>
+<p>The revision numbers compiled into an application&rsquo;s initialization call will be compared to the revision numbers built into the OpenAccess runtime libraries when the call is made to check for compatibility. For more, refer to <a href="../guide/compat.html">Compatibility for OpenAccess Applications and Data</a> in the Programmers Guide.</p>
+<p>The following oaDesignInit function prototype is provided for reference.</p>
+<pre>
+    void <a href="../design/oaDesignDBTypes_8h.html#oaDesignInit1">oaDesignInit</a>(oaUInt4 apiMajorRev,
+                      oaUInt4 apiMinorRev,
+                      oaUInt4  dataModelRev
+                      )
+</pre>
+
+<p>Applications should set the apiMajorRev and apiMinorRev so that they pick up the version numbers of the current OpenAccess software. The dataModelRev should be explicitly supplied to indicate the supported version of the OpenAccess information model. The following example shows an init function picking up the current OpenAccess major and minor version numbers and specifying a dataModelRev of 3.</p>
+<pre>oaDesignInit(oacAPIMajorRevNumber, oacAPIMinorRevNumber, 3);</pre>
+<p>Data model 3 is the first OpenAccess version to include the <a href="tech.html#inc">incremental technology database</a> feature, which   allows applications to incrementally assemble technology  information by creating references from one oaTech database to other  oaTech databases (known as creating a graph of technology databases).   In order to support data model 3, the HelloWorld example must  handle technology database object conflicts that might occur. </p>
+<p>To learn more about using the dataModelRev argument to indicate the level of support that an application provides, refer to <em><a href="compat.html">Compatibility for OpenAccess Applications and Data</a></em>. Also, refer to the <a href="../../relnotes/feature_table.html">Features by Data Model</a> for details about the features that are included in each dataModelRev.</p>
+<p>Refer to the <a href="#designInit">oaDesignInit implementation</a> in the HelloWorld listing to see how this function is used. </p>
+<a name="4"></a>
+<h3>oaTech Initialization</h3>
+  <p>The oaTechInit function initializes the oaTech package. This function is defined in oaTechDB.h. It also initializes the oaBase package on which it depends. If your application only accesses the technology database, use the oaTechInit initialization call.</p>
+<pre>
+    void <a href="../tech/oaTechDBTypes_8h.html#oaTechInit1">oaTechInit</a>(oaUInt4&nbsp; apiMajorRev,
+                    oaUInt4&nbsp; apiMinorRev,
+                    oaUInt4  dataModelRev
+                    )</pre>
+<a name="5"></a>
+<h3>oaDM Initialization</h3>
+<p>The oaDMInit function initializes the oaDM package. This function is defined in oaDM.h. It also calls oaBaseInit to initialize the oaBase package on which it depends. 
+If your application only uses routines to access design and reference
+libraries, and does not access the OpenAccess databases in those
+libraries, use the oaDMInit initialization call. </p>
+<pre>    void <a href="../dm/oaDMTypes_8h.html#oaDMInit1">oaDMInit</a>(oaUInt4&nbsp; apiMajorRev,
+                  oaUInt4&nbsp; apiMinorRev,
+                  oaUInt4  dataModelRev
+                  )</pre>
+<a name="7"></a>
+<h3>oaWafer Initialization</h3>
+<p>The oaWaferInit function initializes the oaWafer package. This function is defined in oaWaferDB.h. It also initializes the other OpenAccess packages that it depends on by calling oaDesignInit. oaDesignInit initializes the  oaDM, oaTech, and oaBase packages. 
+If your application accesses wafer databases, use the oaWaferInit initialization call. </p> 
+
+<pre>    void <a href="../wafer/oaWaferDBTypes_8h.html#oaWaferInit1">oaWaferInit</a>(oaUInt4&nbsp; apiMajorRev,
+                  oaUInt4&nbsp; apiMinorRev,
+                  oaUInt4  dataModelRev
+                  )
+
+</pre>
+<a name="8"></a>
+<h3>Using oaDesign::open()</h3>
+<p>Applications that use the OpenAccess design database must include the oaDesign::open() function. This is demonstrated in the <a href="#open">HelloWorld code</a>.</p>
+
+<h3><a name="10">Error Handling</a></h3>
+<p>In OpenAccess, there are no error code returns. All errors generate exceptions. It is good programming practice to add exception handling routines around all of the 
+database calls. You can provide additional granularity  by adding exception handlers deeper within the calling hierarchy. </p>
+<p>In addition, it is useful to include code to catch any data compatibility errors.</p>
+<p><strong>Example</strong></p>
+<pre>Try{ 			// Wrap a Try statement around code that performs database access calls.
+….
+    } catch (<a href="../base/classoaCompatibilityError.html">oaCompatibilityError</a> &ex) {   // Capture information about data not compatible 
+        handleFBCError(ex);                // with the current version of OpenAccess.
+        exit(1);
+
+    } catch (<a href="../base/classoaException.html">oaException</a>    &excp) {                 // Capture exceptions thrown to the top level of your code,
+        cout << "ERROR: " << excp.getMsg() << endl;  // and print any error messages.
+        exit(1);
+    }
+
+}
+
+</pre>
+<p><strong>Note:</strong> It is more efficient to catch an oaException by reference.</p>
+<p>Applications can use the subclasses of oaException to catch exceptions specific to a particular database or level of severity.
+</p>
+<h3><a name="observer"></a>Observer Notifications </h3>
+<p>Some error situations must communicate more information to the application than can be conveyed in an exception message. OpenAccess provides observer notifications for these situations. There are a number of observer classes that can be inherited by application code. </p>
+<p>The HelloWorld example demonstrates two important observers: </p>
+<ul>
+  <li>oaObserver&lt;oaTech&gt; </li>
+  <li>oaObserver&lt;oaLibDefList&gt;</li>
+</ul>
+<h4>oaObserver&lt;oaTech&gt;</h4>
+<p>Among other things, this observer provides notifications about conflicts in incremental technology databases. Conflicts occur when a technology database is edited outside the scope of a set of technology databases. For more information about the types of conflicts that can occur, refer to <a href="tech.html#conflicts">Conflicts in Incremental Technology Databases</a> in the <em>Programmers Guide</em>. </p>
+<p>An application can overload  the onConflict virtual function to receive notification when there conflicting technology objects. In addition, the application can overload the following virtual functions to receive notification when there are conflicting user-specified&nbsp; values for technology attributes:</p>
+<ul>
+  <li>onClearanceMeasureConflict()</li>
+  <li>onDefaultManufacturingGridConflict()</li>
+  <li>onGateGroundedConflict()</li>
+  <li>onDBUPerUUConflict()</li>
+  <li>onUserUnitsConflict()</li>
+  <li>onProcessFamilyConflict()</li>
+  <li>onExcludedLayerConflict() <br>
+  </li>
+</ul>
+<p>An observer notification can be triggered when </p>
+<ul>
+  <li>Opening a technology hierarchy using oaTech::open()</li>
+  <li>Creating a technology hierarchy using oaTech::setRefs()</li>
+  <li>Validating a technology hierarchy using oaTech::validate()</li>
+</ul>
+<p>If conflicts are detected,  end users must resolve them. A technology hierarchy should not be used if conflicts are present. <br>
+</p>
+<p>The HelloWorld  example includes the implementation of an oaTech conflict observer. Based on the error type, the list of conflicting objects or libraries is printed. </p>
+<pre>
+class opnTechConflictObserver : public oaObserver&lt;oaTech&gt; {
+public:
+                            opnTechConflictObserver(oaUInt4  priorityIn);
+
+    virtual void            onConflict(oaTech                  *mostDerivedTech,
+                                       oaTechConflictTypeEnum  conflictType,
+                                       oaObjectArray           conflictingObjs);
+
+    virtual void            onClearanceMeasureConflict(oaTechArray cTechs);
+
+    virtual void            onDefaultManufacturingGridConflict(oaTechArray cTechs);
+
+    virtual void            onGateGroundedConflict(oaTechArray cTechs);
+	
+    virtual void            onDBUPerUUConflict(oaTechArray  cTechs, 
+                                               oaViewType   *viewType);
+
+    virtual void            onUserUnitsConflict(oaTechArray cTechs, 
+                                                oaViewType  *viewType);
+												 
+    virtual void            onProcessFamilyConflict(const oaTechArray &cTechs);
+
+    virtual void            onExcludedLayerConflict(oaTech  *mostDerivedTech,
+                                                    const oaPhysicalLayer *l1,
+                                                    const oaLayer         *l2);
+
+};
+
+</pre>
+<h4>oaObserver&lt;oaLibDefList&gt;</h4>
+<p>This observer provides notifications about events related to  library definition files (<code>lib.defs</code>). The onLoadWarnings( ) notification provides a message and error type if problems occur when reading a <code>lib.defs</code> file.</p>
+<p>The notifications are triggered by oaLibDefList::openLibs(). Applications must derive an oaLibDefList observer in order to detect issues with library definitions files, such as missing, unreadable, or  incorrectly formatted <code>lib.defs</code> files.  The HelloWorld example includes an implementation of an oaLibDefList observer. </p>
+<pre>
+class opnLibDefListObserver : public oaObserver<oaLibDefList> {
+public:
+                            opnLibDefListObserver(oaUInt4   priorityIn, 
+                                                  oaBoolean enabledIn = true);
+
+    oaBoolean               onLoadWarnings(oaLibDefList                 *obj,
+                                           const oaString               &msg,
+                                           oaLibDefListWarningTypeEnum  type);
+};
+</pre>
+<span class="style1"><a name="summary"></a></span>
+<h2>Summary</h2>
+<p>In summary, to write an OpenAccess application, you should: </p>
+<ul>
+<li>Make sure that your make file or build solution references the OpenAccess include directory.</li>
+<li>Include the oaDesignDB.h header. This is the top-level header that includes the other public header files.</li>
+<li>Link either the optimized or debug version of the shared libraries to your application.</li>
+<li>Use the oa namespace so that your application can easily reference all OpenAccess declarations in the header files.</li>
+<li>Derive oaLibDefList and oaTech observers to receive notifications       about problems with library definitions or incremental technology databases.</li>
+<li>Call the oaDesignInit() function before performing any operation that is related to OpenAccess.</li>
+<li>Load the lib.defs file by using the oaLibDefList::openLibs() function to load the library definition file and open all libraries defined in lib.defs.</li>
+<li>Use the oaDesign::open() call if your application uses an OpenAccess design database.</li>
+<li>Refer to the <a href="../guide/index.html">Programmers Guide</a> and to the other examples to broaden your knowledge.</li>
+</ul>
+
+<a name="building"></a>
+<h2>Building the HelloWorld Example</h2>
+<p>Now that OpenAccess is installed and your development environment is configured correctly, you are ready to build the HelloWorld example. </p>
+
+<p>To run HelloWorld, or any OpenAccess application, you must ensure that the application can find the shared libraries with which it is linked. The directory and installation hierarchy where the libraries are located must be in your shared library path. Dependent on your platform, the shared library path is usually defined by the LD_LIBRARY_PATH, SHLIB_PATH, or 
+LIBPATH environment variable.</p>
+ 
+<a name="buildunix"></a>
+<h3>Building HelloWorld on UNIX</h3>
+<p>Use the GNU make file to build the HelloWorld example.</p>
+<ol>
+<li>From the 
+  <code><em>&lt;install_dir&gt;</em>/examples/oa/common</code> directory, run the GNU make utility. <br>
+  <br>
+  For example, enter:<br>
+  <pre>
+    gmake</pre>  
+  This  builds common functions used by all the examples. <strong><br>
+  <br>
+  Note</strong> This step assumes you renamed your GNU make utility to <code>gmake</code>.<br>
+  <br></li>
+
+<li> From  the <code>&lt;install_dir&gt;/examples/oa/HelloWorld</code> directory, run the GNU make utility. 
+  <br>
+    <br>
+</li>
+<li>Enter <code>HelloWorld</code> at the shell prompt to run the HelloWorld example and verify that it built correctly.<br>
+  <br>
+</li>
+<li>If the HelloWorld build fails, refer to <a href="#troubleshooting">Troubleshooting</a><a href="#first"></a>  to determine the possible causes.</li>
+</ol>
+
+<a name="buildwin"></a>
+<h3>Building HelloWorld on Windows</h3>
+<table border="1" bgcolor="#ffffee" cellpadding="4">
+<tr>
+<td>
+Use the following steps to build the HelloWorld example on Windows:
+<ol>
+  <li>Start  Visual Studio and open the <code>examples.sln</code> (for Visual Studio .NET 2003) or or <code>examples_vc8.sln</code> (for Visual Studio 2005)  solution file from <code>&lt;install_dir&gt;\examples\oa</code>. </li>
+  <li>In the Solution Explorer window, right-click HelloWorld and choose <em>Project Only</em> &gt; <em>Build Only HelloWorld</em>. The HelloWorld executable is built in the <code>&lt;install_dir&gt;\examples\oa\optDLL</code> or <code>&lt;install_dir&gt;\examples\oa\HelloWorld</code> directory.</li>
+<li>If the HelloWorld build fails, refer to <a href="#troubleshooting">Troubleshooting</a><a href="#first"></a> to determine the possible causes.</li>
+  </ol></td>
+</tr>
+</table>
+
+<h3><a name="Run"></a>Running the Example</h3>
+<p>The HelloWorld program is created in the <code>examples\oa\HelloWorld</code> directory. Open a command shell and type the executable name (HelloWorld) to run it. </p>
+<h3><a name="troubleshooting"></a></h3>
+<h3>Troubleshooting</h3>
+<p>If you use Makefile in the HelloWorld directory, and the example fails to build, the possible reasons are:</p>
+<ul>
+  <li>The path to your OpenAccess shared libraries is incorrect.</li>
+  <li>Your compiler is not in your path.</li>
+  <li>Makefile is not running your compiler correctly.</li>
+</ul>
+<p>If HelloWorld fails to build, you might need to edit Makefile in the HelloWorld directory or the macro.defs file in the <code>&lt;install_dir&gt;/examples/oa</code> directory. The variables in macro.defs that might require revision are:</p>
+<ul>
+  <li>CCPATH to set the path to your compiler and CXXOPTS to set the compiler flags</li>
+  <li>TOOLSDIR to set the relative path to the directory where OpenAccess include files and shared libraries are located</li>
+  <li>SHLIBTAIL to control whether shared or static libraries are used (shared is the default)</li>
+  <li>DEBUG to control whether to compile for debug and DEBUGEXT to control whether precompiled debug libraries are used</li>
+  <li>LIB_64 to control whether the application is compiled for a 64-bit platform</li>
+</ul>
+<p>For optimized builds, or for builds that do not require debugging into the OpenAccess code, use the optimized shared libraries. For builds that require debugging into the shared libraries in order to find bugs in your application code, use the debug version of the shared libraries. Always use one of these versions of the shared libraries for developing OpenAccess applications.</p>
+<hr>
+  <h2><a name="code_listing">HelloWorld Code Files</a></h2>
+  <p>The HelloWorld example uses observers that are used by other examples  shipped with OpenAccess. These observers are stored in a common folder with other code that is shared by the various examples. </p>
+  <p>The code for the HelloWorld example is in the following files. </p>
+  <table width="75%" border="1">
+    <tr>
+      <th width="25%" scope="col"><div align="left">Content</div></th>
+      <th width="75%" scope="col"><div align="left">Files</div></th>
+    </tr>
+    <tr>
+      <td>HelloWorld example </td>
+      <td><code><em>&lt;install_dir&gt;</em>/examples/oa/HelloWorld/HelloWorld.cpp </code></td>
+    </tr>
+    <tr>
+      <td>Conflict Observer </td>
+      <td><code><em>&lt;install_dir&gt;</em>/examples/oa/common/commonTechObserver.cpp</code></td>
+    </tr>
+    <tr>
+      <td>oaLibDef Observer </td>
+      <td><code><em>&lt;install_dir&gt;</em>/examples/oa/common/commonLibDefListObserver.cpp</code></td>
+    </tr>
+    <tr>
+      <td>openLibrary and handleFBCError functions </td>
+      <td><code><em>&lt;install_dir&gt;</em>/examples/oa/common/commonFunctions.cpp</code></td>
+    </tr>
+  </table>
+  <h3>HelloWorld.cpp</h3>
+  <pre>// *****************************************************************************
+// HelloWorld.cpp
+//
+// The following tasks are performed by this program
+//  1. Derive an oaTech observer to handle conflicts in the technology hierarchy
+//  2. Derive an oaLibDefsList observer to handle warnings related to lib.defs
+//  3. Open the design
+//  4. Print the library name
+//  5. Print the cell name
+//  6. Print the view name
+//  7. Create nets with the names "Hello" and "World"
+//  8. Save these nets
+//  9. Run the net iterator and print the existing nets in the design
+//
+// ****************************************************************************
+// Except as specified in the OpenAccess terms of use of Cadence or Silicon
+// Integration Initiative, this material may not be copied, modified,
+// re-published, uploaded, executed, or distributed in any way, in any medium,
+// in whole or in part, without prior written permission from Cadence.
+//
+//                Copyright 2002-2005 Cadence Design Systems, Inc.
+//                           All Rights Reserved.
+//
+// To distribute any derivative work based upon this file you must first contact
+// Si2 @ contracts@si2.org.
+//
+// *****************************************************************************
+// *****************************************************************************
+
+#include &lt;iostream>
+<a name="oadesigndb"></a>#include "oaDesignDB.h"
+
+#include "../common/commonTechObserver.h"
+#include "../common/commonLibDefListObserver.h"
+#include "../common/commonFunctions.h"
+
+
+using namespace oa;
+using namespace std;
+
+static oaNativeNS   ns;
+
+
+
+
+// ****************************************************************************
+// printDesignNames()
+//
+// This function gets the library, cell and view names associated with the open
+// design and prints them.
+// ****************************************************************************
+void
+printDesignNames(oaDesign   *design)
+{
+    oaString        libName;
+    oaString        cellName;
+    oaString        viewName;
+
+    // Library, cell and view names are obtained.
+    design->getLibName(ns, libName);
+    design->getCellName(ns, cellName);
+    design->getViewName(ns, viewName);
+
+    // Library, cell and view names are printed.
+    cout &lt;&lt; "\tThe library name for this design is : " &lt;&lt; libName &lt;&lt; endl;
+    cout &lt;&lt; "\tThe cell name for this design is : " &lt;&lt; cellName &lt;&lt; endl;
+    cout &lt;&lt; "\tThe view name for this design is : " &lt;&lt; viewName &lt;&lt; endl;
+}
+
+
+
+// ****************************************************************************
+//  void printNets()
+//  
+//  This function invokes the net iterator for the design and prints the names
+//  of the nets one by one.
+// ****************************************************************************
+void
+printNets(oaDesign  *design)
+{
+    // Get the TopBlock of the current design
+    oaBlock *block = design->getTopBlock();
+
+    if (block) {
+        oaString        netName;
+
+        cout &lt;&lt; "The following nets exist in this design." &lt;&lt; endl;
+
+        // Iterate over all nets in the design
+        oaIter&lt;oaNet>   netIterator(block->getNets());
+        while (oaNet *net = netIterator.getNext()) {
+            net->getName(ns, netName);
+            cout &lt;&lt; "\t" &lt;&lt; netName &lt;&lt; endl;
+        }
+    } else {
+        cout &lt;&lt; "There is no block in this design" &lt;&lt; endl;
+    }
+}
+
+
+
+
+
+
+// ****************************************************************************
+// main()
+//
+// This is the top level function that opens the design, prints library, cell,
+// and view names, creates nets, and iterates the design to print the net 
+// names.
+// ****************************************************************************
+int
+main(int    argc,
+     char   *argv[])
+{
+    <a name="try">try</a> {
+        // Initialize OA with data model 3, since incremental technology
+        // databases are supported by this application.
+        <a name="designInit"></a>oaDesignInit(oacAPIMajorRevNumber, oacAPIMinorRevNumber, 3);
+
+        oaString        libPath("./DesignLib"); 
+        oaString        library("DesignLib");
+        oaString        cell("And");
+        oaString        view("view");
+
+        oaScalarName    libName(ns, library);
+        oaScalarName    cellName(ns, cell);
+        oaScalarName    viewName(ns, view);
+
+        // Setup an instance of the oaTech conflict observer.
+        opnTechConflictObserver myTechConflictObserver(1);
+
+        // Setup an instance of the oaLibDefList observer.
+        opnLibDefListObserver myLibDefListObserver(1);
+
+        // Read in the lib.defs file.
+        oaLibDefList::openLibs();
+
+        // Try to get a pointer to the library. If it does not exist yet,
+        // it will be created and added to the lib.defs file.
+        oaLib  *lib = openLibrary(libName, libPath);
+
+        // Create the design with the specified viewType,
+        // Opening it for a 'write' operation.
+        cout &lt;&lt; "The design is created and opened in 'write' mode." &lt;&lt; endl;
+
+        oaViewType  *vt  = oaViewType::get(oacSchematic);
+        <a name="open"></a>oaDesign *design = oaDesign::open(libName, cellName, viewName, vt, 'w');
+
+        // The library, cell, and view names are printed.
+        printDesignNames(design);
+
+        // Create the TopBlock for this design.
+        oaBlock *block = oaBlock::create(design);
+
+        // The nets "Hello" and "World are created.
+        oaString        net1("Hello");
+        oaString        net2("World");
+        oaScalarName    hNet(ns, net1);
+        oaScalarName    wNet(ns, net2);
+
+        oaScalarNet     *helloNet = oaScalarNet::create(block, hNet);
+        oaScalarNet     *worldNet = oaScalarNet::create(block, wNet);
+
+        // The design is saved.
+        design->save();
+
+        // The nets in this design are printed.
+        printNets(design);
+
+        // The design is closed.   
+        design->close();
+
+        // The library is closed.   
+        lib->close();
+
+    } <a name="catch">catch</a> (oaCompatibilityError &ex) {
+        handleFBCError(ex);
+        exit(1);
+
+    } catch (oaException    &excp) {
+        cout &lt;&lt; "ERROR: " &lt;&lt; excp.getMsg() &lt;&lt; endl;
+        exit(1);
+    }
+
+    return 0;
+}
+</pre>
+  <pre>&nbsp;</pre>
+
+<h3>commonTechObserver.cpp  </h3>
+<pre>// *****************************************************************************
+// commonTechObserver.cpp
+//
+// This file contains the implementation of an oaTech observer for technology
+// conflict notifications.
+//
+// This code is used in all examples to alert the users of technology conflicts.
+//
+// ****************************************************************************
+// Except as specified in the OpenAccess terms of use of Cadence or Silicon
+// Integration Initiative, this material may not be copied, modified,
+// re-published, uploaded, executed, or distributed in any way, in any medium,
+// in whole or in part, without prior written permission from Cadence.
+//
+//                Copyright 2002-2005 Cadence Design Systems, Inc.
+//                           All Rights Reserved.
+//
+// To distribute any derivative work based upon this file you must first contact
+// Si2 @ contracts@si2.org.
+//
+// *****************************************************************************
+// *****************************************************************************
+
+
+#include "commonTechObserver.h"
+
+
+
+// *****************************************************************************
+// Global Instantiation
+// *****************************************************************************
+oaString    opnTechConflictObserver::format
+                   ("ERROR: A %s conflict has been detected in the technology "
+                    "hierarchy. It is caused by the following list of %s: %s");
+
+oaNativeNS  opnTechConflictObserver::ns;
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::opnTechConflictObserver()
+//
+// This is the default constructor for the opnTechConflictObserver class.
+// *****************************************************************************
+opnTechConflictObserver::opnTechConflictObserver(oaUInt4 priorityIn)
+:   oaObserver&lt;oaTech>(priorityIn)
+{
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onConflict()
+//
+// This is the observer function definition for tech conflict. It handles
+// conflicts by calling oaIncTechConflictTest::handleConflicts().
+// *****************************************************************************
+void
+opnTechConflictObserver::onConflict(oaTech                  *mostDerivedTech,
+                                    oaTechConflictTypeEnum  conflictType,
+                                    oaObjectArray           conflictingObjs)
+{
+    oaString            str;
+    oaString            type;
+    oaString            elements;
+    oaString            list;    
+    oaLayer             *layer;
+    oaDerivedLayer      *derivedLay;
+    oaPurpose           *purpose;
+    oaSiteDef           *siteDef;
+    oaViaDef            *viaDef;
+    oaViaSpec           *viaSpec;
+    oaAnalysisLib       *analysisLib;
+    oaConstraint        *constraint;
+    oaConstraintGroup   *constraintGroup;
+
+    for (oaUInt4 i = 0; i &lt; conflictingObjs.getNumElements(); i++) {
+        oaObject    *obj = conflictingObjs[i];
+
+        switch (conflictType) {
+        case oacLayerNameTechConflictType:
+        case oacLayerNumTechConflictType:
+            layer = (oaLayer*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (layer->getName(str), str);
+            list += (str.format(" (#%d); ", layer->getNumber()), str);
+            break;
+
+        case oacDerivedLayerTechConflictType:
+            derivedLay = (oaDerivedLayer*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (derivedLay->getName(str), str) + " (";
+            
+            if (layer = derivedLay->getLayer1()) {
+                list += (layer->getName(str), str) + ", ";
+            } else {
+                list += (str.format("#%d, ", derivedLay->getLayer1Num()), str);
+            }
+            
+            if (layer = derivedLay->getLayer2()) {
+                list += (layer->getName(str), str) + "); ";
+            } else {
+                list += (str.format("#%d); ", derivedLay->getLayer2Num()), str);
+            }
+
+            break;
+
+        case oacPurposeNameTechConflictType:
+        case oacPurposeNumTechConflictType:
+            purpose = (oaPurpose*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (purpose->getName(str),str);
+            list += (str.format(" (#%d); ", purpose->getNumber()), str);
+            break;
+
+        case oacSiteDefNameTechConflictType:
+            siteDef = (oaSiteDef*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (siteDef->getName(str), str) + "; ";
+            break;
+
+        case oacViaDefNameTechConflictType:
+            viaDef = (oaViaDef*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (viaDef->getName(str), str) + "; ";
+            break;
+
+        case oacViaSpecTechConflictType:
+            viaSpec = (oaViaSpec*) obj;
+            list += (getObjectLibName(obj, str), str) + "/(";
+
+            if (layer = viaSpec->getLayer1()) {
+                list += (layer->getName(str), str) + ", ";
+            } else {
+                list += (str.format("#%d, ", viaSpec->getLayer1Num()), str);
+            }
+
+            if (layer = viaSpec->getLayer2()) {
+                list += (layer->getName(str), str) + "); ";
+            } else {
+                list += (str.format("#%d); ", viaSpec->getLayer2Num()), str);
+            }
+
+            break;
+
+        case oacAnalysisLibNameTechConflictType:
+            analysisLib = (oaAnalysisLib*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (analysisLib->getName(str), str) + "; ";
+            break;
+
+        case oacConstraintNameTechConflictType:
+            constraint = (oaConstraint*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (constraint->getName(str), str) + "; ";
+            break;
+
+        case oacConstraintGroupNameTechConflictType:
+            constraintGroup = (oaConstraintGroup*) obj;
+            list += (getObjectLibName(obj, str), str) + "/";
+            list += (constraintGroup->getName(str), str) + "; ";
+            break;
+
+        default:
+            break;
+        }
+    }
+
+    switch (conflictType) {
+    case oacLayerNameTechConflictType:
+        type = "Layer Name"; 
+        elements = "layers";
+        break;
+
+    case oacLayerNumTechConflictType:
+        type = "Layer Number"; 
+        elements = "layers";
+        break;
+
+    case oacDerivedLayerTechConflictType:
+        type = "Derived Layer"; 
+        elements = "derived layers";
+        break;
+
+    case oacPurposeNameTechConflictType:
+        type = "Layer Purpose Name"; 
+        elements = "purposes";
+        break;
+
+    case oacPurposeNumTechConflictType:
+        type = "Layer Purpose Number"; 
+        elements = "purposes";
+        break;
+
+    case oacSiteDefNameTechConflictType:
+        type = "Site Definition"; 
+        elements = "sites";
+        break;
+    
+    case oacViaDefNameTechConflictType:
+        type = "Via Def Name"; 
+        elements = "via definitions";
+        break;
+
+    case oacViaSpecTechConflictType:
+        type = "Via Spec"; 
+        elements = "via specifications";
+        break;
+
+    case oacAnalysisLibNameTechConflictType:
+        type = "Analysis Library Name"; 
+        elements = "analysis libraries";
+        break;
+
+    case oacConstraintNameTechConflictType:
+        type = "Constraint Name"; 
+        elements = "constraints";
+        break;
+
+    case oacConstraintGroupNameTechConflictType:
+        type = "Constraint Group Name"; 
+        elements = "constraint groups";
+        break;
+
+    default:
+        type = "Unknown"; 
+        elements = "Unknown";
+        break;
+    }
+
+    printErrorMsg(type, elements, list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onClearanceMeasureConflict()
+//
+// This function handles clearance measure conflict between tech libs.
+// *****************************************************************************
+void    
+opnTechConflictObserver::onClearanceMeasureConflict(oaTechArray cTechs)
+{
+    oaString list;
+    oaString str;
+
+    oaUInt4 i;
+    for (i = 0; i&lt;cTechs.getNumElements(); i++) {        
+        list += (getObjectLibName(cTechs[i], str), str) + " (";
+        list += cTechs[i]->getClearanceMeasure(true).getName() + "); ";  
+    }
+
+    printErrorMsg("Clearance Measure", "Libraries", list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onDefaultManufacturingGridConflict()
+//
+// This function handles manufacturing grid conflicts.
+// *****************************************************************************
+void    
+opnTechConflictObserver::onDefaultManufacturingGridConflict(oaTechArray cTechs)
+{
+    oaString list;
+    oaString str;    
+
+    oaUInt4 i;
+    for (i = 0; i&lt;cTechs.getNumElements(); i++) {
+        list += (getObjectLibName(cTechs[i], str), str) + " (";
+        str.format("%d); ", cTechs[i]->getDefaultManufacturingGrid(true));
+        list += str;
+    }
+
+    printErrorMsg("Default Manufacturing Grid", "Libraries", list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onGateGroundedConflict()
+//
+// This function handles conflicts between tech libs related to gate grounding.
+// *****************************************************************************
+void    
+opnTechConflictObserver::onGateGroundedConflict(oaTechArray cTechs)
+{
+    oaString list;
+    oaString str;    
+
+    oaUInt4 i;
+    for (i = 0; i&lt;cTechs.getNumElements(); i++) {
+        list += (getObjectLibName(cTechs[i], str), str) + " (";
+
+        if (cTechs[i]->isGateGrounded(true)) {
+            list += "grounded); ";
+        } else {
+            list += "not grounded); ";
+        }
+    }
+
+    printErrorMsg("Gate Grounded", "Libraries", list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onDBUPerUUConflict()
+//
+// This function handles conflicts between tech libs related to DBU per UU.
+// *****************************************************************************
+void
+opnTechConflictObserver::onDBUPerUUConflict(oaTechArray cTechs, 
+                                            oaViewType  *viewType)
+{
+    oaString list;
+    oaString viewTypeName;
+    oaString str;    
+
+    oaUInt4 i;
+    for (i = 0; i&lt;cTechs.getNumElements(); i++) {
+        list += (getObjectLibName(cTechs[i], str), str) + " (";
+        str.format("%d); ", cTechs[i]->getDBUPerUU(viewType, true));
+        list += str;
+    }
+
+    viewType->getName(viewTypeName);
+    printErrorMsg("DBU per UU ("+viewTypeName+")", "Libraries", list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onUserUnitsConflict()
+//
+// This function handles conflicts between tech libs related to user units.
+// *****************************************************************************
+void
+opnTechConflictObserver::onUserUnitsConflict(oaTechArray cTechs, 
+                                             oaViewType  *viewType)
+{
+    oaString list;
+    oaString viewTypeName;
+    oaString str;
+
+    oaUInt4 i;
+    for (i = 0; i&lt;cTechs.getNumElements(); i++) {
+        list += (getObjectLibName(cTechs[i], str), str) + " (";
+        list += cTechs[i]->getUserUnits(viewType, true).getName() + "); ";  
+    }
+
+    viewType->getName(viewTypeName);
+    printErrorMsg("User Units ("+viewTypeName+")", "Libraries", list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onProcessFamilyConflict()
+//
+// This function handles conflicting process family attributes.
+// *****************************************************************************
+void
+opnTechConflictObserver::onProcessFamilyConflict(const oaTechArray &cTechs)
+{
+    oaString list;
+    oaString str;
+
+    oaUInt4 i;
+    for (i = 0; i&lt;cTechs.getNumElements(); i++) {
+        list += (getObjectLibName(cTechs[i], str), str) + " (";
+        list += (cTechs[i]->getProcessFamily(str, true), str) + "); ";        
+    }
+
+    printErrorMsg("Process Family", "Libraries", list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::onExcludedLayerConflict()
+//
+// This function handles conflicting layer definitions.
+// *****************************************************************************
+void
+opnTechConflictObserver::onExcludedLayerConflict(oaTech                  *tech,
+                                                 const oaPhysicalLayer   *l1,
+                                                 const oaLayer           *l2)
+{
+    oaString str;
+    oaString list;
+    
+    list += (getObjectLibName(l1, str), str) + "/";
+    list += (l1->getName(str), str) + " is mutually exclusive with ";
+    list += (getObjectLibName(l2, str), str) + "/";
+    list += (l2->getName(str), str) + "; ";
+
+    printErrorMsg("Excluded Layer", "Layers", list);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::getObjectLibName()
+//
+// This function returns the name of the library a certain object resides in.
+// *****************************************************************************
+void
+opnTechConflictObserver::getObjectLibName(const oaObject *obj, 
+                                          oaString       &str) const
+{
+    oaTech *tech;
+
+    tech = (oaTech*) obj->getDatabase();
+    
+    // Return the name of the library that contains the techDB.
+    // Alternatively, the full path to the library could be found as follows:
+    //  tech->getLib()->getFullPath(str);
+    //
+    tech->getLibName(ns, str);
+}
+
+
+
+// *****************************************************************************
+// opnTechConflictObserver::printErrorMsg()
+//
+// This function populates a format string for a tech conflict error message
+// and prints it to stdout.
+// *****************************************************************************
+void
+opnTechConflictObserver::printErrorMsg(const char    *type, 
+                                       const char    *elements, 
+                                       const char    *list) const
+{
+    oaString str;
+
+    str.format(format, type, elements, list);
+    cout &lt;&lt; endl &lt;&lt; str &lt;&lt; endl;
+}
+
+</pre>
+<h3>commonLibDefListObserver.cpp</h3>
+<pre>// *****************************************************************************
+// commonLibDefListObserver.cpp
+//
+//
+// ****************************************************************************
+// Except as specified in the OpenAccess terms of use of Cadence or Silicon
+// Integration Initiative, this material may not be copied, modified,
+// re-published, uploaded, executed, or distributed in any way, in any medium,
+// in whole or in part, without prior written permission from Cadence.
+//
+//                Copyright 2002-2005 Cadence Design Systems, Inc.
+//                           All Rights Reserved.
+//
+// To distribute any derivative work based upon this file you must first contact
+// Si2 @ contracts@si2.org.
+//
+// *****************************************************************************
+// *****************************************************************************
+
+
+#include "commonLibDefListObserver.h"
+
+
+
+// *****************************************************************************
+// opnLibDefListObserver::opnLibDefListObserver()
+// 
+// Constructor which passes the priority argument to its inherited constructor.
+// *****************************************************************************
+opnLibDefListObserver::opnLibDefListObserver(oaUInt4    priorityIn,
+                                             oaBoolean  enabledIn)
+:oaObserver&lt;oaLibDefList>(priorityIn, enabledIn)
+{
+}
+
+
+
+// *****************************************************************************
+// opnLibDefListObserver::onLoadWarnings()
+// 
+// This overloaded member function of the opnLibDefListObserver class, prints
+// out either a syntax error or any warning which are issued by the oaLibDefList
+// object management.
+// *****************************************************************************
+oaBoolean
+opnLibDefListObserver::onLoadWarnings(oaLibDefList                  *list,
+                                      const oaString                &msg,
+                                      oaLibDefListWarningTypeEnum   type)
+{
+    if (type == oacNoDefaultLibDefListWarning) {
+        // No warning if there is no lib.defs file found
+        return true;
+    } else {
+        oaString libDefPath;
+
+	if (list) {
+	  list->getPath(libDefPath);
+	}
+
+	cout &lt;&lt; "ERROR: While loading the library definitions file ";
+	cout &lt;&lt; libDefPath;
+	cout &lt;&lt; ", OpenAccess generated the message:\n";
+	cout &lt;&lt; msg &lt;&lt; endl;
+
+	exit(1);
+    }
+    return true;
+}
+
+
+
+</pre>
+<p><a
+href="#pagetop"> 
+    <!-- beginning of footer --> 
+    Return to top of page</a></p> 
+  <p><a
+href="index.html">Return to Programmers Guide topics</a></p> 
+  <p align=center style='text-align:center;'><img
+border=0 src="../pgfooter.gif"></p> 
+  <p><a
+href="../titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p> 
+   
+</body>
+</html>

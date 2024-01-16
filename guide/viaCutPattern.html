@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Cut Pattern</h1>
+<hr />
+
+<h2>Description</h2>
+
+<p>When large via cuts need to be implemented as a series of small rectangles, a custom cut pattern can be established to specify which of the rectangles in the cut grid should be instantiated. To establish this pattern the caller must have first set the size of the cut array with setCutColumns and setCutRows. Then individual cut rectangles may be made present or not with <a href="../tech/classoaViaParam.html#oaViaParam::setCutPatternVal">setCutPatternVal</a>. An argument of 0 means that the corresponding rectangle is not used. An argument of 1 means that it is present. Row 0 column 0 of the cut grid is at the lower left corner.</p>
+<p>Use the <a href="../tech/classoaViaParam.html#oaViaParam::getCutPatternVal">getCutPatternVal</a> function to return the cut pattern information. </p>
+<h2 class="spabove">Parameter Examples</h2>
+
+<p>The first example shows a symmetrical two row, four column cut pattern. The
+via origin is centered at 0,0 and no cuts are &quot;zeroed out,&quot; or 
+removed from the symmetrical pattern.<p>
+
+The setCutPatternVal definitions are defined as (row, column, cut). The row
+and column values always start at zero. Cut is a boolean value. The
+setCutPatternVal values for the bottom row of the first sample cut pattern
+are shown below.</p>
+
+<p><img src="images/figviaCutPattern.gif" alt="Cut Pattern"></p>
+
+
+<p>The next example shows a three row, four column cut pattern. The via
+origin is centered at 0,0. In this case, some of the cuts are removed from
+the pattern. The setCutPatternVal values for the bottom row of this second
+sample cut pattern are shown below.</p>
+
+<p><img src="images/figviaCutPattern2.gif" alt="Cut Patterns"></p>
+
+<p>The third example shows the same cut pattern, but with an origin offset 
+applied. For example, an offset of (100,100) moves every shape up and to the
+right. The origin offset is applied to the entire via shape, so the offset
+is not affected whether a cut is applied or is removed.</p>
+
+
+<p><img src="images/figviaCutPattern3.gif" alt="Cut Pattern">
+  <!-- beginning of footer -->
+  
+  <br />
+  <br />
+</p>
+
+<p><a href="viaparams.html">Return to Via Parameters</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

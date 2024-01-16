@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minEndOfLineSpacing (oacMinEndOfLineSpacing)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in layer constraint oacMinEndOfLineSpacing specifies the minimum spacing between the end of a line and its neighboring geometry. The constraint uses an integer value to specify the minimum spacing. The constraint definition can use the following optional parameters to specify when the constraint applies:</p>
+    <ul>
+      <li>The constraint applies only if the width of the wire is less than a specified value. This width is referred to as eolWidth in the diagram below.</li>
+    </ul>
+    <ul>
+      <li>The constraint applies when any geometry occurs within a region defined by the minimum spacing, where the region includes the distance from each side of the wire. This distance is referred to as the lateral verification distance and as eolWithin in the diagram below.</li>
+    </ul>
+    <ul>
+      <li>The constraint applies only if one parallel edge is within a specified rectangular region from the corners of the wire, or it applies only if two parallel edges are within a specified rectangular region from the corners of the wire. The dimensions of this region are referred to as parWithin and parSpace in the diagram below.</li>
+    </ul>
+    <ul>
+      <li>The constraint applies when no parallel edges occur within the region defined by the minimum spacing, or one parallel edge occurs within the region defined by the minimum spacing, or two parallel edges.</li>
+    </ul>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>The oacMinEndOfLineSpacing constraint has an oaIntValue.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>width</b><br />oacWidthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>End-of-line width, which uses an oacWidthConstraintParamType with an oaIntValueType value.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>distance</b><br />oacDistanceConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>Lateral verification distance, which uses oacDistanceConstraintParamType with an oaIntValueType value.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>parallelEdgeSpace</b><br />oacParallelEdgeSpaceConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>Distance perpendicular to a wire, which uses an oacParallelEdgeSpaceConstraintParamType with an oaIntValueType value.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>parallelEdgeWithin</b><br />oacParallelEdgeWithinConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>Distance along a wire, which uses an oacParallelEdgeWithinConstraintParamType with an oaIntValueType value.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>equalRectWidth</b><br />oacEqualRectWidthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>If this parameter is set to true, it implies that the length of the end-of-line edge is larger than the wire width. In such cases, this rule does not apply.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>count</b><br />oacCountConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Count</td>
+        <td style="vertical-align: middle; text-align:center;">0</td>
+        <td>
+          <p>Number of parallel edges that trigger this constraint, which uses an oacCountConstraintParamType with an oaIntValueType value of 0, 1, or 2.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>endToEndSpacing</b><br />oacEndToEndSpacingConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This parameter specifies the spacing between two lines that are placed end-to-end and have a non-zero parallel run length.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>enclosedDistance</b><br />oacEnclosedDistanceConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This parameter specifies the distance from a cut below or above the metal layer from the end-of-line edge.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>maxLength</b><br />oacMaxLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>The end of line spacing rule does not apply if the length of the line is greater than maxLength.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>minOppositeWidth</b><br />oacMinOppositeWidthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>The perpendicular span opposite to the end of line edge should be greater than the value of this parameter else this constraint does not apply.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>otherEndWidth</b><br />oacOtherEndWidthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This constraint applies only if the opposite line's width is greater than otherEndWidth.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>subtractEndOfLineWidth</b><br />oacSubtractEndOfLineWidthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>This parameter indicates that the spacing to parallel lines (parSpace) value should be subtracted by the width of the end-of-line edge to define the distance for searching a parallel neighbor edge.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>parallelEdgeMinLength</b><br />oacParallelEdgeMinLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This parameter specifies the minimum end of line length for parallel edge check.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>minLength</b><br />oacMinLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This constraint applies if the length is &gt;= minLength on both sides. If both lengths are &lt; minLength, this rule does not apply.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>twoSides</b><br />oacTwoSidesConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>If twoSides is true, the line must be &gt;= minLength on both sides else this constraint does not apply.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>cutToMetalSpacing</b><br />oacCutToMetalSpacingConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This parameter specifies the cut edge to metal edge space.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>enclosedCut</b><br />oacEnclosedCutConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">All</td>
+        <td>
+          <p>This parameter specifies whether the constraint applies to above, below, or all metal cuts for this metal layer</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaEnclosedCutType.html">oaEnclosedCutType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacAllEnclosedCutType</td>
+              <td valign="top">all</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacBelowEnclosedCutType</td>
+              <td valign="top">below</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacAboveEnclosedCutType</td>
+              <td valign="top">above</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>allCuts</b><br />oacAllCutsConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>This parameter is set to true if the constraint applies to all cuts that connect to the same metal shapes above and below. If this constraint parameter is missing or false, only one cut must satisfy the rule.</p>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/mineolspace.gif" alt="mineolspace.gif" />
+      <br />
+    </p>
+    <h2>Manufacturing Reasons</h2>
+    <p>This constraint is used for spacing shapes on the same layer when there is a dense configuration of neighboring shapes on the same layer.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1>SPEF to OpenAccess Translator (spef2oa)</h1>
+ <hr>
+ <p>spef2oa is the standard translator implementation that reads a SPEF file and annotates an OpenAccess database with parasitic information. The translator only adds parasitic information to an existing oaBlock. spef2oa does not create connectivity. The translator runs from the command line and includes options to control what information is read from the SPEF file and how the information is stored in the database.</p>
+
+<p>If you want information about using the oa2spef translator for extracting parasitic information from an OpenAccess database and writing a SPEF file, see <a href="oa2spef.html">OpenAccess to SPEF Translator (oa2spef)</a>. If you want information about how SPEF data maps to the OpenAccess database, see <a href="spef2oamap.html">Mapping SPEF to OpenAccess</a>.</p> 
+
+<h2>spef2oa Command Syntax</h2>
+<p>The spef2oa command syntax is:</p>
+
+<pre class="code">
+
+    spef2oa -lib <em>library</em> -cell <em>cellName</em> -view <em>viewName</em> -spef <em>fileList</em>   \
+    -ap <em>analysisP oint</em> | -min <em>analysisPoint</em> -typ <em>analysisPoint</em> -max <em>analysisPoint</em>  \ 
+    [Optional Arguments]
+</pre>
+
+<p>If you start the translator with the <code>-help</code> or <code>-h</code> argument, command line help displays. The command line arguments, and the command line help for those arguments, are included in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th align="left" colspan="2">Required Arguments</th>
+</tr>
+<tr>
+<td valign="top" width="224">-lib &lt;<em>library</em>&gt;</td>
+<td width="618">Specifies the target library to annotate. For information about how the translator finds a library  using the library definitions file, see <a href="../guide/usinglibs.html">How Translators Use Libraries</a>.</td>
+</tr>
+<tr>
+<td valign="top">-cell &lt;<em>cellName</em>&gt;</td>
+<td>Specifies the name of the cell to annotate</td>
+</tr>
+<tr>
+<td valign="top">-view &lt;<em>viewName</em>&gt;</td>
+<td>Specifies the view name</td>
+</tr>
+<tr>
+<td valign="top">-spef &quot;&lt;<em>fileList</em>&gt;&quot;</td>
+<td>Specifies one or more SPEF input files. Multiple files must be enclosed in quotes and are space or tab separated.</td>
+</tr>
+<tr>
+<td valign="top"><span class="code">-ap <em>analysisPoint</em>&nbsp;&nbsp;| <br>-min <em>analysisPoint</em> <br>-typ <em>analysisPoint</em> <br>-max <em>analysisPoint</em></span></td>
+<td valign="top">Identifies either a single analysis point or the three min, typ, and max analysis points</td>
+</tr>
+<tr bgcolor="#eeffcc">
+  <td colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+  <td valign="top">-detailedOnly</td>
+  <td>Reads detailed parasitics only</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+  <td valign="top">-help | -h</td>
+  <td>Displays usage information</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-libDefFile &lt;<em>path</em>&gt;&lt;<em>filename</em>&gt;</td>
+<td>Specifies the lib.defs file to load. The path can be a full or relative path. If this option is omitted, the default search mechanism of the DM system is used to find and load the lib.defs file.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-logFile <em>file</em></td>
+<td>Specifies the log filename. If this option is omitted, the log filename defaults to spef2oa.log.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noInfo <em>msgIds</em></td>
+<td>Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noWarning <em>msgIds</em></td>
+<td>Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file and are not included in the total of WARNING messages displayed in the summary.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-reducedOnly</td>
+<td>Reads reduced parasitics only</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>-templateFile &lt;<em>file</em>&gt;</td>
+<td valign="top"><p>Specifies a file containing arguments to <code>spef2oa</code>. You can specify a template file instead of entering a string of arguments on the command line. </p>
+<p>If you specify a template file, arguments on the command line have precedence over arguments specified in the file. So, if the same argument exists in the template file and in the command line, the translator uses the argument on the command line.</p>
+<p>Specify arguments in a template file as follows:</p>
+<ul>
+<li> Enter arguments in the template file without a dash (-) before the argument.</li>
+<li> Enter each argument and value pair on a single line.</li>
+<li> Separate the argument from its value using a space or a tab.</li>
+<li> Designate comment lines with a <em>#</em> sign as the first character in the line.</li>
+</ul>
+<p><strong>Sample Template File</strong></p>
+<pre>
+# spef2oa command line arguments
+
+logFile        myspef2oa.log
+reducedOnly
+tolerate
+</pre>
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-tolerate</td>
+<td valign="top">Tolerates connectivity mismatches between the SPEF input and the target OpenAccess database. Usually, connectivity mismatches result in an error and processing stops. The –tolerate option reduces these errors to warnings, but some coupling capacitance may be dropped from the parasitic network. If the network cannot be properly connected due to connectivity problems with series devices (such as resistors), the entire network is  ignored but processing continues. Note that the SPEF translator does not perform exhaustive node to node checking of the network connectivity. It is possible to construct networks that contain electrical opens regardless of whether this option is used.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-v</td>
+<td>Prints tool, format, and library version information.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-version</td>
+<td>Prints tool and format version information.</td>
+</tr>
+</table>
+
+<p>The <code>-lib, -cell, -view,</code> and <code>-spef</code> arguments, and at least one analysis point argument, are required. All other arguments are optional.</p>
+
+<p><strong>Note</strong>: Command line arguments specifying library, cell, and view names are interpreted according to the Native name space. See <a href="../guide/namemap.html#9">Native Name Space</a> in the Name Mapping article of the Programmers Guide for details about the native name space.</p>
+ 
+<p>The validity of connections within the parasitic network (resistors, inductors), or to other networks (coupling capacitors), is not  checked.</p>
+
+<h2>Specifying Analysis Points</h2>
+
+<p>In the OpenAccess database, parasitic values are associated with particular analysis points. In order to create analysis points in the database, you must specify at least one by using the <code>-ap</code> argument, or you can specify three by  using the <code>-min</code>, <code>-typ</code>, and <code>-max</code> arguments. The translator creates analysis points with the specified name or names. If the parasitic values are specified in the SPEF file as float triplets (float : float : float), the leftmost value is associated with the min analysis point, the middle value is associated with the typ analysis point, and the rightmost value is associated with the max analysis point. If you specify three analysis points, and the SPEF file has values in single float format, the single value is associated in the database with all three min, typ, and max analysis points. An error results when a single analysis point is specified but the SPEF file contains triplets.</p>
+
+<h2>Using detailedOnly and reducedOnly Options</h2>
+<p>If the <code>-detailedOnly</code> option is specified, the translator annotates the database with detailed parasitics information only. If the <code>-reducedOnly</code> option is specified, spef2oa annotates the database with reduced parasitics information only. If neither option is specified, the OpenAccess database is annotated with all available parasitic information.
+</p>
+
+<h2>Reading Large SPEF Files </h2>
+
+<p>Large SPEF files can be split into multiple, smaller files for better file management. For example, a 10-gigabyte file can be split into five 2-gigabyte files, which are read by supplying a space-separated list of files on the command line. For example:</p>
+<pre>
+    spef2oa -spef "file1.spef file2.spef file3.spef" ...
+</pre>
+
+<p>Files compressed using GNU zip (gz) can be read directly without uncompressing them.</p>
+
+<p>Some extractors use a file continuation syntax when splitting SPEF files. To use the continuation syntax, each file must specify the next file to be read using a convention that is not part of the official SPEF syntax. The convention for the continuation syntax is:</p>
+<pre>
+    // .lib filename
+</pre>
+
+<p>Where filename is the next file to read.</p>
+
+<p>When a continuation line is encountered, the current file is closed, and anything between the continuation syntax and the end of the current file is ignored. Then the next file is opened, and the reader skips over everything at the head of that file until a D_NET or R_NET token is found.</p> 
+
+<p>The filename is interpreted as relative to the directory containing the first SPEF file. spef2oa first looks for the file using the filename as supplied. If spef2oa does not find the file, it follows one of the following two approaches:</p>
+<ul>
+<li>If filename does not include a .gz suffix, then look for filename.gz.</li>
+<li>If filename includes .gz suffix, look for the file without the .gz suffix.</li>
+</ul>
+
+<h2>Using the -templateFile Option</h2>
+<p>If you specify a template file, arguments in the file have precedence over arguments specified on the command line. If the same argument is included in both the template file and on the command line, the translator uses the value of the argument in the template file.</p>
+
+<p>You specify arguments in a template file as follows:</p>
+<ul>
+<li>Enter arguments in the template file without a dash (-) before the argument</li>
+<li>Enter each argument and value pair on a single line</li>
+<li>Separate the argument from its value using a space or a tab</li>
+<li>Designate comment lines with a <em>#</em> character as the first character in the line</li>
+</ul>
+<p>Sample Template File</p>
+
+<pre>
+    #spef2oa arguments
+
+    logFile spef2oa.log
+    lib liba
+    cell MX1
+    view mod
+    spef &quot;file1.spef.gz file2.spef.gz file3.spef.gz&quot;
+    ap worst
+</pre>
+
+<h2>Handling Library Definitions File Errors</h2>
+<p>If your library definitions file has errors, or any of the referenced libraries cannot be opened, either an error message is generated and translation halted or, if the library is not required to complete the translation, translation proceeds without an error or warning. For more information about this behavior, see the <a href="../guide/usinglibs.html#libDefErrors">Handling Errors in lib.defs Files</a> section in the Programmers Guide chapter <em>How Translators Use Libraries</em>.</p>
+
+<h2>How the Translator Uses Namespaces</h2>
+<p>A namespace is a set of rules that define the legal characters and determine how names are interpretted. This translator uses the oaNative namespace to interpret library, cell, and view names in the command line. Other names that refer to name-mapped OpenAccess objects, such as net and module names, use the SPEF namespace.</p>
+
+<h2>Error and Warning Messages</h2>
+
+<p>Translators emit messages that report translation progress, report warnings about unusual data or conditions, or report problems with files or data that caused partial or complete translation failure. These messages are written to a log file so you can review translation status, identify error and warning conditions, and consider whether additional actions are needed.</p>
+
+<p>OpenAccess translators use a standard message format to ensure comprehensive and consistent messaging. This message format consists of three elements, which are: message type keyword,  message prefix, and message text. </p>
+
+<p>In addition to the three standard elements, messages can also include two optional elements. An optional filename/line number element is included, when available, to more precisely identify the source of a problem or condition within the source data file. A context string is another optional element that is included, when available, to identify the type of data object that caused the message to be emitted. The following example shows a typical error message that includes the optional filename and line number element.</p>
+
+<pre>
+    ERROR: (OALEFDEF-50004): file.lef(123): A cell was not specified. Translation was terminated. 
+    You must specify a cell.
+</pre>
+ 
+<p>One benefit of this message format is that it allows you to sort, filter, and examine only those types of messages that interest you. The keyword at the start of each message is either ERROR or WARNING and is always all uppercase. The message prefix identifies the translator family and the specific message source within the translator. The message prefix is a stable value that will not change between versions even when the message text gets updated. This makes it suitable for routine sorting and filtering.</p>
+
+<p>If you seek assistance for resolving an issue related to a translator error or warning message, be sure to retain the message type keyword (ERROR or WARNING), and retain the message prefix to identify the translator family and the message source. Also make note of the filename/line number and context information if these are included in the message.</p>
+
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<div style="text-align: center"> <img src="images/speffooter.gif"><br/>
+</div>
+<p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</a><br>
+			All rights reserved.</p>
+		<noscript>
+			<p><em class="red">This page requires JavaScript enabled.</em></p>
+		</noscript>
+</body>
+</html>

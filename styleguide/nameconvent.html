@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Names and Naming Conventions</h1>
+<p>The name you choose for an object, whether a file, class, variable, or function, must be chosen carefully. Names must be concise (no longer than necessary), descriptive (the name reflects the object's purpose), and  must use correct English (no made-up, slang, or non-English language words). However, common abbreviations and acronyms are acceptable, and in fact are preferred over longer names.</p>
+
+<p>Use the following naming conventions: </p>
+<ul>
+  <li>For consistency and readability, all names must use lower-case, with one exception. When an object name is composed of multiple words, capitalize the first letter of each word except for the first word. </li>
+  <li>Do not use underscores to separate words in a name. Member variable prefixes are the only exception. See <a href="classstruc.html#1">Member Names</a> for more information.</li>
+  <li>Do not use prefixes to indicate the type of a variable. Prefixes make an object name more difficult to read. Further, experienced developers easily discern the type of a variable from the preceding declaration.
+      <em>Do</em> use prefixes to indicate when a variable is a member variable. Member prefixes help developers avoid collisions between local variables and variables declared in a class. 
+      See <a href="classstruc.html#1">Member Names</a> for more information.</li>
+</ul>
+<p>Examples of appropriate object names include:</p>
+<pre>
+    instList
+    cellView
+    deletedScalarNet
+</pre>
+
+<p>Examples of inappropriate object names include:</p>
+<pre>
+    InstMaster         Don't start with a capital letter
+    pNextInst          Don't use prefixes to indicate object type (pointer in this case)
+    old_index          Don't use underscore to separate words in a name
+    badDog()           No slang or vernacular
+    stupidFunction()   No irrelevant names
+</pre>
+<h2><a name="2.1">Filenames</a></h2>
+<p>Filenames follow the naming conventions described above, with the additional convention that source filenames must be  based on the names of the objects they contain. For example, if a file contains the declaration of the oaString class, the file is called oaString.h. This rule makes it easy to discern what the file contains.</p>
+<p>
+OpenAccess uses generally accepted suffixes for specific file types.</p>
+<table cellspacing="4">
+<tr>
+<td>&nbsp;</td>
+<td width="100">.cpp</td>		<td>C++ source file</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>.c</td>		<td>C source file</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>.h</td>		<td>C or C++ header file</td>
+</tr>
+</table>
+<h2><a name="2.2">Class, Structure, and Enum Names</a></h2>
+<p>
+Classes, structures, and enums follow the naming conventions described above, with the additional convention that they must have a unique prefix that identifies the package in which they are defined. This helps protect against name clashes between similar objects developed in different packages. For example, the OpenAccess class that implements cellViews is given the name oaCellView.</p>
+<p>
+<strong>Note</strong>: It is possible that we will begin using the namespace declaration supported in recent versions of ANSI C++. If this is done, a common prefix for class and structure types will be used (for example, C prefix designates a class, S prefix designates a structure, E prefix designates an enum, as in: CmyClass, SmyStruct, EmyEnum). The class,structure, and enum names will be kept unique between packages using different name spaces for each package.</p>
+
+<h2><a name="2.3">Global Constant Names</a></h2>
+<p>
+In general, the use of constants such as #defines are minimized, although there are times when they are appropriate. In these cases, constants follow the naming conventions described previously, with the additional restriction that they must have a unique prefix that identifies the package in which they are defined and identifies constants as global. To handle this, a c is added to the package prefix. For example, constants defined in the OpenAccess package use the prefix <em>oac</em> as in oacInitialTblSize. Private constants defined in the OpenAccess package use the oav prefix as in oavAppDefTypeInt.</p>
+
+<h2><a name="2.4">Macro Names</a></h2>
+<p>
+Macros are another construct that is minimized. In general, inline functions are used instead of macro functions, and static const variables are used instead of macro definitions. </p>
+<p>If macros are required, follow these conventions: </p>
+<ul>
+  <li>Use all capitalized characters with underscores between words in multi-word names. </li>
+  <li>Use  prefixes to identify the packages in which the macros are defined. </li>
+</ul>
+<p>Examples of macros are:</p>
+<pre>
+#define	OA_MY_MACRO(x, y)
+#define	OA_HARD_VAR	3 * M_PI
+</pre>
+<p>
+<strong>Important</strong>: The use of macros is always avoided at the C++ level. There are no known examples where they are needed or are appropriate in C++.</p>
+
+<h2><a name="trans_standards"></a>Naming Conventions in OpenAccess Translators and Utilities</h2>
+<p>The C++ namespace, file, and class names must be chosen to be consistent, unambiguous, and to avoid conflicts between packages.</p>
+
+<h3>Namespace Naming Conventions</h3>
+<p>Namespace names are mixed case. For example:</p>
+<ul>
+<li>oaLefDef</li>
+<li>oaSpef</li>
+<li>oaStrm</li>
+<li>oaVerilog</li>
+<li>oaUtil</li>
+</ul>
+
+<h3>Class Naming Conventions</h3>
+<p>Class names start with an upper case letter, and most class names do not have a prefix. For example:</p>
+<ul>
+<li>Exception</li>
+<li>Error</li>
+<li>HashTbl</li>
+</ul>
+<p>If an application needs to be specific about the kind of error that is caught, the namespace qualifier can be used. For example:</p>
+<pre>
+    oaStrm::Error
+</pre>
+
+<p>For the main translator classes, the format name is included in the class name. For example, simply using In or Out is ambiguous. The LEF/DEF, SPEF, Stream, and Verilog translators use the following.</p>
+<ul>
+<li>LefIn, LefOut, DefIn, DefOut</li>
+<li>SpefIn, SpefOut</li>
+<li>StrmIn, StrmOut</li>
+<li>VerilogIn, VerilogOut</li>
+</ul>
+
+<p>When there are similar classes for both the reader and writer operations, In and Out are used as a suffix to the class name. For example:</p>
+<ul>
+<li>oaVerilog::OptionsIn, oaVerilog::OptionsOut</li>
+</ul>
+<p>The format name might also be needed to avoid ambiguity.</p>
+<ul>
+<li>LefInOptions, LefOutOptions</li>
+</ul>
+
+<h3>Filename Conventions</h3>
+<p>To avoid conflicts between packages in the debugger on some platforms, filenames usually use &lt;namespace_name&gt;&lt;primary_class_name&gt;.cpp and &lt;namespace_name&gt;&lt;primary_class_name&gt;.h. For example:</p>
+<ul>
+<li>oaVerilogException.h, oaUtilHashTbl.h</li>
+</ul>
+<p>To avoid redundancy, the filenames for the main translator classes omit the format from the class name. For example:</p>
+<ul>
+<li>oaSpefIn.h instead of oaSpefSpefIn.h</li>
+<li>oaLefInOptions.h instead of oaLefLefInOptions.h</li>
+</ul>
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

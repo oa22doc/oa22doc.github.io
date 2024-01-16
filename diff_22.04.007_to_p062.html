@@ -1,0 +1,871 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h2>Summary of API Changes</h2>
+<p>Following is a summary of the API changes between the OpenAccess 22.04.007 release and the 2.2 p062 release.</p>
+<pre>
+
+<span class="style3">########################################
+# The following new classes were added #
+########################################</span>
+
+	oaAbstractType 
+
+	oaConnectivityType 
+
+	oaConstraintGroupDef 
+
+	oaConstraintGroupOperator 
+
+	oaConstraintGroupType 
+
+	oaCustomViaVariant 
+
+	oaDMPlugInError 
+
+	oaDesignViaVariantHeader 
+
+	oaFlatGroupDef 
+
+	oaGateOrientationType 
+
+	oaGroupDef 
+
+	oaGroupDefArray 
+
+	oaGroupPurposeType 
+
+	oaHierGroupDef 
+
+	oaIntRangeArray 
+
+	oaIntRangeArray1DTblValue 
+
+	oaIntRangeArray2DTblValue 
+
+	oaIntRangeArrayValue 
+
+	oaLayerHeaderArray 
+
+	oaLayerNameArray 
+
+	oaLayerRangeBlockage 
+
+	oaLayerRangeBlockageQuery 
+
+	oaLayerRangeHalo 
+
+	oaManagedType 
+
+	oaManagedTypeArray 
+
+	oaObserver< oaConstraintGroupDef > 
+
+	oaObserver< oaGroupDef > 
+
+	oaPinType 
+
+	oaPlacementBlockageQuery 
+
+	oaPurposeArray 
+
+	oaPurposeValue 
+
+	oaShapeAngleType 
+
+	oaSpacingDirectionType 
+
+	oaStdViaVariant 
+
+	oaStringValue 
+
+	oaTechViaVariantHeader 
+
+	oaViaTopology 
+
+	oaViaTopology2DTblValue 
+
+	oaViaTopologyArray 
+
+	oaViaTopologyArrayValue 
+
+	oaViaTopologyType 
+
+	oaViaVariant 
+
+	oaViaVariantHeader 
+
+
+
+
+<span class="style3">####################################### 
+
+#######################################
+# The following classes were modified #
+#######################################</span>
+
+	oa1DLookupTbl 
+<span class="style4"><span class="style5">
+		Added AP</span>I</span>
+
+		operator=(const oa1DLookupTbl< T, U > &tbl) 
+
+	oa2DLookupTbl 
+
+	<span class="style5">	Added API</span>
+
+		operator=(const oa2DLookupTbl< T, U, V > &tbl) 
+
+	oaAreaBlockage 
+
+	<span class="style5">	Added API</span>
+
+		isSoft() const 
+
+		setSoft(oaBoolean soft) 
+
+	oaAreaHalo 
+
+<span class="style5">		Added API</span>
+
+		isSoft() const 
+
+		setSoft(oaBoolean soft) 
+
+	oaConstraintDef 
+
+<span class="style5">		Added API</span>
+
+		isBuiltIn() const 
+
+	oaConstraintGroup 
+<span class="style5">
+		Added API</span>
+
+		create(oaObject *database, oaConstraintGroupDef *def, const oaString &name, oaBoolean override=false, oaConstraintGroupOperator op=oacPrecedenceGroupOperator) 
+
+		create(oaObject *database, const oaString &name, oaBoolean override, oaConstraintGroupOperator op) 
+
+		create(oaConstraintGroupDef *def, oaObject *object, oaBoolean override=false, oaConstraintGroupOperator op=oacPrecedenceGroupOperator) 
+
+		find(const oaConstraintGroupDef *def, const oaObject *object) 
+
+		getDef() const 
+
+		getOperator() const 
+
+	oaConstraintParamDef 
+<span class="style5">
+		Added API</span>
+
+		isBuiltIn() const 
+
+	oaDMData 
+
+<span class="style5">		Added API</span>
+
+		getFeatures(oaUInt4 &dataModelRev, oaFeatureArray &features) 
+
+		getGroups(oaGroupDef *def) const 
+
+	oaDerivedLayerDef 
+
+	<span class="style5">	Added API</span>
+
+		isBuiltIn() const 
+
+	oaDerivedLayerParamDef 
+
+<span class="style5">		Added API</span>
+
+		isBuiltIn() const 
+
+	oaDesign 
+
+	<span class="style5">	Added API
+</span>
+		getConstraintGroups(const oaConstraintGroupDef *def) const 
+
+		getFeatures(oaUInt4 &dataModelRev, oaFeatureArray &features) 
+
+		getGroups(oaGroupDef *def, oaUInt4 filterFlags=oacGroupIterNoDomain) const 
+
+		getViaVariantHeaders() const 
+
+		getViaVariants() const 
+
+	oaException 
+
+<span class="style5">		Added API</span>
+
+		getLastOSError() 
+
+	oaFeature 
+
+	<span class="style5">	Added API
+</span>
+		getDataModelRev() const 
+
+	oaGroup 
+
+	<span class="style5">	Added API
+</span>
+		create(oaObject *database, const oaString &name, oaGroupDef *groupDef, oaGroupType groupType=oacSetGroupType, oaBoolean isUniqueName=true, oaBoolean isOrdered=false, oaGroupDeleteWhen deleteWhen=oacNeverGroupDeleteWhen) 
+
+		create(oaObject *database, const oaString &name, oaDomain domain, oaGroupDef *groupDef, oaGroupType groupType=oacSetGroupType, oaBoolean isUniqueName=true, oaBoolean isOrdered=false, oaGroupDeleteWhen deleteWhen=oacNeverGroupDeleteWhen) 
+
+		getDef() const 
+
+	oaLayerArrayConstraint 
+
+	<span class="style5">	Added API</span>
+
+		create(const oaLayerArray &layerNums, const oaPurposeArray &purposeNums, const oaLayerArrayConstraintDef *def, oaValue *value, oaBoolean isHard=true, const oaConstraintParamArray *params=NULL) 
+
+		create(const oaLayerArray &layerNums, const oaPurposeArray &purposeNums, const oaLayerArrayConstraintDef *def, const oaString &name, oaValue *value, oaBoolean isHard=true, const oaConstraintParamArray *params=NULL) 
+
+		find(const oaConstraintGroup *group, const oaLayerArray &layerNums, const oaPurposeArray &purposeNums, const oaLayerArrayConstraintDef *def, oaBoolean hardOnly=false) 
+
+		getPurposes(oaPurposeArray &purposeNums) const 
+
+	oaLayerArrayConstraintType 
+
+<span class="style5">		Added API</span>
+
+		validate(oaLayerArrayConstraintTypeEnum typeIn) 
+
+	oaLayerBlockage 
+
+	<span class="style5">	Added API
+</span>
+		allowPGNet() const 
+
+		getSpacing() const 
+
+		hasSpacing() const 
+
+		setAllowPGNet(oaBoolean allowPGNet) 
+
+		setSpacing(oaDist spacing) 
+
+		unsetSpacing() 
+
+	oaLayerConstraint 
+
+	<span class="style5">	Added API</span>
+
+		create(oaLayerNum layer, oaPurposeNum purpose, const oaLayerConstraintDef *def, oaValue *value, oaBoolean isHard=true, const oaConstraintParamArray *params=NULL) 
+
+		create(oaLayerNum layer, oaPurposeNum purpose, const oaLayerConstraintDef *def, const oaString &name, oaValue *value, oaBoolean isHard=true, const oaConstraintParamArray *params=NULL) 
+
+		find(const oaConstraintGroup *group, oaLayerNum layer, oaPurposeNum purpose, const oaLayerConstraintDef *def, oaBoolean hardOnly=false) 
+
+		getPurpose() const 
+
+	oaLayerConstraintType 
+
+<span class="style5">		Added API</span>
+
+		validate(oaLayerConstraintTypeEnum typeIn) 
+
+	oaLayerPairConstraint 
+
+<span class="style5">		Added API</span>
+
+		create(oaLayerNum layer1, oaPurposeNum purpose1, oaLayerNum layer2, oaPurposeNum purpose2, const oaLayerPairConstraintDef *def, oaValue *value, oaBoolean isHard=true, const oaConstraintParamArray *params=NULL) 
+
+		create(oaLayerNum layer1, oaPurposeNum purpose1, oaLayerNum layer2, oaPurposeNum purpose2, const oaLayerPairConstraintDef *def, const oaString &name, oaValue *value, oaBoolean isHard=true, const oaConstraintParamArray *params=NULL) 
+
+		find(const oaConstraintGroup *group, oaLayerNum layer1, oaPurposeNum purpose1, oaLayerNum layer2, oaPurposeNum purpose2, const oaLayerPairConstraintDef *def, oaBoolean hardOnly=false) 
+
+		getPurpose1() const 
+
+		getPurpose2() const 
+
+	oaLayerPairConstraintType 
+
+	<span class="style5">	Added API</span>
+
+		validate(oaLayerPairConstraintTypeEnum typeIn) 
+
+	oaLib 
+
+	<span class="style5">	Added API</span>
+
+		getGroups(oaGroupDef *def) const 
+
+	oaObject 
+
+	<span class="style5">	Added API</span>
+
+		isValue() const 
+
+		isViaVariant() const 
+
+		isViaVariantHeader() const 
+
+	oaObserver< oaTech > 
+
+	<span class="style5">	Added API
+</span>
+		onExcludedLayerConflict(oaTech *mostDerivedTech, const oaPhysicalLayer *excludingLayer, const oaLayer *excludedLayer) 
+
+		onProcessFamilyConflict(const oaTechArray &conflictedTechs) 
+
+	oaPhysicalLayer 
+
+<span class="style5">		Added API</span>
+
+		getExcludedLayers(oaLayerNameArray &excludedLayerNames) const 
+
+		getLayerAbove(const oaTech *tech, oaMaterial material, oaBoolean local=false) const 
+
+		getLayerBelow(const oaTech *tech, oaMaterial material, oaBoolean local=false) const 
+
+		hasExcludedLayers() const 
+
+		setExcludedLayers(const oaLayerNameArray &excludedLayerNames) 
+
+		unsetExcludedLayers() 
+
+	oaPin 
+
+	<span class="style5">	Added API</span>
+
+		getPinType() const 
+
+		setPinType(oaPinType pinType) 
+
+	oaRange 
+
+<span class="style5">		Added API</span>
+
+		isInRange(const T &value) const 
+
+	oaSession 
+
+	<span class="style5">	Added API</span>
+
+		getConstraintGroupDefs() const 
+
+		getGroupDefs() const 
+
+	oaSimpleConstraintType 
+
+	<span class="style5">	Added API</span>
+
+		validate(oaSimpleConstraintTypeEnum typeIn) 
+
+	oaTech 
+
+<span class="style5">		Added API</span>
+
+		getConstraintGroups(const oaConstraintGroupDef *def, oaUInt4 filterFlags=oacTechConstraintGroupIterAll) const 
+
+		getFeatures(oaUInt4 &dataModelRev, oaFeatureArray &features) 
+
+		getGroups(oaGroupDef *def) const 
+
+		getProcessFamily(oaString &processFamily, oaBoolean local=false) const 
+
+		getViaVariantHeaders(oaUInt4 filterFlags=oacViaVariantHeaderIterAll) const 
+
+		getViaVariants(oaUInt4 filterFlags=oacViaVariantIterAll) const 
+
+		hasProcessFamily(oaBoolean local=false) const 
+
+		setProcessFamily(const oaString &processFamily) 
+
+		unsetProcessFamily() 
+
+	oaViaParam 
+
+<span class="style5">		Added API
+</span>
+		hasAnyDefaults() const 
+
+		setAllNonDefault()
+		
+		isEqual(const oaViaParam &amp;params) const  
+
+	oaWafer 
+
+<span class="style5">		Added API</span>
+
+		getFeatures(oaUInt4 &dataModelRev, oaFeatureArray &features) 
+
+
+
+
+<span class="style3">################################## 
+
+##################################
+# The following enums were added #
+#################################</span>#
+
+
+	oaAbstractTypeEnum 
+
+	oaConnectivityTypeEnum 
+
+	oaConstraintGroupOperatorEnum 
+
+	oaConstraintGroupTypeEnum 
+
+	oaFeatureIDEnum 
+
+	oaGateOrientationTypeEnum 
+
+	oaGroupPurposeTypeEnum 
+
+	oaObjectDefModTypeEnum 
+
+	oaPinTypeEnum 
+
+	oaShapeAngleTypeEnum 
+
+	oaSpacingDirectionTypeEnum 
+
+	oaViaTopologyTypeEnum 
+
+	oaViaVariantHeaderModTypeEnum 
+
+	oaViaVariantModTypeEnum 
+
+
+
+
+<span class="style3">##################################### 
+
+#####################################
+# The following enums were modified #
+#####################################</span>
+
+	oaBaseDataTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacBaseGroupDefDataType 
+
+		oacBaseConstraintGroupDefDataType 
+
+		oacBaseViaVariantDataType 
+
+		oacBaseParamDataType 
+
+		oacBaseViaVariantHeaderDataType 
+
+		oacBaseViaParamDataType 
+
+	oaBlockageModTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacSetSpacingBlockageModType 
+
+		oacSetSoftBlockageModType 
+
+		oacSetAllowPGNetBlockageModType 
+
+		oacSetMaskRangeBlockageModType 
+
+	oaCategoryEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacGroupManagementCategory 
+
+		oacViaVariantCategory 
+
+	oaConstraintParamTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacSpacingDirectionConstraintParamType 
+
+		oacDistanceWithinConstraintParamType 
+
+		oacNotchLengthConstraintParamType 
+
+		oacNotchSpacingConstraintParamType 
+
+		oacNotchWidthConstraintParamType 
+
+		oacCutDistanceConstraintParamType 
+
+		oacNoSharedEdgeConstraintParamType 
+
+		oacObsoleteConstraintParamType31 
+
+		oacCenterToCenterConstraintParamType 
+
+		oacAreaConstraintParamType 
+
+		oacStackConstraintParamType 
+
+		oacNoSingleCutViaConstraintParamType 
+
+		oacConnectivityTypeConstraintParamType 
+
+		oacPGNetConstraintParamType 
+
+		oacExceptSamePGNetConstraintParamType 
+
+	oaDMDataTypeEnum 
+
+	<span class="style5">	Added Values
+</span>
+		oacDMGroupDefDataType 
+
+	oaDerivedLayerParamTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacSelectShapesWithPurposeDerivedLayerParamType 
+
+	oaDesignDataTypeEnum 
+
+	<span class="style5">	Added Values
+</span>
+		oacDesignParamDataType 
+
+		oacDesignViaParamDataType 
+
+		oacGroupDefDataType 
+
+		oacConstraintGroupDefDataType 
+
+		oacDesignViaVariantDataType 
+
+		oacDesignViaVariantHeaderDataType 
+
+<span class="style6">		Removed Values</span>
+
+		oacParamDataType 
+
+		oacViaParamDataType 
+
+	oaDesignMsgIds 
+<span class="style6">
+		Removed Values</span>
+
+		oacCannotBindRefMasterDuringDesignPurge 
+
+	oaFigGroupMemModTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacMoveFigGroupMemModType 
+
+		oacMoveFirstFigGroupMemModType 
+
+	oaGroupMemberModTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacMoveGroupMemModType 
+
+		oacMoveFirstGroupMemModType 
+
+	oaLayerArrayConstraintTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacMinParallelViaClearance 
+
+		oacDummyPolyExtension 
+
+	oaLayerConstraintTypeEnum 
+
+		<span class="style5">Added Values
+</span>
+		oacPreferredRoutingDirection 
+
+		oacMinEdgeAdjacentLength 
+
+		oacMinRectArea 
+
+		oacGateOrientation 
+
+		oacMinOrthogonalViaSpacing 
+
+		oacMinNotchSpacing 
+
+		oacMinEndOfNotchSpacing 
+
+		oacLayerShapeAngle 
+
+		oacAllowedSpacingRange 
+
+		oacMinViaSpacing 
+
+	oaLayerModTypeEnum 
+
+<span class="style5">		Added Values
+</span>
+		oacPhysicalLayerSetExcludedLayersLayerModType 
+
+		oacPhysicalLayerUnsetExcludedLayersLayerModType 
+
+	oaLayerOpEnum 
+
+	<span class="style5">	Added Values
+</span>
+		oacSelectLayerOp 
+
+	oaLayerPairConstraintTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacAllowedClearanceRange 
+
+		oacMinViaClearance 
+
+	oaLibDataTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacLibGroupDefDataType 
+
+	oaPinModTypeEnum 
+
+	<span class="style5">	Added Values
+</span>
+		oacSetPinTypePinModType 
+
+	oaPurposeTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacAnyPurposeType 
+
+		oacNoPurposeType 
+
+		oacFillOPCPurposeType 
+
+	oaSessionDataTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacSessionGroupDefDataType 
+
+		oacSessionConstraintGroupDefDataType 
+
+	oaSimpleConstraintTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacDefaultHorizontalRouteGridPitch 
+
+		oacDefaultVerticalRouteGridPitch 
+
+		oacDefault135RouteGridPitch 
+
+		oacDefault45RouteGridPitch 
+
+		oacDefaultHorizontalRouteGridOffset 
+
+		oacDefaultVerticalRouteGridOffset 
+
+		oacDefault135RouteGridOffset 
+
+		oacDefault45RouteGridOffset 
+
+		oacTaperHalo 
+
+		oacShapeAngle 
+
+		oacUseNonOrthogonalRoutingRules 
+
+	oaTechConflictTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacViaVariantNameTechConflictType 
+
+		oacStdViaVariantTechConflictType 
+
+		oacCustomViaVariantTechConflictType 
+
+	oaTechDataTypeEnum 
+
+	<span class="style5">	Added Values
+</span>
+		oacTechGroupDefDataType 
+
+		oacTechConstraintGroupDefDataType 
+
+		oacTechParamDataType 
+
+		oacTechViaVariantDataType 
+
+		oacTechViaVariantHeaderDataType 
+
+		oacTechViaParamDataType 
+
+	oaTechModTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacSetProcessFamilyTechModType 
+
+		oacUnsetProcessFamilyTechModType 
+
+	oaTypeEnum 
+
+	<span class="style5">	Added Values
+</span>
+		oacPurposeValueType 
+
+		oacConstraintGroupDefType 
+
+		oacStdViaVariantType 
+
+		oacCustomViaVariantType 
+
+		oacTechViaVariantHeaderType 
+
+		oacDesignViaVariantHeaderType 
+
+		oacViaTopologyArrayValueType 
+
+		oacViaTopology2DTblValueType 
+
+		oacStringValueType 
+
+		oacLayerRangeBlockageType 
+
+		oacLayerRangeHaloType 
+
+		oacIntRangeArrayValueType 
+
+		oacIntRangeArray1DTblValueType 
+
+		oacIntRangeArray2DTblValueType 
+
+		oacFlatGroupDefType 
+
+		oacHierGroupDefType 
+
+	oaWaferDataTypeEnum 
+
+	<span class="style5">	Added Values</span>
+
+		oacGroupDefWaferDataType 
+
+		oacConstraintGroupDefWaferDataType 
+
+	oaWidthLengthTableTypeEnum 
+
+<span class="style5">		Added Values</span>
+
+		oacTwoWidthParallelRunLengthTableType 
+
+
+
+
+<span class="style3">########################################### 
+
+###########################################
+# The following enums have changed values #
+###########################################</span>
+
+	oaDesignMsgIds 
+
+	<span class="style6">	Changed Values</span>
+
+		oacCorruptedSteinerConnRoutes     New Value:  1569 Last Value:  1557
+
+
+
+<span class="style3">###########################################</span> </pre>
+</body>
+</html>
+

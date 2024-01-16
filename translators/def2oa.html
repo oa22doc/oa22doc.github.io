@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>DEF to OpenAccess Translator (def2oa) </h1>
+
+<p>The DEF to OpenAccess Translator imports a file in the DEF format into an OpenAccess design. DEF contains the design-specific information about a circuit. DEF to OpenAccess is available from the command line through the executable <code>def2oa.</code> A DEF <em>file</em>, and destination <em>library</em>, <em>cell</em>, and <em>view</em> are required to begin a translation.</p>
+
+<h2>Command Syntax</h2>
+
+<p>To run <code>def2oa</code>, enter the following:</p>
+<pre class="code">
+def2oa -def <em>file</em> -lib <em>library</em> [Optional Arguments]
+</pre>
+
+<p>Use  the -help or -h argument to display command-line help. The command-line arguments are described in the following table.</p>
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th colspan="2" align="left">Required Arguments </th>
+</tr>
+<tr>
+<td  valign="top"width="250">-def <em>file</em></td>
+<td width="884">Specifies the DEF file to import into the OpenAccess database.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-lib <em>library</em></td>
+<td> Specifies the name of the output library. If the library already exists, it must contain a technology database or refer to a library with a technology database. If the library does not exist, the library is created in the current working directory (unless <code>-libPath</code> is specified) and refers to the technology database of the library specified with the <code>-techLib</code> option. If the specified target library exists, the translator locates the library using the library definition file. </td>
+</tr>
+<tr bgcolor="#eeffcc">
+<td colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr>
+<td valign="top">-cell <em>cell</em></td>
+<td>Specifies the name of the output cell, which defaults to the name specified in the DEF file using the DESIGN construct if this option is omitted.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-commentChar <em>char</em></td>
+<td valign="top">Identifies the comment character</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-dataModel <em>dataModel value</em></td>
+<td>Specifies a dataModel value of 0, 1, 2, or 3, which determines the data model for the OpenAccess database and determines how properties are mapped to the database. If this option is omitted, the default dataModel value of 1 is used unless the OA_DATAMODEL environment variable is set or a file named OA.DATAMODEL is found in the  data directory of your OpenAccess installation hierarchy. See the discussion <a href="../guide/compat.html#transDataModel">Specifying a DataModelRev for a Flow</a> for more information.
+</td>
+</tr>
+
+<tr bgcolor="#FFFFFF">
+<td valign="top">-DMAttributes</td>
+<td>Specifies a list of DM attributes that are associated with every library that this application creates. Attributes are specified as name=value pairs. There must be no space on either side of the equal sign, two or more pairs must be space-separated, and the list must be enclosed in quotes. For example:
+<pre>
+    def2oa ... -DMAttributes "name1=value name2=value name3=value"
+</pre>
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"><span class="code">-DMSystem <em>sysName</em></span></td>
+<td>Specifies the DM system to use for the library, which can be any DM plug-in available to the user.  The DM plug-ins included with  OpenAccess are oaDMTurbo or oaDMFileSys. The default DM system is oaDMSystem, which automatically selects between oaDMTurbo or oaDMFileSys. Use of the oaDMTurbo plug-in is not recommended.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-help | -h</td>
+<td>Display usage information.</td>
+
+<tr bgcolor="#FFFFFF">
+<td valign="top">-libPath <em>path</em></td>
+<td>Specifies the full path name (including the library name) for the library. Use this argument only if the library does not exist. If not specified, the library is ./&lt;library&gt;, where &lt;library&gt; is the value of the -lib argument.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -layerMap <em>file</em></td>
+<td>Specifies the layer mapping file to use during translation. You must specify the complete path to the file. <br><br>
+
+The format for each line of the map file is:<br>
+<pre>
+   &lt;layerName&gt; &lt;layerNumber&gt; 
+</pre>
+
+If you specify a layer mapping file, def2oa maps DEF objects found on the specified layerName to the specified layerNumber. The layerMap file is referenced during translation <em>before</em> looking up the layer names in the technology library. This permits mapping a layer name to a different layer name in the technology library. If a layer number does not exist in the technology library, an error is generated.<br><br>
+
+Lines in the layerMap file that are blank and lines beginning with the comment character (#) are ignored.<br><br>
+
+
+<pre>
+# Example layer map file
+#layerName  	layerNumber
+   Metal1        1 
+   Via1          2
+   Metal2        3
+   Via2          4
+   Metal3        5
+   Via3          6
+   Metal4        7
+   Via4          8
+   Metal5        9
+   Via5          10
+</pre>
+</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-libDefFile <em>filename</em></td>
+<td>Specifies the lib.defs file to load. The path to the lib.defs file can be a full or relative path. If this option is omitted, the default search mechanism of the DM system is used to find and load the lib.defs file.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-logFile <em>file</em></td>
+<td>Specifies the log filename. If this option is omitted, the log filename defaults to def2oa.log</td>
+</tr>
+<tr>
+<td valign="top">-masterLibs <em>library</em></td>
+<td>If you use this option, a warning is issued. This option is deprecated. Use the -refLibs option instead.
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-masterViews <em>masterViewName</em></td>
+<td>If you use this option, a warning is issued. This option is deprecated. Use the -refViews option instead.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noInfo <em>msgIds</em></td>
+<td>Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-noModHier</td>
+<td class="indent">Specifies that the translator does <em>not</em> create a module hierarchy based on hierarchical names of instances and nets in the DEF file. Instead, the translator escapes hierarchy delimiters in the names of instances and nets in the OpenAccess database. See  <a href="../guide/namemap.html">Name Mapping</a>  in the <em>Programmers Guide</em> for additional information about hierarchy delimiters, escaping illegal characters, and the oaNameBase class to learn how hierarchical names are represented in OpenAccess. The default is to create a module hierarchy based on hierarchical names of instances and nets.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noRouting</td>
+<td>Ignores any routing data during translation including the vias section. Note: routing rules (DEF5.6) will be parsed.</td>
+</tr>
+<tr bgcolor="#ffffff">
+
+<td valign="top">-noWarning <em>msgIds</em></td>
+<td>Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file and are not included in the total of WARNING messages displayed in the summary. You can browse the <a href="LefDefMsgs.html">list of error and warning messages</a> to determine which you want to suppress.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-overwrite</td>
+<td>Replaces an existing design with the translated data. If this option is omitted, the default behavior is to update the existing library.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-refLibs <em>libList</em></td>
+<td>Specifies one or more libraries in which to search for master cells. You specify multiple libraries with a quoted, space-separated list. By default, the refLibs list contains the design and tech libraries.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-refViews <em>refLibraryViews</em></td>
+<td>Specifies one or more view names to search for master cells. You specify multiple views with a quoted, space-separated list. By default, the refViews list contains <em>abstract</em>. If you use this option, only the views you specified are searched.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-shared</td>
+<td>Allows other applications to access the output library while this application is running.<br><strong>Note</strong>: The additional synchronization overhead required for shared library access can increase translation time.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-techLib <em>library</em></td>
+<td>Specifies the technology library name to attach to the design library. Use this argument <em>only</em> if the design library does not exist. A library definition file is necessary to find the specified technology library name. The <code>-techLib</code> argument is required if the design library does not exist.</td>
+</tr>
+<td valign="top">-techRefs <em>parentTechs</em></td>
+<td>Creates an incremental technology database that derives from one or more of the specified parent technology databases.<br><br>
+Notes:
+<ul>
+<li>If the library being translated does not have a technology database, this option creates an incremental technology database that has references to the specified  <em>parentTechs</em>.</li>
+<li>If the library being translated already has a standalone technology database, this option converts that technology database to an incremental type that has references to the specified <em>parentTechs</em>.</li>
+<li>If the library being translated has an attached technology database, that attached technology database must be included in the list of <em>parentTechs</em>, or the translator issues an error.</li>
+<li>If the library being translated already uses an incremental technology database, the current references from the incremental technology database must be included in the specified <em>parentTechs</em>, or the translator issues an error. Additional references can be provided.</li>
+<li>This option requires data model 3. If you use this option without setting the data model to 3 (by using the -dataModel option, the OA_DATAMODEL environment variable, or using the OA.DATAMODEL file), an error is issued and the translation stops.</li>
+</ul>
+For more information, refer to <a href="../guide/tech.html">Incremental Technology Databases</a> in the <em>Using Technology Databases</em> section of the Programmers Guide, and see also <a href="../guide/compat.html#transDataModel">Specifying a DataModelRev for a Flow</a>.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td> -templateFile file</td>
+<td><p>Specifies a file containing arguments to <code>def2oa</code>. You can specify a template file instead of entering a string of arguments on the command line. </p>
+<p>If you specify a template file, arguments on the command line have precedence over arguments specified in the file. So, if the same argument exists in the template file and in the command line, the translator uses the argument on the command line.</p>
+<p>Specify arguments in a template file as follows:</p>
+<ul>
+<li> Enter arguments in the template file without a dash (-) before the argument.</li>
+<li> Enter each argument and value pair on a single line.</li>
+<li> Separate the argument from its value using a space or a tab.</li>
+<li> Designate comment lines with a <em>#</em> sign as the first character in the line.</li>
+</ul>
+<p><strong>Sample Template File</strong></p>
+<pre>
+# def2oa command line arguments
+
+logFile        mydef2oa.log
+oaDMSystem     oaDMTurbo
+overwrite
+useCustomVias
+</pre>
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>-useCustomVias</td>
+<td>Specifies that the translator creates and uses oaCustomViaDefs instead of  existing oaStdViaDefs for all vias in the def file.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>-v</td>
+<td> Prints tool, format, and library version information.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td>-version</td>
+<td> Prints tool and format version information.</td>
+</tr>
+<tr>
+<td valign="top"> -view <em>view</em>&nbsp; </td>
+<td>Specifies the name of the output view, which defaults to <em>layout</em> if this option is omitted.</td>
+</tr>
+</table>
+
+<p><strong>Note</strong>: Command line arguments specifying library, cell, and view names are interpreted according to the Native name space. See <a href="../guide/namemap.html#9">Native Name Space</a> in the Name Mapping article of the Programmers Guide for details about the native name space.</p>
+ 
+<p><br>
+The following is an example of def2oa command line syntax:</p>
+<pre>
+    def2oa -def ac36.def -lib myDesignLib -libPath /db/myProject/cds/myDesignLib  \
+    -cell myDesign -view layout -techLib ac36 -optimize -noModHier -useCustomVias
+</pre>
+
+
+<h2>Updating an Existing EMH</h2>
+<p>If there is an existing design, def2oa attempts to fit the physical information into the existing embedded module hierarchy. def2oa attempts to find the logical equivalent of each object in the DEF file and append its physical information (such as routes, pin shapes, and so forth) to the design. Attempting to update an existing physical design produces duplicate shapes in the design and unpredictable results. To disable this update mode, use the -overwrite option, which causes def2oa to overwrite an existing design.</p>
+
+<p>If there is no existing design, <code>def2oa</code> attempts to create the logical hierarchy based on the hierarchical names in the DEF file. To disable the creation of objects in the module domain, use the <code>-noModHier</code> option. </p>
+
+<h2>Soft-Matching </h2>
+<p>Some net names in the DEF file might not match the net names in the module hierarchy. This can happen in Verilog or DEF-only flows. If a net name in a DEF file cannot be matched to a net name in the module hierarchy, the translator attempts to create a match by finding the first instTerm on the net.</p>
+
+<h2>Error Handling </h2>
+<p>If an error occurs during translation, usually the translator can emit a warning or error message and continue. However, certain translation errors halt further translation. The manner in which  translation errors are handled depend on the type of error.</p>
+<ul>
+<li><strong>Parse Error</strong>  The translator issues *Parse Error* (instead of an error ID and message) and translation is halted.</li>
+<li><strong>OpenAccess Data Creation Error</strong>  The translator issues an error message, proceeds to the next object, and continues translation.</li>
+<li><strong>Special Case</strong>  If DEF NET connections are missing, a warning message is issued, translation of the net with missing connections is skipped, and translation of the next connection continues.</li>
+</ul>
+ 
+<h3>DEF Update Mode</h3>
+<p>When annotating physical information into an existing logical design, any object in DEF that has no logical equivalent produces a warning, and translation continues with the next object. In particular:</p>
+  <ul>
+    <li>If logical DEF components or DEF pins are missing, the missing components or pins are ignored,  a warning message is issued, and translation continues.</li>
+    <li>If a logical DEF net is missing, the missing net is ignored, a warning message is issued, and  translation continues.</li>
+    <li>If an instance-terminal connection is missing in a DEF logical net, the missing connection is ignored, a warning message is issued, and translation continues.</li>
+  </ul>
+
+<a name="physicalonly"></a>
+<h3>Handling of Physical-only Objects</h3>
+<p>Physical-only objects are treated differently. No corresponding object is created in the module domain for physical-only objects, and therefore, a subsequent export to Verilog does not include the physical-only objects. Also, when using def2oa to annotate physical information into an existing logical design, these objects are created in the block domain even though a logical equivalent does not exist. Certain DEF objects are considered physical-only. These occur in the following constructs:</p>
+<ul>
+<li><a href="../oa2lefdefmap/oadefcomponents.html#physicalonly">COMPONENTS</a></li>
+<li><a href="../oa2lefdefmap/oadefpins.html#physicalonly">PINS</a></li>
+<li><a href="../oa2lefdefmap/oadefnets.html#physicalonly">NETS</a>, <a href="../oa2lefdefmap/oadefspecialnets.html#physicalonly">SPECIALNETS</a></li>
+</ul>
+
+<h2>How the Translator Uses Namespaces</h2>
+<p>A namespace is a set of rules that define the legal characters and determine how names are interpretted. This translator uses the oaNative namespace to interpret library, cell, and view names in the command line. Other names that refer to name-mapped OpenAccess objects, such as net and module names, use the DEF namespace.</p>
+
+<h2>Merging Verilog and LEF/DEF Information</h2>
+<p>If you need to merge Verilog and LEF/DEF information, you must follow a particular sequence of steps. Refer to the <a href="../verilog/verilog2oacmds.html#verilogandlefdef">verilog2oa documentation</a> and the section <em>Creating a Design by Merging Verilog and LEF/DEF Information</em> for the steps you must follow.</p>
+
+<h2>Error and Warning Message Format</h2>
+
+<p>Translators emit messages that report translation progress, report warnings about unusual data or conditions, or report problems with files or data that caused partial or complete translation failure. These messages are written to a log file so you can review translation status, identify error and warning conditions, and consider whether additional actions are needed.</p>
+
+<p>OpenAccess translators use a standard message format to ensure comprehensive and consistent messaging. This message format consists of three elements, which are: message type keyword,  message prefix, and message text. The message text can be further divided into three parts. The first part indicates what caused the message, the second indicates the consequence of the problem or condition, and the third part suggests an action you can take to remedy the problem or condition.</p>
+
+<p>In addition to the three standard elements, messages can also include two optional elements. An optional filename and optional line number element are included, when available, to more precisely identify the source of a problem or condition within the source data file. When present in an error or warning message, the filename and line number correspond to the location of the last line parsed for the object, and therefore, the cause of the error or warning can occur on a line preceding the indicated line number. A context string is another optional element that is included, when available, to identify the type of data object that caused the message to be emitted. The following example shows a typical error message that includes the optional filename and line number element.</p>
+
+<pre>
+    ERROR: (OALEFDEF-50004): file.lef(123): A cell was not specified. Translation was terminated. 
+    You must specify a cell.
+</pre>
+ 
+<p>One benefit of this message format is that it allows you to sort, filter, and examine only those types of messages that interest you. The keyword at the start of each message is either ERROR or WARNING and is always all uppercase. The message prefix identifies the translator family and the specific message source within the translator. The message prefix is a stable value that will not change between versions even when the message text gets updated. This makes it suitable for routine sorting and filtering.</p>
+
+<p>If you seek assistance for resolving an issue related to a translator error or warning message, be sure to retain the message type keyword (ERROR or WARNING), and retain the message prefix to identify the translator family and the message source. Also make note of the filename/line number and context information if these are included in the message.</p>
+
+
+<p>
+            <a href="#pagetop">Return to top of page</a>
+</p>		 
+
+	<div style="text-align: center">
+<img src="images/lefdeffooter.gif"><br />
+</div><br/>
+      <p class="copyright"><a href="../base/titlecopy.html"><em>Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</em></a>
+<br />
+All rights reserved.</p>
+
+</body>
+</html>

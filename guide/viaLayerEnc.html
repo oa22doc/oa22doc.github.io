@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Layer1 Enclosure <br /> Layer2 Enclosure</h1>
+<hr />
+
+
+<h2>Description</h2>
+
+<p>Standard vias are connections between two adjacent signal layers on the
+chip that are being connected. The cut layer is where the chip processing 
+cuts away the oxide between the two adjacent signal layers to provide the
+connection between them. The layer enclosure via parameters specify the width
+and height for the rectangles on the conducting layers that lie above and
+beneath the cut.</p>
+
+<ul>
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setLayer1Enc">setLayer1Enc</a> specifies the
+Layer1 enclosure as an X/Y vector, in integers (in DBUs).</li><br /><br />
+
+<li><a href="../tech/classoaViaParam.html#oaViaParam::setLayer2Enc">setLayer2Enc</a> specifies the 
+Layer2 enclosure as an X/Y vector, in integers (in DBUs).</li>
+</ul>
+
+<p>For example, a Layer1 enclosure value of (10, 10) adds a spacing of 
+10 units around each side of the cut on Layer1. If the cut width and height
+are (1000, 2000), then the total size of Layer1 is (1020, 2020).</p>
+
+<p>Use the corresponding <em>get</em> functions to return this information
+from the database.</p>
+
+<p><strong>Note</strong>: The layer number for the signal layers is not a
+via parameter. The layer number value is specified when the
+<a href="../design/classoaStdVia.html">oaStdVia</a> is created.
+
+
+
+<h2 class="spabove">Parameter Example</h2>
+
+<p>This example shows the origin at the default location with a (0,0) offset.
+If using an origin offset, that offset is added to every part of the via,
+and the relative locations are unchanged. For vias that require Layer1 or
+Layer2 rectangles that are not centered at the cut center, use the
+<a href="viaLayerOffset.html">Layer1 Offset</a> or 
+<a href="viaLayerOffset.html">Layer2 Offset</a> parameters.<br /><br /></p>
+
+<p><br /><img src="images/figviaLayerEnc.gif" alt="Layer Enclosures"></p>
+
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="viaparams.html">Return to Via Parameters</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

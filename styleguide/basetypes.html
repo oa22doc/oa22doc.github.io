@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Base Types</h1>
+<p>
+For consistency and portability, the following base data types are defined. No other equivalents are acceptable.</p>
+<div class="indent">
+<table>
+<tr>
+<td class="term" width="125" valign="top">oaByte</td>	
+<td>An unsigned byte. This type is used when a raw byte object is required.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaChar</td> <td>A typedef char</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaCoord</td> <td>A typedef signed 4-byte object.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaDist</td> <td>A typedef unsigned 4-byte object.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaInt2</td>	<td>A signed 2-byte object. </td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaUInt2</td>	<td>An unsigned 2-byte object.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaInt4</td>	<td>A signed 4-byte object.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaUInt4</td>	<td>An unsigned 4-byte object.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaInt8</td> <td>A typedef long long</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaUInt8</td> <td>A typedef unsigned long long</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaFloat</td>	<td>A single-precision floating-point number.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaDouble</td>	<td>A double-precision floating-point number.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaBoolean</td>	<td>A logical binary value. Note that the only values that are assigned to an oaBoolean object are <code>true</code> or <code>false</code>, never 1 or 0.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaOffset</td> <td>A typedef signed 4-byte object.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaTblIndex</td> <td>A typedef unsigned 4-byte object.</td>
+</tr>
+<tr>
+<td class="term" width="125" valign="top">oaUIntPtr</td> <td>A typedef unsigned int</td>
+</tr>
+</table>
+</div>
+<p>
+<strong>Note</strong>: Floats are always 4-bytes wide; doubles are always 8-bytes wide.</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

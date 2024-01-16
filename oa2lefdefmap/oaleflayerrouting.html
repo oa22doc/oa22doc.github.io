@@ -1,0 +1,832 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|layer routing'/>
+<a name='57005'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="LayerRouting"></a>Layer (Routing)</h1>
+<pre>
+ LAYER layerName
+
+    TYPE ROUTING ;
+
+    <a href='#57006'>DIRECTION</a> {HORIZONTAL | VERTICAL | DIAG45 | DIAG135} ;
+    <a href='#57007'>PITCH</a> {distance | xDistance yDistance} ;
+    [<a href='#57008'>DIAGPITCH</a> {distance | diag45Distance diag135Distance} ;]
+    <a href='#57009'>WIDTH</a> defaultWidth ;
+    [<a href='#57010'>OFFSET</a> {distance | xDistance yDistance} ;]
+    [<a href='#57011'>DIAGWIDTH</a> diagWidth ;]
+    [<a href='#57012'>DIAGSPACING</a> diagSpacing ;]
+    [<a href='#57013'>DIAGMINEDGELENGTH</a> diagLength ;]
+    [<a href='#57014'>AREA</a> minArea ;]
+    [PROPERTY <a href='#57014'>LEF57_AREA</a>
+        "AREA minArea [EXCEPTEDGELENGTH minLength]
+        [EXCEPTMINSIZE minWidth minLength] ;" ;]
+    [<a href='#57015'>MINSIZE</a> minWidth minLength [minWidth2 minLength2] ... ;]
+    [<a href='#57017'>SPACING</a> minSpacing
+        [ <a href='#57018'>RANGE</a> minWidth maxWidth
+            [ <a href='#57019'>USELENGTHTHRESHOLD</a>
+            | <a href='#57020'>RANGE</a> minWidth2 maxWidth2 RANGE minWidth2 maxWidth2
+            | <a href='#57024'>INFLUENCE</a> value [RANGE stubMinWidth stubMaxWidth] ]
+          
+        | <a href='#57023'>LENGTHTHRESHOLD</a> maxLength [RANGE minWidth maxWidth]
+        | <a href='#57025'>ENDOFLINE</a> eolWidth WITHIN eolWithin
+             [PARALLELEDGE parSpace WITHIN parWithin [TWOEDGES]]
+        | <a href='#57027'>SAMENET</a> [PGONLY]
+        | <a href='#57028'>NOTCHLENGTH</a> minNotchLength
+        | <a href='#57028'>SPACING</a> minNotchSpacing NOTCHLENGTH minNotchLength
+        | <a href='#57029'>ENDOFNOTCHWIDTH</a> endOfNotchWidth
+             NOTCHSPACING minNotchSpacing NOTCHLENGTH minNotchLength ]
+    ;] ...
+    [<a href='#57021'>SPACINGTABLE</a>
+        { <a href='#57022'>PARALLELRUNLENGTH</a> {length} ...
+            {WIDTH width {spacing} ...} ...   ;
+            [<a href='#57030'>SPACINGTABLE</a> INFLUENCE {WIDTH width WITHIN distance SPACING spacing} ... ;]
+          
+        | <a href='#57097'>TWOWIDTHS</a> {WIDTH width [PRL runLength] {spacing} ...} ...   ; }]
+    
+    [PROPERTY <a href='#57026'>LEF57_SPACING</a>
+       "SPACING eolSpace ENDOFLINE eolWidth WITHIN eolWithin
+       [PARALLELEDGE parSpace WITHIN parWithin [TWOEDGES]]
+         ;" ;]
+    [<a href='#57031'>WIREEXTENSION</a> value ;]
+    [<a href='#57032'>MINIMUMCUT</a> numCuts WIDTH width [WITHIN cutDistance]
+        [FROMABOVE | FROMBELOW]
+        [LENGTH length WITHIN distance] ;] ...
+    [<a href='#57033'>MAXWIDTH</a> width ;]
+    [<a href='#57034'>MINWIDTH</a> width ;]
+    [<a href='#57035'>MINSTEP</a> minStepLength
+         [ [INSIDECORNER | OUTSIDECORNER | STEP] [LENGTHSUM maxLength]
+           | [ MAXEDGES maxEdges] ] ;]
+    [PROPERTY <a href='#57035'>LEF57_MINSTEP</a>
+        "MINSTEP minStepLength
+            [MAXEDGES maxEdges]
+                [ MINADJACENTLENGTH minAdjLength
+                | MINBETWEENLENGTH minBetweenLength [EXCEPTSAMECORNERS]
+                ] ;" ;]
+    [<a href='#57036'>MINENCLOSEDAREA</a> area [WIDTH width] ;] ...
+    [<a href='#57037'>PROTRUSIONWIDTH</a> width1 LENGTH length WIDTH width2 ;]
+    [<a href='#57038'>RESISTANCE</a> RPERSQ value ;]
+    [<a href='#57039'>CAPACITANCE</a> CPERSQDIST value ;]
+    [<a href='#57040'>HEIGHT</a> distance ;]
+    [<a href='#57041'>THICKNESS</a> distance ;]
+    [<a href='#57042'>SHRINKAGE</a> distance ;]
+    [<a href='#57043'>CAPMULTIPLIER</a> value ;]
+    [<a href='#57044'>EDGECAPACITANCE</a> value ;]
+    [<a href='#57045'>MINIMUMDENSITY</a> minDensity ;]
+    [<a href='#57045'>MAXIMUMDENSITY</a> maxDensity ;]
+    [<a href='#57045'>DENSITYCHECKWINDOW</a> windowLength windowWidth ;]
+    [<a href='#57045'>DENSITYCHECKSTEP</a> stepValue ;]
+    [<a href='#57046'>FILLACTIVESPACING</a> spacing ;]
+    [<a href='#57048'>ANTENNAMODEL</a> {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4} ;] ...
+    [<a href='#57049'>ANTENNAAREARATIO</a> ;] ...
+    [<a href='#57050'>ANTENNADIFFAREARATIO</a> {value | PWL (( d1 r1) ( d2 r2 ) ...) } ;] ...
+    [<a href='#57051'>ANTENNACUMAREARATIO</a> value ;] ...
+    [<a href='#57052'>ANTENNACUMDIFFAREARATIO</a> {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...)} ;] ...
+    [<a href='#57053'>ANTENNAAREAFACTOR</a> value [DIFFUSEONLY] ;]
+    [<a href='#57054'>ANTENNASIDEAREAFACTOR</a> value [DIFFUSEONLY] ;] ...
+    [<a href='#57056'>ANTENNASIDEAREARATIO</a> value ;] ...
+    [<a href='#57057'>ANTENNADIFFSIDEAREARATIO</a> {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...) } ;] ...
+    [<a href='#57058'>ANTENNACUMSIDEAREARATIO</a> value ;] ...
+    [<a href='#57059'>ANTENNACUMDIFFSIDEAREARATIO</a> {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...) } ;] ...
+    [PROPERTY <a href='#57060'>LEF57_ANTENNACUMROUTINGPLUSCUT</a> "ANTENNACUMROUTINGPLUSCUT ;" ;]
+    [PROPERTY <a href='#57061'>LEF57_ANTENNAGATEPLUSDIFF</a> "ANTENNAGATEPLUSDIFF plusDiffFactor ;" ;]
+    [PROPERTY <a href='#57062'>LEF57_ANTENNAAREAMINUSDIFF</a> "ANTENNAAREAMINUSDIFF minusDiffFactor ;" ;]
+    [PROPERTY <a href='#57063'>LEF57_ANTENNAAREADIFFREDUCEPWL</a> "ANTENNAAREADIFFREDUCEPWL
+         (( diffArea1 diffAreaFactor1 ) (diffArea2 diffAreaFactor2 ) ... ) ;" ;]
+    [<a href='#57064'>PROPERTY</a> propName propVal ;] ...
+    [<a href='#57085'>ANTENNACUMROUTINGPLUSCUT</a> ;]
+    [PROPERTY <a href='#57085'>LEF57_ANTENNACUMROUTINGPLUSCUT</a> "ANTENNACUMROUTINGPLUSCUT ;" ; ;]
+    [<a href='#57086'>ANTENNAGATEPLUSDIFF</a> plusDiffFactor ;]
+    [PROPERTY <a href='#57086'>LEF57_ANTENNAGATEPLUSDIFF</a> "ANTENNAGATEPLUSDIFF plusDiffFactor ;" ; ;]
+    [<a href='#57087'>ANTENNAAREAMINUSDIFF</a> minusDiffFactor ;]
+    [PROPERTY <a href='#57087'>LEF57_ANTENNAAREAMINUSDIFF</a> "ANTENNAAREAMINUSDIFF minusDiffFactor  ;" ;]
+    [<a href='#57088'>ANTENNAAREADIFFREDUCEPWL</a> (( diffArea1 metalDiffFactor1 )
+                              ( diffArea2 metalDiffFactor2 ) ... ) ;]
+    [PROPERTY <a href='#57088'>LEF57_ANTENNAAREADIFFREDUCEPWL</a>
+         "ANTENNAAREADIFFREDUCEPWL (( diffArea1 metalDiffFactor1 )
+                                    ( diffArea2 metalDiffFactor2 ) ... ) ;" ; ;]
+    [<a href='#57065'>ACCURRENTDENSITY</a> {PEAK | AVERAGE | RMS}
+        { value
+        | FREQUENCY freq_1 freq_2 ... ;
+            [WIDTH width_1 width_2 ... ;]
+             TABLEENTRIES
+                 v_freq_1_width_1 v_freq_1_width_2 ...
+                 v_freq_2_width_1 v_freq_2_width_2 ...
+        } ;]
+    [<a href='#57066'>DCCURRENTDENSITY</a> AVERAGE
+        { value
+        | WIDTH width_1 width_2 ... ;
+            TABLEENTRIES value_1 value_2 ...
+        } ;]
+
+ END layerName
+</pre>
+<p>Routing layers are stored in OpenAccess as oaPhysicalLayers with the material attribute set to oacMetalMaterial. The layer is also added to the oacValidRoutingLayers constraint in the LEFDefaultRouteSpec constraint group.</p>
+<hr /></div>
+<a name='lef|layer routing|accurrentdensity'/>
+<a name='57065'/>
+<h2 class='topicSyntax'>
+ACCURRENTDENSITY {PEAK | AVERAGE | RMS}<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ value<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;| FREQUENCY freq_1 freq_2 ... ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[WIDTH width_1 width_2 ... ;]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TABLEENTRIES<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v_freq_1_width_1 v_freq_1_width_2 ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v_freq_2_width_1 v_freq_2_width_2 ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;}</h2>
+<div style='margin-left:40px;'>
+<p>The LEF ACCURRENTDENSITY rule is stored in OpenAccess using the oaPhysicalLayer attributes shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>ACCURRENTDENSITY</th>
+<th class='borders'>oaPhysicalLayer attribute</th>
+</tr>
+<tr>
+<td class='borders'>PEAK</td>
+<td class='borders'>PeakACCurrentDensity</td>
+</tr>
+<tr>
+<td class='borders'>AVERAGE</td>
+<td class='borders'>AvgACCurrentDensity</td>
+</tr>
+<tr>
+<td class='borders'>RMS</td>
+<td class='borders'>RmsACCurrentDensity</td>
+</tr>
+</table>
+<h3><a id="ACCURRENTDENSITYPEAKAVERAGERMSValue"></a>ACCURRENTDENSITY {PEAK | AVERAGE | RMS} value</h3>
+<p>The simple ACCURRENTDENSITY rule is stored in OpenAccess as an oaFloatValue for the oaPhysicalLayer attribute determined from the previous table.</p>
+<h3><a id="ACCURRENTDENSITYPEAKAVERAGERMSFREQUENCYFreq_1Freq_2TABLEENTRIESV_freq_1V_freq_1"></a>ACCURRENTDENSITY {PEAK | AVERAGE | RMS}<br /> FREQUENCY freq_1 freq_2 ... ;<br /> TABLEENTRIES v_freq_1 v_freq_1 ... ;</h3>
+<p>The frequency dependant ACCURRENTDENSITY rule is stored in OpenAccess as an oaFloat1DTblValue for the oaPhysicalLayer attribute determined from the previous table. The values are stored in an oa1DLookupTbl&lt;oaFloat, oaFloat&gt;, with header:frequency and value:density.</p>
+<h3><a id="ACCURRENTDENSITYPEAKAVERAGERMSFREQUENCYFreq_1Freq_2WIDTHWidth_1Width_2TABLEENTRIESV_freq_1_width_1V_freq_1_width_2V_freq_2_width_1V_freq_2_width_2"></a>ACCURRENTDENSITY {PEAK | AVERAGE | RMS}<br /> FREQUENCY freq_1 freq_2 ... ;<br /> WIDTH width_1 width_2 ... ;<br /> TABLEENTRIES v_freq_1_width_1 v_freq_1_width_2 ...<br />    v_freq_2_width_1 v_freq_2_width_2 ... ;</h3>
+<p>The frequency and area dependant ACCURRENTDENSITY rule is stored in OpenAccess as an oaCurDensTblValue for the oaPhysicalLayer attribute determined from the previous table. The values are stored in an oa2DLookupTbl&lt;oaFloat, oaUInt4, oaFloat&gt;, with row:frequency, col:width and value:density.</p>
+</div>
+<a name='lef|layer routing|antenna'/>
+<a name='57047'/>
+<h2 class='topicSyntax'>
+</h2>
+<div style='margin-left:40px;'>
+<h2><a id="ANTENNA"></a>ANTENNA</h2>
+<p>The ANTENNA attributes are stored in OpenAccess using an oaAntennaRatioArrayValue for the <a href="../guide/oacAntennaConstraint.html">oacAntenna</a> constraint on this layer. The oaAntennaRatioArrayValue contains an oaAntennaRatioValue for each of the four antenna models.</p>
+</div>
+<a name='lef|layer routing|antenna|antennamodel'/>
+<a name='57048'/>
+<h3 class='topicSyntax'>
+ANTENNAMODEL {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4}</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNAMODEL determines which oaAntennaModel is used in OpenAccess to store the LAYER ANTENNA statements. The ANTENNA attributes are stored using an oaAntennaRatioArrayValue for the oacAntenna constraint on the layer. The oaAntennaRatioArrayValue contains an oaAntennaRatioValue for each of the four antenna models. The mapping of LEF ANTENNAMODEL to OpenAccess oaAntennaModelEnum is shown in the following table. The default, if a LEF ANTENNAMODEL is not specified, is to use oacDefaultAntennaModel. Only a single parameter is stored in OpenAccess for the OXIDE model. The first detected is the value stored. If other OXIDE models are specified, they are assumed to be the same.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>LEF ANTENNAMODEL</th>
+<th class='borders'>oaAntennaModel</th>
+</tr>
+<tr>
+<td class='borders'>OXIDE1 (default)</td>
+<td class='borders'>oacDefaultAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE2</td>
+<td class='borders'>oacSecondAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE3</td>
+<td class='borders'>oacThirdAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE4</td>
+<td class='borders'>oacFourthAntennaModel</td>
+</tr>
+</table>
+</div>
+<a name='lef|layer routing|antenna|antennaarearatio'/>
+<a name='57049'/>
+<h3 class='topicSyntax'>
+ANTENNAAREARATIO</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNAAREARATIO is stored in OpenAccess using the <a href="../guide/oacAntennaConstraint.html">oacAntenna</a> constraint in the foundryRules constraint group. The value is stored in the GateAreaRatio attribute of the ruleType determined from the ANTENNAMODEL.</p>
+</div>
+<a name='lef|layer routing|antenna|antennadiffarearatio'/>
+<a name='57050'/>
+<h3 class='topicSyntax'>
+ANTENNADIFFAREARATIO {value | PWL (( d1 r1) ( d2 r2 ) ...) }</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNADIFFAREARATIO is stored in OpenAccess  using the oacAntenna constraint in the foundryRules constraint group. The value is stored in the DiodeAreaRatio attribute of the ruleType, which is determined from the ANTENNAMODEL (see the previous table).</p>
+</div>
+<a name='lef|layer routing|antenna|antennacumarearatio'/>
+<a name='57051'/>
+<h3 class='topicSyntax'>
+ANTENNACUMAREARATIO value</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNACUMAREARATIO is stored in OpenAccess by using the oacCumMetalAntenna constraint in the foundryRules constraint group. The value is stored in the GateAreaRatio attribute of the antenna model determined from the ANTENNAMODEL (see the table above).</p>
+</div>
+<a name='lef|layer routing|antenna|antennacumdiffarearatio'/>
+<a name='57052'/>
+<h3 class='topicSyntax'>
+ANTENNACUMDIFFAREARATIO {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...)}</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNACUMDIFFAREARATIO is stored in OpenAccess by using the oacCumMetalAntenna constraint in the foundryRules constraint group. The value is stored in the DiodeAreaRatio attribute of the antenna model determined from the ANTENNAMODEL (see the table above).</p>
+</div>
+<a name='lef|layer routing|antenna|antennaareafactor'/>
+<a name='57053'/>
+<h3 class='topicSyntax'>
+ANTENNAAREAFACTOR value [DIFFUSEONLY]</h3>
+<div style='margin-left:60px;'>
+<p>The ANTENNAAREAFACTOR is stored in OpenAccess using an oaFltValue for the oacAntennaAreaFactorConstraintParamType constraint parameter on the antenna constraints to which it applies. Since only one antenna calculation method is supported in OpenAccess (side vs non-side), only one of the above factor values is stored in OpenAcess, whereby non-side values have priority in case both are specified.</p>
+<p>A single parameter is stored in OpenAccess for all OXIDE models. If multiple OXIDE values are specified, they are all assumed to be the same, and only the first value is stored.</p>
+</div>
+<a name='lef|layer routing|antenna|antennasideareafactor'/>
+<a name='57054'/>
+<h3 class='topicSyntax'>
+ANTENNASIDEAREAFACTOR value [DIFFUSEONLY]</h3>
+<div style='margin-left:60px;'>
+<p>If the lef2oa translator creates a database using data model 2 or greater, ANTENNASIDEAREAFACTOR is stored as an oaConstraintParam using an oaFltValue for the oacAntennaAreaFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer routing|antenna|antennasidearearatio'/>
+<a name='57056'/>
+<h3 class='topicSyntax'>
+ANTENNASIDEAREARATIO value</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNASIDEAREARATIO is stored in OpenAccess using the <a href="../guide/oacAntennaConstraint.html">oacAntenna</a> constraint in the foundryRules constraint group. The value is stored in the SideGateAreaRatio attribute of the ruleType determined from the ANTENNAMODEL.</p>
+</div>
+<a name='lef|layer routing|antenna|antennadiffsidearearatio'/>
+<a name='57057'/>
+<h3 class='topicSyntax'>
+ANTENNADIFFSIDEAREARATIO {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...) }</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNADIFFSIDEAREARATIO is stored in OpenAccess by using the oacAntenna constraint in the foundryRules constraint group. The value is stored in the SideDiodeAreaRatio attribute of the ruleType determined from the ANTENNAMODEL (see previous section). The values are stored in an oa1DLookupTbl&lt;oaInt8, oaFloat&gt;, with header:d and value:r. If only a single value is given, this is stored in the table at index 0.</p>
+</div>
+<a name='lef|layer routing|antenna|antennacumsidearearatio'/>
+<a name='57058'/>
+<h3 class='topicSyntax'>
+ANTENNACUMSIDEAREARATIO value</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNACUMSIDEAREARATIO is stored by using the oacCumMetalAntenna constraint in the foundryRules constraint group. The value is stored in the GateAreaRatio attribute of the antenna model determined from the ANTENNAMODEL (see the previous table).</p>
+</div>
+<a name='lef|layer routing|antenna|antennacumdiffsidearearatio'/>
+<a name='57059'/>
+<h3 class='topicSyntax'>
+ANTENNACUMDIFFSIDEAREARATIO {value | PWL ( ( d1 r1 ) ( d2 r2 ) ...) }</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER ANTENNACUMDIFFSIDEAREARATIO is stored by using the oacCumMetalAntenna constraint in the foundryRules constraint group. The value is stored in the DiodeAreaRatio attribute of the antenna model determined from the ANTENNAMODEL (see the table above).</p>
+</div>
+<a name='lef|layer routing|antenna|property lef57_antennacumroutingpluscut'/>
+<a name='57060'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNACUMROUTINGPLUSCUT "ANTENNACUMROUTINGPLUSCUT ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNACUMROUTINGPLUSCUT attribute is stored using an oaBooleanValue for the oacAntennaCumRoutingPlusCutConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer routing|antenna|property lef57_antennagateplusdiff'/>
+<a name='57061'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNAGATEPLUSDIFF "ANTENNAGATEPLUSDIFF plusDiffFactor ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAGATEPLUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffPlusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer routing|antenna|property lef57_antennaareaminusdiff'/>
+<a name='57062'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNAAREAMINUSDIFF "ANTENNAAREAMINUSDIFF minusDiffFactor ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREAMINUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffMinusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer routing|antenna|property lef57_antennaareadiffreducepwl'/>
+<a name='57063'/>
+<h3 class='topicSyntax'>
+PROPERTY LEF57_ANTENNAAREADIFFREDUCEPWL "ANTENNAAREADIFFREDUCEPWL<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(( diffArea1 diffAreaFactor1 ) (diffArea2 diffAreaFactor2 ) ... ) ;"</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREADIFFREDUCEPWL attribute is stored in OpenAccess using an oaFlt1DTblValue for the oacAntennaDiffAreaReduceFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+</div>
+<a name='lef|layer routing|antenna|property'/>
+<a name='57064'/>
+<h3 class='topicSyntax'>
+PROPERTY propName propVal</h3>
+<div style='margin-left:60px;'>
+<p>See <a href="oalefproperties.html">PROPERTIES</a></p>
+</div>
+<a name='lef|layer routing|antenna|antennacumroutingpluscut'/>
+<a name='57085'/>
+<h3 class='topicSyntax'>
+ANTENNACUMROUTINGPLUSCUT</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNACUMROUTINGPLUSCUT attribute is stored using an oaBooleanValue for the oacAntennaCumRoutingPlusCutConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer routing|antenna|antennagateplusdiff'/>
+<a name='57086'/>
+<h3 class='topicSyntax'>
+ANTENNAGATEPLUSDIFF plusDiffFactor</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAGATEPLUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffPlusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer routing|antenna|antennaareaminusdiff'/>
+<a name='57087'/>
+<h3 class='topicSyntax'>
+ANTENNAAREAMINUSDIFF minusDiffFactor</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREAMINUSDIFF attribute is stored using an oaFltValue for the oacAntennaDiffMinusFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer routing|antenna|antennaareadiffreducepwl'/>
+<a name='57088'/>
+<h3 class='topicSyntax'>
+ANTENNAAREADIFFREDUCEPWL (( diffArea1 metalDiffFactor1 )<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( diffArea2 metalDiffFactor2 ) ... )</h3>
+<div style='margin-left:60px;'>
+<p>Data model 2 or greater is required to map this property to OpenAccess. The ANTENNAAREADIFFREDUCEPWL attribute is stored in OpenAccess using an oaFlt1DTblValue for the oacAntennaDiffAreaReduceFactorConstraintParamType constraint parameter on the antenna constraints to which it applies.</p>
+<p>Only a single parameter for all OXIDE models is stored. If multiple OXIDE models are specified, they are assumed to be the same, and only the first value is stored.</p>
+<p>Note: This assumes data model 3 constraints.</p>
+</div>
+<a name='lef|layer routing|area'/>
+<a name='57014'/>
+<h2 class='topicSyntax'>
+AREA minArea</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER AREA attribute is stored using an oaIntValue for the <a href="../guide/oacMinAreaConstraint.html">oacMinArea</a> constraint in the foundryRules constraint group. The translation converts the value to database units squared. The EXCEPTEDGELENGTH and EXCEPTMINSIZE attributes are not stored in OpenAccess.</p>
+</div>
+<a name='lef|layer routing|capacitance'/>
+<a name='57039'/>
+<h2 class='topicSyntax'>
+CAPACITANCE CPERSQDIST value</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER CAPACITANCE attribute is stored in an oaFloatProp named <q>CAPACITANCE</q> on the oaPhysicalLayer.</p>
+</div>
+<a name='lef|layer routing|capmultiplier'/>
+<a name='57043'/>
+<h2 class='topicSyntax'>
+CAPMULTIPLIER value</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER CAPMULTIPLIER attribute is stored in an oaIntProp named <q>CAPMULTIPLIER</q> on the oaPhysicalLayer.</p>
+</div>
+<a name='lef|layer routing|dccurrentdensity'/>
+<a name='57066'/>
+<h2 class='topicSyntax'>
+DCCURRENTDENSITY AVERAGE<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ value<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;| WIDTH width_1 width_2 ... ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TABLEENTRIES value_1 value_2 ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;}</h2>
+<div style='margin-left:40px;'>
+<p>The basic DCCURRENTDENSITY rule is stored in OpenAccess as an oaFloatValue for the AvgDCCurrentDensity attribute on the oaPhysicalLayer.</p>
+<p>The area dependant DCCURRENTDENSITY rule is stored in OpenAccess as an oaIntFltTblValue for the AvgDCCurrentDensity attribute on the oaPhysicalLayer. The values are stored in an oa1DLookupTbl&lt;oaInt4, oaFloat&gt;, with header:width and value:density.</p>
+</div>
+<a name='lef|layer routing|density'/>
+<a name='57045'/>
+<h2 class='topicSyntax'>
+MINIMUMDENSITY minDensity<BR/>
+MAXIMUMDENSITY maxDensity<BR/>
+DENSITYCHECKWINDOW windowLength windowWidth<BR/>
+DENSITYCHECKSTEP stepValue</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER MINIMUMDENSITY and MAXIMUMDENSITY attributes are stored in OpenAccess using an oaFltValue for the oacMinDensity and oaMaxDensity constraints in the foundryRules constraint group.</p>
+<p>If a DENSITYCHECKWINDOW is specified, the MINIMUMDENSITY and MAXIMUMDENSITY values are stored in an oa1DLookupTbl&lt;oaInt4, oaFloat&gt;, with header:step (which is half the LAYER DENSITYCHECKWINDOW value) and value:density.</p>
+<p>The DENSITYCHECKSTEP is not stored in OpenAccess, but is assumed to be half the DENSITYCHECKWINDOW value.</p>
+</div>
+<a name='lef|layer routing|diagminedgelength'/>
+<a name='57013'/>
+<h2 class='topicSyntax'>
+DIAGMINEDGELENGTH diagLength</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER DIAGMINEDGELENGTH attribute is stored using the oacMinDiagonalEdgeLength constraint in the foundryRules constraint group.</p>
+</div>
+<a name='lef|layer routing|diagpitch'/>
+<a name='57008'/>
+<h2 class='topicSyntax'>
+DIAGPITCH {distance | diag45Distance diag135Distance}</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER DIAGPITCH attribute is stored using an oaIntValue for the oac45RouteGridPitch and oac135RouteGridPitch constraints in the LEFDefaultRouteSpec constraint group. If only a single value is specified, it is stored in both constraints. Note that the diagonal pitch is the horizontal projection of the 45 degree pitch.</p>
+<p>There is no LEF construct for a default global routing pitch. If oacDefault135RouteGridPitch or oacDefault45RouteGridPitch are set in OpenAccess, translation from OpenAccess to LEF maps these to layer-specific route pitches if a layer does not have oac135RouteGridPitch or oac45RouteGridPitch set.</p>
+</div>
+<a name='lef|layer routing|diagspacing'/>
+<a name='57012'/>
+<h2 class='topicSyntax'>
+DIAGSPACING diagSpacing</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER DIAGSPACING attribute is stored using an oaIntValue for the oacMinDiagonalSpacing constraint in the foundryRules constraint group.</p>
+</div>
+<a name='lef|layer routing|diagwidth'/>
+<a name='57011'/>
+<h2 class='topicSyntax'>
+DIAGWIDTH diagWidth</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER DIAGWIDTH attribute maps to the <a href="../guide/oacMinDiagonalWidthConstraint.html">oacMinDiagonalWidth</a> constraint in the LEFDefaultRouteSpec constraint group.</p>
+</div>
+<a name='lef|layer routing|direction'/>
+<a name='57006'/>
+<h2 class='topicSyntax'>
+DIRECTION {HORIZONTAL | VERTICAL | DIAG45 | DIAG135}</h2>
+<div style='margin-left:40px;'>
+<p>Beginning with dataModel 4, if the current tech database is in a tech graph, the direction attribute on the layer in the base technology is set to notApplicable, the direction is also stored as an oaIntValue for the <a href="../guide/oacPreferredRoutingDirectionConstraint.html">oacPreferredRoutingDirection</a> constraint in the LEFDefaultRouteSpec constraint group.</p>
+</div>
+<a name='lef|layer routing|edgecapacitance'/>
+<a name='57044'/>
+<h2 class='topicSyntax'>
+EDGECAPACITANCE value</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER EDGECAPACITANCE attribute is stored in an oaFloatProp named <q>EDGECAPACITANCE</q> on the oaPhysicalLayer.</p>
+</div>
+<a name='lef|layer routing|fillactivespacing'/>
+<a name='57046'/>
+<h2 class='topicSyntax'>
+FILLACTIVESPACING spacing</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER FILLACTIVESPACING attribute maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinFillPatternSpacingConstraint.html">oacMinFillPatternSpacing</a> constraint in the foundryRules constraint group.</p>
+</div>
+<a name='lef|layer routing|height'/>
+<a name='57040'/>
+<h2 class='topicSyntax'>
+HEIGHT distance</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER HEIGHT attribute is stored in an oaIntProp named <q>HEIGHT</q> on the oaPhysicalLayer.</p>
+</div>
+<a name='lef|layer routing|lef57_spacing endofline'/>
+<a name='57026'/>
+<h2 class='topicSyntax'>
+PROPERTY LEF57_SPACING<BR/>
+&nbsp;&nbsp;&nbsp;"SPACING eolSpace ENDOFLINE eolWidth WITHIN eolWithin<BR/>
+&nbsp;&nbsp;&nbsp;[PARALLELEDGE parSpace WITHIN parWithin [TWOEDGES]]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;"</h2>
+<div style='margin-left:40px;'>
+</div>
+<a name='lef|layer routing|maxwidth'/>
+<a name='57033'/>
+<h2 class='topicSyntax'>
+MAXWIDTH width</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER MAXWIDTH attribute is stored in OpenAccess using an oaIntValue for the <a href="../guide/oacMaxWidthConstraint.html">oacMaxWidth</a> constraint in the foundryRules constraint group.</p>
+</div>
+<a name='lef|layer routing|minenclosedarea'/>
+<a name='57036'/>
+<h2 class='topicSyntax'>
+MINENCLOSEDAREA area [WIDTH width]</h2>
+<div style='margin-left:40px;'>
+<p>The MINENCLOSEDAREA is stored in OA using the <a href="../guide/oacMinEnclosedAreaConstraint.html">oacMinEnclosedArea</a> constraint in the foundryRules constraint group. If there is only one MINENCLOSEDAREA statement, and it is not width dependent, the statement maps to an oaIntValue. If there are multiple statements, an <a href="../base/classoaInt1DTblValue.html">oaInt1DTblValue</a> is used, which is indexed by the WIDTH.</p>
+</div>
+<a name='lef|layer routing|minimumcut'/>
+<a name='57032'/>
+<h2 class='topicSyntax'>
+MINIMUMCUT numCuts WIDTH width [WITHIN cutDistance]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;[FROMABOVE | FROMBELOW]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;[LENGTH length WITHIN distance]</h2>
+<div style='margin-left:40px;'>
+<p>The WITHIN cutDistance uses an oaIntValue that maps to an oaConstraintParamType of type oacDistanceWithinConstraintParamType.</p>
+<p>The cut layer choice is determined by the FROMABOVE or FROMBELOW keywords. The rule is stored on both the cut layer above and the cut layer below if neither keyword is specified.</p>
+<p>The length and distance dependent MINIMUMCUT rule for routing layers is stored in OpenAccess as an oaIntValue for the <a href="../guide/oacMinProtrusionNumCutConstraint.html">oacMinProtrusionNumCut</a> constraint on the cut layer above or below. The WITHIN distance uses an oaIntValue that maps to an oaConstraintParamType of type oacDistanceWithinConstraintParamType. If conflicting values are specified by the routing layer above and the routing layer below, for the same cut layer, the most restrictive value is mapped to OpenAccess.</p>
+<p>Multiple MINIMUMCUT LENGTH WITHIN rules are stored as individual constraints that are grouped together in an oacAndGroupOperator constraint group. The name of the oaConstraintGroupDef used to create the constraint group is the same as the string value for the oaLayerConstraintType enum, oacMinProtrusionNumCut.</p>
+<p>Prior to dataModel 4, the MINIMUMCUT rules for routing layers map as an oaInt1DTblValue for the oacMinNumCut constraint on the cut layer above or below the routing layer. The rules are stored in an oa1DLookupTbl, with width mapping to the table header and numCuts mapping to the table value.</p>
+</div>
+<a name='lef|layer routing|minsize'/>
+<a name='57015'/>
+<h2 class='topicSyntax'>
+MINSIZE minWidth minLength [minWidth2 minLength2] ...</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER MINSIZE attribute maps to OpenAccess using an oaBoxArrayValue on the oacMinSize constraint in the foundryRules constraint group. The oaBoxArrayValue stores the list of minWidth/minLength combinations. Each minWidth/minLength pair is converted to an oaBox with the origin at the lower left.</p>
+</div>
+<a name='lef|layer routing|minstep'/>
+<a name='57035'/>
+<h2 class='topicSyntax'>
+MINSTEP minStepLength<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ [INSIDECORNER | OUTSIDECORNER | STEP] [LENGTHSUM maxLength]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [ MAXEDGES maxEdges] ]</h2>
+<div style='margin-left:40px;'>
+<p>In dataModel 2 or later, the mapping is the same as in dataModel 1 for  MINSTEP attribute on ROUTING LAYER. Except that: The MAXEDGES attribute maps to an oaIntValue for the <a href="../guide/oacMinEdgeMaxCountConstraint.html">oacMinEdgeMaxCount</a>  constraint in the foundryRules constraint group. The minStepLength maps  to an oaIntValue for the oaConstraintParam of type  oacMaxLengthConstraintParamType in this case.</p>
+</div>
+<a name='lef|layer routing|minwidth'/>
+<a name='57034'/>
+<h2 class='topicSyntax'>
+MINWIDTH width</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER MINWIDTH attribute is stored in OpenAccess using an oaIntValue for the <a href="../guide/oacMinWidthConstraint.html">oacMinWidth</a> constraint in the foundryRules constraint group. If MINWIDTH is not specified, the value of WIDTH is stored in the constraints.</p>
+</div>
+<a name='lef|layer routing|offset'/>
+<a name='57010'/>
+<h2 class='topicSyntax'>
+OFFSET {distance | xDistance yDistance}</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER OFFSET attribute is stored using an oaIntValue for the oacHorizontalRouteGridOffset and oacVerticalRouteGridOffset constraints in the LEFDefaultRouteSpec constraint group. If OFFSET is not specified, a value equal to half the PITCH is stored in the constraints.</p>
+<p>There is no LEF construct for a default global routing grid offset. If oacDefaultHorizontalRouteGridOffset, oacDefaultVerticalRouteGridOffset, oacDefault135RouteGridOffset, or oacDefault45RouteGridOffset are set in OpenAccess, translation from OpenAccess to LEF maps these to layer-specific route grid offsets if a layer does not have the corresponding grid offset set.</p>
+</div>
+<a name='lef|layer routing|pitch'/>
+<a name='57007'/>
+<h2 class='topicSyntax'>
+PITCH {distance | xDistance yDistance}</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER PITCH attribute is stored using an oaIntValue for the oacHorizontalRouteGridPitch and  oacVerticalRouteGridPitch constraints in the LEFDefaultRouteSpec constraint group. If a single value is specified, it is stored in both constraints.</p>
+<p>There is no LEF construct for a default global routing pitch. If oacDefaultHorizontalRouteGridPitch or oacDefaultVerticalRouteGridPitch are set in OpenAccess, translation from OpenAccess to LEF maps these to layer-specific route pitches if a layer does not have oacHorizontalRouteGridPitch or oacVerticalRouteGridPitch set.</p>
+</div>
+<a name='lef|layer routing|potrusionwidth'/>
+<a name='57037'/>
+<h2 class='topicSyntax'>
+PROTRUSIONWIDTH width1 LENGTH length WIDTH width2</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER PROTRUSIONWIDTH attribute is stored in OpenAccess by using an oaIntValue for the oacMinProtrusionWidth constraint in the foundryRules group. The LENGTH and WIDTH values are stored as oaIntValues for the oacLengthConstraintParam and oacWidthConstraintParam constraint parameters. The parameters are stored in an oaConstraintParamArray as shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>LEF parameter</th>
+<th class='borders'>oaConstraintParamType</th>
+</tr>
+<tr>
+<td class='borders'>LENGTH</td>
+<td class='borders'>oacLengthConstraintParamType</td>
+</tr>
+<tr>
+<td class='borders'>WIDTH2</td>
+<td class='borders'>oacWidthConstraintParamType</td>
+</tr>
+</table>
+</div>
+<a name='lef|layer routing|resistance'/>
+<a name='57038'/>
+<h2 class='topicSyntax'>
+RESISTANCE RPERSQ value</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER RESISTANCE attribute is stored in an oaFloatProp named <q>RESISTANCE</q> on the oaPhysicalLayer.</p>
+</div>
+<a name='lef|layer routing|shrinkage'/>
+<a name='57042'/>
+<h2 class='topicSyntax'>
+SHRINKAGE distance</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER SHRINKAGE attribute is stored in an oaFloatProp named <q>SHRINKAGE</q> on the oaPhysicalLayer.</p>
+</div>
+<a name='lef|layer routing|spacing'/>
+<a name='57017'/>
+<h2 class='topicSyntax'>
+SPACING minSpacing</h2>
+<div style='margin-left:40px;'>
+<pre>
+     [ RANGE minWidth maxWidth
+         [ USELENGTHTHRESHOLD
+         | RANGE minWidth2 maxWidth2 RANGE minWidth2 maxWidth2
+         | INFLUENCE value [RANGE stubMinWidth stubMaxWidth] ]
+        ]
+</pre>
+<p>The LAYER SPACING attributes are stored using an oaIntValue for the <a href="../guide/oacMinSpacingConstraint.html">oacMinSpacing</a> constraint in an OR constraint group in the foundryRules  constraint group, and the generic (no range) spacing is also set as the spacing  value on the LEFDefaultRouteSpec constraint group. All attributes are stored  together in the smallest possible oaValue. This means that if only a simple  spacing is specified, it is stored using an oaIntValue (see next section), but  if multiple spacing attributes are specified, all values are stored in an oaInt1DTblValue or an oaInt2DTblValue. This is described further in the following sections.</p>
+<p>A single, simple LAYER SPACING attribute is stored in OpenAccess using an oaIntValue. If there are other more complicated SPACING attributes specified for a layer, the simple spacing must be stored as the default value (index:0 or rowIndex:0) of the table used for the complicated spacing attributes.</p>
+</div>
+<a name='lef|layer routing|spacing|range'/>
+<a name='57018'/>
+<h3 class='topicSyntax'>
+RANGE minWidth maxWidth</h3>
+<div style='margin-left:60px;'>
+<p>The width dependent LAYER SPACING attribute maps to OpenAccess using an oaInt1DTblValue. The values are stored in an oa1DLookupTbl&lt;oaInt4, oaInt4&gt;, with header:width, and value:minSpacing. The maxWidth value is not stored in OpenAccess. It is assumed that spacing ranges are continuous.</p>
+<p>If there are other more complicated SPACING attributes specified for the layer with LENGTHTHRESHOLD, the width dependant spacing is stored as the default value (colIndex:max) of the table that is used for the complicated spacing attributes.</p>
+</div>
+<a name='lef|layer routing|spacing|range|uselengththreshold'/>
+<a name='57019'/>
+<h4 class='topicSyntax'>
+USELENGTHTHRESHOLD</h4>
+<div style='margin-left:80px;'>
+<p>The length dependent LAYER SPACING attributes are stored in OpenAccess by using an oaInt2DTblValue. The values are stored in an oa2DLookupTbl&lt;oaInt4, oaInt4, oaInt4&gt;, with rowHeader:width, colHeader:length, and value:minSpacing. If RANGE is not specified, the values are stored as the default values ( rowIndex 0).</p>
+<p>If LENGTHTHRESHOLD spacing rules are present, all SPACING rules are grouped together in an oaInt2DTblValue, indexed by width and length. LENGTHTHRESHOLD is a maximum length limit, so the minSpacing values are stored in the colIndex before the colIndex for the length value. This means that minSpacing values for the first length value (colIndex 1) are stored in colIndex 0, and values for a second length value in colIndex 1. Additional length values are indexed accordingly. The colHeader, or length, for colIndex 0 is always 0. This means that minSpacing values for SPACING attributes without a LENGTHTHRESHOLD keyword are stored in the last colIndex.</p>
+</div>
+<a name='lef|layer routing|spacing|range|range'/>
+<a name='57020'/>
+<h4 class='topicSyntax'>
+RANGE minWidth2 maxWidth2 RANGE minWidth2 maxWidth2</h4>
+<div style='margin-left:80px;'>
+<p>If multiple RANGE (width) based rules are present, the values are grouped together in an oaInt1DTblValue, which is indexed by width. Multiple range-to-range spacing statements per routing layer populate a oaInt2DTblValue integer table. An oacWidthLengthTableType enum uses oacWidthParallelRunLengthTableType values if the table contains width and length, and uses oacWidthWidthTableType values if the table is indexed by the widths of both shapes for the RANGE/RANGE syntax.</p>
+</div>
+<a name='lef|layer routing|spacing|range|influence'/>
+<a name='57024'/>
+<h4 class='topicSyntax'>
+INFLUENCE value [RANGE stubMinWidth stubMaxWidth]</h4>
+<div style='margin-left:80px;'>
+<p>The SPACING INFLUENCE attribute is stored using an <a href="../guide/oacMinProtrudedProximitySpacingConstraint.html">oacMinProtrudedProximitySpacing</a> constraint in the foundryRules constraint group. The values for these rules are stored together in an oaInt2DTblValue, with the width in the column, and the influence length in the row.   The stubMaxWidth from RANGE is stored as a parameter of oacWidthConstraintParamType on the constraint.  If multiple max ranges encountered,  we will take the largest value and issue a warning.</p>
+</div>
+<a name='lef|layer routing|spacing|lengththreshold'/>
+<a name='57023'/>
+<h3 class='topicSyntax'>
+LENGTHTHRESHOLD maxLength [RANGE minWidth maxWidth]</h3>
+<div style='margin-left:60px;'>
+<p>This function creates a 2D table from the SPACING rules for this layer.</p>
+</div>
+<a name='lef|layer routing|spacing|endofline'/>
+<a name='57025'/>
+<h3 class='topicSyntax'>
+ENDOFLINE eolWidth WITHIN eolWithin<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PARALLELEDGE parSpace WITHIN parWithin [TWOEDGES]]</h3>
+<div style='margin-left:60px;'>
+<p>The ENDOFLINE SPACING is stored in OpenAccess using an oaIntValue for the oacMinEndOfLineSpacing constraint in the foundryRules constraint group. The eolWidth, eolWithin, parSpace, and parWithin values map to oaIntValues for constraint parameters according to the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>Value</th>
+<th class='borders'>Constraint Parameter Type</th>
+</tr>
+<tr>
+<td class='borders'>eolWidth</td>
+<td class='borders'>oacWidthConstraintParamType</td>
+</tr>
+<tr>
+<td class='borders'>eolWithin</td>
+<td class='borders'>oacDistanceConstraintParamType</td>
+</tr>
+<tr>
+<td class='borders'>parSpace</td>
+<td class='borders'>oacParallelEdgeSpaceConstraintParamType</td>
+</tr>
+<tr>
+<td class='borders'>parWithin</td>
+<td class='borders'>oacParallelEdgeWithinConstraintParamType</td>
+</tr>
+</table>
+<p>If the TWOEDGES keyword is specified, an oaIntValue with the value of 2 is stored in the oacCountConstraintParamType constraint parameter. If TWOEDGES is not specified, the parameter is created with a value of 1. If PARALLELEDGE itself is not specified, the parameter oacCountConstraintParamType is not created.</p>
+</div>
+<a name='lef|layer routing|spacing|samenet'/>
+<a name='57027'/>
+<h3 class='topicSyntax'>
+SAMENET [PGONLY]</h3>
+<div style='margin-left:60px;'>
+<p>In dataModel 4 and later, the optional PGONLY attribute maps to OpenAccess as an oacPGNetConstraintParamType parameter with the value of true. Prior to dataModel 4, the PGONLY parameter does not map to OpenAccess, and a warning is issued if it is found in this context in LEF.</p>
+</div>
+<a name='lef|layer routing|spacing|notchlength'/>
+<a name='57028'/>
+<h3 class='topicSyntax'>
+NOTCHLENGTH minNotchLength</h3>
+<div style='margin-left:60px;'>
+<p>The minNotchSpacing value maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinNotchSpacingConstraint.html">oacMinNotchSpacing</a> constraint in the foundryRules constraint group. The minNotchLength value maps to an oaIntValue on the oacNotchLengthConstraintParamType parameter on the oacMinNotchSpacing constraint.</p>
+</div>
+<div style='margin-left:60px;'>
+<p>The SPACING minNotchSpacing is stored in OA using an oaIntValue for the oacMinNotchSpacing constraint in the foundryRules constraint group.</p>
+<p>The NOTCHLENGTH minNotchLength is stored as an oaIntValue for the oacNotchLengthConstraintParmType constraint parameter.</p>
+</div>
+<a name='lef|layer routing|spacing|endofnotchwidth'/>
+<a name='57029'/>
+<h3 class='topicSyntax'>
+ENDOFNOTCHWIDTH endOfNotchWidth<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOTCHSPACING minNotchSpacing NOTCHLENGTH minNotchLength</h3>
+<div style='margin-left:60px;'>
+<p>The endOfNotchWidth value maps to an oaIntValue for the oacNotchWidthConstraintParamType parameter of the <a href="../guide/oacMinEndOfNotchSpacingConstraint.html">oacMinEndOfNotchSpacing</a> constraint.  The minNotchSpacing value maps to an oaIntValue for the oacNotchSpacingConstraintParamType parameter of the constraint. The minNotchLength value maps to an oaIntValue for the oacNotchLengthConstraintParmType parameter of the constraint.</p>
+</div>
+<a name='lef|layer routing|spacingtable'/>
+<a name='57021'/>
+<h2 class='topicSyntax'>
+SPACINGTABLE</h2>
+<div style='margin-left:40px;'>
+<p>The SPACINGTABLE attribute is stored using the <a href="../guide/oacMinSpacingConstraint.html">oacMinSpacing</a> constraint in an OR constraint group in foundryRules constraint group. The values are stored  in an oa2DLookupTbl with the row header equal to width, the column header equal  to length, and the value equal to spacing. The result is exactly the same  table as specified by a combination of RANGE and LENGTHTHRESHOLD attributes,  which is described in the previous section.</p>
+</div>
+<a name='lef|layer routing|spacingtable|parallelrunlength'/>
+<a name='57022'/>
+<h3 class='topicSyntax'>
+PARALLELRUNLENGTH {length} ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;{WIDTH width {spacing} ...} ...</h3>
+<div style='margin-left:60px;'>
+</div>
+<a name='lef|layer routing|spacingtable|parallelrunlength|influence'/>
+<a name='57030'/>
+<h4 class='topicSyntax'>
+SPACINGTABLE INFLUENCE {WIDTH width WITHIN distance SPACING spacing} ...</h4>
+<div style='margin-left:80px;'>
+<p>The SPACINGTABLE INFLUENCE attribute is stored in OpenAccess using an oaInt2DTblValue for the <a href="../guide/oacMinProximitySpacingConstraint.html">oacMinProximitySpacing</a> constraint in the foundryRules constraint group. The values are stored in an oa2DLookupTbl, with the row index equal to width, column index equal to distance, and the value equal to spacing.</p>
+</div>
+<a name='lef|layer routing|spacingtable|twowidths'/>
+<a name='57097'/>
+<h3 class='topicSyntax'>
+TWOWIDTHS {WIDTH width [PRL runLength] {spacing} ...} ...</h3>
+<div style='margin-left:60px;'>
+<p>The TWOWIDTHS statement maps to an oaInt2DTblValue using an oaWidthLengthTableType enumeration to designate that the table represents multiple width and parallel run length values. The table is constructed so that row header entries are WIDTH values and column header entries are PRL values. If a TWOWIDTH statement is constructed without specifying PRL, the corresponding column header has the oacNullIndex value. The semantics for the table are as described in the LEF 5.7 reference, and the mapping of the table values has a one-to-one correspondence to the LEF table.</p>
+<p>For example, the following TWOWIDTHS statement is followed by the resulting 2D lookup table in OpenAccess and an explanation of usage.</p>
+<pre>
+  SPACINGTABLE TWOWIDTHS
+  #               width=0.00    0.25  1.50  3.00
+  #               prl=none      0.00  1.50  3.00
+  #               ==============================
+  WIDTH 0.0             0.15    0.20  0.50  1.00
+  WIDTH 0.25 PRL 0.0    0.20    0.25  0.50  1.00
+  WIDTH 1.50 PRL 1.50   0.50    0.50  0.60  1.00
+  WIDTH 3.00 PRL 3.00   1.00    1.00  1.00  1.00
+</pre>
+<table class='borders'>
+<tr>
+<th class='borders' colspan="5">2D Lookup Table With Values in Databse Units</th>
+</tr>
+<tr>
+<td class='borders'>#</td>
+<td class='borders'>prl=null</td>
+<td class='borders'>prl=0</td>
+<td class='borders'>prl=1500</td>
+<td class='borders'>prl=3000</td>
+</tr>
+<tr>
+<td class='borders'>w=0</td>
+<td class='borders'>150</td>
+<td class='borders'>200</td>
+<td class='borders'>500</td>
+<td class='borders'>1000</td>
+</tr>
+</table>
+<p>Prior to dataModel 4, the PRL attribute is not stored in OpenAccess, and a warning is issued if the PRL keyword is found in LEF.</p>
+</div>
+<a name='lef|layer routing|thickness'/>
+<a name='57041'/>
+<h2 class='topicSyntax'>
+THICKNESS distance</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER THICKNESS attribute is stored in an oaIntProp named <q>THICKNESS</q> on the oaPhysicalLayer.</p>
+</div>
+<a name='lef|layer routing|width'/>
+<a name='57009'/>
+<h2 class='topicSyntax'>
+WIDTH defaultWidth</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER WIDTH attribute maps to an oaIntValue for the <a href="../guide/oacMinWidthConstraint.html">oacMinWidth</a> constraint in the LEFDefaultRouteSpec constraint group.</p>
+<p>If MINWIDTH is not specified, the WIDTH value also maps to the oacMinWidth constraint in the foundryRules group.</p>
+</div>
+<a name='lef|layer routing|wireextension'/>
+<a name='57031'/>
+<h2 class='topicSyntax'>
+WIREEXTENSION value</h2>
+<div style='margin-left:40px;'>
+<p>The LAYER WIREEXTENSION attribute maps to an oaIntValue for the <a href="../guide/oacMinWireExtensionConstraint.html">oacMinWireExtension</a> constraint in the LEFDefaultRouteSpec constraint group.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

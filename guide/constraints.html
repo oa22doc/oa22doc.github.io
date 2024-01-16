@@ -1,0 +1,644 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h1><a name="pagetop"></a>Creating and Modeling Process Rules and Constraints		</h1>
+		<hr>
+		<p>A design typically has a number of conditions that must be met in order for the 
+			design to be correct. Many applications refer to these as rules, but OpenAccess 
+			uses the more generic term, <em>constraints</em>. Constraints can include 
+			technology constraints, such as minimum width or maximum current density for a 
+			wire. These types of constraints are likely to be provided by a foundry.		</p>
+		<p>OpenAccess provides constraint-related classes that you can use to specify and 
+			apply these constraints. A number of specific constraints are built into 
+			OpenAccess. These address technology and foundry limitations. Applications can 
+			create their own constraints and use the same mechanisms to apply them to 
+			designs.		</p>
+		<p>OpenAccess provides a flexible infrastructure for constraints that</p>
+		<ul>
+			<li>Creates and applies built-in (also know as implicit) and user-defined constraints.</li>
+            <li>Sets precedence relationships between constraints and groups of constraints.</li>
+			<li>Scopes constraints to particular objects.</li>
+	    </ul>
+		<p>In order  to implement this functionality, OpenAccess provides </p>
+		<ul>
+          <li>Constraint objects that specify a particular type of constraint and provide a value for a single application of the constraint.</li>
+          <li>Constraint definitions that specify a definition for a particular constraint. Constraint definitions include the name of the constraint, a list of databases in which the constraint can be created, and 
+the list of values for the constraint.</li>
+          <li>Constraint groups that let you apply a collection of constraints to specific objects in the design and tech databases.</li>
+    </ul>
+    
+<p>This document includes the following topics:</p>
+<p class="toc1"><a href="#cgobjects">Constraint Objects</a></p>
+<p class="toc1"><a href="#constraintattr">Constraint Attributes</a></p>
+<p class="toc2"><a href="#constraintdef">Constraint Definition</a></p>
+<p class="toc2"><a href="#constraintvalue">Constraint Value</a></p>
+<p class="toc2"><a href="#hardconstraints">Hard Constraints</a></p>
+<p class="toc2"><a href="#constraintparams">Constraint Parameters</a></p>
+<p class="toc1"><a href="#constraintpurpose">Constraint Purpose</a></p>
+<p class="toc1"><a href="#applyingconstraints">Applying Constraints to Objects</a></p>
+<p class="toc1"><a href="#usingcgdefs">Using Constraint Group Definitions</a></p>
+<p class="toc2"><a href="#usingtaper">Using Taper Constraint Group Definitions</a></p>
+<p class="toc1"><a href="#understandingcgs">Understanding TransReflexive, Reflexive, and InterChild Constraint Groups</a></p>
+<p class="toc2"><a href="#transreflexive">TransReflexive Constraint Group Semantics</a></p>
+<p class="toc2"><a href="#reflexive">Reflexive Constraint Group Semantics</a></p>
+<p class="toc2"><a href="#interchild">InterChild Constraint Group Semantics</a></p>
+<p class="toc2"><a href="#userdefinedcgdefs">User Defined Constraint Group Definitions</a></p>
+<p class="toc1"><a href="#special">Specialized Constraint Groups</a></p>
+<p class="toc1"><a href="#upgradingolderdbs">Upgrading Older Databases</a></p>
+<p class="toc1"><a href="#combiningconstraints">Combining Constraints in Constraint Groups</a></p>
+<p class="toc2"><a href="#precedenceop">Precedence Type Constraint Group Operator</a></p>
+<p class="toc2"><a href="#andop">AND Type Constraint Group Operator</a></p>
+<p class="toc2"><a href="#orop">OR Type Constraint Group Operator</a></p>
+<p class="toc1"><a href="#scoping">Scoping Constraints</a></p>
+<p class="toc1"><a href="#scopetopurpose">Scoping to Purpose</a></p>
+<p class="toc2"><a href="#examplepurpose">Example</a></p>
+<p class="toc2"><a href="#purposesummary">Scoping to Purpose Summary</a></p>
+<p class="toc1"><a href="#constraintGroupsToObject">Determining Which Constraint Groups Apply to Objects</a></p>
+<p class="toc1"><a href="#geomconstraints">Geometric Constraints</a></p>
+
+<a name="cgobjects"></a>
+<h2>Constraint Objects</h2>
+		<p>OpenAccess has multiple constraint classes that handle the various 
+			representations of constraints. oaConstraint, which is the base class for these 
+			constraint representations, has four derived classes:&nbsp;		</p>
+		<ul>
+			<li>
+			<a href="../base/classoaSimpleConstraint.html">oaSimpleConstraint</a> represents a basic constraint with no specific layer 
+			affiliations. An example of a simple constraint is valid routing layers, which 
+			lists a set of layers that can be used for routing.</li>
+            <li><a href="../tech/classoaLayerConstraint.html">oaLayerConstraint</a> represents a constraint associated with a particular 
+			layer, and optionally, with a particular purpose. An example of a layer constraint is minimum width, which defines 
+			the minimum width of any shape on a particular layer. An example of a layer and purpose constraint is a minimum width of metal1 fill shapes.</li>
+            <li><a href="../tech/classoaLayerPairConstraint.html">oaLayerPairConstraint</a> represents a constraint that is associated with two 
+				layers. An example of a layer pair constraint is minimum clearance, which 
+				defines the minimum clearance between two shapes on the two layers associated 
+				with the constraint. A purpose can also be specified for each layer in the pair.</li>
+			<li><a href="../tech/classoaLayerArrayConstraint.html">oaLayerArrayConstraint</a> represents constraints involving three or more layers. An example of a layer array constraint is when the clearance between two layers is constrained if the space between those layers is completely filled by a third layer. You can also specify a purpose for each layer in the array.</li>
+		</ul>
+		<p>Layer, layer pair, and layer array constraints can&nbsp;refer to&nbsp;<a href="../tech/classoaPhysicalLayer.html">			 oaPhysicalLayer</a> , <a href="../tech/classoaDerivedLayer.html">oaDerivedLayer</a>, or <a href="../tech/classoaSizedLayer.html">oaSizedLayer</a> objects. </p>
+
+<a name="constraintattr"></a>
+		<h2 class="spabove">Constraint Attributes		</h2>
+		<p class="spabove">Constraints have attributes that depend on the type of constraint and its application. These are:</p>
+		<ul>
+			<li>Name for a new constraint</li>
+            <li>Constraint definition</li>
+			<li>Constraint value</li>
+			<li>Boolean indicating whether the constraint is hard</li>
+			<li>Associated parameters</li>
+	</ul>
+
+<a name="constraintdef"></a>
+<h3 class="spabove">Constraint Definition</h3>
+		<p class="spabove">The constraint definition is represented by the <a href="../base/classoaConstraintDef.html">oaConstraintDef</a>		  object or one of its derived classes:		</p>
+		<ul>
+			<li>
+				<a href="../base/classoaSimpleConstraintDef.html">oaSimpleConstraintDef</a></li>
+			<li>
+				<a href="../base/classoaLayerConstraintDef.html">oaLayerConstraintDef</a></li>
+			<li>
+				<a href="../base/classoaLayerPairConstraintDef.html">oaLayerPairConstraintDef</a></li>
+			<li>
+				<a href="../base/classoaLayerArrayConstraintDef.html">oaLayerArrayConstraintDef</a></li>
+		</ul>
+		<p class="spabove">The definition specifies the allowed value types for the constraint, 
+			the objects to which the constraint can be applied, and the databases in which 
+			the constraint can be created.		</p>
+		<ul>
+			<li>
+			The allowed value type attribute of the definition is checked&nbsp;when a constraint 
+			is created.&nbsp; If a value in the constraint doesn't match&nbsp;one of the allowed value 
+			types in the definition,&nbsp;an exception is thrown.&nbsp;</li>
+			<li>When you use <a href="../base/classoaConstraintGroupMem.html#oaConstraintGroupMem::create">oaConstraintGroupMem::create</a> to add a constraint   to an object's built-in constraint group, OpenAccess determines if the   constraint is appropriate to add to the group. Specifically, OpenAccess looks at   the constraint's list of allowed objects and&nbsp;confirms that the owning object of the target   constraint group is in that list, otherwise, an exception is   thrown.</li>
+			<li>
+				The <em>allowed-databases</em> attribute specifies the databases in which this constraint 
+				can be created. Constraints always have a value and are created in the same database as that value. Note that a constraint can only be placed in a constraintGroup that resides in the same database as the constraint. It is worth noting that a constraintGroup from oaTech can be placed in a constraintGroup from oaDesign.</li>
+		</ul>
+		<p class="spabove">OpenAccess provides several predefined constraint definitions, 
+			including definitions for common process rules such as minimum width and 
+			minimum spacing. Built-in constraint definitions are accessed using 
+			the get() functions on the derived objects oaSimpleConstraintDef, 
+			oaLayerConstraintDef, oaLayerPairConstraintDef, and oaLayerArrayConstraintDef.</p>
+		<p class="spabove">If you need a constraint type not defined by OpenAccess, you can 
+			create a new definition using the create() function on the appropriate derived 
+			oaConstraintDef object, for example, <a href="../base/classoaLayerConstraintDef.html#oaLayerConstraintDef::create">				oaLayerConstraintDef::create</a>.		</p>
+
+<a name="constraintvalue"></a>
+<h3 class="spabove">Constraint Value</h3>
+		<p>The value of the constraint is represented by an oaValue object.&nbsp; 
+			OpenAccess provides many different value types, including both simple 
+			types&nbsp;and tables.&nbsp; When a constraint is created, the type of the 
+			value must match one of the allowed value types in the constraint 
+			definition.&nbsp; Constraint definitions might have several&nbsp;allowed  value 
+			types.&nbsp; For example, consider minimum spacing, which might have any of the 
+			following value types:		</p>
+		<ul>
+			<li>An integer value for spacing</li>
+			<li>A one dimensional integer table value for width-based spacing</li>
+			<li>A two dimensional integer table value for width and length-based spacing</li>
+		</ul>
+        
+<a name="hardconstraints"></a>
+<h3 class="spabove">Hard Constraints</h3>
+		<p class="spabove">By default, constraints are hard, which means that they must be met. Set the isHard attribute to false to remove this restriction.</p>
+
+<a name="constraintparams"></a>
+<h3 class="spabove">Constraint Parameters</h3>
+		<p class="spabove">You can set constraint parameters to specify additional 
+			qualifiers for applying the constraint.&nbsp; An example of this is the <a href="oacMinAdjacentViaSpacingConstraint.html">				minimum adjacent via spacing</a> constraint.&nbsp; This constraint has a <em>distance</em>
+			constraint parameter, which indicates that this constraint applies only if the 
+			adjacent via is within the specified distance to the object.</p>
+
+<a name="constraintpurpose"></a>
+<h2 class="spabove">Constraint Purpose</h2>
+
+<p class="spabove">Layer-specific constraints can be scoped by purpose, which means that the constraint only applies to those shapes on a layer that have the specified purpose.</p>
+
+<a name="applyingconstraints"></a>
+<h2 class="spabove"><a name="applyConstraints"></a>Applying Constraints to Objects</h2>
+<p class="spabove">You can apply constraints to oaObjects by adding the constraint to the oaObject's constraint group. Each oaObject has an associated 
+constraint group that you can retrieve with the <a href="../base/classoaObject.html#oaObject::getConstraintGroup">oaObject::getConstraintGroup()</a> function. You can use <a href="../base/classoaObject.html#oaObject::hasConstraintGroup">oaObject::hasConstraintGroup()</a> to determine if an object has associated constraints. Once you have a constraint group, which can be the result of getting an object's constraint group or creating your own, you can add constraints to the group with the <a href="../base/classoaConstraintGroupMem.html#oaConstraintGroupMem::create">oaConstraintGroupMem::create</a> function.</p>
+
+<p>Constraint group semantics are defined  through an association with an <a href="../base/classoaConstraintGroupDef.html">oaConstraintGroupDef</a>. The oaConstraintGroupDef determines the type of objects that the constraint group can be applied to. Additional information about using constraint group definitions is provided in the following section <a href="#usingcgdefs">Using Constraint Group Definitions</a>.</p>
+
+<p>The <a href="../base/classoaConstraintGroupOperator.html">oaConstraintGroupOperator</a> on a constraint group determines how the member constraints apply to an object. The order of constraint group members is important if the associated constraint group definition has the <em>precedence</em> oaConstraintGroupOperator defined. Constraint groups associated with a precedence type definition apply a member constraint according to that member's precedence or order among similarly defined constraints in the group. You can change the order of the constraint 
+			group members with the <a href="../base/classoaConstraintGroupMem.html#oaConstraintGroupMem::moveToFirst">				moveToFirst()</a> and <a href="../base/classoaConstraintGroupMem.html#oaConstraintGroupMem::moveAfter">				moveAfter()</a> functions available on oaConstraintGroupMem. You can 
+			remove constraint group members with the <a href="../base/classoaConstraintGroupMem.html#oaConstraintGroupMem::destroy">destroy</a>() 
+			function. The <em>AND</em> constraint group operator means that all constraints in the group apply to the associated objects. The <em>OR</em> constraint group operator means that the associated object must satisfy at least one of the constraints in the group regardless of order. Additional information about using operators on constraint groups is provided in the following section <a href="#combiningconstraints">Combining Constraints in Constraint Groups</a>.</p>
+			
+		<p class="spabove">oaTech, oaDesign, oaBlock, oaModule, oaNet, oaRoute, oaGroup, oaFigGroup, and 
+			oaAreaBoundary have a second set of built-in constraint groups called 
+			default constraint groups. Adding constraints to one of these container objects implies 
+			that the constraint applies to all the objects in that container. For 
+			example, adding a constraint to a block's default constraint group implies that 
+			the constraint applies to all of the objects in the block. Adding constraints to the default constraint group of an oaNet implies that the constraints apply to all the shapes and routes on that net. To apply a constraint to only a route (as opposed to the entire net), add the constraint to the default constraint group of that route.</p>
+		<p class="spabove">You can retrieve the default constraint groups with the appropriate getDefaultConstraintGroup() function, for example, <a href="../design/classoaBlock.html#oaBlock::getDefaultConstraintGroup"> oaDesign::getDefaultConstraintGroup</a>. You can use the appropriate hasDefaultConstraintGroup() function to determine whether or not there is a default constraint group for the object.</p>
+		<p>Object type limitations specified by a constraint definition only apply when constraints are added directly to a container's implicit constraint group. Any constraint can be added to a default constraint group on a container object such as a design, and no checking is performed. These constraints apply to all contained objects.</p>
+
+		<p class="spabove">Additionally, oaTech provides a foundry rules constraint group, 
+			which is intended to hold the manufacturing constraints for a particular 
+			technology. These constraints apply to all objects built with this technology. Any constraint can be added to the foundry constraint group on the tech, and no checking is performed. Both default constraint groups and foundry rules constraint groups may contain constraints that are not applicable to a particular object type based on the associated constraint definition.</p>
+			
+		<p class="spabove">All these constraint groups (object constraint groups,  default constraint groups, foundry constraint groups, and tech default constraint groups) are known as built-in constraint groups in OpenAccess.</p>
+
+<p>To enforce certain foundry rules, such as gate widths, it is not  sufficient to associate constraints with drawn layers. Therefore, some applications define layers that are derived from drawn layers, and then  associate the constraints with the derived layers. For more information on derived layers, see <a href="derivedlayer.html">Deriving Layers and Performing Layer Operations</a></p>
+
+<a name="usingcgdefs"></a>
+<h2>Using Constraint Group Definitions</h2>
+<p>A constraint group definition specifies the semantics for how constraints in the corresponding constraint groups are used. OpenAccess provides a number of built-in  constraint group definitions for commonly used types of constraint groups. The built-in constraint group types are:</p>
+<ul>
+<li>Implicit</li>
+<li>Default</li>
+<li>Foundry</li>
+<li>Taper</li>
+<li>InputTaper</li>
+<li>OutputTaper</li>
+<li>Shielding</li>
+<li>TransReflexive</li>
+<li>Reflexive</li>
+<li>Interchild</li>
+<li>UserDefined</li>
+</ul>
+
+<p>These built-in constraint group definitions are specified using an oaConstraintGroupType enumeration.</p>
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#99cccc">
+<th valign="top" style="font-size:80%">oaConstraintGroupTypeEnum</th>
+<th valign="top" style="font-size:80%">Description</th>
+<th valign="top" style="font-size:80%">Objects</th>
+</tr>
+<tr>
+<td valign="top">oaImplicit</td>
+<td valign="top">Specifies  the semantics for the built-in constraint group associated with individual objects. </td>
+<td valign="top">All objects. Applies between the associated object and all other relevant objects.</td>
+</tr>
+<tr>
+<td valign="top">oaDefault</td>
+<td valign="top">Specifies the semantics for the built-in constraint group associated with a container object. Constraints in these constraint groups apply to the contained objects but not to the container object.</td>
+<td valign="top">oaTech, oaDesign, oaBlock, oaModule, oaNet, oaRoute, oaGroup, oaFigGroup, oaBoundary</td>
+</tr>
+<tr>
+<td valign="top">oaFoundry</td>
+<td valign="top">Specifies the semantics for the built-in foundry constraint group associated with an oaTech  database. A technology database can have only one foundry constraint group.</td>
+<td valign="top">oaTech</td>
+</tr>
+<tr>
+<td valign="top">oaTaper</td>
+<td valign="top">Specifies the semantics for the built-in taper constraint group.</td>
+<td valign="top">oaInstTerm, oaPin, oaBitTerm</td>
+</tr>
+<tr>
+<td valign="top">oaInputTaper</td>
+<td valign="top">Specifies the semantics for the built-in input taper constraint group.</td>
+<td valign="top">oaBitNet</td>
+</tr>
+<tr>
+<td valign="top">oaOutputTaper</td>
+<td valign="top">Specifies the semantics for the built-in output taper constraint group.</td>
+<td valign="top">oaBitNet</td>
+</tr>
+<tr>
+<td valign="top">oaShielding</td>
+<td valign="top">Specifies the semantics for the built-in constraint group associated with a shielded oaBitNet. The shielding constraint group can also be associated with a group of nets that must be shielded.</td>
+<td valign="top">oaBitNet</td>
+</tr>
+<tr>
+<td valign="top">oaTransReflexive</td>
+<td valign="top">Specifies the semantics for constraint groups where the constraints apply between all objects within a container and all relevant objects outside of that container. The constraints do not apply between objects within the container.</td>
+<td valign="top">oaGroup</td>
+</tr>
+<tr>
+<td valign="top">oaReflexive</td>
+<td valign="top">Specifies the semantics for constraint groups where the constraints apply between the relevant objects within a container, but do not apply to objects outside of the container.</td>
+<td valign="top">oaGroup</td>
+</tr>
+<tr>
+<td valign="top">oaInterchild</td>
+<td valign="top">Specifies the semantics for constraint groups where the constraints apply between objects within child containers but do not apply between objects within the parent container. InterChild constraint groups can be considered as applying to a subset of the relationships defined by the Reflexive semantics.</td>
+<td valign="top">oaGroup</td>
+</tr>
+<tr>
+<td valign="top">oaUserDefined</td>
+<td valign="top">Collects all user named constraint groups that are associated with a database but not associated with a particular object. User defined constraint groups in older databases are upgraded to be associated with this constraint group definition.</td>
+<td valign="top">oaTech, oaDesign</td>
+</tr>
+</table>
+
+<a name="usingtaper"></a>
+<h3>Using Taper Constraint Group Definitions</h3>
+<p>The three built-in taper constraint group types are <a href="../base/classoaConstraintGroupType.html">oaTaper, oaInputTaper, and oaOutputTaper</a>. The oaInputTaper and oaOutputTaper types can be associated with oaBitNet objects, where the oaTaper type supports the oaInstTerm, oaPin, and oaBitTerm objects. If an oaInputTaper constraint group is associated with an oaBitNet object, the constraints in that constraint group apply to the input oaTerms of that oaBitNet object.  Similarly, if an oaOutputTaper constraint group is associated with an oaBitNet object, the constraints in that constraint group apply to the output oaTerms of that oaBitNet object.</p>
+
+<p>If an oaTaper type of constraint group is associated with an oaInstTerm or oaBitTerm object, the contained constraints are applied when wiring the geometries that correspond to the pin that is either associated with the term or associated with the term corresponding to the instTerm. The application wires the net that is associated with the term or with the instTerm. The precedence for evaluating objects associated with an oaTaper constraint group is to evaluate first the oaInstTerms, then oaPins, and last oaBitTerms. The constraints in these groups can apply to objects that do not exist yet. The <a href="../guide/oacTaperHaloConstraint.html">oacTaperHalo</a> constraint may be added to a constraint group associated with any of these definitions to define the window around an object within which the taper must occur.</p>
+
+<p>The general steps for using a taper constraint group are:</p>
+<ol>
+<li>Get the built-in taper constraint group definition and create a constraint group on the type of object or objects that are supported.</li>
+<li>Add the oacTaperHalo constraint to the constraint group created in the previous step.</li>
+<li>Add other constraints, such as minimum width and minimum spacing, to the constraint group to further define the tapering.</li>
+</ol>
+
+<a name="understandingcgs"></a>
+<h2>Understanding TransReflexive, Reflexive, and InterChild Constraint Groups</h2>
+<p>These types of constraint groups, and the corresponding constraint group definitions, are intended to apply to objects within oaGroup containers. These types of constraint groups provide more flexibility and a greater degree of control for applying constraints.</p>
+
+<a name="transreflexive"></a>
+<h3>TransReflexive Constraint Group Semantics</h3>
+<p>TransReflexive constraints apply between each object within a container and all objects outside of the container. For example, it is often necessary to apply constraints between a differential net pair and other nets in order to minimize noise on the differential pair. The oaTransReflexive constraint group semantics are intended for this type of application. The following figure illustrates the semantics.</p>
+
+<img src="images/transreflexivebasic.gif" border="0" alt="TransReflexive Semantics">
+
+<p>The constraints apply between each object in the container object and each object outside the container object. The constraints do not apply between the objects within the container object, nor do the constraints apply between the objects outside of the container. Further, if a container object includes other container objects, the constraints apply between the sub-container objects and those objects outside of the parent container, but the constraints do not apply between objects within the sub-containers nor between objects in the sub-containers and other sub-containers or objects in the parent container. The following figure illustrates how the constraints apply.</p>
+
+<img src="images/transreflexivesub.gif" border="0" alt="TransReflexive Semantics for Sub-containers">
+
+<h3><a name="reflexive">Reflexive Constraint Group Semantics</a></h3>
+<p>Reflexive constraints apply between the objects within a container. For example, it is often necessary to apply constraints between a differential net pair that are different from the constraints necessary between the differential net pair and other nets. The oaReflexive constraint group semantics are intended for this type of application. The following figure illustrates the semantics.</p>
+
+<img src="images/reflexivebasic.gif" border="0" alt="Reflexive Semantics">
+
+<p>The constraints apply only between the objects within the container and do not apply between objects within the container and objects outside of the container.</p> 
+
+<a name="interchild"></a>
+<h3>InterChild Constraint Group Semantics</h3>
+<p>The InterChild constraint group semantics are a variant of the Reflexive constraint group semantics. Constraints in an InterChild constraint group apply between the relevant objects in a sub-group and all objects in other sub-groups. If InterChild constraints are applied to an oaGroup that has no sub-groups, the semantics for applying the constraints are identical to the semantics for Reflexive constraint groups. The following figure illustrates the semantics for InterChild constraint groups.</p>
+
+<img src="images/interchild.gif" border="0" alt="InterChild Semantics">
+
+
+<h3><a name="userdefinedcgdefs">User Defined Constraint Group Definitions</a></h3>
+<p>You can create a user-defined constraint group definition by using the <a href="../base/classoaConstraintGroupDef.html">oaConstraintGroupDef::create()</a> function. User-defined constraint group definitions can also be destroyed, and notifications are issued both when user-defined constraints are created and when they are destroyed.</p>
+
+<p>When you create a user-defined constraint group definition, you supply a name and a list of one or more <a href="usinggroupdefs.html#abstractconcrete">managed objects</a> that the constraint groups apply to. The oaConstraintGroupDef object exists in a session, and you can get the collection of these objects that are defined in a session by using <a href="../base/classoaSession.html">oaSession::getConstraintGroupDefs()</a>.</p>
+
+<p>The lef2oa reference translator included with OpenAccess creates a LEFDefaultRouteSpec constraint group and a LEFSpecialRouteSpec constraint group with corresponding user-defined group definitions. By definition, only one of each of these constraint groups can be associated in a technology database, but each tech in a graph of techs can have its own set of these constraint groups. In addition, a design can have its own LEFDefaultRouteSpec and LEFSpecialRouteSpec constraint group.</p>
+
+<p>You can get all the constraint groups, for a given oaConstraintGroupDef, in a graph of techs by using the oaTech::getConstraintGroups() function to return an ordered array of constraint groups associated with the definition. The first constraint group in the ordered array is the constraint group associated with the most derived tech database in the graph.
+</p>
+
+
+<a name="special"></a>
+<h2>Specialized ConstraintGroups</h2>
+		<p>There are two user-defined ConstraintGroups that are created by the OpenAccess LEF and DEF translators:</p>
+		<ul>
+          <li>The LEFDefaultRouteSpec ConstraintGroup, which stores routing information, such as information about layers and  vias<br>
+          </li>
+		  <li>The LEFSpecialRouteSpec ConstraintGroup, which stores information about  power routing vias</li>
+    </ul>
+		<p>These specialized ConstraintGroups are created with an oaConstraintGroupDef. It is recommended that applications access the oaConstraintGroupDef  in order to get the corresponding ConstraintGroup.</p>
+		<p>The specialized ConstraintGroups  can be stored in tech or design databases. If stored in a tech database, the constraints apply across any designs that are associated with that tech. If stored in the design database, the constraints apply only to that particular design. Design-specific constraints should take precedence over constraints in the technology database. For example, suppose the  LEFDefaultRouteSpec for a tech contains an oacValidRoutingVias constraint that specifies the list of via definitions and geometries that can be used by the application when routing the design. At some point, a digital router processing the design  generates the set of via definitions and geometries that it  used. This design-specific set of valid routing vias takes precedence over the more general list specified in the tech.
+		  Applications  must look for design-specific routing rules before looking in the tech for the more generally applied rules. </p>
+		<p>A single tech can have only one LEFDefaultRouteSpec and one LEFSpecialRouteSpec. However, an application can have multiple LEFDefaultRouteSpecs and multiple LEFSpecialRouteSpecs in a graph of referenced technology databases. An   application creates overriding constraints in the more derived tech. Consider the following example.</p>
+<ul>
+<li>There are LEFDefaultRouteSpec and LEFSpecialRouteSpec constraint group types that are defined by an oaConstraintGroupDef.</li>
+
+<li>Both constraint groups definitions are created by the LEF/DEF translators.</li>
+
+<li>Using these constraint group definitions, the tech databases in an ITDB graph each have one ConstraintGroup for each of these types as long as they are named uniquely. Older databases do not allow multiple ConstraintGroups named LEFDefaultRouteSpec because they conflict by name. As of dataModel 4, by using the constraint group definition, a graph can have multiple ConstraintGroups of these types as long as the ConstraintGroup names are unique in the graph.</li>
+</ul>
+
+<p>For example, the following figure shows one of the LEFDefaultRouteSpec constraint groups named LEFDefaultRouteSpec. However, the other ones cannot be named the same. Lef2oa generates a unique name if necessary. The ConstraintGroup name in a tech must be unique among all the techs in a graph.</p>
+
+
+		<p><img src="images/cgPrecedence2.gif" width="375" height="383"></p>
+	<p>There are three LEFDefaultRouteSpecs in the graph of techs for the design. An application searching for constraints  uses the following function to return an ordered set of ConstraintGroups with the most derived ConstraintGroup first. </p>
+		<pre>
+oaCollection&lt;oaConstraintGroup, oaTech>  oaTech::<a href="../tech/classoaTech.html#oaTech::getConstraintGroups3">getConstraintGroups</a>(const oaConstraintGroupDef      *def,
+                                                                     oaUInt4                         filterFlags = oacTechConstraintGroupIterAll) const</pre>
+		<p>The application can then search for a particular constraint, searching first in Tech A, then Tech B, and finally, Tech C. If the constraint of interest is <em>constraint 2</em>, the application will find this in Tech B. If the constraint of interest is <em>constraint 1</em>, the application will find this in  Tech A. </p>
+		<p><strong>Note:</strong> A design-specific LEFDefaultRouteSpec or LEFSpecialRouteSpec need not be complete&#8212;rather, it can supply a subset of constraints as overrides to constraints specified in the technology database. </p>
+		<p>For information about how the LEF and DEF translators map constructs into the LEFDefaultRouteSpec or LEFSpecialRouteSpec, refer to the <a href="../oa2lefdefmap/index.html">LEF/DEF to OpenAccess Mapping</a>.</p>
+
+<a name="upgradingolderdbs"></a>
+<h3>Upgrading Older Databases</h3>
+<p>Databases using dataModel 3 or earlier are upgraded when read by applications based on dataModel 4 or later. Constraint groups are associated with one of the built-in constraint groups and their corresponding constraint group definitions. When reading older databases, that do not support constraint group definitions, into an application that uses dataModel 4 or later, implicit constraint groups on objects are associated with the oaImplicit constraint group definition. Default constraint groups are associated with oaDefault constraint group definitions, and foundry rules constraint groups are associated with the oaFoundry constraint group definition.</p>
+
+<p>Older translators and other applications that directly access the built-in constraint groups directly, or that create user-defined constraint groups, should be updated to access or create the corresponding oaConstraintGroupDef.</p>
+
+<a name="combiningconstraints"></a>
+<h2>Combining Constraints in Constraint Groups</h2>
+<p>Process rule, and other types of constraints, can be combined into a single constraint group in order to more easily manage complex rules. Constraint groups use an operator to identify their semantic ordering, which determines how the constraints in the group are applied. The types of semantic ordering are:</p>
+<ul>
+<li>Precedence</li>
+<li>AND</li>
+<li>OR</li>
+</ul>
+
+<p>The semantic ordering of a constraint group is defined using an <a href="../base/classoaConstraintGroupOperator.html">oaConstraintGroupOperator</a> enumeration. The semantic ordering must be set when the constraint group is created.</p>
+
+<a name="precedenceop"></a>
+<h3>Precedence Type Constraint Group Operator</h3>
+<p>Databases based on dataModel 3 or earlier use precedence to determine how multiple constraints in a constraint group apply. Databases based on dataModel 4 or later support a precedence type constraint group operator that duplicates the behavior of the earlier dataModels. The precedence type of constraint group operator requires that the first hard constraint found in the group must be met.  If a soft constraint is found, it is enforced if possible. Otherwise, the next constraint in the group is considered. Only one constraint in the group applies, and the first hard or soft constraint that is met satisfies the constraint group evaluation. If the first hard constraint found cannot be met, no further constraints in the group are considered. Although uncommon, it is possible for constraint groups using the precedence operator to have other constraint groups as members.</p>
+
+<a name="andop"></a>
+<h3>AND Type Constraint Group Operator</h3>
+<p>The AND type of constraint group operator is introduced in dataModel 4. This type of constraint group operator is characterized by requiring that <em>all</em> constraints in the group must be met. OpenAccess provides no standard means for interpreting how the multiple constraints of an AND constraint group apply, and therefore, it is left to the application to make this interpretation. Other constraint groups may not be included or nested in an AND type of constraint group.</p>
+
+<a name="orop"></a>
+<h3>OR Type of Constraint Group Operator</h3>
+<p>The OR type of constraint group operator is introduced in dataModel 4. This type of constraint group operator requires that only one constraint in the group must be met. If a hard constraint cannot be met, the next constraint in the group is considered. Other constraint groups may not be included in the OR type of constraint group.</p>
+
+<a name="scoping"></a>
+<h2 class="spabove">Scoping Constraints</h2>
+		<p class="spabove">You decide where to place constraints  based on 
+			scoping.&nbsp;		</p>
+		<p class="spabove">If the constraint applies only to the object in question, add it to the object's constraint group.&nbsp; If it applies generically to all the objects in a container (block, design, module, area boundary, net, route, or group), add the constraint to that container's default constraint group.&nbsp; If the constraint applies to all objects implemented using a particular technology, add the constraint to the technology default constraint group, and if the constraint was provided by the foundry, add it to the technology foundry constraint group.</p>
+		<p class="spabove">In addition to deciding the appropriate scope for your 
+			constraint, or group of constraints, you need to decide whether or not your 
+			constraint is application specific. Application-specific constraints 
+			influence a particular application's behavior, but might conflict 
+			with the requirements of another application.		</p>
+		<p class="spabove">For example, you might add an application-specific constraint to the oaDesign default constraint group that limits the valid routing layers to metal3, metal4, and metal5. While your application might be required to 
+			route only metal3, metal4, and metal5, it is not reasonable to restrict all 
+	routers to use only those layers. </p>
+		<p class="spabove">Application-specific constraints should <em>not</em> be added to the built-in constraint groups, which apply to all 
+		  applications.
+		  Instead, place your application-specific constraints into an application-specific constraint group. In addition, leave your application-specific constraint group unattached from any built-in constraint group, and  the application can find it by name.</p>
+
+
+<a name="scopetopurpose"></a>
+<h2>Scoping to Purpose</h2>
+<p>Some foundries, and certain applications, apply different constraints to the shapes on a layer dependent on the shape purpose. For example, shapes with the fill purpose might require a different minimum spacing in contrast to the minimum spacing required between  shapes with the drawing purpose on the same layer.</p>
+
+
+<p>All layers associated with constraints can be further scoped to a purpose. Applications can limit the scope of a layer-based constraint to shapes with a specific purpose by creating a constraint with both layers and purposes. The <a href="../tech/classoaLayerConstraint.html">oaLayerConstraint</a>, <a href="../tech/classoaLayerArrayConstraint.html">oaLayerArrayConstraint</a>, and <a href="../tech/classoaLayerPairConstraint.html">oaLayerPairConstraint</a> classes include a create() function to specify both layers and corresponding purposes. The create() functions take one or more <em>layerNum</em> arguments and one or more <em>purposeNum</em> arguments. In addition, all the layer constraint classes provide getPurpose() functions that return the purpose number or an array of purpose numbers for a constraint, and they provide find() functions that can be used to return constraints that match the specified <em>layerNum</em> and <em>purposeNum</em> arguments.</p>
+
+
+<p>OpenAccess provides a number of built-in purposes with corresponding purpose numbers. Among these are the <em>oaAny</em> purpose, which serves as a wildcard for the find() and getConstraints() functions to return constraints with the purpose number oavPurposeNumberAny. Another built-in is named <em>oaNo</em> for explicitly designating   <em>no purpose specified</em>. The purpose number for the oaNo purpose is oavPurposeNumberNo.</p>
+
+<p>It is illogical to create a constraint using the oaAny purpose, and the create() functions throw an exception if oavPurposeNumberAny is used as the <em>purposeNum</em> argument. The oaAny purpose can be used as the <em>purposeNum</em> argument with the find() calls to return a constraint that is scoped to any purpose. The oaNo purpose can be used with the create() functions to create a constraint that has no purpose scope and can be used with the find() calls to return a constraint that has no purpose scope.</p>
+
+<p>The built-in purposes have a corresponding range of purpose numbers, which are from 0xffff0000 to 0xffffffff, inclusive. Applications cannot create custom purposes that use purpose numbers in this reserved range. If an older database is loaded by an application that uses shared libraries based on data model 4 or later, any missing built-in purposes are added. If an older database includes a user-defined purpose that uses a reserved purpose number that is used by one of the built-in purposes, and that database is read by newer OpenAccess shared libraries, that user-defined purpose is removed from the database.</p>
+
+
+<p>OpenAccess provides <a href="../tech/classoaPurposeArray.html">oaPurposeArray</a>, a lightweight utility class, for storing a set of purposes. Applications use this array to pass multiple purpose numbers to those APIs that require a set of purpose numbers rather than a single purpose number. No relationship between the members of an oaPurposeArray is implied, and the array is not sorted or checked for duplicates.</p>
+
+<a name="examplepurpose"></a>
+<h3>Example</h3>
+<p><strong>Case Information:</strong> A foundry has different spacing and width rules for drawing shapes versus fill shapes on a  layer. Fill shapes that do not require OPC processing result in shorter OPC and mask generation and faster write times. However, such shapes require larger width and spacing rules, and the foundry prefers to use these as much as possible to reduce the time necessary for generating the fills. Drawing shapes are smaller geometries that allow tighter spacing but require OPC. Some fill areas require smaller fill shapes because they must be comparable in size and spacing to the drawing shapes. However, the smaller fill shapes require OPC processing, and hence can use the same spacing and width rules as drawn shapes.</p>
+
+<p><strong>Foundry Rules:</strong> Create a set of rules that specify the minimum spacing among the shapes for different purposes on a layer. The rule set for metal1 is described as follows:</p>
+<ul>
+<li>Minimum spacing between a drawing shape and any other drawing shape = d1</li>
+<li>Minimum spacing between an OPC fill shape and any other OPC fill shape = d1</li>
+<li>Minimum spacing between a non-OPC fill shape and any other non-OPC fill shape = d2</li>
+<li>Minimum spacing between a drawing shape and an OPC fill shape = d1</li>
+<li>Minimum spacing between a drawing shape and a non-OPC fill shape = d2</li>
+<li>Minimum spacing between an OPC fill shape and a non-OPC fill shape = d2</li>
+</ul>
+
+<p><strong>In OpenAccess:</strong> Use the <em>drawing</em> purpose for drawing shapes, use the <em>fill</em> purpose for non-OPC fill shapes, and use the <em>oaFillOPC</em> purpose for OPC fill shapes. Create both spacing and clearance constraints as follows:</p>
+<ol>
+<li>oacMinSpacing constraint with a value of d1 for layer metal1  scoped to purpose <em>drawing</em>.</li>
+<li>oacMinSpacing constraint with a value of d2 for layer metal1  scoped to purpose <em>fill</em>.</li>
+<li>oacMinSpacing constraint with a value of d1 for layer metal1  scoped to purpose <em>fillOPC</em>.</li>
+<li>oacMinClearance constraint with a value of d1 for layer metal1  scoped to purpose <em>drawing</em> and for layer metal1 scoped for purpose <em>fillOPC</em>.</li>
+<li>oacMinClearance constraint with a value of d2 for layer metal1  scoped to purpose <em>drawing</em> and for layer metal1 scoped for purpose <em>fill</em>.</li>
+<li>oacMinClearance constraint with a value of d2 for layer metal1  scoped to purpose <em>fillOPC</em> and for layer metal1 scoped for purpose <em>fill</em>.</li>
+</ol>
+
+<p><strong>Model for How an Application Queries for Constraints</strong></p>
+<p>An application generating metal1 fill shapes must make several queries in the relevant constraint groups to find the correct spacing and clearance constraints.</p>
+<ol>
+<li style="margin-bottom:4px;">First, query for the minimum clearance between drawing and non-OPC fill shapes in the most restrictive constraint group by providing:
+<ul>
+<li style="margin-bottom:4px;">The type of constraint (oacMinClearance)</li>
+<li style="margin-bottom:4px;">The metal1 layer number and  fill purpose</li>
+<li style="margin-bottom:4px;">The metal1 layer number and drawing purpose.</li>
+</ul>
+This query finds spacing constraint 5.<br><br>
+
+<strong>Note:</strong> If a fill or drawing specific clearance constraint is not found in any of the relevant constraint groups, a query is made for a minimum spacing constraint that is not scoped to a purpose and is used if found.</li>
+
+<li style="margin-bottom:4px;">After generating multiple fill shapes, the application must query for the minimum spacing between fill shapes. A query for the oacMinSpacing constraint on metal1 scoped to purpose fill is found, and and constraint 2 is returned.</li>
+
+<li style="margin-bottom:4px;">Some non-OPC fill shapes do not fit in smaller areas, and the application must create smaller, more closely spaced OPC fill shapes in these areas. While generating OPC fill shapes in the vicinity of drawing shapes, the application checks for the minimum clearance between metal1 oaFillOPC shapes and metal1 drawing shapes. This check returns constraint 4.</li>
+
+<li style="margin-bottom:4px;">More than one OPC fill shape is generated, so the application must apply the spacing between OPC fill shapes. This steps uses  constraint 3.</li>
+
+<li>For OPC fill shapes that are adjacent to non-OPC fill shapes, the application queries for a minimum clearance constraint between metal1 non-OPC fill shapes and metal1 OPC fill shapes. Constraint 6 is returned.</li> 
+</ol>
+
+<a name="purposesummary"></a>
+<h3>Scoping to Purpose Summary</h3>
+<p><strong>To create a constraint scoped to a purpose:</strong></p>
+<ol>
+<li>Use oaPurposeArray to store a set of purposes if the constraint is of type oaLayerConstraintArray.</li>
+<li>Call one of the overloaded create() functions, passing the required layer numbers and purpose numbers along with the other necessary arguments.</li>
+</ol>
+
+<p><strong>To determine the purpose or purposes that a constraint is scoped to:</strong></p>
+<ul>
+<li>Call the getPurpose(), getPurposes(), or the getPurpose1() and getPurpose2() functions that return one or more purpose numbers on the constraint.</li>
+</ul>
+
+<p><strong>To find constraints scoped to a specified purpose:</strong></p>
+<ul>
+<li>Call one of the overloaded find() functions, passing one or more purpose numbers dependent on the type of layer constraint to match.
+
+<br><br>
+<strong>Note:</strong> You can pass the purpose number corresponding to oaAny to the find function to return a constraint that is scoped to any built-in or custom purpose rather than scoped to a specific purpose. You can pass the purpose number corresponding to oaNo to return a constraint that is not scoped to a purpose. 
+</li>
+</ul>
+
+<a name="constraintGroupsToObject"></a>
+<h2 class="spabove">Determining Which Constraint Groups Apply to Objects</h2>
+		<p class="spabove">To determine which constraint groups apply to an object, consider&nbsp;</p>
+		<ul>
+			<li>
+			The constraint groups that apply to the object in order, based on scoping</li>
+			<li>
+				The constraints within a constraint group in order, based on precedence</li>
+		</ul>
+		<p class="spabove">The previous section on the scoping of constraints defines the 
+			order in which to consider the constraint groups that apply to an object.  
+			First look at the object to determine if it has any constraints. If 
+			the object's constraint group has constraints, search the constraint group for 
+			the particular constraint. If you don't find the constraint you want, 
+			increase your scope. Look at each constraint group to determine if it has 
+			constraints, and if it does, whether or not it has the constraint you 
+			want.		</p>
+		<p class="spabove">For example, use the following logic to locate a 
+			minimum width constraint for a particular layer on an oaPathSeg:</p>
+		<ul>
+			<li>
+			Examine the object constraint group for the oaPathSeg.</li>
+			<li>Examine the default constraint group for the oaGroup containing the oaPathSeg.</li> 
+			<li>
+			Examine the default object constraint group for the oaRoute containing the oaPathSeg.</li>
+			<li>
+			Examine the default object constraint group for the oaNet containing the oaRoute.</li>
+			<li>
+			Examine the default object constraint group for the oaAreaBoundary.</li>
+			<li>
+			Examine the default constraint groups for the oaBlock, oaDesign, and oaTech.</li>
+			<li>
+				Examine the Foundry constraint group for the technology.			</li>
+		</ul>
+		<p class="spabove">Each time you look at one of these groups, use 
+			hasConstraintGroup() or hasDefaultConstraintGroup() to determine if these 
+			constraint groups have constraints, or if they should be skipped.</p>
+		<p class="spabove">
+		When you determine the constraint groups that apply to your object, search each 
+		constraint group for the specific constraint. The order of members 
+		in a constraint group represents precedence and determines the order in which 
+		constraints are evaluated. For example, given a constraint group, there 
+		might be two minimum width constraints for metal1. Because the groups' 
+		members are ordered, the application first attempts to meet the first minimum 
+		width constraint. If that constraint cannot be met, it should continue to 
+		the second minimum width constraint, and so on until either the constraint 
+		is met, all of the constraints in the group are evaluated, or a hard 
+		constraint that cannot be met is encountered. If a hard constraint cannot 
+		be met, it is an error, and either the design or the constraints must be 
+		adjusted.</p>
+		<p class="spabove">Constraint groups can contain other constraint groups as 
+			members. When searching a constraint group for a particular constraint 
+			type, the members should be evaluated in order, in a depth-first manner. This 
+			means that if a constraint group is encountered, all of its contents are 
+			evaluated before continuing to the next member.		</p>
+		<p class="spabove">OpenAccess provides several functions to search the contents of a 
+			particular constraint group. The oaConstraint objects 
+			(oaSimpleConstraint, oaLayerConstraint, oaLayerPairConstraint, and oaLayerArrayConstraint) provide find() functions that return the first constraint of a particular definition 
+			in a constraint group and search any subgroups as necessary. You can 
+			specify that find() locate the first hard constraint, but by default, it 
+			finds the first constraint whether hard or soft. oaConstraint objects also include setID() and getID() as well as setDescription() and getDescription() functions. Foundries often use ID and description strings to identify constraints by a common name or descriptive phrase. You can use the getID() and getDescription() functions to find constraints that have the ID or description attribute. Constraint groups also 
+			provide the getConstraints() function that returns an ordered collection of 
+			constraint groups and any subgroups that match a particular definition. </p>
+		<p>Note that the complete search for a constraint that applies to an object requires much more than a single find() or getConstraints() call on its constraint group. It must also search through all the constraint groups and default constraint groups that the object might inherit from. No single function in OpenAccess does this because it is important for applications that use constraints heavily to store this information locally in structures that are optimized in application-specific ways.</p>
+
+<a name="geomconstraints"></a>
+<h2 class="spabove">Geometric Constraints</h2>
+		<p>All dimensions used in geometric constraints should be in database 
+			units of the database unit size for maskLayout. Use the <a href="../tech/classoaTech.html">				oaTech</a> functions <a href="../tech/classoaTech.html#oaTech::getDBUPerUU">getDBUPerUU(oacMaskLayout)</a>
+			and <a href="../tech/classoaTech.html#oaTech::getUserUnits">getUserUnits(oacMaskLayout)</a>
+			to determine the conversion value for the database units.</p>
+		
+
+		<h2><br>
+        </h2>
+		<p><a href="#pagetop">Return to top of page</a></p>
+		<p><a href="index.html">Return to Programmers Guide topics</a></p>
+		<div style="TEXT-ALIGN: center">
+			<img src="../pgfooter.gif"></div>
+		<br>
+		<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+			<br>
+			All rights reserved.</p>
+		
+	</body>
+</html>

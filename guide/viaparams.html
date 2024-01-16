@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>Representing Vias in OpenAccess</h1>
+<hr />
+<p>This document describes:</p>
+<ul>
+  <li><a href="#what">What Type of Via to Use</a></li>
+  <li><a href="#stdVia">Standard Vias</a></li>
+  <li><a href="#customVia">Custom Vias</a></li>
+  <li><a href="#variants">Via Variants</a></li>
+  <li><a href="#validVias">Specifying the Valid Vias for a Design</a></li>
+  <li><a href="#auto_gen">Automatically Generating Vias</a></li>
+  <li><a href="#examples">Via API Programming Example</a></li>
+</ul>
+<h2><a name="what"></a>What Type of Via to Use</h2>
+<p>OpenAccess provides several approaches for representing vias. The approach that an application should use depends on the intended use model for the via. There are also memory usage issues to consider. </p>
+<p>The following table can help you decide what type of via to use. </p>
+<table width="693" border="1">
+  <tr bgcolor="#ccccdd">
+    <td width="171"><strong>Type of Via </strong></td>
+    <td width="506"><strong>Comments </strong></td>
+  </tr>
+  <tr>
+    <td>Standard Via</td>
+    <td><p>Uses the fixed set of   parameters defined in the oaViaParam object. Applications set the parameter values to   specify the geometric layout of the via. Standard vias are more efficient   than custom vias because they do not require accessing a separate via master   design and do not require an external evaluation to determine the   geometries.</p></td>
+  </tr>
+  <tr>
+    <td>Custom Via</td>
+    <td><p>The contents of   another master design database determines the via geometry. If that master   design is a PCell, the application can affect the geometric layout of the via by   specifying parameter values using oaParam objects. </p>
+      <p>Because OpenAccess must access  external, on-disk database files for  oaCustomVias, they are not as high-performance as oaStdVias, which are  available in virtual memory. </p></td>
+  </tr>
+  <tr>
+    <td>Standard Via Variant</td>
+    <td><p>Represents a   predefined standard via parameterization. This is useful for applications that require a fully specified via. In addition, applications can use this type of via  to <a href="#auto_gen">automatically generate vias</a>. </p></td>
+  </tr>
+  <tr>
+    <td>Custom Via Variant </td>
+    <td><p>Represents a   predefined custom via parameterization.</p></td>
+  </tr>
+</table>
+<h2><a name="stdVia"></a>Standard Vias </h2>
+<p>In OpenAccess, a standard via (<a href="../design/classoaStdVia.html">oaStdVia</a>) is one that can be constructed using a fixed set of predefined via parameters. These  parameters and their  values are represented by the <a href="../tech/classoaViaParam.html">oaViaParam</a> object. Each parameter value in an oaViaParam has a flag that indicates whether or not it should be used, or if a default value from the oaStViaDef should be used instead.</p>
+<p>The following  via parameters are available for oaStdVias:</p>
+<ul>
+  <li><a href="stdViaParams.html#WHL_param">Cut Width, Height, and Layer</a></li>
+  <li><a href="stdViaParams.html#originOffset_param">Origin Offset</a></li>
+  <li><a href="stdViaParams.html#layerEnc_param">Layer1 and Layer2 Enclosures</a></li>
+  <li><a href="stdViaParams.html#implantEnc_param">Implant1 and Implant2 Enclosures</a></li>
+  <li><a href="stdViaParams.html#layerOffset_param">Layer1 and Layer2 Offsets</a></li>
+  <li><a href="stdViaParams.html#CRS_param">Cut Columns, Cut Rows, and Cut Spacing</a></li>
+  <li><a href="stdViaParams.html#cutPattern_param">Cut Pattern</a></li>
+</ul>
+<h3><a name="create_std"></a>Creating an oaStdVia </h3>
+<p>To create an oaStdVia, the application should first create a standard via definition (<a href="../tech/classoaStdViaDef.html">oaStdViaDef</a>) by supplying</p>
+<ul>
+  <li> The correct layer numbers for the connected layers and implant layers (if any).</li>
+  <li>An oaViaParam object, which establishes a baseline set of default parameter
+  values. </li>
+</ul>
+<p>
+A single oaStdViaDef can be used to generate a family
+of standard vias for a particular set of connected layers. All of the values in the oaViaParam on the oaStdVia are used as defaults for the oaStdVias that are built with that oaStdViaDef. The default flags in the oaViaParam used here have no effect.</p>
+<h4><a name="overrideValues"></a>Overriding Default Parameter Values </h4>
+<p>To override any of the parameters in the oaStdViaDef default set,
+  a customized oaViaParam object is supplied when the oaStdVia is created. A parameter value (set to a non-default value so that its flag bit is cleared) in the customized oaViaParam object overrrides the corresponding default parameter of the oaStdViaDef.</p>
+<p>The resulting oaViaParam has a mixture 
+  of default parameters from the oaStdViaDef (with corresponding default flags set) and
+  non-default parameters from the personalized oaViaParam object
+  (with corresponding default flags cleared).</p>
+<p>When OpenAccess creates  an oaStdVia in a design, it gets the corresponding
+header and creates a subMaster of the oaStdVia in memory. The in-memory
+subMaster has the same effective oaViaParam that is applied to the oaStdVia (the oaViaParam that is created by resolving the default oaViaParam from
+the oaStdViaDef with any overriding values supplied in the customized oaViaParam
+used in the creation of the oaStdVia).</p>
+<p>
+The oaStdVia::getParams function takes a reference oaViaParam object as
+an argument.  oaStdVia::getParams will set that oaViaParam's
+parameter values to the effective oaViaParam values that have been
+set for the oaStdVia, as described in the preceding paragraph.
+For any parameter that has assumed the default setting from an
+oaStdViaDef, oaViaParam::hasDefault will return true.  For any
+parameter whose default value has been overridden by a non-default
+setting from a personalized oaViaParam, oaViaParam::hasDefault will return
+false.
+</p>
+<p>In the following example, the customized oaViaParam of the oaStdVia contains one
+overriding value, that  of layer1Enclosure. </p>
+<p><img src="images/stdVia.gif" width="768" height="455"></p>
+<p>The following code demonstrates this:</p>
+<pre>
+    // Get the technology database attached to the library
+    oaTech *tech = oaTech::find(oaScalarName(oaNativeNS(), getLibName()));
+
+    // Get via layers from the technology database
+    oaPhysicalLayer *poly = oaPhysicalLayer::find(tech, "Poly");
+    oaPhysicalLayer *imp1 = oaPhysicalLayer::find(tech, "Nimp");
+    oaPhysicalLayer *imp2 = oaPhysicalLayer::find(tech, "Pimp");
+    oaPhysicalLayer *metal1 = oaPhysicalLayer::find(tech, "Metal1");
+    oaPhysicalLayer *cut = oaPhysicalLayer::find(tech, "Via1");
+
+    // Set up the oaStdViaDef parameters
+    oaViaParam stdViaDefParam;
+    stdViaDefParam.setCutLayer(cut->getNumber());
+    stdViaDefParam.setCutWidth(1000);
+    stdViaDefParam.setCutHeight(1000);
+    stdViaDefParam.setCutSpacing(100);
+    stdViaDefParam.setCutColumns(4);
+
+    // Create the oaStdViaDef
+    oaStdViaDef *myStdViaDef =
+	oaStdViaDef::create(tech, oaString("myStdViaDef"), poly, metal1,
+			    stdViaDefParam, imp1, imp2);
+
+    // Set up the overriding parameters for the oaStdVia
+    oaViaParam overrideViaParam;
+    overrideViaParam.setLayer1Enc(oaVector(10, 10));
+
+    // Create the oaStdVia
+    oaTransform zeroTrans(oaPoint(0, 0), oacR0);
+    oaStdVia::create(blk, myStdViaDef, zeroTrans, &overrideViaParam);</pre>
+<h3><a name="useViaParams"></a>Using  oaViaParams</h3>
+<p>When  a new oaViaParam is constructed, the parameter field values are
+initialized to generic default values as follows:</p>
+<ul>
+  <li>Cut rows and columns numbers are set to one.</li>
+  <li>The cut layer number is set to an unusable value.</li>
+  <li>All  other parameter field values are set to zero. </li>
+</ul>
+<p>Each oaViaParam has a set of default flags as  discussed in <a href="#overrideValues">Overriding Default Parameter Values</a>. On construction, an oaViaParam object has all default parameter values, and all of its default flag bits are set.
+  When you explicitly set a particular parameter value, the corresponding flag
+  is cleared, indicating that that parameter has a non-default value.</p>
+<p>
+In the previous figure, the customized oaViaParam object for creating the oaStdVia
+was generated by initializing an oaViaParam object and modifying a
+single parameter value, layer1Enclosure, to a non-default value.
+The default flag bit for layer1Enclosure was cleared, indicating that 
+parameter should override the default setting from the oaStdViaDef object
+when an oaStdVia is created.</p>
+<p>You can set a parameter from a customized oaViaParam object back to
+its original default value with oaViaParam::setDefault.  The parameter's
+default flag bit is set,  it is ignored in the creation
+of the oaStdVia, and the default parameter setting from the oaStdViaDef object
+is applied.</p>
+<h3><a name="createNewStd"></a>Creating New oaStdViaDefs </h3>
+<p>
+When creating a new oaStdViaDef, supply a customized oaViaParam object, as described in <a href="#overrideValues">Overriding Default Parameter Values</a>. The
+  parameters from the oaViaParam object supplied to the oaStdViaDef::create
+   function establish a baseline default set of parameters, which can be used to create
+a family of standard vias.  </p>
+<p>
+The oaStdViaDef::getParams function takes a reference to an oaViaParam object as
+an argument.  The oaStdViaDef::getParams function sets that oaViaParam's
+parameter values to the baseline default values that were established
+for the oaStdViaDef object.  The default flag bit for each of these parameters
+is set; the oaViaParam::hasDefault function  returns true for each
+of the parameter settings.</p>
+<h2><a name="customVia"></a>Custom Vias</h2>
+<p>A custom via (oaCustomVia) references a custom via definition (oaCustomViaDef)  that specifies the via geometry using the contents of a separate master design. If the master design is parameterized (a PCell), you can customize the geometries of the oaCustomVia by providing  an array of parameters (<a doxygen="oa_base.doxytag:../base/" href="../base/classoaParamArray.html">oaParamArray</a>) that override some of the parameter values. Note that an   oaCustomVia is very similar in behavior to an <a href="../design/classoaInst.html">oaInst</a>.</p>
+<p>An oaCustomViaDef object has a unique name and is associated with  a master design and two layers. A custom via in a route must point to  an oaCustomViaDef object in the technology database associated with the  design containing the route. For more information about the benefits and restrictions of oaCustomVias, refer to the detailed description for the <a href="../tech/classoaCustomViaDef.html">oaCustomViaDef</a> class. </p>
+<h3><a name="createCustomNonPcell"></a>Creating an oaCustomVia for a Non-Parameterized Via </h3>
+<p>When creating an oaCustomVia, provide a pointer to the oaCustomViaDef that references the via master you want to use. </p>
+<p>The following shows  an oaCustomVia that references a design that is not parameterized. </p>
+<p><img src="images/customVia.gif" width="684" height="241"></p>
+<h3><a name="createCustomPcell"></a>Creating an oaCustomVia for a Parameterized Via (PCell) </h3>
+<p>When an oaCustomViaDef references  a PCell via, the oaCustomVia can pass in an oaParamArray  to override the parameter values of the PCell. In the following example, the oaCustomVia overrides the value for the outerCutWidth parameter. </p>
+<p><img src="images/customViaPCell.gif" width="787" height="521"></p>
+<p><strong>Note:</strong> In order to create the oaCustomVia subMaster, a <a href="pcelleval.html">PCell evaluator plug-in</a> is is required. </p>
+<h3><a name="createParamArrays"></a>Creating New oaParamArrays</h3>
+<p>Use the oaParamArray constructor to create a new oaParamArray. Individual parameters can then be added with the inherited oaParamArray::append function. </p>
+<h3><a name="createCustomViaDef"></a>Creating New oaCustomViaDefs</h3>
+<p>When creating a new oaCustomViaDef, provide the lib/cell/view of the custom via to use as the master, and provide the layers. </p>
+<h2><a name="variants"></a>Via Variants  </h2>
+<p>OpenAccess lets you store predefined parameterizations of oaStdVias and oaCustomVias, known as via variants (oaViaVariants). An oaViaVariant object represents a named pairing of an oaViaDef reference and a fully specified set of via parameters.  </p>
+<p>oaViaVariants can be stored in oaTech or oaDesign databases. If the oaViaVariant should be available for any design in the technology, it must be stored in a technology database. If the oaViaVariant is design specific, it should be stored in the design database. When translating, a via variant specified in a LEF file is stored in a technology database, whereas a via variant in a DEF file is stored in a design database (unless the same variant already exists in the technology database). For more information about how via variants are imported into OpenAccess using the LEF/DEF translators, refer to <a href="../oa2lefdefmap/index.html">LEF/DEF to OpenAccess Mapping</a>. </p>
+<p>Within a single database, each oaViaVariant must have: </p>
+<ul>
+  <li>A unique name</li>
+  <li>A unique pairing of an oaViaDef and a set of parameters</li>
+</ul>
+<p>If an oaViaVariant is stored in a technology database that is part of a set of incremental technology databases, then these rules apply across the graph of reference technology databases. </p>
+<h3><a name="stdViaVariant"></a>Standard Via Variants</h3>
+<p>A standard via variant (oaStdViaVariant) is like an oaStdVia in which the parameter values are predefined by the application. This is particularly useful for applications, such as digital routers, that require a fully specified via. </p>
+<p>An oaStdViaVariant is comprised of</p>
+<ul>
+  <li>A name  </li>
+  <li>A reference to an oaStdViaDef</li>
+  <li>An oaViaParam in which all values are specified </li>
+</ul>
+<p><img src="images/stdViaVariant3.gif" width="435" height="417"></p>
+<p>In the following example, a library vendor supplies an oaStdViaDef in the technology database. The application creates an oaStdViaVariant that uses the provided oaStdViaDef and  defines a complete set of parameter values. Now, oaStdVias can be created using the oaStdViaDef from the oaTech and the stored oaViaParam of the oaStdViaVariant. </p>
+<p><img src="images/stdViaVariant.gif" width="639" height="663"></p>
+<p>An <a href="../tech/classoaViaParam.html#oaViaParam::setAllNonDefault">oaViaParam::setAllNonDefault</a> function is available for specifying that all parameter values should be considered as non-default values. </p>
+<h3><a name="stdViaVariant"></a>Custom Via Variants</h3>
+<p>A custom via variant (oaCustomViaVariant) can be thought of as an oaCustomVia in which the parameters  are predefined by the application. An oaCustomViaVariant is comprised of</p>
+<ul>
+  <li>A name </li>
+  <li>A reference to a oaCustomViaDef</li>
+  <li>An oaParamArray in which all values are specified </li>
+</ul>
+<p>An oaCustomViaVariant can be created in a design database if it applies to specific design, or in a technology database if it should be available to multiple designs. </p>
+<p><img src="images/customViaVariant3.gif" width="624" height="349"></p>
+<p>In the following example, a library vendor supplies an oaCustomViaDef in the technology database. The application creates an oaCustomViaVariant that uses the provided oaCustomViaDef and  defines a complete set of parameter values. Now, oaCustomVias can be created by passing in the oaCustomViaDef from the oaTech along with the stored oaParamArray of the oaCustomViaVariant. </p>
+<p><img src="images/customViaVariant.gif" width="832" height="606"></p>
+<h3><a name="validVias"></a>Specifying the Valid Vias for a Design </h3>
+<p>Applications can use the oacValidRoutingVias constraint to list the valid routing vias for a design. This constraint can simply provide a list of oaViaDefs. In a more powerful usage, the constraint can provide a list of the specifications of vias that are valid for the design. </p>
+<p>The oaViaTopology utility object is used to create an array of oaViaDefs and/or oaViaVariants. This array is used for the oacValidRoutingVias constraint. </p>
+<p><img src="images/viaTopology.gif" width="630" height="249"> </p>
+<p>Applications can also create user-defined constraint groups to specify the valid vias for a design. Refer to <a href="constraints.html#special">Specialized Constraints Groups</a> in <em>Creating and Modeling Process Rules and Constraints</em> for more information. </p>
+<h3><a name="auto_gen"></a>Automatically Generating Vias </h3>
+<p>An application can use the oacValidRoutingVias constraint with oaViaVariants to  generate vias. For example, a library vendor supplies oaStdViaDefs in a technology database. The application can locate an oaStdViaDef (without associated parameters) for the desired layer pair combination in the oacValidRoutingVias constraint. Based on user input, the application can generate numerous fixed vias, which it can store as oaStdViaDef and oaViaParam associations (oaViaVariants) in the oacValidRoutingVias constraint. </p>
+<h2><a name="examples"></a>Via API Programming Example </h2>
+<p>OpenAccess provides API programming examples, which include an example that uses vias and via variants. Refer to the Via example in  <a href="apipkgs.html#examples"> API Programming Examples</a> for more information. </p>
+<p>&nbsp;</p>
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

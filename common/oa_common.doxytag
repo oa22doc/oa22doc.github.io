@@ -1,0 +1,2026 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+<tagfile>
+  <compound kind="file">
+    <name>oaCommon.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommon_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommon_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonAgg.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonAgg_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonAgg.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonAgg_8h</filename>
+    <class kind="class">Agg</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonAgg_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonAgg.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonAgg_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonAgg_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonFactory.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonFactory_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonFactory.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonFactory_8h</filename>
+    <class kind="class">Factory</class>
+    <class kind="class">FactoryBase</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonFactory_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE class</type>
+      <name>FactoryBaseMap</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonFactory.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonFactory_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonFactory_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonIBase.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonIBase_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonIBase.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonIBase_8h</filename>
+    <class kind="class">IBase</class>
+    <class kind="class">ICompatibility</class>
+    <class kind="class">IException</class>
+    <class kind="class">IFactory</class>
+    <class kind="class">IIter</class>
+    <class kind="class">IIter&lt; T *, G &gt;</class>
+    <class kind="class">IPlugInException</class>
+    <class kind="class">ISecureStringCopy</class>
+    <class kind="class">ISequence</class>
+    <class kind="class">ISequence&lt; T *, SeqId, IterId &gt;</class>
+    <class kind="class">IString</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonIBase_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IBase *,&amp;IID_IBaseIter &gt;</type>
+      <name>IBaseIter</name>
+      <anchor>a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>ISequence&lt; IBase *,&amp;IID_IBaseSequence,&amp;IID_IBaseIter &gt;</type>
+      <name>IBaseSequence</name>
+      <anchor>a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE USE_OA_NAMESPACE OA_COMMON_DLL_API const Guid</type>
+      <name>IID_IBase</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_COMMON_DLL_API const Guid</type>
+      <name>IID_IFactory</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_COMMON_DLL_API const Guid</type>
+      <name>IID_ICompatibility</name>
+      <anchor>a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_COMMON_DLL_API const Guid</type>
+      <name>IID_IString</name>
+      <anchor>a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_COMMON_DLL_API const Guid</type>
+      <name>IID_IBaseIter</name>
+      <anchor>a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_COMMON_DLL_API const Guid</type>
+      <name>IID_IBaseSequence</name>
+      <anchor>a7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonIBase.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonIBase_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonIBase_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonInstallDir.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonInstallDir_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonInstallDir.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonInstallDir_8h</filename>
+    <class kind="class">InstallDir</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonInstallDir_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonInstallDir.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonInstallDir_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonInstallDir_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonInterfaceAccess.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonInterfaceAccess_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonInterfaceAccess.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonInterfaceAccess_8h</filename>
+    <class kind="class">InterfaceAccess</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonInterfaceAccess_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE class</type>
+      <name>IBase</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonInterfaceAccess.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonInterfaceAccess_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonInterfaceAccess_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE class</type>
+      <name>IBase</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonIntrusivePtr.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonIntrusivePtr_8h</filename>
+    <class kind="class">IntrusivePtr</class>
+    <class kind="class">IntrusivePtrLess</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonIntrusivePtr_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a1</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a2</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const T *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a3</anchor>
+      <arglist>(const T *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a4</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const U *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a5</anchor>
+      <arglist>(const U *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a6</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; U &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a7</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const void *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a8</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a9</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const T *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a10</anchor>
+      <arglist>(const T *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a11</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const U *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a12</anchor>
+      <arglist>(const U *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a13</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; U &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a14</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const void *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a15</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a16</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const T *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a17</anchor>
+      <arglist>(const T *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a18</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; U &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a19</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const void *rhs)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonIntrusivePtr.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonIntrusivePtr_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonIntrusivePtr_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a1</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a2</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const T *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a3</anchor>
+      <arglist>(const T *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a4</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const U *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a5</anchor>
+      <arglist>(const U *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a6</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; U &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a7</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const void *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a8</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a9</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const T *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a10</anchor>
+      <arglist>(const T *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a11</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const U *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a12</anchor>
+      <arglist>(const U *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a13</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; U &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a14</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const void *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a15</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a16</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const T *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a17</anchor>
+      <arglist>(const T *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a18</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const U *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a19</anchor>
+      <arglist>(const U *lhs, const IntrusivePtr&lt; T &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a20</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; U &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a21</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const void *rhs)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInBase.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonPlugInBase_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInBase.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonPlugInBase_8h</filename>
+    <class kind="class">ArrayIter</class>
+    <class kind="class">ExceptionBase</class>
+    <class kind="class">IDTester</class>
+    <class kind="class">IDTester&lt; IBase &gt;</class>
+    <class kind="class">NString</class>
+    <class kind="class">PlugInBase</class>
+    <class kind="struct">NString::StrBuff</class>
+    <class kind="class">StaticString</class>
+    <class kind="class">StlIString</class>
+    <class kind="class">StringImp</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonPlugInBase_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInBase.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonPlugInBase_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonPlugInBase_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInError.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonPlugInError_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInError.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonPlugInError_8h</filename>
+    <class kind="class">oaPlugInError</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonError_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonAssert</name>
+      <anchor>a1</anchor>
+      <init>{\
+    if (!(exp)) {\
+      throw oaPlugInError (IBase::cFail, #exp);\
+    }\
+}</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInError.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonPlugInError_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonPlugInError_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInMgr.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonPlugInMgr_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonPlugInMgr.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonPlugInMgr_8h</filename>
+    <class kind="class">oaPlugInMgr</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonPlugInMgr_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacPlugInPathSeparator</name>
+      <anchor>a1</anchor>
+      <init>&quot;:&quot;</init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE class</type>
+      <name>PlugInTable</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonProcInfo.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonProcInfo_8h</filename>
+    <class kind="class">ProcInfo</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonProcInfo_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacMaxProcHostNameLen</name>
+      <anchor>a1</anchor>
+      <init>PATH_MAX</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacSmallBufferSize</name>
+      <anchor>a2</anchor>
+      <init>512</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonProcInfo.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonProcInfo_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonProcInfo_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonSharedLib.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonSharedLib_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonSharedLib.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonSharedLib_8h</filename>
+    <class kind="class">SharedLib</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonSharedLib_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE typedef void *</type>
+      <name>SharedLibHandle</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonSharedLib.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonSharedLib_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonSharedLib_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonSPtr.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonSPtr_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonSPtr.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonSPtr_8h</filename>
+    <class kind="class">SPtr</class>
+    <class kind="class">SQPtr</class>
+    <class kind="class">SRef</class>
+    <class kind="class">SRef&lt; IString &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonSPtr_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE class</type>
+      <name>SRef</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonSPtr.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonSPtr_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonSPtr_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonTypes.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/common/</path>
+    <filename>oaCommonTypes_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonTypes_8h</filename>
+    <class kind="struct">Guid</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_COMMON_DLL_API</name>
+      <anchor>a1</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_COMMON_DLL_PVT</name>
+      <anchor>a2</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BEGIN_OA_NAMESPACE</name>
+      <anchor>a3</anchor>
+      <init>namespace OpenAccess_4 {</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>END_OA_NAMESPACE</name>
+      <anchor>a4</anchor>
+      <init>}</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>USE_OA_NAMESPACE</name>
+      <anchor>a5</anchor>
+      <init>using namespace OpenAccess_4;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BEGIN_OA_COMMON_NAMESPACE</name>
+      <anchor>a6</anchor>
+      <init>namespace oaCommon {</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>END_OA_COMMON_NAMESPACE</name>
+      <anchor>a7</anchor>
+      <init>}</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>USE_OA_COMMON_NAMESPACE</name>
+      <anchor>a8</anchor>
+      <init>using namespace oaCommon;</init>
+    </member>
+    <member kind="typedef">
+      <type>char</type>
+      <name>oaInt1</name>
+      <anchor>a10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>short</type>
+      <name>oaInt2</name>
+      <anchor>a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>int</type>
+      <name>oaInt4</name>
+      <anchor>a12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned char</type>
+      <name>oaByte</name>
+      <anchor>a13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned short</type>
+      <name>oaUInt2</name>
+      <anchor>a14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned int</type>
+      <name>oaUInt4</name>
+      <anchor>a15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>float</type>
+      <name>oaFloat</name>
+      <anchor>a16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>double</type>
+      <name>oaDouble</name>
+      <anchor>a17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>int</type>
+      <name>oaBoolean</name>
+      <anchor>a18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>time_t</type>
+      <name>oaTime</name>
+      <anchor>a19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>long long</type>
+      <name>oaInt8</name>
+      <anchor>a20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned long long</type>
+      <name>oaUInt8</name>
+      <anchor>a21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned int</type>
+      <name>oaUIntPtr</name>
+      <anchor>a22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>short</type>
+      <name>int16</name>
+      <anchor>a24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned short</type>
+      <name>uint16</name>
+      <anchor>a25</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>int</type>
+      <name>int32</name>
+      <anchor>a26</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned int</type>
+      <name>uint32</name>
+      <anchor>a27</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>long long</type>
+      <name>int64</name>
+      <anchor>a28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned long long</type>
+      <name>uint64</name>
+      <anchor>a29</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>unsigned int</type>
+      <name>uintPtr</name>
+      <anchor>a30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_NAMESPACE END_OA_NAMESPACE BEGIN_OA_NAMESPACE typedef char</type>
+      <name>oaChar</name>
+      <anchor>a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_COMMON_NAMESPACE typedef unsigned char</type>
+      <name>byte</name>
+      <anchor>a23</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaCommonTypes.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/common/</path>
+    <filename>oaCommonTypes_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaCommonTypes_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="function">
+      <type>BEGIN_OA_COMMON_NAMESPACE bool</type>
+      <name>operator==</name>
+      <anchor>a1</anchor>
+      <arglist>(const Guid &amp;guid, const Guid &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a2</anchor>
+      <arglist>(const Guid &amp;guid, const Guid &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a3</anchor>
+      <arglist>(const Guid &amp;guid, const Guid &amp;other)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&gt;</name>
+      <anchor>a4</anchor>
+      <arglist>(const Guid &amp;guid, const Guid &amp;other)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Agg</name>
+    <filename>classAgg.html</filename>
+    <templarg>T</templarg>
+    <base>IBase</base>
+    <member kind="function">
+      <type></type>
+      <name>Agg</name>
+      <anchor>a0</anchor>
+      <arglist>(T *owner)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ArrayIter</name>
+    <filename>classArrayIter.html</filename>
+    <templarg>I</templarg>
+    <templarg>T</templarg>
+    <base>PlugInBase</base>
+    <member kind="function">
+      <type></type>
+      <name>ArrayIter</name>
+      <anchor>a0</anchor>
+      <arglist>(oa::oaInt4 initialCap=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~ArrayIter</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>next</name>
+      <anchor>a2</anchor>
+      <arglist>(typename I::Type &amp;objOut)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>reset</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>add</name>
+      <anchor>a4</anchor>
+      <arglist>(const T &amp;elem)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ExceptionBase</name>
+    <filename>classExceptionBase.html</filename>
+    <base>IException</base>
+    <member kind="function">
+      <type></type>
+      <name>ExceptionBase</name>
+      <anchor>a0</anchor>
+      <arglist>(oa::oaUInt4 idIn, const char *msgIn)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual oa::oaUInt4</type>
+      <name>getMsgId</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getMsg</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Factory</name>
+    <filename>classFactory.html</filename>
+    <templarg>T</templarg>
+    <base>FactoryBase</base>
+    <member kind="function">
+      <type></type>
+      <name>Factory</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *classID)</arglist>
+    </member>
+    <member kind="function">
+      <type>oa::oaUInt4</type>
+      <name>createInstance</name>
+      <anchor>a1</anchor>
+      <arglist>(IBase *reserved, const Guid &amp;interfaceID, void **ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~Factory</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>FactoryBase</name>
+    <filename>classFactoryBase.html</filename>
+    <base>IFactory</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual long</type>
+      <name>queryInterface</name>
+      <anchor>a0</anchor>
+      <arglist>(const Guid &amp;idIn, void **iPtr)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned long</type>
+      <name>addRef</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned long</type>
+      <name>release</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oa::oaUInt4</type>
+      <name>getClassObject</name>
+      <anchor>d0</anchor>
+      <arglist>(const char *classID, const Guid &amp;interfaceID, void **ptr)</arglist>
+    </member>
+    <member kind="function" protection="public">
+      <type></type>
+      <name>FactoryBase</name>
+      <anchor>b0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="public" static="yes">
+      <type>void</type>
+      <name>insertFactory</name>
+      <anchor>e0</anchor>
+      <arglist>(const char *classID, FactoryBase *factory)</arglist>
+    </member>
+    <member kind="function" protection="public" static="yes">
+      <type>void</type>
+      <name>eraseFactory</name>
+      <anchor>e1</anchor>
+      <arglist>(FactoryBase *factory)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>Guid</name>
+    <filename>structGuid.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>IBase</name>
+    <filename>classIBase.html</filename>
+    <member kind="function" virtualness="pure">
+      <type>virtual long</type>
+      <name>queryInterface</name>
+      <anchor>a0</anchor>
+      <arglist>(const Guid &amp;id, void **iPtr)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual unsigned long</type>
+      <name>addRef</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual unsigned long</type>
+      <name>release</name>
+      <anchor>a2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="enumeration">
+      <name>Status</name>
+      <anchor>s13</anchor>
+      <init>13</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cOK</name>
+      <anchor>s13s0</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cFail</name>
+      <anchor>s13s1</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cNoInterface</name>
+      <anchor>s13s2</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cNotFound</name>
+      <anchor>s13s3</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cLibraryNotFound</name>
+      <anchor>s13s4</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cSymbolNotFound</name>
+      <anchor>s13s5</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cNotImplemented</name>
+      <anchor>s13s6</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cOutOfMemory</name>
+      <anchor>s13s7</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cInvalidArg</name>
+      <anchor>s13s8</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cNoAggregation</name>
+      <anchor>s13s9</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cErrorInRegFile</name>
+      <anchor>s13s10</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cClassNotRegistered</name>
+      <anchor>s13s11</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cIncompatible</name>
+      <anchor>s13s12</anchor>
+      <init> 12</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ICompatibility</name>
+    <filename>classICompatibility.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>validate</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDTester</name>
+    <filename>classIDTester.html</filename>
+    <templarg>I</templarg>
+    <member kind="function" static="yes">
+      <type>bool</type>
+      <name>test</name>
+      <anchor>d0</anchor>
+      <arglist>(const Guid &amp;id)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IException</name>
+    <filename>classIException.html</filename>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>getMsgId</name>
+      <anchor>a0</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual const char *</type>
+      <name>getMsg</name>
+      <anchor>a1</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IFactory</name>
+    <filename>classIFactory.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>createInstance</name>
+      <anchor>a0</anchor>
+      <arglist>(IBase *reserved, const Guid &amp;id, void **iPtr)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IIter</name>
+    <filename>classIIter.html</filename>
+    <templarg>T</templarg>
+    <templarg>G</templarg>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>next</name>
+      <anchor>a0</anchor>
+      <arglist>(T &amp;objOut)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>reset</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IIter&lt; T *, G &gt;</name>
+    <filename>classIIter_3_01T_01_5_00_01G_01_4.html</filename>
+    <templarg>T</templarg>
+    <templarg>G</templarg>
+    <base>IBase</base>
+    <member kind="typedef">
+      <type>T *</type>
+      <name>Type</name>
+      <anchor>s0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>T</type>
+      <name>IType</name>
+      <anchor>s1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>InterfaceAccess</name>
+    <filename>classInterfaceAccess.html</filename>
+    <templarg>T</templarg>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>getInterface</name>
+      <anchor>d0</anchor>
+      <arglist>(T *object, IBase *&amp;base)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IntrusivePtr</name>
+    <filename>classIntrusivePtr.html</filename>
+    <templarg>T</templarg>
+    <member kind="function">
+      <type></type>
+      <name>IntrusivePtr</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IntrusivePtr</name>
+      <anchor>a1</anchor>
+      <arglist>(T *in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IntrusivePtr</name>
+      <anchor>a2</anchor>
+      <arglist>(const IntrusivePtr &amp;copy)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~IntrusivePtr</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>IntrusivePtr &amp;</type>
+      <name>operator=</name>
+      <anchor>a4</anchor>
+      <arglist>(const IntrusivePtr &amp;rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>IntrusivePtr &amp;</type>
+      <name>operator=</name>
+      <anchor>a5</anchor>
+      <arglist>(T *rhs)</arglist>
+    </member>
+    <member kind="function">
+      <type>T &amp;</type>
+      <name>operator *</name>
+      <anchor>a6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator-&gt;</name>
+      <anchor>a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>get</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!</name>
+      <anchor>a9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>IntrusivePtr</name>
+      <anchor>a10</anchor>
+      <arglist>(const IntrusivePtr&lt; U &gt; &amp;copy)</arglist>
+    </member>
+    <member kind="function">
+      <type>IntrusivePtr &amp;</type>
+      <name>operator=</name>
+      <anchor>a11</anchor>
+      <arglist>(const IntrusivePtr&lt; U &gt; &amp;rhs)</arglist>
+    </member>
+    <member kind="friend" protection="protected">
+      <type>friend class</type>
+      <name>IntrusivePtr</name>
+      <anchor>l0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IntrusivePtrLess</name>
+    <filename>classIntrusivePtrLess.html</filename>
+    <templarg>T</templarg>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator()</name>
+      <anchor>a0</anchor>
+      <arglist>(const IntrusivePtr&lt; T &gt; &amp;lhs, const IntrusivePtr&lt; T &gt; &amp;rhs) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IPlugInException</name>
+    <filename>classIPlugInException.html</filename>
+    <base>IException</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>getStatus</name>
+      <anchor>a0</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ISecureStringCopy</name>
+    <filename>classISecureStringCopy.html</filename>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>copy</name>
+      <anchor>d0</anchor>
+      <arglist>(oaChar *strDest, const oaChar *strSrc, oaUInt4 maxLength)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ISequence</name>
+    <filename>classISequence.html</filename>
+    <templarg>T</templarg>
+    <templarg>SeqId</templarg>
+    <templarg>IterId</templarg>
+    <base>IIter&lt; T, IterId &gt;</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>count</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>insert</name>
+      <anchor>a1</anchor>
+      <arglist>(const T &amp;objIn)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>append</name>
+      <anchor>a2</anchor>
+      <arglist>(const T &amp;objIn)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>remove</name>
+      <anchor>a3</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>replace</name>
+      <anchor>a4</anchor>
+      <arglist>(const T &amp;objIn)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ISequence&lt; T *, SeqId, IterId &gt;</name>
+    <filename>classISequence_3_01T_01_5_00_01SeqId_00_01IterId_01_4.html</filename>
+    <templarg>T</templarg>
+    <templarg>SeqId</templarg>
+    <templarg>IterId</templarg>
+    <base>IIter&lt; T *, IterId &gt;</base>
+  </compound>
+  <compound kind="class">
+    <name>IString</name>
+    <filename>classIString.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual const char *</type>
+      <name>str</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>NString</name>
+    <filename>classNString.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>NString</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *in=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>NString</name>
+      <anchor>a1</anchor>
+      <arglist>(const NString &amp;str)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~NString</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator const char *</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>NString &amp;</type>
+      <name>operator=</name>
+      <anchor>a4</anchor>
+      <arglist>(const char *str)</arglist>
+    </member>
+    <member kind="function">
+      <type>NString &amp;</type>
+      <name>operator=</name>
+      <anchor>a5</anchor>
+      <arglist>(const NString &amp;str)</arglist>
+    </member>
+    <member kind="function">
+      <type>oa::oaUInt4</type>
+      <name>length</name>
+      <anchor>a6</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PlugInBase</name>
+    <filename>classPlugInBase.html</filename>
+    <templarg>I</templarg>
+    <member kind="function">
+      <type></type>
+      <name>PlugInBase</name>
+      <anchor>a0</anchor>
+      <arglist>(unsigned long refIn=0)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~PlugInBase</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual long</type>
+      <name>queryInterface</name>
+      <anchor>a2</anchor>
+      <arglist>(const Guid &amp;id, void **iPtr)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned long</type>
+      <name>addRef</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned long</type>
+      <name>release</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaPlugInError</name>
+    <filename>classoaPlugInError.html</filename>
+    <base>IPlugInException</base>
+    <member kind="function">
+      <type></type>
+      <name>oaPlugInError</name>
+      <anchor>a0</anchor>
+      <arglist>(IBase::Status statusIn, const char *msgIn=NULL)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual oa::oaUInt4</type>
+      <name>getStatus</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual oa::oaUInt4</type>
+      <name>getMsgId</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getMsg</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>PlugInParser</name>
+    <filename>classPlugInParser.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>ProcInfo</name>
+    <filename>classProcInfo.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ProcInfo</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ProcInfo</name>
+      <anchor>a1</anchor>
+      <arglist>(const ProcInfo &amp;obj)</arglist>
+    </member>
+    <member kind="function">
+      <type>const char *</type>
+      <name>getHostName</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isHostNameEmpty</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned long</type>
+      <name>getId</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>time_t</type>
+      <name>getTime</name>
+      <anchor>a5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getHostNamePIDString</name>
+      <anchor>a6</anchor>
+      <arglist>(std::string &amp;str, const char *seperator) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setThisProcess</name>
+      <anchor>a7</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setHostName</name>
+      <anchor>a8</anchor>
+      <arglist>(const char *value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setId</name>
+      <anchor>a9</anchor>
+      <arglist>(unsigned long value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTime</name>
+      <anchor>a10</anchor>
+      <arglist>(time_t value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchor>a11</anchor>
+      <arglist>(const std::string &amp;hostNameIn, unsigned long idIn)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>set</name>
+      <anchor>a12</anchor>
+      <arglist>(const std::string &amp;str, const char *seperator)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a13</anchor>
+      <arglist>(const ProcInfo &amp;obj) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>SPtr</name>
+    <filename>classSPtr.html</filename>
+    <templarg>T</templarg>
+    <member kind="function">
+      <type></type>
+      <name>SPtr</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SPtr</name>
+      <anchor>a1</anchor>
+      <arglist>(T *in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SPtr</name>
+      <anchor>a2</anchor>
+      <arglist>(const char *classID, bool factory=false)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SPtr</name>
+      <anchor>a3</anchor>
+      <arglist>(const SRef&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SPtr</name>
+      <anchor>a4</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~SPtr</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>release</name>
+      <anchor>a6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>createInstance</name>
+      <anchor>a7</anchor>
+      <arglist>(const char *classID, IBase *reserved=NULL)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator T *&amp;</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator-&gt;</name>
+      <anchor>a10</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a11</anchor>
+      <arglist>(T *in)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a12</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a13</anchor>
+      <arglist>(const SRef&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator&lt;</name>
+      <anchor>a14</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;in) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a15</anchor>
+      <arglist>(const SPtr&lt; U &gt; &amp;in) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a16</anchor>
+      <arglist>(const SPtr&lt; U &gt; &amp;in) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>detach</name>
+      <anchor>a17</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>getRef</name>
+      <anchor>a18</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>ptr</name>
+      <anchor>a19</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>SQPtr</name>
+    <filename>classSQPtr.html</filename>
+    <templarg>T</templarg>
+    <base>SPtr</base>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a1</anchor>
+      <arglist>(T *in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a2</anchor>
+      <arglist>(const char *clsid, bool factory=false)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a3</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a4</anchor>
+      <arglist>(const SQPtr&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a5</anchor>
+      <arglist>(const SRef&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a6</anchor>
+      <arglist>(SPtr&lt; U &gt; in, bool successRequired=true)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a7</anchor>
+      <arglist>(U *in, bool successRequired=true)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SQPtr</name>
+      <anchor>a8</anchor>
+      <arglist>(const SRef&lt; U &gt; &amp;in, bool successRequired=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a9</anchor>
+      <arglist>(const SQPtr&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a10</anchor>
+      <arglist>(IBase *in)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a11</anchor>
+      <arglist>(T *in)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a12</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator=</name>
+      <anchor>a13</anchor>
+      <arglist>(const SRef&lt; T &gt; &amp;in)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>SRef</name>
+    <filename>classSRef.html</filename>
+    <templarg>T</templarg>
+    <member kind="function">
+      <type></type>
+      <name>SRef</name>
+      <anchor>a0</anchor>
+      <arglist>(T *in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SRef</name>
+      <anchor>a1</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SRef</name>
+      <anchor>a2</anchor>
+      <arglist>(const SRef&lt; T &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~SRef</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>detach</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!</name>
+      <anchor>a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>T *</type>
+      <name>operator-&gt;</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a9</anchor>
+      <arglist>(const SRef&lt; T &gt; &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator==</name>
+      <anchor>a10</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a11</anchor>
+      <arglist>(const SRef&lt; T &gt; &amp;other) const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>operator!=</name>
+      <anchor>a12</anchor>
+      <arglist>(const SPtr&lt; T &gt; &amp;other) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>SRef&lt; IString &gt;</name>
+    <filename>classSRef_3_01IString_01_4.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>SRef</name>
+      <anchor>a3</anchor>
+      <arglist>(const NString &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator const char *</name>
+      <anchor>a14</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StaticString</name>
+    <filename>classStaticString.html</filename>
+    <base>PlugInBase&lt; IString &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>StaticString</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *in)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>str</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StlIString</name>
+    <filename>classStlIString.html</filename>
+    <base>PlugInBase&lt; IString &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>StlIString</name>
+      <anchor>a0</anchor>
+      <arglist>(const std::string &amp;str)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>str</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>StringImp</name>
+    <filename>classStringImp.html</filename>
+    <base>IString</base>
+    <base>NString</base>
+    <member kind="function">
+      <type></type>
+      <name>StringImp</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>StringImp</name>
+      <anchor>a1</anchor>
+      <arglist>(const NString &amp;str)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned long</type>
+      <name>addRef</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual unsigned long</type>
+      <name>release</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual long</type>
+      <name>queryInterface</name>
+      <anchor>a4</anchor>
+      <arglist>(const Guid &amp;id, void **iPtr)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>str</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+</tagfile>

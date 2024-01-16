@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|blockages'/>
+<a name='2000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Blockages"></a>Blockages</h1>
+<pre>
+ [BLOCKAGES numBlockages ;
+
+      [- <a href='#2001'>LAYER</a> layerName
+          [ + <a href='#2002'>COMPONENT</a> compName
+          | + <a href='#2003'>SLOTS</a>
+          | + <a href='#2004'>FILLS</a>
+          | + <a href='#2005'>PUSHDOWN</a>
+          | + <a href='#2006'>EXCEPTPGNET</a> ]
+          [ + <a href='#2007'>SPACING</a> minSpacing
+          | + <a href='#2008'>DESIGNRULEWIDTH</a> effectiveWidth ]
+          {<a href='#2011'>RECT</a> pt pt | <a href='#2012'>POLYGON</a> pt pt pt ...} ...
+      ;] ...
+      [- <a href='#2013'>PLACEMENT</a>
+          [ + <a href='#2002'>COMPONENT</a> compName
+          | + <a href='#2005'>PUSHDOWN</a>
+          | + <a href='#2009'>SOFT</a>
+          | + <a href='#2010'>PARTIAL</a> maxDensity ]
+          {<a href='#2011'>RECT</a> pt pt} ...
+      ;] ...
+
+ END BLOCKAGES]
+</pre>
+<p>The DEF BLOCKAGES are mapped to oaLayerBlockage or oaAreaBlockage. The blockage type is determined from the LAYER/SLOTS/FILLS/PLACEMENT attributes as shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF blockage type</th>
+<th class='borders'>oacBlockageTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>PLACEMENT</td>
+<td class='borders'>oacPlacementBlockageType</td>
+</tr>
+<tr>
+<td class='borders'>LAYER FILLS</td>
+<td class='borders'>oacFillBlockageType</td>
+</tr>
+<tr>
+<td class='borders'>LAYER SLOTS</td>
+<td class='borders'>oacSlotBlockageType</td>
+</tr>
+<tr>
+<td class='borders'>LAYER</td>
+<td class='borders'>oacRoutingBlockageType</td>
+</tr>
+</table>
+</div>
+<a name='def|blockages|layer'/>
+<a name='2001'/>
+<h2 class='topicSyntax'>
+LAYER layerName</h2>
+<div style='margin-left:40px;'>
+<p>The DEF LAYER BLOCKAGE maps to an oaLayerBlockage on the specified layer. The layer must exist in the technology database.</p>
+</div>
+<a name='def|blockages|layer|component'/>
+<a name='2002'/>
+<h3 class='topicSyntax'>
+COMPONENT compName</h3>
+<div style='margin-left:60px;'>
+<p>compName corresponds to the name of the instance (mapped into the DEF namespace) that is the owner of the blockage.</p>
+</div>
+<a name='def|blockages|layer|slots'/>
+<a name='2003'/>
+<h3 class='topicSyntax'>
+SLOTS</h3>
+<div style='margin-left:60px;'>
+<p>The SLOTS blockage type maps to oacSlotBlockageType as shown in the previous table.</p>
+</div>
+<a name='def|blockages|layer|fills'/>
+<a name='2004'/>
+<h3 class='topicSyntax'>
+FILLS</h3>
+<div style='margin-left:60px;'>
+<p>The FILLS blockage type maps to oacFillBlockageType as shown in the previous table.</p>
+</div>
+<a name='def|blockages|layer|pushdown'/>
+<a name='2005'/>
+<h3 class='topicSyntax'>
+PUSHDOWN</h3>
+<div style='margin-left:60px;'>
+<p>The BLOCKAGE PUSHDOWN attribute is stored in the oaBlockage pushDown flag. Use the following API to determine whether the PUSHDOWN attribute needs to be written (TRUE value returned) or not:</p>
+<pre>
+   oaBoolean oaBlockage::isPushedDown() const
+</pre>
+</div>
+<a name='def|blockages|layer|exceptpgnet'/>
+<a name='2006'/>
+<h3 class='topicSyntax'>
+EXCEPTPGNET</h3>
+<div style='margin-left:60px;'>
+<p>For dataModel 4, the EXCEPTPGNET attribute maps to the allowPGNet attribute of the blockage.</p>
+<p>The EXCEPTPGNET parameter does not map to OpenAccess for earlier dataModels. A warning is issued if EXCEPTPGNET is found in this context in DEF.</p>
+</div>
+<a name='def|blockages|layer|spacing'/>
+<a name='2007'/>
+<h3 class='topicSyntax'>
+SPACING minSpacing</h3>
+<div style='margin-left:60px;'>
+<p>This information is stored using an <a href="../guide/oacMinSpacingConstraint.html">oacMinSpacing</a> constraint in the constraint group for the blockage.</p>
+</div>
+<a name='def|blockages|layer|designrulewidth'/>
+<a name='2008'/>
+<h3 class='topicSyntax'>
+DESIGNRULEWIDTH effectiveWidth</h3>
+<div style='margin-left:60px;'>
+<p>The BLOCKAGE DESIGNRULEWIDTH attribute is stored in the oaBlockage effectiveWidth attribute.</p>
+</div>
+<a name='def|blockages|layer|rect'/>
+<a name='2011'/>
+<h3 class='topicSyntax'>
+RECT pt pt</h3>
+<div style='margin-left:60px;'>
+<p>This information corresponds to the lower left and upper right points of the bounding box of a blockage.</p>
+</div>
+<a name='def|blockages|layer|polygon'/>
+<a name='2012'/>
+<h3 class='topicSyntax'>
+POLYGON pt pt pt ...</h3>
+<div style='margin-left:60px;'>
+<p>This information corresponds to the points of a blockage.</p>
+</div>
+<a name='def|blockages|placement'/>
+<a name='2013'/>
+<h2 class='topicSyntax'>
+PLACEMENT</h2>
+<div style='margin-left:40px;'>
+<p>The DEF PLACEMENT BLOCKAGE maps to an <a href="../design/classoaAreaBlockage.html">oaAreaBlockage</a>.</p>
+</div>
+<a name='def|blockages|placement|component'/>
+<a name='2002'/>
+<h3 class='topicSyntax'>
+COMPONENT compName</h3>
+<div style='margin-left:60px;'>
+<p>compName corresponds to the name of the instance (mapped into the DEF namespace) that is the owner of the blockage.</p>
+</div>
+<a name='def|blockages|placement|pushdown'/>
+<a name='2005'/>
+<h3 class='topicSyntax'>
+PUSHDOWN</h3>
+<div style='margin-left:60px;'>
+<p>The BLOCKAGE PUSHDOWN attribute is stored in the oaBlockage pushDown flag. Use the following API to determine whether the PUSHDOWN attribute needs to be written (TRUE value returned) or not:</p>
+<pre>
+   oaBoolean oaBlockage::isPushedDown() const
+</pre>
+</div>
+<a name='def|blockages|placement|soft'/>
+<a name='2009'/>
+<h3 class='topicSyntax'>
+SOFT</h3>
+<div style='margin-left:60px;'>
+<p>The SOFT and PARTIAL parameters map to the oaAreaBlockage object. The maxDensity value for PARTIAL blockages is a float. The SOFT type blockage has a density value that depends on the dataModel. The value defaults to 0% for OpenAccess dataModel 4 and defaults to 100% for dataModel 3.</p>
+</div>
+<a name='def|blockages|placement|partial'/>
+<a name='2010'/>
+<h3 class='topicSyntax'>
+PARTIAL maxDensity</h3>
+<div style='margin-left:60px;'>
+<p>The SOFT and PARTIAL parameters map to the oaAreaBlockage object. The SOFT type blockage has a density value of 100%. The maxDensity value for PARTIAL blockages is a float. The value defaults to 0% for OpenAccess dataModel 4 and defaults to 100% for dataModel 3.</p>
+</div>
+<a name='def|blockages|placement|rect'/>
+<a name='2011'/>
+<h3 class='topicSyntax'>
+RECT pt pt</h3>
+<div style='margin-left:60px;'>
+<p>This information corresponds to the lower left and upper right points of the bounding box of a blockage.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

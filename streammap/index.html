@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Stream to OpenAccess Mapping</h1>
+<p>This document expresses the relationship between Stream (GDSII) elements and OpenAccess objects. This document does not elaborate on the Stream language or syntax, since it is assumed that you are already familiar with this format. For additional information about the stream data language and syntax, refer to your Stream reference (not included with this documentation library).</p>
+<hr />
+<h2>How Entities Map</h2>
+
+<p>There are seven Stream entities, which map to OpenAccess as shown in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr>
+<th>Stream Entity</th>
+<th>OpenAccess Object</th>
+</tr>
+<tr>
+<td>structure</td>
+<td>oaDesign</td>
+</tr>
+<tr>
+<td>boundary</td>
+<td>oaPolygon</td>
+</tr>
+<tr>
+<td>path</td>
+<td>oaPath</td>
+</tr>
+<tr>
+<td>Sref</td>
+<td>oaScalarInst</td>
+</tr>
+<tr>
+<td>Aref</td>
+<td>oaArrayInst</td>
+</tr>
+<tr>
+<td>text</td>
+<td>oaText</td>
+</tr>
+<tr>
+<td>box</td>
+<td>oaRect</td>
+</tr>
+</table>
+
+<h3>Notes to entity mapping:</h3>
+<ul>
+<li>A boundary can map to an oaRect if the boundary can be compressed into a rectilinear form.</li>
+<li>Text angle and reflection attributes map to the orientation on an oaText object.</li>
+</ul>
+
+<hr />
+<h2>How Stream path types map</h2>
+<p>Stream path types map to OpenAccess path styles. Mapping of the four path types is shown in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr>
+<th>Stream Path Type</th>
+<th>OpenAccess Path Style</th>
+</tr>
+<tr>
+<td>type 0</td>
+<td>oacTruncatePathStyle (square end)</td>
+</tr>
+<tr>
+<td>type 1</td>
+<td>oacRoundPathStyle (round end)</td>
+</tr>
+<tr>
+<td>type 2</td>
+<td>oacExtendPathStyle (square end extended)</td>
+</tr>
+<tr>
+<td>type 4</td>
+<td>oacVariablePathStyle (variable length extension)</td>
+</tr>
+</table>
+
+<p>Zero-width paths are not translated.</p>
+
+<p>If you translate a design to the Stream version 3 format by using the -ver 3 option, path segments with two different end types, or path segments with variable end types, translate to Stream path type 0. Translating such path segments is done by shifting the end points to conserve the original geometry. If a design is translated to Stream using the default, version 5 format, path segments with two different end types translate to Stream path type 4.</p>
+<hr />
+
+<h2>How Vias Map</h2>
+<p>Single cut vias map to OpenAccess as an oaStdVia. Vias that comprise an array of cuts map to an oaStdVia with the array of cuts represented as either oaViaParam cut columns or rows. When translating vias with 15 or more cuts in the array, oa2strm maps the via to a pure structure containing the enclosing metal layer rectangles, plus the implant layer rectangles, plus an AREF to a structure containing a single cut rectangle. Vias with fewer than 15 cuts, and standard vias with a non-default or non-null cut pattern, are translated to Stream by representing each cut as an individual rectangle.</p>
+ 
+<p>Previous versions of the strm2oa translator produced either standard or custom vias on input to OpenAccess, and oa2strm always produced a rectangle for each via cut on output to Stream. The strm2oa translator now recognizes both the AREF and the multiple rectangle representations in Stream to produce a pure standard via in OpenAccess.</p>
+<hr>
+<h2>How Layer, Datatypes, and Properties Map</h2>
+<p>Stream layer and datatypes map to oaLayerNum and oaPurposeNum in OpenAccess. A Stream property maps to an oaStringProp object in OpenAccess.</p>
+<hr />
+<h2>Mapping Parameterized Cells (pcells)</h2>
+<p>The oaStrmOut translator flattens C++ pcells, giving each pcell variant a name that is based on the original pcell name and the order in which the variant was found. The pcells are flattened by creating a stream structure for each unique variant.  These structures are given a unique name using the method previously described. Each instance of a pcell variant is translated as an Sref.  The Sref uses the uniquely generated name to reference the appropriate flattened variant. If you stream the file back in, oaStrmIn does not recreate the pcells.</p>
+
+<p>Skill pcells are not translated by the StreamIn translator. The only handler that is built into OpenAccess is for C++ pcells. C++ pcells offer a significant performance advantage over Skill-based p-cells.</p>
+
+<hr />
+<h2>Mapping Additional Objects from OpenAccess to Stream</h2>
+<p>Six additional objects that can exist in an OpenAccess database also map to Stream entities. The mapping is shown in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr>
+<th>OpenAccess Object</th>
+<th>Stream Entity</th>
+</tr>
+<tr>
+<td>oaRoute</td>
+<td>Sref + path (via instance + route segment)</td>
+</tr>
+<tr>
+<td>oaBlockage</td>
+<td>boundary</td>
+</tr>
+<tr>
+<td>oaDonut</td>
+<td>boundary</td>
+</tr>
+<tr>
+<td>oaDot</td>
+<td>node</td>
+</tr>
+<tr>
+<td>oaEllipse</td>
+<td>boundary</td>
+</tr>
+<tr>
+<td>oaLine</td>
+<td>path</td>
+</tr>
+</table>
+
+<h3>Path Extensions for oaRoutes</h3>
+<p>If the first element of a route is a route segment, its extension is the bgnExt of the
+route.  All “middle” route segments are written as truncate extension types. If the last element of a route is a route segment, its extension is the endExt of the route.</p>
+
+<div style="text-align: center">
+<img src="images/streamfooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><em>Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a>
+<br />
+All rights reserved.</p>
+</body>
+</html>

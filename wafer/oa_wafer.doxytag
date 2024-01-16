@@ -1,0 +1,2604 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+<tagfile>
+  <compound kind="file">
+    <name>oaDesignInst.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaDesignInst_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaDesignInst.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaDesignInst_8h</filename>
+    <class kind="class">oaDesignInst</class>
+    <class kind="class">oaLayerMap</class>
+    <class kind="class">oaLayerMapArray</class>
+    <class kind="class">oaReticleUsage</class>
+    <class kind="class">oaTraits&lt; oaDesignInst &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDesignInst_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumReticleUsageEnums</name>
+      <anchor>a1</anchor>
+      <init>9</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaReticleUsageEnum</name>
+      <anchor>a11</anchor>
+      <init>9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDieReticleUsage</name>
+      <anchor>a11a2</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacAlignmentReticleUsage</name>
+      <anchor>a11a3</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacBarCodeReticleUsage</name>
+      <anchor>a11a4</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacIdentificationReticleUsage</name>
+      <anchor>a11a5</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDieSealReticleUsage</name>
+      <anchor>a11a6</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDieNumberReticleUsage</name>
+      <anchor>a11a7</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLogoReticleUsage</name>
+      <anchor>a11a8</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacElectricalReticleUsage</name>
+      <anchor>a11a9</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacOpticalReticleUsage</name>
+      <anchor>a11a10</anchor>
+      <init> 8</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaDesignInst.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaDesignInst_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDesignInst_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaFrame.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaFrame_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaFrame.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaFrame_8h</filename>
+    <class kind="class">oaFrame</class>
+    <class kind="class">oaTraits&lt; oaFrame &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaFrame_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaFrameInst.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaFrameInst_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaFrameInst.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaFrameInst_8h</filename>
+    <class kind="class">oaFrameInst</class>
+    <class kind="class">oaTraits&lt; oaFrameInst &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaFrameInst_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaImage.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaImage_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaImage.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaImage_8h</filename>
+    <class kind="class">oaImage</class>
+    <class kind="class">oaMfgLayerArray</class>
+    <class kind="class">oaTraits&lt; oaImage &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaImage_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaImage.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaImage_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaImage_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaReticle.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaReticle_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaReticle.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaReticle_8h</filename>
+    <class kind="class">oaReticle</class>
+    <class kind="class">oaTraits&lt; oaReticle &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaReticle_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaReticleRef.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaReticleRef_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaReticleRef.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaReticleRef_8h</filename>
+    <class kind="class">oaReticleRef</class>
+    <class kind="class">oaTraits&lt; oaReticleRef &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaReticleRef_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaStepperMap.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaStepperMap_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaStepperMap.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaStepperMap_8h</filename>
+    <class kind="class">oaStepperMap</class>
+    <class kind="class">oaTraits&lt; oaStepperMap &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaStepperMap_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWafer.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWafer_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWafer.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWafer_8h</filename>
+    <class kind="class">oaTraits&lt; oaWafer &gt;</class>
+    <class kind="class">oaWafer</class>
+    <class kind="class">oaWaferUnitsType</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWafer_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumWaferUnits</name>
+      <anchor>a1</anchor>
+      <init>4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaWaferUnitsEnum</name>
+      <anchor>a6</anchor>
+      <init>4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMicronWaferUnits</name>
+      <anchor>a6a2</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMilWaferUnits</name>
+      <anchor>a6a3</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMillimeterWaferUnits</name>
+      <anchor>a6a4</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNanometerWaferUnits</name>
+      <anchor>a6a5</anchor>
+      <init> 3</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferCollection.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferCollection_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferCollection.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferCollection_8h</filename>
+    <class kind="class">oaCollection&lt; oaWafer, oaWafer &gt;</class>
+    <class kind="class">oaIter&lt; oaWafer &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferCollection_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferCollection.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferCollection_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferCollection_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferDB.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferDB_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferDB.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferDB_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferDB_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferDBTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferDBTypes_8h</filename>
+    <class kind="class">oaWaferDataType</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferDBTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_WAFER_DLL_API</name>
+      <anchor>a1</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_WAFER_DLL_PVT</name>
+      <anchor>a2</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumWaferDataTypes</name>
+      <anchor>a3</anchor>
+      <init>25</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumNewWaferDataTypes</name>
+      <anchor>a4</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaWaferDataTypeEnum</name>
+      <anchor>a34</anchor>
+      <init>27</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferWaferDataType</name>
+      <anchor>a34a5</anchor>
+      <init> UINT_MAX</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacAppObjectWaferDataType</name>
+      <anchor>a34a6</anchor>
+      <init> UINT_MAX - 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacPropWaferDataType</name>
+      <anchor>a34a7</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacGroupWaferDataType</name>
+      <anchor>a34a8</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacGroupMemWaferDataType</name>
+      <anchor>a34a9</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacAvatarWaferDataType</name>
+      <anchor>a34a10</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacValueWaferDataType</name>
+      <anchor>a34a11</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintParamDefWaferDataType</name>
+      <anchor>a34a12</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintParamWaferDataType</name>
+      <anchor>a34a13</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintDefWaferDataType</name>
+      <anchor>a34a14</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintWaferDataType</name>
+      <anchor>a34a15</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintGroupWaferDataType</name>
+      <anchor>a34a16</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintGroupMemWaferDataType</name>
+      <anchor>a34a17</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintGroupHeaderWaferDataType</name>
+      <anchor>a34a18</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferDescWaferDataType</name>
+      <anchor>a34a19</anchor>
+      <init> 12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFrameWaferDataType</name>
+      <anchor>a34a20</anchor>
+      <init> 13</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReticleWaferDataType</name>
+      <anchor>a34a21</anchor>
+      <init> 14</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReticleRefWaferDataType</name>
+      <anchor>a34a22</anchor>
+      <init> 15</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacStepperMapWaferDataType</name>
+      <anchor>a34a23</anchor>
+      <init> 16</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacImageWaferDataType</name>
+      <anchor>a34a24</anchor>
+      <init> 17</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFrameInstWaferDataType</name>
+      <anchor>a34a25</anchor>
+      <init> 18</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDesignInstWaferDataType</name>
+      <anchor>a34a26</anchor>
+      <init> 19</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferFeatureWaferDataType</name>
+      <anchor>a34a27</anchor>
+      <init> 20</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFeatureWaferDataType</name>
+      <anchor>a34a28</anchor>
+      <init> 21</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFeaturePolicyWaferDataType</name>
+      <anchor>a34a29</anchor>
+      <init> 22</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacGroupDefWaferDataType</name>
+      <anchor>a34a30</anchor>
+      <init> 23</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacConstraintGroupDefWaferDataType</name>
+      <anchor>a34a31</anchor>
+      <init> 24</init>
+    </member>
+    <member kind="function">
+      <type>OA_WAFER_DLL_API void</type>
+      <name>oaWaferInit</name>
+      <anchor>oaWaferInit</anchor>
+      <arglist>(oaUInt4 apiMajorRev=oacAPIMajorRevNumber, oaUInt4 apiMinorRev=oacAPIMinorRevNumber)</arglist>
+    </member>
+    <member kind="function">
+      <type>OA_WAFER_DLL_API void</type>
+      <name>oaWaferInit</name>
+      <anchor>oaWaferInit1</anchor>
+      <arglist>(oaUInt4 apiMajorRev, oaUInt4 apiMinorRev, oaUInt4 dataModelRev)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferDesc.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferDesc_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferDesc.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferDesc_8h</filename>
+    <class kind="class">oaTraits&lt; oaWaferDesc &gt;</class>
+    <class kind="class">oaWaferDesc</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferDesc_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferEnumWrapper.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferEnumWrapper_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferEnumWrapper_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferException.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferException_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferException.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferException_8h</filename>
+    <class kind="class">oaWaferError</class>
+    <class kind="class">oaWaferException</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferException_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferException.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferException_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferException_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferFeature.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferFeature_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferFeature.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferFeature_8h</filename>
+    <class kind="class">oaTraits&lt; oaWaferFeature &gt;</class>
+    <class kind="class">oaWaferFeature</class>
+    <class kind="class">oaWaferFeatureType</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferFeature_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumWaferFeatures</name>
+      <anchor>a1</anchor>
+      <init>6</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaWaferFeatureEnum</name>
+      <anchor>a8</anchor>
+      <init>6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFlatWaferFeature</name>
+      <anchor>a8a2</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNotchWaferFeature</name>
+      <anchor>a8a3</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacBlockageWaferFeature</name>
+      <anchor>a8a4</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacClampWaferFeature</name>
+      <anchor>a8a5</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLaserWaferFeature</name>
+      <anchor>a8a6</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacOtherWaferFeature</name>
+      <anchor>a8a7</anchor>
+      <init> 5</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferModTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferModTypes_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferModTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="enumeration">
+      <name>oaWaferModTypeEnum</name>
+      <anchor>a32</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetDBUPerWUWaferModType</name>
+      <anchor>a32a1</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetWaferUnitsWaferModType</name>
+      <anchor>a32a2</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaWaferDescModTypeEnum</name>
+      <anchor>a33</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameWaferDescModType</name>
+      <anchor>a33a3</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetTotalDiamWaferDescModType</name>
+      <anchor>a33a4</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetUsableDiamWaferDescModType</name>
+      <anchor>a33a5</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaFrameModTypeEnum</name>
+      <anchor>a34</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameFrameModType</name>
+      <anchor>a34a6</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetBoundaryBoxFrameModType</name>
+      <anchor>a34a7</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaStepperMapModTypeEnum</name>
+      <anchor>a35</anchor>
+      <init>5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetStepperNameStepperMapModType</name>
+      <anchor>a35a8</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetImageStepperMapModType</name>
+      <anchor>a35a9</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacAddPointStepperMapModType</name>
+      <anchor>a35a10</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacRemovePointStepperMapModType</name>
+      <anchor>a35a11</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetPointsStepperMapModType</name>
+      <anchor>a35a12</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaReticleModTypeEnum</name>
+      <anchor>a36</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameReticleModType</name>
+      <anchor>a36a13</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetScaleReticleModType</name>
+      <anchor>a36a14</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetBoundaryReticleModType</name>
+      <anchor>a36a15</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaImageModTypeEnum</name>
+      <anchor>a37</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameImageModType</name>
+      <anchor>a37a16</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetBoundaryImageModType</name>
+      <anchor>a37a17</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetMfgLayersImageModType</name>
+      <anchor>a37a18</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaWaferFeatureModTypeEnum</name>
+      <anchor>a38</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameWaferFeatureModType</name>
+      <anchor>a38a19</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetBoundaryWaferFeatureModType</name>
+      <anchor>a38a20</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetFeatureTypeWaferFeatureModType</name>
+      <anchor>a38a21</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaDesignInstModTypeEnum</name>
+      <anchor>a39</anchor>
+      <init>6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameDesignInstModType</name>
+      <anchor>a39a22</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetMagDesignInstModType</name>
+      <anchor>a39a23</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetTransformDesignInstModType</name>
+      <anchor>a39a24</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetPrintableDesignInstModType</name>
+      <anchor>a39a25</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetReticleUsageDesignInstModType</name>
+      <anchor>a39a26</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetMappingLayerDesignInstModType</name>
+      <anchor>a39a27</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaFrameInstModTypeEnum</name>
+      <anchor>a40</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameFrameInstModType</name>
+      <anchor>a40a28</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetMagFrameInstModType</name>
+      <anchor>a40a29</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetTransformFrameInstModType</name>
+      <anchor>a40a30</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaReticleRefModTypeEnum</name>
+      <anchor>a41</anchor>
+      <init>1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSetNameReticleRefModType</name>
+      <anchor>a41a31</anchor>
+      <init> 2</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferMsgs.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferMsgs_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferMsgs_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavWaferMsgIdStartValue</name>
+      <anchor>a1</anchor>
+      <init>4000</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumWaferMsgIds</name>
+      <anchor>a2</anchor>
+      <init>53</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaWaferMsgIds</name>
+      <anchor>a56</anchor>
+      <init>53</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWafer</name>
+      <anchor>a56a3</anchor>
+      <init> oavWaferMsgIdStartValue</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWaferDataTypeName</name>
+      <anchor>a56a4</anchor>
+      <init> 4001</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNotAWafer</name>
+      <anchor>a56a5</anchor>
+      <init> 4002</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSaveReadOnlyWafer</name>
+      <anchor>a56a6</anchor>
+      <init> 4003</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferLibNotFound</name>
+      <anchor>a56a7</anchor>
+      <init> 4004</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidAccessMode</name>
+      <anchor>a56a8</anchor>
+      <init> 4005</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferCannotChangeScratchMode</name>
+      <anchor>a56a9</anchor>
+      <init> 4006</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferBeingPurged</name>
+      <anchor>a56a10</anchor>
+      <init> 4007</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotDestroyOpenWafer</name>
+      <anchor>a56a11</anchor>
+      <init> 4008</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDestroyCannotFindWafer</name>
+      <anchor>a56a12</anchor>
+      <init> 4009</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotFindWafer</name>
+      <anchor>a56a13</anchor>
+      <init> 4010</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferPrimaryFileDoesNotExist</name>
+      <anchor>a56a14</anchor>
+      <init> 4011</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacViewNotWafer</name>
+      <anchor>a56a15</anchor>
+      <init> 4012</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCannotLockWafer</name>
+      <anchor>a56a16</anchor>
+      <init> 4013</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWaferUnitsTypeName</name>
+      <anchor>a56a17</anchor>
+      <init> 4014</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWaferFeatureName</name>
+      <anchor>a56a18</anchor>
+      <init> 4015</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWaferDesc</name>
+      <anchor>a56a19</anchor>
+      <init> 4016</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferAlreadyHasWaferDesc</name>
+      <anchor>a56a20</anchor>
+      <init> 4017</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidUsableDiamValue</name>
+      <anchor>a56a21</anchor>
+      <init> 4018</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidTotalDiamValue</name>
+      <anchor>a56a22</anchor>
+      <init> 4019</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidFrame</name>
+      <anchor>a56a23</anchor>
+      <init> 4020</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFrameAlreadyExists</name>
+      <anchor>a56a24</anchor>
+      <init> 4021</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidStepperMap</name>
+      <anchor>a56a25</anchor>
+      <init> 4022</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacStepperMapAlreadyExists</name>
+      <anchor>a56a26</anchor>
+      <init> 4023</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacImageStepperMapNotInSameWafer</name>
+      <anchor>a56a27</anchor>
+      <init> 4024</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidImage</name>
+      <anchor>a56a28</anchor>
+      <init> 4025</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacImageAlreadyExists</name>
+      <anchor>a56a29</anchor>
+      <init> 4026</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacImageHasExtraPoints</name>
+      <anchor>a56a30</anchor>
+      <init> 4027</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacImageTooFewPoints</name>
+      <anchor>a56a31</anchor>
+      <init> 4028</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidReticle</name>
+      <anchor>a56a32</anchor>
+      <init> 4029</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReticleHasExtraPoints</name>
+      <anchor>a56a33</anchor>
+      <init> 4030</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReticleTooFewPoints</name>
+      <anchor>a56a34</anchor>
+      <init> 4031</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReticleAlreadyExists</name>
+      <anchor>a56a35</anchor>
+      <init> 4032</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWaferFeature</name>
+      <anchor>a56a36</anchor>
+      <init> 4033</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferFeatureAlreadyExists</name>
+      <anchor>a56a37</anchor>
+      <init> 4034</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferFeatureHasExtraPoints</name>
+      <anchor>a56a38</anchor>
+      <init> 4035</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferFeatureTooFewPoints</name>
+      <anchor>a56a39</anchor>
+      <init> 4036</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidDesignInst</name>
+      <anchor>a56a40</anchor>
+      <init> 4037</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDesignInstAlreadyExists</name>
+      <anchor>a56a41</anchor>
+      <init> 4038</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacDesignInstInvalidMapLayer</name>
+      <anchor>a56a42</anchor>
+      <init> 4039</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidReticleUsageName</name>
+      <anchor>a56a43</anchor>
+      <init> 4040</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidFrameInst</name>
+      <anchor>a56a44</anchor>
+      <init> 4041</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFrameInstAlreadyExists</name>
+      <anchor>a56a45</anchor>
+      <init> 4042</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFrameInstOwnerAndMasterAreSame</name>
+      <anchor>a56a46</anchor>
+      <init> 4043</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFrameInstOwnerAndMasterDiffWafer</name>
+      <anchor>a56a47</anchor>
+      <init> 4044</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidReticleRef</name>
+      <anchor>a56a48</anchor>
+      <init> 4045</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReticleRefAlreadyExists</name>
+      <anchor>a56a49</anchor>
+      <init> 4046</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReticleRefAndRefInSameWafer</name>
+      <anchor>a56a50</anchor>
+      <init> 4047</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferCannotGetReadAccess</name>
+      <anchor>a56a51</anchor>
+      <init> 4048</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferCannotGetWriteAccess</name>
+      <anchor>a56a52</anchor>
+      <init> 4049</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWaferHasReadNeedWriteAccess</name>
+      <anchor>a56a53</anchor>
+      <init> 4050</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWaferObject</name>
+      <anchor>a56a54</anchor>
+      <init> 4051</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacInvalidWaferDataTypeForTimeStamp</name>
+      <anchor>a56a55</anchor>
+      <init> 4052</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferObject.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferObject_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferObject.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferObject_8h</filename>
+    <class kind="class">oaTraits&lt; oaWaferObject &gt;</class>
+    <class kind="class">oaWaferObject</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferObject_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferObserver.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferObserver_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferObserver.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferObserver_8h</filename>
+    <class kind="class">oaObserver&lt;oaWafer, oacObserverVersion1&gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferObserver_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferTraits.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/wafer/</path>
+    <filename>oaWaferTraits_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaWaferTraits.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/wafer/</path>
+    <filename>oaWaferTraits_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaWaferTraits_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaDesignInst</name>
+    <filename>classoaDesignInst.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a2</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaNameSpace &amp;nameSpace, oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a4</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a5</anchor>
+      <arglist>(const oaNameSpace &amp;nameSpace, oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a6</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaNameSpace &amp;nameSpace, oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaFloat</type>
+      <name>getMag</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getOrigin</name>
+      <anchor>a9</anchor>
+      <arglist>(oaPoint &amp;origin) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaOrient</type>
+      <name>getOrient</name>
+      <anchor>a10</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getTransform</name>
+      <anchor>a11</anchor>
+      <arglist>(oaTransform &amp;xform) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaWaferObject *</type>
+      <name>getOwner</name>
+      <anchor>a12</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLayerMapping</name>
+      <anchor>a13</anchor>
+      <arglist>(oaLayerMapArray &amp;layers) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaReticleUsage</type>
+      <name>getReticleUsage</name>
+      <anchor>a14</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isPrintable</name>
+      <anchor>a15</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>hasLayerMapping</name>
+      <anchor>a16</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a17</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setOrigin</name>
+      <anchor>a18</anchor>
+      <arglist>(const oaPoint &amp;origin)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setOrient</name>
+      <anchor>a19</anchor>
+      <arglist>(oaOrient orient)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTransform</name>
+      <anchor>a20</anchor>
+      <arglist>(const oaTransform &amp;xform)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setPrintable</name>
+      <anchor>a21</anchor>
+      <arglist>(oaBoolean value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMag</name>
+      <anchor>a22</anchor>
+      <arglist>(oaFloat mag)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setLayerMapping</name>
+      <anchor>a23</anchor>
+      <arglist>(const oaLayerMapArray &amp;layers)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setReticleUsage</name>
+      <anchor>a24</anchor>
+      <arglist>(oaReticleUsage reticalUsage)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDesignInst *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaReticle *reticle, const oaString &amp;name, const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaFloat magnification, const oaTransform &amp;xform, oaBoolean isPrintable, oaReticleUsage reticleUsage)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDesignInst *</type>
+      <name>create</name>
+      <anchor>d1</anchor>
+      <arglist>(oaFrame *frame, const oaString &amp;name, const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaFloat magnification, const oaTransform &amp;xform, oaBoolean isPrintable, oaReticleUsage reticleUsage)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaDesignInst *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaWafer *wafer, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacDesignInstWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaFrame</name>
+    <filename>classoaFrame.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getBoundaryBox</name>
+      <anchor>a2</anchor>
+      <arglist>(oaBox &amp;boundaryBox) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setBoundaryBox</name>
+      <anchor>a4</anchor>
+      <arglist>(const oaBox &amp;boundaryBox)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaFrameInst, oaFrame &gt;</type>
+      <name>getFrameInsts</name>
+      <anchor>a5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaDesignInst, oaFrame &gt;</type>
+      <name>getDesignInsts</name>
+      <anchor>a6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaFrame *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaWafer *wafer, const oaString &amp;name, const oaBox &amp;boundaryBox)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaFrame *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaWafer *wafer, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacFrameWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaFrameInst</name>
+    <filename>classoaFrameInst.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaFrame *</type>
+      <name>getMaster</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaFloat</type>
+      <name>getMag</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getOrigin</name>
+      <anchor>a4</anchor>
+      <arglist>(oaPoint &amp;origin) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaOrient</type>
+      <name>getOrient</name>
+      <anchor>a5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getTransform</name>
+      <anchor>a6</anchor>
+      <arglist>(oaTransform &amp;xform) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaWaferObject *</type>
+      <name>getOwner</name>
+      <anchor>a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a8</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setOrigin</name>
+      <anchor>a9</anchor>
+      <arglist>(const oaPoint &amp;origin)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setOrient</name>
+      <anchor>a10</anchor>
+      <arglist>(oaOrient orient)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTransform</name>
+      <anchor>a11</anchor>
+      <arglist>(const oaTransform &amp;xform)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMag</name>
+      <anchor>a12</anchor>
+      <arglist>(oaFloat mag)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaFrameInst *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaReticle *reticle, oaFrame *master, const oaString &amp;name, oaFloat mag, const oaTransform &amp;xform)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaFrameInst *</type>
+      <name>create</name>
+      <anchor>d1</anchor>
+      <arglist>(oaFrame *frame, oaFrame *master, const oaString &amp;name, oaFloat mag, const oaTransform &amp;xform)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaFrameInst *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaWafer *wafer, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacFrameInstWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaImage</name>
+    <filename>classoaImage.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaWaferObject *</type>
+      <name>getOwner</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getBoundary</name>
+      <anchor>a3</anchor>
+      <arglist>(oaPointArray &amp;points) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getMfgLayers</name>
+      <anchor>a4</anchor>
+      <arglist>(oaMfgLayerArray &amp;mfgLayers) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaStepperMap *</type>
+      <name>getStepperMap</name>
+      <anchor>a5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a6</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setBoundary</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaPointArray &amp;points)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setMfgLayers</name>
+      <anchor>a8</anchor>
+      <arglist>(const oaMfgLayerArray &amp;mfgLayers)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaImage *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaReticle *reticle, const oaString &amp;name, const oaPointArray &amp;boundary)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaImage *</type>
+      <name>create</name>
+      <anchor>d1</anchor>
+      <arglist>(oaReticleRef *reticleRef, const oaString &amp;name, const oaPointArray &amp;boundary)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaImage *</type>
+      <name>find</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaWafer *wafer, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacImageWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLayerMap</name>
+    <filename>classoaLayerMap.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaLayerMap</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaLayerMap</name>
+      <anchor>a1</anchor>
+      <arglist>(oaLayerNum waferLayer, oaLayerNum designLayer)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaLayerMap</name>
+      <anchor>a2</anchor>
+      <arglist>(const oaLayerMap &amp;layerMap)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLayerNum</type>
+      <name>waferLayer</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLayerNum</type>
+      <name>designLayer</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLayerNum &amp;</type>
+      <name>waferLayer</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLayerNum &amp;</type>
+      <name>designLayer</name>
+      <anchor>a6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaLayerMap &amp;</type>
+      <name>operator=</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaLayerMap &amp;layerMap)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>operator==</name>
+      <anchor>a8</anchor>
+      <arglist>(const oaLayerMap &amp;layerMap)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>operator!=</name>
+      <anchor>a9</anchor>
+      <arglist>(const oaLayerMap &amp;layerMap)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>operator==</name>
+      <anchor>a10</anchor>
+      <arglist>(const oaLayerMap &amp;layerMap) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>operator!=</name>
+      <anchor>a11</anchor>
+      <arglist>(const oaLayerMap &amp;layerMap) const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaLayerMapArray</name>
+    <filename>classoaLayerMapArray.html</filename>
+    <base>oaArray&lt; oaLayerMap &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>oaLayerMapArray</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 size=0)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaLayerMapArray</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaLayerMapArray &amp;layers)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaMfgLayerArray</name>
+    <filename>classoaMfgLayerArray.html</filename>
+    <base>oaArray&lt; oaLayerNum &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>oaMfgLayerArray</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 sizeIn=0)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaObserver&lt; oaWafer, oacObserverVersion1 &gt;</name>
+    <filename>classoaObserver_3oaWafer_4.html</filename>
+    <base>oaBaseObserver</base>
+    <member kind="function">
+      <type></type>
+      <name>oaObserver</name>
+      <anchor>a0</anchor>
+      <arglist>(oaUInt4 priorityIn, oaBoolean enabledIn=true)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~oaObserver</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onFirstOpen</name>
+      <anchor>a2</anchor>
+      <arglist>(oaWafer *wafer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPurge</name>
+      <anchor>a3</anchor>
+      <arglist>(oaWafer *wafer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreReopen</name>
+      <anchor>a4</anchor>
+      <arglist>(oaWafer *wafer, oaChar newMode)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostReopen</name>
+      <anchor>a5</anchor>
+      <arglist>(oaWafer *wafer, oaChar oldMode)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onTruncate</name>
+      <anchor>a6</anchor>
+      <arglist>(oaWafer *wafer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreSave</name>
+      <anchor>a7</anchor>
+      <arglist>(oaWafer *wafer)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostSave</name>
+      <anchor>a8</anchor>
+      <arglist>(oaWafer *wafer, oaBoolean succeeded)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreSaveAs</name>
+      <anchor>a9</anchor>
+      <arglist>(oaWafer *wafer, const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostSaveAs</name>
+      <anchor>a10</anchor>
+      <arglist>(oaWafer *wafer, const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaBoolean succeeded)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPreModify</name>
+      <anchor>a11</anchor>
+      <arglist>(oaWafer *wafer, oaWaferModTypeEnum modType)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>onPostModify</name>
+      <anchor>a12</anchor>
+      <arglist>(oaWafer *wafer, oaWaferModTypeEnum modType)</arglist>
+    </member>
+    <member kind="friend" protection="protected">
+      <type>friend class</type>
+      <name>oaObserverCollectionPvt</name>
+      <anchor>l0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaReticle</name>
+    <filename>classoaReticle.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getBoundary</name>
+      <anchor>a2</anchor>
+      <arglist>(oaPointArray &amp;boundary) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaFloat</type>
+      <name>getScale</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a4</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setBoundary</name>
+      <anchor>a5</anchor>
+      <arglist>(const oaPointArray &amp;boundary)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setScale</name>
+      <anchor>a6</anchor>
+      <arglist>(oaFloat scale)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaFrameInst, oaReticle &gt;</type>
+      <name>getFrameInsts</name>
+      <anchor>a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaDesignInst, oaReticle &gt;</type>
+      <name>getDesignInsts</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaImage, oaReticle &gt;</type>
+      <name>getImages</name>
+      <anchor>a9</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaReticle *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaWafer *wafer, const oaString &amp;name, oaFloat scale, const oaPointArray &amp;boundary)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaReticle *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaWafer *wafer, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacReticleWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaReticleRef</name>
+    <filename>classoaReticleRef.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getReticleName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a2</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a4</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a5</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a6</anchor>
+      <arglist>(oaScalarName &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaImage, oaReticleRef &gt;</type>
+      <name>getImages</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaReticleRef *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaWafer *wafer, const oaString &amp;reticleName, const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaReticleRef *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaWafer *wafer, const oaString &amp;reticleName, const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacReticleRefWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaReticleUsage</name>
+    <filename>classoaReticleUsage.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaReticleUsage</name>
+      <anchor>a0</anchor>
+      <arglist>(oaReticleUsageEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaReticleUsage</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaReticleUsageEnum</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaStepperMap</name>
+    <filename>classoaStepperMap.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getStepperName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;stepperName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaImage *</type>
+      <name>getImage</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>hasImage</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>hasPoints</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setStepperName</name>
+      <anchor>a5</anchor>
+      <arglist>(const oaString &amp;value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setImage</name>
+      <anchor>a6</anchor>
+      <arglist>(oaImage *image)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addPoint</name>
+      <anchor>a7</anchor>
+      <arglist>(const oaPoint &amp;point)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removePoint</name>
+      <anchor>a8</anchor>
+      <arglist>(const oaPoint &amp;point)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>hasPoint</name>
+      <anchor>a9</anchor>
+      <arglist>(const oaPoint &amp;point) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getPoints</name>
+      <anchor>a10</anchor>
+      <arglist>(oaPointArray &amp;stepPoints) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaStepperMap *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaWaferDesc *waferDesc, const oaString &amp;stepperName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaStepperMap *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaWaferDesc *waferDesc, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacStepperMapWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWafer</name>
+    <filename>classoaWafer.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>close</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>purge</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>saveAs</name>
+      <anchor>a3</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reopen</name>
+      <anchor>a4</anchor>
+      <arglist>(oaChar mode)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>revert</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a6</anchor>
+      <arglist>(oaScalarName &amp;libName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a7</anchor>
+      <arglist>(oaScalarName &amp;cellName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a8</anchor>
+      <arglist>(oaScalarName &amp;viewName) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getLibName</name>
+      <anchor>a9</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;libStr) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getCellName</name>
+      <anchor>a10</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;cellStr) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getViewName</name>
+      <anchor>a11</anchor>
+      <arglist>(const oaNameSpace &amp;ns, oaString &amp;viewStr) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaTimeStamp</type>
+      <name>getTimeStamp</name>
+      <anchor>a12</anchor>
+      <arglist>(oaWaferDataType type) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaTimeStamp</type>
+      <name>getTimeStamp</name>
+      <anchor>a13</anchor>
+      <arglist>(oaAppObjectDef *def) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaChar</type>
+      <name>getMode</name>
+      <anchor>a14</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4</type>
+      <name>getRefCount</name>
+      <anchor>a15</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaTime</type>
+      <name>getCreateTime</name>
+      <anchor>a16</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaTime</type>
+      <name>getReadInTime</name>
+      <anchor>a17</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaTime</type>
+      <name>getLastSavedTime</name>
+      <anchor>a18</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt4</type>
+      <name>getDBUPerWU</name>
+      <anchor>a19</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaWaferUnitsType</type>
+      <name>getWaferUnits</name>
+      <anchor>a20</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaWaferDesc *</type>
+      <name>getWaferDesc</name>
+      <anchor>a21</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setDBUPerWU</name>
+      <anchor>a22</anchor>
+      <arglist>(oaUInt4 value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWaferUnits</name>
+      <anchor>a23</anchor>
+      <arglist>(oaWaferUnitsType value)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isModified</name>
+      <anchor>a24</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaBoolean</type>
+      <name>isUndoEnabled</name>
+      <anchor>a25</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>enableUndo</name>
+      <anchor>a26</anchor>
+      <arglist>(oaBoolean value=true)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>undo</name>
+      <anchor>a27</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>redo</name>
+      <anchor>a28</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setCp</name>
+      <anchor>a29</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>oaUInt8</type>
+      <name>calcVMSize</name>
+      <anchor>a30</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getFeatures</name>
+      <anchor>oaWafer::getFeatures</anchor>
+      <arglist>(oaUInt4 &amp;dataModelRev, oaFeatureArray &amp;features)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaReticle, oaWafer &gt;</type>
+      <name>getReticles</name>
+      <anchor>a32</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaReticleRef, oaWafer &gt;</type>
+      <name>getReticleRefs</name>
+      <anchor>a33</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaFrame, oaWafer &gt;</type>
+      <name>getFrames</name>
+      <anchor>a34</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaImage, oaWafer &gt;</type>
+      <name>getImages</name>
+      <anchor>a35</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaWafer *</type>
+      <name>open</name>
+      <anchor>d0</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName, oaChar mode= &apos;r&apos;)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaWafer *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaBoolean</type>
+      <name>exists</name>
+      <anchor>d2</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>d3</anchor>
+      <arglist>(const oaScalarName &amp;libName, const oaScalarName &amp;cellName, const oaScalarName &amp;viewName)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaUInt4</type>
+      <name>getRevNumber</name>
+      <anchor>d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaCollection&lt; oaWafer, oaWafer &gt;</type>
+      <name>getOpenWafers</name>
+      <anchor>d5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacWaferWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferDataType</name>
+    <filename>classoaWaferDataType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaWaferDataType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaWaferDataTypeEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaWaferDataType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaWaferDataType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaWaferDataTypeEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferDesc</name>
+    <filename>classoaWaferDesc.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDist</type>
+      <name>getTotalDiameter</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaDist</type>
+      <name>getUsableDiameter</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a4</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setTotalDiameter</name>
+      <anchor>a5</anchor>
+      <arglist>(oaDist value)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setUsableDiameter</name>
+      <anchor>a6</anchor>
+      <arglist>(oaDist value)</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaStepperMap, oaWaferDesc &gt;</type>
+      <name>getStepperMaps</name>
+      <anchor>a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaCollection&lt; oaWaferFeature, oaWaferDesc &gt;</type>
+      <name>getWaferFeatures</name>
+      <anchor>a8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaWaferDesc *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaWafer *wafer, const oaString &amp;name, oaDist totalDiameter, oaDist usableDiameter)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacWaferDescWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferError</name>
+    <filename>classoaWaferError.html</filename>
+    <base>oaWaferException</base>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferException</name>
+    <filename>classoaWaferException.html</filename>
+    <base>oaException</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const oaString &amp;</type>
+      <name>getFormatString</name>
+      <anchor>a1</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferFeature</name>
+    <filename>classoaWaferFeature.html</filename>
+    <base>oaWaferObject</base>
+    <member kind="function">
+      <type>void</type>
+      <name>destroy</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>(oaString &amp;name) const</arglist>
+    </member>
+    <member kind="function">
+      <type>oaWaferFeatureType</type>
+      <name>getWaferFeatureType</name>
+      <anchor>a2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>getBoundary</name>
+      <anchor>a3</anchor>
+      <arglist>(oaPointArray &amp;points) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setName</name>
+      <anchor>a4</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setWaferFeatureType</name>
+      <anchor>a5</anchor>
+      <arglist>(oaWaferFeatureType feature)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setBoundary</name>
+      <anchor>a6</anchor>
+      <arglist>(const oaPointArray &amp;points)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaWaferFeature *</type>
+      <name>create</name>
+      <anchor>d0</anchor>
+      <arglist>(oaWaferDesc *waferDesc, const oaString &amp;name, oaWaferFeatureType feature, const oaPointArray &amp;boundary)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>oaWaferFeature *</type>
+      <name>find</name>
+      <anchor>d1</anchor>
+      <arglist>(const oaWaferDesc *waferDesc, const oaString &amp;name)</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dtIndex</name>
+      <anchor>s1s0</anchor>
+      <init> oacWaferFeatureWaferDataType</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferFeatureType</name>
+    <filename>classoaWaferFeatureType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaWaferFeatureType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaWaferFeatureEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaWaferFeatureType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaWaferFeatureType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaWaferFeatureEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferObject</name>
+    <filename>classoaWaferObject.html</filename>
+    <base>oaObject</base>
+    <member kind="function">
+      <type>oaWafer *</type>
+      <name>getWafer</name>
+      <anchor>a0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>dbType</name>
+      <anchor>s2s0</anchor>
+      <init> oacWaferDBType</init>
+    </member>
+    <member kind="enumvalue">
+      <name>domain</name>
+      <anchor>s3s1</anchor>
+      <init> oacNoDomain</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>oaWaferUnitsType</name>
+    <filename>classoaWaferUnitsType.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>oaWaferUnitsType</name>
+      <anchor>a0</anchor>
+      <arglist>(oaWaferUnitsEnum valueIn)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>oaWaferUnitsType</name>
+      <anchor>a1</anchor>
+      <arglist>(const oaString &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~oaWaferUnitsType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const oaString &amp;</type>
+      <name>getName</name>
+      <anchor>a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator oaWaferUnitsEnum</name>
+      <anchor>a4</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+</tagfile>

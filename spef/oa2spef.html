@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1>OpenAccess to SPEF Translator (oa2spef)</h1>
+ <hr>
+ <p>oa2spef is the standard translator implementation that extracts parasitic information from an OpenAccess database and  creates a SPEF file. The translator runs from the command line and includes options to control how the parasitic information is extracted. This translator extracts detailed parasitic information for nets that are connected to terms in a block. It extracts reduced parasitic information for nets that are connected to instTerms only.</p> 
+
+<p>If you want information about using the spef2oa translator for annotating an OpenAccess database with SPEF data, see <a href="spef2oa.html">SPEF to OpenAccess Translator (spef2oa)</a>. If you want information about how SPEF data maps to the OpenAccess database, see <a href="spef2oamap.html">Mapping SPEF to OpenAccess</a>.</p>
+
+<h2>oa2spef Command Syntax</h2>
+<p>The oa2spef command syntax is:</p>
+
+<pre class="code">
+    oa2spef -lib &lt;library name&gt; -cell &lt;cell name&gt; -view &lt;view name&gt; [Optional Arguments]
+</pre>
+
+<p>If you start the translator with the <code>-help</code> or <code>-h</code> argument, command line help displays. The command line arguments, and the command line help for those arguments, are described in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th align="left" colspan="2">Required Arguments</th>
+</tr>
+<tr>
+<td width="224" valign="top">-lib &lt;library&gt;</td>
+<td width="618">Specifies the source library. For information about how the translator finds a library  using the library definitions file, see <a href="../guide/usinglibs.html">How Translators Use Libraries</a>.</td>
+</tr>
+<tr>
+<td valign="top">-cell &lt;name&gt;</td>
+<td>Specifies the name of the cell to translate.</td>
+</tr>
+<tr>
+<td valign="top">-view &lt;name&gt;</td>
+<td>Specifies the view name.</td>
+</tr>
+<tr>
+<td valign="top">-ap &lt;analysisPoint&gt; | <br>-min &lt;analysisPoint&gt; <br>-typ &lt;analysisPoint&gt; <br>-max &lt;analysisPoint&gt; </td>
+<td>Identifies either a single analysis point or the three min, typ, and max analysis points.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-spef &lt;file&gt;</td>
+<td>Names the SPEF output file.</td>
+</tr>
+<tr bgcolor="#eeffcc">
+<td colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-capUnit  PF  | FF</td>
+<td>Sets the unit for capacitance.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-compress</td>
+<td>Writes the SPEF file in compressed gzip format.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-detailedOnly</td>
+<td>Writes detailed parasitics only.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-help | -h</td>
+<td>Displays usage information.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-libDefFile <em>filename</em></td>
+<td>Specifies the lib.defs file to load. The path to the lib.defs file can be a full or relative path. If this option is omitted, the default search mechanism of the DM system is used to find and load the lib.defs file.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-logFile <em>file</em></td>
+<td>Specifies the log filename. If this option is omitted, the log filename defaults to oa2spef.log.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-nameMap</td>
+<td>Writes name map table.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noInfo <em>msgIds</em></td>
+<td>Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noWarning <em>msgIds</em></td>
+<td>Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file and are not included in the total of WARNING messages displayed in the summary.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-reducedOnly</td>
+<td>Writes reduced parasitics only.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-resUnit  OHM | KOHM</td>
+<td>Sets the unit for resistance.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top"> -templateFile &lt;file&gt;</td>
+<td><p>Specifies a file containing arguments to <code>oa2spef</code>. You can specify a template file instead of entering a string of arguments on the command line. </p>
+<p>If you specify a template file, arguments on the command line have precedence over arguments specified in the file. So, if the same argument exists in the template file and in the command line, the translator uses the argument on the command line.</p>
+<p>Specify arguments in a template file as follows:</p>
+<ul>
+<li> Enter arguments in the template file without a dash (-) before the argument.</li>
+<li> Enter each argument and value pair on a single line.</li>
+<li> Separate the argument from its value using a space or a tab.</li>
+<li> Designate comment lines with a <em>#</em> sign as the first character in the line.</li>
+</ul>
+<p><strong>Sample Template File</strong></p>
+<pre>
+# oa2spef command line arguments
+
+logFile        myoa2spef.log
+detailedOnly
+resUnit        KOHM
+indUnit        UH
+</pre>
+</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-timeUnit PS  | NS</td>
+<td>Sets the unit for time.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-indUnit  HENRY | MH | UH</td>
+<td>Sets the unit for inductance.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td>-v</td>
+<td valign="top"> Prints tool, format, and library version information.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-version</td>
+<td> Prints tool and format version information.</td>
+</tr>
+</table>
+
+<p>The <code>-lib, -cell, -view, and -spef</code> arguments, and at least one analysis point argument, are required. All other arguments are optional.</p>
+
+<p><strong>Note</strong>: Command line arguments specifying library, cell, and view names are interpreted according to the Native name space. See <a href="../guide/namemap.html#9">Native Name Space</a> in the Name Mapping article of the Programmers Guide for details about the native name space.</p>
+ 
+<h2>Specifying Analysis Points</h2>
+<p>At least a single analysis point must be specified, or three analysis points can be specified, in order to read the parasitic information stored in a database. In a design, these analysis points are identified by name. You must include at least one analysis point by using the <code>-ap</code> argument. You specify all three by using the <code>-min</code>, <code>-typ</code>, and <code>-max</code> arguments. When all three analysis points are specified, the SPEF file will contain triplet values. If the analysis points you specify do not exist in the database, the translator cannot extract the parasitic data and exits with an error.</p>
+
+<h2>Using detailedOnly and reducedOnly Options</h2>
+<p>If the <code>-detailedOnly</code> argument is specified, oa2spef writes detailed
+parasitic information only. If the <code>-reducedOnly</code> argument is specified,
+the translator writes reduced parasitic information only. If neither argument is specified, all available parasitic information is written to the SPEF file.</p>
+
+<h2>Using Time, Resistance, Capacitance, and Inductance Unit Options</h2>
+<p>You can specify the time, resistance, capacitance, and inductance units that are used in the SPEF file. If you do not specify these units, defaults are used. The oa2spef default units are listed in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th>Parameter</th>
+<th>Default unit</th>
+</tr>
+<tr>
+<td>time</td>
+<td>PS (picosecond)</td>
+</tr>
+<tr>
+<td>resistance</td>
+<td>OHM</td>
+</tr>
+<tr>
+<td>capacitance</td>
+<td>PF (picoFarad)</td>
+</tr>
+<tr>
+<td>inductance</td>
+<td>H (Henry)</td>
+</tr>
+</table>
+
+<h3>timeUnit</h3>
+<p>The <code>-timeUnit</code> argument specifies either <code>PS</code> for picosecond or <code>NS</code> for nanosecond. If you do not specify the time unit, the default unit is picosecond.</p>
+
+<h3>resUnit</h3>
+<p>The <code>-resUnit</code> argument specifies the unit for resistance. You
+can specify the unit as <code>OHM</code> or <code>KOHM</code> for kilOhm. If you do not specify a resistance unit, the default unit is OHM.</p>
+
+<h3>capUnit</h3>
+<p>The <code>-capUnit</code> argument specifies the unit for capacitance. You
+can specify the unit as <code>PF</code> for picoFarad or <code>FF</code> for femtoFarad. If you do not specify a capacitance unit, the default unit is picoFarad.</p>
+
+<h3>indUnit</h3>
+<p>The <code>-indUnit</code> argument speciies the unit for inductance. You 
+can specify the unit as <code>H</code> or as <code>MH</code> for milliHenry, or as <code>UH</code> for microHenry. The default unit for inductance is Henry.</p>
+
+<h2>Handling Library Definitions File Errors</h2>
+<p>If your library definitions file has errors, or any of the referenced libraries cannot be opened, either an error message is generated and translation halted or, if the library is not required to complete the translation, translation proceeds without an error or warning. For more information about this behavior, see the <a href="../guide/usinglibs.html#libDefErrors">Handling Errors in lib.defs Files</a> section in the Programmers Guide chapter <em>How Translators Use Libraries</em>.</p>
+
+<h2>How the Translator Uses Namespaces</h2>
+<p>A namespace is a set of rules that define the legal characters and determine how names are interpretted. This translator uses the oaNative namespace to interpret library, cell, and view names in the command line. Other names that refer to name-mapped OpenAccess objects, such as net and module names, use the SPEF namespace.</p>
+
+<h2>Error and Warning Messages</h2>
+
+<p>Translators emit messages that report translation progress, report warnings about unusual data or conditions, or report problems with files or data that caused partial or complete translation failure. These messages are written to a log file so you can review translation status, identify error and warning conditions, and consider whether additional actions are needed.</p>
+
+<p>OpenAccess translators use a standard message format to ensure comprehensive and consistent messaging. This message format consists of three elements, which are: message type keyword,  message prefix, and message text. </p>
+
+<p>In addition to the three standard elements, messages can also include two optional elements. An optional filename/line number element is included, when available, to more precisely identify the source of a problem or condition within the source data file. A context string is another optional element that is included, when available, to identify the type of data object that caused the message to be emitted. The following example shows a typical error message that includes the optional filename and line number element.</p>
+
+<pre>
+    ERROR: (OALEFDEF-50004): file.lef(123): A cell was not specified. Translation was terminated. 
+    You must specify a cell.
+</pre>
+ 
+<p>One benefit of this message format is that it allows you to sort, filter, and examine only those types of messages that interest you. The keyword at the start of each message is either ERROR or WARNING and is always all uppercase. The message prefix identifies the translator family and the specific message source within the translator. The message prefix is a stable value that will not change between versions even when the message text gets updated. This makes it suitable for routine sorting and filtering.</p>
+
+<p>If you seek assistance for resolving an issue related to a translator error or warning message, be sure to retain the message type keyword (ERROR or WARNING), and retain the message prefix to identify the translator family and the message source. Also make note of the filename/line number and context information if these are included in the message.</p>
+
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<div style="text-align: center"> <img src="images/speffooter.gif"><br/>
+</div>
+<p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</a><br>
+			All rights reserved.</p>
+		<noscript>
+			<p><em class="red">This page requires JavaScript enabled.</em></p>
+		</noscript>
+</body>
+</html>

@@ -1,0 +1,19 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Design Management Class Index
+
+BUILDINFO
+OpenAccess Design Management supports a library structure for organizing all the data files that 
+apply to a set of designs. This structure organizes the files into libraries, cells, and views. 
+It can be used for all data files that applications store, not just the databases that OpenAccess 
+manages within these libraries. Design Management includes classes that provide an interface to 
+Version Control capabilities that can apply to a library when an appropriate plug-in is available.
+
+See <a href="../guide/libstruc.html">OpenAccess Libraries and Design Management</a>
+in the Programmers Guide for more information.
+
+

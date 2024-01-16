@@ -1,0 +1,375 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|pins'/>
+<a name='10000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Pins"></a>Pins</h1>
+<pre>
+ [PINS numPins ;
+
+ [ [- pinName + NET netName]
+      [+ <a href='#10001'>SPECIAL</a>]
+      [+ <a href='#10002'>DIRECTION</a> {INPUT | OUTPUT | INOUT | FEEDTHRU}]
+      [+ <a href='#10003'>NETEXPR</a> "netExprPropName defaultNetName"]
+      [+ <a href='#10004'>SUPPLYSENSITIVITY</a> powerPinName]
+      [+ <a href='#10004'>GROUNDSENSITIVITY</a> groundPinName]
+      [+ <a href='#10005'>USE</a> {SIGNAL | POWER | GROUND | CLOCK | TIEOFF | ANALOG | SCAN | RESET}]
+      [+ <a href='#10006'>ANTENNAPINPARTIALMETALAREA</a> value [LAYER layerName]] ...
+      [+ <a href='#10006'>ANTENNAPINPARTIALMETALSIDEAREA</a> value [LAYER layerName]] ...
+      [+ <a href='#10006'>ANTENNAPINPARTIALCUTAREA</a> value [LAYER layerName]] ...
+      [+ <a href='#10006'>ANTENNAPINDIFFAREA</a> value [LAYER layerName]] ...
+      [+ <a href='#10006'>ANTENNAMODEL</a> {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4}] ...
+      [+ <a href='#10006'>ANTENNAPINGATEAREA</a> value [LAYER layerName]] ...
+      [+ <a href='#10006'>ANTENNAPINMAXAREACAR</a> value LAYER layerName] ...
+      [+ <a href='#10006'>ANTENNAPINMAXSIDEAREACAR</a> value LAYER layerName] ...
+      [+ <a href='#10006'>ANTENNAPINMAXCUTCAR</a> value LAYER layerName] ...
+      [ [+ <a href='#10007'>PORT]</a>
+          [ + <a href='#11000'>LAYER</a> layerName
+              [SPACING minSpacing | DESIGNRULEWIDTH effectiveWidth] pt pt
+          | + <a href='#11001'>POLYGON</a> layerName
+              [SPACING minSpacing | DESIGNRULEWIDTH effectiveWidth] pt pt pt ...
+          | + <a href='#11002'>VIA</a> viaName pt ] ...
+          [+ <a href='#11003'>COVER</a> pt orient | FIXED pt orient | PLACED pt orient]
+         ] ...
+ ; ] ...
+
+ END PINS]
+</pre>
+<p>A DEF PIN is stored in OpenAccess as an oaTerm with the name given by pinName. The net is stored as an oaNet, which is created if it doesn&#39;t already exist.</p>
+<p>If the pinName contains the .extra suffix, this is removed. In OpenAccess, such pins map to the same oaTerm, but the pin shapes are stored using separate oaPin objects.</p>
+<h2><a id="PhysicalonlyPins"></a>Physical-only Pins</h2>
+<p>Some DEF PINS are physical-only objects, which are represented in OpenAccess in the block domain with no corresponding object in the module domain. Verilog exported from a database with physical-only objects will have no data that corresponds to these objects. The physical-only PINS include:</p>
+<ul>
+<li>Pins that refer to the same terminal using the .extraN notation, as shown</li>
+<li>in the following examples:</li>
+</ul>
+<pre>
+      PIN A, PIN A.extra1, PIN A.extra2, ... (all refer to NET A)
+      PIN A[0], PIN A.extra1[0], PIN A.extra2[0] ... (all refer to Net A[0])
+</pre>
+<ul>
+<li>Physical-only PINS: BUMP PINS might not be assigned to existing Verilog</li>
+<li>ports or OpenAccess terminals.</li>
+</ul>
+<h2><a id="NumPins"></a>numPins</h2>
+<p>numPins corresponds to the number of explicit terminal objects in the design.</p>
+</div>
+<a name='def|pins|antenna'/>
+<a name='10006'/>
+<h2 class='topicSyntax'>
+ANTENNAPINPARTIALMETALAREA value [LAYER layerName]<BR/>
+&nbsp;ANTENNAPINPARTIALMETALSIDEAREA value [LAYER layerName]<BR/>
+&nbsp;ANTENNAPINPARTIALCUTAREA value [LAYER layerName]<BR/>
+&nbsp;ANTENNAPINDIFFAREA value [LAYER layerName]<BR/>
+&nbsp;ANTENNAMODEL {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4}<BR/>
+&nbsp;ANTENNAPINGATEAREA value [LAYER layerName]<BR/>
+&nbsp;ANTENNAPINMAXAREACAR value LAYER layerName<BR/>
+&nbsp;ANTENNAPINMAXSIDEAREACAR value LAYER layerName<BR/>
+&nbsp;ANTENNAPINMAXCUTCAR value LAYER layerName</h2>
+<div style='margin-left:40px;'>
+<p>This information corresponds to the antennaData object associated with a terminal. There is an antennaData object for each ANTENNAMODEL used. All value fields are scaled to DBU as areas.</p>
+<p>Note: this also includes the ANTENNA*CAR values, which are actually ratios. Applications using these ratios must reverse this scaling before applying them.</p>
+<p>The following table shows the correspondence between antennaModel and DEF ANTENNAMODEL:</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF ANTENNAMODEL</th>
+<th class='borders'>oaAntennaModelEnum</th>
+</tr>
+<tr>
+<td class='borders'>OXIDE1</td>
+<td class='borders'>oacDefaultAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE2</td>
+<td class='borders'>oacSecondAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE3</td>
+<td class='borders'>oacThirdAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE4</td>
+<td class='borders'>oacFourthAntennaModel</td>
+</tr>
+</table>
+<p>ANTENNA* values are stored in an oaAntennaArea object, which is appended to one of the oaAntennaAreaArray attributes of the oaAntennaData object. Use the following API to obtain the information:</p>
+<pre>
+   void oaTerm::getAntennaData(oaAntennaData &amp;data,
+                               const oaAntennaModel &amp;model = oacDefaultAntennaModel)
+
+   const oaAntennaModel &amp;oaAntennaData::getModel() const
+
+   const oaAntennaAreaArray &amp;oaAntennaData::partialMetal() const
+   const oaAntennaAreaArray &amp;oaAntennaData::partialMetalSide() const
+   const oaAntennaAreaArray &amp;oaAntennaData::partialCut() const
+   const oaAntennaAreaArray &amp;oaAntennaData::diff() const
+   const oaAntennaAreaArray &amp;oaAntennaData::gate() const
+   const oaAntennaAreaArray &amp;oaAntennaData::maxCAR() const
+   const oaAntennaAreaArray &amp;oaAntennaData::maxSideCAR() const
+   const oaAntennaAreaArray &amp;oaAntennaData::maxCutCAR() const
+
+   oaUInt8 oaAntennaArea::area() const
+   oaLayerNum oaAntennaArea::layerNum() const
+</pre>
+</div>
+<a name='def|pins|direction'/>
+<a name='10002'/>
+<h2 class='topicSyntax'>
+DIRECTION {INPUT | OUTPUT | INOUT | FEEDTHRU}</h2>
+<div style='margin-left:40px;'>
+<p>The DIRECTION attribute maps to OpenAccess as the oaTermType attribute of the current oaTerm. The correspondence between oaTermType and DEF DIRECTION is shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF direction</th>
+<th class='borders'>oaTermTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>INPUT</td>
+<td class='borders'>oacInputTermType</td>
+</tr>
+<tr>
+<td class='borders'>OUTPUT</td>
+<td class='borders'>oacOutputTermType</td>
+</tr>
+<tr>
+<td class='borders'>INOUT</td>
+<td class='borders'>oacInputOutputTermType *</td>
+</tr>
+<tr>
+<td class='borders'>FEEDTHRU</td>
+<td class='borders'>oacJumperTermType</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacTristateTermType</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacSwitchTermType</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacUnusedTermType</td>
+</tr>
+</table>
+<p>INOUT is the default DEF PIN direction if unspecified.</p>
+</div>
+<a name='def|pins|netexpr'/>
+<a name='10003'/>
+<h2 class='topicSyntax'>
+NETEXPR "netExprPropName defaultNetName"</h2>
+<div style='margin-left:40px;'>
+<p>The NETEXPR statement maps to OpenAccess as an oaTermConnectDef. The netExprPropName is stored as the assignmentNameIn of an oaAssignmentDef, and the defaultNetName is stored as the defaultNameIn of the oaAssignmentDef. The oaAssignmentDef is then associated with the current oaTerm by the oaTermConnectDef.</p>
+</div>
+<a name='def|pins|port'/>
+<a name='10007'/>
+<h2 class='topicSyntax'>
+PORT</h2>
+<div style='margin-left:40px;'>
+<p>The PORT attributes map to OpenAccess as oaPin objects. The associated shapes and vias are stored as the oaPin figures.</p>
+</div>
+<a name='def|pins|port|layer'/>
+<a name='11000'/>
+<h3 class='topicSyntax'>
+LAYER layerName<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SPACING minSpacing | DESIGNRULEWIDTH effectiveWidth] pt pt</h3>
+<div style='margin-left:60px;'>
+<p>The LAYER attributes map to OpenAccess as oaRect shapes on the specified layerName. The oaRect shapes are added to the current oaPin figures.</p>
+<p>The SPACING attribute maps to OpenAccess as an oacMinSpacing constraint on the shape.</p>
+<p>The DESIGNRULEWIDTH attribute does not map to OpenAccess, and a warning is issued if this is detected in DEF.</p>
+<p>&lt;pt pt&gt; correspond to the lower left and upper right points of the rectangle figure of a pin object, which is associated with the terminal. &lt;layerName&gt; is the name of the layer associated with the figure.</p>
+</div>
+<a name='def|pins|port|polygon'/>
+<a name='11001'/>
+<h3 class='topicSyntax'>
+POLYGON layerName<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SPACING minSpacing | DESIGNRULEWIDTH effectiveWidth] pt pt pt ...</h3>
+<div style='margin-left:60px;'>
+<p>The POLYGON attributes map to OpenAccess as oaPolygon shapes on the specified layerName. The oaPolygon shapes are added to the current oaPin figures.</p>
+<p>The SPACING attribute is stored as an oacMinSpacing constraint on the shape.</p>
+<p>The DESIGNRULEWIDTH attribute is not stored in OpenAccess.</p>
+</div>
+<a name='def|pins|port|via'/>
+<a name='11002'/>
+<h3 class='topicSyntax'>
+VIA viaName pt</h3>
+<div style='margin-left:60px;'>
+<p>A VIA for a DEF PIN maps to OpenAccess as an oaVia with the oaViaDef specified by the viaName and the location specified by pt. The oaVia is added to the current oaPin figures.</p>
+</div>
+<a name='def|pins|port|placement'/>
+<a name='11003'/>
+<h3 class='topicSyntax'>
+COVER pt orient | FIXED pt orient | PLACED pt orient</h3>
+<div style='margin-left:60px;'>
+<p>The COVER, FIXED and PLACED attributes map to OpenAccess as the oaTransform and oaPlacementStatus attributes of the current oaPin. The placementStatus maps as shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF placement status</th>
+<th class='borders'>oaPlacementStatusEnum</th>
+</tr>
+<tr>
+<td class='borders'>FIXED</td>
+<td class='borders'>oacFixedPlacementStatus</td>
+</tr>
+<tr>
+<td class='borders'>PLACED</td>
+<td class='borders'>oacPlacedPlacementStatus</td>
+</tr>
+<tr>
+<td class='borders'>COVER</td>
+<td class='borders'>oacLockedPlacementStatus</td>
+</tr>
+<tr>
+<td class='borders'>not specified</td>
+<td class='borders'>oacUnplacedPlacementStatus</td>
+</tr>
+</table>
+<p>Pins that have shapes, and that have the oacNonePlacementStatus, map to DEF as PLACED. Pins without shapes that have the oacUnplacedPlacementStatus map to DEF with the placement status unspecified.</p>
+</div>
+<a name='def|pins|sensitivity'/>
+<a name='10004'/>
+<h2 class='topicSyntax'>
+SUPPLYSENSITIVITY powerPinName<BR/>
+&nbsp;GROUNDSENSITIVITY groundPinName</h2>
+<div style='margin-left:40px;'>
+<p>For SUPPLYSENSITIVITY the oaTerm specified by powerPinName is stored in the supplySensitivity attribute of the current oaTerm.</p>
+<p>For GROUNDSENSITIVITY the oaTerm specified by groundPinName is stored in the groundSensitivity attribute of the current oaTerm.</p>
+</div>
+<a name='def|pins|special'/>
+<a name='10001'/>
+<h2 class='topicSyntax'>
+SPECIAL</h2>
+<div style='margin-left:40px;'>
+<p>The SPECIAL attribute is stored in OpenAccess as the routeMethod attribute of the current oaTerm. The attribute defaults to oacSymbolicRouteMethod, and is set to oacGeometricRouteMethod when the SPECIAL attribute is used. This attribute is included in DEF if the terminal has a geometric routeMethod attribute (value oacGeometricRouteMethod).</p>
+</div>
+<a name='def|pins|use'/>
+<a name='10005'/>
+<h2 class='topicSyntax'>
+USE {SIGNAL | POWER | GROUND | CLOCK | TIEOFF | ANALOG | SCAN | RESET}</h2>
+<div style='margin-left:40px;'>
+<p>The USE attribute maps to OpenAccess as the oaSigType attribute of the current oaTerm. The correspondence between oaSigType and DEF USE is shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF USE</th>
+<th class='borders'>oaSigTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>ANALOG</td>
+<td class='borders'>oacAnalogSigType</td>
+</tr>
+<tr>
+<td class='borders'>CLOCK</td>
+<td class='borders'>oacClockSigType</td>
+</tr>
+<tr>
+<td class='borders'>GROUND</td>
+<td class='borders'>oacGroundSigType</td>
+</tr>
+<tr>
+<td class='borders'>POWER</td>
+<td class='borders'>oacPowerSigType</td>
+</tr>
+<tr>
+<td class='borders'>RESET</td>
+<td class='borders'>oacResetSigType</td>
+</tr>
+<tr>
+<td class='borders'>SCAN</td>
+<td class='borders'>oacScanSigType</td>
+</tr>
+<tr>
+<td class='borders'>SIGNAL</td>
+<td class='borders'>oacSignalSigType</td>
+</tr>
+<tr>
+<td class='borders'>TIEOFF</td>
+<td class='borders'>oacTieoffSigType (oacTieLoSigType or oacTieHiSigType on output)</td>
+</tr>
+</table>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|macrodensity'/>
+<a name='55000'/>
+<h1 class='topicSyntax'>
+LAYER layerName [SPACING minSpacing | DESIGNRULEWIDTH value] ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[WIDTH width ;]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ PATH pt ... ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| PATH ITERATE pt ... stepPattern ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| RECT pt pt ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| RECT ITERATE pt pt stepPattern ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| POLYGON pt pt pt pt ... ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| POLYGON ITERATE pt pt pt pt ... stepPattern ;<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} ...<BR/>
+&nbsp;| VIA pt viaName ;<BR/>
+&nbsp;| VIA ITERATE pt viaName stepPattern ;<BR/>
+&nbsp;} ...</h1>
+<div style='margin-left:20px;'>
+<p>For Pins this figure can be an oaDot, oaLine, oaRect, oaPath, oaPolygon or oaVia. For Obstructions this figure will be an oaBlockage.</p>
+<p>The function parses the elements in the parser geometry array, starting with <q>itemNum</q>, and continuing until a new geometry item is found. It then calls the appropriate function to create an OA figure for that geometry. Any Layer, Width or Spacing entries found in the parser geometry array before the new figure, are stored and used when creating the OA figure.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

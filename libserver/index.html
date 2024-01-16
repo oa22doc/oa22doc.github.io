@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Library Server </h1>
+<hr >
+
+<p>The library server  manages and controls concurrent access to a library. OpenAccess cannot access a library unless there is a library server running for that library. </p>
+<p>A library server can be started manually or automatically. When you manually start the library server on a host machine, you can specify a port number that clients will use to communicate with the server. The default port number is 55555. When the library server first starts, no libraries are under its control. Clients  connect to the library server via a TCP socket and provide the  hostname and port number. Clients  request that the library server  provide access to existing libraries or create new ones. </p>
+<p>A client can query and control the library server through the <a href="../classoaLibServer.html">oaLibServer</a> class.</p>
+<p>An OpenAccess client application specifies the library server to be used for the library through the library definition (<a href="../dm/classoaLib.html">oaLib</a>::addDef). The server specification is used to automatically start a library server if an application attempts to access a library using oaLib::find or create a library using oaLib::create and no server is currently running. </p>
+<p>Only one library server can be active on a library at a time. The server access is controlled by a <em>lib.server</em> file, which is created in the directory containing the library. If this file is present, it contains the hostname and the port number of the current server for the library. The<em> lib.server</em> file also serves as a lock file that prevents other library servers from accessing the library. </p>
+<p>You can run multiple library servers on a host machine as long as each server uses a different port name. A library server can be used to serve more than one library.</p>
+<p>Run the library server from a command prompt.</p>
+<table width="405" border="1">
+  <tr>
+    <td><strong>UNIX</strong></td>
+    <td><strong>Windows</strong></td>
+  </tr>
+  <tr>
+    <td>oaLibServer</td>
+    <td>oaLibServer.exe</td>
+  </tr>
+</table>
+<h4>Argument Descriptions</h4>
+<table border="0">
+  <tr>
+    <td valign="top"><pre>[-portNumber <em>number</em>]</pre></td>
+ <td valign="top">Specifies the port number for communicating with a client. <br>
+   Valid values: Numbers greater than 1023 that are not being used by another server on the host machine.<br>
+   Default value: 55555 </td>
+  </tr>
+  <tr>
+    <td valign="top"><pre>[-logFile <em>file</em>]</pre></td>
+     <td valign="top"><p>Specifies the name of the log file.<br>
+    Default value: server.slog </p>     </td>
+  </tr>
+</table>
+<h4>&nbsp;</h4>
+
+<div style="text-align: center">
+<img src="images/libfooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</a>
+<br >All rights reserved.</p>
+<noscript>
+<p><em class="red">This page requires JavaScript enabled.</em></p>
+</noscript>
+</body>
+</html>

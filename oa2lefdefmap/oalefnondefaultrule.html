@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|nondefaultrule'/>
+<a name='60000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="NondefaultRule"></a>Nondefault Rule</h1>
+<pre>
+ [NONDEFAULTRULE ruleName
+
+     [<a href='#60001'>HARDSPACING</a> ;]
+     { <a href='#60002'>LAYER</a> layerName
+          <a href='#60003'>WIDTH</a> width ;
+         [<a href='#60004'>DIAGWIDTH</a> diagWidth ;]
+         [<a href='#60005'>SPACING</a> minSpacing ;]
+         [<a href='#60006'>WIREEXTENSION</a> value ;]
+     END layerName   } ...
+     [<a href='#60007'>VIA</a> viaStatement] ...
+     [<a href='#60008'>USEVIA</a> viaName ;] ...
+     [<a href='#60009'>USEVIARULE</a> viaRuleName ;] ...
+     [<a href='#60010'>MINCUTS</a> cutLayerName numCuts ;] ...
+     [<a href='#60011'>PROPERTY</a> propName propValue ;] ...
+
+ END ruleName]
+</pre>
+<p>The LEF NONDEFAULTRULE maps to an oaConstraintGroup with the specified ruleName. A LEF rule named DEFAULT maps to the LEFDefaultRouteSpec in the design database.</p>
+<p>The lef2oa translator checks whether a LEFDefaultRouteSpec constraint group already exists in the graph of techs. If a LEFDefaultRouteSpec constraint group exists, the translator generates a constraint group of the constraintGroupDef type LEFDefaultRouteSpec with a name in the format of LEFDefaultRouteSpec_&lt;libName&gt;. Early versions of the translator may issue an error when attempting to create a technology database with a LEFDefaultRouteSpec constraint group that referenced another technology database with its own LEFDefaultRouteSpec constraint group.</p>
+</div>
+<a name='lef|nondefaultrule|hardspacing'/>
+<a name='60001'/>
+<h2 class='topicSyntax'>
+HARDSPACING ;</h2>
+<div style='margin-left:40px;'>
+<p>If specified, the spacing constraints in the following layer sections are labeled as <q>hard.</q></p>
+</div>
+<a name='lef|nondefaultrule|layer'/>
+<a name='60002'/>
+<h2 class='topicSyntax'>
+LAYER layerName<BR/>
+&nbsp;     WIDTH width ;<BR>     [DIAGWIDTH diagWidth ;]<BR>     [SPACING minSpacing ;]<BR>     [WIREEXTENSION value ;]<BR/>
+&nbsp;END layerName</h2><div style='margin-left:40px;'>
+<p>The NONDEFAULTRULE LAYER statement maps to OpenAccess by appending the oaPhysicalLayer with the given layerName to the oaLayerArrayValue for the oacValidRoutingLayers constraint in the oaConstraintGroup for this non- default rule. The layer must already exist in the technology database, and must be a routing layer.</p>
+</div>
+<a name='lef|nondefaultrule|layer|width'/>
+<a name='60003'/>
+<h3 class='topicSyntax'>
+WIDTH width ;</h3>
+<div style='margin-left:60px;'>
+<p>The NONDEFAULTRULE LAYER WIDTH maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinWidthConstraint.html">oacMinWidth</a> constraint in the constraint group for this non-default rule.</p>
+</div>
+<a name='lef|nondefaultrule|layer|diagwidth'/>
+<a name='60004'/>
+<h3 class='topicSyntax'>
+DIAGWIDTH diagWidth ;</h3>
+<div style='margin-left:60px;'>
+<p>The NONDEFAULTRULE LAYER DIAGWIDTH maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinDiagonalWidthConstraint.html">oacMinDiagonalWidth</a> constraint in the constraint group for this non-default rule.</p>
+</div>
+<a name='lef|nondefaultrule|layer|spacing'/>
+<a name='60005'/>
+<h3 class='topicSyntax'>
+SPACING minSpacing ;</h3>
+<div style='margin-left:60px;'>
+<p>The NONDEFAULTRULE LAYER SPACING maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinSpacingConstraint.html">oacMinSpacing</a> constraint in the constraint group for this non-default rule. Note that this is a hard constraint if HARDSPACING is specified.</p>
+</div>
+<a name='lef|nondefaultrule|layer|ext'/>
+<a name='60006'/>
+<h3 class='topicSyntax'>
+WIREEXTENSION value ;</h3>
+<div style='margin-left:60px;'>
+<p>The NONDEFAULTRULE LAYER WIREEXTENSION maps to OpenAccess using an oaIntValue for the <a href="../guide/oacMinWireExtensionConstraint.html">oacMinWireExtension</a> constraint in the constraint group for this non-default rule.</p>
+</div>
+<a name='lef|nondefaultrule|mincuts'/>
+<a name='60010'/>
+<h2 class='topicSyntax'>
+MINCUTS cutLayerName numCuts ;</h2>
+<div style='margin-left:40px;'>
+<p>The NONDEFAULTRULE MINCUTS is stored in OpenAccess using an oaInt1DTblValue for the <a href="../guide/oacMinNumCutConstraint.html">oacMinNumCut</a> constraint in the constraint group for this non-default rule. The header for the table is the layer width for the metal layer above the given cut layer.</p>
+</div>
+<a name='lef|nondefaultrule|properties'/>
+<a name='60011'/>
+<h2 class='topicSyntax'>
+PROPERTY propName propValue ;</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oalefproperties.html">PROPERTIES</a></p>
+</div>
+<a name='lef|nondefaultrule|usevia'/>
+<a name='60008'/>
+<h2 class='topicSyntax'>
+USEVIA viaName ;</h2>
+<div style='margin-left:40px;'>
+<p>The NONDEFAULTRULE USEVIA statement maps to OpenAccess by appending the oaCustomViaDef or oaViaVariant with the given viaName to the oaViaTopologyArrayValue for the oacValidRoutingVias constraint in the oaConstraintGroup for this non-default rule. The oaCustomViaDef or oaViaVariant must already exist in the technology database.</p>
+</div>
+<a name='lef|nondefaultrule|useviarule'/>
+<a name='60009'/>
+<h2 class='topicSyntax'>
+USEVIARULE viaRuleName ;</h2>
+<div style='margin-left:40px;'>
+<p>The NONDEFAULTRULE USEVIARULE statement maps to OpenAccess by using the given viaRuleName to append the <a href="../tech/classoaStdViaDef.html">oaStdViaDef</a> or <a href="../tech/classoaViaVariant.html">oaViaVariant</a> to the <a href="../tech/classoaViaTopologyArrayValue.html">oaViaTopologyArrayValue</a> for the <a href="../guide/oacValidRoutingViasConstraint.html">oacValidRoutingVias</a> constraint in the <a href="../base/classoaConstraintGroup.html">oaConstraintGroup</a> for this non-default rule. The oaStdViaDef or oaViaVariant must already exist in the technology database.</p>
+<p>The USEVIARULE statements are stored in OpenAccess as an oaStdViaDef or as an oaViaVariant for dataModel 4 and above.</p>
+</div>
+<a name='lef|nondefaultrule|via'/>
+<a name='60007'/>
+<h2 class='topicSyntax'>
+VIA viaStatement</h2>
+<div style='margin-left:40px;'>
+<p>The NONDEFAULTRULE VIA statement maps to OpenAccess as an <a href="../tech/classoaViaTopology.html">oaViaTopology</a> that is appended to the <a href="../tech/classoaViaTopologyArrayValue.html">oaViaTopologyArrayValue</a> for the <a href="../guide/oacValidRoutingViasConstraint.html">oacValidRoutingVias</a> constraint in the oaConstraintGroup for this non-default rule.</p>
+<p>For the mapping of the viaStatement, refer to the generic LEF VIA statement.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

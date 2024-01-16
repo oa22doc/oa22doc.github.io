@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|fills'/>
+<a name='13'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Fills"></a>Fills</h1>
+<pre>
+ [FILLS numFills ;
+
+     [- <a href='#14'>LAYER</a> layerName [+ OPC]
+         {<a href='#15'>RECT</a> pt pt | <a href='#16'>POLYGON</a> pt pt pt ...} ...
+     ;] ...
+     [- <a href='#17'>VIA</a> viaName [+ OPC] pt ... ;] ...
+
+ END FILLS]
+</pre>
+<p>The DEF FILLS construct maps to OpenAccess as rectangles (oaRect objects) or as polygons (oaPolygon) on the pre-defined purpose oavPurposeNumberFill.</p>
+</div>
+<a name='def|fills|layer'/>
+<a name='14'/>
+<h2 class='topicSyntax'>
+LAYER layerName [+ OPC]</h2>
+<div style='margin-left:40px;'>
+<p>The OPC parameters map as rectangles (oaRect objects) on the pre-defined purpose oavPurposeNumberFillOPC.</p>
+</div>
+<a name='def|fills|layer|rect'/>
+<a name='15'/>
+<h3 class='topicSyntax'>
+RECT pt pt</h3>
+<div style='margin-left:60px;'>
+</div>
+<a name='def|fills|layer|polygon'/>
+<a name='16'/>
+<h3 class='topicSyntax'>
+POLYGON pt pt pt ...</h3>
+<div style='margin-left:60px;'>
+</div>
+<a name='def|fills|via'/>
+<a name='17'/>
+<h2 class='topicSyntax'>
+VIA viaName [+ OPC] pt ...</h2>
+<div style='margin-left:40px;'>
+<p>VIA maps to an oaVia object with the oacFillPurposeType. If the +OPC parameter is present, the oaVia has the purpose type oacFillOPCPurposeType.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

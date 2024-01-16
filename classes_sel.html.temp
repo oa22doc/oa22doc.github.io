@@ -1,0 +1,50 @@
+<h1 align="center">OpenAccess Class Selections</h1>
+<p>The OpenAccess class selections listed below are not mutually exclusive or
+  exhaustive. Some classes appear in more than one category, and some classes
+  that appear in the <a href="./classes.html">All Classes</a> list do not appear
+  in any of these categories.</p>
+<a href='#pagetop'></a>
+<table border="4" cellpadding="4" cellspacing="4">
+  <tr bordercolor="#FFFFFF">
+    <td width="350" rowspan="3" align="left" valign="top">
+      <p><a href="design/classes.html">oaDesign Classes <br />
+      </a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="block/classes.html">Block (Physical) Domain Classes</a> <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="module/classes.html">Module (Logical) Domain Classes</a> <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;<a href="occurrence/classes.html">Occurrence Domain Classes</a></p>
+    </td>
+    <td width="350" height="30" align="left" valign="top"><p><a href="constraint/classes.html">Constraint and Value Classes </a></p></td>
+  </tr>
+  <tr bordercolor="#FFFFFF">
+    <td height="30" align="left" valign="top"><p><a href="extension/classes.html">Extension and Property Classes</a></p></td>
+  </tr>
+  <tr bordercolor="#FFFFFF">
+    <td height="30" align="left" valign="top"><p><a href="name/classes.html">Name Classes</a></p></td>
+  </tr>
+  <tr bordercolor="#FFFFFF">
+    <td height="30" align="left" valign="top"><p><a href="dm/classes.html">Design Management (DM) Classes</a></p></td>
+    <td height="30" align="left" valign="top"><p><a href="observer/classes.html">Observer Classes</a>&nbsp;</p></td>
+  </tr>
+  <tr bordercolor="#FFFFFF">
+    <td height="30" align="left" valign="top"><p><a href="tech/classes.html">Technology Classes</a></p></td>
+    <td height="30" align="left" valign="top"><p><a href="parasitic/classes.html">Parasitic Classes</a></p></td>
+  </tr>
+  <tr bordercolor="#FFFFFF">
+    <td height="30" align="left" valign="top"><p><a href="wafer/classes.html">Wafer Classes</a></p></td>
+    <td height="30" align="left" valign="top"><p><a href="plugins/classes.html">Plug-In Classes</a></p></td>
+  </tr>
+ <tr bordercolor="#FFFFFF">
+    <td height="30" align="left" valign="top">&nbsp;</td>
+    <td height="30" align="left" valign="top"><p><a href="cms/classes.html">Change Management Classes </a></p></td>
+  </tr> 
+</table>
+<p><a href='#pagetop'>Return to top of page</a></p>
+<div style="text-align:center">
+<br /><img src='oafooter.gif'><br />
+
+</div>
+<br />
+<p class='copyright'><a href='titlecopy.html'>Copyright &#169; 2001-2006</a>
+<br />
+All Rights Reserved.</p>
+</body>
+</html>

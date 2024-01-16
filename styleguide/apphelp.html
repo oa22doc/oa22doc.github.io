@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Command-Line Help for Command-Line Applications </h1>
+<hr />
+
+<p>When working with a command-line executable, users need quick access to information about that executable. A user might want to report a bug or consider compatibility issues. In this case, knowing the version number of the executable is critical. Also, users working at the command line need information about the syntax of the executable and its arguments. The most efficient way to provide this information is with command-line help. Command-line help must convey a great deal of information in a small amount of space, and a standard, concise approach for presenting this information is critical. </p>
+<h2>Version Information </h2>
+<p>Users  access version information for the executable by typing the executable name followed by -version or -v. </p>
+<p>For example:  </p>
+<pre>% mytool -version </pre>
+<pre>% mytool 02.03.040-p001 </pre>
+<h2>Usage Information</h2>
+<p>Users access command-line help by typing the command name followed by <code>-help</code> or <code>-h</code>. </p>
+<p>Use the following standards to create command-line help for command-line executables. </p>
+<ul>
+  <li>Include a banner at the top of the help that contains the executable name and  version number. The executable name should <em>not</em> be shown with an extension.</li>
+  <li>Provide a brief usage statement that explains what the executable does. If necessary, add more extensive documentation to the formal documentation set for your tool.</li>
+  <li> First present the required arguments in alphabetical order. Next present the optional arguments in alphabetical order. If  alphabetical ordering is confusing, you can use logical ordering for particular arguments, but keep the rest of the other arguments alphabetical if possible.</li>
+  <li>If possible, choose argument names that are self-explanatory. Begin argument names with lower case letters. If the argument name is composed of multiple words, capitalize the first letter of each word except  the first word. </li>
+  <li>Use straight brackets to enclose optional arguments.</li>
+  <li>Provide default values only when necessary.</li>
+<li>Use generic terms such as <em>file</em> or <em>number</em> for argument options. </li>
+  <li>From the longest argument in the list, indent once and provide a short description (follow the guidelines for <a href="filestruc.html" target="#3">indention and tabs </a>). Capitalize the first word of the description. Align the other descriptions with this one.</li>
+  <li>Do not use positional arguments.  </li>
+  <li>The complete line width for the longest line should be less than 80 characters wide. Shorter  is preferable.</li>
+  <li>Provide options to print  command-line help (<code>-h | -help</code>) as well as version information (<code>-v | -version</code>). </li>
+</ul>
+<p>The following example shows the correct format for command-line help.</p>
+<pre class="code">**********************************************************************
+mytranslator2oa version 02.03.040-p001
+**********************************************************************
+Usage:  Translates a file to the destination OpenAccess library.
+
+Syntax: mytranslator2oa         
+        -xyz fileList           Quoted, space-separated list of files  
+                                to translate
+        -lib library            Destination library 
+        -topCell name           Top-level cell to translate
+        [-cellMap file]         Cell map file
+        [-dbuPerUU number]      dbuPerUU value
+        [-fontMap file]         Font map file
+        [-help | -h]            Print help
+        [-hierDepth number]     Hierarchical depth to translate to
+        [-ignoreBoxes]          Ignores Stream Box Records
+        [-layerMap file]        Layer map file 
+        [-logFile file]         Output log file 
+        [-noOverwrite]          Existing cells are not overwritten
+        [-propMap file]         Property map file
+        [-propSeparator char]   Property separator character
+        [-refLibList file]      refLibList file
+        [-techLib library]      Technology library
+        [-techPath path]        Path to the technology library. This arg 
+                                is valid only if -techLib is specified.
+        [-template file]        Template file
+        [-toLower]              Convert cell and instance names to lower
+                                case 
+        [-toUpper]              Convert cell and instance names to upper 
+                                case
+        [-view view]            Destination view name. The default name
+                                is myview.
+        [-version | -v]         Print version information
+</pre>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

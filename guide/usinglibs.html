@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Using OpenAccess  Translators </h1>
+<hr>
+<p>This document describes</p>
+<ul>
+  <li> <a href="#run">Running the Translators</a>
+    <ul>
+      <li><a href="#prereq">Prerequisites</a></li>
+      <li><a href="#bitMode">Specifying the Bit Mode</a></li>
+      <li><a href="#wrapperscript">Using Wrapper Script Options</a></li>
+    </ul>
+  </li>
+  <li><a href="#useLibs">How Translators Use Libraries</a></li>
+</ul>
+<h2><a name="run"></a>Running the Translators </h2>
+<p>This section explains how to set up the translators and optionally specify a bit mode. For details about running individual translators. refer to the documentation for those translators.</p>
+<h3><a name="prereq"></a>Prerequisites</h3>
+<h4>UNIX</h4>
+<p>The OpenAccess UNIX binaries have wrapper scripts to automatically set appropriate environment variables. However, there is <SPAN>one</SPAN> environment variable that you must set manually -- set your <CODE>path</CODE> variable to point to the location of the OpenAccess wrappers in the top-level bin directory of your installation: </p>
+<UL>
+  <LI><CODE><EM>&lt;install_dir&gt;</EM>/bin/</CODE> </LI>
+</UL>
+<h5>Linux </h5>
+<p>If you want to run OpenAccess binaries on a Linux platform, you must have a compliant version of the gcc runtime shared libraries in your LD_LIBRARY_PATH. In most cases on Linux, these are <em>not</em> the standard C++ runtime libraries supplied with the operating system.</p>
+<pre>setenv LD_LIBRARY_PATH &lt;gcc4.1.1_compliant_installDir>/lib</pre>
+<p>If you do not have access to the libraries, you can build them. </p>
+<h4>Windows</h4>
+<p>Set your <CODE>path</CODE> variable to point to the location of your OpenAccess binaries so that you can execute the binaries from any directory: </p>
+<UL>
+  <LI><CODE><EM>&lt;install_dir&gt;</EM>/bin/win32/opt</CODE></LI>
+</UL>
+<h3><a name="bitMode"></a>Specifying  32/64 Bit Mode </h3>
+<p>OpenAccess executables come in both 32-bit and 64-bit versions on the platforms that support both process widths. In general, if you might use large data sets that might run out of virtual memory when run with 32-bit executables,  you should set the bit mode so that the 64-bit executable is used.</p>
+<p> To set the bit mode for a specific binary, use the name of the executable in all capital letters, followed by <code>_BIT</code> (SUN or IBM platforms only). For example: </p>
+<pre >setenv DEF2OA_BIT 64</pre>
+<p>For more information about overriding environment variables for OpenAccess binaries, see the following section <a href="#wrapperscript">Using Wrapper Script Options</a>. See also <a href="../../relnotes/install.html#64_bit">Overriding Environment Variables</a> in the <em>OpenAccess 2.2 Installation and Configuration Notes</em>. </p>
+
+<a name="wrapperscript"></a>
+<h3>Using Wrapper Script Options</h3>
+<p>All of the OpenAccess executables use wrapper scripts to set the proper environment for the platform they are running on. The executables for all supported platforms are provided in the OpenAccess installation hierarchy. When you run a translator, or other executable,  the wrapper script for that translator determines which executable to run. Using wrapper script option switches, you can override the  environment variable settings that determine the executable bit modes and whether debug or optimized versions of the executables are used. The switches you can use for controlling the executable environment are described in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#ffffdd">
+<th>Option</th>
+<th>Description</th>
+</tr>
+<tr>
+<td valign="top">-64</td>
+<td valign="top">Selects the 64-bit version of the translator executable (if available). This option takes precedence over the &lt;executable&gt;_BIT and OA_BIT environment variables.</td>
+</tr>
+<tr>
+<td valign="top">-32</td> 
+<td valign="top">Selects the 32-bit version of the translator executable (if available). This option takes precedence over the &lt;executable&gt;_BIT and OA_BIT environment variables.</td>
+</tr>
+<tr>
+<td valign="top">-dbg</td>
+<td valign="top">Selects the debuggable version of the translator executable.  This option takes precedence over the &lt;executable&gt;_MODE and OA_MODE environment variables.</td>
+</tr>
+<tr>
+<td valign="top">-opt</td>
+<td valign="top">Selects the optimized version of the translator executable.  This option takes precedence over the &lt;executable&gt;_MODE and OA_MODE environment variables.</td>
+</tr>
+<tr>
+<td valign="top">-debug3264</td>
+<td valign="top">Provides diagnostics regarding the executable actually selected based on the environment variables, command line options, and the executables available on the platform.
+</td>
+</tr>
+</table>
+
+<h2><a name="useLibs"></a>How Translators Use Libraries </h2>
+<p>OpenAccess translators use OpenAccess libraries to map and convert data from one format into another. All of the OpenAccess translators share certain common functionality and use a common subset of command-line options to find libraries defined on your system and to determine the design management (DM) system that is used during a translation. This document describes how all OpenAccess translators find and use the libraries on your system.</p>
+<h3>Translators Use Library Definition Files</h3>
+<p>All OpenAccess translators use a library definition file (<code>lib.defs</code> file) to find the libraries that are available on your system and to record new library definitions if new libraries are created. The <code>lib.defs</code> file is an ASCII file that contains a symbolic name for each library and the path to each library. The library path can be either relative or absolute. Relative paths are in relation to the location of the library definition file. </p>
+<p>The following is a simple example of a <code>lib.defs</code> file that includes one definition that specifies a relative path to a library and a second that specifies an absolute path to another library. The # character at the beginning of a line identifies the line as a comment.</p>
+<pre>
+    #tools/oa/demo library definition file
+    DEFINE lib ./lib
+    DEFINE techlib /opt/OABuilds/sun4v/oa/tools.sun4v/oa/demo/technology
+</pre>
+<p>A library definition consists of a line that starts with the DEFINE keyword, followed by a space, followed by a symbolic name for the library, followed by a space, and followed by the path to the directory containing the cells. Although you can edit or create a <code>lib.defs</code> file with a text editor, you do not need to because  translators manage this for you. For additional information about the content and syntax of statements used in <code>lib.defs</code> files, see the <a href="libstruc.html#libDefs_syntax">Library Definition Files</a> section of the <em>OpenAccess Libraries and Design Management</em> article.</p>
+<h4>Using the -libDefFile Option</h4>
+<p>One command-line option you can use when you start a translator is -libDefFile, which specifies a library definition file to load. If a library definition file is not specified by using this option, the translator uses the default search mechanism defined by OpenAccess to find and load a library definition file. The default paths, in the order searched, are: <code>./lib.defs, ~/lib.defs, &lt;install_dir&gt;/data/libraries/lib.defs</code>. You can use any filename that is legal on your system for the library definition file, but if you rely on the OpenAccess default search mechanism, the filename is lib.defs.</p> 
+
+<p>Library definition files can include other definition files. The file you specify using -libDefFile, or the first default lib.defs file that is found, is identified as the top library definition file. As a result of loading this library definition file, all the libraries found in or included by that file are opened.</p>
+
+<p>If a default lib.defs file is not found, or a lib.defs file recursively includes itself, a warning message is printed and the translator continues. All other problems encountered while loading a library definition file, such as a syntax error or multiple definitions for the same library, result in an error message and the translator application terminates.</p>
+
+<p>If a translator application creates a library, it attempts to add a definition for the library to the top library definition file. If the top file is not writable, the translator application tries to add the definition to lib.defs in the current working directory. If ./lib.defs did not previously exist, this file is created and a statement to include the top library definition file is added.</p>
+<h4><a name="libDefErrors"></a>Handling Errors in lib.defs Files</h4>
+<p>Translators handle errors in the <code>lib.defs</code> file as follows: </p>
+<ul>
+  <li>A syntax error in the <code>lib.defs</code> file is always an error that  stops the translation. </li>
+  <li>A missing include file is always an error that stops the translation. </li>
+  <li>A recursive include file is never an error, but does produce a warning. </li>
+  <li>An entry in the <code>lib.defs</code> file that does not correspond to an existing library on disk and  is <em>not</em> required for the translation is not an error. <br>
+    <br>
+  However, most translators that read OpenAccess data as well as the <code>spef2oa</code> translator assume that every entry in the <code>lib.defs</code> file is needed for the translation. Specifically, the following translators  handle  entries in the <code>lib.defs</code> file that do not correspond to  existing libraries on disk as  errors: <code>spef2oa</code>, <code>oa2lef</code>, <code>oa2def</code> <code>oa2verilog</code>, <code>oa2spef</code>.</li>
+</ul>
+<h3>Using the -lib and -libPath Options</h3>
+<p>The -lib option specifies the library to read or write. This option specifies the symbolic name for an input or output library. If the named library already exists, it must be defined in the library definition file. If the library is being created by the translator, the path to where the library is created can be supplied using the -libPath option. All translators that create libraries include -libPath as an option. This option specifies the full path to the library directory. The base portion of the path is everything up to the library directory and must already exist. For example, if the full path to the library is:
+<pre>
+    /designs/user/oa/test/newlib
+</pre>
+<p>The base path <code>/designs/user/oa/test</code> must already exist. The specified library directory must either be empty or not exist. If the library directory does not exist, OpenAccess  creates it. The full path usually ends in a directory that has the same name as the library, but that is not a requirement. -libPath is used only when the library specified with the -lib option does not already exist. If the –libPath option is not supplied when a library is created, the library is created in the current working directory as ./&lt;library name&gt; where &lt;library name&gt; is the name specified with the –lib option. OpenAccess never appends the library name to the specified path. <em>"–libPath ."</em> is almost never an appropriate argument.</p>
+
+<h3>Translators Use a DM System</h3>
+<p>Each OpenAccess library is handled by a specific DM System that must be selected when the library is created.  OpenAccess provides two design management (DM) systems that you can choose from, or you can use a DM System from other providers that is installed in your OpenAccess installation hierarchy. OpenAccess translators use a default DM system if you do not specify one.</p>
+
+<h4>Understanding the -DMSystem Option</h4>
+<p>The -DMSystem option is included with all translators that create an OpenAccess library. This option specifies which DM system to use when creating the library. The OpenAccess DM system names that you can use are oaDMTurbo, and oaDMFileSys. To learn more about oaDMTurbo and oaDMFileSys, see the <a href="libstruc.html">OpenAccess Libraries and Design Management</a> article. If –DMSystem is not provided, OpenAccess selects the default DMSystem for your installation.</p>
+
+<h4>Understanding the -DMAttribute Option</h4>
+<p>The -DMAttribute option is also included with translators that create an OpenAccess library. This option specifies one or more attributes that are associated with every library that the translator creates. Attributes are supplied as <em>name=value</em> pairs. The attribute name and value are separated by an equal sign with no intervening spaces, and the attribute list must be enclosed in quotation marks. If more than one attribute pair is supplied, each pair must be separated by a single space, and the entire attribute list enclosed in quotation marks.</p>
+
+<h3>How Translators Use Namespaces</h3>
+<p>A namespace is a set of rules that define the legal characters and determine how names are interpretted.  Translators use the oaNative namespace to interpret library, cell, and view names in the command line. Other names that refer to name-mapped OpenAccess objects, such as net and module names, use the namespace that is appropriate for the translator’s file format.</p>
+
+<p><a
+href="#pagetop">Return to top of page</a></p>
+    <p><a
+href="index.html">Return to Programmers Guide topics</a></p>
+    <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+
+</body>
+</html>

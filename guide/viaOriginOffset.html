@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Origin Offset</h1>
+<hr />
+
+<h2>Description</h2>
+
+<p>The origin of a via is the (0,0) point in the coordinates for the shapes
+in the via. The <a href="../tech/classoaViaParam.html#oaViaParam::setOriginOffset">setOriginOffset</a>
+function specifies an offset that is added to all shapes in the via.</p>
+
+<p>When a via instance is created by an <a href="../design/classoaVia.html">oaVia</a>, the oaVia specifies the
+coordinates for positioning the via within the block. The origin of the via is
+placed exactly at the via coordinates.</p>
+
+<p>Use the <a href="../tech/classoaViaParam.html#oaViaParam::getOriginOffset">getOriginOffset</a> function
+to return the origin offset value.</p>
+
+
+<h2 class="spabove">Parameter Example</h2>
+<p class="spabove style1">The origin is placed at the center (0,0) location of the cut layer. The same is true for cuts with multiple rows or columns. </p>
+<p class="spabove style1">An offset of (-100,-100) might be used for technologies whose via cut shapes are defined with a lower-left origin rather than a center origin. This offset moves every shape down and to the left.</p>
+<p><img src="images/figviaOriginOffset_2.gif" width="780" height="426"></p>
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="viaparams.html">Return to Via Parameters</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+<noscript>
+<p><em class="red">This page requires JavaScript enabled.</em></p>
+</noscript>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|regions'/>
+<a name='12000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Regions"></a>Regions</h1>
+<pre>
+ [REGIONS numRegions ;
+
+       [- <a href='#12001'>regionName</a> {pt pt} ...
+           [+ <a href='#12002'>TYPE</a> {FENCE | GUIDE}]
+           [+ <a href='#12003'>PROPERTY</a> {propName propVal} ...] ...
+       ;] ...
+
+ END REGIONS]
+</pre>
+<p>In OpenAccess, a DEF region is modeled by a cluster object associated with one to several cluster boundary objects, and each cluster boundary represents an area (pair of points) of the region. The numRegions value corresponds to the number of cluster objects representing a region in a design. A cluster object represents a region if it is associated with at least one clusterBoundary object.</p>
+</div>
+<a name='def|regions|regionname'/>
+<a name='12001'/>
+<h2 class='topicSyntax'>
+regionName {pt pt} ...</h2>
+<div style='margin-left:40px;'>
+<p>The regionName is obtained using:</p>
+<pre>
+   void oaCluster::getName(oaString &amp;name) const
+</pre>
+<p>Each pair of points corresponds to the lower left and upper right points of the bounding box of a clusterBoundary for the cluster. All the clusterBoundary objects of the cluster must be taken into account.</p>
+<pre>
+   oaCollection oaCluster::getBoundaries() const
+   oaIter&lt;oaClusterBoundary&gt;::oaIter&lt;oaClusterBoundary&gt;(const oaBaseCollection &amp;coll)
+
+   oaClusterBoundary *oaIter&lt;oaClusterBoundary&gt;::getNext()
+
+   void oaFig::getBBox(oaBox &amp;bBox) const
+   oaInt4 oaBox::left() const
+   oaInt4 oaBox::bottom() const
+   oaInt4 oaBox::right() const
+   oaInt4 oaBox::top() const
+</pre>
+</div>
+<a name='def|regions|regionname|type'/>
+<a name='12002'/>
+<h3 class='topicSyntax'>
+TYPE {FENCE | GUIDE}</h3>
+<div style='margin-left:60px;'>
+<p>The TYPE information is obtained using the following API:</p>
+<pre>
+   oaClusterType oaCluster::getClusterType() const
+</pre>
+<p>The following table shows the correspondence between DEF TYPE and oaClusterType.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF TYPE</th>
+<th class='borders'>oaClusterTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>FENCE</td>
+<td class='borders'>oacClusterTypeExclusive</td>
+</tr>
+<tr>
+<td class='borders'>GUIDE</td>
+<td class='borders'>oacClusterTypeSuggested</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacClusterTypeInclusive</td>
+</tr>
+</table>
+</div>
+<a name='def|regions|regionname|properties'/>
+<a name='12003'/>
+<h3 class='topicSyntax'>
+PROPERTY {propName propVal} ...</h3>
+<div style='margin-left:60px;'>
+<p>See <a href="oadefproperties.html">PROPERTIES</a></p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

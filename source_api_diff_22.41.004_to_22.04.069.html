@@ -1,0 +1,185 @@
+<html>
+<head>
+<title>OpenAccess API Deltas</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<h2>Summary of API Changes</h2>
+<p> The summary of the API changes&nbsp;for this release is as follows:</p><span style="COLOR:#0066cc">
+<P><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following new classes were added #<BR>#################################<BR><PRE>	<A href="classoaConnectLayerType.html">oaConnectLayerType</A> <BR>
+	<A href="classoaEnclosedCutType.html">oaEnclosedCutType</A> <BR>
+	<A href="classoaNeighborLayerMetalType.html">oaNeighborLayerMetalType</A> <BR>
+	<A href="classoaSpacingMeasureType.html">oaSpacingMeasureType</A> <BR>
+	<A href="classoaSpacingType.html">oaSpacingType</A> <BR>
+	<A href="classoaViaExtensionType.html">oaViaExtensionType</A> <BR>	<BR>	<A href="classoaRecursionObserver.html">oaRecursionObserver</A> <BR>	<BR>	<A href="classoaThreadUseModel.html">oaThreadUseModel</A> <BR>	<BR>	<A href="classoaDesignArray.html">oaDesignArray</A> <BR>
+	<A href="classoaRevisionTraits_3_01oaChangeMgr_01_4.html">oaRevisionTraits&lt; oaChangeMgr &gt;</A> <BR>
+	<A href="classoaSemaphore.html">oaSemaphore</A> <BR> <BR>	<A href="classoaOccProducer.html">oaOccProducer</A>	<BR><BR>
+	<A href="classoaChangeSetObserver.html">oaChangeSetObserver</A> <BR> 
+	<A href="classoaPcellFileObserver.html">oaPcellFileObserver</A><BR>################################# </SPAN></PRE>
+<P><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following classes were modified #<BR>#################################<BR><PRE>	<A href="classoaSession.html">oaSession</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classoaSession.html#a11">getThreadUseModel() const</A> <BR>
+		<A href="classoaSession.html#a10">setThreadUseModel(oaThreadUseModel useModelIn)</A> <SPAN style="COLOR: #0066cc"><BR></PRE><PRE>	<A href="classoaDesign.html">oaDesign</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classoaDesign.html#a47">hasRecursion() const</A> <BR>
+		<A href="classoaDesign.html#a48">hasReference(const oaDesign *design) const</A> <SPAN style="COLOR: #0066cc"><BR>
+		<A href="classoaDesign.html#a53">preAllocate(oaType type, oaUInt4 numObjs)</A> <BR>
+	<A href="classoaFSComponent.html">oaFSComponent</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classoaFSComponent.html#a13">isSymbolicLink() const</A> <BR>
+	<A href="classoaTextLink.html">oaTextLink</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classoaTextLink.html#d2">reset(IText *textComponentIn)</A> <BR>
+	<A href="classoaValue.html">oaValue</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classoaValue.html#a2">getOwner(oaBoolean local=false) const</A> <BR>
+<P><SPAN style="COLOR: #0066cc"><BR>&nbsp;<PRE>	<A href="classoaAttrDisplay.html">oaAttrDisplay</A> <BR></PRE>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classoaAttrDisplay.html#a3">setObject(oaObject *object)</A> <BR> <BR>
+	<A href="classoaOccTraverser.html">oaOccTraverser</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classoaOccTraverser.html#a9">endOccurrence(oaOccurrence *occ)</A> <BR>
+		<A href="classoaOccTraverser.html#oaOccTraverser::startInst">startOccurrence(oaOccurrence *occ)</A> <BR>
+		 <BR></SPAN></SPAN><BR>################################# <BR> 
+</SPAN><BR></PRE><PRE>#################################
+</span><SPAN style="COLOR: #0066cc"><BR># The following enums were added #<BR>#################################<BR></PRE><PRE>	<A href="oaConstraintParamDef_8h.html#a153">oaConnectLayerTypeEnum</A> <BR>
+	<A href="oaConstraintParamDef_8h.html#a156">oaEnclosedCutTypeEnum</A> <BR>
+	<A href="oaConstraintParamDef_8h.html#a157">oaNeighborLayerMetalTypeEnum</A> <BR>
+	<A href="oaConstraintParamDef_8h.html#a155">oaSpacingMeasureTypeEnum</A> <BR>
+	<A href="oaConstraintParamDef_8h.html#a154">oaSpacingTypeEnum</A> <BR>
+	<A href="oaConstraintParamDef_8h.html#a152">oaViaExtensionTypeEnum</A> <SPAN style="COLOR: #0066cc">
+</PRE><PRE>	<A href="oaBaseTypes_8h.html#a73">oaThreadUseModelEnum</A> <BR>
+</PRE>
+<P> </SPAN>################################# </SPAN>
+<P><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following enums were modified #<BR>#################################<BR><PRE>	<A href="oaBaseMsgs_8h.html#a243">oaBaseMsgIds</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaBaseMsgs_8h.html#a243a237">oacInvalidViaExtensionTypeName</A> <BR>
+		<A href="oaBaseMsgs_8h.html#a243a238">oacInvalidConnectLayerTypeName</A> <BR>
+		<A href="oaBaseMsgs_8h.html#a243a239">oacInvalidSpacingTypeName</A> <BR>
+		<A href="oaBaseMsgs_8h.html#a243a241">oacInvalidEnclosedCutTypeName</A> <BR>
+		<A href="oaBaseMsgs_8h.html#a243a242">oacInvalidNeighborLayerMetalTypeName</A> <BR>
+		<A href="oaBaseMsgs_8h.html#a245a243">oacInvalidThreadUseModelName</A> <BR>
+		<A href="oaBaseMsgs_8h.html#a245a244">oacThreadMutexError</A><BR><SPAN style="COLOR: #0066cc">	<BR>		<A href="oaBaseMsgs_8h.html#a235a232">oacLockSystemFailedToGetPlugIn</A> <BR>		<BR>		<A href="oaBaseMsgs_8h.html#a235a233">oacLockSystemAlreadyInitialized</A> <BR>		<BR>		<A href="oaBaseMsgs_8h.html#a235a234">oacInvalidResourceAccess</A><BR>
+		<A href="oaBaseMsgs_8h.html#a243a235">oacPropRecursiveOwnership</A> <BR>
+		<A href="oaBaseMsgs_8h.html#a243a236">oacInvalidRepeat</A><BR>
+		<A href="oaBaseMsgs_8h.html#a243a240">oacInvalidSpacingMeasureTypeName</A> <BR> <BR>
+	<A href="oaConstraintParamDef_8h.html#a151">oaConnectivityTypeEnum</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaConstraintParamDef_8h.html#a151a126">oacDirectShapesConnectivityType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a151a127">oacSameViaConnectivityType</A> <BR> <BR>
+	<A href="oaConstraintParamDef_8h.html#a146">oaConstraintParamTypeEnum</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaConstraintParamDef_8h.html#a146a52">oacAboveOnlyConstraintParamType</A><BR>
+		<A href="oaConstraintParamDef_8h.html#a146a52">oacAllCutsConstraintParamType</A><BR>
+		<A href="oaConstraintParamDef_8h.html#a146a52">oacClassNameConstraintParamType</A>		<BR>		
+		<A href="oaConstraintParamDef_8h.html#a146a57">oacCutClassListConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a58">oacCutToMetalSpacingConstraintParamType</A><BR>
+		<A href="oaConstraintParamDef_8h.html#a146a62">oacEndOfLineWidthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a63">oacEndToEndSpacingConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a64">oacEqualRectWidthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a65">oacExactAlignedConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a66">oacExactParallelRunLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a67">oacExactSpacingConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a68">oacExceptConnectivityTypeConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a69">oacExceptEdgeLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a70">oacExceptExtraCutConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a71">oacExceptLineTouchConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a72">oacExceptMinSizeConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a73">oacExceptPointTouchConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a74">oacExceptSameCornerConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a75">oacExceptSameViaCountConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a76">oacExceptTwoEdgesConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a77">oacFloatingAreaSpacingConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a78">oacFloatingMetalConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a79">oacInLayerDirectionConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a80">oacInterSpaceConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a81">oacMaxChannelLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a82">oacMinJogLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a83">oacMinLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a84">oacMinLengthRatioConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a85">oacMinOppositeWidthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a86">oacOtherEndWidthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a87">oacParallelEdgeLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a88">oacParallelEdgeMinLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a89">oacParallelOverlapConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a90">oacParallelRunLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a91">oacParallelRunLengthTableConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a92">oacRedundantCutDistanceConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a93">oacRoutingLayersConstraintParamType</A> <BR> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a101">oacExtensionSpacingConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a106">oacExceptEdgeLengthPRLConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a110">oacNeighborLayerMetalConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a111">oacExceptCutMetalEdgeExtensionConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a147a112">oacCutClassProfileConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a55">oacCutClassCenterToCenterConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a56">oacCutClassConstraintParamType</A>
+<BR><BR>		<BR>
+		<A href="oaConstraintParamDef_8h.html#a146a59">oacEnclosedCutConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a60">oacEnclosedDistanceConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a94">oacSpanLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a95">oacSubtractEndOfLineWidthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a96">oacTwoSidesConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a97">oacViaExtensionTypeConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a98">oacViaLengthMinConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a99">oacViaWidthMinConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a100">oacWindowStepSizeConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a102">oacConvexCornerConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a103">oacHasParallelRunLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a104">oacJointWidthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a105">oacWrongDirectionConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a107">oacEndSideOverhangConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a108">oacJointToEdgeEndLengthConstraintParamType</A> <BR>
+		<A href="oaConstraintParamDef_8h.html#a146a109">oacSideParallelOverlapConstraintParamType</A> <BR><BR><SPAN style="COLOR: #0066cc">
+</PRE><PRE>	<A href="oaDesignMsgs_8h.html#a636">oaDesignMsgIds</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaDesignMsgs_8h.html#a636a634">oacCannotCreateRecursiveDesign</A> <BR>
+		<A href="oaDesignMsgs_8h.html#a636a635">oacCannotSaveAsRecursiveDesign</A><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">
+
+
+	<A href="oaConstraintDef_8h.html#a145">oaLayerArrayConstraintTypeEnum</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaConstraintDef_8h.html#a145a139">oacMaxPolyLength</A> <BR>
+		<A href="oaConstraintDef_8h.html#a145a140">oacMinInnerVertexSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a145a141">oacValidRoutingLPPs</A> <BR>
+	<A href="oaConstraintDef_8h.html#a143">oaLayerConstraintTypeEnum</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaConstraintDef_8h.html#a143a91">oacCutClass</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a92">oacGateClearance</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a93">oacMaxDiffDensity</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a94">oacMinAreaEdgeLength</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a95">oacMinCornerToCornerDistance</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a96">oacMinCutClassSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a97">oacMinEndOfLinePerpSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a98">oacMinEndOfLineExtensionSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a99">oacMinFillToFillSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a100">oacMinNeighborViaSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a101">oacMinOppositeSpanSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a102">oacMinParallelSpanSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a103">oacMinParallelWithinViaSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a104">oacMinPerimeter</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a105">oacMinSameMetalSharedEdgeViaSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a107">oacAllowedWidthRange</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a108">oacMinBoundaryExteriorHalo</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a109">oacMinVoltageSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a143a110">oacMinProtrusionSpacing</A> <BR>
+	<A href="oaConstraintDef_8h.html#a144">oaLayerPairConstraintTypeEnum</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaConstraintDef_8h.html#a144a126">oacIllegalHGatePattern</A> <BR>
+		<A href="oaConstraintDef_8h.html#a144a127">oacMaxTouchingDirectionLength</A> <BR>
+		<A href="oaConstraintDef_8h.html#a144a128">oacMinCutClassClearance</A> <BR>
+		<A href="oaConstraintDef_8h.html#a144a129">oacMinExtensionEdge</A> <BR>
+		<A href="oaConstraintDef_8h.html#a144a130">oacMinGateExtension</A> <BR>
+		<A href="oaConstraintDef_8h.html#a144a131">oacMinOuterVertexSpacing</A> <BR>
+		<A href="oaConstraintDef_8h.html#a144a132">oacMinViaExtension</A> <BR>
+		<A href="oaConstraintDef_8h.html#a144a133">oacMinVoltageClearance</A> <BR>
+	<A href="oaConstraintDef_8h.html#a142">oaSimpleConstraintTypeEnum</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaConstraintDef_8h.html#a142a26">oacMaxFloatingArea</A><SPAN style="COLOR: #0066cc"> </SPAN><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">
+		
+#################################</SPAN></SPAN></SPAN> 
+</SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></PRE></SPAN></SPAN>
+</body>
+</html>

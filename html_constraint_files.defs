@@ -1,0 +1,34 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Constraint and Value Class Index
+
+HTMLFILES =
+	classoaConstraint.html
+	classoaConstraintDef.html
+	classoaValue.html
+	classoaConstraintGroup.html
+	classoaConstraintGroupHeader.html
+	classoaConstraintGroupMem.html
+	classoaConstraintParam.html
+	classoaConstraintParamArray.html
+	classoaConstraintParamDef.html
+	classoaConstraintParamType.html
+	classoaValueArray.html
+	classoaValueArrayValue.html
+	classoaLayerConstraintType
+	classoaLayerPairConstraintType
+	classoaSimpleConstraintType
+    	classoaLayerArrayConstraintType
+	classoaConstraintGroupDef.html
+	
+BUILDINFO
+The OpenAccess oaConstraint class provides a base class for constraint representations. All constraint objects
+are defined by the constraintDef. Constraints have a value associated with them and potentially a list of constraint 
+parameters.
+
+See <a href="../guide/constraints.html">Creating and Modeling Process Rules and Constraints</a> for more information.
+

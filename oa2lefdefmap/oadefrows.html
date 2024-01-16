@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|rows'/>
+<a name='13000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Row"></a>Row</h1>
+<pre>
+ [ROW rowName siteName origX origY siteOrient
+
+      [<a href='#13001'>DO</a> numX BY numY [STEP stepX stepY]]
+      [+ <a href='#13002'>PROPERTY</a> {propName propVal} ...] ... ;] ...
+
+ END ROW]
+</pre>
+<p>The DEF ROW maps to OpenAccess using an oaRow object. In OpenAccess, row and site orientations are concatenated (the site orientation is relative to the row), whereas in DEF, the two orientations are absolute. The OpenAccess site orientation is determined by subtracting the OpenAccess row orientation from the DEF site orientation. IN THIS FILE?</p>
+<p>For example, if in DEF there is a vertical row with <q>W</q> orientation, the row orientation created in OpenAccess is R90. Then the OpenAccess site orientation is the DEF <q>W</q> (R90), minus the OpenAccess orientation of R90, giving R0.</p>
+<p><strong>rowName</strong></p>
+<p>The rowName corresponds to the name of the row object and is obtained using:</p>
+<pre>
+   void oaRow::getName(oaString &amp;name) const
+</pre>
+<p><strong>siteName</strong></p>
+<p>The siteName corresponds to the siteDef name associated with the row. It is obtained using:</p>
+<pre>
+   void oaRow::getSiteDefName(oaString &amp;name) const
+</pre>
+<p><strong>origX, origY</strong></p>
+<p>The origX and origY information corresponds to the coordinates of the lower left point of the row bbox. It is obtained using:</p>
+<pre>
+   oaFig::getBBox(oaBox &amp;bBox) const
+   oaInt4 oaBox::left() const
+   oaInt4 oaBox::bottom() const
+</pre>
+<p><strong>siteOrient</strong></p>
+<p>The siteOrient information is absolute in DEF, but in OpenAccess, this site orientation is relative to the row. The OpenAccess site orientation is determined by applying the inverse of the OpenAccess row orientation to the DEF site orientation.</p>
+<p>For example, assume a vertical row exists in DEF with W orientation. The row orientation in OpenAccess is R90, and the site orientation is then: W (R90) inverted to R270 and concatenated to the row orientation of R90, which yields a site orientation of R0. This can be seen in the first figure in the examples below.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF</th>
+<th class='borders' colspan="2">OpenAccess</th>
+</tr>
+<tr>
+<td class='borders'>Row Type</td>
+<td class='borders'>Row Orientation</td>
+<td class='borders'>Site Orientation</td>
+</tr>
+<tr>
+<td class='borders' colspan="3">Horizontal Rows</td>
+</tr>
+<tr>
+<td class='borders'>N</td>
+<td class='borders'>R0</td>
+<td class='borders'>R0</td>
+</tr>
+<tr>
+<td class='borders'>S</td>
+<td class='borders'>R0</td>
+<td class='borders'>R180</td>
+</tr>
+<tr>
+<td class='borders'>FN</td>
+<td class='borders'>R0</td>
+<td class='borders'>MY</td>
+</tr>
+<tr>
+<td class='borders'>FS</td>
+<td class='borders'>R0</td>
+<td class='borders'>MX</td>
+</tr>
+<tr>
+<td class='borders' colspan="3">Vertical Rows</td>
+</tr>
+<tr>
+<td class='borders'>E</td>
+<td class='borders'>R90</td>
+<td class='borders'>R180</td>
+</tr>
+<tr>
+<td class='borders'>W</td>
+<td class='borders'>R90</td>
+<td class='borders'>R0</td>
+</tr>
+<tr>
+<td class='borders'>FE</td>
+<td class='borders'>R90</td>
+<td class='borders'>MY</td>
+</tr>
+<tr>
+<td class='borders'>FW</td>
+<td class='borders'>R90</td>
+<td class='borders'>MX</td>
+</tr>
+</table>
+<p>The following examples compare the DEF and OpenAccess approaches for row and site orientations.</p>
+<p>Image: <img src="images/siteOrientation.gif" alt="siteOrientation.gif"/></p>
+</div>
+<a name='def|rows|do'/>
+<a name='13001'/>
+<h2 class='topicSyntax'>
+DO numX BY numY [STEP stepX stepY]</h2>
+<div style='margin-left:40px;'>
+<p>When the row object represents a horizontal row (row orientation R0, R180, MY, or MX), numX corresponds to the number of sites in this row. spaceX corresponds to the width of the associated siteDef. These are obtained using:</p>
+<pre>
+     oaOrient oaRow::getOrient() const
+     oaUInt4 oaRow::getNumSites() const
+     oaRowHeader *oaRow::getHeader()
+     oaSiteDef *oaRow::getSiteDef() const
+</pre>
+<p>When the row object represents a vertical row (row orientation R90, R270, MYR90, or MXR90), numY corresponds to the number of sites in the row. spaceY corresponds to the height of the associated siteDef. These are obtained by using:</p>
+<pre>
+     oaOrient oaRow::getOrient() const
+     oaUInt4 oaRow::getNumSites() const
+     oaRowHeader *oaRow::getHeader()
+     oaSiteDef *oaRow::getSiteDef() const
+</pre>
+</div>
+<a name='def|rows|property'/>
+<a name='13002'/>
+<h2 class='topicSyntax'>
+PROPERTY {propName propVal} ...] ...</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oadefproperties.html">PROPERTIES</a>.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h1>Adding a Search Solution to OpenAccess Documentation</h1>
+		<hr>
+		<p>
+		OpenAccess documentation does not incorporate a search capability because of 
+		the large variety of platform and installation configurations that are 
+		possible. Most search solutions require a Web server for implementation, but 
+		OpenAccess documentation can be installed for access from a file server or 
+		CD-ROM. To avoid delivering a solution that is broken in some configurations, 
+		the search solution described in this document is not built in but easily added 
+		if the documentation is accessed via a Web server.
+		<p>The solution described in this document is Perlfect Search. There are a variety 
+			of solutions that can be used, but this one is selected because it is available 
+			under the GNU General Public License, it is simple to install and configure, 
+			and it offers good functionality and performance. Perlfect Search is a suite of 
+			Perl scripts for indexing and searching Web pages. The latest version of 
+			Perlfect Search can be downloaded from the <a href="http://www.perlfect.com/freescripts/search/">				Perlfect Solutions</a> Web site. Because it is based on Perl, the Perlfect 
+			Search solution is compatible with all Linux, UNIX, and Windows platforms.</p>
+		<h2>Preparations for Installing Perlfect Search</h2>
+		<p>Perlfect is available as a tar.gz or .zip archive. Download the archive version 
+			that suits your platform or preference. In addition to the Perlfect Search 
+			archive, to install and use Perlfect Search, you need:</p>
+		<ul>
+			<li>
+			A Web server on which you can install and execute CGI scripts.
+			<li>
+			Perl 5.004 or later
+			<li>
+				Perl modules:
+				<ul>
+					<li>
+					DB_File 1.72 or later (supports Berkeley DB 1.x.)
+					<li>
+					Mime::Base64 2.11
+					<li>
+					Digest::MD5 2.20
+					<li>
+					URI 1.10
+					<li>
+					HTML::Tagset 3.03
+					<li>
+					HTML::Parser 3.15
+					<li>
+						LWP::libwww-perl 5.50</li>
+				</ul>
+			</li>
+		</ul>
+		<p>
+		</p>
+		<p>Usually, you do not need to install these modules. Because of their common use, 
+			they are usually already installed. You can indirectly check whether a required 
+			Perl module is installed by trying to read its documentation. For example, the 
+			shell command <code>perldoc DB_File</code> displays the documentation for that 
+			module if the module is installed.</p>
+		<p>This Perlfect installation and configuration guide assumes that you are familiar 
+			with Perl, and you understand how to install Perl modules if necessary. If you 
+			are not familiar with Perl, and the required Perl modules are missing from your 
+			system, you can refer to the Perlfect Solutions Web site for additional 
+			information about acquiring and installing the missing modules, or check with 
+			your system administrator.</p>
+		<h2>Installing Perlfect Search</h2>
+		<p>The numbered steps below explain how you install Perlfect Search. Before you 
+			begin the installation, you need to know the following:</p>
+		<ul>
+			<li>
+			The path to the Perl executable on your server.
+			<li>
+				The base URL of the Web site you want to index and search. For example, <code>http://myintranet/doc/oa/</code>
+			<li>
+				The path to the directory for the site you want to index and search. For 
+				example, <code>/usr/local/htdocs/doc/oa/</code>
+			<li>
+				The URL of your cgi-bin directory. For example, <code>http://myintranet/cgi-bin/</code>
+			<li>
+				The path to the cgi-bin directory. For example, <code>/usr/local/htdocs/cgi-bin/</code></li>
+		</ul>
+		<p>The following setup instructions assume you are installing on a Linux or UNIX 
+			platform.</p>
+		<ol>
+			<li>
+			Log on to the machine that runs your Web server.
+			<li>
+			Create a distribution directory such as perlfect_dist.
+			<li>
+			Download or move the Perlfect distribution archive to the directory you created 
+			in the previous step. (For access to the download site, see the Perlfect 
+			Solutions URL provided at the beginning of this document.)
+			<li>
+			Change to the Perlfect distribution directory, and uncompress and/or unarchive 
+			the Perlfect Search distribution archive.
+			<li>
+				Change to the directory where the Perlfect setup scripts were installed by the 
+				previous step. For example, for Perlfect 3.31b, use <code>cd search-3.31b</code>
+			<li>
+				If you need to be root or other user in order to install files in your Web 
+				server cgi-bin directory, use <code>su root</code>.
+			<li>
+				Run the Perlfect Search setup script using the command <code>perl setup.pl</code>.<br>
+				<br>
+				The setup script prompts you for:
+				<ul>
+					<li>
+					The base URL of the site that you want to index and search.
+					<li>
+					The URL for your cgi-bin directory where the Web server searches for CGI 
+					scripts
+					<li>
+					The path to your Web server cgi-bin directory
+					<li>
+						The path to the document root for your Web server</li>
+				</ul>
+				<br>
+				<br>
+				The answers you supply are saved in the Perlfect Search configuration file 
+				named <code>conf.pl</code> in the cgi-bin/perlfect/search directory. The 
+				configuration file is used by both the indexer and by the search engine. See 
+				the previous section for information about what you need to know before you 
+				install Perlfect Search.<br>
+				<br>
+				<strong>Notes:</strong>
+				<br>
+				When you enter a URL during setup, it must include the http:// protocol. When 
+				you enter a path, it must start from the root of your Web server. Both URL and 
+				path entries must end with the slash ( / ) character.<br>
+				<br>
+				The base URL is the location at and below which the indexing and searches are 
+				performed. You can use the root directory of your Web site to index/search your 
+				entire site, or you can specify the URL where only the OpenAccess documentation 
+				is installed. For example, to index your entire Web site, you might enter a 
+				base URL of <code>http://myIntranet/</code>, but if you only want to index and 
+				search the OpenAccess documentation, you might enter a base URL of http:<code>//myIntranet/doc/oa/</code>.<br>
+				<br>
+			<li>
+			After entering the required setup information you are prompted to choose 
+			whether to index the site or finish. You can index your site at this time, or 
+			do so in a later step.
+			<li>
+			When the installation is complete, change to the directory where the Perlfect 
+			Search scripts are installed (for example, cgi-bin/perlfect/search).
+			<li>
+				If you did not index your site as part of the setup process, you can validate 
+				that the installation is correct and functioning now by using the command <code>perl 
+					indexer.pl</code>.</li>
+		</ol>
+		<p>The last step starts the indexer to process the pages on your site and to create 
+			an index database. Indexing the OpenAccess documentation takes a while since 
+			there are approximately 3800 files to process. The indexer uses the conf.pl 
+			configuration file you created during the Perlfect Search setup step. If the 
+			indexer produces an error, or does not appear to index your site correctly, you 
+			can use a text editor to browse the conf.pl file in the cgi-bin/perlfect/search 
+			directory. Check whether the URLs and paths look correct for your Web site. If 
+			you find an error, you can either correct it directly in the configuration file 
+			using your editor, or make a note about where the error occurred, and redo the 
+			setup from the beginning.</p>
+		<p>The default configuration file (conf.pl) enables an option to highlight matches. 
+			When enabled, each hit returned on the search results page includes two URLs. 
+			One is a link to the actual page where the keyword is found, the other is 
+			identified as <em>(highlight matches)</em>, which is a link to the page via a 
+			proxy that adds keyword highlighting in the results page. A problem with the 
+			result pages that include the highlighting is that the images in the navigation 
+			bar are not resolved, and the pages appear to be broken. If you do not want to 
+			include highlighted matches in your search results, set <code>$HIGHLIGHT_MATCHES = 
+				0;</code> in the conf.pl file.</p>
+		<h2>Adding Search to Your Web Site</h2>
+		<p>Once you complete the installation and index your site, your next step is to 
+			validate that the search engine functions correctly. If you installed Perlfect 
+			Search in cgi-bin/perlfect/search, enter the following address in your browser:</p>
+		<pre>
+    http://myIntranet/cgi-bin/perlfect/search/search.pl
+</pre>
+		<p>Of course, you need to replace myIntranet with your site domain name, and if 
+			your CGI directory uses a different name, or is in a different location, you 
+			also need to adjust that part of the URL. Your browser should return a page 
+			that includes a search text box and the Perlfect Solutions copyright notice.</p>
+		<p>If you know a term that is included among the pages you indexed, you can enter 
+			that term, click search, and a page with a ranked list of search hits is 
+			returned.</p>
+		<p><strong>Note: </strong>If searching for a term produces an error, refer to the 
+			README file in the Perlfect Search distribution directory, or refer to the 
+			Perlfect Search FAQs on the Perlfect Solutions Web site.</p>
+		<p>If you want to add a search text box to your Web site, you can enter the 
+			following HTML code in a text file, and save it as searchform.html.</p>
+		<pre>
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;OpenAccess Search&lt;/title&gt;
+&lt;base target="main"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form method="get" action="/cgi-bin/perlfect/search/search.pl"&gt;
+	&lt;input type="hidden" name="p" value="1"&gt;
+	&lt;input type="hidden" name="lang" value="en"&gt;
+	&lt;input type="hidden" name="include" value=""&gt;
+	&lt;input type="hidden" name="exclude" value=""&gt;
+	&lt;input type="hidden" name="penalty" value="0"&gt;
+	&lt;select name="mode"&gt;
+	  &lt;option value="all"&gt;Match ALL words&lt;/option&gt;
+	  &lt;option value="any"&gt;Match ANY word&lt;/option&gt;
+	&lt;/select&gt;
+	&lt;input type="text" name="q"&gt;&lt;input type="submit" value="Search"&gt;
+&lt;/form&gt;
+&lt;p&gt;Choose &lt;em&gt;Match ALL words&lt;/em&gt; to find pages containing &lt;em&gt;all&lt;em&gt; the specified words  
+(though not necessarily together in the same string).&lt;br&gt;
+Prefix a word with + to find only those pages that include the word.&lt;br&gt;
+Prefix a word with - to find only those pages that do not include the word.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+		<p>The form input variables affect search results and serve the following purposes:</p>
+		<ul>
+			<li>
+				<strong>p</strong>
+			An internal variable that should not be changed.
+			<li>
+				<strong>lang</strong> The language attribute, which uses <em>en</em>
+			for English.
+			<li>
+				<strong>include</strong>
+			Limits the search to paths that include the specified string. Null means search 
+			all paths in the search index.
+			<li>
+				<strong>exclude</strong>
+			Identifies files to exclude from the search. Null means exclude no files in the 
+			search index.
+			<li>
+				<strong>penalty</strong>
+			Controls ranking of search results by using a page's last modified attribute.
+			<li>
+				<strong>mode</strong> Sets the default operator that determines whether 
+				multiple terms are searched by logically AND-ing them (All) or logically OR-ing 
+				them (Any). + and - can still be appended by users to control the mode.</li>
+		</ul>
+		<p>For additional details about the form variables, refer to the README file in the 
+			Perlfect Search distribution directory.</p>
+		<h2>Enhancing Your Search Implementation</h2>
+		<p>There are a variety of ways you can configure your Web site to include search. 
+			One approach that does not require modifying each page on your site uses a 
+			frameset to encapsulate the OpenAccess pages. While this approach has the 
+			advantage of not requiring modification of each page on your site, framesets 
+			can have disadvantages dependent on how you implement them. This example 
+			provides a basic framework that demonstrates one way to incorporate search 
+			without modifying every page on your Web site.</p>
+		<p>The following HTML defines a two-row frameset with the search text box in the 
+			top frame and the starting page and search results displayed in the bottom 
+			frame. Adjust the URLs for your site, and save this in a text file as 
+			search.html. When this file and the searchform.html file listed above are 
+			included in the same directory on your Web site, you can open search.html in 
+			your browser, enter a search word or phrase in the top frame, and view search 
+			results in the bottom frame—all from a single browser window.</p>
+		<pre>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD 
+HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"&gt; &lt;html&gt; &lt;head&gt; &lt;title&gt;Perlfect
+   Search
+Frameset
+Example&lt;/title&gt;
+&lt;/head&gt; &lt;!-- frames --&gt;
+&lt;frameset
+rows= "27%,73%"&gt; &lt;frame
+name="search"  src="searchform.html"
+    marginwidth="10" marginheight="5" scrolling="auto" frameborder="1"&gt; &lt;frame name="main" src=
+    "http://myIntranet/doc/oa/html/index.html" marginwidth="10" marginheight="10" scrolling="auto" frameborder="0"&gt; &lt;noframes&gt; &lt;p&gt;This
+frameset
+      document contains: &lt;ul&gt; &lt;li&gt;&lt;a
+      href=
+         "http://myserver/cgi-bin/perlfect/search/search.pl"&gt;Left search frame&lt;/a&gt; &lt;li&gt;&lt;a
+         href= "http://myserver/doc_oa22/oa/html/index.html"&gt;Right frame displays site documents&lt;/a&gt;
+      &lt;/ul&gt;
+  &lt;/noframes&gt;
+&lt;/frameset&gt;
+&lt;/html&gt;
+</pre>
+		<p>Perlfect Search has provisions for limiting the files and directories that are 
+			searched and for further customization of the search solution. Be sure to read 
+			the README file in your Perlfect Search distribution directory for details, and 
+			visit the <a href="http://www.perlfect.com/freescripts/search/">Perlfect Solutions 				Web site</a> for FAQs, detailed installation and configuration 
+			instructions, and troubleshooting tips.</p>
+		<br>
+		<br>
+		<p><a href="#pagetop">Return to top of page</a></p>
+		<p><a href="index.html">Return to Programmers Guide topics</a></p>
+		<div style="TEXT-ALIGN: center">
+			<img src="../pgfooter.gif"></div>
+		<br>
+		<p><a href="../base/titlecopy.html">Copyright © 2010 Cadence Design Systems, Inc.</a>
+			<br>
+			All rights reserved.</p>
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Understanding TransReflexive, Reflexive, and InterChild Constraint Groups</h1>
+<p>These types of constraint groups, and the corresponding constraint group definitions, are intended to apply to objects within oaGroup containers. These types of constraint groups provide more flexibility and a greater degree of control for applying constraints.</p>
+
+<h2>TransReflexive Constraint Group Semantics</h2>
+<p>TransReflexive constraints apply between each object within a container and all objects outside of the container. For example, it is often necessary to apply constraints between a differential net pair and other nets in order to minimize noise on the differential pair. The oaTransReflexive constraint group semantics are intended for this type of application. The following figure illustrates the semantics.</p>
+
+<img src="images/transreflexivebasic.gif" border="0" alt="TransReflexive Semantics">
+
+<p>The constraints apply between each object in the container object and each object outside the container object. The constraints do not apply between the objects within the container object, nor do the constraints apply between the objects outside of the container. Further, if a container object includes other container objects, the constraints apply between the sub-container objects and those objects outside of the parent container, but the constraints do not apply between objects within the sub-containers nor between objects in the sub-containers and other sub-containers or objects in the parent container. The following figure illustrates how the constraints apply.</p>
+
+<img src="images/transreflexivesub.gif" border="0" alt="TransReflexive Semantics for Sub-containers">
+
+<h2>Reflexive Constraint Group Semantics</h2>
+<p>Reflexive constraints apply between the objects within a container. For example, it is often necessary to apply constraints between a differential net pair that are different from the constraints necessary between the differential net pair and other nets. The oaReflexive constraint group semantics are intended for this type of application. The following figure illustrates the semantics.</p>
+
+<img src="images/reflexivebasic.gif" border="0" alt="Reflexive Semantics">
+
+<p>The constraints apply only between the objects within the container and do not apply between objects within the container and objects outside of the container. 
+
+<h2>InterChild Constraint Group Semantics</h2>
+<p>The InterChild constraint group semantics are a variant of the Reflexive constraint group semantics. Constraints in an InterChild constraint group apply between the relevant objects in a sub-group and all objects in other sub-groups. If InterChild constraints are applied to an oaGroup that has no sub-groups, the semantics for applying the constraints are identical to the semantics for Reflexive constraint groups. The following figure illustrates the semantics for InterChild constraint groups.</p>
+
+<img src="images/interchild.gif" border="0" alt="InterChild Semantics">
+</body>
+</html>

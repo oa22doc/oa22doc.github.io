@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minCutClassClearance (oacMinCutClassClearance)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>This constraint is used to specify clearance between cuts of different classes on different layers.</p>
+    <p>Different clearance rules are applicable for cuts of different classes. This constraint enables cut class aware clearance rules. The clearance requirements depend on the following factors:</p>
+    <ul>
+      <li>Size of the cut (the cut class).</li>
+    </ul>
+    <ul>
+      <li>For rectangular cuts, which edge (long or short) is being used.</li>
+    </ul>
+    <ul>
+      <li>Whether the two cuts are on the same metal shape (sameMetal), on the same net (sameNet) or not.</li>
+    </ul>
+    <ul>
+      <li>Whether the rules are being specified as center-to-center or edge-to-edge.</li>
+    </ul>
+    <ul>
+      <li>The parallel run length &gt; 0 or not</li>
+    </ul>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top"><a href="../../html/tech/classoaLayerPairConstraint.html">oaLayerPairConstraint</a> (Symmetric: yes)</td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>
+        </b>
+        <p>This oaInt2DTblValue is indexed in each dimension by cut class dimensions. 
+             Pairs of rows and columns are used for each cut class. 
+             The number of rows and colums is equal to twice the number of cut classes.
+  </p>
+        <p>
+        Units: DBU</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>oaConnectivityType</b><br />oacConnectivityTypeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">any</td>
+        <td>
+          <p>Restricts the constraint to cut shapes of a certain connectivity type.</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaConnectivityType.html">oaConnectivityType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacAnyConnectivityType</td>
+              <td valign="top">anyConnectivityType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacSameNetConnectivityType</td>
+              <td valign="top">sameNetConnectivityType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacContiguousShapesConnectivityType</td>
+              <td valign="top">contiguousShapesConnectivityType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacDirectShapesConnectivityType</td>
+              <td valign="top">directShapesConnecitivtyType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacSameViaConnectivityType</td>
+              <td valign="top">sameViaConnectivityType</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>cutClassCenterToCenter</b><br />oacCutClassCenterToCenterConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">edgeToEdge</td>
+        <td>
+          <p>
+      The spacing measure type for a given cut class clearance. The table layout is identical to the constraint value table.
+    </p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaSpacingMeasureType.html">oaSpacingMeasureType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacEdgeToEdgeSpacingMeasureType</td>
+              <td valign="top">edgeToEdge</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacCenterToCenterSpacingMeasureType</td>
+              <td valign="top">centerToCenter</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>cutClassProfile</b><br />oacCutClassProfileConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">0</td>
+        <td>
+          <p>
+      Optionally specifies an extension distance applied to cut shapes of certain cut classes before measuring cut spacing. 
+      The table layout is identical to the constraint value table. 
+      This parameter is only valid if there is no parallel overlap between cut shapes.
+    </p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>parallelRunLength</b><br />oacParallelRunLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">0</td>
+        <td>
+          <p>The value of this parameter can be defined as follows:</p>
+          <ul>
+            <li>If this constraint applies only when there is no parallel run length, the parameter should be set to  -1</li>
+          </ul>
+          <ul>
+            <li>If this constraint only applies when the parallel run length is &gt;=0, the parameter should be set to 0 (Default).</li>
+          </ul>
+          <ul>
+            <li>If this constraint only applies when the parallel run length is strictly greater than 0, the parameter should be set to 1.</li>
+          </ul>
+          <ul>
+            <li>If this constraint applies when the parallel run length is greater than a specific value, then the parameter should be set to the value.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>cutClassList</b><br />oacCutClassListConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaValueArrayValue.html">oaValueArrayValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>
+      Stores the cut class dimensions in an array of oaDualInts, each with the width and length of a cut class.
+    </p>
+        </td>
+      </tr>
+    </table>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

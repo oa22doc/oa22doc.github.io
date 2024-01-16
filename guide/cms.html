@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>Change Management System (CMS) </h1>
+<hr>
+<p>EDA flows often send data between different applications using batch interactions with on-disk files. However, as design and manufacturing issues become more complex and interdependent, a tighter and more incremental integration is needed between many analysis and optimization engines.</p>
+<p>OpenAccess provides a foundation for  communicating design data  that enables fine-grained  collaboration between multiple processes operating on the same design. OpenAccess defines a plug-in based infrastructure that lets software developers   create plug-ins for incremental data exchange between cooperating applications. OpenAccess provides the ability to create schema definitions for all it's managed objects in OpenAccess to support the data exchange. The complete infrastructure is called the OpenAccess change management system (CMS). </p>
+<p>OpenAccess  does not provide any production CMS plug-ins, and it does not specify a format for the data to be exchanged. The infrastructure described here requires an application to have access to CMS plug-ins provided by a 3rd party. For information about creating such plug-ins, refer to <a href="cms_plugins.html">How to Write Change Management System (CMS) Plug-Ins</a>.</p>
+<p>This document is intended for application developers who want to understand how their application can use CMS. It provides a high level overview of CMS and explains how the pieces of the system work together. Application developers use CMS to access plug-ins that perform the work of incremental data exchange. While this document does  cover some details of how plug-ins work, this is only to help explain the overall system. Plug-in developers are not the primary audience. </p>
+<p><strong>Important:</strong> All documentation for CMS is preliminary and subject to change. CMS is still in development and is considered to be of Beta quality. </p>
+<h4>Contents</h4>
+<ul>
+  <li><a href="#dataExchange">Incremental Data Exchange</a>
+      <ul>
+        <li><a href="#sharedData">Defining the Data to Share </a></li>
+      </ul>
+  </li>
+  <li><a href="#interactPlug">Interacting with CMS Plug-Ins</a></li>
+  <li><a href="#tracking">Tracking Changes </a>
+      <ul>
+        <li><a href="#changeRecSet">Change Sets and Change Record </a></li>
+        <li><a href="#undoRedo">Undo and Redo Operations on Designs </a></li>
+        <li><a href="#state_changes">Database Rollback </a></li>
+      </ul>
+  </li>
+  <li><a href="#schema">Schema Definitions</a><ul><a href="#srClasses">Schema Representation Classes</a>
+    </ul>
+  <li><a href="#export">Exporting Changes</a></li>
+  <li><a href="#import">Importing Changes</a></li>
+  <li><a href="#glossary">Glossary</a></li>
+</ul>
+<h2><a name="dataExchange"></a>Incremental Data Exchange </h2>
+<p>The OpenAccess CMS infrastructure provides a standard way for  an application to   select and configure the plug-ins  used to exchange data between   applications. The application is not required to have built-in knowledge of any   individual plug-in. The application need only know how to follow the protocol specified by the   OpenAccess API to provide the plug-in names and other configuration details that are known to the user.</p>
+<p>The following example shows  two applications using the OpenAccess CMS infrastructure to exchange information about incremental changes to a given design.</p>
+<p><img src="images/dataExchange.gif" width="641" height="371"></p>
+<p>An end user of Application 1 starts the process by issuing a command to begin recording  changes to the designs. At this point, the tracking plug-in can  prompt the user to specify what sort of data should be tracked and what format should be used for recording the changes. The tracking plug-in creates a change set, which is a container for individual changes. The tracking plug-in adds each individual change, known as a change record, to the set and continues with this until the user issues a command to end change tracking. </p>
+<p>When it is time to export the data for use by another application, the end user issues a command to initialize the appropriate export plug-in and export the changes. The export plug-in  produces a file in a predetermined format that contains the information about the changes. </p>
+<p>In application 2, the end user  initializes an importer and issues a command to import the changes. The importer verifies that the changes are safe to apply, then applies them to the in-memory representation of the OpenAccess design. Alternatively, the importer can directly modify the application's native database (for an application  not based on OpenAccess).
+</p>
+<p> Application 2 can also modify the design and export the changes back to Application 1. </p>
+<h3><a name="sharedData"></a>Defining the Data to Share  </h3>
+<p>In order to facilitate the sharing of information about design changes, OpenAccess provides a way to describe  OpenAccess objects in terms of their relationships, attributes, and attribute values. Such a description of a data model is known as its schema definition. OpenAccess provides provides the ability to create schema definition for  the classes, attributes, and relationships that exist in the OpenAccess data model. Refer to <a href="create_schema.html">Creating Schema Definitions</a> </span>for more information.</p>
+<p>Tracking plug-ins can use  schema definitions and schema representations to  store the appropriate data within the change record. The schema representation captures the instance-specific data from the objects in the design based on the information in the schema definition.</p>
+<h2><a name="interactPlug"></a>Interacting with CMS Plug-Ins </h2>
+<p>Applications using the CMS infrastructure  interact with   the tracking and export plug-ins through the <a href="../cms/classoaChangeMgr.html">oaChangeMgr</a> class. There is   one and only one oaChangeMgr instance in a given process. </p>
+<p>The application issues API calls, which are provided by the oaChangeMgr instance. The oaChangeMgr instance  delegates the requested functionality to the appropriate plug-in interface. </p>
+<p><img src="images/changeManager.gif" width="555" height="327"></p>
+<h2><a name="tracking"></a>Tracking  Changes </h2>
+<p>The end user of an application decides when to initiate change tracking. Following this are a sequence of interactions between the end user, the application, the oaChangeMgr instance, and the plug-in. A typical flow might look like this: </p>
+<ol>
+  <li>The end user issues a command in the application to set up change tracking.</li>
+  <li>The application calls the <a href="../cms/classoaChangeMgr.html#oaChangeMgr::get">oaChangeMgr::get</a> function  to obtain a reference to the oaChangeMgr instance, then the application calls <a href="../cms/classoaChangeMgr.html#oaChangeMgr::initTracking">oaChangeMgr::initTracking</a>  and supplies the name of the tracking plug-in to use. <br>
+  </li>
+  <li>The oaChangeMgr instance 
+    does the following:
+    <ul>
+        <li>Loads the named tracking plug-in. </li>
+      <li>Calls the initialization interface on  the tracking plug-in. </li>
+    </ul>
+  </li>
+  <li>The application calls the <a href="../cms/classoaChangeMgr.html#oaChangeMgr::getTrackingProtocols">oaChangeMgr:getTrackingProtocols</a> function to get the array of protocols supported by the tracking plug-in, and prompts the end user to choose a particular protocol. <br>
+  </li>
+  <li>The application calls <a href="../cms/classoaCMProtocol.html#oaCMProtocol::getModAttrs">oaCMProtocol::getModAttrs</a> to get the set of modifiable attributes for the chosen protocol, and prompts the end user to  specify all values for the modifiable attributes.</li>
+  <li>The application calls <a href="../cms/classoaCMProtocol.html#oaCMProtocol::setModAttrs">oaCMProtocol::SetModAttrs</a> and sets the values for the attributes. </li>
+  <li>The application calls the <a href="../cms/classoaChangeMgr.html#oaChangeMgr::setTrackingProtocol">oaChangeMgr:setTrackingProtocol</a> function, and the oaChangeMgr instance passes the protocol information to the tracking plug-in. </li>
+  <li>The application calls <a href="../cms/classoaChangeMgr.html#oaChangeMgr::beginTracking">oaChangeMgr::beginTracking</a> to start tracking, and the oaChangeMgr instance forwards this request (along with an optional name for the change set) to the tracking plug-in. </li>
+  <li>The tracking plug-in creates a new change set and registers observers for all supported objects. </li>
+  <li>The end user modifies the design by performing operations such as reconnecting a net, destroying some shapes on a net, and so forth<span class="style2">. </span>Any change caused by a non-const OpenAccess API call results in an observer notification. </li>
+  <li>The tracking plug-in receives  observer notifications and  creates change records, adding them to the active change set. </li>
+  <li>The end user issues a command to end the change set.</li>
+  <li>The application calls <a href="../cms/classoaChangeMgr.html#oaChangeMgr::endTracking">oaChangeMgr::endTracking</a>, and the oaChangeMgr instance forwards this request to the tracking plug-in. </li>
+  <li>The tracking plug-in ends the current change set. </li>
+</ol>
+<p>The following figure illustrates this flow. </p>
+<p><img src="images/fine_grain_flowTracking.gif"></p>
+<h3><a name="changeRecSet"></a>Change Sets and Change Records </h3>
+<p>A tracking plug-in uses observers to receive notifications when an object, attribute, or relationship in the design is changed. As changes occur, the tracking plug-in creates change records (<a href="../cms/classoaChangeRec.html">oaChangeRecs</a>) for the changes of interest. </p>
+<p> A tracking plug-in is responsible for creating and managing change sets (<a href="../cms/classoaChangeSet.html">oaChangeSets</a>), which are containers for change records. As individual change records are created, they are added to the active change set. Each function for creating a change record  takes a pointer to a change set  as one of its arguments. </p>
+<p>The order of change records in the change set is    important because it  reflects the effect of a series of modifications to the design.   The end user controls what is included in the change set by specifying when to begin tracking and when to end tracking. Note that database-level changes  such as open, purge, and undo/redo are also reflected in the change set.</p>
+<p>The oaChangeRec class and its derived classes provide  the ability to create change records for: </p>
+<ul>
+  <li>Simple, <a href="#Leaf">leaf-level changes</a> such as a changed attribute value. </li>
+  <li>More complex changes with side effects, such as the destruction of a block net. These changes are referred to as <a href="#scoped">hierarchical changes</a>. </li>
+</ul>
+<h4><a name="Leaf"></a>Leaf-Level Changes </h4>
+<p>For a leaf-level change, the following information is needed in the change record:</p>
+<ul>
+  <li>The kind of change to be made, such as changing an attribute on an  object, changing a relationship originating from the object, or changing the object itself. The  type of the change  includes the operation, such as set or unset, create or  destroy.</li>
+  <li>The change set containing the change record. </li>
+  <li>An sr entity, which represents the value of a particular reference. <span class="style3"><br>
+  </span></li>
+</ul>
+<p>For example, the <a href="../cms/classoaSetAttributeChangeRec.html">oaSetAttributeChangeRec</a> constructor creates a change record for the operation of setting the value of an attribute.</p>
+<pre>
+oaSetAttributeChangeRec::oaSetAttributeChangeRec(oaChangeSetBase *           changeSetIn,
+                                                 sr::srAttributeBase::SPtr   valueIn
+	)  	</pre>
+<p>The first argument is a pointer to the change set to contain the new change record. The second argument represents the value of a particular reference and holds sufficient information to identify the object whose attribute is being set to a particular value. </p>
+<h4><a name="scoped"></a>Hierarchical Changes </h4>
+<p>A single, high level OpenAccess API call can map to a state  change that  includes multiple  lower level state changes. Such a change is known as a hierarchical state change. For  complex APIs, this decomposition can span more than one level of hierarchy, creating  a tree of changes. </p>
+<p>Separating the intent of the application (reflected by  the high level API call) from the implementation of the intent  (reflected by  lower level changes in  response to the API call) is important when using CMS. This separation allows the import plug-in the flexibility to  discard  lower level change records that are not relevant to the target data model.The import plug-in might also choose  to ignore the lower level API calls and simply use the primary change record to initiate the changes when this makes sense. </p>
+<p>A typical example of a hierarchical state change is an API call to destroy a block net. The high level  call causes the following side effects: </p>
+<ul>
+  <li>All of the net&rsquo;s connections are removed. </li>
+  <li>If there are terminals connected to the net,  those terminals are destroyed. </li>
+  <li>The parasitic networks on the net are destroyed.</li>
+  <li>The oaConnectDefs and implicit multi-bit owners  of the net are destroyed.<br>
+  </li>
+</ul>
+<p>OpenAccess provides <a href="observers.html#scoped">scoped observers</a> to group sets of hierarchical changes such as these. For the destruction of the block net, the <a href="../base/classoaObserver.html#oaObserver::onBeginDestroy">onBeginDestroy</a> scoped observer marks the beginning of the set of scoped changes. </p>
+<pre>
+virtual void  onBeginDestroy(T          *obj, 
+                             oaUInt4    scopeID) </pre>
+<p>The <em>obj</em> argument is a pointer to the object being destroyed. The <em>scopeID</em> argument, which is a unique ID for a set of scoped changes, is not currently needed in CMS and is provided to support future development.</p>
+<p>Tracking plug-ins must monitor  the standard observers that occur within the set of scoped changes. For the destruction of the block net, the changes will occur between the onBeginDestroy and onEndDestroy scoped observer notifications. The onEndDestroy observer notification is sent after the net object is destroyed, so this observer takes a pointer to a database instead of an object. </p>
+<pre>
+virtual void onEndDestroy(oaObject     *database, 
+                          oaUInt4      scopeID)</pre>
+<p>The order of the sequence  of standard observer notifications within a set of scoped changes must be maintained.</p>
+<p>Continuing with the example of the destruction of a block net, the tracking plug-in would  use the information from the set of scoped observers to  construct a hierarchical change record (<a href="../cms/classoaHierChangeRec.html">oaHierChangeRec</a>), then use the oaHierChangeRec::setPrimary function to indicate which record is  the primary change record. Changes that are side effects of the primary change can then be added with the oaHierChangeRec::addChild function. </p>
+<p>On the import side, a plug-in can choose to apply the entire hierarchical change record, including all the non-primary records, or simply use the primary change record to initiate the proper changes in the target application. </p>
+<h3><a name="undoRedo"></a>Undo and Redo Operations on Designs </h3>
+<p>An interactive editing application can allow users to <em>undo</em> changes to return a design to its previous state. Changes that were rolled back because of an undo operation can typically be recreated with a  <em>redo</em> operation. </p>
+<p>A tracking plug-in  can take one of two approaches for handling undo and redo operations issued by the application. (Refer to <a href="undo.html">Undo and Redo Use Models in OpenAccess</a> for more information about undo/redo.) </p>
+<p>The tracking plug-in might be unaware of the use model that the application uses for undo and redo operations. In this case, the tracking plug-in simply records all changes. This can potentially include a series of changes that nullify each other&#8212;such as the creation of an object and the destruction of that same object.</p>
+<p>Alternatively, a tracking plug-in can be implemented to be aware of the use model the application uses for undo and redo operations. </p>
+<p>The  function on oaDesign that returns the undo model currently in use by the application is:</p>
+<pre>
+oaUndoModelEnum oaDesign::getUndoModel() const<br>
+</pre>
+<p>OpenAccess provides observers that tracking plug-ins can use to receive notification when checkpoints are set or unset. </p>
+<pre>
+virtual void oaDesignUndoObserver::onSetCp(oaDesign    *design, 
+                                           oaUInt4     cpID)
+										   
+virtual void oaDesignUndoObserver::onUnsetCp(oaDesign *design)
+</pre>
+<p> In CMS, the <a href="../cms/classoaMarkerChangeRec.html">oaMarkerChangeRec</a> constructor is used to create a change record indicating a checkpoint was issued in the application. The <em>oacDesignCpMarkerChangeRecType</em> is specified for the oaMarkerChangeRecTypeEnum argument. </p>
+<pre>
+oaMarkerChangeRec::oaMarkerChangeRec(oaChangeSetBase             *changeSetIn,
+                                     oaMarkerChangeRecTypeEnum    typeIn,
+                                     oaCMDatabaseRef::SPtr        dbRef	 
+                                     ) </pre>
+<p><strong>Note:</strong>  Refer to <a href="../cms/classoaMarkerChangeRecType.html">oaMarkerChangeRecType</a> for a list of all the oaMarkerChangeRecTypeEnums.</p>
+<p>While a change set is open, a tracking plug-in can can react to undo and redo operations in the application and remove change records from the change set (depending on the undo use model) according to the location of the oaMarkerChangeRec instance.</p>
+<h3><a name="state_changes"></a>Database Rollback </h3>
+<p>Applications let users change the state of a design database with operations such as truncate and purge. In addition, applications allow the user to undo or redo the effect of a sequence of operations. </p>
+<p>A tracking plug-in must correctly respond to these operations by performing a rollback of change records to a previously marked point in the change set. The marked point is indicated by an oaMarkerChangeRec and is determined in an operation-specific manner. For example, database-level state change operations like truncate and purge use the last database save point, indicated by an oacDBLOSaveMarkerChangeRec. Other database-level state change operations like revert use the last checkpoint, indicated by an oacDesignCpMarkerChangeRec. </p>
+<p>OpenAccess provides observers that tracking plug-ins can use to receive notification when the state of a design database object changes. For example, plug-ins can derive the following observers  to receive notification when a design has been saved or purged: </p>
+<ul>
+  <li><pre><a href="../design/classoaObserver_3oaDesign_4.html">oaObserver&lt;oaDesign&gt;</a>::onPostSave(oaDesign    *design)</pre></li>
+  <li><pre><a href="../design/classoaObserver_3oaDesign_4.html">oaObserver&lt;oaDesign&gt;</a>::onPurge(oaDesign    *design)</pre></li>
+</ul>
+<p>A tracking plug-in can create  oaMarkerChangeRecs for these operations using the <em>oacDBLOSaveMarkerChangeRecType</em>&nbsp;and <em>oacDBLOPurgeMarkerChangeRecType</em> oaMarkerChangeRecTypeEnums, respectively, in the oaMarkerChangeRec constructor. Accordingly, when a user purges a design, the tracking plug-in can discard change records that occurred after the last<em> </em>oaMarkerChangeRec for a save operation was created.  
+<p><strong>Note:</strong> Refer to <a href="../cms/classoaMarkerChangeRecType.html">oaMarkerChangeRecType</a> for a list of all the oaMarkerChangeRecTypeEnums.
+
+<h2><a name="schema"></a>Schema Definitions</h2>
+<p>A schema definition can be thought of as a map of entities and their attributes and relationships. OpenAccess provides schema definition classes (prefixed with sd) that can represent  OpenAccess managed objects in a generic way. An sdObject can provide the   schema definition for any OpenAccess class by specifying the  attributes and relationships that can exist for  objects of that class. The <a href="../base/classsdBase.html">sdBase</a> class is the base class for all the schema definition classes that can be used to define the schema of a design. </p>
+<p><img src="images/sdBaseClasses.jpg" alt="" width="721" height="164"></p>
+<p>Consider a schema definition  for a path segment called mySegment. The schema definition should provide an  <a href="../base/classsdObject.html">sdObject</a> with the ID, name, description, namespace, and the class from which the path segment inherits. Next, the schema definition needs to include information about the attributes of the object and any relationships it can have. The <a href="../base/classsdAttribute.html">sdAttribute</a> and <a href="../base/classsdRelationship.html">sdRelationship</a> classes are used for this purpose. By itself, the schema definition does not capture the particular value of an attribute for a particular object. For example, the mySegment schema definition does not capture the value of the begin point for a particular path segment in a design. The schema definition is paired with a <a href="#srClasses">schema representation</a>, which provides a mechanism for referring to specific data in a design. </p>
+<p>The <a href="create_schema.html">Creating Schema Definitions</a> document includes an example that creates a schema definition for a path segment. In addition, <a href="traverse_schema.html">Traversing and Iterating Schema Definition Objects</a> explains how to get information about existing schema definition objects.</p>
+<h3><a name="srClasses"></a>Schema Representation Classes</h3>
+<p>OpenAccess provides a set of classes that are used to capture information about a particular schema definition object, attribute, relationship, or value. The <a href="../base/classsrBase.html">srBase</a> class and its derived classes include the interfaces necessary for representing the actual data for objects in a schema definition. </p>
+<p><img src="images/srBaseClasses.jpg" width="660" height="159"></p>
+<p>The schema representation classes contain the following:    </p>
+<ul>
+  <li>Type safe values </li>
+  <li>The object reference to the public object within the OpenAccess database </li>
+  <li>The sdAttribute or sdRelationship the defines the specific part of the schema definition to which the value belongs. </li>
+</ul>
+<p>For example, for the oaPathSeg begin point attribute, the schema representation classes provide: </p>
+<ul>
+  <li>value == oaPoint(...)</li>
+  <li> The object reference to the oaPathSeg from which the value was obtained </li>
+  <li>The sdAttribute</li>
+</ul>
+<p>The application  needs to implement a derived visitor class to get the type safe values. Refer to the <a href="../base/classsrVisitor.html">srVisitor</a> class reference page for more information. </p>
+<h2><a name="export"></a>Exporting Changes</h2>
+<p>When its time to synchronize the design data, the end user   starts  the export process by initializing the export plug-in. Following this are a sequence of interactions between the end user, the application, the oaChangeMgr instance, and the plug-in. A typical flow might look like this: </p>
+<ol>
+  <li>The end user issues a command in the application to  initialize the export plug-in.</li>
+  <li>The application calls <a href="../cms/classoaChangeMgr.html#oaChangeMgr::initExport">oaChangeMgr::initExport</a> and supplies the name of the export plug-in to use. <br>
+  </li>
+  <li>The oaChangeMgr instance
+    does the following:
+    <ul>
+        <li>Loads the named export plug-in. </li>
+        <li>Calls the initialization interface on  the export plug-in. </li>
+    </ul>
+  </li>
+  <li>The application calls the <a href="../cms/classoaChangeMgr.html#oaChangeMgr::getExportProtocols">oaChangeMgr:getExportProtocols</a> function to get the array of protocols supported by the export plug-in, and prompts the end user to choose a particular protocol.<br>
+  </li>
+  <li>The application calls <a href="../cms/classoaCMProtocol.html#oaCMProtocol::getModAttrs">oaCMProtocol::getModAttrs</a> to get the set of  modifiable attributes for the chosen protocol, and prompts the end user to  specify all values for the modifiable attributes.</li>
+  <li>The application calls <a href="../cms/classoaCMProtocol.html#oaCMProtocol::setModAttrs">oaCMProtocol::SetModAttrs</a> and sets the values for the attributes. </li>
+  <li>The application calls the <a href="../cms/classoaChangeMgr.html#oaChangeMgr::setExportProtocol">oaChangeMgr:setExportProtocol</a> function,  and the oaChangeMgr instance passes the protocol information to the  export plug-in.<br>
+  </li>
+  <li>The application calls one of the export functions on oaChangeMgr:
+    <ul>
+        <li><a href="../cms/classoaChangeMgr.html#oaChangeMgr::exportFull">oaChangeMgr::exportFull</a> exports the entire named change set. </li>
+      <li><a href="../cms/classoaChangeMgr.html#oaChangeMgr::exportIncr">oaChangeMgr::exportIncr</a> exports the named change set from the last  exportIncr() call.  If this is the first  exportIncr() call, the change set is exported from the beginning of the change  set. </li>
+    </ul>
+  </li>
+</ol>
+<p>The following figure illustrates this flow. </p>
+<p><img src="images/fine_grain_flowExport.gif"></p>
+<h2><a name="import"></a>Importing Changes</h2>
+<p>Refer to <a href="cms_import_plugin.html">Importing Changes from the Change Management System (CMS)</a>.<br>
+</p>
+<h1><a name="glossary"></a>Glossary</h1>
+<table border="1" cellspacing="0" cellpadding="2">
+  <tr>
+    <td width="176" valign="top"><p>Change management system (CMS)</p></td>
+    <td width="1014" valign="top"><p>In OpenAccess, a  plug-in based infrastructure  that supports incremental design synchronization between cooperating applications. </p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Change record (oaChangeRec) </p></td>
+    <td width="1014" valign="top"><p>Represents a change made to a design.    Change records are utility objects created by tracking plug-ins. They can    also be created by import plug-ins.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Change set</p></td>
+    <td width="1014" valign="top"><p>An ordered set of change records that reflect the effect of a series of modifications to one    or more designs.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Checkpoint </p></td>
+    <td width="1014" valign="top"><p>A checkpoint (created with oaDesign::setCp) marks the current state of a design. A call to oaDesign::undo() restores  the design to a previous state. In CMS, an oaMarkerChangeRec creates a change record indicating a checkpoint was issued by the application. While a change set is open, a tracking plug-in can can react to undo  and redo operations in the application and remove change records from  the change set  according to the  location of  oaMarkerChangeRec objects.</p>
+        <p>oaMarkerChangeRec objects impose an    implicit requirement of atomicity on the change records between them.    The change records between oaMarkerChangeRec objects must be consumed  their    entirety for the operation to be considered successful.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Export plug-in interface</p></td>
+    <td width="1014" valign="top"><p>Well defined abstract interface between OpenAccess    and an export plug-in implementation. Export plug-in developers supply an    implementation conforming to this interface in order to customize the output that represents the stored change records.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Export plug-in</p></td>
+    <td width="1014" valign="top"><p>Implementation of an OpenAccess plug-in interface    that exports changes tracked by a tracking plug-in. Exported changes are in predefined format, such as XML. </p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Import plug-in interface</p></td>
+    <td width="1014" valign="top"><p>Well defined abstract interface between OpenAccess    and an import plug-in implementation. Import plug-in developers supply an    implementation conforming to this interface in order to apply changes    generated by an export plug-in to an OpenAccess database or    application-specific in-memory model.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Import plug-in</p></td>
+    <td width="1014" valign="top"><p>Implementation of an OpenAccess plug-in interface    that imports changes into an OpenAccess session. </p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>sdAttribute</p></td>
+    <td width="1014" valign="top"><p>Defines a field in an sdObject that specifies the value of the attribute.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Schema definition </p></td>
+    <td width="1014" valign="top"><p>In general terms,  a map of entities and their attributes and relationships. In CMS, a schema definition for a data model can be created using <a href="../base/classsdBase.html"></a>  classes that inherit from <a href="../base/classsdBase.html">sdBase</a>. </p></td>
+  </tr>
+  <tr>
+    <td valign="top">Schema representation </td>
+    <td valign="top"><p>Mechanism for capturing the actual data associated with a schema definition object. In CMS, a schema representation for a data model can be created using <a href="../base/classsrBase.html"></a>  classes that inherit from <a href="../base/classsrBase.html">srBase</a>. </p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>sdNameSpace</p></td>
+    <td width="1014" valign="top"><p>Scope that bounds the uniqueness of entity identifiers within the schema definition. Namespaces can be used to distinguish between schema definitions for different versions of data models.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>sdObject</p></td>
+    <td width="1014" valign="top"><p>Defines an object in a schema    definition for a  data model. An object typically contains attributes    and relationships between objects.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>sdRelationship</p></td>
+    <td width="1014" valign="top"><p>Defines a linkage between two (or    more) sdObjects in a schema definition.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>sdValue</p></td>
+    <td width="1014" valign="top"><p>Value class that define the  basic types, utility classes, and enums that are used in a schema definition.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Observers</p></td>
+    <td width="1014" valign="top"><p>OpenAccess mechanism  that    allows applications to receive notifications when certain    changes occur in the design.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Plug-in</p></td>
+    <td width="1014" valign="top"><p>Component that conforms to a defined interface and    methodology, allowing OpenAccess to load it on demand. Plug-in    developers can create alternative implementations that adhere to    the defined interface.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Protocol</p></td>
+    <td width="1014" valign="top"><p>Set of attributes that specify the functionality    offered by the plug-in for a particular usage.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Tracking plug-in interface</p></td>
+    <td width="1014" valign="top"><p>Well defined abstract interface between OpenAccess    and an tracking plug-in implementation. Tracking plug-in developers supply an    implementation conforming to this interface in order to record changes made    to an OpenAccess database or application-specific in-memory model.</p></td>
+  </tr>
+  <tr>
+    <td width="176" valign="top"><p>Tracking plug-in</p></td>
+    <td width="1014" valign="top"><p>Implementation of an OpenAccess plug-in interface    that records changes made to an OpenAccess database or application-specific    in-memory model. </p></td>
+  </tr>
+  <tr>
+    <td valign="top">Visitor design pattern </td>
+    <td valign="top">This methodology provides a way to encapsulate an operation that you want to  perform on the elements of a data structure. The visitor design pattern  interface uses a dual dispatch technique. Each concrete node in the  data structure has an accept method, which provides access to a <em>visitor</em>.  The accept method sends a message to the visitor that includes the  node's class. The visitor can then execute its behavior for that  element.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<div style="text-align: center"> <img src="../pgfooter.gif"><br />
+</div>
+<br />
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br />
+  All rights reserved.</p>
+</body>
+</html>

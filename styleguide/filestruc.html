@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>File Structure</h1>
+<hr>
+
+<p>With rare exceptions, all files of the same type should have the same basic 
+structure. This section describes the standard file structure:</p>
+
+<ul>
+<li><a href="#1">Line Width</a></li>
+<li><a href="#2">File Size</a></li>
+<li><a href="#3">Indentation and Tabs </a></li>
+<li><a href="#4">Source File  Comment Block</a></li>
+<li><a href="#5">Separating File Contents into Blocks</a></li>
+<li><a href="#6">Header File Structure</a></li>
+</ul><br /><br />
+
+
+<h2><a name="1"></a>Line Width</h2>
+
+<p>Use an 80 character line width for all files. Avoid extending lines more than 
+80 characters by breaking up code and comments across multiple lines. However, do not cut 
+code and comments short -- extend them the full page width to avoid 
+wasted space.</p>
+
+<p>The following example shows a problematic comment:
+
+<pre>
+	// This comment could fit on
+	// one or two lines, but the developer
+	// didn't clean it
+	// up. As a result, it wastes space in
+	// the file.
+</pre>
+
+<p>The line width rule is optional.</p>
+<br /><br />
+
+<h2><a name="2"></a>File Size</h2>
+
+<p>Files should not exceed 1000 to 2000 lines. Because it is difficult to find 
+code in extremely large files, separate files larger than this into multiple 
+files.</p>
+
+<p>However, do not create inconvenient file breaks, such as breaking the member 
+functions of a class into two files, just because the length exceeds the 
+guideline. This increases the difficulty of understanding the code. If a class 
+requires that much code, consider other object architectures that might logically 
+reduce the size of the class.</p>
+<br /><br />
+
+<h2> <a name="3"></a>Indentation and Tabs </h2>
+
+<p>Use indentation to align portions of the code and significantly improve 
+readability. Most text editors support &quot;indentation-width&quot; or &quot;shift-width&quot; 
+options. Use these options and set the default indent to four spaces. This sets 
+all indentation levels to multiples of four and any alignment boundaries are on 
+a multiple of four spaces. Always use spaces instead of tabs. </p>
+<p>When coding a statement over multiple lines, align the second and subsequent lines to the first non-white-space character following an opening parentheses. If a statement uses no parentheses, align the second and subsequent lines by two shift-widths. For example:</p>
+<pre>
+    return memcmp(&amp;params, &amp;paramTbl[index], sizeof(oaViaParamData)) == 0
+        &amp;&amp; params.cutPatternSize == cutPatternTbl.getNumElements(index)
+        &amp;&amp; (params.cutPatternSize == 0
+            || memcmp(params.cutPattern, cutPatternTbl.get(index),
+            params.cutPatternSize) == 0));
+
+</pre>
+    
+
+<h2><a name="4"></a>Source File  Comment Block</h2>
+
+<p>If you are creating a new source file that was not part of an OpenAccess
+distribution,  replace YOUR_COMPANY_NAME with the name of your company. </p>
+
+<pre>
+//*****************************************************************************
+//*****************************************************************************
+// &lt;fileName&gt;
+//
+// Add a description of what this file contains. This comment should pertain
+// to the entire contents of this file, not any particular portion.
+// Comments of that type should be placed above the specific portion.
+//
+//*****************************************************************************
+// This source file contains copyrighted material developed by <strong>YOUR_COMPANY_NAME</strong>.
+//
+// The rights to this source file, its machine readable form,
+// and any representation of the material contained herein,
+// are hereby transferred to and are owned by Si2, Inc.
+//
+// This material is copyrighted by and may not be reproduced
+// in any form except under the terms of your OpenAccess license
+// or with prior written permission of Si2, Inc.
+//
+//                  Copyright (c) 2007 Si2, Inc.
+//                      All Rights Reserved
+//*****************************************************************************
+//*****************************************************************************
+</pre>
+<p>&nbsp;</p>
+<br /><br />
+
+<h2><a name="5"></a>Separating File Contents into Blocks</h2>
+
+<p>Divide the contents of a file into easily understood, functionally unique 
+blocks. Visually separate the blocks with three blank lines to make it easy to 
+differentiate the material. Add a comment to each block. Types of functional 
+blocks include:</p>
+
+<ul>
+<li>Function or class member function</li>
+<li>Class, structure, or enum definition</li>
+<li>Static member assignments</li>
+</ul>
+
+<p>The following example shows how to separate functional blocks.</p>
+<br />
+
+<pre>
+// *****************************************************************************
+// Initialize Static Members
+// *****************************************************************************
+const oaFloat           myClass::myStaticFloatVar       = 5.0f; 
+const oaBoolean myClass::myStaticBooleanVar     	= TRUE; 
+const oaMyClass *myClass::myStaticClassPtr              = NULL;
+
+
+
+// *****************************************************************************
+// myClass::myMemberFunc()
+//
+// This is the description of this function. It describes this function, what it
+// does, and how it works.
+// *****************************************************************************
+myClass::myMemberFunc()
+{
+        &lt;function contents&gt;
+}
+
+
+
+// *****************************************************************************
+// myClass::myOtherMemberFunc()
+//
+// This is the description of this function. It describes this function, what it
+// does, and how it works.
+// *****************************************************************************
+myClass::myOtherMemberFunc()
+{
+        &lt;function contents&gt;
+}
+</pre>
+
+<p>Separating the file into blocks is optional. Users can determine how much 
+inter block spacing is required (if any).</p>
+<br /><br />
+
+<h2><a name="6"></a>Header File Structure</h2>
+
+<p>Enclose the entire contents of header files between the commands 
+<code>#if !defined(...)</code> and <code>#endif</code> to protect against multiple 
+inclusions. Every header file must end with <code>#endif</code> as the last 
+line of the file.</p>
+
+<p>For example:</p>
+
+<pre>
+	&lt;FILE HEADER COMMENT BLOCK&gt;
+
+	#if !defined(&lt;fileName&gt;_P)
+	#define &lt;fileName&gt;_P
+
+	&lt;FILE CONTENTS&gt;
+
+	#endif
+</pre>
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

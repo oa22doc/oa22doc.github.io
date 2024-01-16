@@ -1,0 +1,458 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>Deriving Layers and Performing Layer Operations</h1>
+<hr>
+<p>Custom design requires design rule checking (DRC) that involves using layer operations to derive new layers from one or two existing layers. OpenAccess includes numerous types of layer operations that support the DRC requirements.</p>
+
+<h2>Layer Operations</h2>
+<p>Layers are derived by specifying the type of operation required to produce the new layer. An operation can be one of the OpenAccess built-in types or a custom type defined by the application.</p>
+<p><strong>Important:</strong> The  application is responsible for performing the actual shape manipulation and associating the results with the   appropriate derived layer. 
+OpenAccess  only stores the information about which layer operations are mandated&#8212;it does not provide   built-in layer operation functionality. &nbsp;</p>
+<h3>Built-In Layer Operation Types</h3>
+<p>OpenAccess built-in layer operation types consist of:</p>
+<ul>
+<li><a href="#andop">AND</a></li>
+<li><a href="#orop">OR</a></li>
+<li><a href="#notop">NOT</a></li>
+<li><a href="#xorop">XOR</a></li>
+<li><a href="#touchingop">TOUCHING</a></li>
+<li><a href="#buttonlyop">BUTTONLY</a></li>
+
+<li><a href="#insideop">inside</a></li>
+<li><a href="#outsideop">outside</a></li>
+<li><a href="#overlappingop">overlapping</a></li>
+<li><a href="#straddlingop">straddling</a></li>
+<li><a href="#avoidingop">avoiding</a></li>
+<li><a href="#buttingop">butting</a></li>
+<li><a href="#coincidentop">coincident</a></li>
+<li><a href="#coincidentonlyop">coincidentOnly</a></li>
+<li><a href="#enclosingop">enclosing</a></li>
+<li><a href="#buttingorcoincidentop">buttingOrCoincident</a></li>
+<li><a href="#buttingoroverlappingop">buttingOrOverlapping</a></li>
+<li><a href="#areaop">area</a></li>
+<li><a href="#oaselect">oaSelect</a></li>
+<li><a href="#sizinglayers">Sizing Layers</a>
+  <ul>
+    <li><a href="#growop">grow</a></li>
+    <li><a href="#shrinkop">shrink</a></li>
+    <li><a href="#growverticalop">growVertical</a></li>
+    <li><a href="#growhorizontalop">growHorizontal</a></li>
+    <li><a href="#shrinkverticalop">shrinkVertical</a></li>
+    <li><a href="#shrinkhorizontalop">shrinkHorizontal</a></li>
+  </ul>
+</li>
+</ul>
+<p><a href="#oasizedlayer">oaSizedLayer is deprecated</a> and superceded by the oaDerivedLayer class.</p>
+
+<h2>Using Derived Layer Parameters</h2>
+<p>Some layer operations can use parameters to determine how a layer is derived. The optional derived layer parameters are supported through the <a href="../tech/classoaDerivedLayerParam.html">oaDerivedLayerParam</a> and <a href="../tech/classoaDerivedLayerParamArray.html">oaDerivedLayerParamArray</a> objects, which modify how a derived layer is created. The types of layer parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong> (<a href="../tech/classoaDerivedLayerParamType.html">oacConnectivityTypeDerivedLayerParamType</a>) is an oaIntValue that stores one of the enum values in oaDerivedLayerConnectivityType. It controls whether selected shapes must connect to the same net (<em>sameNet</em>), not connect to the same net (<em>differentNet</em>), or ignore net connectivity (<em>ignore</em>). If no value is given then connectivity is ignored.</li>
+
+<li><strong>exclusive</strong> is an oaBooleanType, which selects shapes that have no relationship other than that specified by the layer operation that this parameter modifies. By default <code>exclusive</code> is false.</li>
+
+<li><strong>range</strong> (<a href="../tech/classoaDerivedLayerParamType.html">oacRangeDerivedLayerParamType</a>) is an oaIntRangeValue, which controls the shapes selected dependent on whether the shapes satisfy the <em>range</em> type and value.</li>
+ 
+<li><strong>selectShapesInRange</strong> (<a href="../tech/classoaDerivedLayerParamType.html">oacSelectShapesInRangeDerivedLayerParamType</a>) is an oaBooleanValue, which specifies whether the shapes that satisfy <em>range</em> should be selected (<code>true</code>) or whether the shapes that do not satisfy <em>range</em> must be selected (<code>false</code>). By default, the shapes inside the range are selected.</li>
+
+<li><strong>oaSelectShapesWithPurpose</strong> (<a href="../tech/classoaDerivedLayerParamType.html">oacSelectShapesWithPurposeDerivedLayerParamType</a>) is an oaPurposeValue type that specifies a purpose value for selecting shapes. It is used as a parameter by the oaSelect layer operation.</li>
+
+<li><strong>areaRange</strong> (<a href="../tech/classoaDerivedLayerParamType.html">oacAreaRangeDerivedLayerParamType</a>) is an oaUint8RangeValue, which indicates the area <em>range</em> to be used for the oacAreaLayerOp operation.</li>
+
+<li><strong>distance</strong> (<a href="../tech/classoaDerivedLayerParamType.html">oacDistanceDerivedLayerParamType</a>) is an oaIntValue that specifies the distance for layer sizing operations.</li>
+</ul>
+
+<h3>Using the Exclusive Parameter</h3>
+<p>You can associate the exclusive parameter with many of the layer operations. This parameter determines how a layer operation selects and interacts with shapes on the specified layers.</p>
+<ul>
+<li>If you <em>do not</em> specify the exclusive parameter, a shape on the input layer is selected if it interacts with any shape on the related layer in the manner described by the layer operation. It does not matter if there are other shapes on the related layer interacting in other ways with the input layer.</li>
+
+<li>If you <em>do</em> specify the exclusive parameter, a shape on the input layer is selected only if every interaction with shapes on the related layer are in the manner described by the layer operation.</li>
+</ul>
+
+<p>The relationship that is checked for a shape includes both the relationship defined by the layer operation and the connect parameter. Consider the example where the exclusive parameter is set to true and the connect parameter is set to sameNet using an oacCoincidentLayerOp for layers A and B with the following conditions:</p>
+<ul>
+<li>A shape on layer A has two shapes of layer B interacting with it.</li> 
+
+<li>Both shapes on layer B are coincident with the shape on layer A.</li> 
+
+<li>The first shape on layer B is on the same net as the shape on layer A.</li> 
+
+<li>The second shape on layer B is on a different net than the shape on layer A.</li> 
+</ul>
+
+<p>The shape on layer A is not selected because the second shape on layer B violates the exclusive requirement, since it is on a different net.</p>
+
+<p>The exclusive concept can be confusing when dealing with relationships that appear to be inherently exclusive, such as oacButtOnlyLayerOp. There is a significant difference between oacButtOnlyLayerOp with the exclusive option versus without:</p>
+<ul>
+<li>An oacButtOnlyLayerOp with input layers A and B selects any shape on layer A that interacts with one or more shapes on layer B that have a butting-only relationship. The butting-only relationship refers to the way in which any individual shape on layer B relates to the shape on layer A. It does not matter if other shapes on layer B relate to the shape on layer A with some other relationship.</li>
+
+<li>An oacButtOnlyLayerOp using input layers A and B, with the exclusive parameter set to true, selects a shape on layer A only if all shapes on layer B that interact with it have a butting-only relationship.</li>
+</ul>
+
+<h3>Using the Range Parameter</h3>
+<p>Some layer operations can use range parameters to modify how shapes are selected for the derived layer. Range parameters include an enumeration to specify the range type. The <a href="../base/classoaRangeType.html">oaRangeType</a> class is an enum wrapper class for the oaRangeTypeEnum object, which provides eight range types:</p>
+<ul>
+<li>oacLessThanRangeType defines a range with only an upper bound.</li>
+<li>oacLessThanEqualRangeType defines a range with only an upper bound.</li>
+<li>oacGreaterThanRangeType defines a range with only a lower bound.</li>
+<li>oacGreaterThanEqualRangeType defines a range with only a lower bound.</li>
+<li>oacClosedRangeType defines a range with both lower and upper bounds.</li>
+<li>oacOpenRangeType defines a range with both lower and upper bounds.</li>
+<li>oacOpenLeftRangeType defines a range with both lower and upper bounds.</li>
+<li>oacOpenRightRangeType defines a range with both lower and upper bounds.</li>
+</ul>
+
+<p>In addition, the oaBooleanValue <code>selectShapesInRange</code> determines whether the selected shapes are those inside or outside the <em>range</em> specified.</p>
+
+<hr>
+<a name="andop"></a>
+<p><strong>AND (oacAndLayerOp)</strong><br>
+The <em>AND</em> layer operation requires that two layers are specified. This operation creates shapes on the derived layer that correspond to the areas on layer1 and layer2 that intersect. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacAndLayerOp.gif" border="0" alt="oacAndLayerOp Figure">
+
+
+<hr>
+<a name="orop"></a>
+<p><strong>OR (oacOrLayerOp)</strong><br>
+The <em>OR</em> layer operation requires that two layers are specified. This operation creates shapes on the derived layer that correspond to a union of the shapes on layer1 and layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacOrLayerOp.gif" border="0" alt="oacOrLayerOp Figure">
+
+
+<hr>
+<a name="notop"></a>
+<p><strong>NOT (oacNotLayerOp)</strong><br>
+The <em>NOT</em> layer operation requires that two layers are specified. This operation creates shapes on the derived layer that correspond to the inversion of layer1 shapes and layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacNotLayerOp.gif" border="0" alt="oacNotLayerOp Figure">
+
+
+<hr>
+<a name="xorop"></a>
+<p><strong>XOR (oacXorLayerOp)</strong><br>
+The <em>XOR</em> layer operation requires that two layers are specified. This operation selects the areas of shapes on layer1 and the areas of shapes on layer2 that do not overlap. The operation excludes the portions of shapes on the layers that overlap. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacXorLayerOp.gif" border="0" alt="oacXorLayerOp Figure">
+
+
+<hr>
+<a name="touchingop"></a>
+<p><strong>TOUCHING (oacTouchingLayerOp)</strong><br>
+The <em>touching</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that are completely inside, partially inside, or abutting a shape on layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacTouchingLayerOp.gif" border="0" alt="oacTouchingLayerOp Figure">
+
+
+<hr>
+<a name="buttonlyop"></a>
+<p><strong>BUTTONLY (oacButtOnlyLayerOp)</strong><br>
+The <em>buttonly</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that abut but do not overlap shapes on layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.
+</p>
+<img src="images/figoacButtOnlyLayerOp.gif" border="0" alt="oacButtOnlyLayerOp Figure">
+
+
+<a name="insideop"></a>
+<hr>
+<p><strong>inside (oacInsideLayerOp)</strong><br>
+The <em>inside</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that are completely inside a shape on layer2. Coincident edges are allowed, but layer1 shapes that are not completely inside layer2 shapes are not selected. The difference between this and the touching layer operation is that this operation does not include abutting shapes  outside the second layer and does not include overlapping shapes that are only partially inside the second layer shapes. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacInsideLayerOp.gif" border="0" alt="oacInsideLayerOp Figure">
+
+<p>A single parameter can be used to further qualify when shapes are selected. The parameter is:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, shapes on layer1 are selected if the shape they are within on layer2 is connected to the same net. If set to <em>different net</em>, shapes on layer1 are selected if the shape they are within on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes  does not affect selection.
+</li>
+</ul>
+
+<a name="outsideop"></a>
+<hr>
+<p><strong>outside (oacOutsideLayerOp)</strong><br>
+The <em>outside</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that are completely outside a shape on the layer2. Coincident edges are allowed. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacOutsideLayerOp.gif" border="0" alt="oacOutsideLayerOp Figure">
+
+
+<hr>
+<a name="overlappingop"></a>
+<p><strong>overlapping (oacOverlappingLayerOp)</strong><br>
+The overlapping layer operation requires that two layers are specified. This operation selects shapes on layer1 that overlap shapes on layer2. Overlap is defined as any area common to shapes on both layers. A layer1 shape overlaps if it has any area in common with a shape on layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacOverlappingLayerOp.gif" border="0" alt="oacOverlappingLayerOp Figure">
+
+<p>Three parameters are used to further qualify when the operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, shapes on layer1 are selected if the shape they overlap on layer2 is connected to the same net. If set to <em>different net</em>, shapes on layer1 are selected if the shape they overlap on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes  does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many shapes on layer1 overlap a layer2 shape.  If the number of overlapping shapes fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the  oaBooleanValue (<code>selectShapesInRange</code>)determines whether the number of shapes on layer2 that have the relationship with the shape on layer1 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that overlap shapes on layer2 but have no other relationship with shapes on layer2. Shapes on layer2 that only abut shapes on layer1 do not prevent selection of shapes on layer1. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="straddlingop"></a>
+<hr>
+<p><strong>straddling (oacStraddlingLayerOp)</strong><br>
+The <em>straddling</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that are only partially inside shapes on layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacStraddlingLayerOp.gif" border="0" alt="oacStraddlingLayerOp Figure">
+
+<p>Three parameters are used to further qualify when the operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, shapes on layer1 are selected if the shape they straddle on layer2 is connected to the same net. If set to <em>different net</em>, shapes on layer1 are selected if the shape they straddle on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes  does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many shapes straddle a layer2 shape. If the number of straddling shapes on layer1 fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the  oaBooleanValue (<code>selectShapesInRange</code>) determines whether the number of shapes on layer1 that have the relationship with the shape on layer2 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that straddle shapes on layer2 but have no other relationship with shapes on layer2. Shapes on layer2 that only abut shapes on layer1 do not prevent selection of shapes on layer1. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="avoidingop"></a>
+<hr>
+<p><strong>avoiding (oacAvoidingLayerOp)</strong><br>
+The <em>avoiding</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that are completely outside of, and have no abutting edges with, shapes on layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacAvoidingLayerOp.gif" border="0" alt="oacAvoidingLayerOp Figure">
+
+
+<hr>
+<a name="buttingop"></a>
+<p><strong>butting (oacButtingLayerOp)</strong><br>
+The <em>butting</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that abut with shapes on layer2. Unlike oacButtOnlyLayerOp, which selects shapes with coincident edges that have no common area, the butting operator selects shapes with coincident edges and some common area (but not all area in common). The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacButtingLayerOp.gif" border="0" alt="oacButtingLayerOp Figure">
+
+<p>Three parameters are used to further qualify when the operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, shapes on layer1 are selected if the shape they abut on layer2 is connected to the same net. If set to <em>different net</em>, shapes on layer1 are selected if the shape they abut on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes  does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many shapes abut a layer2 shape. If the number of abutting shapes on layer1 fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the  oaBooleanValue (<code>selectShapesInRange</code>) determines whether the number of shapes on layer1 that have the relationship with the shape on layer2 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that abut with shapes on layer2 but have no other relationship with shapes on layer2. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="coincidentop"></a>
+<hr>
+<p><strong>coincident (oacCoincidentLayerOp)</strong><br>
+The coincident layer operation requires that two layers are specified. This operation selects shapes on layer1 that have coincident edges with shapes on layer2. The shape on layer1 is coincident if any of its edges are coincident with the edges of a shape on layer2, and the area of the shapes at those edges overlap. Other parts of the shape on layer1 can also overlap the shape on layer2. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacCoincidentLayerOp.gif" border="0" alt="oacCoincidentLayerOp Figure">
+
+<p>Three parameters further qualify when this operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, shapes on layer1 are selected if the shape they have coincident edges with on layer2 is connected to the same net. If set to <em>different net</em>, shapes on layer1 are selected if the shape they have coincident edges with on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes  does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many shapes have coincident edges with a layer2 shape. If the number of  shapes on layer1 that have coincident edges with a shape on layer2 fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the oaBooleanValue <code>selectShapesInRange</code> determines whether the number of shapes on layer1 that have the relationship with the shape on layer2 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that are coincident with shapes on layer2 but have no other relationship with shapes on layer2. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="coincidentonlyop"></a>
+<hr>
+<p><strong>coincidentOnly (oacCoincidentOnlyLayerOp)</strong><br>
+The coincidentOnly layer operation requires that two layers are specified. This operation selects shapes on layer1 that have at least one coincident edge with a shape on layer2, and the area of the  layer2 shapes are completely covered by the layer1 shape. This is different from the coincident layer operation in that no portion of the layer1 shape can lie outside of the layer2 shape. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacCoincidentOnlyLayerOp.gif" border="0" alt="oacCoincidentOnlyLayerOp Figure">
+
+<p>Three parameters further qualify when this operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, shapes on layer1 are selected if the shape they have one or more coincident edges with on layer2 is connected to the same net. If set to <em>different net</em>, shapes on layer1 are selected if the shape they have one or more coincident edges with on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes  does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many shapes have one or more coincident edges with a layer2 shape. If the number of shapes on layer1 with one or more coincident edges fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the oaBooleanValue <code>selectShapesInRange</code> determines whether the number of shapes on layer1 that have the relationship with the shape on layer2 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that are coincident with shapes on layer2 but have no other relationship with shapes on layer2. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="enclosingop"></a>
+<hr>
+<p><strong>enclosing (oacEnclosingLayerOp)</strong><br>
+The <em>enclosing</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that completely cover at least one shape on layer2. In addition, a count can be specified that governs how many layer2 shapes must be enclosed by a layer1 shape in order for a layer1 shape to be selected. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacEnclosingLayerOp.gif" border="0" alt="oacEnclosingLayerOp Figure">
+
+<p>Three parameters further qualify when this operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, shapes on layer1 are selected if the enclosed shape on layer2 is connected to the same net. If set to <em>different net</em>, shapes on layer1 are selected if the enclosed shape on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes  does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many layer2 shapes are enclosed by a layer1 shape. If the number of shapes on layer2 enclosed by a layer1 shape fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the oaBooleanValue <code>selectShapeInRange</code> determines whether the number of shapes on layer1 that have the relationship with the shape on layer2 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that enclose shapes on layer2 but have no other relationship with shapes on layer2. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="buttingorcoincidentop"></a>
+<hr>
+<p><strong>buttingOrCoincident (oacButtingOrCoincidentLayerOp</strong><br>
+The <em>buttingOrCoincident</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that either abut or are coincident with shapes on layer2. Abutting and coincidence are defined as any edge-to-edge coincidence regardless of whether the shapes overlap at the point of coincidence. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacButtOrCoinLayerOp.gif" border="0" alt="oacButtingOrCoincidentLayerOp Figure">
+
+<p>Three parameters further qualify when this operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, the abutting or coincident shapes on layer1 are selected if the shape on layer2 is connected to the same net. If set to <em>different net</em>, the abutting or coincident shapes on layer1 are selected if the  shape on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many shapes abut to or are coincident with a shape on layer2. If the number of abutting or coincident shapes on layer1 fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the oaBooleanValue <code>selectShapeInRange</code> determines whether the number of shapes on layer1 that have the relationship with the shape on layer2 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that abut or are coincident with shapes on layer2 but have no other relationship with shapes on layer2. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="buttingoroverlappingop"></a>
+<hr>
+<p><strong>buttingOrOverlapping (oacButtingOrOverlappingLayerOp</strong><br>
+The <em>buttingOrOverlapping</em> layer operation requires that two layers are specified. This operation selects shapes on layer1 that abut or overlap shapes on layer2. Overlap is defined as a common area between shapes. This operation is the same as the <em>touching</em> operation, but the latter does not support the parameters described below. The following figure is an example showing which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacButtOrOverlapLayerOp.gif" border="0" alt="oacButtingOrOverlappingLayerOp Figure">
+
+<p>Three parameters further qualify when this operation applies. The parameters are:</p>
+<ul>
+<li><strong>connectivityType</strong>: If set to <em>same net</em>, the abutting or overlapping shapes on layer1 are selected if the shape on layer2 is connected to the same net. If set to <em>different net</em>, the abutting or overlapping shapes on layer1 are selected if the  shape on layer2 is connected to a different net.  If <em>no connection</em> is specified, the connectivity of the shapes does not affect selection.</li>
+<li><strong>range</strong>: A modifier that specifies how shapes on layer1 are selected dependent on how many shapes abut or overlap a layer2 shape. If the number of abutting or overlapping shapes on layer1 fall within the specified range, the shapes on layer1 are selected. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified. In addition, the oaBooleanValue <code>selectShapesInRange</code> determines whether the number of shapes on layer1 that have the relationship with the shape on layer2 must be inside or outside the range specified.</li>
+<li><strong>exclusive</strong>: A modifier to select shapes on layer1 that abut or overlap with shapes on layer2 but have no other relationship with shapes on layer2. If not specifed, this parameter defaults to false.</li>
+</ul>
+
+<a name="areaop"></a>
+<hr>
+<p><strong>area (oacAreaLayerOp)</strong><br>
+The <em>area</em> layer operation requires that only a single layer is specified. This operation selects shapes on layer1 based on a parameter that controls whether the area of selected shapes must be equal to, less than, or greater than a specified value.</p>
+<img src="images/figoacAreaLayerOp.gif" border="0" alt="oacAreaLayerOp Figure">
+
+<p>One parameter is required for this layer operation:</p>
+<ul>
+<li><strong>areaRange</strong> is an oaUInt8Range value that specifies the area range of shapes to select. An oaRange object specifies the type of range&mdash;whether the range is a lower bound only, an upper bound only, or both a lower and upper bound. One or two values are required dependent on the range type specified.</li>
+</ul>
+
+<a name="oaselect"></a>
+<hr>
+<p><strong>oaSelect (oacSelectLayerOp)</strong><br>
+This layer operation selects all shapes on a layer that have the purpose specified by the oaSelectShapesWithPurpose parameter. The oaSelect layer operation requires that one layer is specified and a single parameter of type oaSelectShapesWithPurpose is specified. The following figure shows which shapes are selected and included in a derived layer when this type of layer operation is used.</p>
+<img src="images/figoacSelectLayerOp.gif" border="0" alt="oacSelectLayerOp Figure">
+<p>The single parameter required for this derived layer operation is:</p>
+<ul>
+<li>oaSelectShapesWithPurpose, which is an oaPurposeValue type that specifies a purpose value for selecting the shapes. The built-in  <em>oaAny</em> and <em>oaNo</em> purpose values are not used for this parameter. Use the OR layer operation instead.</p>
+</ul>
+
+<hr>
+<a name="sizinglayers"></a>
+<h3>Sizing Layers</h3>
+<p>Six sizing operations permit growing or shrinking a derived layer in the vertical direction, in the horizontal direction, or in both the vertical and horizontal directions. The horizontal and vertical directions are defined with respect to the X and Y coordinates of the top level cell, which means the horizontal and vertical directions are always defined in the same way regardless of the orientation of the instance containing the shape. All sizing layer operations use a single parent layer.</p>
+
+<p>One parameter is required for all sizing layer operations:</p>
+<ul>
+<li><strong>distance</strong> specifies the distance value for the layer sizing operation.</p>
+
+<a name="growop"></a>
+<p><strong>grow (oacGrowLayerOp)</strong><br>
+The <em>grow</em> layer operation increases the size of shapes on the derived layer. This operation increases the size of shapes in both the vertical and horizontal directions. The following figure illustrates the result of this operation.</p>
+<img src="images/figoacGrowLayerOp.gif" border="0" alt="oacGrowLayerOp Figure"> 
+
+<a name="shrinkop"></a>
+<p><strong>shrink (oacShrinkLayerOp)</strong><br>
+The <em>shrink</em> layer operation decreases the size of shapes on the derived layer. This operation decreases the size of shapes in both the vertical and horizontal directions. The following figure illustrates the result of this operation.</p>
+<img src="images/figoacShrinkLayerOp.gif" border="0" alt="oacShrinkLayerOp Figure">
+
+<a name="growverticalop"></a>
+<p><strong>growVertical (oacGrowVerticalLayerOp)</strong><br>
+The <em>growVertical</em> layer operation increases the size of shapes on the derived layer in the vertical direction only. The following figure illustrates the result of this operation.</p>
+<img src="images/figoacGrowVerticalLayerOp.gif" border="0" alt="oacGrowVerticalLayerOp Figure">
+
+<a name="growhorizontalop"></a>
+<p><strong>growHorizontal (oacGrowHorizontalLayerOp)</strong><br>
+The <em>growHorizontal</em> layer operation increases the size of shapes on the derived layer in the horizontal direction only. The following figure illustrates the result of this operation.</p>
+<img src="images/figoacGrowHorizontalLayerOp.gif" border="0" alt="oacGrowHorizontalLayerOp Figure">
+
+<a name="shrinkverticalop"></a>
+<p><strong>shrinkVertical (oacShrinkVerticalLayerOp)</strong><br>
+The <em>shrinkVertical</em> layer operation decreases the size of shapes on the derived layer in the vertical direction only. The following figure illustrates the result of this operation.</p>
+<img src="images/figoacShrinkVerticalLayerOp.gif" border="0" alt="oacShrinkVerticalLayerOp Figure">
+
+<a name="shrinkhorizontalop"></a>
+<p><strong>shrinkHorizontal (oacShrinkHorizontalLayerOp)</strong><br>
+The <em>shrinkHorizontal</em> layer operation decreases the size of shapes on the derived layer in the horizontal direction only. The following figure illustrates the result of this operation.</p>
+<img src="images/figoacShrinkHorizontalLayer.gif" border="0" alt="oacShrinkHorizontalLayerOp Figure">
+
+<a name="oasizedlayer"></a>
+<h3>oaSizedLayer is Deprecated</h3>
+<p>The oaSizedLayer class and corresponding infrastructure are deprecated and superceded by the oaDerivedLayer class. Deriving a layer using oaSizedLayer is limited to one of the oaSizeOp grow or shrink operations. oaDerivedLayer employs oaLayerOp, which, in addition to grow and shrink operations, adds grow horizontal, grow vertical, shrink horizontal, and shrink vertical operations.</p>
+
+<p>The following is an example of how oaSizedLayer is used to derive a layer using the grow operation. sLayer2 has shapes derived from dLayer1, but the sLayer2 shapes are increased in size by 160 db units.</p>
+<pre>
+oaLayerNum layerNum = 20;
+oaSizedLayer *sLayer2 = oaSizedLayer::create(dLayer1, 
+                                             oaSizeOp("GROW"),
+                                             160,
+                                             "sizedLayer2", 
+                                             layerNum);
+</pre>
+<p>This next example shows how oaDerivedLayer is used to derive a layer using the grow operation.</p>
+<pre>
+// Create the derived layer parameter to specify the grow value (oaIntValue).
+oaIntValue *sizeUpValue = oaIntValue::create(techdb, 160);
+
+oaDerivedLayerParamDef *dlpd = oaDerivedLayerParamDef::get(oacDistanceDerivedLayerParamType);
+oaDerivedLayerParam *dlp = oaDerivedLayerParam::create(dlpd, sizeUpValue);
+
+// Create the parameter array associated with the derived layers. In this case,
+// there is only one parameter, which is the grow value.
+oaDerivedLayerParamArray dlpa(1);
+dlpa[0] = dlp;
+dlpa.setNumElements(1);
+
+// Create  the derived layer.
+oaDerivedLayer *sLayer2 = oaDerivedLayer::create(tech, dLayer1 ,                                             
+                                                 oaDerivedLayerDef::get(oacGrowLayerOp),
+                                                 "sizedLayer2", layerNum,  &dlp);
+</pre>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

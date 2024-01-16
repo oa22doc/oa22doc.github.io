@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Comments</h1>
+<p>
+Good comments make code easy to understand and maintain. Inappropriate comments make code more confusing than if there were no comments. The style for comments is designed to support:</p>
+<ul>
+<li>Readability</li>
+<li>Understandability</li>
+<li>High-level code flow </li>
+</ul>
+
+<p>This document covers:</p>
+<ul>
+  <li><a href="#3.1">Use C++ Comment Styles</a></li>
+  <li><a href="#3.2">Version Information in Comments</a></li>
+  <li><a href="#3.3">Comment Code Blocks</a></li>
+  <li><a href="#switch">Commenting switch, if, and while Blocks</a></li>
+  <li><a href="#3.4">Writing Comments For Developers</a></li>
+  <li><a href="#3.5">Use Proper English</a></li>
+</ul>
+<h2><a name="3.1">Use C++ Comment Styles</a></h2>
+<p>
+All comments in C++ code must use C++ comment syntax, for example:</p>
+<pre>
+    // This is a typical C++-type comment, using double-slashes.
+</pre>
+<p>
+The older C-style syntax using /* to begin a comment block and */ to end a block is inappropriate for final code. However, the older C-style block comment is useful during code development and debugging for temporarily commenting out code. When the code is final, all comments must conform to the C++ comment syntax.</p>
+
+<h2><a name="3.2">Version Information in Comments</a></h2>
+<p>
+Comments are not a replacement for source-code control systems. In general, comments must be self-contained and refer to how the code works today, not explain its history. For this reason, comments that include specific bug fix numbers should be avoided because they don't usually make the code easier to understand. </p>
+<pre> 
+    // The following comment is unnecessary! Don't force the user to look up the CCR.
+    //
+    // This line fixes CCR 345678.
+
+
+    // This is more appropriate:
+    //
+    // Check for the case where the bisector touches every object on the node,
+    // causing all objects on this node to move to the bisector node. CCR 123456
+    // includes an example of how this can happen.
+</pre>
+<p>
+Likewise, do not comment a section of code and leave it in the file</p>
+<pre>
+    // Don't do this! If this code isn't being used, take it out!
+    //
+    // This code used to be like this
+    // x = myFunc() + 10;
+</pre>
+<p>
+Neither of these examples improve the understandability of the code, and often confuse the reader.</p>
+
+<h2><a name="3.3">Comment Code Blocks </a></h2>
+<p>In general, comments apply to blocks of code, not single lines. Most developers can look at a single line and determine what it is doing. Instead, comments should give the high-level picture.</p>
+
+<p>Avoid using comments on the end of a line of code. A comment at the end of a line usually refers to something on that line. For example, do not do the following:</p>
+<pre>
+    oaTransform xform;
+
+    instTbl.getOffset(xform.offset());  // Get the instance's offset.
+    instTbl.getOrient(xform.orient());  // Get the instance's orientation.
+    xform.mag() = instTbl.getMag();     // Get the magnification.
+</pre>
+<p>Instead of using an inline comment, insert a comment for the entire block of code. For example:</p>
+<pre>
+    // Get the instance's transform and put it in 'xform'.
+    oaTransform xform;
+
+    instTbl.getOffset(xform.offset());
+    instTbl.getOrient(xform.orient());
+    xform.mag() = instTbl.getMag();
+</pre>
+<h2><a name="switch"></a>Commenting <em>switch</em>, <em>if</em>, and <em>while</em> Blocks</h2>
+<p>The rules for commenting switch, if, and while blocks are specific to ensure readable code and improve a developer's understanding of the code functionality. It is particularly important to comment these programming constructs as blocks rather than inline and to match the indentation of comments with the block of code that they document. The following examples illustrate the correct format.</p>
+<h3>Commenting a <em>switch</em> Block</h3>
+<pre>
+    // This is an example of a properly commented switch statement. Note that you
+    // start the comment at the top and generically describe the purpose of the
+    // entire switch().
+    switch (&lt;someTest&gt;) {
+    case one:
+        // Describe a simple case here.
+        &lt;code&gt;
+        break; 
+
+    case two: 
+        // Describe here a more complicated case that requires braces.
+        {
+             oaUInt4      someVar;
+
+             &lt;code&gt;
+
+        }
+        break;
+	  
+    case three: 
+        // Describe another simple case here.
+        &lt;code&gt;
+        break;
+	  
+    default:
+        // Describe the default case here.
+        &lt;code&gt;
+        break;
+    }
+</pre>
+
+<h3>Commenting an <em>if</em> Block</h3>
+<pre>
+    // If &lt;someCondition&gt; is true, do &lt;whatever&gt;, otherwise do &lt;somethingElse&gt;. This
+    // is where you generically describe what a complicated if/else block
+    // is handling.
+    if (&lt;someCondition&gt;) {
+        // When this is complicated, it is appropriate to add additional
+        // comments here to describe exactly what is happening if &lt;someCondition&gt;
+        // is true.
+        &lt;code&gt;
+    } else {
+        // It is appropriate to further describe the else clause
+        // here.
+        &lt;somethingElse&gt;
+    }
+</pre>
+
+<h3>Commenting a <em>while</em> Block</h3>
+
+<pre>
+    // While &lt;someCondition&gt; is true, do &lt;whatever&gt;.
+    while (&lt;someCondition&gt;) {
+        &lt;code&gt;
+    }
+ 
+
+    // While &lt;someCondition&gt; is true, do &lt;whatever&gt;. This comment style
+    //  is appropriate when the content of the loop is complicated.
+    while (&lt;someCondition&gt;) {
+        // Here is what the first sub-block does.
+        &lt;code&gt;
+
+        // Here is what the second sub-block does.
+        &lt;whatever&gt;
+ 
+        // Continue with additional comments as necessary.
+        &lt;code&gt;
+    }
+</pre>
+
+<h2><a name="3.4">Writing Comments For Developers</a></h2>
+<p>
+The audience for comments is assumed to be fluent in the programming language. Do not include comments that describe information readily apparent by looking at the code. The following comments are unnecessary:</p>
+
+<pre>
+    // While index is less than 10:
+    while (index &lt; 10) {
+        .
+        .
+        .
+    }
+
+
+    if (abc != TRUE) {
+        .
+        .
+        .
+    }  // if (abc != TRUE)
+
+
+    // Abort if myFunction returns false.
+    if (!myFunction()) {
+        return;
+    }
+</pre>
+
+<h2><a name="3.5">Use Proper English </a></h2>
+<p>All comments must be complete sentences, grammatically correct, and free of spelling errors. Further, they must be free of slang, vernacular, and obscure references. The following comments are inappropriate:</p>
+<pre>
+    // Make sure our hero really wants to quit.
+
+    // don't crash if NULL
+
+    // You know why this code is required.
+</pre>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br /> 
+All rights reserved.</p>
+</body>
+</html>

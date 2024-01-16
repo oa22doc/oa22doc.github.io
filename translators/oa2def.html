@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>OpenAccess to DEF Translator (oa2def) </h1>
+<p>The OpenAccess to DEF Translator writes  design information to a DEF file. OpenAccess to DEF  is available from the command line through the executable <code>oa2def</code>. An OpenAccess library, cell, and view, as well as a name for the ouptut DEF file are required to begin a translation.</p>
+<h3>Command Syntax</h3>
+
+<p>To run <code>oa2def</code>, enter the following:</p>
+<pre class="code">
+oa2def -def <em>file</em> -lib <em>library </em>-cell <em>cell</em> -view <em>view</em> [Optional Arguments]
+</pre>
+<p>Use the -help or -h argument to display command-line help. The command-line arguments are described in the following table.</p>
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th colspan="2" align="left">Required Arguments </th>
+</tr>
+<tr>
+<td valign="top"> -cell <em>cell</em> </td>
+<td valign="top">Specifies the name of the input cell.</td>
+</tr>
+<tr>
+<td width="190" valign="top"> -def <em>file</em> </td>
+<td width="614" valign="top">Specifies the name of the output DEF file.</td>
+</tr>
+<tr>
+<td valign="top"> -lib <em>library</em> </td>
+<td valign="top">Specifies the name of the input library. The library must exist and contain a technology database or refer to a library with a technology database. The library must be defined in the library definition file. </td>
+</tr>
+<tr>
+<td valign="top"> -view <em>view</em> </td>
+<td valign="top">Specifies the name of the input view.</td>
+</tr>
+<tr bgcolor="#eeffcc">
+<td colspan="2"><strong>Optional Arguments</strong></td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-help | -h</td>
+<td valign="top">Display usage information.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-libDefFile <em>filename</em></td>
+<td valign="top">Specifies the lib.defs file to load. The path to the lib.defs file can be a full or relative path. If this option is omitted, the default search mechanism of the DM system is used to find and load the lib.defs file.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -logFile <em>file</em></td>
+<td valign="top">Specifies the log filename. If this option is omitted, the log filename defaults to oa2def.log</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noInfo <em>msgIds</em></td>
+<td valign="top">Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file.</td>
+</tr>
+<tr bgcolor="#ffffff">
+<td valign="top">-noWarning <em>msgIds</em></td>
+<td valign="top">Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space separated list of numbers. Each number in the list represents the numerical portion of the ID for the message you want to suppress. None of the numbers in the list may be zero. Suppressed messages do not appear on the terminal or in the log file and are not included in the total of WARNING messages displayed in the summary. You can browse the <a href="LefDefMsgs.html">list of error and warning messages</a> to determine which you want to suppress.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top"> -templateFile <em>file</em></td>
+<td valign="top"><p>Specifies a file containing arguments to <code>oa2def</code>. You can specify a template file instead of entering a string of arguments on the command line. </p>
+<p>If you specify a template file, arguments on the command line have precedence over arguments specified in the file. So, if the same argument exists in the template file and in the command line, the translator uses the argument on the command line.</p>
+<p>Specify arguments in a template file as follows:</p>
+<ul>
+<li> Enter arguments in the template file without a dash (-) before the argument.</li>
+<li> Enter each argument and value pair on a single line.</li>
+<li> Separate the argument from its value using a space or a tab.</li>
+<li> Designate comment lines with a <em>#</em> sign as the first character in the line.</li>
+</ul>
+<p><strong>Sample Template File</strong></p>
+<pre>
+# oa2def command line arguments
+
+logFile        myoa2def.log
+noWarning      "50015 50016"
+</pre>
+</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-ver <em>version</em></td>
+<td valign="top">Specifies the DEF version to write, which can be 5.3, 5.4, 5.5, 5.6, or 5.7. The default version is 5.6.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-v</td>
+<td valign="top"> Prints tool, format, and library version information.</td>
+</tr>
+<tr bgcolor="#FFFFFF">
+<td valign="top">-version</td>
+<td valign="top"> Prints tool and format version information.</td>
+</tr>
+</table>
+
+<p><strong>Note</strong>: Command line arguments specifying library, cell, and view names are interpreted according to the Native name space. See <a href="../guide/namemap.html#9">Native Name Space</a> in the Name Mapping article of the Programmers Guide for details about the native name space.</p>
+ 
+<p>The following example is a complete syntax line for <code> oa2def</code>.</p>
+<p>Example: <code>oa2def -def ac36.def -lib myDesignLib -cell myDesign -view layout -ver 5.6 </code></p>
+
+<h2>How the Translator Uses Namespaces</h2>
+<p>A namespace is a set of rules that define the legal characters and determine how names are interpretted. This translator uses the oaNative namespace to interpret library, cell, and view names in the command line. Other names that refer to name-mapped OpenAccess objects, such as net and module names, use the DEF namespace.</p>
+
+<h2>Error and Warning Message Format</h2>
+
+<p>Translators emit messages that report translation progress, report warnings about unusual data or conditions, or report problems with files or data that caused partial or complete translation failure. These messages are written to a log file so you can review translation status, identify error and warning conditions, and consider whether additional actions are needed.</p>
+
+<p>OpenAccess translators use a standard message format to ensure comprehensive and consistent messaging. This message format consists of three elements, which are: message type keyword,  message prefix, and message text. The message text can be further divided into three parts. The first part indicates what caused the message, the second indicates the consequence of the problem or condition, and the third part suggests an action you can take to remedy the problem or condition.</p>
+
+<p>In addition to the three standard elements, messages can also include two optional elements. An optional filename and optional line number element are included, when available, to more precisely identify the source of a problem or condition within the source data file. When present in an error or warning message, the filename and line number correspond to the location of the last line parsed for the object, and therefore, the cause of the error or warning can occur on a line preceding the indicated line number. A context string is another optional element that is included, when available, to identify the type of data object that caused the message to be emitted. The following example shows a typical error message that includes the optional filename and line number element.</p>
+
+<pre>
+    ERROR: (OALEFDEF-50004): file.lef(123): A cell was not specified. Translation was terminated. 
+    You must specify a cell.
+</pre>
+ 
+<p>One benefit of this message format is that it allows you to sort, filter, and examine only those types of messages that interest you. The keyword at the start of each message is either ERROR or WARNING and is always all uppercase. The message prefix identifies the translator family and the specific message source within the translator. The message prefix is a stable value that will not change between versions even when the message text gets updated. This makes it suitable for routine sorting and filtering.</p>
+
+<p>If you seek assistance for resolving an issue related to a translator error or warning message, be sure to retain the message type keyword (ERROR or WARNING), and retain the message prefix to identify the translator family and the message source. Also make note of the filename/line number and context information if these are included in the message.</p>
+         <p>
+            <a href="#pagetop">Return to top of page</a>
+         </p>		 
+
+	<div style="text-align: center">
+<img src="images/lefdeffooter.gif"><br />
+</div><br/>
+      <p class="copyright"><a href="../base/titlecopy.html"><em>Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</em></a><br />
+All rights reserved.</p>
+
+</body>
+</html>

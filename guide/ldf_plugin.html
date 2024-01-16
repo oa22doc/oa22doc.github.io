@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h1>How to Write a Library Definition File Plug-In</h1>
+		<hr>
+		<p>This document describes</p>
+		<ul>
+			<li>
+				<a href="#manageLDF">Managing Library Definition Files</a>
+			<li>
+				<a href="#interact">How OpenAccess and a Library Definition File Plug-In Interact</a>
+			<li>
+				<a href="#createPlug">Creating a Library Definition File Plug-In</a>
+			<li>
+				<a href="#example">Example: Creating a Library Definition File Plug-In Named 					myLDFPlugin</a>
+			<li>
+				<a href="#in_memory">Creating an In-Memory Library Definition File Plug-In</a></li>
+		</ul>
+		<p>For general information about creating plug-ins, refer to <a href="writingplugin.html">				How to Write a Plug-In</a>.
+			<h2><a name="manageLDF"></a>Managing Library Definition Files</h2>
+		<p>OpenAccess uses library definition files to establish a mapping between a 
+			logical library name and a physical file system pathname to that library. 
+			OpenAccess provides a default plug-in that manages the interactions between 
+			OpenAccess and library definition files. A plug-in developer can create an 
+			alternative library definition file plug-in that extends the syntax or 
+			symantics of the default OpenAccess plug-in. OpenAccess provides the 
+			infrastructure and plug-in interfaces for this purpose.
+		</p>
+		<h2><a name="interact"></a>How OpenAccess and a Library Definition File Plug-In 
+			Interact</h2>
+		<p>OpenAccess interacts with a library definition file plug-in through APIs and the <a href="../plugin/classILibDef.html">				ILibDef</a> plug-in interface.
+		</p>
+		<p>The following example shows an application calling oaLibDefList::openLibs to 
+			open all the libraries in the specified library definition file. The plug-in 
+			interface provides the infrastructure for the interaction between the 
+			application, OpenAccess, and the plug-in.</p>
+		<p><img src="images/appOpenLibs.jpg"></p>
+		<p>In addition, an application can call the oaLibDefList APIs to interact with the 
+			library definition file through the plug-in. The following example shows an 
+			application getting a pointer to an existing oaLibDefList, adding an oaLibDef 
+			and an oaLibDefListRef to that list, then issuing the oaLibDefList::open 
+			command:</p>
+		<p><img src="images/appCreateLibDefs.jpg"></p>
+		<p>And here is a sample flow for an application calling oaLibDefList::save:</p>
+		<p><img src="images/appLibDefListSave.jpg" width="715" height="328"></p>
+		<h2><a name="createPlug"></a>Creating a Library Definition File Plug-In</h2>
+		<p>Before starting this project, you might want to read <a href="writingplugin.html">How 				to Write a Plug-In</a>, which is a more generic document describing the 
+			general concept of plug-ins and how they work.</p>
+		<p>You can create a library definition file plug-in by creating a shared library 
+			that is loaded by OpenAccess at runtime. The shared library must do the 
+			following:</p>
+		<ul>
+			<li>
+				<a href="#factory">Create a plug-in factory</a>
+			<li>
+				<a href="#entryPoint">Implement the entry point function <em>getClassObject</em></a>
+			<li>
+				<a href="#defineClass">Define a new class derived from ILibDef</a></li>
+		</ul>
+		<p>In addition, you must <a href="#plgFile">Create a plug-in registration file</a>.
+			<h3><a name="factory"></a>Creating a Plug-in Factory</h3>
+		<p>OpenAccess provides the <a href="../common/classFactory.html">oaCommon::Factory&lt;T&gt; </a>
+			&nbsp;templated class for defining a factory object for a plug-in. The factory 
+			object is used to create instances of a plug-in. Each plug-in has a classID, 
+			which is stored in a factory table. When OpenAccess needs to create an instance 
+			of a plug-in, it uses the classID to find the factory for the plug-in. For more 
+			information about creating a plug-in factory, see <a href="writingplugin.html#factory">				Understanding the Plug-in Factory</a> in <em>How to Write a Plug-in</em>.
+		</p>
+		<h3><a name="entryPoint"></a>Implementing the Entry Point Function</h3>
+		<p>You must also implement the getClassObject entry point function. When called, 
+			this function returns a pointer to the plug-in factory. For more information 
+			about implementing the getClassObject entry point function, see <a href="writingplugin.html#entrypoint">				Implementing the Entry Point Function</a> in <em>How to Write a Plug-in</em>.</p>
+		<h3><a name="defineClass"></a>Defining a Class Derived from 
+			PlugInBase&lt;ILibDef&gt;
+		</h3>
+		<p>To create a library definition file plug-in, you must define a new class derived 
+			from the PlugInBase&lt;ILibDef&gt; class. The new class must implement all 
+			virtual functions of the ILibDef class. Refer to the API documentation for <a href="../plugin/classILibDef.html">				ILibDef</a> for a detailed description about these virtual functions.</p>
+			<h3><a name="plgFile"></a>Plug-in Registration Files
+			</h3>
+		<p>The plug-in registration file registers the plug-in shared library. The 
+			registration file can be installed in $(OA_HOME)/data/plugins when the plug-in 
+			shared library is installed. Alternatively, the OA_PLUGIN_PATH environment 
+			variable can be used to reference a .plg file outside of 
+			$(OA_HOME)/data/plugins. Refer to <a href="writingplugin.html#registration">Writing 				the Plug-In Registration File</a> in <em>How to Write a Plug-In</em> for 
+			more information.
+		</p>
+		<p>
+			OpenAccess always uses the oaLibDefSystem.plg file to locate the library file 
+			plug-in to use. It points to a second file called oaLibDef.plg that refers to 
+			the default library definition file plug-in for OpenAccess (liboaLibDef.so). A 
+			different library definition file plug-in can be specified with these two 
+			files.</p>
+		<h2><a name="example"></a>Example: Creating a Library Definition File Plug-In Named 
+			myLDFPlugin</h2>
+		<p>A plug-in is a shared library that is installed in the OpenAccess installation 
+			hierarchy in the $(OA_HOME)/data/plugins directory. Applications load the 
+			plug-in at runtime to select a customized implementation. The following 
+			describes the steps for creating a plug-in.
+		</p>
+		<ol>
+			<li>
+				Define the entry point function getClassObject():
+				<pre>
+extern "C" long <br>getClassObject(const char  *classID,
+               const Guid  &amp;interfaceID,
+               void        **ptr);
+  </pre>
+			<li>
+				Implement the entry point function as:
+				<pre>
+long
+getClassObject(const char  *classID,
+               const Guid  &amp;interfaceID,
+               void        **ptr)
+{
+    return FactoryBase::getClassObject(classId, interfaceID, ptr);
+}
+  </pre>
+			<li>
+				<a name="implementation"></a>Define a new class derived 
+				fromPlugInBase&lt;oaLibDef&gt;, and implement the required functions.
+				<br>
+				For example:
+				<pre>
+class myLibDefPlugin : public  PlugInBase&lt;ILibDef&gt;,
+                             PlugInBase&lt;ICompatibility&gt;, 
+                      private oaObserver&lt;oaLibDefListMem&gt;  {
+public:
+    virtual oaLibDefList            *open();
+    virtual oaLibDefList            *open(const oaString &amp;filePath,
+                                          oaBoolean      openReferences);
+    virtual void                    save(const oaLibDefList *libList);
+    virtual void                    saveAs(const oaLibDefList *libList,
+                                           const oaString     &amp;path);
+
+    virtual void                    getDefaultPath(oaString   &amp;defaultPath);
+    virtual void                    getDefaultFileName(oaString  &amp;filename);
+
+    virtual oaBoolean               hasPath() const;
+    virtual oaBoolean               hasWritePath() const;
+    virtual void                    getLibPath(const oaLibDef *libDef,
+                                               oaString       &amp;libPath);
+    virtual void                    getLibWritePath(const oaLibDef *libDef,
+                                                    oaString       &amp;libWritepath);
+    virtual void                    init(ILibDefAccess *libDefAccess);
+    
+
+    static  IFactory                *getFactory();
+    static  const oa::oaString      &amp;getComponentName();
+
+    virtual long                    queryInterface(const Guid   &amp;idIn,
+                                                   void         **iPtr);
+
+   };
+  </pre>
+			<li>
+				Optionally implement an ICompatibility::validate function to verify whether or 
+				not the version of OpenAccess is compatible with the plug-in. If the 
+				implemented plug-in supports the ICompatibility API, OpenAccess invokes the 
+				validate() function and throws exception if the OpenAccess version is not 
+				compatible with the plug-in.
+				<br>
+				<pre>virtual bool                validate();</pre>
+			<li>
+				Declare a Factory static member variable (inside the class myLibDefPlugin):<br>
+				<br>
+				<code>class myLibDefPlugin : public oaCommon::PlugInBase&lt;oaPlugIn::ILibDef&gt; {
+					<br>
+					&nbsp;&nbsp; .<br>
+					&nbsp;&nbsp; .<br>
+					&nbsp;&nbsp; .<br>
+					&nbsp;&nbsp;&nbsp;&nbsp; private:<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; static 
+					oaCommon::Factory&lt;myLibDefPlugin&gt; myFactory;<br>
+					};</code><br>
+				<br>
+			<li>
+				Initialize the Factory static member variable (of class myLibDefPlugin):<br>
+				<br>
+				<pre>Factory&lt;myLibDefPlugin&gt;	 myLibDefPlugin::myFactory("myLibDefPlugin")<br>
+  </pre>
+			<li>
+				Write the plug-in registration file <code>myLibDefPlugin.plg</code> with the 
+				following contents:
+				<pre>
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;plugIn lib="myLibDefPlugin"/&gt;
+  </pre>
+				The registration file can be installed in $(OA_HOME)/data/plugins when the 
+				plug-in shared library is installed. Alternatively, the OA_PLUGIN_PATH 
+				environment variable can be used to reference a .plg file outside of 
+				$(OA_HOME)/data/plugins. Refer to <a href="writingplugin.html#registration">Writing 					the Plug-In Registration File</a> in <em>How to Write a Plug-In</em> for 
+				more information.
+				<br>
+				<br>
+			<li>
+				<a name="7"></a>(Optional) Designate that your library definition file plug-in 
+				is the default plug-in by editing $(OA_HOME)/data/oaLibDefSystem.plg as 
+				follows:
+				<br>
+				<br>
+				<pre>
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;plugIn treatAs="myLibDefPlugin"/&gt;  </pre>
+			</li>
+		</ol>
+		<blockquote>&nbsp;</blockquote>
+		<p><a href="#pagetop">Return to top of page</a></p>
+		<p><a href="index.html">Return to Programmers Guide topics</a></p>
+		<div style="TEXT-ALIGN: center">
+			<img src="../pgfooter.gif"><br>
+		</div>
+		<br>
+		<p><a href="../base/titlecopy.html">Copyright © 2001-2010 Cadence Design Systems, Inc.</a>
+			<br>
+			All rights reserved.</p>
+	</body>
+</html>

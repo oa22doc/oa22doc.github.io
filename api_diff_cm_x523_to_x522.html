@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h2>Summary of API Changes</h2>
+<p>Following is a summary of the API changes between the OpenAccess x523 release and the x522 release.</p>
+<p><span style="color:#0066cc">
+#################################<br />
+#  The following new classes were added  #<br />
+#################################<br />
+<pre>
+	<a href="cms/classoaUnsetAttributeChangeRec.html">oaUnsetAttributeChangeRec</a> <br />
+	<a href="cms/classoaAttributeChangeRec.html">oaAttributeChangeRec</a> <br />
+	<a href="cms/classoaCMAttr.html">oaCMAttr</a> <br />
+	<a href="cms/classoaCMAttrArray.html">oaCMAttrArray</a> <br />
+	<a href="cms/classoaCMDatabaseRef.html">oaCMDatabaseRef</a> <br />
+	<a href="cms/classoaCMDatabaseTbl.html">oaCMDatabaseTbl</a> <br />
+	<a href="cms/classoaCMError.html">oaCMError</a> <br />
+	<a href="cms/classoaCMException.html">oaCMException</a> <br />
+	<a href="cms/classoaCMObjectIDRef.html">oaCMObjectIDRef</a> <br />
+	<a href="cms/classoaCMObjectRef.html">oaCMObjectRef</a> <br />
+	<a href="cms/classoaCMObjectRefTbl.html">oaCMObjectRefTbl</a> <br />
+	<a href="cms/classoaCMObjectStateEntry.html">oaCMObjectStateEntry</a> <br />
+	<a href="cms/classoaCMObjectStateRef.html">oaCMObjectStateRef</a> <br />
+	<a href="cms/classoaCMObjectStateTbl.html">oaCMObjectStateTbl</a> <br />
+	<a href="cms/classoaCMObjectVisitor.html">oaCMObjectVisitor</a> <br />
+	<a href="cms/classoaCMProtocol.html">oaCMProtocol</a> <br />
+	<a href="cms/classoaCMProtocolArray.html">oaCMProtocolArray</a> <br />
+	<a href="cms/classoaCMStringEntry.html">oaCMStringEntry</a> <br />
+	<a href="cms/classoaCMStringTbl.html">oaCMStringTbl</a> <br />
+	<a href="cms/classoaChangeMgr.html">oaChangeMgr</a> <br />
+	<a href="cms/classoaChangeRec.html">oaChangeRec</a> <br />
+	<a href="cms/classoaChangeRecVisitor.html">oaChangeRecVisitor</a> <br />
+	<a href="cms/classoaChangeSet.html">oaChangeSet</a> <br />
+	<a href="cms/classoaChangeSetBase.html">oaChangeSetBase</a> <br />
+	<a href="cms/classoaChangeSetVisitor.html">oaChangeSetVisitor</a> <br />
+	<a href="cms/classoaConvertObjectChangeRec.html">oaConvertObjectChangeRec</a> <br />
+	<a href="cms/classoaCreate1to1RelationshipChangeRec.html">oaCreate1to1RelationshipChangeRec</a> <br />
+	<a href="cms/classoaCreate1toNRelationshipChangeRec.html">oaCreate1toNRelationshipChangeRec</a> <br />
+	<a href="cms/classoaCreateObjectChangeRec.html">oaCreateObjectChangeRec</a> <br />
+	<a href="cms/classoaCreateRelationshipChangeRec.html">oaCreateRelationshipChangeRec</a> <br />
+	<a href="cms/classoaDestroy1to1RelationshipChangeRec.html">oaDestroy1to1RelationshipChangeRec</a> <br />
+	<a href="cms/classoaDestroy1toNRelationshipChangeRec.html">oaDestroy1toNRelationshipChangeRec</a> <br />
+	<a href="cms/classoaDestroyObjectChangeRec.html">oaDestroyObjectChangeRec</a> <br />
+	<a href="cms/classoaDestroyRelationshipChangeRec.html">oaDestroyRelationshipChangeRec</a> <br />
+	<a href="cms/classoaExportMarkerChangeRec.html">oaExportMarkerChangeRec</a> <br />
+	<a href="cms/classoaHierChangeRec.html">oaHierChangeRec</a> <br />
+	<a href="cms/classoaLeafChangeRec.html">oaLeafChangeRec</a> <br />
+	<a href="cms/classoaMarkerChangeRec.html">oaMarkerChangeRec</a> <br />
+	<a href="cms/classoaMarkerChangeRecType.html">oaMarkerChangeRecType</a> <br />
+	<a href="cms/classoaObjectChangeRec.html">oaObjectChangeRec</a> <br />
+	<a href="classoaObserver_3oaChangeMgr_00_01oaRevisionTraits_3_01oaChangeMgr_4_1_1scopedObserverRevision_01_4.html">oaObserver<oaChangeMgr, oaRevisionTraits< oaChangeMgr>::scopedObserverRevision ></a> <br />
+	<a href="cms/classoaRelationshipChangeRec.html">oaRelationshipChangeRec</a> <br />
+	<a href="classoaSDAttributeType.html">oaSDAttributeType</a> <br />
+	<a href="classoaSDObjectType.html">oaSDObjectType</a> <br />
+	<a href="classoaSDRelationshipType.html">oaSDRelationshipType</a> <br />
+	<a href="classoaSDValueType.html">oaSDValueType</a> <br />
+	<a href="classoaSRAttribute.html">oaSRAttribute</a> <br />
+	<a href="classoaSRValue.html">oaSRValue</a> <br />
+	<a href="classoaSRVisitor.html">oaSRVisitor</a> <br />
+	<a href="cms/classoaSetAttributeChangeRec.html">oaSetAttributeChangeRec</a> <br />
+</pre><br />
+#################################
+</span>
+<p><span style="color:#0066cc">
+#################################<br />
+#  The following enums were added   #<br />
+#################################<br />
+<pre>
+	<a href="cms/oaCMMsgs_8h.html#a29">oaCMMsgIds</a> <br />
+	<a href="cms/oaCMModTypes_8h.html#a4">oaChangeMgrModTypeEnum</a> <br />
+	<a href="cms/oaChangeRec_8h.html#a10">oaMarkerChangeRecTypeEnum</a> <br />
+	<a href="oaSDAttributeType_8h.html#a207">oaSDAttributeTypeEnum</a> <br />
+	<a href="oaSDMsgs_8h.html#a7">oaSDMsgIds</a> <br />
+	<a href="oaSDObjectType_8h.html#a82">oaSDObjectTypeEnum</a> <br />
+	<a href="oaSDRelationshipType_8h.html#a116">oaSDRelationshipTypeEnum</a> <br />
+	<a href="oaSDValueType_8h.html#a101">oaSDValueTypeEnum</a> <br />
+</pre><br />
+#################################
+</span>
+</body>
+</html>

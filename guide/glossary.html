@@ -1,0 +1,1346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Glossary</h1><br><br>
+<hr />
+
+<h3 class="center"> 
+<a href="glossary.html#A">A</a>
+<a href="glossary.html#B">B</a>
+<a href="glossary.html#C">C</a>
+<a href="glossary.html#D">D</a>
+<a href="glossary.html#E">E</a>
+<a href="glossary.html#F">F</a>
+<a href="glossary.html#G">G</a>
+<a href="glossary.html#H">H</a>
+<a href="glossary.html#I">I</a>
+J
+K
+<a href="glossary.html#L">L</a>
+<a href="glossary.html#M">M</a>
+<a href="glossary.html#N">N</a>
+<a href="glossary.html#O">O</a>
+<a href="glossary.html#P">P</a>
+Q
+<a href="glossary.html#R">R</a>
+<a href="glossary.html#S">S</a>
+<a href="glossary.html#T">T</a>
+<a href="glossary.html#U">U</a>
+<a href="glossary.html#V">V</a>
+W
+X
+Y
+Z
+</h3>
+<hr />
+
+<p>This glossary documents specific semantics used within OpenAccess for
+commonly used EDA industry terms.</p>
+
+
+<h2><a name="A">A</a></h2>
+
+
+<h4>annotation</h4>
+
+<div class="indent">
+<p>Additional information added to standard design objects that carries
+specific <a href="glossary.html#semantics">semantics</a> for one or more
+<a href="glossary.html#app">applications</a>. Typically, annotations refer
+to information in the form of extension objects; for example,
+<a href="glossary.html#inst">instances</a> of
+<a href="../base/classoaProp.html">oaProp</a>,
+<a href="../base/classoaGroup.html">oaGroup</a>,
+<a href="../base/classoaGroupMember.html">oaGroupMember</a>, oaApp*Def, and
+oaAppObject* classes. Some types of data that appear as annotations in other
+<a href="glossary.html#API">API</a>s are formalized as standard classes in
+OpenAccess; for example, <a href="glossary.html#para">parasitics</a> are
+implemented as a set of explicit classes. Delay information, however, must
+be annotated on top of existing OpenAccess objects (such as
+<a href="../design/classoaTerm.html">oaTerm</a>,
+<a href="../design/classoaTerm.html">oaInstTerm</a>,
+<a href="../design/classoaTerm.html">oaNet</a>, and so on) using extension
+objects.</p>
+</div>
+
+
+<h4 class="w16above"><a name="API"></a>API</h4>
+
+<div class="indent">
+<p>An acronym for application programming interface. In OpenAccess, the software function definitions, protocols, and
+<a href="glossary.html#const">constraints</a> used by an OpenAccess <a href="glossary.html#app">application</a> program to create and request
+services against <a href="glossary.html#runtime">runtime memory</a> or
+to save it in <a href="glossary.html#persis">persistent storage</a>.</p>
+
+<p>API is sometimes used to refer to the entire set of classes and functions,
+as in &quot;the OpenAccess API.&quot; However, it is also sometimes used to
+refer to individual functions, as in &quot;the APIs on oaInst.&quot;</p>
+</div>
+
+
+<h4 class="w16above"><a name="APIimp">API implementation</a></h4>
+
+<div class="indent">
+<p>The set of software routines and protocols that make up the OpenAccess
+<a href="glossary.html#API">API</a> for OpenAccess 
+<a href="glossary.html#app">applications</a>, delivered as
+<a href="glossary.html#DLL">dynamically linkable libraries</a>.</p>
+
+<p>See also <a href="glossary.html#refimp">reference implementation</a>.</p>
+</div>
+
+
+<h4 class="w16above">API specification</h4>
+
+<div class="indent">
+<p>A document defining the OpenAccess functions (methods) for each data
+class, including syntax, <a href="glossary.html#semantics">semantics</a>,
+behavior, and <a href="glossary.html#const">constraints</a>. Also
+called the API reference.</p>
+</div>
+
+
+
+
+
+<h4 class="w16above"><a name="app">application</a></h4>
+
+<div class="indent">
+<ol>
+<li>An executable program, or fragment of a program (such as a subroutine,
+module, or <a href="glossary.html#DLL">DLL</a>) that performs a set of
+related logical functions in an <a href="glossary.html#EDA">EDA</a> flow.</li>
+<br><br>
+
+<li>A program that uses the OpenAccess <a href="glossary.html#API">API</a>
+(see also <a href="glossary.html#client">client</a>).</li><br /><br />
+<li>The software that manages OpenAccess extension data and uses the
+oaApp*Def or oaAppObject* extensibility <a href="glossary.html#API">API</a>
+classes.</li>
+</ol>
+</div>
+
+
+
+
+<h4 class="w14above">arc</h4>
+
+<div class="indent">
+<p>An <a href="../design/classoaShape.html">oaShape</a> that is a part of an
+<a href="../design/classoaEllipse.html">oaEllipse</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="arg">argument</a></h4>
+
+<div class="indent">
+<p>An object passed in parentheses to a function. See also 
+<a href="glossary.html#param">parameter</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="att">attribute</a></h4>
+
+<div class="indent">
+<p>A characteristic, or piece of <a href="glossary.html#metadata">metadata</a>,
+of an object or class.</p>
+
+<p><em>Attribute</em> is often used to indicate items that are built-in to the
+API, as opposed to a <a href="glossary.html#prop">property</a>, which is added
+by the caller.</p>
+</div>
+
+
+<h4 class="w16above">automatic</h4>
+
+<div class="indent">
+<ol>
+<li>A result that occurs without explicit action by an
+<a href="glossary.html#app">application</a>, or as a consequence of a
+related action.</li><br /><br />
+<li>A side effect that the OpenAccess implementation causes as a result of
+some <a href="glossary.html#app">application</a> activity. For example, when
+an owner (a container object, such as
+<a href="../dm/classoaCellView.html">oaCellView</a>) is destroyed by the
+<a href="glossary.html#app">application</a>, the
+<a href="glossary.html#data">database</a> automatically destroys all of its
+contained objects (the <a href="../design/classoaNet.html">oaNet</a>s,
+<a href="../design/classoaInst.html">oaInst</a>s, and so on).</li><br /><br />
+<li>A managed OpenAccess class or object that cannot be created or destroyed
+by an <a href="glossary.html#app">application</a>, but instead is created as
+a result of creation of another <a href="glossary.html#man">managed</a> object.
+An automatic object is characterized by:<br /><br />
+<ul>
+<li>The lack of a public constructor or destructor and any way to create or
+destroy the object</li>
+<li>The inability to be made persistent</li><br /><br />
+</ul>
+Some examples of automatic objects are
+<a href="../design/classoaBusNetBit.html">oaBusNetBit</a>,
+<a href="../design/classoaBusTermBit.html">oaBusTermBit</a>,
+<a href="../design/classoaBusNetDef.html">oaBusNetDef</a>,
+<a href="../design/classoaBusTermDef.html">oaBusTermDef</a>, and
+<a href="../design/classoaInstHeader.html">oaInstHeader</a>.</li>
+</ol>
+</div><br>
+
+
+<h2 class="w16above"><a name="B">B</a></h2>
+
+
+<h4 class="w16above">back end</h4>
+
+<div class="indent">
+<p>The phases near the end of the design flow, such as wiring, timing,
+parasitic extraction, and mask generation.
+</p>
+</div>
+
+
+<h4 class="w16above">bBox</h4>
+
+<div class="indent">
+<p>See <a href="glossary.html#bound">bounding box</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="bound">bounding box</a> (bBox) </h4>
+
+<div class="indent">
+<p>The smallest rectangle oriented parallel to the X and Y axes that contains
+all of the geometry (<a href="../design/classoaFig.html">oaFig</a> objects) that
+comprises an <a href="../dm/classoaCellView.html">oaCellView</a> or
+<a href="glossary.html#fig">figure</a>.</p>
+</div>
+
+
+<h4 class="w16above">bundle</h4>
+
+<div class="indent">
+<p>A multi-bit <a href="glossary.html#term">terminal</a> or
+<a href="glossary.html#net">net</a> consisting of a collection of
+<a href="glossary.html#term">terminal</a> or
+<a href="glossary.html#net">net</a> objects, respectively. Each bit object of
+a bundle can be a <a href="glossary.html#scalar">scalar</a> or 
+<a href="glossary.html#bus">bus</a>. A bundle name is comprised of a list of
+smaller bus and scalar names.</p>
+</div>
+
+
+<h4 class="w16above"><a name="bus">bus</a></h4>
+
+<div class="indent">
+<p>A multi-bit <a href="glossary.html#term">terminal</a> or
+<a href="glossary.html#net">net</a> consisting of a collection of single-bit
+<a href="glossary.html#term">terminal</a> or
+<a href="glossary.html#net">net</a> objects, respectively, where each bit is
+identified by a base name and an integer index. The first bit index is the start
+<a href="glossary.html#att">attribute</a> of the bus. Adjacent bit indices
+differ by the step <a href="glossary.html#att">attribute</a> of the bus.
+</p><br><br>
+</div>
+
+
+<h2 class="w16above"><a name="C">C</a></h2>
+
+
+<h4 class="w16above"><a name="CAD">CAD</a></h4>
+
+<div class="indent">
+<p>An acronym for Computer Aided Design, describing software, hardware, and
+processes that used in modern manufacturing of a wide range of products. When
+applied to electronic products, the acronym
+<a href="glossary.html#EDA">EDA</a> is often applied to constrain the scope
+of such products.</p>
+</div>
+
+
+<h4 class="w16above">cell</h4>
+
+<div class="indent">
+<p> A logical component
+of a particular portion of a design, such as an AND or ADDER cell. In OpenAccess, an <a href="../dm/classoaCell.html">oaCell</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="cell">cellView</a></h4>
+
+<div class="indent">
+<p>A container in an OpenAccess library that belongs to one Cell and one View. OpenAccess design and wafer databases are always stored in a cellView.
+</p>
+</div>
+
+
+<h4 class="w16above">cellView API</h4>
+
+<div class="indent">
+<p>The collection of classes and methods that manipulate objects contained in an
+<a href="../dm/classoaCellView.html">oaCellView</a>.</p>
+</div>
+
+
+<h4 class="w16above">checkpoint</h4>
+
+<div class="indent">
+<p>A checkpoint is a mechanism that an  application uses to group function calls in order to support an   <a href="undo.html">undo</a> command for a task involving multiple calls. </p>
+</div>
+
+
+<h4 class="w16above"><a name="client">client</a></h4>
+
+<div class="indent">
+<p>A program, <a href="glossary.html#app">application</a>, or code fragment
+that uses OpenAccess classes. A client can also be referred to as a caller,
+user, end-user, calling module, or calling program.</p>
+</div>
+
+
+<h4 class="w16above">CMap</h4>
+
+<div class="indent">
+<p>See <a href="glossary.html#congest">congestion map</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="congest">congestion map</a> (CMap)</h4>
+
+<div class="indent">
+<p>A container that can be used by an
+<a href="glossary.html#app">application</a> (typically a global router) to
+save statistics about routing density by 
+<a href="glossary.html#layer">layer</a> and region.</p>
+</div>
+
+
+<h4 class="w16above"><a name="const">constraint</a></h4>
+
+<div class="indent">
+<p>A limitation or qualification on the behavior of some function or use of
+some object that is not implied by definition. For example, a load constraint
+on a pin indicates the maximum capacitance that can be added to the pin and
+still have the pin work correctly.</p>
+</div>
+
+
+<h4 class="w16above">contains</a></h4>
+
+<div class="indent">
+<p>Used by databases only to mean if the database is saved, changes to contained
+objects become persistent. Contains is similar to <em>owns</em>, which in the
+information model means that if the owner is deleted, the owned object is
+implicitly deleted. <em>Contains</em> implies <em>owns</em>.</p><br><br>
+</div>
+
+<h2 class="w16above"><a name="D">D</a></h2>
+
+
+<h4 class="w16above">data model</h4>
+
+<div class="indent">
+<p>A complete specification level model of OpenAccess provided as C++ header
+files with embedded descriptions and
+<a href="glossary.html#const">constraints</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="data">database</a></h4>
+
+<div class="indent">
+<ol>
+<li>A manager or location of design data.</li><br /><br />
+<li>A synonym for the
+<a href="glossary.html#refimp">reference implementation</a>.</li><br /><br />
+<li>A synonym for the persistent store of data on disk.</li>
+</ol>
+</div>
+
+
+<h4 class="w16above">DM</h4>
+
+<div class="indent">
+<p>An acronym for Design  Management; a process or system for controlling
+versioning, alternate representations, and concurrent access to design
+components.</p>
+</div>
+
+
+<h4 class="w16above">DFM</h4>
+
+<div class="indent">
+<p>An acronym for Design For Manufacturing (or Design for Manufacturability);
+analysis, modeling, and abstraction of manufacturing process parameters and
+effects for use by software during the design process to improve the likelihood
+that a design can be successfully manufactured. </p>
+</div>
+
+
+<h4 class="w16above">design pattern</h4>
+
+<div class="indent">
+<p>A method for sharing knowledge about proven solutions to design problems.
+Using some notation (such as UML), a design pattern models a solution that
+reflects experience with the problem. A pattern expresses a relationship
+between a problem context, certain issues that arise repeatedly in relation
+to it, and a software solution that addresses these issues.</p>
+</div>
+
+
+<h4 class="w16above"><a name="dpara">detailed parasitics</a></h4>
+
+<div class="indent">
+<p>The electrical effects on a signal caused by another signal, modeled as a
+collection of resistor, inductor, mutual inductor, and capacitor devices
+connected at <a href="glossary.html#term">terminal</a>,
+<a href="glossary.html#instTerm">instTerm</a>,
+<a href="glossary.html#pin">pin</a>, or instPin nodes into a
+<a href="glossary.html#para">parasitic</a> network associated with a
+<a href="glossary.html#net">net</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="DLL">DLL</a></h4>
+
+<div class="indent">
+<p>An acronym for dynamically linked (or loaded) library.</p>
+<ol>
+<li>A shared object library designed to link to a program as it is first loaded
+for execution. Shared libraries are re-entrant code that enables multiple
+executables to share a single copy.</li><br /><br />
+<li>A fully linked executable that can be loaded at runtime into another program
+(after that program has been linked, loaded, and started its execution), with any
+of its exported functions or variables available for use.</li>
+</ol><br>
+</div>
+
+
+
+
+
+
+
+
+<h2 class="w16above"><a name="E">E</a></h2>
+
+
+<h4 class="w16above"><a name="EDA">EDA</a></h4>
+
+<div class="indent">
+<p>An acronym for Electronic Design Automation; a collective term describing
+software, hardware, and processes used in modern semiconductor and
+board-level manufacturing, and the companies involved.
+See also <a href="glossary.html#CAD">CAD</a>.</p>
+</div>
+
+
+<h4 class="w16above">endian</h4>
+
+<div class="indent">
+<p>An indication of the byte order significance of a machine hardware
+architecture, and the bit order significance within each byte. Big-endian
+machines (such as most UNIX machines) store the most significant bytes of
+a word in the lower address; little-endian machines (such as most
+PCs) store most significant bytes in the higher address. Machines such as the
+PowerPC are bi-endian and can understand both indications. It is also possible
+to have big-endian byte ordering but little-endian bit ordering within each
+byte, or vice-versa.</p>
+</div>
+
+
+<h4 class="w16above">extension</h4>
+
+<div class="indent">
+<p>A hook, or technique, for adding objects dynamically to a schema by an
+<a href="glossary.html#app">application</a>, with arbitrary
+<a href="glossary.html#semantics">semantics</a>.</p>
+</div>
+
+
+<h4 class="w16above">extensibility API</h4>
+
+<div class="indent">
+<p>A term used to describe collectively the set of OpenAccess classes used for
+manipulation of application-defined extension data. Usually, this is limited
+to the oaApp*Def and oaAppObject* classes, but can also include the
+<a href="../base/classoaGroup.html">oaGroup</a>,
+<a href="../base/classoaGroupMember.html">oaGroupMember</a>, and oaProp* classes.
+</p><br><br>
+</div>
+
+
+<h2 class="w16above"><a name="F">F</a></h2>
+
+
+<h4 class="w16above"><a name="fig">figure</a></h4>
+
+<div class="indent">
+<p>An object that has physical geometric attributes; specifically, an 
+<a href="../design/classoaFig.html">oaFig</a>.</p>
+</div>
+
+
+<h4 class="w16above">fill</a></h4>
+
+<div class="indent">
+<ol>
+<li><em>Fill patterns</em> are added to meet the minimum layer density
+requirements for a given process.</li><br><br>
+
+<li><em>Fill shapes</em> are added to avoid Chemical Mechanical Polishing (CMP)
+while planerizing the oxides between the layers of metals. If there are large
+shapes of metal adjacent to empty areas, CMP can create divots in the oxide or
+begin to lift off the metals near these empty areas. Also, an uneven
+distribution of metal patterns can result in areas that over etch during the
+etching process.</li>
+</ol>
+</div>
+
+
+<h4 class="w16above">flattened design</h4>
+
+<div class="indent">
+<p>A representation of a design where separate copies of each design
+component (<a href="glossary.html#net">nets</a>,
+<a href="glossary.html#term">terminals</a>,
+<a href="glossary.html#inst">instances</a>, and so on) are replicated
+everywhere they are used in the design.</p>
+</div>
+
+
+<h4 class="w16above">floorplanning</h4>
+
+<div class="indent">
+<p>A design step, usually preceding placement, that maps a logical netlist
+to a physical implementation (deciding the arrangement of blocks, location of
+I/O and power pads, type of power and clock distribution, and so on) in
+order to minimize the chip area and delay. </p>
+</div>
+
+
+<h4 class="w16above">folded hierarchy</h4>
+
+<div class="indent">
+<p>A method for representing design data that minimizes the redundancies of
+design objects characteristic of a flattened representation. In this method,
+collections of design objects (such as <a href="glossary.html#net">nets</a>
+and <a href="glossary.html#term">terminals</a>) that are used repeatedly are
+defined only once in the design
+(by a <a href="glossary.html#cell">cellView</a> object), and then referenced
+each time they are used (with an <a href="glossary.html#inst">instance</a>
+object).
+</p>
+</div>
+
+
+<h4 class="w16above">framework</h4>
+
+<div class="indent">
+<p>The software that provides a common environment for
+<a href="glossary.html#EDA">EDA</a> tools. Usually this environment
+enables a common &quot;look and feel&quot; to the tools and simplifies their
+integration in design flows. A framework is typically sold by a vendor,
+along with tools that &quot;plug in&quot; to it. Also called: cockpit,
+development environment, tool environment,
+<a href="glossary.html#API">API</a>.</p>
+</div>
+
+
+<h4 class="w16above">front end</h4>
+
+<div class="indent">
+<p>The phases early in a design flow, usually design using RTL and synthesis
+of it into a behavioral or gate-level representation.</p><br><br>
+</div>
+
+
+<h2 class="w16above"><a name="G">G</a></h2>
+
+
+<h4 class="w16above">gcell</h4>
+
+<div class="indent">
+<p>Short for <em>global cell</em>, a unit of a
+<a href="glossary.html#congest">congestion map</a>.</p><br><br>
+</div>
+
+
+<h2 class="w16above"><a name="H">H</a></h2>
+
+
+<h4 class="w16above"><a name="hier">hierarchy</a></h4>
+
+<div class="indent">
+<p>The OpenAccess technique for representing a complex design in terms of
+smaller, more easily understood or manipulated sub-components, with each such
+component itself a collection of components. Each collection is considered a
+<em>level</em> in the hierarchy, with no limit on the number of levels
+allowed. The basic hierarchical unit in OpenAccess is the
+<a href="glossary.html#cell">cellView</a>.</p><br><br>
+</div>
+
+<h2><span class="w16above"><a name="I">I</a></span></h2>
+<h4 class="w16above"><a name="imple">implementation</a></h4>
+
+<div class="indent">
+<ol>
+<li>Executable code.</li><br /><br />
+<li>The source code that provides the algorithms defining a function declared
+in a program or <a href="glossary.html#API">API</a>.</li><br /><br />
+<li>The OpenAccess <a href="glossary.html#data">database</a> source code or
+linked object code that provides all the functions of the
+<a href="glossary.html#API">API</a>.</li><br /><br />
+</ol>
+
+<p>See also <a href="glossary.html#refimp">reference implementation</a>.</p>
+</div>
+
+
+<h4 class="w16above">information model</h4>
+
+<div class="indent">
+<p>A partial specification level model for OpenAccess that includes all
+classes, <a href="glossary.html#att">attributes</a>, and associations (and
+their multiplicity and navigability).</p>
+</div>
+
+
+<h4 class="w16above"><a name="inst">inst, instance</a></h4>
+
+<div class="indent">
+<ol>
+<li>A particular example of something.</li><br /><br />
+<li>An object of a class. Also called instantiation.</li><br /><br />
+<li>An object of the <a href="../design/classoaInst.html">oaInst</a> class,
+representing an opaque reference to an
+<a href="../dm/classoaCellView.html">oaCellView</a> object. Also called block,
+macro, inst, cell reference.</li>
+</ol>
+</div>
+
+
+<h4 class="w16above"><a name="instTerm">instTerm</a></h4>
+
+<div class="indent">
+<p>A logical point where an instance can be connected to a net.</p>
+</div>
+
+
+<h4 class="w16above">iterator</h4>
+
+<div class="indent">
+<p>An OpenAccess object that enables individual access to each object in a
+collection exactly once, although not in any particular order.</p><br><br>
+</div>
+
+
+
+
+<h2 class="w16above"><a name="J">J</a></h2>
+
+<h2 class="w16above"><a name="K">K</a></h2>
+
+<h2 class="w16above"><a name="L">L</a></h2>
+
+
+<h4 class="w16above"><a name="layer">layer</a></h4>
+
+<div class="indent">
+<p>All geometric data in OpenAccess is assigned to a layer. In chip layouts,
+layers represent the manufacturing layers of the chip. Other layers can be
+created to hold data that is not manufactured with the chip.</p>
+</div>
+
+
+<h4 class="w16above">leaf</h4>
+
+<div class="indent">
+<p>A description for a cell in a design at the bottom of that design's 
+hierarchy. A leaf cell contains no <a href="glossary.html#inst">instances</a>
+of other cells. Leaf cells are sometimes synonymous with <em>gates</em>
+(such as AND, OR, XOR, and so on), often include primitive devices such as
+resistors or capacitors (unless the design includes transistor-level
+hierarchy), and can include blocks with more sophisticated logical functions,
+such as latches, adders, amps, and so on. However, any cell could be a leaf
+cell. For example, an entire microprocessor might be instantiated into a larger
+design from a cell library as a &quot;core&quot; that is essentially invisible
+inside, and is merely characterized by its behavior and electrical
+characteristics.</p>
+
+<p>Also called primitive or frontier cells.</p>
+</div>
+
+
+<h4 class="w16above">lib</h4>
+
+<div class="indent">
+<p>Short for <a href="glossary.html#lib">library</a> or
+<a href="../dm/classoaLib.html">oaLib</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="lib">library</a></h4>
+
+<div class="indent">
+<p>A logical collection of design data organized into cells.</p><br><br>
+</div>
+
+
+
+
+
+<h2 class="w16above"><a name="M">M</a></h2>
+
+
+<h4 class="w16above"><a name="man">managed</a> object </h4>
+
+<div class="indent">
+<p>An OpenAccess object  for which the OpenAccess implementation is
+responsible for allocating and managing storage. A managed class is
+characterized by:</p>
+<div class="indent">
+<ul>
+<li>its derivation from the class
+<a href="../base/classoaObject.html">oaObject</a></li><br /><br />
+<li>a lack of a public constructor or destructor</li><br /><br />
+<li>the existence of public <code>destroy()</code> and static
+<code>create()</code> methods for destroying and generating objects,
+respectively</li><br /><br />
+<li>the ability of the object to be made persistent and be read from
+<a href="glossary.html#persis">persistent storage</a></li>
+</ul></div>
+</div>
+
+
+<h4 class="w16above">marker</h4>
+
+<div class="indent">
+<p>A class of objects associated with zero or more other design objects used to
+annotate a design. Markers are often used to indicate violations between the
+specified objects.</p>
+</div>
+
+
+<h4 class="w16above">memory management</h4>
+
+<div class="indent">
+<p>The process of allocating and de-allocating memory from a running process
+and (to a sometimes greater and sometimes lesser extent) monitoring proper use
+of such memory, such as preventing use of unallocated memory, freeing memory
+that is not allocated, or providing notice of such errors.</p>
+</div>
+
+
+<h4 class="w16above"><a name="metadata">metadata</a></h4>
+
+<div class="indent">
+<p>Data about data.</p>
+<ol>
+<li>Some consider metadata to be any information that describes the contents
+an object, such as its condition, state or quality, but that is not part of
+the contents of the object. For example:</li><br /><br />
+<ul>
+<li>The design information in an
+<a href="../dm/classoaCellView.html">oaCellView</a> is data. The version of that
+<a href="../dm/classoaCellView.html">oaCellView</a> is metadata. </li><br /><br />
+
+<li>A file stored in a UNIX directory is data. The owner and permissions of 
+the file are metadata.</li><br /><br />
+</ul>
+
+However, such information can be modeled as merely additional
+<a href="glossary.html#term">attributes</a> of the object, the contents
+comprising merely one or more other attributes. In the examples above, the
+version can be viewed as just another attribute of the
+<a href="../dm/classoaCellView.html">oaCellView</a>; the owner of a file is
+an <a href="glossary.html#att">attribute</a> of that file, just as the bytes
+that make up its contents. </li>
+<br />
+<br />
+
+<li>A more restrictive definition of metadata is data that is not specific to
+any single <a href="glossary.html#inst">instance</a> of an object class,
+ but descriptive of the class itself. For example:</li><br /><br />
+<ul>
+<li>The definition of an <a href="../dm/classoaCellView.html">oaCellView</a>
+</li><br /><br />
+
+<li>The semantics that limit what kind of <a href="../design/classoaFig.html">oaFig</a>
+can be the <a href="glossary.html#fig">figure</a> for an
+<a href="../design/classoaPin.html">oaPin</a> </li>
+</ul>
+</ol>
+</div>
+
+
+<h4 class="w16above">method</h4>
+
+<div class="indent">
+<p>A synonym for functions that are associated with a particular class;
+commonly used in object-oriented languages.</p><br><br>
+</div>
+
+
+
+
+
+<h2 class="w16above"><a name="N">N</a></h2>
+<h4 class="w16above">Namespace</h4>
+<div class="indent">
+  <p>A set of rules for creating and interpreting legal names within an application. The OpenAccess database supports a number of commonly used namespaces, including   <a href="../base/classoaVhdlNS.html">VHDL</a>, <a href="../base/classoaVerilogNS.html">Verilog</a>, <a href="../base/classoaCdbaNS.html">CDBA</a>, <a href="../base/classoaLefNS.html">LEF</a>, <a href="../base/classoaDefNS.html">DEF</a>, <a href="../base/classoaSpefNS.html">SPEF</a>, <a href="../base/classoaSpfNS.html">SPF</a>, <a href="../base/classoaUnixNS.html">UNIX</a>, and <a href="../base/classoaWinNS.html">Windows</a>, as well as the <a href="../base/classoaNativeNS.html">oaNative</a> OpenAccess namespace (the   internal format for <a href="../base/classoaName.html">oaName</a> objects).</p>
+</div>
+<h4 class="w16above"><a name="net">net</a></h4>
+
+
+<div class="indent">
+<p>Short for <a href="../design/classoaNet.html">oaNet</a>. A design object that
+represents logical connectivity. All points on a net are electrically
+equivalent.</p>
+</div>
+
+
+<h4 class="w16above">netlist</h4>
+
+<div class="indent">
+<p>The logical description of a design.</p><br><br>
+</div>
+
+
+
+
+
+<h2 class="w16above"><a name="O">O</a></h2>
+
+
+<h4 class="w16above">OpenAccess</h4>
+
+<div class="indent">
+<ol>
+<li>The OpenAccess <a href="glossary.html#API">API</a>.</li>
+<br /><br />
+<li>The complete project, including the C++ API, its
+<a href="glossary.html#refimp">reference implementation</a>, and the
+managed process for their maintenance and evolution.</li><br /><br />
+<li>The <a href="glossary.html#refimp">reference implementation</a>.</li>
+</ol>
+</div>
+
+
+<h4 class="w16above"><a name="objor">object-oriented</a></h4>
+
+<div class="indent">
+<p>A programming paradigm or design methodology characterized by the use of
+objects that send messages to each other. Objects are instantiations of
+hierarchically organized classes that represent program data. Messages are
+implemented via functions, or methods, that communicate data via parameters
+and sometimes return values. Object-oriented programming is often called
+<em>data-centric</em> and contrasted to procedural or functional paradigms.
+Typical features include abstraction of the interface from the implementation,
+inheritance, encapsulation, data-hiding, polymorphism, and overloading.</p>
+</div>
+
+
+<h4 class="w16above">observer</h4>
+
+<div class="indent">
+<p>OpenAccess <a href="../observer/classes.html">observers</a> are a set of classes that allow applications to request notification when certain     changes occur to the state and contents of open databases. This observer mechanism allows a complex application     to keep its internal state consistent with changes made by other code in the same process.</p><br><br>
+</div>
+
+
+
+
+<h2 class="w16above"><a name="P">P</a></h2>
+
+
+<h4 class="w16above"><a name="param">parameter</a></h4>
+
+<div class="indent">
+<p>A value that constrains the result of an expression, function call, or
+creation of a <a href="glossary.html#man">managed</a> object.</p>
+<ol>
+<li>A function argument. See also <a href="glossary.html#arg">argument</a>.
+</li><br /><br />
+<li>An <a href="../base/classoaParam.html">oaParam</a> or
+<a href="../tech/classoaViaParam.html">oaViaParam</a> used to parameterize pCells
+or <a href="glossary.html#via">vias</a>, or an <a href="../base/classoaConstraintParam.html">oaConstraintParam</a> used to add a parameter to a constraint.</li>
+</ol>
+</div>
+
+
+<h4 class="w16above"><a name="para">parasitics</a></h4>
+
+<div class="indent">
+<p>Either <a href="glossary.html#dpara">detailed parasitics</a> or a
+<a href="glossary.html#rpm">reduced parasitic model</a> describing the
+(usually) undesirable physics of a signal interfering with the proper
+generation of another signal. Parasitic effects have become increasingly
+significant obstacles to timing closure as designs have become smaller and
+more densely packed.</p>
+</div>
+
+
+<h4 class="w16above"><a name="persis">persistent storage</a></h4>
+
+<div class="indent">
+<p>An <a href="glossary.html#inst">instance</a> of the OpenAccess model,
+consisting of data values on a permanent storage device (such as magnetic
+disk). See also <a href="glossary.html#data">database</a>,
+<a href="glossary.html#repos">repository</a>.</p>
+</div>
+
+<h4 class="w16above"><a name="pin">pin</a></h4>
+
+<div class="indent">
+<p>Short for <a href="../design/classoaPin.html">oaPin</a>; the physical
+implementation of a connection point associated with an
+<a href="../design/classoaTerm.html">oaTerm</a> (the logical representation of that
+point) to which a wiring tool connects routes. See also
+<a href="glossary.html#term">terminal</a>.</p>
+
+<p>Note: In LEF and other contexts, <em>pin</em> refers to the logical
+connection point, which can be a source of confusion.</p>
+</div>
+
+
+<h4 class="w16above">plug-in</h4>
+
+<div class="indent">
+<p>Mechanism for customizing certain  OpenAccess features. Plug-ins use dynamically loaded shared libraries  to select a customized implementation at run-time without requiring an  application to be linked with that implementation, or to know about  that implementation, when the application is compiled and linked.  OpenAccess provides interface classes that you use to implement  plug-ins.</p>
+</div>
+
+
+<h4 class="w16above"><a name="prop">property</a></h4>
+
+<div class="indent">
+<p>An extension mechanism common to many
+<a href="glossary.html#data">database</a> models, consisting primarily
+of a name and value pair.</p><br><br>
+</div>
+
+
+
+
+
+<h2 class="w16above"><a name="Q">Q</a></h2>
+
+<h2 class="w16above"><a name="R">R</a></h2>
+
+
+<h4 class="w16above"><a name="rpm">reduced parasitic model</a></h4>
+
+<div class="indent">
+<p>A simplified representation of the
+<a href="glossary.html#dpara">detailed parasitics</a> associated with a
+net.</p>
+</div>
+
+
+<h4 class="w16above"><a name="refimp">reference implementation</a></h4>
+
+<div class="indent">
+<p>The source code for, or linked libraries of, the implementation of the
+OpenAccess <a href="glossary.html#API">API</a> that is publicly available as
+part of the OpenAccess distribution. OpenAccess is a public API that documents
+required behavior. It is possible that more than one implementation of this
+<a href="glossary.html#API">API</a> could be written, perhaps by different
+vendors. The reference implementation is one particular implementation of the 
+<a href="glossary.html#API">API</a>, with publicly available source that is
+updated with changes to the <a href="glossary.html#API">API</a>. See also
+<a href="glossary.html#imple">implementation</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="repos">repository</a></h4>
+
+<div class="indent">
+<p>The location on physical storage media (the disk) where OpenAccess design
+data resides, or that data itself. See also
+<a href="glossary.html#data">database</a>,
+<a href="glossary.html#persis">persistent storage.</a></p>
+</div>
+
+<h4 class="w16above"><a name="route">route</a></h4>
+
+<div class="indent">
+<ol>
+<li>A wire.</li><br /><br />
+<li>A <a href="glossary.html#fig">figure</a> with specific geometry and
+location that represents the metal trace on a chip that actually implements a
+signal. OpenAccess routes have specific
+<a href="glossary.html#const">constraints</a> and
+<a href="glossary.html#semantics">semantics</a> designed to enable significant
+capacity optimization, as well as reducing the geometric analysis burden of
+wiring tools.</li>
+</ol>
+</div>
+
+
+<h4 class="w16above">row</h4>
+
+<div class="indent">
+<p>A collection of sites arranged in a linear pattern that indicate legal
+placement locations for <a href="glossary.html#inst">instances</a>
+(for those placement tools that use sites).</p>
+</div>
+
+
+<h4 class="w16above">RTL (Register Transfer Level)</h4>
+
+<div class="indent">
+<p>Synthesizable code written in a hardware description language, such as
+Verilog or VHDL.</p>
+</div>
+
+
+<h4 class="w16above"><a name="runtime">runtime memory</a></h4>
+
+<div class="indent">
+<p>An <a href="glossary.html#inst">instance</a> of the OpenAccess data model
+consisting of the actual data values in computer memory being used by and
+within the life of a single <a href="glossary.html#app">application</a>
+process. </p><br><br>
+</div>
+
+
+
+
+
+<h2 class="w16above"><a name="S">S</a></h2>
+
+
+<h4 class="w16above"><a name="scalar">scalar</a></h4>
+
+<div class="indent">
+<p>A single bit <a href="glossary.html#net">net</a>,
+<a href="glossary.html#term">terminal</a>, or
+<a href="glossary.html#inst">instance</a> object that has only a base name
+and does not include an index.</p>
+</div>
+
+
+<h4 class="w16above">scan chain</h4>
+
+<div class="indent">
+<p>A common design testability technique in which the registers in a design are
+chained together so that all of their values can be scanned in and scanned out.
+</p>
+</div>
+
+
+<h4 class="w16above"><a name="semantics">semantics</a></h4>
+
+<div class="indent">
+<p>The meaning of an object, <a href="glossary.html#att">attribute</a>, or
+relationship, including correspondences, dependencies, relationships, side
+effects, and <a href="glossary.html#const">constraints</a>, that is not
+already defined by its syntax or notation.</p>
+</div>
+
+
+<h4 class="w16above"><a name="si2">Si2</a></h4>
+
+<div class="indent">
+<p>An acronym for Silicon Integration Initiative, a non-profit consortium of
+semiconductor manufacturers, <a href="glossary.html#EDA">EDA</a> vendors,
+and related companies. See
+<a href="http://www.si2.org" target=_blank>http://www.si2.org</a>.</p>
+</div>
+
+
+<h4 class="w16above">slotting</h4>
+
+<div class="indent">
+<p>Slotting provides stress relief on large metal shapes. As an IC heats and
+cools, the substrates, oxide, and metal materials expand and contract at
+different rates. Over time, this causes failures in the relatively large
+shapes on a mask, such as power wires. Cutting or placing holes, or
+<em>slots</em>, in the large shapes improves the structural integrity of the
+resulting shapes, making them less likely to fracture.</p>
+</div>
+
+
+<h4 class="w16above"><a name="steiner">steiner pin</a></h4>
+
+<div class="indent">
+<p>A pin not associated with a <a href="glossary.html#term">terminal</a> or 
+<a href="glossary.html#inst">instance</a> that is used to implement a
+<a href="glossary.html#virtpin">virtual pin</a>, which provides a form of
+routing control. For example, a steiner pin can be used to force nets to
+route through that location in the design, such as when constraining the
+routing of clock and power nets.</p>
+</div>
+
+
+
+
+
+<h4 class="w16above">synthesis</h4>
+
+<div class="indent">
+<p>The process by which a designer is able to fully automate the contents of an
+integrated circuit design. Synthesis software transforms a circuit description
+from one level of abstraction to a lower level, usually towards some physical
+implementation. </p><br><br>
+</div>
+
+
+
+
+
+<h2 class="w16above"><a name="T">T</a></h2>
+
+
+<h4 class="w16above">term</h4>
+
+<div class="indent">
+<p>Short for <a href="glossary.html#term">terminal</a> or
+<a href="../design/classoaTerm.html">oaTerm</a>.</p>
+</div>
+
+
+<h4 class="w16above"><a name="term">terminal</a></h4>
+
+<div class="indent">
+<p>A logical point on a net where an
+<a href="../dm/classoaCellView.html">oaCellView</a> allows connections from
+outside. (In contrast, <em>port</em> is used in CFI DR-PI, EDIF, and other 
+<a href="glossary.html#EDA">EDA</a> contexts.)</p>
+
+<p>
+In OpenAccess, an
+<a href="../design/classoaTerm.html">oaTerm</a> cannot exist in the absence of an
+<a href="../design/classoaNet.html">oaNet</a> on the inside of that
+<a href="../design/classoaTerm.html">oaTerm</a>. Some other design data models do
+allow the existence of a terminal without any net.<br /><br>
+</p>
+</div>
+
+
+<h4 class="w16above">timing arc</h4>
+
+<div class="indent">
+<p>A point-to-point delay. OpenAccess does not have formal objects for such
+data, but it can be annotated onto design objects (such as
+<a href="../design/classoaInstTerm.html">oaInstTerm</a>,
+<a href="../design/classoaTerm.html">oaTerm</a>, or 
+<a href="../design/classoaNet.html">oaNet</a> objects) using extension objects (such
+as <a href="../base/classoaProp.html">oaProp</a>, oaApp*Def, 
+<a href="../base/classoaAppObject.html">oaAppObject</a>).</p>
+</div>
+
+
+<h4 class="w16above">tool</h4>
+
+<div class="indent">
+<p>An <a href="glossary.html#EDA">EDA</a>
+<a href="glossary.html#app">application</a>.</p><br><br>
+</div>
+
+
+<h2 class="w16above"><a name="U">U</a></h2>
+
+
+<h4 class="w16above">utility</h4>
+
+<div class="indent">
+<p>An OpenAccess object or class for which the application is responsible for
+allocating and managing storage. A utility class is characterized by:</p>
+
+<ul>
+<li>public constructors and destructor</li><br /><br />
+<li>the fact that it is not derived from
+<a href="../base/classoaObject.html">oaObject</a></li><br /><br />
+<li>its inability to be made persistent</li>
+</ul>
+
+<p>Utility objects are used for transferring 
+<a href="glossary.html#att">attribute</a> data to and from
+<a href="glossary.html#man">managed</a> objects.</p><br><br>
+</div>
+
+
+
+
+
+<h2 class="w16above"><a name="V">V</a></h2>
+
+
+<h4 class="w16above"><a name="via">via</a></h4>
+
+<div class="indent">
+<p>A part of a wire that spans two <a href="glossary.html#layer">layers</a>,
+consisting of a piece of conductor on the first
+<a href="glossary.html#layer">layer</a>, the cut where the insulator between
+<a href="glossary.html#layer">layers</a> is etched away, and the piece of
+conductor on the second <a href="glossary.html#layer">layer</a>.</p>
+</div>
+
+
+<h4 class="w16above">view</h4>
+
+<div class="indent">
+<ol>
+<li>One of possibly several representations for a design component
+corresponding to different:</li><br /><br />
+<ul>
+<li>levels of abstraction (such as behavior or gate)</li>
+<li>design process stages (such as RTL, post-synthesis, placed, or routed)
+</li>
+<li>versions of the implementation for any given stage or abstraction level
+</li><br /><br />
+</ul>
+<li>An <a href="glossary.html#inst">instance</a> of the
+<a href="../dm/classoaCellView.html">oaCellView</a> class.
+</li><br /><br />
+<li>The <a href="../dm/classoaView.html">oaView</a> class or an
+<a href="glossary.html#inst">instance</a> of it (when in the context of
+the lib/cell/view design <a href="glossary.html#hier">hierarchy</a>).</li>
+</ol>
+</div>
+
+
+<h4 class="w16above"><a name="virtpin">virtualPin</a></h4>
+
+<div class="indent">
+</p>A virtual pin can be placed at some location within a design to force
+<a href="glossary.html#net">nets</a> to route through that location in the
+design, such as when constraining the routing of clock and power nets.
+Unlike a regular <a href="glossary.html#pin">pin</a>, a virtual pin is not
+associated with a terminal.</p>
+
+<p>See also <a href="glossary.html#steiner">steiner pin</a>.</p><br><br>
+</div>
+
+
+<h2 class="w16above"><a name="W">W</a></h2>
+
+<h2 class="w16above"><a name="X">X</a></h2>
+
+<h2 class="w16above"><a name="Y">Y</a></h2>
+
+<h2 class="w16above"><a name="Z">Z</a></h2>
+
+
+
+<hr />
+<h3 align="Center"> 
+<a href="glossary.html#A">A</a>
+<a href="glossary.html#B">B</a>
+<a href="glossary.html#C">C</a>
+<a href="glossary.html#D">D</a>
+<a href="glossary.html#E">E</a>
+<a href="glossary.html#F">F</a>
+<a href="glossary.html#G">G</a>
+<a href="glossary.html#H">H</a>
+<a href="glossary.html#I">I</a>
+J
+K
+<a href="glossary.html#L">L</a>
+<a href="glossary.html#M">M</a>
+<a href="glossary.html#N">N</a>
+<a href="glossary.html#O">O</a>
+<a href="glossary.html#P">P</a>
+Q
+<a href="glossary.html#R">R</a>
+<a href="glossary.html#S">S</a>
+<a href="glossary.html#T">T</a>
+<a href="glossary.html#U">U</a>
+<a href="glossary.html#V">V</a>
+W
+X
+Y
+Z
+</h3>
+<hr />
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="glossary.html#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

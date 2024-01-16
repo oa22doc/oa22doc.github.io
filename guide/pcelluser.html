@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Support for Pcells</H1>
+<hr>
+<p>OpenAccess provides the infrastructure to support parameterized cells (Pcells). A Pcell is a programmable design entity. Designers can specify a set of input values for a Pcell, then instantiate that Pcell like any other design database (oaDesign) in OpenAccess.</P>
+<p>This document describes:</P>
+<ul>
+  <li><a href="#advantages">Advantages of Pcells</a></li>
+  <li><a href="#evalLanguages">Pcell Evaluators Support Different Programming Languages</a></li>
+  <li><a href="#oaEvals">OpenAccess Pcell Evaluators</a></li>
+  <li><a href="#remaster">Remastering Instances</a></li>
+  <li><a href="#pcell_expand">Conversion Between Pcells and Standard oaDesigns</a></li>
+</ul>
+<h2><a name="advantages"></a>Advantages of Pcells </h2>
+<p>Pcells provide many advantages: </P>
+<ul>
+  <li>They let designers modify a design component such that the modifications automatically propagate to all the instances. </li>
+  <li>They can encapsulate expert knowledge about how to build a particular component for designers without expertise in that area. Some Pcells are quite sophisticated and have hundreds of parameters to make them process independent. </li>
+  <li>They save disk space because designers don't need to create multiple versions of very similar design components. </li>
+</ul>
+<p>A Pcell is an oaDesign that contains the information needed to generate  database objects representing  components based on a set of parameter values. The process of generating the database object from the oaDesign is called <em>Pcell evaluation</em>. </p>
+<p>A Pcell provides defaults for its parameter values. When a designer overrides the default parameter values to create a version of a design,  a <em>variant</em> of the Pcell is created.</p>
+<p>The  following figure shows how a Pcell can affect the layout of a transistor. The gate width, gate height, and the number of gates are the Pcell parameters. </p>
+ <p><img src="images/pcellGates.gif"> </p>
+<h2><a name="evalLanguages"></a>Pcell Evaluators Support Different Programming Languages </h2>
+<p>The implementation of Pcells in OpenAccess has a formal parameter definition and is designed to support different programming languages for  Pcells. </p>
+<p>An application specifies and controls Pcell evaluation through a  Pcell evaluator. For example, an application might provide Python Pcells and provide a Python evaluator to create the oaDesign variants of those Pcells. In OpenAccess, a Pcell is called a <em>superMaster</em> and a variant of a Pcell is a <em>subMaster</em>. Both are design databases, and   applications can work with subMasters in much the same way that they handle standard design instances.</p>
+<p>OpenAccess provides three utility classes to support Pcell evaluators:</p>
+<ul>
+  <li>IPcell</li>
+  <li>oaPcellDef</li>
+  <li> oaPcellLink</li>
+</ul>
+<p>The following diagram shows the relationship between IPcell, oaPcellDef, and oaPcellLink. </p>
+<p><img src="images/pcellClasses.gif" width="605" height="257"></p>
+<h3>IPcell</h3>
+<p>The IPcell interface class contains a set of functions that OpenAccess requires from a Pcell evaluator in order to use a superMaster. Any application that provides Pcells must derive from the IPcell class, and the derived class is identified as a Pcell evaluator. </p>
+<p>IPcell provides functions that </p>
+<ul>
+  <li>Retrieve the evaluator-specific oaPcellDef</li>
+  <li>Notify the Pcell evaluator when superMasters are bound or unbound</li>
+  <li>Evaluate Pcells </li>
+  <li>Read or write evaluator-specific data from and to a database</li>
+</ul>
+<p>Each Pcell evaluator must be uniquely identified by its name. An application can provide a Pcell evaluator in one of two ways:</p>
+<ul>
+  <li>In memory</li>
+  <li>Through the OpenAccess plug-in mechanism</li>
+</ul>
+<p>An application provides an in-memory Pcell evaluator by creating an instance of its derived IPcell class in its process and registering it with OpenAccess through <a href="../design/classoaPcellLink.html">oaPcellLink</a> class. </p>
+<p>To provide a plug-in Pcell evaluator, an application creates an OpenAccess plug-in (with the same name as the Pcell evaluator) to provide its derived IPcell object to OpenAccess. Refer to <a href="pcelleval.html">How to Write a Pcell Evaluator Plug-in</a> for more information.</p>
+<h3>oaPcellDef</h3>
+<p>OpenAccess provides the  <a href="../design/classoaPcellDef.html">oaPcellDef</a>  base class, which conveys the binding from a superMaster to the code that handles its evaluation. This class also specifies any evaluator-specific data. </p>
+<p>A Pcell evaluator provides an object derived from oaPcellDef  that specifies itself as the evaluator to be used. A Pcell evaluator typically customizes this derived object to contain evaluator-specific data, which is provided to OpenAccess through the <a href="../PcellCPP/classIPcell.html">IPcell</a> interface. </p>
+<p>This class also provides a data segment that applications can use to store user data. This data segment is an array containing two strings as a name/value pair.</p>
+<h3>oaPcellLink</h3>
+<p>OpenAccess uses the oaPcellLink class to create a global list to manage all the application Pcell evaluators. An application can use the <a href="../design/classoaPcellLink.html#oaPcellLink::create">oaPcellLink::create() </a>function to register an in-memory Pcell evaluator before it is needed. </p>
+<p>The oaPcellLink object uses the OpenAccess plug-in manager to load and retrieve a plug-in Pcell evaluator and register it when  needed.</p>
+<p>End users of Pcell  evaluators can access the IPcell object and obtain the oaPcellDef needed to create a superMaster through the <a href="../design/classoaPcellLink.html#oaPcellLink::find">find()</a> and <a href="../design/classoaPcellLink.html#oaPcellLink::getPcellDef">getPcellDef()</a> functions on oaPcellLink.</p>
+<h3>Creating a  SuperMaster</h3>
+<p>Use the following procedure to create a superMaster: </p>
+<ol>
+  <li>Open an oaDesign.</li>
+  <li>Retrieve an oaPcellDef by calling oaPcellLink::<a href="../design/classoaPcellLink.html#oaPcellLink::getPcellDef">getPcellDef()</a> with the name of the Pcell evaluator.</li>
+  <li>Set up the oaPcellDef with the data required by the particular Pcell evaluator.</li>
+  <li>Create an oaParamArray for the parameters of the Pcell. </li>
+  <li>Call oaDesign::<a href="../design/classoaDesign.html#oaDesign::defineSuperMaster">defineSuperMaster()</a> on the oaDesign opened in Step 1, and pass in the oaPcellDef and oaParamArray obtained in Steps 2 and 3.</li>
+</ol>
+<p>When a superMaster is associated with a Pcell evaluator, OpenAccess creates a binding between a design and an IPcell object by attaching the IPcell object's specific oaPcellDef  to the superMaster. The IPcell's <a href="../PcellCPP/classIPcell.html#IPcell::onBind">onBind()</a> function is called to notify the Pcell evaluator of this binding. </p>
+<p>You can convert a  superMaster  back to a standard design with oaDesign::<a href="../design/classoaDesign.html#oaDesign::undefineSuperMaster">undefineSuperMaster()</a>.  This removes the binding between the design and the IPcell. The IPcell's <a href="../PcellCPP/classIPcell.html#IPcell::onUnbind">onUnbind()</a> function  is called to notify the Pcell evaluator that the binding was removed. </p>
+<p>When the superMaster is saved, the IPcell’s name is stored and the IPcell's <a href="../PcellCPP/classIPcell.html#IPcell::onWrite">onWrite()</a> function  is called to store any Pcell evaluator-specific data. When the superMaster is read from disk, it  reads the IPcell’s name and requests an oaPcellDef using oaPcellLink::getPcellDef() with this name. This oaPcellDef  is bound to the superMaster, and the IPcell's <a href="../PcellCPP/classIPcell.html#IPcell::onRead">onRead()</a> function  is called to read any Pcell evaluator-specific data.
+</p>
+<h3>Error Handling</h3>
+<p>OpenAccess does not throw exceptions for errors resulting from  operations with Pcells. Instead, applications should use <a href="../design/classoaPcellObserver.html">observer</a> notifications to monitor for errors. Some typical errors that might occur include:</p>
+<ul>
+  <li>The Pcell evaluator cannot be found</li>
+  <li>The parameter specifications cannot be found</li>
+  <li>An execution error occurs during Pcell evaluation</li>
+</ul>
+<p><strong>Note:</strong> Typically, an empty subMaster is produced when  the Pcell evaluator cannot be found or there is a failure during evaluation.</p>
+<h2><a name="oaEvals"></a>OpenAccess Pcell Evaluators</h2>
+<p>OpenAccess provides two Pcell evaluators  as plug-ins: </p>
+<ul>
+  <li>oaPcellCPP</li>
+  <li>oaPcellScript</li>
+</ul>
+<h3>oaPcellCPP</h3>
+<p>OpenAccess includes a plug-in Pcell evaluator   named oaPcellCPP for  C++ Pcells. This evaluator manages the binding and unbinding of superMasters and handles data management. </p>
+<p>Applications can provide  C++ shared libraries to perform the Pcell evaluation to actually  produce the submasters. </p>
+<p>Refer to <a href="writecppgen.html">Writing a C++ Pcell Generator</a> for more information about how C++ Pcells are implemented in OpenAccess.</p>
+<h3>oaPcellScript </h3>
+<p>OpenAccess includes a plug-in Pcell evaluator named oaPcellScript for Pcells for scripting languages. This evaluator uses the scripting engine interface (<a href="../plugin/classIScriptEngine.html">IScriptEngine</a>) for third-party script interpreters that are used to evaluate Pcells. </p>
+<p>OpenAccess provides a Tcl engine that can invoke the OpenAccess public API for Tcl based Pcells. </p>
+<p>Refer to <a href="tclpcell.html">Implementing Pcells Through Tcl</a> for  information about how Tcl Pcells are implemented in OpenAccess.</p>
+<h2> Pcell Instances </h2>
+<p>OpenAccess lets designers instantiate one design (a child instance) into another design (the parent). OpenAccess supports both block and via instances:</p>
+<UL>
+  <LI>An instance is a direct reference to a child design. 
+  <LI>A via is an indirect reference to a child design through a via definition. </LI>
+</UL>
+<P>Pcells are supported in both types of instances.</P>
+<p>Instances in a design are organized according to their masters. A  header groups all instances of the same master together. </p>
+<p>A superMaster is different than a standard oaDesign because its contents are contained in its subMaster. When an instance of a superMaster is created, it is associated with a set of parameter values&#8212;either instance-specific overrides or the defaults from the superMaster. This creates an extra level of complexity because OpenAccess must organize Pcell instances according to their superMasters and manage the parameter overrides associated with those instances. </p>
+<p>OpenAccess classifies  headers  as regular, super, or sub:</p>
+<ul>
+  <li>A regular header groups all instances of the same master for a standard oaDesign. </li>
+  <li>A subHeader groups all instances sharing the same superMaster and parameter values. </li>
+  <li>A superHeader groups all subHeaders sharing the same superMaster. </li>
+</ul>
+<p>Headers are not created explicitly by users but result when instances are created. OpenAccess creates a header and sets up its type according to the master type that it references. When a Pcell instance is created, OpenAccess creates both a superHeader and a subHeader to manage the instance. </p>
+<p>When the master of a Pcell instance is needed, OpenAccess automatically creates a transient design database for the subMaster, and the corresponding parameter values for that instance are copied into the subMaster. The onEval() function of the corresponding superMaster’s Pcell evaluator is called for Pcell evaluation in the subMaster.
+</p>
+<p>The following figure shows how instances are organized in a design.</p>
+<p><img src="images/pcellReferences.gif"></p>
+<h3>	Parameter Inheritance</h3>
+<p>The full parameter list is stored on both the superHeader and subHeader of an instance. Users can create a Pcell instance  and explicitly override the default parameter values. Parameter values not specified during instance creation inherit the  default values from the superMaster. Changes in the default values of the superMaster's parameters  propagate to the instances’ default parameters. OpenAccess determines if a new variant of the Pcell is needed based on whether the parameter values are overrides or use the defaults. </p>
+<h2><a name="remaster"></a>Remastering Instances</h2>
+<p>OpenAccess  lets applications remaster all the instances of a design  with one function call:</p>
+<pre>
+static void oaInstHeader::setMaster(oaInstHeader          *header
+                                    const oaDesign        *master,
+                                    const oaParamArray    *parameters = NULL);
+</pre>
+<p>Where:</p>
+<ul>
+  <li><em>header</em> is the oaInstHeader for the instances to be remastered.</li>
+  <li><em>master</em> is the oaDesign that will become the new master for the instances.</li>
+  <li><em>parameters</em> is an optional parameter array for the new master. </li>
+</ul>
+<p>After a remaster operation, the original oaInstHeader is destroyed and the  oaInstHeader for the target oaDesign is used to group the instances. When the source or target master is a Pcell, OpenAccess must perform some conversions  between parameters and properties as part of the remaster operation. This section describes the three scenarios for remastering instances that involve Pcells. (For information about remastering all the instances of a standard oaDesign master to a different oaDesign master, refer to the <a href="../design/classoaInstHeader.html#oaInstHeader::setMaster">oaInstHeader::setMaster documentation</a>.) </p>
+<ul>
+  <li><a href="#designTosuper">Remastering all the instances of a standard oaDesign master to a Pcell superMaster</a></li>
+  <li><a href="#subTostandard">Remastering all the instances of a Pcell subMaster to a standard oaDesign master</a></li>
+  <li><a href="#subTosuper">Remastering all the instances of a Pcell subMaster to a  different Pcell superMaster</a></li>
+</ul>
+<p>The property/parameter conversions that occur in each  scenario are described  under <em>Results</em> for that section. </p>
+<p><strong>Note:</strong> Other operations can  trigger the property/parameter conversions covered in these sections. For example, the   oaInst::setMaster function follows the same rules for parameter/property conversion as does the oaInstHeader::setMaster function described herein. In addition, redefining an instance master while  the design is open or redefining the instance master while the design is closed  (out-of-context edit) can trigger the parameter/property conversions. </p>
+<p>When oaInstHeader::setMaster is called, observer notifications are sent for each affected instance (as if oaInst::setMaster had been called on each one). </p>
+<h3><a name="designTosuper"></a>Remastering all  Instances of a Standard oaDesign Master to a Pcell superMaster </h3>
+<p>Applications can change all the intances of a standard oaDesign master to a Pcell superMaster.  An optional array of parameters can be specified.
+
+<h4>With Optional Parameters Specified </h4>
+<p>The following figure shows the remastering of a standard oaDesign master to a Pcell superMaster when an oaParamArray containing one parameter ( {V = 30} ) is  specified. The target Pcell superMaster has a default parameter  ( {V = 0} ).</p>
+<p><img src="images/regToSuperWithParams.gif" width="1107" height="468"></p>
+<blockquote>
+  <p><strong>Results </strong></p>
+</blockquote>
+<ul>
+  <li>Optional parameters (in this case  {V = 30}), are validated against the superMaster’s parameters. An oacInvalidDataTypeForParam error is thrown if any parameter in the optional array does not match by name and type a parameter in the new superMaster's parameter list. </li>
+  <li>Optional parameters that <em>do</em>  match by name and type are used to acquire a subHeader oaInstHeader object, which is used to group the instances being remastered. For the   {V = 30} parameter, a  subHeader oaInstHeader object is created. </li>
+  <li>Any property on an instance that matches by name a parameter in the oaParamArray associated with the  superHeader for the target superMaster is destroyed. This is true even if the types do not match. In the figure, all the V  properties on the instances being remastered are destroyed, including the V = 8.4 property, which does not match by type. </li>
+  <li> Any property that doesn't match by name a parameter in the oaParamArray associated with the  superHeader for the target superMaster is retained, as is the case with the property {X = 2} on instance I4. </li>
+</ul>
+<p>This process is also shown in the following video.</p>
+<p>  <embed src="videos/designToPcell.swf" width="740" height="574" play="true" 
+loop="true" quality="high"
+pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+</p>
+<h4>Without Optional Parameters </h4>
+<p>The following figure shows the conversion from a standard oaDesign master to a Pcell superMaster when an array of parameters is <em>not</em> specified.</p>
+<p><img src="images/regToSuperNoParams.gif" width="1125" height="495"></p>
+<blockquote>
+  <p><strong>Results</strong></p>
+</blockquote>
+<ul>
+  <li>Any property that matches (by name <em>and</em> type)  a parameter in the target superMaster’s parameter list must be the same for oaInsts per oaModDesignInst (or an oacInstsInHierHaveDifferentProps exception is thrown). For example, all the V properties on the unfolded instances  of the I3 instance from module B  in the previous figure must have the same type and value as each other. This is apparent when you look at the design in the module domain, as shown below.<br> 
+    <br>
+    <img src="images/moduleDomain.gif" width="504" height="363"></li>
+  <li>The matched properties are converted to parameters in oaParamArrays for the subHeaders. In the figure, subHeaders are created based on the V property and its values. </li>
+  <li>The oaParamArrays are used to acquire subHeader oaInstHeader objects, which are used to group the instances being remastered.  </li>
+  <li>Properties on the instances that match those of the new superMaster by name but not by type are removed. For example, the V = 3.0 parameter does not match by type and is removed. </li>
+  <li> Any property that doesn't match by name a parameter in the oaParamArray associated with the  superHeader for the target superMaster is retained, as is the case with the property {X = 2} on instance I4. </li>
+</ul>
+<p>This process is also shown in the following video.</p>
+<p>
+  <embed src="videos/designToPcellNoParams.swf" width="940" height="554" play="true" 
+loop="true" quality="high"
+pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"></embed>
+</p>
+<h4><a name="subTostandard"></a>Remastering all  Instances of a Pcell subMaster to a Standard oaDesign Master</h4>
+<p>Applications can change all the intances of a Pcell subMaster to a standard oaDesign master. An oacParamsSuppliedForNonPCellInstMaster error is thrown if you provide an oaParamArray when remastering from a Pcell subMaster to a standard oaDesign. </p>
+<p>The following figure shows the conversion from a Pcell subMaster to a standard oaDesign master.</p>
+<p><img src="images/subToRegMaster.gif" width="686" height="490"></p>
+<blockquote>
+  <p><strong>Results</strong></p>
+</blockquote>
+<ul>
+  <li>All non-default parameters in the oaParamArray of the original subHeader are stored as properties on each of its instances. In the figure, the oaParamArray for the original subHeader has two non default parameters {A =1, V =2}. These are stored as new properties on the instances. Note that the header of the target master might  already have  existing instances, if so, the properties are <em>not</em> stored on these pre-existing instances. </li>
+  <li>These new properties  override any property of the same name that was previously on the instance, regardless of type. The property V = 3 on the A1/I1 instance is overriden by the V = 2 property.</li>
+</ul>
+<h3><a name="subTosuper"></a>Remastering all  Instances of a Pcell subMaster to a  Different Pcell superMaster</h3>
+<p>Applications can change the master of all the intances of a Pcell subMaster to a different Pcell superMaster. An optional array of parameters can be specified. </p>
+<h4>With Optional Parameters Specified</h4>
+<p>The following figure shows the conversion from a Pcell subMaster to a different Pcell superMaster when an oaParamArray containing one parameter ( {V = 30} ) is  specified.</p>
+<h5><img src="images/subToSuperWithParams.gif" width="717" height="479"></h5>
+<blockquote>
+  <p><strong>Results</strong></p>
+</blockquote>
+<ul>
+  <li>Optional parameters (in this case  {V = 30}), are validated against the  parameters in the oaParamArray associated with the superHeader for the target superMaster. An oacInvalidDataTypeForParam error is thrown if the oaParam does not match (by name and type) a parameter in the superMaster’s parameter list.  <br>
+  </li>
+  <li>A valid oaParamArray is used to acquire a subHeader oaInstHeader object, which is used to group the instances being remastered. In the figure, the  oaParamArray containing the {V = 30} parameter is used to acquire a subHeader oaInstHeader object. </li>
+  <li>All non-default parameters in the oaParamArray for the original subHeader that do not match the new superMaster’s oaParamArray (by name and type) are converted to properties on the instances. In the figure, the unmatched parameter A is converted to a property on each instance. </li>
+  <li>These new properties on the instances override any properties of the same name already on the instance, regardless of type. In the figure, the A = 3.0 property on the original A1/I1 instance is overriden. </li>
+  <li> All non-default parameters in the oaParamArray for the original subHeader that match the new superMaster’s oaParamArray by name but <em>not</em> by type are dropped. For example, the W = 1.5 parameter on the original subHeader is dropped because the type does not match the new superMaster's oaParamArray. </li>
+  <li>Properties on instances that match those on the new superMaster by name are removed, regardless of their type. In the figure, the B and V properties on the instances are removed.</li>
+  <li> Any property that doesn't match by name a parameter in the oaParamArray associated with the  superHeader for the target superMaster is retained, as is the case with the property {X = 2} on instance A1/I1. </li>
+</ul>
+<h4>Without Optional Parameters</h4>
+<p>The following figure shows the conversion from a Pcell subMaster to a different Pcell superMaster when an array of parameters is  not specified.</p>
+<p><img src="images/subToSuperWithOutParams.gif" width="717" height="479"></p>
+<blockquote>
+  <p><strong>Results</strong></p>
+</blockquote>
+<ul>
+  <li>All non-default parameters in the oaParamArray for the original subHeader that do not match the target superMaster’s oaParamArray (by name and type) are converted to properties on the instances. 
+These properties on the instances override any property of the same name already on the instance, regardless of type. In the figure, the  A parameter on the  INV/Abstract subMaster does not match the target superMaster's oaParamArray, so it is converted to a property on each instance. </li>
+  <li>The non default matched parameters  in the oaParamArray for the original subHeader that match the target superMaster's parameters by name and type are carried over to the new subHeader and  form  new oaParamArray objects. In the figure, the  V parameter from the original subHeader is added to the oaParamArrays for the new subHeaders. </li>
+  <li>All non-default parameters in the oaParamArray for the original subHeader that match the new superMaster’s oaParamArray by name but not by type are dropped and are <em>not</em> converted to properties on the instances. For example, the W = 1.5 parameter does not match the new superMaster's oaParamArray by type, so it is dropped and a property is not created on the instance. </li>
+  <li>Properties on the instances are matched against the remaining parameters of the new superMaster. Unmatched properties remain.</li>
+  <li> Properties that match by name but not by type are dropped. For example, the A = 3.0 property is dropped. </li>
+  <li>Properties that match by name and type are merged into the new oaParamArray. For example, the B = 2 properties on A1/I1 and A1/I2 are part of the oaParamArray for the new subHeaders. </li>
+</ul>
+<h2><a name="pcell_expand"></a>Conversion Between Pcells and Standard oaDesigns </h2>
+<p>A standard design can be converted to a Pcell design, and vice versa. When a standard design is converted to a Pcell design, it is known as <em>expanding</em>. Conversely, when a Pcell design is converted to a standard design, it is known as <em>flattening</em>. </p>
+<p>OpenAccess provides the following functions for expanding or flattening designs, respectively:</p>
+<ul>
+  <li>oaDesign::defineSuperMaster </li>
+  <li>oaDesign::undefineSuperMaster<br>
+  </li>
+</ul>
+<p>OpenAccess automatically adjusts the  headers in a parent design when it detects that a child design is being expanded or flattened.
+<p>A Pcell master can also be truncated, which means that the Pcell master was opened in write mode. When a Pcell master is truncated, flattening also occurs.</p>
+<p><img src="images/pcell_truncate.gif" width="549" height="260"></p>
+<h4><a name="flatten"></a>Flattening a Pcell </h4>
+<p>When a Pcell is flattened, OpenAccess does the following: </p>
+<ul>
+  <li>Converts the superHeader  into a regular header.</li>
+  <li>Converts any parameters stored in the subHeader into properties on the instances in case the design is expanded in the future. <br>
+At this point, property-creation observers are called on the properties. </li>
+  <li>Moves all the instances under the superHeader's subHeader  under the regular header. <br>
+    At this point, setInstHeader observers are called on the instances. </li>
+  <li>Destroys the subHeaders.<br>
+    At this point, pre-destroy observers are called. </li>
+</ul>
+<h4>Expanding a Design </h4>
+<p>When a standard design is expanded, OpenAccess does the following:</p>
+<ul>
+  <li>Converts the regular header into a superHeader.</li>
+  <li>If there are properties on the instance (from a previous flattening), converts the properties to parameter values. Otherwise, assigns the default parameter values.</li>
+  <li>Creates subHeaders to contain the parameter values. </li>
+  <li>Moves the instances that were on the regular header (which is now a superHeader) to the newly created subHeader.<br>
+  </li>
+</ul>
+<h4>Truncating a Pcell SuperMaster </h4>
+<p>When you open or reopen a Pcell superMaster in write mode, it is known as <em>truncating</em> the superMaster. When a Pcell superMaster is truncated, OpenAccess does the following:
+<ul>
+  <li>Removes the binding between the superHeader and the subHeaders. <br>
+    At this point, a pre-purge observer is called on the subMaster. </li>
+  <li>Purges the subMasters. </li>
+  <li><a href="#flatten">Flattens the Pcells</a>, as described previously.</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp; </P>
+<p><a href="#pagetop">Return to top of page</a></P>
+<p><a href="index.html">Return to Programmers Guide topics</a></P>
+<div style="TEXT-ALIGN: center"><IMG src="../pgfooter.gif"><br></DIV><br>
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> 
+<br>All rights reserved.</P>
+</body>
+</HTML>

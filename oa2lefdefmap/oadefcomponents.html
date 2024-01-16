@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|components'/>
+<a name='3000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Components"></a>Components</h1>
+<pre>
+ COMPONENTS numComps ;
+
+   [- compName modelName
+         [+ <a href='#3002'>EEQMASTER</a> macroName]
+         [+ <a href='#3003'>SOURCE</a> {NETLIST | DIST | USER | TIMING}]
+         [+ {<a href='#3004'>FIXED</a> pt orient | COVER pt orient | PLACED pt orient | UNPLACED}]
+         [+ <a href='#3005'>HALO</a> [SOFT] left bottom right top]
+         [+ <a href='#3006'>ROUTEHALO</a> haloDist minLayer maxLayer]
+         [+ <a href='#3007'>WEIGHT</a> weight]
+         [+ <a href='#3008'>REGION</a> regionName]
+         [+ <a href='#3009'>PROPERTY</a> {propName propVal} ...] ...
+   ;] ...
+
+ END COMPONENTS
+</pre>
+<p>Defines design components, their location, and their associated attributes.</p>
+<p>Some DEF COMPONENTS are physical-only objects, which are represented in OpenAccess in the block domain with no corresponding object in the module domain. Verilog exported from a database with physical-only objects has no data that corresponds to these objects. The physical-only COMPONENTS include:</p>
+<ul>
+<li>Any cells marked with + SOURCE DIST. This includes filler cells and</li>
+<li>     tie-high or tie-low cells.</li>
+<li>CLASS COVER (including BUMP) cells that have only +USE POWER/GROUND</li>
+<li>     terminals.</li>
+<li>CLASS PAD cells (such as power or ground pads) that have only +USE</li>
+<li>     POWER/GROUND terminals.</li>
+</ul>
+</div>
+<a name='def|components|eeqmaster'/>
+<a name='3002'/>
+<h2 class='topicSyntax'>
+EEQMASTER macroName</h2>
+<div style='margin-left:40px;'>
+<p>The macroName corresponds to the cell name of the master that is electrically equivalent to the instance master.</p>
+</div>
+<a name='def|components|halo'/>
+<a name='3005'/>
+<h2 class='topicSyntax'>
+HALO [SOFT] left bottom right top</h2>
+<div style='margin-left:40px;'>
+<p>The HALO maps to an oaAreaHalo, with the specified left, bottom, right, and top offsets. The SOFT parameter is a boolean attribute on the oaAreaHalo object.</p>
+</div>
+<a name='def|components|instance'/>
+<a name='3001'/>
+<h2 class='topicSyntax'>
+</h2>
+<div style='margin-left:40px;'>
+</div>
+<a name='def|components|placement'/>
+<a name='3004'/>
+<h2 class='topicSyntax'>
+FIXED pt orient | COVER pt orient | PLACED pt orient | UNPLACED</h2>
+<div style='margin-left:40px;'>
+<p>FIXED, COVER, PLACED, and UNPLACED corresponds to the placement status of the instance.</p>
+<p>The following table shows the correspondence between oaPlacementStatus and DEF placement.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF placement</th>
+<th class='borders'>oaPlacementStatusEnum</th>
+</tr>
+<tr>
+<td class='borders'>PLACED</td>
+<td class='borders'>oacPlacedPlacementStatus</td>
+</tr>
+<tr>
+<td class='borders'>FIXED</td>
+<td class='borders'>oacFirmPlacementStatus</td>
+</tr>
+<tr>
+<td class='borders'>COVER</td>
+<td class='borders'>oacLockedPlacementStatus</td>
+</tr>
+<tr>
+<td class='borders'>UNPLACED</td>
+<td class='borders'>oacUnplacedPlacementStatus</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacNonePlacementStatus</td>
+</tr>
+</table>
+<p>pt orient corresponds to the location and the orientation of the instance.</p>
+</div>
+<a name='def|components|property'/>
+<a name='3009'/>
+<h2 class='topicSyntax'>
+PROPERTY {propName propVal} ...</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oadefproperties.html">PROPERTIES</a></p>
+</div>
+<a name='def|components|region'/>
+<a name='3008'/>
+<h2 class='topicSyntax'>
+REGION regionName</h2>
+<div style='margin-left:40px;'>
+<p>regionName corresponds to the name of the region cluster (a cluster associated with at least one clusterBoundary object) that the instance belongs to. Use the following API to determine this information:</p>
+<pre>
+   oaCluster *oaInst::getCluster() const
+   oaCollection oaCluster::getBoundaries() const
+   oaUInt4 oaBaseCollection::getCount() const
+   oaCluster::getName(oaString &amp;name) const
+</pre>
+</div>
+<a name='def|components|routehalo'/>
+<a name='3006'/>
+<h2 class='topicSyntax'>
+ROUTEHALO haloDist minLayer maxLayer</h2>
+<div style='margin-left:40px;'>
+<p>ROUTEHALO maps to the oaLayerHalo object for routing layers between minLayer and maxLayer. The haloDist value maps to the top, bottom, left, and right offsets associated with the oaLayerHalo object.</p>
+</div>
+<a name='def|components|source'/>
+<a name='3003'/>
+<h2 class='topicSyntax'>
+SOURCE {NETLIST | DIST | USER | TIMING}</h2>
+<div style='margin-left:40px;'>
+<p>This information corresponds to the source attribute for the instance. The following table shows the correspondence between the DEF source and the oaSourceEnum value:</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF source</th>
+<th class='borders'>oaSourceEnum</th>
+</tr>
+<tr>
+<td class='borders'>NETLIST</td>
+<td class='borders'>oacNetlistSource</td>
+</tr>
+<tr>
+<td class='borders'>TIMING</td>
+<td class='borders'>oacTimingSource</td>
+</tr>
+<tr>
+<td class='borders'>DIST</td>
+<td class='borders'>oacDistSource</td>
+</tr>
+<tr>
+<td class='borders'>USER</td>
+<td class='borders'>oacUserSource</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacTestSource</td>
+</tr>
+</table>
+</div>
+<a name='def|components|weight'/>
+<a name='3007'/>
+<h2 class='topicSyntax'>
+WEIGHT weight</h2>
+<div style='margin-left:40px;'>
+<p>The weight value corresponds to the priority attribute for the instance, and it is found by using the following API:</p>
+<pre>
+   oaUInt4 oaInst::getPriority() const
+</pre>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

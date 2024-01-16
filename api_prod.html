@@ -1,0 +1,1338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h2>Summary of API Changes</h2>
+<p>Below is a summary of the API changes between the 10/04/2002 Open Access build 
+  and the December OpenAccess production release.</p>
+<p><font color="#0066CC">#################################<br>
+  # Following new classes have been added.<br>
+  #################################</font><font color="#0066CC"><br>
+  </font></p>
+<font color="#0066CC"> 
+<p>Class = oaAnalysisPointIter<br>
+  Class = oaAntennaRule<br>
+  Class = oaAppObjectCollection<br>
+  Class = oaCellViewCollection<br>
+  Class = oaCellViewIter<br>
+  Class = oaCumulativeRatios<br>
+  Class = oaDatabaseCollection<br>
+  Class = oaDatabaseIter<br>
+  Class = oaElmoreCallback<br>
+  Class = oaFSObjCollection<br>
+  Class = oaFSObjIter<br>
+  Class = oaFltIntTblRule<br>
+  Class = oaGCellPatternCallback<br>
+  Class = oaGroupCollection<br>
+  Class = oaHeaderCollection<br>
+  Class = oaHeaderIter<br>
+  Class = oaIntFltTblRule<br>
+  Class = oaIter&lt;oaAppObject&gt;<br>
+  Class = oaIter&lt;oaBusNetBit&gt;<br>
+  Class = oaIter&lt;oaBusTermBit&gt;<br>
+  Class = oaIter&lt;oaDevice&gt;<br>
+  Class = oaIter&lt;oaGroup&gt;<br>
+  Class = oaIter&lt;oaGroupMember&gt;<br>
+  Class = oaIter&lt;oaGuide&gt;<br>
+  Class = oaIter&lt;oaInstHeader&gt;<br>
+  Class = oaIter&lt;oaInstPin&gt;<br>
+  Class = oaIter&lt;oaLib&gt;<br>
+  Class = oaIter&lt;oaOpPointHeader&gt;<br>
+  Class = oaIter&lt;oaProp&gt;<br>
+  Class = oaIter&lt;oaViaHeader&gt;<br>
+  Class = oaLumpedElmore<br>
+  Class = oaMutualInductor<br>
+  Class = oaNameBase<br>
+  Class = oaObjGuideCollection<br>
+  Class = oaObjRouteCollection<br>
+  Class = oaPhysicalLayer<br>
+  Class = oaPiElmore<br>
+  Class = oaPiPoleResidue<br>
+  Class = oaPoleResidueCallback<br>
+  Class = oaReducedModel<br>
+  Class = oaReducedModelCallback<br>
+  Class = oaRouteOptimizer<br>
+  Class = oaSiteDefCallback<br>
+  Class = oaSubHeaderCollection<br>
+  Class = oaSubNetwork<br>
+  Class = oaSubNetworkCallback<br>
+  Class = oaViaDefCallback</p>
+</font><font color="#0066CC"></font> 
+<p><font color="#CC0099">##############################<br>
+  # Following classes have been removed.<br>
+  ##############################</font></p>
+<p><font color="#CC0099">Class = oaBaseHeaderIter<br>
+  Class = oaElmoreArray<br>
+  Class = oaIter&lt;oaInst&gt;<br>
+  Class = oaIter&lt;oaReducedParasitic&gt;<br>
+  Class = oaLockStatus<br>
+  Class = oaPoleResidueArray<br>
+  Class = oaReducedModelType<br>
+  Class = oaReducedParasitic<br>
+  Class = oaReducedParasiticCallback<br>
+  Class = oaUsedInCollection</font></p>
+ 
+<p><font color="#009966">############################<br>
+  # Following APIs have been added.<br>
+  ############################</font></p>
+<p><font color="#009966">Class = oaAnalysisPointIter API = oaAnalysisPoint* getNext()<br>
+  Class = oaAnalysisPointIter API = oaAnalysisPointIter(const oaAnalysisPointIter&amp;)<br>
+  Class = oaAnalysisPointIter API = oaAnalysisPointIter(const oaCollection&lt;oaAnalysisPoint,oaCellView&gt;&amp;)<br>
+  Class = oaAnalysisPointIter API = oaAnalysisPointIter(const oaCollection&lt;oaAnalysisPoint,oaParasiticNetwork&gt;&amp;)<br>
+  Class = oaAnalysisPointIter API = void reset()</font></p>
+
+<p><font color="#009966"> Class&nbsp;=&nbsp;oaAntennaRule&nbsp;API&nbsp;=&nbsp;oaAntennaRule*&nbsp;set(oaLayer*,oaSingleRuleType,float,float,const&nbsp;oa1DLookupTbl&lt;long&nbsp;long,float&gt;&amp;,const&nbsp;oa1DLookupTbl&lt;long&nbsp;long,float&gt;&amp;)<br>
+  Class = oaAntennaRule API = float getGateAreaRatio()const<br>
+  Class = oaAntennaRule API = float getSideGateAreaRatio()const<br>
+  Class = oaAntennaRule API = void getDiodeAreaRatio(oa1DLookupTbl&lt;long long,float&gt;&amp;)const<br>
+  Class = oaAntennaRule API = void getSideDiodeAreaRatio(oa1DLookupTbl&lt;long 
+  long,float&gt;&amp;)const</font></p>
+<p> <font color="#009966">Class = oaAppDefCallback API = void onPostModify(oaObject*)<br>
+  Class = oaAppDefCallback API = void onPreModify(oaObject*)<br>
+  Class = oaAppDefCallback API = void onRead(oaObject*)<br>
+  Class = oaAppDefCallback API = void onWrite(oaObject*)</font></p>
+<p> <font color="#009966">Class = oaAppObjectCollection API = int includes(const oaAppObject*)const<br>
+  Class = oaAppObjectCollection API = int isEmpty()const<br>
+  Class = oaAppObjectCollection API = oaAppObjectCollection(const oaAppObjectCollection&amp;)<br>
+  Class = oaAppObjectCollection API = oaAppObjectCollection(const oaObject*,unsigned)<br>
+  Class = oaAppObjectCollection API = unsigned getCount()const</font></p>
+<p> <font color="#009966">Class = oaBundleName API = void getBitName(const oaNameSpace&amp;,unsigned,oaString&amp;)const</font></p>
+<p> <font color="#009966">Class = oaCellViewCallback API = void invokeFirstOpenCallback(oaCellView*)<br>
+  Class = oaCellViewCallback API = void invokePostModifyCallback(oaCellView*,oaCellViewModTypeEnum)<br>
+  Class = oaCellViewCallback API = void invokePreModifyCallback(oaCellView*,oaCellViewModTypeEnum)<br>
+  Class = oaCellViewCallback API = void onFirstOpen(oaCellView*)<br>
+  Class = oaCellViewCallback API = void onPostModify(oaCellView*,oaCellViewModTypeEnum)<br>
+  Class = oaCellViewCallback API = void onPreModify(oaCellView*,oaCellViewModTypeEnum)</font></p>
+<p> <font color="#009966">Class = oaCellViewCollection API = int includes(const oaCellView*)const<br>
+  Class = oaCellViewCollection API = int isEmpty()const<br>
+  Class = oaCellViewCollection API = oaCellViewCollection(const oaCellViewCollection&amp;)<br>
+  Class = oaCellViewCollection API = oaCellViewCollection(unsigned,oaCellViewCollTypeEnum,const 
+  oaCellView*)<br>
+  Class = oaCellViewCollection API = unsigned getCount()const</font></p>
+<p> <font color="#009966">Class = oaCellViewIter API = oaCellView* getNext()<br>
+  Class = oaCellViewIter API = oaCellViewIter(const oaCellViewCollection&amp;)<br>
+  Class = oaCellViewIter API = oaCellViewIter(const oaCellViewIter&amp;)<br>
+  Class = oaCellViewIter API = void reset()</font></p>
+<p> <font color="#009966">Class = oaCouplingCap API = int isOtherConn()const<br>
+  Class = oaCouplingCap API = oaDBObject* getOtherConn()const</font></p>
+<p> <font color="#009966">Class = oaCumulativeRatios API = oaCumulativeRatios()<br>
+  Class = oaCumulativeRatios API = void setDiodeAreaRatio(const oa1DLookupTbl&lt;long 
+  long,float&gt;&amp;)<br>
+  Class = oaCumulativeRatios API = oaCumulativeRatios(const oaCumulativeRatios&amp;)</font></p>
+<p> <font color="#009966">Class = oaCustomViaDef API = void getCellName(const oaNameSpace&amp;,oaString&amp;)const<br>
+  Class = oaCustomViaDef API = void getLibName(const oaNameSpace&amp;,oaString&amp;)const<br>
+  Class = oaCustomViaDef API = void getViewName(const oaNameSpace&amp;,oaString&amp;)const</font></p>
+<p> <font color="#009966">Class = oaDBObject API = int isReducedModel()const<br>
+  Class = oaDBObject API = int isViaHeader()const</font></p>
+<p><font color="#009966"> Class = oaDatabaseCollection API = int includes(const oaObject*)const<br>
+  Class = oaDatabaseCollection API = int isEmpty()const<br>
+  Class = oaDatabaseCollection API = oaDatabaseCollection(const oaDatabaseCollection&amp;)<br>
+  Class = oaDatabaseCollection API = oaDatabaseCollection(unsigned)<br>
+  Class = oaDatabaseCollection API = unsigned getCount()const</font></p>
+<p> <font color="#009966">Class = oaDatabaseIter API = oaDatabaseIter(const oaDatabaseCollection&amp;)<br>
+  Class = oaDatabaseIter API = oaDatabaseIter(const oaDatabaseIter&amp;)<br>
+  Class = oaDatabaseIter API = oaObject* getNext()<br>
+  Class = oaDatabaseIter API = void reset()</font></p>
+<p> <font color="#009966">Class = oaDerivedLayer API = int isError()const<br>
+  Class = oaDerivedLayer API = oaDerivedLayer* find(oaTech*,const oaString&amp;)<br>
+  Class = oaDerivedLayer API = oaDerivedLayer* find(oaTech*,unsigned)</font></p>
+<p> <font color="#009966">Class = oaDevice API = oaDevice* find(oaParasiticNetwork*,unsigned,int)<br>
+  Class = oaDevice API = unsigned getUniqueId(oaCellView*)<br>
+  Class = oaDevice API = unsigned getUniqueId(oaParasiticNetwork*)<br>
+  Class = oaDevice API = void addToSubNetwork(oaSubNetwork*)<br>
+  Class = oaDevice API = void removeFromSubNetwork(oaSubNetwork*)</font></p>
+<p> <font color="#009966">Class = oaDump API = const char* getDualIdStr(unsigned,unsigned,unsigned,const 
+  oaString&amp;)<br>
+  Class = oaDump API = float scaleCap(float)const<br>
+  Class = oaDump API = float scaleInd(float)const<br>
+  Class = oaDump API = float scaleRes(float)const<br>
+  Class = oaDump API = void outXMLHeader()</font></p>
+<p><font color="#009966"> Class = oaElmore API = float getDelay()const<br>
+  Class = oaElmore API = oaDBObject* getReceiver()const<br>
+  Class = oaElmore API = oaElmore* create(oaLumpedElmore*,oaInstTerm*,float)<br>
+  Class = oaElmore API = oaElmore* create(oaLumpedElmore*,oaTerm*,float)<br>
+  Class = oaElmore API = oaElmore* create(oaPiElmore*,oaInstTerm*,float)<br>
+  Class = oaElmore API = oaElmore* create(oaPiElmore*,oaTerm*,float)<br>
+  Class = oaElmore API = oaElmore* find(oaLumpedElmore*,oaInstTerm*)<br>
+  Class = oaElmore API = oaElmore* find(oaLumpedElmore*,oaTerm*)<br>
+  Class = oaElmore API = oaElmore* find(oaPiElmore*,oaInstTerm*)<br>
+  Class = oaElmore API = oaElmore* find(oaPiElmore*,oaTerm*)<br>
+  Class = oaElmore API = oaReducedModel* getReducedModel()const<br>
+  Class = oaElmore API = void destroy()<br>
+  Class = oaElmore API = void setDelay(float)</font></p>
+<p><font color="#009966"> Class = oaElmoreCallback API = oaElmoreCallback(unsigned,int)<br>
+  Class = oaElmoreCallback API = void invokePostCreateCallback(oaElmore*)<br>
+  Class = oaElmoreCallback API = void invokePostModifyCallback(oaElmore*,oaElmoreModTypeEnum)<br>
+  Class = oaElmoreCallback API = void invokePreDestroyCallback(oaElmore*)<br>
+  Class = oaElmoreCallback API = void invokePreModifyCallback(oaElmore*,oaElmoreModTypeEnum)</font></p>
+<p> <font color="#009966">Class = oaFSObjCollection API = int includes(const oaFileSysObject*)const<br>
+  Class = oaFSObjCollection API = int isEmpty()const<br>
+  Class = oaFSObjCollection API = oaFSObjCollection(const oaFSObjCollection&amp;)<br>
+  Class = oaFSObjCollection API = oaFSObjCollection(const oaFileSysObject*,oaType)<br>
+  Class = oaFSObjCollection API = oaFSObjCollection(const oaFileSysObject*,oaType,const 
+  oaString&amp;)<br>
+  Class = oaFSObjCollection API = ~oaFSObjCollection()<br>
+  Class = oaFSObjCollection API = unsigned getCount()const</font></p>
+<p> <font color="#009966">Class = oaFSObjIter API = oaFSObjIter(const oaFSObjCollection&amp;)<br>
+  Class = oaFSObjIter API = oaFSObjIter(const oaFSObjIter&amp;)<br>
+  Class = oaFSObjIter API = ~oaFSObjIter()<br>
+  Class = oaFSObjIter API = oaFileSysObject* getNext()<br>
+  Class = oaFSObjIter API = void reset()</font></p>
+<p> <font color="#009966">Class = oaFltIntTblRule API = int getValue(float)const<br>
+  Class = oaFltIntTblRule API = oaFltIntTblRule* set(oaLayer*,oaLayer*,oaDoubleRuleType,const 
+  oa1DLookupTbl&lt;float,int&gt;&amp;,int)<br>
+  Class = oaFltIntTblRule API = oaFltIntTblRule* set(oaLayer*,oaSingleRuleType,const 
+  oa1DLookupTbl&lt;float,int&gt;&amp;)<br>
+  Class = oaFltIntTblRule API = void getValue(oa1DLookupTbl&lt;float,int&gt;&amp;)const</font></p>
+<p> <font color="#009966">Class = oaGCellPatternCallback API = oaGCellPatternCallback(unsigned,int)<br>
+  Class = oaGCellPatternCallback API = void invokePostCreateCallback(oaGCellPattern*)<br>
+  Class = oaGCellPatternCallback API = void invokePreDestroyCallback(oaGCellPattern*)</font></p>
+<p> <font color="#009966">Class = oaGroupCollection API = int includes(const oaGroup*)const<br>
+  Class = oaGroupCollection API = int isEmpty()const<br>
+  Class = oaGroupCollection API = oaGroupCollection(const oaGroupCollection&amp;)<br>
+  Class = oaGroupCollection API = oaGroupCollection(const oaObject*,unsigned)<br>
+  Class = oaGroupCollection API = unsigned getCount()const</font></p>
+<p> <font color="#009966">Class = oaHeaderCollection API = int includes(const oaObject*)const<br>
+  Class = oaHeaderCollection API = int isEmpty()const<br>
+  Class = oaHeaderCollection API = oaHeaderCollection(const oaHeaderCollection&amp;)<br>
+  Class = oaHeaderCollection API = oaHeaderCollection(const oaObject*,unsigned,oaHeaderCollTypeEnum,unsigned)<br>
+  Class = oaHeaderCollection API = unsigned getCount()const</font></p>
+<p> <font color="#009966">Class = oaHeaderIter API = oaHeaderIter(const oaHeaderCollection&amp;)<br>
+  Class = oaHeaderIter API = oaHeaderIter(const oaHeaderIter&amp;)<br>
+  Class = oaHeaderIter API = oaHeaderIter(const oaSubHeaderCollection&amp;)<br>
+  Class = oaHeaderIter API = oaObject* getNext()<br>
+  Class = oaHeaderIter API = void reset()</font></p>
+<p> <font color="#009966">Class = oaInstAttrDisplay API = int isBound()const</font></p>
+<p> <font color="#009966">Class = oaInstPin API = oaInstPin* find(const oaInstTerm*,const oaPin*)</font></p>
+<p> <font color="#009966">Class = oaInstPropDisplay API = int isBound()const</font></p>
+<p><font color="#009966"> Class = oaIntFltTblRule API = oaIntFltTblRule* set(oaLayer*,oaSingleRuleType,const 
+  oa1DLookupTbl&lt;int,float&gt;&amp;)<br>
+  Class = oaIntFltTblRule API = float getValue(int)const<br>
+  Class = oaIntFltTblRule API = oaIntFltTblRule* set(oaLayer*,oaLayer*,oaDoubleRuleType,const 
+  oa1DLookupTbl&lt;int,float&gt;&amp;,int)<br>
+  Class = oaIntFltTblRule API = void getValue(oa1DLookupTbl&lt;int,float&gt;&amp;)const</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaAppObject&gt; API = oaAppObject* getNext()<br>
+  Class = oaIter&lt;oaAppObject&gt; API = oaIter(const oaAppObjectCollection&amp;)<br>
+  Class = oaIter&lt;oaAppObject&gt; API = oaIter(const oaIter&lt;oaAppObject&gt;&amp;)<br>
+  Class = oaIter&lt;oaAppObject&gt; API = void reset()</font></p>
+<p><font color="#009966"> Class = oaIter&lt;oaBusNetBit&gt; API = oaBusNetBit* getNext()<br>
+  Class = oaIter&lt;oaBusNetBit&gt; API = oaIter(const oaCollection&lt;oaBusNetBit,oaBusNetDef&gt;&amp;)<br>
+  Class = oaIter&lt;oaBusNetBit&gt; API = oaIter(const oaIter&lt;oaBusNetBit&gt;&amp;)<br>
+  Class = oaIter&lt;oaBusNetBit&gt; API = void reset()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaBusTermBit&gt; API = oaBusTermBit* getNext()<br>
+  Class = oaIter&lt;oaBusTermBit&gt; API = oaIter(const oaCollection&lt;oaBusTermBit,oaBusTermDef&gt;&amp;)<br>
+  Class = oaIter&lt;oaBusTermBit&gt; API = oaIter(const oaIter&lt;oaBusTermBit&gt;&amp;)<br>
+  Class = oaIter&lt;oaBusTermBit&gt; API = void reset()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaDevice&gt; API = oaDevice* getNext()<br>
+  Class = oaIter&lt;oaDevice&gt; API = oaIter(const oaCollection&lt;oaDevice,oaNode&gt;&amp;)<br>
+  Class = oaIter&lt;oaDevice&gt; API = oaIter(const oaCollection&lt;oaDevice,oaParasiticNetwork&gt;&amp;)<br>
+  Class = oaIter&lt;oaDevice&gt; API = oaIter(const oaCollection&lt;oaDevice,oaSubNetwork&gt;&amp;)<br>
+  Class = oaIter&lt;oaDevice&gt; API = oaIter(const oaIter&lt;oaDevice&gt;&amp;)<br>
+  Class = oaIter&lt;oaDevice&gt; API = void reset()</font></p>
+<p><font color="#009966"> Class = oaIter&lt;oaGroup&gt; API = oaGroup* getNext()<br>
+  Class = oaIter&lt;oaGroup&gt; API = oaIter(const oaCollection&lt;oaGroup,oaObject&gt;&amp;)<br>
+  Class = oaIter&lt;oaGroup&gt; API = oaIter(const oaGroupCollection&amp;)<br>
+  Class = oaIter&lt;oaGroup&gt; API = oaIter(const oaIter&lt;oaGroup&gt;&amp;)<br>
+  Class = oaIter&lt;oaGroup&gt; API = void reset()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaGroupMember&gt; API = oaGroupMember* getNext()<br>
+  Class = oaIter&lt;oaGroupMember&gt; API = oaIter(const oaCollection&lt;oaGroupMember,oaGroup&gt;&amp;)<br>
+  Class = oaIter&lt;oaGroupMember&gt; API = oaIter(const oaCollection&lt;oaGroupMember,oaObject&gt;&amp;)<br>
+  Class = oaIter&lt;oaGroupMember&gt; API = oaIter(const oaIter&lt;oaGroupMember&gt;&amp;)<br>
+  Class = oaIter&lt;oaGroupMember&gt; API = void reset()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaGuide&gt; API = oaGuide* getNext()<br>
+  Class = oaIter&lt;oaGuide&gt; API = oaIter(const oaCollection&lt;oaGuide,oaCellView&gt;&amp;)<br>
+  Class = oaIter&lt;oaGuide&gt; API = oaIter(const oaCollection&lt;oaGuide,oaNet&gt;&amp;)<br>
+  Class = oaIter&lt;oaGuide&gt; API = oaIter(const oaIter&lt;oaGuide&gt;&amp;)<br>
+  Class = oaIter&lt;oaGuide&gt; API = oaIter(const oaObjGuideCollection&amp;)<br>
+  Class = oaIter&lt;oaGuide&gt; API = void reset()</font></p>
+<p><font color="#009966"> Class = oaIter&lt;oaInstHeader&gt; API = oaInstHeader* getNext()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaInstPin&gt; API = oaInstPin* getNext()<br>
+  Class = oaIter&lt;oaInstPin&gt; API = oaIter(const oaCollection&lt;oaInstPin,oaCellView&gt;&amp;)<br>
+  Class = oaIter&lt;oaInstPin&gt; API = oaIter(const oaCollection&lt;oaInstPin,oaInst&gt;&amp;)<br>
+  Class = oaIter&lt;oaInstPin&gt; API = oaIter(const oaCollection&lt;oaInstPin,oaInstTerm&gt;&amp;)<br>
+  Class = oaIter&lt;oaInstPin&gt; API = oaIter(const oaCollection&lt;oaInstPin,oaNet&gt;&amp;)<br>
+  Class = oaIter&lt;oaInstPin&gt; API = oaIter(const oaIter&lt;oaInstPin&gt;&amp;)<br>
+  Class = oaIter&lt;oaInstPin&gt; API = void reset()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaLib&gt; API = oaIter(const oaCollection&lt;oaLib,oaLib&gt;&amp;)<br>
+  Class = oaIter&lt;oaLib&gt; API = oaIter(const oaIter&lt;oaLib&gt;&amp;)<br>
+  Class = oaIter&lt;oaLib&gt; API = oaLib* getNext()<br>
+  Class = oaIter&lt;oaLib&gt; API = void reset()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaOpPointHeader&gt; API = oaOpPointHeader* getNext()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaProp&gt; API = oaIter(const oaCollection&lt;oaProp,oaObject&gt;&amp;)<br>
+  Class = oaIter&lt;oaProp&gt; API = oaIter(const oaIter&lt;oaProp&gt;&amp;)<br>
+  Class = oaIter&lt;oaProp&gt; API = oaProp* getNext()<br>
+  Class = oaIter&lt;oaProp&gt; API = void reset()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaRowHeader&gt; API = oaRowHeader* getNext()</font></p>
+<p> <font color="#009966">Class = oaIter&lt;oaViaHeader&gt; API = oaViaHeader* 
+  getNext()</font></p>
+<p> <font color="#009966">Class = oaLumpedElmore API = float getTotalCap()const<br>
+  Class = oaLumpedElmore API = int exists(const oaInstTerm*,const oaAnalysisPoint*)<br>
+  Class = oaLumpedElmore API = int exists(const oaTerm*,const oaAnalysisPoint*)<br>
+  Class = oaLumpedElmore API = oaLumpedElmore* create(oaInstTerm*,const oaAnalysisPoint*,float)<br>
+  Class = oaLumpedElmore API = oaLumpedElmore* create(oaTerm*,const oaAnalysisPoint*,float)<br>
+  Class = oaLumpedElmore API = oaLumpedElmore* load(oaInstTerm*,oaAnalysisPoint*)<br>
+  Class = oaLumpedElmore API = oaLumpedElmore* load(oaTerm*,oaAnalysisPoint*)<br>
+  Class = oaLumpedElmore API = void destroy()<br>
+  Class = oaLumpedElmore API = void setTotalCap(float)<br>
+  Class = oaLumpedElmore API = void unload()</font></p>
+<p> <font color="#009966">Class = oaMutualInductor API = float getValue(const oaAnalysisPoint*)const<br>
+  Class = oaMutualInductor API = int isLocal()const<br>
+  Class = oaMutualInductor API = oaInductor* getInductor(oaEndpointType)const<br>
+  Class = oaMutualInductor API = oaInductor* getOtherInductor(oaInductor*)const<br>
+  Class = oaMutualInductor API = oaMutualInductor* create(oaInductor*,oaInductor*,unsigned)<br>
+  Class = oaMutualInductor API = oaMutualInductor* create(oaInductor*,oaNet*,unsigned,unsigned)<br>
+  Class = oaMutualInductor API = void getOtherInductor(oaNet*&amp;,unsigned&amp;)const<br>
+  Class = oaMutualInductor API = void setValue(const oaAnalysisPoint*,float)</font></p>
+<p> <font color="#009966">Class = oaName API = void getBitName(const oaNameSpace&amp;,unsigned,oaString&amp;)const</font></p>
+<p><font color="#009966"> Class = oaNameBase API = void resize(unsigned)</font></p>
+<p><font color="#009966"> Class = oaNode API = void addToSubNetwork(oaSubNetwork*)<br>
+  Class = oaNode API = void removeFromSubNetwork(oaSubNetwork*)</font></p>
+<p><font color="#009966"> Class = oaObjGuideCollection API = int includes(const oaGuide*)const<br>
+  Class = oaObjGuideCollection API = int isEmpty()const<br>
+  Class = oaObjGuideCollection API = oaObjGuideCollection(const oaDBObject*)<br>
+  Class = oaObjGuideCollection API = oaObjGuideCollection(const oaObjGuideCollection&amp;)<br>
+  Class = oaObjGuideCollection API = unsigned getCount()const</font></p>
+<p> <font color="#009966">Class = oaObjRouteCollection API = int includes(const oaRoute*)const<br>
+  Class = oaObjRouteCollection API = int isEmpty()const<br>
+  Class = oaObjRouteCollection API = oaObjRouteCollection(const oaDBObject*)<br>
+  Class = oaObjRouteCollection API = oaObjRouteCollection(const oaObjRouteCollection&amp;)<br>
+  Class = oaObjRouteCollection API = unsigned getCount()const</font></p>
+<p><font color="#009966"> Class = oaPhysicalLayer API = oaMaterial getMaterial()const<br>
+  Class = oaPhysicalLayer API = oaPhysicalLayer* create(oaTech*,const oaString&amp;,unsigned,oaMaterial,unsigned)<br>
+  Class = oaPhysicalLayer API = oaPhysicalLayer* find(oaTech*,const oaString&amp;)<br>
+  Class = oaPhysicalLayer API = oaPhysicalLayer* getLayerAbove(oaMaterial)const<br>
+  Class = oaPhysicalLayer API = oaPhysicalLayer* getLayerBelow(oaMaterial)const<br>
+  Class = oaPhysicalLayer API = unsigned getMaskNumber()const<br>
+  Class = oaPhysicalLayer API = void setManufacturingGrid(unsigned)<br>
+  Class = oaPhysicalLayer API = void setPrefRoutingDir(oaPrefRoutingDir)<br>
+  Class = oaPhysicalLayer API = void setRouteGridOffset(unsigned)<br>
+  Class = oaPhysicalLayer API = void setRouteGridPitch(unsigned)<br>
+  Class = oaPhysicalLayer API = oaPhysicalLayer* find(oaTech*,unsigned)<br>
+  Class = oaPhysicalLayer API = oaPrefRoutingDir getPrefRoutingDir()const<br>
+  Class = oaPhysicalLayer API = unsigned getManufacturingGrid()const<br>
+  Class = oaPhysicalLayer API = unsigned getRouteGridOffset()const<br>
+  Class = oaPhysicalLayer API = unsigned getRouteGridPitch()const<br>
+  Class = oaPhysicalLayer API = void setMaskNumber(unsigned)<br>
+  Class = oaPhysicalLayer API = void setMaterial(oaMaterial)</font></p>
+<p> <font color="#009966">Class = oaPiElmore API = float getFarCap()const<br>
+  Class = oaPiElmore API = float getNearCap()const<br>
+  Class = oaPiElmore API = float getRes()const<br>
+  Class = oaPiElmore API = int exists(const oaInstTerm*,const oaAnalysisPoint*)<br>
+  Class = oaPiElmore API = int exists(const oaTerm*,const oaAnalysisPoint*)<br>
+  Class = oaPiElmore API = oaPiElmore* create(oaInstTerm*,const oaAnalysisPoint*,float,float,float)<br>
+  Class = oaPiElmore API = oaPiElmore* create(oaTerm*,const oaAnalysisPoint*,float,float,float)<br>
+  Class = oaPiElmore API = oaPiElmore* load(oaInstTerm*,oaAnalysisPoint*)<br>
+  Class = oaPiElmore API = oaPiElmore* load(oaTerm*,oaAnalysisPoint*)<br>
+  Class = oaPiElmore API = void destroy()<br>
+  Class = oaPiElmore API = void getPiModel(float&amp;,float&amp;,float&amp;)const<br>
+  Class = oaPiElmore API = void setFarCap(float)<br>
+  Class = oaPiElmore API = void setNearCap(float)<br>
+  Class = oaPiElmore API = void setPiModel(float,float,float)<br>
+  Class = oaPiElmore API = void setRes(float)<br>
+  Class = oaPiElmore API = void unload()</font></p>
+<p> <font color="#009966">Class = oaPiPoleResidue API = float getFarCap()const<br>
+  Class = oaPiPoleResidue API = float getNearCap()const<br>
+  Class = oaPiPoleResidue API = float getRes()const<br>
+  Class = oaPiPoleResidue API = int exists(const oaInstTerm*,const oaAnalysisPoint*)<br>
+  Class = oaPiPoleResidue API = int exists(const oaTerm*,const oaAnalysisPoint*)<br>
+  Class = oaPiPoleResidue API = oaPiPoleResidue* create(oaInstTerm*,const oaAnalysisPoint*,float,float,float)<br>
+  Class = oaPiPoleResidue API = oaPiPoleResidue* create(oaTerm*,const oaAnalysisPoint*,float,float,float)<br>
+  Class = oaPiPoleResidue API = oaPiPoleResidue* load(oaInstTerm*,oaAnalysisPoint*)<br>
+  Class = oaPiPoleResidue API = oaPiPoleResidue* load(oaTerm*,oaAnalysisPoint*)<br>
+  Class = oaPiPoleResidue API = void destroy()<br>
+  Class = oaPiPoleResidue API = void getPiModel(float&amp;,float&amp;,float&amp;)const<br>
+  Class = oaPiPoleResidue API = void setFarCap(float)<br>
+  Class = oaPiPoleResidue API = void setNearCap(float)<br>
+  Class = oaPiPoleResidue API = void setPiModel(float,float,float)<br>
+  Class = oaPiPoleResidue API = void setRes(float)<br>
+  Class = oaPiPoleResidue API = void unload()</font></p>
+<p> <font color="#009966">Class = oaPointArray API = int hasExtraPoints(int)const</font></p>
+<p><font color="#009966"> Class = oaPoleResidue API = oaDBObject* getReceiver()const<br>
+  Class = oaPoleResidue API = oaPiPoleResidue* getPiPoleResidue()const<br>
+  Class&nbsp;=&nbsp;oaPoleResidue&nbsp;API&nbsp;=&nbsp;oaPoleResidue*&nbsp;create(oaPiPoleResidue*,oaInstTerm*,const&nbsp;oaComplexArray&lt;float&gt;&amp;,const&nbsp;oaComplexArray&lt;float&gt;&amp;)<br>
+  Class&nbsp;=&nbsp;oaPoleResidue&nbsp;API&nbsp;=&nbsp;oaPoleResidue*&nbsp;create(oaPiPoleResidue*,oaTerm*,const&nbsp;oaComplexArray&lt;float&gt;&amp;,const&nbsp;oaComplexArray&lt;float&gt;&amp;)<br>
+  Class = oaPoleResidue API = oaPoleResidue* find(oaPiPoleResidue*,oaInstTerm*)<br>
+  Class = oaPoleResidue API = oaPoleResidue* find(oaPiPoleResidue*,oaTerm*)<br>
+  Class = oaPoleResidue API = void destroy()<br>
+  Class = oaPoleResidue API = void getPoles(oaComplexArray&lt;float&gt;&amp;)const<br>
+  Class = oaPoleResidue API = void getResidues(oaComplexArray&lt;float&gt;&amp;)const<br>
+  Class = oaPoleResidue API = void setPoles(const oaComplexArray&lt;float&gt;&amp;)<br>
+  Class = oaPoleResidue API = void setResidues(const oaComplexArray&lt;float&gt;&amp;)</font></p>
+<p> <font color="#009966">Class = oaPoleResidueCallback API = oaPoleResidueCallback(unsigned,int)<br>
+  Class = oaPoleResidueCallback API = void invokePostCreateCallback(oaPoleResidue*)<br>
+  Class = oaPoleResidueCallback API = void invokePostModifyCallback(oaPoleResidue*,oaPoleResidueModTypeEnum)<br>
+  Class = oaPoleResidueCallback API = void invokePreDestroyCallback(oaPoleResidue*)<br>
+  Class = oaPoleResidueCallback API = void invokePreModifyCallback(oaPoleResidue*,oaPoleResidueModTypeEnum)</font></p>
+<p><font color="#009966"> Class = oaReducedModel API = oaAnalysisPoint* getAnalysisPoint()const<br>
+  Class = oaReducedModel API = oaDBObject* getDriver()const<br>
+  Class = oaReducedModel API = void destroy()<br>
+  Class = oaReducedModel API = void destroy(oaAnalysisPoint*)<br>
+  Class = oaReducedModel API = void destroy(oaCellView*)</font></p>
+<p><font color="#009966"> Class = oaReducedModelCallback API = oaReducedModelCallback(unsigned)<br>
+  Class = oaReducedModelCallback API = ~oaReducedModelCallback()<br>
+  Class = oaReducedModelCallback API = void invokePostCreateCallback(oaReducedModel*)<br>
+  Class = oaReducedModelCallback API = void invokePostLoadCallback(oaReducedModel*)<br>
+  Class = oaReducedModelCallback API = void invokePostModifyCallback(oaReducedModel*,oaReducedModTypeEnum)<br>
+  Class = oaReducedModelCallback API = void invokePreDestroyCallback(oaReducedModel*)<br>
+  Class = oaReducedModelCallback API = void invokePreModifyCallback(oaReducedModel*,oaReducedModTypeEnum)<br>
+  Class = oaReducedModelCallback API = void invokePreUnloadCallback(oaReducedModel*)<br>
+  Class = oaReducedModelCallback API = void onPostCreate(oaReducedModel*)<br>
+  Class = oaReducedModelCallback API = void onPostLoad(oaReducedModel*)<br>
+  Class = oaReducedModelCallback API = void onPostModify(oaReducedModel*,oaReducedModTypeEnum)<br>
+  Class = oaReducedModelCallback API = void onPreDestroy(oaReducedModel*)<br>
+  Class = oaReducedModelCallback API = void onPreModify(oaReducedModel*,oaReducedModTypeEnum)<br>
+  Class = oaReducedModelCallback API = void onPreUnload(oaReducedModel*)</font></p>
+<p> <font color="#009966">Class = oaRouteOptimizer API = oaRouteOptimizer()<br>
+  Class = oaRouteOptimizer API = ~oaRouteOptimizer()<br>
+  Class = oaRouteOptimizer API = unsigned calcVMSize()<br>
+  Class = oaRouteOptimizer API = void optimize(oaCellView*,unsigned)<br>
+  Class = oaRouteOptimizer API = void optimize(oaNet*,unsigned)</font></p>
+<p><font color="#009966"> Class = oaRouteSpecHeader API = oaRouteSpecHeader* find(oaCellView*,const 
+  oaString&amp;)</font></p>
+<p> <font color="#009966">Class = oaSimpleName API = void getBitName(const oaNameSpace&amp;,unsigned,oaString&amp;)const</font></p>
+<p><font color="#009966"> Class = oaSiteDefCallback API = oaSiteDefCallback(unsigned,int)<br>
+  Class = oaSiteDefCallback API = void invokePostCreateCallback(oaSiteDef*)<br>
+  Class = oaSiteDefCallback API = void invokePostModifyCallback(oaSiteDef*,oaSiteDefModTypeEnum)<br>
+  Class = oaSiteDefCallback API = void invokePreDestroyCallback(oaSiteDef*)<br>
+  Class = oaSiteDefCallback API = void invokePreModifyCallback(oaSiteDef*,oaSiteDefModTypeEnum</font>)</p>
+<p><font color="#009966"> Class = oaStdVia API = oaStdVia(const oaStdVia&amp;)</font></p>
+<p><font color="#009966"> Class = oaSubHeaderCollection API = int includes(const oaObject*)const<br>
+  Class = oaSubHeaderCollection API = int isEmpty()const<br>
+  Class = oaSubHeaderCollection API = oaSubHeaderCollection(const oaObject*,unsigned)<br>
+  Class = oaSubHeaderCollection API = oaSubHeaderCollection(const oaSubHeaderCollection&amp;)<br>
+  Class = oaSubHeaderCollection API = unsigned getCount()const</font></p>
+<p><font color="#009966"> Class = oaSubNetwork API = oaParasiticNetwork* getParasiticNetwork()const<br>
+  Class = oaSubNetwork API = oaRoute* getRouteElement(unsigned&amp;)const<br>
+  Class = oaSubNetwork API = oaShape* getShape()const<br>
+  Class = oaSubNetwork API = oaSubNetwork* create(oaParasiticNetwork*,const oaString&amp;)<br>
+  Class = oaSubNetwork API = oaSubNetwork* find(oaParasiticNetwork*,const oaString&amp;)<br>
+  Class = oaSubNetwork API = void destroy()<br>
+  Class = oaSubNetwork API = void getName(oaString&amp;)const<br>
+  Class = oaSubNetwork API = void setName(const oaString&amp;)<br>
+  Class = oaSubNetwork API = void setRouteElement(oaRoute*,unsigned)<br>
+  Class = oaSubNetwork API = void setShape(oaShape*)</font></p>
+<p><font color="#009966"> Class = oaSubNetworkCallback API = oaSubNetworkCallback(unsigned,int)<br>
+  Class = oaSubNetworkCallback API = void invokePostCreateCallback(oaSubNetwork*)<br>
+  Class = oaSubNetworkCallback API = void invokePostModifyCallback(oaSubNetwork*,oaSubNetworkModTypeEnum)<br>
+  Class = oaSubNetworkCallback API = void invokePreDestroyCallback(oaSubNetwork*)<br>
+  Class = oaSubNetworkCallback API = void invokePreModifyCallback(oaSubNetwork*,oaSubNetworkModTypeEnum)</font></p>
+<p><font color="#009966"> Class = oaTech API = void getMetalAntennaRatios(oaCumulativeRatios&amp;)const<br>
+  Class = oaTech API = void getViaAntennaRatios(oaCumulativeRatios&amp;)const<br>
+  Class = oaTech API = void setMetalAntennaRatios(const oaCumulativeRatios&amp;)<br>
+  Class = oaTech API = void setViaAntennaRatios(const oaCumulativeRatios&amp;)<br>
+  Class = oaTech API = void setViaStackLimits(const oaViaStackLimits&amp;)<br>
+  Class = oaTech API = unsigned calcVMSize()const<br>
+  Class = oaTech API = void getLibName(const oaNameSpace&amp;,oaString&amp;)const<br>
+  Class = oaTech API = void getViaStackLimits(oaViaStackLimits&amp;)const</font></p>
+<p><font color="#009966"> Class = oaTechCallback API = void invokeFirstOpenCallback(oaTech*)<br>
+  Class = oaTechCallback API = void invokePostModifyCallback(oaTech*,oaTechModTypeEnum)<br>
+  Class = oaTechCallback API = void invokePreModifyCallback(oaTech*,oaTechModTypeEnum)<br>
+  Class = oaTechCallback API = void onFirstOpen(oaTech*)<br>
+  Class = oaTechCallback API = void onPostModify(oaTech*,oaTechModTypeEnum)<br>
+  Class = oaTechCallback API = void onPreModify(oaTech*,oaTechModTypeEnum)</font></p>
+<p> <font color="#009966">Class = oaTextOverride API = int isBound()const</font></p>
+<p><font color="#009966"> Class = oaVectorName API = void getBitName(const oaNameSpace&amp;,unsigned,oaString&amp;)const</font></p>
+<p><font color="#009966"> Class = oaVia API = oaVia(const oaPoint&amp;,const oaString&amp;,oaOrient,oaParamArray*)<br>
+  Class = oaVia API = oaVia(const oaPoint&amp;,const oaString&amp;,oaOrient,oaViaParam*)<br>
+  Class = oaVia API = oaVia(const oaPoint&amp;,oaCustomViaDef*,oaOrient,oaParamArray*)<br>
+  Class = oaVia API = oaVia(const oaPoint&amp;,oaStdViaDef*,oaOrient,oaViaParam*)<br>
+  Class = oaVia API = oaVia(const oaVia&amp;)<br>
+  Class = oaVia API = ~oaVia()<br>
+  Class = oaVia API = void setParams(oaParamArray*)<br>
+  Class = oaVia API = void setViaParams(oaViaParam*)</font></p>
+<p><font color="#009966"> Class = oaViaDefCallback API = oaViaDefCallback(unsigned,int)<br>
+  Class = oaViaDefCallback API = void invokePostCreateCallback(oaViaDef*)<br>
+  Class = oaViaDefCallback API = void invokePostModifyCallback(oaViaDef*,oaViaDefModTypeEnum)<br>
+  Class = oaViaDefCallback API = void invokePreDestroyCallback(oaViaDef*)<br>
+  Class = oaViaDefCallback API = void invokePreModifyCallback(oaViaDef*,oaViaDefModTypeEnum)</font></p>
+<p> <font color="#009966">Class = oaViaParam API = void setLayer2Offset(const oaVector&amp;)</font></p>
+
+<p><br>
+</p>
+
+<p><font color="#993300">################################<br>
+  # The following APIs have been removed.<br>
+  ################################ </font>
+<p><font color="#993300">Class = oaAnalysisLibCallback API = void onPostCreate(oaAnalysisLib*)<br>
+  Class = oaAnalysisLibCallback API = void onPostModify(oaAnalysisLib*)<br>
+  Class = oaAnalysisLibCallback API = void onPreDestroy(oaAnalysisLib*)<br>
+  Class = oaAnalysisLibCallback API = void onPreModify(oaAnalysisLib*) </font>
+<p><font color="#993300"> Class = oaAnalysisOpPointCallback API = void onPostCreate(oaAnalysisOpPoint*)<br>
+  Class = oaAnalysisOpPointCallback API = void onPreDestroy(oaAnalysisOpPoint*)</font></p>
+<p><font color="#993300"> Class = oaAnalysisPointCallback API = void onPostCreate(oaAnalysisPoint*)<br>
+  Class = oaAnalysisPointCallback API = void onPostModify(oaAnalysisPoint*,oaAnalysisPointModTypeEnum)<br>
+  Class = oaAnalysisPointCallback API = void onPreDestroy(oaAnalysisPoint*)<br>
+  Class = oaAnalysisPointCallback API = void onPreModify(oaAnalysisPoint*,oaAnalysisPointModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaAppDefCallback API = void invokeOnPurgeCallback(oaObject*)<br>
+  Class = oaAppDefCallback API = void invokePostCreateCallback(oaObject*)<br>
+  Class = oaAppDefCallback API = void invokePreDeleteCallback(oaObject*)</font></p>
+<p><font color="#993300"> Class = oaAppObjectCallback API = void onPostCreate(oaAppObject*)<br>
+  Class = oaAppObjectCallback API = void onPreDestroy(oaAppObject*)</font></p>
+<p><font color="#993300"> Class = oaAssignmentCallback API = void onPostCreate(oaAssignment*)<br>
+  Class = oaAssignmentCallback API = void onPostModify(oaAssignment*,oaAssignmentModTypeEnum)<br>
+  Class = oaAssignmentCallback API = void onPreDestroy(oaAssignment*)<br>
+  Class = oaAssignmentCallback API = void onPreModify(oaAssignment*,oaAssignmentModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaBaseHeaderIter API = oaBaseHeaderIter(const 
+  oaBaseCollection&amp;)<br>
+  Class = oaBaseHeaderIter API = oaBaseHeaderIter(const oaBaseHeaderIter&amp;)<br>
+  Class = oaBaseHeaderIter API = oaBaseHeaderIter(const oaUsedInCollection&amp;)<br>
+  Class = oaBaseHeaderIter API = oaObject* getNext()<br>
+  Class = oaBaseHeaderIter API = void reset()</font></p>
+<p><font color="#993300"> Class = oaBlockageCallback API = void onPostCreate(oaBlockage*)<br>
+  Class = oaBlockageCallback API = void onPostModify(oaBlockage*,oaBlockageModTypeEnum)<br>
+  Class = oaBlockageCallback API = void onPreDestroy(oaBlockage*)<br>
+  Class = oaBlockageCallback API = void onPreModify(oaBlockage*,oaBlockageModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaBoundaryCallback API = void onPostCreate(oaBoundary*)<br>
+  Class = oaBoundaryCallback API = void onPostModify(oaBoundary*,oaBoundaryModTypeEnum)<br>
+  Class = oaBoundaryCallback API = void onPreDestroy(oaBoundary*)<br>
+  Class = oaBoundaryCallback API = void onPreModify(oaBoundary*,oaBoundaryModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaCMapCallback API = void onPostCreate(oaCMap*)<br>
+  Class = oaCMapCallback API = void onPostModify(oaCMap*,oaCMapModTypeEnum)<br>
+  Class = oaCMapCallback API = void onPreDestroy(oaCMap*)<br>
+  Class = oaCMapCallback API = void onPreModify(oaCMap*,oaCMapModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaCellViewCallback API = void invokeReadinCallback(oaCellView*)<br>
+  Class = oaCellViewCallback API = void onReadin(oaCellView*)</font></p>
+<p><font color="#993300"> Class = oaClusterCallback API = void onPostCreate(oaCluster*)<br>
+  Class = oaClusterCallback API = void onPostModify(oaCluster*,oaClusterModTypeEnum)<br>
+  Class = oaClusterCallback API = void onPreDestroy(oaCluster*)<br>
+  Class = oaClusterCallback API = void onPreModify(oaCluster*,oaClusterModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaConnectDefCallback API = void invokePostModifyCallback(oaConnectDef*,oaConnectDefModTypeEnum)<br>
+  Class = oaConnectDefCallback API = void invokePreModifyCallback(oaConnectDef*,oaConnectDefModTypeEnum)<br>
+  Class = oaConnectDefCallback API = void onPostCreate(oaConnectDef*)<br>
+  Class = oaConnectDefCallback API = void onPostModify(oaConnectDef*,oaConnectDefModTypeEnum)<br>
+  Class = oaConnectDefCallback API = void onPreDestroy(oaConnectDef*)<br>
+  Class = oaConnectDefCallback API = void onPreModify(oaConnectDef*,oaConnectDefModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaCouplingCap API = unsigned getUniqueId(oaCellView*)</font></p>
+<p><font color="#993300"> Class = oaDBObject API = int isBlockage()const<br>
+  Class = oaDBObject API = int isScanChain()const<br>
+  Class = oaDBObject API = int isScanChainInst()const<br>
+  Class = oaDBObject API = int isScanChainSet()const</font></p>
+<p><font color="#993300"> Class = oaDeviceCallback API = void onPostCreate(oaDevice*)<br>
+  Class = oaDeviceCallback API = void onPostModify(oaDevice*,oaDeviceModTypeEnum)<br>
+  Class = oaDeviceCallback API = void onPreDestroy(oaDevice*)<br>
+  Class = oaDeviceCallback API = void onPreModify(oaDevice*,oaDeviceModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaDiode API = unsigned getUniqueId(oaParasiticNetwork*)</font></p>
+<p><font color="#993300"> Class = oaDoubleRuleType API = oaDoubleRuleType(oaDoubleRuleTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaElmore API = oaElmore(oaInstTerm*,float)<br>
+  Class = oaElmore API = oaElmore(oaTerm*,float)<br>
+  Class = oaElmore API = void setReceiver(oaInstTerm*)<br>
+  Class = oaElmore API = void setReceiver(oaTerm*)</font></p>
+<p><font color="#993300"> Class = oaElmoreArray API = oaElmoreArray&amp; operator=(const 
+  oaElmoreArray&amp;)<br>
+  Class = oaElmoreArray API = void setSize(unsigned,int)</font></p>
+<p><font color="#993300"> Class = oaFloat1DTblRule API = oaFloat1DTblRule* set(oaLayer*,oaSingleRuleType,const 
+  oa1DLookupTbl&lt;float,float&gt;&amp;)</font></p>
+<p><font color="#993300"> Class = oaFloatRule API = oaFloatRule* set(oaLayer*,oaSingleRuleType,float)</font></p>
+<p><font color="#993300"> Class = oaGroupCallback API = void onPostCreate(oaGroup*)<br>
+  Class = oaGroupCallback API = void onPostModify(oaGroup*,oaGroupModTypeEnum)<br>
+  Class = oaGroupCallback API = void onPreDestroy(oaGroup*)<br>
+  Class = oaGroupCallback API = void onPreModify(oaGroup*,oaGroupModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaGroupMemberCallback API = void onPostCreate(oaGroupMember*)<br>
+  Class = oaGroupMemberCallback API = void onPostModify(oaGroupMember*,oaGroupModTypeEnum)<br>
+  Class = oaGroupMemberCallback API = void onPreDestroy(oaGroupMember*)<br>
+  Class = oaGroupMemberCallback API = void onPreModify(oaGroupMember*,oaGroupModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaGuideCallback API = void onPostCreate(oaGuide*)<br>
+  Class = oaGuideCallback API = void onPostModify(oaGuide*,oaGuideModTypeEnum)<br>
+  Class = oaGuideCallback API = void onPreDestroy(oaGuide*)<br>
+  Class = oaGuideCallback API = void onPreModify(oaGuide*,oaGuideModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaInductor API = unsigned getUniqueId(oaParasiticNetwork*)</font></p>
+<p><font color="#993300"> Class = oaInstCallback API = void onPostCreate(oaInst*)<br>
+  Class = oaInstCallback API = void onPostModify(oaInst*,oaInstModTypeEnum)<br>
+  Class = oaInstCallback API = void onPreDestroy(oaInst*)<br>
+  Class = oaInstCallback API = void onPreModify(oaInst*,oaInstModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaInstPinCallback API = void invokePostModifyCallback(oaInstPin*,oaInstPinModTypeEnum)<br>
+  Class = oaInstPinCallback API = void invokePreModifyCallback(oaInstPin*,oaInstPinModTypeEnum)<br>
+  Class = oaInstPinCallback API = void onPostCreate(oaInstPin*)<br>
+  Class = oaInstPinCallback API = void onPostModify(oaInstPin*,oaInstPinModTypeEnum)<br>
+  Class = oaInstPinCallback API = void onPreDestroy(oaInstPin*)<br>
+  Class = oaInstPinCallback API = void onPreModify(oaInstPin*,oaInstPinModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaInstTermCallback API = void onPostCreate(oaInstTerm*)<br>
+  Class = oaInstTermCallback API = void onPostModify(oaInstTerm*,oaInstTermModTypeEnum)<br>
+  Class = oaInstTermCallback API = void onPreDestroy(oaInstTerm*)<br>
+  Class = oaInstTermCallback API = void onPreModify(oaInstTerm*,oaInstTermModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaInt1DTblRule API = oaInt1DTblRule* set(oaLayer*,oaSingleRuleType,const 
+  oa1DLookupTbl&lt;int,int&gt;&amp;)<br>
+  Class = oaInt1DTblRule API = void getValue(oa1DLookupTbl&lt;int,int&gt;&amp;)const</font></p>
+<p><font color="#993300"> Class = oaInt2DTblRule API = oaInt2DTblRule* set(oaLayer*,oaSingleRuleType,const 
+  oa2DLookupTbl&lt;int,int,int&gt;&amp;)</font></p>
+<p><font color="#993300"> Class = oaIntParamRule API = oaIntParamRule* set(oaLayer*,oaSingleRuleType,const 
+  oaRuleParamArray&lt;int&gt;&amp;,int)</font></p>
+<p><font color="#993300"> Class = oaIter&lt;oaInst&gt; API = oaInst* getNext()<br>
+  Class = oaIter&lt;oaInst&gt; API = oaIter(const oaIter&lt;oaInst&gt;&amp;)<br>
+  Class = oaIter&lt;oaInst&gt; API = oaIter(oaCollection&lt;oaInst,oaCellView&gt;)<br>
+  Class = oaIter&lt;oaInst&gt; API = oaIter(oaCollection&lt;oaInst,oaCluster&gt;)<br>
+  Class = oaIter&lt;oaInst&gt; API = oaIter(oaCollection&lt;oaInst,oaInstHeader&gt;)<br>
+  Class = oaIter&lt;oaInst&gt; API = ~oaIter()<br>
+  Class = oaIter&lt;oaInst&gt; API = void reset()</font></p>
+<p><font color="#993300"> Class = oaIter&lt;oaMarker&gt; API = oaIter(oaCollection&lt;oaMarker,oaCellView&gt;)<br>
+  Class = oaIter&lt;oaMarker&gt; API = oaIter(oaCollection&lt;oaMarker,oaDBObject&gt;)</font></p>
+<p><font color="#993300"> Class = oaIter&lt;oaNet&gt; API = oaIter(oaCollection&lt;oaNet,oaBundleNet&gt;)<br>
+  Class = oaIter&lt;oaNet&gt; API = oaIter(oaCollection&lt;oaNet,oaCellView&gt;)<br>
+  Class = oaIter&lt;oaNet&gt; API = oaIter(oaCollection&lt;oaNet,oaNet&gt;)<br>
+  Class = oaIter&lt;oaNet&gt; API = oaIter(oaCollection&lt;oaNet,oaParasiticNetwork&gt;)</font></p>
+<p><font color="#993300"> Class = oaIter&lt;oaPin&gt; API = oaIter(oaCollection&lt;oaPin,oaCellView&gt;)<br>
+  Class = oaIter&lt;oaPin&gt; API = oaIter(oaCollection&lt;oaPin,oaNet&gt;)<br>
+  Class = oaIter&lt;oaPin&gt; API = oaIter(oaCollection&lt;oaPin,oaPinGroup&gt;)<br>
+  Class = oaIter&lt;oaPin&gt; API = oaIter(oaCollection&lt;oaPin,oaTerm&gt;)</font></p>
+<p><font color="#993300"> Class = oaIter&lt;oaReducedParasitic&gt; API = oaIter(const 
+  oaIter&lt;oaReducedParasitic&gt;&amp;)<br>
+  Class = oaIter&lt;oaReducedParasitic&gt; API = oaIter(oaCollection&lt;oaReducedParasitic,oaCellView&gt;)<br>
+  Class = oaIter&lt;oaReducedParasitic&gt; API = oaIter(oaCollection&lt;oaReducedParasitic,oaNet&gt;)<br>
+  Class = oaIter&lt;oaReducedParasitic&gt; API = oaReducedParasitic* getNext()<br>
+  Class = oaIter&lt;oaReducedParasitic&gt; API = void reset()</font></p>
+<p><font color="#993300"> Class = oaIter&lt;oaRowHeader&gt; API = oaIter(const 
+  oaCollection&lt;oaRowHeader,oaCellView&gt;&amp;)<br>
+  Class = oaIter&lt;oaRowHeader&gt; API = oaIter(const oaCollection&lt;oaRowHeader,oaSiteDef&gt;&amp;)<br>
+  Class = oaIter&lt;oaRowHeader&gt; API = oaIter(const oaIter&lt;oaRowHeader&gt;&amp;)</font></p>
+<p><font color="#993300"> Class = oaIter&lt;oaTerm&gt; API = oaIter(oaCollection&lt;oaTerm,oaBundleTerm&gt;)<br>
+  Class = oaIter&lt;oaTerm&gt; API = oaIter(oaCollection&lt;oaTerm,oaCellView&gt;)<br>
+  Class = oaIter&lt;oaTerm&gt; API = oaIter(oaCollection&lt;oaTerm,oaNet&gt;)</font></p>
+<p><font color="#993300"> Class = oaLayer API = int isError()const<br>
+  Class = oaLayer API = oaLayer* create(oaTech*,const oaString&amp;,unsigned,oaMaterial,unsigned)<br>
+  Class = oaLayer API = oaLayer* getLayerAbove(oaMaterial)const<br>
+  Class = oaLayer API = oaLayer* getLayerBelow(oaMaterial)const<br>
+  Class = oaLayer API = oaMaterial getMaterial()const<br>
+  Class = oaLayer API = oaPrefRoutingDir getPrefRoutingDir()const<br>
+  Class = oaLayer API = unsigned getManufacturingGrid()const<br>
+  Class = oaLayer API = unsigned getMaskNumber()const<br>
+  Class = oaLayer API = unsigned getRouteGridOffset()const<br>
+  Class = oaLayer API = unsigned getRouteGridPitch()const<br>
+  Class = oaLayer API = void setManufacturingGrid(unsigned)<br>
+  Class = oaLayer API = void setMaskNumber(unsigned)<br>
+  Class = oaLayer API = void setMaterial(oaMaterial)<br>
+  Class = oaLayer API = void setPrefRoutingDir(oaPrefRoutingDir)<br>
+  Class = oaLayer API = void setRouteGridOffset(unsigned)<br>
+  Class = oaLayer API = void setRouteGridPitch(unsigned)</font></p>
+<p><font color="#993300"> Class = oaLayerCallback API = void onPostCreate(oaLayer*)<br>
+  Class = oaLayerCallback API = void onPostModify(oaLayer*)<br>
+  Class = oaLayerCallback API = void onPreDestroy(oaLayer*)<br>
+  Class = oaLayerCallback API = void onPreModify(oaLayer*)</font></p>
+<p><font color="#993300"> Class = oaLockStatus API = oaLockStatus(const oaString&amp;)</font></p>
+<p><font color="#993300"> Class = oaMarkerCallback API = void onPostCreate(oaMarker*)<br>
+  Class = oaMarkerCallback API = void onPostModify(oaMarker*,oaMarkerModTypeEnum)<br>
+  Class = oaMarkerCallback API = void onPreDestroy(oaMarker*)<br>
+  Class = oaMarkerCallback API = void onPreModify(oaMarker*,oaMarkerModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaNetCallback API = void onPostCreate(oaNet*)<br>
+  Class = oaNetCallback API = void onPostModify(oaNet*,oaNetModTypeEnum)<br>
+  Class = oaNetCallback API = void onPreDestroy(oaNet*)<br>
+  Class = oaNetCallback API = void onPreModify(oaNet*,oaNetModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaNodeCallback API = void onPostCreate(oaNode*)<br>
+  Class = oaNodeCallback API = void onPostModify(oaNode*,oaNodeModTypeEnum)<br>
+  Class = oaNodeCallback API = void onPreDestroy(oaNode*)<br>
+  Class = oaNodeCallback API = void onPreModify(oaNode*,oaNodeModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaOpPointCallback API = void onPostCreate(oaOpPoint*)<br>
+  Class = oaOpPointCallback API = void onPostModify(oaOpPoint*)<br>
+  Class = oaOpPointCallback API = void onPreDestroy(oaOpPoint*)<br>
+  Class = oaOpPointCallback API = void onPreModify(oaOpPoint*)</font></p>
+<p><font color="#993300"> Class = oaPinCallback API = void onPostCreate(oaPin*)<br>
+  Class = oaPinCallback API = void onPostModify(oaPin*,oaPinModTypeEnum)<br>
+  Class = oaPinCallback API = void onPreDestroy(oaPin*)<br>
+  Class = oaPinCallback API = void onPreModify(oaPin*,oaPinModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaPinGroupCallback API = void onPostCreate(oaPinGroup*)<br>
+  Class = oaPinGroupCallback API = void onPostModify(oaPinGroup*,oaPinGroupModTypeEnum)<br>
+  Class = oaPinGroupCallback API = void onPreDestroy(oaPinGroup*)<br>
+  Class = oaPinGroupCallback API = void onPreModify(oaPinGroup*,oaPinGroupModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaPoleResidue API = oaPoleResidue(oaInstTerm*,unsigned)<br>
+  Class = oaPoleResidue API = oaPoleResidue(oaTerm*,unsigned)<br>
+  Class = oaPoleResidue API = void setReceiver(oaInstTerm*)<br>
+  Class = oaPoleResidue API = void setReceiver(oaTerm*)</font></p>
+<p><font color="#993300"> Class = oaPoleResidueArray API = oaPoleResidueArray&amp; 
+  operator=(const oaPoleResidueArray&amp;)<br>
+  Class = oaPoleResidueArray API = void setSize(unsigned,int)</font></p>
+<p><font color="#993300"> Class = oaPropCallback API = void onPostCreate(oaProp*)<br>
+  Class = oaPropCallback API = void onPostModify(oaProp*,oaPropModTypeEnum)<br>
+  Class = oaPropCallback API = void onPreDestroy(oaProp*)<br>
+  Class = oaPropCallback API = void onPreModify(oaProp*,oaPropModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaPurposeCallback API = void onPostCreate(oaPurpose*)<br>
+  Class = oaPurposeCallback API = void onPostModify(oaPurpose*)<br>
+  Class = oaPurposeCallback API = void onPreDestroy(oaPurpose*)<br>
+  Class = oaPurposeCallback API = void onPreModify(oaPurpose*)</font></p>
+<p><font color="#993300"> Class = oaReducedModelType API = oaReducedModelType(const 
+  oaString&amp;)</font></p>
+<p><font color="#993300"> Class = oaReducedParasitic API = int hasLumpedElmore(oaAnalysisPoint*)const<br>
+  Class = oaReducedParasitic API = int hasPiElmore(oaAnalysisPoint*)const<br>
+  Class = oaReducedParasitic API = int hasPiPoleResidue(oaAnalysisPoint*)const<br>
+  Class = oaReducedParasitic API = oaDBObject* getDriver()const<br>
+  Class = oaReducedParasitic API = oaLumpedElmore* getLumpedElmore(oaAnalysisPoint*)const<br>
+  Class = oaReducedParasitic API = oaPiElmore* getPiElmore(oaAnalysisPoint*)const<br>
+  Class = oaReducedParasitic API = oaPiPoleResidue* getPiPoleResidue(oaAnalysisPoint*)const<br>
+  Class = oaReducedParasitic API = oaReducedParasitic* create(oaInstTerm*)<br>
+  Class = oaReducedParasitic API = oaReducedParasitic* create(oaTerm*)<br>
+  Class = oaReducedParasitic API = oaReducedParasitic* find(oaInstTerm*)<br>
+  Class = oaReducedParasitic API = oaReducedParasitic* find(oaTerm*)<br>
+  Class = oaReducedParasitic API = void destroy()<br>
+  Class = oaReducedParasitic API = void remove(oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void remove(oaCellView*,oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void removeLumpedElmore(oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void removeLumpedElmores(oaCellView*,oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void removePiElmore(oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void removePiElmores(oaCellView*,oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void removePiPoleResidue(oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void removePiPoleResidues(oaCellView*,oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void setDriver(oaInstTerm*)<br>
+  Class = oaReducedParasitic API = void setDriver(oaTerm*)<br>
+  Class = oaReducedParasitic API = void setLumpedElmore(oaLumpedElmore*,oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void setPiElmore(oaPiElmore*,oaAnalysisPoint*)<br>
+  Class = oaReducedParasitic API = void setPiPoleResidue(oaPiPoleResidue*,oaAnalysisPoint*)</font></p>
+<p><font color="#993300"> Class = oaReducedParasiticCallback API = oaReducedParasiticCallback(unsigned)<br>
+  Class = oaReducedParasiticCallback API = ~oaReducedParasiticCallback()<br>
+  Class = oaReducedParasiticCallback API = void invokePostCreateCallback(oaReducedParasitic*)<br>
+  Class&nbsp;=&nbsp;oaReducedParasiticCallback&nbsp;API&nbsp;=&nbsp;void&nbsp;invokePostModifyCallback(oaReducedParasitic*,oaReducedModTypeEnum,oaAnalysisPoint*)<br>
+  Class = oaReducedParasiticCallback API = void invokePreDestroyCallback(oaReducedParasitic*)<br>
+  Class&nbsp;=&nbsp;oaReducedParasiticCallback&nbsp;API&nbsp;=&nbsp;void&nbsp;invokePreModifyCallback(oaReducedParasitic*,oaReducedModTypeEnum,oaAnalysisPoint*)<br>
+  Class = oaReducedParasiticCallback API = void onPostCreate(oaReducedParasitic*)<br>
+  Class = oaReducedParasiticCallback API = void onPostModify(oaReducedParasitic*,oaReducedModTypeEnum,oaAnalysisPoint*)<br>
+  Class = oaReducedParasiticCallback API = void onPreDestroy(oaReducedParasitic*)<br>
+  Class = oaReducedParasiticCallback API = void onPreModify(oaReducedParasitic*,oaReducedModTypeEnum,oaAnalysisPoint*)</font></p>
+<p><font color="#993300"> Class = oaResistor API = unsigned getUniqueId(oaParasiticNetwork*)</font></p>
+<p><font color="#993300"> Class = oaRoute API = int isWellFormed()const<br>
+  Class = oaRoute API = void setWellFormed(int)</font></p>
+<p><font color="#993300"> Class = oaRouteCallback API = void onPostCreate(oaRoute*)<br>
+  Class = oaRouteCallback API = void onPostModify(oaRoute*,oaRouteModTypeEnum)<br>
+  Class = oaRouteCallback API = void onPreDestroy(oaRoute*)<br>
+  Class = oaRouteCallback API = void onPreModify(oaRoute*,oaRouteModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaRouteSpecCallback API = void onPostCreate(oaRouteSpec*)<br>
+  Class = oaRouteSpecCallback API = void onPostModify(oaRouteSpec*)<br>
+  Class = oaRouteSpecCallback API = void onPreDestroy(oaRouteSpec*)<br>
+  Class = oaRouteSpecCallback API = void onPreModify(oaRouteSpec*)</font></p>
+<p><font color="#993300"> Class = oaRowCallback API = void onPostCreate(oaRow*)<br>
+  Class = oaRowCallback API = void onPostModify(oaRow*,oaRowModTypeEnum)<br>
+  Class = oaRowCallback API = void onPreDestroy(oaRow*)<br>
+  Class = oaRowCallback API = void onPreModify(oaRow*,oaRowModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaRuleCallback API = void onPostCreate(oaRule*)<br>
+  Class = oaRuleCallback API = void onPreDestroy(oaRule*)</font></p>
+<p><font color="#993300"> Class = oaRuleParamType API = oaRuleParamType(oaRuleParamTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaScalarName API = void resize(unsigned)</font></p>
+<p><font color="#993300"> Class = oaScanChainCallback API = void onPostCreate(oaScanChain*)<br>
+  Class = oaScanChainCallback API = void onPostModify(oaScanChain*,oaScanChainModTypeEnum)<br>
+  Class = oaScanChainCallback API = void onPreDestroy(oaScanChain*)<br>
+  Class = oaScanChainCallback API = void onPreModify(oaScanChain*,oaScanChainModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaScanChainInstCallback API = void onPostCreate(oaScanChainInst*)<br>
+  Class = oaScanChainInstCallback API = void onPostModify(oaScanChainInst*,oaScanChainInstModTypeEnum)<br>
+  Class = oaScanChainInstCallback API = void onPreDestroy(oaScanChainInst*)<br>
+  Class = oaScanChainInstCallback API = void onPreModify(oaScanChainInst*,oaScanChainInstModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaSeriesRL API = unsigned getUniqueId(oaParasiticNetwork*)</font></p>
+<p><font color="#993300"> Class = oaShapeCallback API = void onPostCreate(oaShape*)<br>
+  Class = oaShapeCallback API = void onPostModify(oaShape*,oaShapeModTypeEnum)<br>
+  Class = oaShapeCallback API = void onPreDestroy(oaShape*)<br>
+  Class = oaShapeCallback API = void onPreModify(oaShape*,oaShapeModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaSingleRuleType API = oaSingleRuleType(oaSingleRuleTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaSteinerCallback API = void onPostCreate(oaSteiner*)<br>
+  Class = oaSteinerCallback API = void onPostModify(oaSteiner*,oaSteinerModTypeEnum)<br>
+  Class = oaSteinerCallback API = void onPreDestroy(oaSteiner*)<br>
+  Class = oaSteinerCallback API = void onPreModify(oaSteiner*,oaSteinerModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaTech API = int exists(const oaScalarName&amp;,const 
+  oaScalarName&amp;,const oaScalarName&amp;)<br>
+  Class = oaTech API = int exists(oaCellView*)<br>
+  Class = oaTech API = oaTech* find(const oaScalarName&amp;,const oaScalarName&amp;,const 
+  oaScalarName&amp;)<br>
+  Class = oaTech API = oaTech* find(oaCellView*)<br>
+  Class = oaTech API = oaTech* open(const oaScalarName&amp;,const oaScalarName&amp;,const 
+  oaScalarName&amp;,char)<br>
+  Class = oaTech API = oaTech* open(oaCellView*,char)<br>
+  Class = oaTech API = void getCellName(oaScalarName&amp;)const<br>
+  Class = oaTech API = void getViewName(oaScalarName&amp;)const<br>
+  Class = oaTech API = void saveAs(const oaScalarName&amp;,const oaScalarName&amp;,const 
+  oaScalarName&amp;)</font></p>
+<p><font color="#993300"> Class = oaTechCallback API = void invokeReadinCallback(oaTech*)<br>
+  Class = oaTechCallback API = void onReadin(oaTech*)</font></p>
+<p><font color="#993300"> Class = oaTermCallback API = void onPostCreate(oaTerm*)<br>
+  Class = oaTermCallback API = void onPostModify(oaTerm*,oaTermModTypeEnum)<br>
+  Class = oaTermCallback API = void onPreDestroy(oaTerm*)<br>
+  Class = oaTermCallback API = void onPreModify(oaTerm*,oaTermModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaTrackPatternCallback API = void onPostCreate(oaTrackPattern*)<br>
+  Class = oaTrackPatternCallback API = void onPostModify(oaTrackPattern*,oaTrackPatternModTypeEnum)<br>
+  Class = oaTrackPatternCallback API = void onPreDestroy(oaTrackPattern*)<br>
+  Class = oaTrackPatternCallback API = void onPreModify(oaTrackPattern*,oaTrackPatternModTypeEnum)</font></p>
+<p><font color="#993300"> Class = oaUsedInCollection API = int includes(const 
+  oaObject*)const<br>
+  Class = oaUsedInCollection API = int isEmpty()const<br>
+  Class = oaUsedInCollection API = oaUsedInCollection(const oaObject*,unsigned,unsigned)<br>
+  Class = oaUsedInCollection API = oaUsedInCollection(const oaUsedInCollection&amp;)<br>
+  Class = oaUsedInCollection API = unsigned getCount()const</font></p>
+<p><font color="#993300"> Class = oaVectorBitName API = void resize(unsigned)</font></p>
+<p><font color="#993300"> Class = oaVectorName API = void resize(unsigned)</font></p>
+<p><font color="#993300"> Class = oaViaSpecCallback API = void onPostCreate(oaViaSpec*)<br>
+  Class = oaViaSpecCallback API = void onPostModify(oaViaSpec*)<br>
+  Class = oaViaSpecCallback API = void onPreDestroy(oaViaSpec*)<br>
+  Class = oaViaSpecCallback API = void onPreModify(oaViaSpec*)</font></p>
+<p><font color="#003399">###########################################<br>
+  # The APIs for the following classes have been modified.<br>
+  ###########################################</font></p>
+<pre><font color="#003399">
+Class = oaAnalysisLibCallback
+		Old APIs:
+			 oaAnalysisLibCallback(unsigned)
+			 ~oaAnalysisLibCallback()
+			 void invokePostModifyCallback(oaAnalysisLib*)
+			 void invokePreModifyCallback(oaAnalysisLib*)
+		New or Modified APIs:
+			 oaAnalysisLibCallback(unsigned,int)
+			 void invokePostModifyCallback(oaAnalysisLib*,oaAnalysisLibModTypeEnum)
+			 void invokePreModifyCallback(oaAnalysisLib*,oaAnalysisLibModTypeEnum)
+
+Class = oaAnalysisOpPointCallback
+		Old APIs:
+			 oaAnalysisOpPointCallback(unsigned)
+			 ~oaAnalysisOpPointCallback()
+		New or Modified APIs:
+			 oaAnalysisOpPointCallback(unsigned,int)
+
+Class = oaAnalysisPointCallback
+		Old APIs:
+			 oaAnalysisPointCallback(unsigned)
+			 ~oaAnalysisPointCallback()
+		New or Modified APIs:
+			 oaAnalysisPointCallback(unsigned,int)
+
+Class = oaAppDef
+		Old APIs:
+			 void get(const oaObject*,unsigned&,oaAppDefData*&,int)
+			 void get(oaObject*,unsigned&,oaAppDefData*&)
+			 void getCache(const oaObject*,int)
+			 void getDatabase(const oaObject*,oaDatabase*&,unsigned&)
+		New or Modified APIs:
+			 void get(const oaObject*,unsigned&,oaAppDefData*&,int&,int)
+			 void get(oaObject*,unsigned&,oaAppDefData*&,unsigned&)
+			 void getCache(const oaObject*,int&,int)
+			 void getDatabase(const oaObject*,oaDatabase*&,unsigned&,int&)
+
+Class = oaAppObjectCallback
+		Old APIs:
+			 oaAppObjectCallback(unsigned)
+			 ~oaAppObjectCallback()
+		New or Modified APIs:
+			 oaAppObjectCallback(unsigned,int)
+
+Class = oaAssignmentCallback
+		Old APIs:
+			 oaAssignmentCallback(unsigned)
+			 ~oaAssignmentCallback()
+		New or Modified APIs:
+			 oaAssignmentCallback(unsigned,int)
+
+Class = oaBaseCollection
+		Old APIs:
+			 oaBaseCollection()
+			 oaBaseCollection(const oaBaseCollection&)
+			 oaBaseCollection(const oaObject*,unsigned)
+			 oaBaseCollection(const oaObject*,unsigned,oaType,oaCollTypeEnum,unsigned)
+			 oaBaseCollection(const oaObject*,unsigned,oaType,unsigned)
+			 oaBaseCollection(const oaObject*,unsigned,unsigned)
+		New or Modified APIs:
+			 oaBaseCollection(const oaBaseCollection&)
+			 oaBaseCollection(const oaObject*,unsigned)
+			 oaBaseCollection(const oaObject*,unsigned,oaCollTypeEnum,unsigned)
+			 oaBaseCollection(const oaObject*,unsigned,unsigned)
+
+Class = oaBaseIter
+		Old APIs:
+			 oaBaseIter()
+			 oaBaseIter(const oaBaseCollection&)
+			 oaBaseIter(const oaBaseIter&)
+			 ~oaBaseIter()
+		New or Modified APIs:
+			 oaBaseIter(const oaBaseCollection&)
+			 oaBaseIter(const oaBaseIter&)
+			 ~oaBaseIter()
+
+Class = oaBlockageCallback
+		Old APIs:
+			 oaBlockageCallback(unsigned)
+			 ~oaBlockageCallback()
+		New or Modified APIs:
+			 oaBlockageCallback(unsigned,int)
+
+Class = oaBoundaryCallback
+		Old APIs:
+			 oaBoundaryCallback(unsigned)
+			 ~oaBoundaryCallback()
+		New or Modified APIs:
+			 oaBoundaryCallback(unsigned,int)
+
+Class = oaCMapCallback
+		Old APIs:
+			 oaCMapCallback(unsigned)
+			 ~oaCMapCallback()
+		New or Modified APIs:
+			 oaCMapCallback(unsigned,int)
+
+Class = oaCellViewCallback
+		Old APIs:
+			 oaCellViewCallback(unsigned)
+			 ~oaCellViewCallback()
+		New or Modified APIs:
+			 oaCellViewCallback(unsigned,int)
+			 ~oaCellViewCallback()
+
+Class = oaClusterCallback
+		Old APIs:
+			 oaClusterCallback(unsigned)
+			 ~oaClusterCallback()
+		New or Modified APIs:
+			 oaClusterCallback(unsigned,int)
+
+Class = oaConnectDefCallback
+		Old APIs:
+			 oaConnectDefCallback(unsigned)
+			 ~oaConnectDefCallback()
+		New or Modified APIs:
+			 oaConnectDefCallback(unsigned,int)
+
+Class = oaCouplingCap
+		Old APIs:
+			oaCouplingCap* create(oaNode*,oaNet*,unsigned,const oaString&,unsigned)
+			oaCouplingCap* create(oaNode*,oaNode*,unsigned)
+			 void getOtherNode(oaNet*&,unsigned&,oaString&)const
+		New or Modified APIs:
+			oaCouplingCap* create(oaNode*,oaDBObject*,unsigned)
+			oaCouplingCap* create(oaNode*,oaNet*,unsigned,unsigned)
+			oaCouplingCap* create(oaNode*,oaNode*,unsigned)
+			 void getOtherNode(oaNet*&,unsigned&)const
+
+Class = oaCustomViaDef
+		Old APIs:
+			oaCustomViaDef* create(oaTech*,const oaString&,const oaScalarName&,const oaScalarName&,const oaScalarName&,oaLayer*,oaLayer*)
+			oaCustomViaDef* create(oaTech*,const oaString&,oaCellView*,oaLayer*,oaLayer*)
+		New or Modified APIs:
+			oaCustomViaDef* create(oaTech*,const oaString&,oaCellView*,oaPhysicalLayer*,oaPhysicalLayer*)
+			oaCustomViaDef* create(oaTech*,const oaString&,const oaScalarName&,const oaScalarName&,const oaScalarName&,oaPhysicalLayer*,oaPhysicalLayer*)
+
+Class = oaDataCallback
+		Old APIs:
+			oaDataCallback* find(const oaString&,oaDataCallbackTypeEnum)
+			 oaDataCallback(const oaString&,oaDataCallbackTypeEnum)
+			 ~oaDataCallback()
+		New or Modified APIs:
+			oaDataCallback* find(const oaString&,oaDataCallbackType)
+			 oaDataCallback(const oaString&,oaDataCallbackType)
+			 ~oaDataCallback()
+
+Class = oaDeviceCallback
+		Old APIs:
+			 oaDeviceCallback(unsigned)
+			 ~oaDeviceCallback()
+		New or Modified APIs:
+			 oaDeviceCallback(unsigned,int)
+
+Class = oaDirIter
+		Old APIs:
+			 oaDirIter(const oaString&,const oaString&,oaDirIterMode)
+			 oaDirIter(const oaString&,oaDirIterMode)
+			 ~oaDirIter()
+		New or Modified APIs:
+			 oaDirIter(const oaString&,const oaString&,oaDirIterModeEnum)
+			 oaDirIter(const oaString&,oaDirIterModeEnum)
+			 ~oaDirIter()
+
+Class = oaGroupCallback
+		Old APIs:
+			 oaGroupCallback(unsigned)
+			 ~oaGroupCallback()
+		New or Modified APIs:
+			 oaGroupCallback(unsigned,int)
+
+Class = oaGroupMemberCallback
+		Old APIs:
+			 oaGroupMemberCallback(unsigned)
+			 ~oaGroupMemberCallback()
+		New or Modified APIs:
+			 oaGroupMemberCallback(unsigned,int)
+
+Class = oaGuideCallback
+		Old APIs:
+			 oaGuideCallback(unsigned)
+			 ~oaGuideCallback()
+		New or Modified APIs:
+			 oaGuideCallback(unsigned,int)
+
+Class = oaInstCallback
+		Old APIs:
+			 oaInstCallback(unsigned)
+			 ~oaInstCallback()
+		New or Modified APIs:
+			 oaInstCallback(unsigned,int)
+
+Class = oaInstPinCallback
+		Old APIs:
+			 oaInstPinCallback(unsigned)
+			 ~oaInstPinCallback()
+		New or Modified APIs:
+			 oaInstPinCallback(unsigned,int)
+
+Class = oaInstTermCallback
+		Old APIs:
+			 oaInstTermCallback(unsigned)
+			 ~oaInstTermCallback()
+		New or Modified APIs:
+			 oaInstTermCallback(unsigned,int)
+
+Class = oaIter<oaRoute>
+		Old APIs:
+			 oaIter(oaCollection<oaRoute,oaCellView>)
+			 oaIter(oaCollection<oaRoute,oaInstPin>)
+			 oaIter(oaCollection<oaRoute,oaInstTerm>)
+			 oaIter(oaCollection<oaRoute,oaNet>)
+			 oaIter(oaCollection<oaRoute,oaPin>)
+			 oaIter(oaCollection<oaRoute,oaRoute>)
+			 oaIter(oaCollection<oaRoute,oaShape>)
+			 oaIter(oaCollection<oaRoute,oaSteiner>)
+			 oaIter(oaCollection<oaRoute,oaTerm>)
+		New or Modified APIs:
+			 oaIter(const oaCollection<oaRoute,oaCellView>&)
+			 oaIter(const oaCollection<oaRoute,oaNet>&)
+			 oaIter(const oaObjRouteCollection&)
+
+Class = oaLayer
+		Old APIs:
+			oaLayer* find(oaCellView*,const oaString&,oaTech*&)
+			oaLayer* find(oaCellView*,unsigned,oaTech*&)
+			oaLayer* find(oaTech*,const oaString&)
+			oaLayer* find(oaTech*,unsigned)
+		New or Modified APIs:
+			oaLayer* find(oaTech*,const oaString&)
+			oaLayer* find(oaTech*,unsigned)
+
+Class = oaLayerCallback
+		Old APIs:
+			 oaLayerCallback(unsigned)
+			 ~oaLayerCallback()
+			 void invokePostModifyCallback(oaLayer*)
+			 void invokePreModifyCallback(oaLayer*)
+		New or Modified APIs:
+			 oaLayerCallback(unsigned,int)
+			 void invokePostModifyCallback(oaLayer*,oaLayerModTypeEnum)
+			 void invokePreModifyCallback(oaLayer*,oaLayerModTypeEnum)
+
+Class = oaMarkerCallback
+		Old APIs:
+			 oaMarkerCallback(unsigned)
+			 ~oaMarkerCallback()
+		New or Modified APIs:
+			 oaMarkerCallback(unsigned,int)
+
+Class = oaNetCallback
+		Old APIs:
+			 oaNetCallback(unsigned)
+			 ~oaNetCallback()
+		New or Modified APIs:
+			 oaNetCallback(unsigned,int)
+
+Class = oaNodeCallback
+		Old APIs:
+			 oaNodeCallback(unsigned)
+			 ~oaNodeCallback()
+		New or Modified APIs:
+			 oaNodeCallback(unsigned,int)
+
+Class = oaNodeCollection
+		Old APIs:
+			 int includes(const oaObject*)const
+		New or Modified APIs:
+			 int includes(const oaNode*)const
+
+Class = oaOpPointCallback
+		Old APIs:
+			 oaOpPointCallback(unsigned)
+			 ~oaOpPointCallback()
+			 void invokePostModifyCallback(oaOpPoint*)
+			 void invokePreModifyCallback(oaOpPoint*)
+		New or Modified APIs:
+			 oaOpPointCallback(unsigned,int)
+			 void invokePostModifyCallback(oaOpPoint*,oaOpPointModTypeEnum)
+			 void invokePreModifyCallback(oaOpPoint*,oaOpPointModTypeEnum)
+
+Class = oaParasiticNetwork
+		Old APIs:
+			oaParasiticNetwork* load(oaNet*,oaAnalysisPoint*,int)
+		New or Modified APIs:
+			oaParasiticNetwork* load(oaNet*,oaAnalysisPoint*)
+
+Class = oaParasiticNetworkCallback
+		Old APIs:
+			 oaParasiticNetworkCallback(unsigned)
+			 ~oaParasiticNetworkCallback()
+		New or Modified APIs:
+			 oaParasiticNetworkCallback(unsigned,int)
+			 ~oaParasiticNetworkCallback()
+
+Class = oaPcellEvalCallback
+		Old APIs:
+			 oaPcellEvalCallback(unsigned)
+			 ~oaPcellEvalCallback()
+		New or Modified APIs:
+			 oaPcellEvalCallback(unsigned,int)
+			 ~oaPcellEvalCallback()
+
+Class = oaPinCallback
+		Old APIs:
+			 oaPinCallback(unsigned)
+			 ~oaPinCallback()
+		New or Modified APIs:
+			 oaPinCallback(unsigned,int)
+
+Class = oaPinGroupCallback
+		Old APIs:
+			 oaPinGroupCallback(unsigned)
+			 ~oaPinGroupCallback()
+		New or Modified APIs:
+			 oaPinGroupCallback(unsigned,int)
+
+Class = oaPropCallback
+		Old APIs:
+			 oaPropCallback(unsigned)
+			 ~oaPropCallback()
+		New or Modified APIs:
+			 oaPropCallback(unsigned,int)
+
+Class = oaPurpose
+		Old APIs:
+			oaPurpose* find(oaCellView*,const oaString&,oaTech*&)
+			oaPurpose* find(oaCellView*,unsigned,oaTech*&)
+			oaPurpose* find(oaTech*,const oaString&)
+			oaPurpose* find(oaTech*,unsigned)
+		New or Modified APIs:
+			oaPurpose* find(oaTech*,const oaString&)
+			oaPurpose* find(oaTech*,unsigned)
+
+Class = oaPurposeCallback
+		Old APIs:
+			 oaPurposeCallback(unsigned)
+			 ~oaPurposeCallback()
+			 void invokePostModifyCallback(oaPurpose*)
+			 void invokePreModifyCallback(oaPurpose*)
+		New or Modified APIs:
+			 oaPurposeCallback(unsigned,int)
+			 void invokePostModifyCallback(oaPurpose*,oaPurposeModTypeEnum)
+			 void invokePreModifyCallback(oaPurpose*,oaPurposeModTypeEnum)
+
+Class = oaRouteCallback
+		Old APIs:
+			 oaRouteCallback(unsigned)
+			 ~oaRouteCallback()
+		New or Modified APIs:
+			 oaRouteCallback(unsigned,int)
+
+Class = oaRouteSpecCallback
+		Old APIs:
+			 oaRouteSpecCallback(unsigned)
+			 ~oaRouteSpecCallback()
+			 void invokePostModifyCallback(oaRouteSpec*)
+			 void invokePreModifyCallback(oaRouteSpec*)
+		New or Modified APIs:
+			 oaRouteSpecCallback(unsigned,int)
+			 void invokePostModifyCallback(oaRouteSpec*,oaRouteSpecModTypeEnum)
+			 void invokePreModifyCallback(oaRouteSpec*,oaRouteSpecModTypeEnum)
+
+Class = oaRowCallback
+		Old APIs:
+			 oaRowCallback(unsigned)
+			 ~oaRowCallback()
+		New or Modified APIs:
+			 oaRowCallback(unsigned,int)
+
+Class = oaRuleCallback
+		Old APIs:
+			 oaRuleCallback(unsigned)
+			 ~oaRuleCallback()
+		New or Modified APIs:
+			 oaRuleCallback(unsigned,int)
+
+Class = oaScalarName
+		Old APIs:
+			 oaScalarName()
+			 oaScalarName(const oaNameSpace&,const char*)
+			 oaScalarName(const oaScalarName&)
+		New or Modified APIs:
+			 oaScalarName(const oaNameSpace&,const char*)
+			 oaScalarName(const oaScalarName&)
+
+Class = oaScanChainCallback
+		Old APIs:
+			 oaScanChainCallback(unsigned)
+			 ~oaScanChainCallback()
+		New or Modified APIs:
+			 oaScanChainCallback(unsigned,int)
+
+Class = oaScanChainInstCallback
+		Old APIs:
+			 oaScanChainInstCallback(unsigned)
+			 ~oaScanChainInstCallback()
+		New or Modified APIs:
+			 oaScanChainInstCallback(unsigned,int)
+
+Class = oaShapeCallback
+		Old APIs:
+			 oaShapeCallback(unsigned)
+			 ~oaShapeCallback()
+		New or Modified APIs:
+			 oaShapeCallback(unsigned,int)
+
+Class = oaStdViaDef
+		Old APIs:
+			oaLayer* getImplant1()const
+			oaLayer* getImplant2()const
+			oaStdViaDef* create(oaTech*,const oaString&,oaLayer*,oaLayer*,const oaViaParam&,oaLayer*,oaLayer*)
+		New or Modified APIs:
+			oaPhysicalLayer* getImplant1()const
+			oaPhysicalLayer* getImplant2()const
+			oaStdViaDef* create(oaTech*,const oaString&,oaPhysicalLayer*,oaPhysicalLayer*,const oaViaParam&,oaPhysicalLayer*,oaPhysicalLayer*)
+
+Class = oaSteinerCallback
+		Old APIs:
+			 oaSteinerCallback(unsigned)
+			 ~oaSteinerCallback()
+		New or Modified APIs:
+			 oaSteinerCallback(unsigned,int)
+
+Class = oaTech
+		Old APIs:
+			oaTech* create(const oaScalarName&,const oaScalarName&,const oaScalarName&)
+			oaTech* create(oaCellView*)
+			oaTech* create(oaLib*)
+		New or Modified APIs:
+			oaTech* create(oaLib*)
+
+Class = oaTerm
+		Old APIs:
+			 int isValidName(oaCellView*,oaNet*,const oaName&)
+		New or Modified APIs:
+			 int isValidName(oaNet*,const oaName&)
+
+Class = oaTermCallback
+		Old APIs:
+			 oaTermCallback(unsigned)
+			 ~oaTermCallback()
+		New or Modified APIs:
+			 oaTermCallback(unsigned,int)
+
+Class = oaTrackPatternCallback
+		Old APIs:
+			 oaTrackPatternCallback(unsigned)
+			 ~oaTrackPatternCallback()
+		New or Modified APIs:
+			 oaTrackPatternCallback(unsigned,int)
+
+Class = oaViaDef
+		Old APIs:
+			oaLayer* getLayer1()const
+			oaLayer* getLayer2()const
+			 void getLayers(oaLayer*&,oaLayer*&)const
+		New or Modified APIs:
+			oaPhysicalLayer* getLayer1()const
+			oaPhysicalLayer* getLayer2()const
+			 void getLayers(oaPhysicalLayer*&,oaPhysicalLayer*&)const
+
+Class = oaViaSpec
+		Old APIs:
+			oaLayer* getLayer1()const
+			oaLayer* getLayer2()const
+			oaViaSpec* create(oaTech*,const oaString&,oaLayer*,oaLayer*,const oaViaDefArray&)
+			oaViaSpec* create(oaTech*,const oaString&,oaLayer*,unsigned,unsigned,oaLayer*,unsigned,unsigned,const oaViaDefArray&)
+		New or Modified APIs:
+			oaPhysicalLayer* getLayer1()const
+			oaPhysicalLayer* getLayer2()const
+			oaViaSpec* create(oaTech*,const oaString&,oaPhysicalLayer*,oaPhysicalLayer*,const oaViaDefArray&)
+			oaViaSpec* create(oaTech*,const oaString&,oaPhysicalLayer*,unsigned,unsigned,oaPhysicalLayer*,unsigned,unsigned,const oaViaDefArray&)
+
+Class = oaViaSpecCallback
+		Old APIs:
+			 oaViaSpecCallback(unsigned)
+			 ~oaViaSpecCallback()
+			 void invokePostModifyCallback(oaViaSpec*)
+			 void invokePreModifyCallback(oaViaSpec*)
+		New or Modified APIs:
+			 oaViaSpecCallback(unsigned,int)
+			 void invokePostModifyCallback(oaViaSpec*,oaViaSpecModTypeEnum)
+			 void invokePreModifyCallback(oaViaSpec*,oaViaSpecModTypeEnum)
+
+
+</font> </pre>
+</body>
+</html>

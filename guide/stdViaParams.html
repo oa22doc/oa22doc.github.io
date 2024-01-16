@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Standard Via Parameters </h1>
+<hr />
+
+<p>In OpenAccess, a standard via (<a href="../design/classoaStdVia.html">oaStdVia</a>)  is one that can be constructed using a fixed set of predefined via  parameters. This document describes the parameters for oaStdVias.</p>
+<ul>
+  <li><a href="#WHL_param">Cut Width, Height, and Layer</a></li>
+  <li><a href="#originOffset_param">Origin Offset</a></li>
+  <li><a href="#layerEnc_param">Layer1 and Layer2 Enclosures</a></li>
+  <li><a href="#implantEnc_param">Implant1 and Implant2 Enclosures</a></li>
+  <li><a href="#layerOffset_param">Layer1 and Layer2 Offsets</a></li>
+  <li><a href="#CRS_param">Cut Columns, Cut Rows, and Cut Spacing</a></li>
+  <li><a href="#cutPattern_param">Cut Pattern</a></li>
+</ul>
+<p><strong>Note:</strong> For  multiple cut vias, OpenAccess  snaps the shapes in the cut layer to the manufacturing grid. The value for the manufacturing grid is obtained from the oaPhysicalLayer for the cut layer if specified. Otherwise, the default manufacturing grid from the oaTech database is used. </p>
+<p>For a side-by-side visual comparison of the standard via parameters, click <a href="stdViaParamsGraphics.html">here</a>. </p>
+<h2><a name="WHL_param"></a>Cut Width, Height, and Layer </h2>
+<p>The cut width, height, and layer via parameters determine the size of each cut
+rectangle and the layer number for this cut. By default, the origin (the 0,0
+point of the coordinates) is at the center of the cut rectangle. For vias
+with multiple cut rectangles, the default origin is in the center of the 
+cut array. See <a href="stdViaParams.html#originOffset_param">Origin Offset</a> to move this default.</p>
+
+<ul>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutWidth">setCutWidth</a> specifies the width
+    of the cut, as an integer (in DBUs).<br />
+  </li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutHeight">setCutHeight</a> specifies the height
+    of the cut, as an integer (in DBUs).<br />
+  </li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutLayer">setCutLayer</a> specifies the layer
+    number of the cut layer. </li>
+</ul>
+<p>Use the corresponding <em>get</em> functions to return this information
+  from the database.</p>
+<h3 class="spabove">Example</h3>
+<p><img src="images/figviaCutWidthHeightLayer.gif" alt="Cut Dimensions and Layer"></p>
+<h2><a name="originOffset_param"></a>Origin Offset</h2>
+<p>The origin of a via is the (0,0) point in the coordinates for the shapes
+in the via. The <a href="../tech/classoaViaParam.html#oaViaParam::setOriginOffset">setOriginOffset</a> function specifies an offset value for the origin. The effect of specifying a value for the origin offset can be viewed in two different but equivalent ways:</p>
+<ul>
+  <li>Subtracting that value from the origin’s point, which defaults to (0, 0), without changing any of the coordinates of the other shapes in the via relative to the default origin. </li>
+  <li>Adding that value to the coordinates of every shape within the via. </li>
+</ul>
+<p>Subtracting an origin offset of (-100, -100) from the default (0, 0) point of the origin gives you an effective origin of (100, 100), which moves the origin up and to the right relative to the shapes in the via. Subtracting an origin offset of (100, 100) gives you an effective origin of (-100, -100), which moves the origin down and to the left relative to the shapes in the via.</p>
+<p>When a via instance is created by an <a href="../design/classoaVia.html">oaVia</a>, the oaVia specifies the
+  coordinates for positioning the via within the block. The origin of the via is
+  placed exactly at the via coordinates.</p>
+<p>Use the <a href="../tech/classoaViaParam.html#oaViaParam::getOriginOffset">getOriginOffset</a> function
+  to return the origin offset value.</p>
+<h3 class="spabove">Example</h3>
+<p class="spabove style1">The origin is placed at the center (0,0) location of the cut layer. The same is true for cuts with multiple rows or columns. </p>
+<p class="spabove style1">The following examples show offsets that might be used for technologies whose via cut shapes are defined with a lower-left origin rather than a center origin. The first example uses an offset of  (100, 100), and the second example uses (115, 85). These offsets move every shape up and to the right. </p>
+
+<p><img src="images/figviaOriginOffset_2.gif" border="0" class="style2"></p>
+<h2><a name="layerEnc_param"></a>Layer1 and Layer2 Enclosures</h2>
+<p>Standard vias are connections between two adjacent signal layers on the
+chip that are being connected. The cut layer is where the chip processing 
+cuts away the oxide between the two adjacent signal layers to provide the
+connection between them. The layer enclosure via parameters specify the width
+and height for the rectangles on the conducting layers that lie above and
+beneath the cut.</p>
+<ul>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setLayer1Enc">setLayer1Enc</a> specifies the
+    Layer1 enclosure as an X/Y vector, in integers (in DBUs).<br />
+  </li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setLayer2Enc">setLayer2Enc</a> specifies the 
+    Layer2 enclosure as an X/Y vector, in integers (in DBUs).</li>
+</ul>
+<p>For example, a Layer1 enclosure value of (10, 10) adds a spacing of 
+  10 units around each side of the cut on Layer1. If the cut width and height
+  are (1000, 2000), then the total size of Layer1 is (1020, 2020).</p>
+<p>Use the corresponding <em>get</em> functions to return this information
+  from the database.</p>
+<p><strong>Note</strong>: The layer number for the signal layers is not a
+  via parameter. The layer number value is specified when the <a href="../design/classoaStdVia.html">oaStdVia</a> is created.
+<h3 class="spabove"> Example</h3>
+<p>This example shows the origin at the default location with a (0,0) offset.
+If using an origin offset, that offset is added to every part of the via,
+and the relative locations are unchanged. For vias that require Layer1 or
+Layer2 rectangles that are not centered at the cut center, use the <a href="stdViaParams.html#layerOffset_param">Layer1 and Layer2 Offset</a> parameters.</p>
+<p><br />
+    <img src="images/figviaLayerEnc.gif" alt="Layer Enclosures"></p>
+<h2><a name="implantEnc_param"></a>Implant1 and Implant2 Enclosures</h2>
+<p>Some technologies add implant shapes to vias between the Metal1 and
+Diffusion layers. The implant enclosure via parameters specify the minimum
+width and height for the implant  that surrounds the layer. </p>
+<p>If there are no layer offsets, the implant enclosures are centered on the cut relative to the layer enclosure. When layer offset is applied, it affects both the layer enclosure and the implant enclosure. (The layer rectangles and the implant rectangles always have a common center.)</p>
+<ul>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setImplant1Enc">setImplant1Enc</a> specifies the
+    implant1 enclosure as an X/Y vector, in integers (in DBUs).<br />
+  </li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setImplant2Enc">setImplant2Enc</a> specifies the
+    implant2 enclosure as an X/Y vector, in integers (in DBUs).</li>
+</ul>
+<p>For example, an implant1 enclosure value of (10, 10) adds a spacing of
+  10 units around each side of Layer1. If the Layer1 width and height
+  are (1000, 2000), then the total size of the implant1 shape is
+  (1020, 2020).</p>
+<p>Use the corresponding <em>get</em> functions to return this information
+  from the database.</p>
+<p><strong>Note</strong>: The layer number for the implant layers is not a via parameter. The layer number, and whether the layers exist at all, are specified in the <a href="../tech/classoaStdViaDef.html">oaStdViaDef</a>.
+<h3 class="spabove">Example</h3>
+<p>The following figure shows two examples: One with the default offset (0,0) and one with a specified offset. </p>
+<p><img src="images/figviaImplantEnc2.gif">
+    <!-- beginning of footer -->
+<p>
+<p>For vias that require Layer1 or Layer2 rectangles that are not centered at the cut center, use the <a href="stdViaParams.html#layerOffset_param">Layer1 and Layer2 Offset</a> parameters.
+<h2><a name="layerOffset_param"></a>Layer1 and Layer2 Offsets</h2>
+<p>In cases where Layer1 and Layer2 are not aligned on the center of the cut,
+the layer offset via parameters specify the amount of offset between the
+center of the layer and the center of the cut. The offset is added to the
+coordinates of the corresponding rectangle, so a positive offset moves the
+rectangle up and to the right.</p>
+<ul>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setLayer1Offset">setLayer1Offset</a> specifies the
+    center offset between Layer1 and the cut layer.<br />
+  </li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setLayer2Offset">setLayer2Offset</a> specifies the
+    center offset between Layer2 and the cut layer.</li>
+</ul>
+<p>Use the corresponding <em>get</em> functions to return this information
+  from the database.</p>
+<h3 class="spabove"> Example</h3>
+<p><img src="images/figviaLayerOffset.gif" alt="Layer Offsets"></p>
+<h2><a name="CRS_param"></a>Cut Columns, Cut Rows, and Cut Spacing</h2>
+<p>When large via cuts need to be implemented as a series of small rectangles,
+  the spacing, columns, and rows via parameters determine the number of
+  cut rectangles and the dimensions of the entire cut grid.</p>
+<ul>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutColumns">setCutColumns</a> specifies the
+    number of columns in the cut.<br />
+  </li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutRows">setCutRows</a> specifies the number
+    of rows in the cut.<br />
+  </li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutSpacing">setCutSpacing</a> specifies the
+    spacing between the cuts in multiple cut vias as a vector, with X and Y
+    spacing values in DBUs.</li>
+</ul>
+<p>For vias with multiple cut rectangles, the default origin is in the 
+  center of the cut array. See <a href="stdViaParams.html#originOffset_param">Origin Offset</a> to move this default.</p>
+<p>Use the corresponding <em>get</em> functions to return this information
+  from the database.</p>
+<h3 class="spabove">Determining Total Width and Total Height</h3>
+<p>The number of columns and spacing also determine the total width of the
+  cut, using the formula:</p>
+<pre>
+	(cutWidth x numOfCols) + (cutSpacing x (numCols - 1)) 
+</pre>
+<p>For example, using the following sample values:</p>
+<ul>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutWidth">setCutWidth</a> = 1000</li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutColumns">setCutColumns</a> = 4</li>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutSpacing">setCutSpacing</a> = 100</li>
+</ul>
+<p>The total width is:</p>
+<pre>
+	(1000 x 4) + (100 x 3) = 4300
+
+
+</pre>
+<p>Row and spacing values apply when determining the total height of the
+  cut:</p>
+<pre>
+	(cutWidth x numOfRows) + (cutSpacing x (numRows - 1)) 
+
+</pre>
+<p>For example:</p>
+<ul>
+  <li><a href="../tech/classoaViaParam.html#oaViaParam::setCutHeight">setCutHeight</a> = 1000</li>
+  <li>setCutRows = 3</li>
+  <li>setCutSpacing = 100</li>
+</ul>
+<p>The total height is:</p>
+<pre>
+	(1000 x 3) + (100 x 2) = 3200
+
+</pre>
+<h3 class="spabove">Example</h3>
+<p><img src="images/figviaCutSpacingColumnRow.gif" alt="Cut Locations"></p>
+<h2><a name="cutPattern_param"></a>Cut Pattern</h2>
+<p>When large via cuts need to be implemented as a series of small rectangles, a custom cut pattern can be established to specify which of the rectangles in the cut grid should be instantiated. To establish this pattern the caller must have first set the size of the cut array with setCutColumns and setCutRows. Then individual cut rectangles may be made present or not with <a href="../tech/classoaViaParam.html#oaViaParam::setCutPatternVal">setCutPatternVal</a>. An argument of 0 means that the corresponding rectangle is not used. An argument of 1 means that it is present. Row 0 column 0 of the cut grid is at the lower left corner.</p>
+<p>Use the <a href="../tech/classoaViaParam.html#oaViaParam::getCutPatternVal">getCutPatternVal</a> function to return the cut pattern information. </p>
+<h3 class="spabove">Examples</h3>
+<p>The first example shows a symmetrical two row, four column cut pattern. The
+  via origin is centered at 0,0 and no cuts are &quot;zeroed out,&quot; or 
+  removed from the symmetrical pattern.
+<p> The setCutPatternVal definitions are defined as (row, column, cut). The row
+  and column values always start at zero. Cut is a boolean value. The
+  setCutPatternVal values for the bottom row of the first sample cut pattern
+  are shown below. Note that the default value of the cut pattern is 1, so setCutPatternVal need only be called for cut rectangles to be removed. </p>
+<p><img src="images/figviaCutPattern.gif" alt="Cut Pattern"></p>
+<p>The next example shows a three row, four column cut pattern. The via
+  origin is centered at 0,0. In this case, some of the cuts are removed from
+  the pattern. The setCutPatternVal values for the bottom row of this second
+  sample cut pattern are shown below.</p>
+<p><img src="images/figviaCutPattern2.gif" alt="Cut Patterns"></p>
+<p>The third example shows the same cut pattern, but with an origin offset 
+  applied. For example, an offset of (115, 85) moves every shape up and to the
+  right. The origin offset is applied to the entire via shape, so the offset
+  is not affected whether a cut is applied or is removed.</p>
+<p><img src="images/figviaCutPattern3.gif" alt="Cut Pattern" border="0" class="style2">
+  <!-- beginning of footer -->
+    <br />
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

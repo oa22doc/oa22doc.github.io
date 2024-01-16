@@ -1,0 +1,3023 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+<tagfile>
+  <compound kind="file">
+    <name>oaPlugIn.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugIn_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugIn_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInCMInterfaces.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/plugin/</path>
+    <filename>oaPlugInCMInterfaces_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInCMInterfaces.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInCMInterfaces_8h</filename>
+    <class kind="class">ICMPlugInBase</class>
+    <class kind="class">IExport</class>
+    <class kind="class">ITracking</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInCMInterfaces_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; ITracking *,&amp;IID_ITrackingIter &gt;</type>
+      <name>ITrackingIter</name>
+      <anchor>a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IExport *,&amp;IID_IExportIter &gt;</type>
+      <name>IExportIter</name>
+      <anchor>a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_NAMESPACE class</type>
+      <name>oaString</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ITracking</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ITrackingIter</name>
+      <anchor>a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IExport</name>
+      <anchor>a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IExportIter</name>
+      <anchor>a6</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInCMInterfaces.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInCMInterfaces_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInCMInterfaces_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInDMInterfaces.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/plugin/</path>
+    <filename>oaPlugInDMInterfaces_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInDMInterfaces.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInDMInterfaces_8h</filename>
+    <class kind="class">IAccessControl</class>
+    <class kind="class">IDMAccess</class>
+    <class kind="class">IDMSystemCaps</class>
+    <class kind="class">ILib</class>
+    <class kind="class">ILocking</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInDMInterfaces_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_PLUGIN_NAMESPACE class</type>
+      <name>IDMObject</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMAccess</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ILib</name>
+      <anchor>a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IAccessControl</name>
+      <anchor>a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ILocking</name>
+      <anchor>a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMSystemCaps</name>
+      <anchor>a6</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInDMInterfaces.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInDMInterfaces_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInDMInterfaces_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInDMTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInDMTypes_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInDMTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemPreservesFollowersCap</name>
+      <anchor>a1</anchor>
+      <init>&quot;PreservesFollowers&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemSupportsViewFilesCap</name>
+      <anchor>a2</anchor>
+      <init>&quot;SupportsViewFiles&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemMaxNameLengthMetric</name>
+      <anchor>a3</anchor>
+      <init>&quot;MaxNameLength&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oacDMSystemMaxCellViewsMetric</name>
+      <anchor>a4</anchor>
+      <init>&quot;MaxCellViews&quot;</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumLibAccessLevels</name>
+      <anchor>a5</anchor>
+      <init>3</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumDMLockStatus</name>
+      <anchor>a6</anchor>
+      <init>3</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumLibModes</name>
+      <anchor>a7</anchor>
+      <init>3</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumLibAccessEnums</name>
+      <anchor>a8</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCMessageTypes</name>
+      <anchor>a9</anchor>
+      <init>5</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCOperations</name>
+      <anchor>a10</anchor>
+      <init>12</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCCaps</name>
+      <anchor>a11</anchor>
+      <init>15</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCObserverResults</name>
+      <anchor>a12</anchor>
+      <init>2</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVCQueryDepths</name>
+      <anchor>a13</anchor>
+      <init>5</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumVersionComps</name>
+      <anchor>a14</anchor>
+      <init>5</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>oavNumSaveRecoverTypes</name>
+      <anchor>a15</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibAccessLevelEnum</name>
+      <anchor>a74</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNoLibAccessLevel</name>
+      <anchor>a74a16</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReadLibAccessLevel</name>
+      <anchor>a74a17</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWriteLibAccessLevel</name>
+      <anchor>a74a18</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaDMLockStatusEnum</name>
+      <anchor>a75</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNotLocked</name>
+      <anchor>a75a19</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLockedByCurrentProcess</name>
+      <anchor>a75a20</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacLockedByForeignProcess</name>
+      <anchor>a75a21</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibModeEnum</name>
+      <anchor>a76</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSharedLibMode</name>
+      <anchor>a76a22</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacNonSharedLibMode</name>
+      <anchor>a76a23</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReadOnlyLibMode</name>
+      <anchor>a76a24</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaLibAccessEnum</name>
+      <anchor>a77</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacReadLibAccess</name>
+      <anchor>a77a25</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacWriteLibAccess</name>
+      <anchor>a77a26</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCMessageTypeEnum</name>
+      <anchor>a78</anchor>
+      <init>5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeInfo</name>
+      <anchor>a78a27</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeWarning</name>
+      <anchor>a78a28</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeError</name>
+      <anchor>a78a29</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeStatus</name>
+      <anchor>a78a30</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCMsgTypeQueryOk</name>
+      <anchor>a78a31</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCOperationEnum</name>
+      <anchor>a79</anchor>
+      <init>12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetStatus</name>
+      <anchor>a79a32</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetControlledObjects</name>
+      <anchor>a79a33</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetControlledLibs</name>
+      <anchor>a79a34</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetVersions</name>
+      <anchor>a79a35</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetWorkingVersion</name>
+      <anchor>a79a36</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationGetWorkingVersions</name>
+      <anchor>a79a37</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationUpdate</name>
+      <anchor>a79a38</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationMakeEditable</name>
+      <anchor>a79a39</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationCancelEdit</name>
+      <anchor>a79a40</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationCommitEdits</name>
+      <anchor>a79a41</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationSetControlled</name>
+      <anchor>a79a42</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCOperationUnsetControlled</name>
+      <anchor>a79a43</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCCapEnum</name>
+      <anchor>a80</anchor>
+      <init>15</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCommitMayChangeFilesVCCap</name>
+      <anchor>a80a44</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacHasVersionsVCCap</name>
+      <anchor>a80a45</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetStatusVCCap</name>
+      <anchor>a80a46</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetControlledObjectsVCCap</name>
+      <anchor>a80a47</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetControlledLibsVCCap</name>
+      <anchor>a80a48</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetVersionsVCCap</name>
+      <anchor>a80a49</anchor>
+      <init> 5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetWorkingVersionVCCap</name>
+      <anchor>a80a50</anchor>
+      <init> 6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsGetWorkingVersionsVCCap</name>
+      <anchor>a80a51</anchor>
+      <init> 7</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsUpdateVCCap</name>
+      <anchor>a80a52</anchor>
+      <init> 8</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsMakeEditableVCCap</name>
+      <anchor>a80a53</anchor>
+      <init> 9</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsLockVCCap</name>
+      <anchor>a80a54</anchor>
+      <init> 10</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsCancelEditVCCap</name>
+      <anchor>a80a55</anchor>
+      <init> 11</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsCommitEditsVCCap</name>
+      <anchor>a80a56</anchor>
+      <init> 12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsSetControlledVCCap</name>
+      <anchor>a80a57</anchor>
+      <init> 13</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacSupportsUnSetControlledVCCap</name>
+      <anchor>a80a58</anchor>
+      <init> 14</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCObserverResultEnum</name>
+      <anchor>a81</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCObserverResultOk</name>
+      <anchor>a81a59</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVCObserverResultAbort</name>
+      <anchor>a81a60</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVCQueryDepthEnum</name>
+      <anchor>a82</anchor>
+      <init>6</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacFileVCQueryDepth</name>
+      <anchor>a82a61</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellVCQueryDepth</name>
+      <anchor>a82a62</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacViewVCQueryDepth</name>
+      <anchor>a82a63</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellViewVCQueryDepth</name>
+      <anchor>a82a64</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCellViewFileVCQueryDepth</name>
+      <anchor>a82a65</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacMaxQueryDepth</name>
+      <anchor>a82a66</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaVersionCompEnum</name>
+      <anchor>a83</anchor>
+      <init>5</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompEqual</name>
+      <anchor>a83a67</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompEarlier</name>
+      <anchor>a83a68</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompLater</name>
+      <anchor>a83a69</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompDifferentBranch</name>
+      <anchor>a83a70</anchor>
+      <init> 3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacVersionCompIncompatable</name>
+      <anchor>a83a71</anchor>
+      <init> 4</init>
+    </member>
+    <member kind="enumeration">
+      <name>oaSaveRecoverTypeEnum</name>
+      <anchor>a84</anchor>
+      <init>2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacAutoSaveType</name>
+      <anchor>a84a72</anchor>
+      <init> 0</init>
+    </member>
+    <member kind="enumvalue">
+      <name>oacCriticalSaveType</name>
+      <anchor>a84a73</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInIDMObject.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/plugin/</path>
+    <filename>oaPlugInIDMObject_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInIDMObject.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInIDMObject_8h</filename>
+    <class kind="class">IAttr</class>
+    <class kind="class">ICell</class>
+    <class kind="class">ICellView</class>
+    <class kind="class">ICellViewIter</class>
+    <class kind="class">IDMContainer</class>
+    <class kind="class">IDMFile</class>
+    <class kind="class">IDMLib</class>
+    <class kind="class">IDMObject</class>
+    <class kind="class">IDTester&lt; ICell &gt;</class>
+    <class kind="class">IDTester&lt; ICellView &gt;</class>
+    <class kind="class">IDTester&lt; IDMContainer &gt;</class>
+    <class kind="class">IDTester&lt; IDMFile &gt;</class>
+    <class kind="class">IDTester&lt; IDMLib &gt;</class>
+    <class kind="class">IDTester&lt; IView &gt;</class>
+    <class kind="class">IView</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMIObjectI_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IDMObject *,&amp;IID_IDMObjectIter &gt;</type>
+      <name>IDMObjectIter</name>
+      <anchor>a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IDMFile *,&amp;IID_IDMFileIter &gt;</type>
+      <name>IDMFileIter</name>
+      <anchor>a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; ICell *,&amp;IID_ICellIter &gt;</type>
+      <name>ICellIter</name>
+      <anchor>a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IView *,&amp;IID_IViewIter &gt;</type>
+      <name>IViewIter</name>
+      <anchor>a10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IDMLib *,&amp;IID_IDMLibIter &gt;</type>
+      <name>IDMLibIter</name>
+      <anchor>a16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IAttr *,&amp;IID_IAttr &gt;</type>
+      <name>IAttrIter</name>
+      <anchor>a22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_PLUGIN_NAMESPACE class</type>
+      <name>IDMFile</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMObject</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMObjectIter</name>
+      <anchor>a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMFileIter</name>
+      <anchor>a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ICellIter</name>
+      <anchor>a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IViewIter</name>
+      <anchor>a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ICellViewIter</name>
+      <anchor>a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMFile</name>
+      <anchor>a12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMContainer</name>
+      <anchor>a13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMLib</name>
+      <anchor>a14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMLibIter</name>
+      <anchor>a15</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ICell</name>
+      <anchor>a17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IView</name>
+      <anchor>a18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ICellView</name>
+      <anchor>a19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IAttr</name>
+      <anchor>a20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IAttrIter</name>
+      <anchor>a21</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInIDMObject.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInIDMObject_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaDMIObjectI_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInLibDef.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/plugin/</path>
+    <filename>oaPlugInLibDef_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInLibDefInterfaces.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInLibDefInterfaces_8h</filename>
+    <class kind="class">ILibDef</class>
+    <class kind="class">ILibDefAccess</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInLibDefInterfaces_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_PLUGIN_NAMESPACE OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ILibDefAccess</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ILibDef</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInLibDefInterfaces.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInLibDefInterfaces_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInILibDefInterfaces_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInScriptInterfaces.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/plugin/</path>
+    <filename>oaPlugInScriptInterfaces_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInScriptInterfaces.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInScriptInterfaces_8h</filename>
+    <class kind="class">IBaseValue</class>
+    <class kind="class">IScriptEngine</class>
+    <class kind="class">IScriptObserver</class>
+    <class kind="class">ITypeValue</class>
+    <class kind="class">IValue</class>
+    <class kind="class">IValueIter</class>
+    <class kind="class">IValueTypeInfo</class>
+    <class kind="class">IValueTypeLib</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInScriptInterfaces_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; char &gt;</type>
+      <name>ICharValue</name>
+      <anchor>a16</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; unsigned char &gt;</type>
+      <name>IByteValue</name>
+      <anchor>a17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; oa::oaInt2 &gt;</type>
+      <name>IInt16Value</name>
+      <anchor>a18</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; oa::oaUInt2 &gt;</type>
+      <name>IUInt16Value</name>
+      <anchor>a19</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; oa::oaInt4 &gt;</type>
+      <name>IInt32Value</name>
+      <anchor>a20</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; oa::oaUInt4 &gt;</type>
+      <name>IUInt32Value</name>
+      <anchor>a21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; oa::oaInt8 &gt;</type>
+      <name>IInt64Value</name>
+      <anchor>a22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; oa::oaUInt8 &gt;</type>
+      <name>IUInt64Value</name>
+      <anchor>a23</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IValue&lt; const char * &gt;</type>
+      <name>IStringValue</name>
+      <anchor>a24</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_PLUGIN_NAMESPACE OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IBaseValue</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IValueIter</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IScriptEngine</name>
+      <anchor>a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IValueInfo</name>
+      <anchor>a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IValueTypeLib</name>
+      <anchor>a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ITypeValue</name>
+      <anchor>a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_ICharValue</name>
+      <anchor>a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IByteValue</name>
+      <anchor>a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IInt16Value</name>
+      <anchor>a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IUInt16Value</name>
+      <anchor>a10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IInt32Value</name>
+      <anchor>a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IUInt32Value</name>
+      <anchor>a12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IInt64Value</name>
+      <anchor>a13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IUInt64Value</name>
+      <anchor>a14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IStringValue</name>
+      <anchor>a15</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInScriptInterfaces.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInScriptInterfaces_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInScriptInterfaces_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="function">
+      <type>const Guid &amp;</type>
+      <name>IValue&lt; oa::oaInt2 &gt;::getId</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Guid &amp;</type>
+      <name>IValue&lt; oa::oaUInt2 &gt;::getId</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Guid &amp;</type>
+      <name>IValue&lt; oa::oaInt4 &gt;::getId</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Guid &amp;</type>
+      <name>IValue&lt; oa::oaUInt4 &gt;::getId</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Guid &amp;</type>
+      <name>IValue&lt; oa::oaInt8 &gt;::getId</name>
+      <anchor>a5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Guid &amp;</type>
+      <name>IValue&lt; oa::oaUInt8 &gt;::getId</name>
+      <anchor>a6</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInTypes.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInTypes_8h</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInTypes_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_PLUGIN_DLL_API</name>
+      <anchor>a1</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>OA_PLUGIN_DLL_PVT</name>
+      <anchor>a2</anchor>
+      <init></init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>BEGIN_OA_PLUGIN_NAMESPACE</name>
+      <anchor>a3</anchor>
+      <init>namespace oaPlugIn {</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>END_OA_PLUGIN_NAMESPACE</name>
+      <anchor>a4</anchor>
+      <init>}</init>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>USE_OA_PLUGIN_NAMESPACE</name>
+      <anchor>a5</anchor>
+      <init>using namespace oaPlugIn;</init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInValue.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/plugin/</path>
+    <filename>oaPlugInValue_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInValue.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInValue_8h</filename>
+    <class kind="class">TypeValue</class>
+    <class kind="class">Value</class>
+    <class kind="class">Value&lt; const char * &gt;</class>
+    <class kind="class">ValuePtr&lt; T, 0 &gt;</class>
+    <class kind="class">ValuePtr&lt; T, 1 &gt;</class>
+    <class kind="class">ValueTraits</class>
+    <class kind="class">ValueTraits&lt; char &gt;</class>
+    <class kind="class">ValueTraits&lt; const char * &gt;</class>
+    <class kind="class">ValueTraits&lt; double &gt;</class>
+    <class kind="class">ValueTraits&lt; float &gt;</class>
+    <class kind="class">ValueTraits&lt; oa::oaInt2 &gt;</class>
+    <class kind="class">ValueTraits&lt; oa::oaInt4 &gt;</class>
+    <class kind="class">ValueTraits&lt; oa::oaInt8 &gt;</class>
+    <class kind="class">ValueTraits&lt; oa::oaUInt2 &gt;</class>
+    <class kind="class">ValueTraits&lt; oa::oaUInt4 &gt;</class>
+    <class kind="class">ValueTraits&lt; oa::oaUInt8 &gt;</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInValue_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInValue.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInValue_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInValue_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInVCInterfaces.dox</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/oa/doc/plugin/</path>
+    <filename>oaPlugInVCInterfaces_8dox</filename>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInVCInterfaces.h</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInVCInterfaces_8h</filename>
+    <class kind="class">IDMObjectStatus</class>
+    <class kind="class">IDMObjectVersion</class>
+    <class kind="class">IVCMessageObserver</class>
+    <class kind="class">IVCPlugIn</class>
+    <class kind="class">IVCSystem</class>
+    <class kind="class">IVersion</class>
+    <class kind="class">IVersionControl</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInVCInterfaces_P</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IDMObjectStatus *,&amp;IID_IDMObjectStatusIter &gt;</type>
+      <name>IDMObjectStatusIter</name>
+      <anchor>a4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IVersion *,&amp;IID_IVersionIter &gt;</type>
+      <name>IVersionIter</name>
+      <anchor>a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IIter&lt; IDMObjectVersion *,&amp;IID_IDMObjectVersionIter &gt;</type>
+      <name>IDMObjectVersionIter</name>
+      <anchor>a10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>BEGIN_OA_PLUGIN_NAMESPACE class</type>
+      <name>IDMObject</name>
+      <anchor>a1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMObjectStatus</name>
+      <anchor>a2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMObjectStatusIter</name>
+      <anchor>a3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IVersion</name>
+      <anchor>a5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IVersionIter</name>
+      <anchor>a6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMObjectVersion</name>
+      <anchor>a8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IDMObjectVersionIter</name>
+      <anchor>a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IVCMessageObserver</name>
+      <anchor>a11</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IVCSystem</name>
+      <anchor>a12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IVCPlugIn</name>
+      <anchor>a13</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>OA_PLUGIN_DLL_API const Guid</type>
+      <name>IID_IVersionControl</name>
+      <anchor>a14</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>oaPlugInVCInterfaces.inl</name>
+    <path>/lan/oa/builds1/icftcm/linux_rhel40_gcc44x/oa22.41/docInclude/oa/plugIn/</path>
+    <filename>oaPlugInVCInterfaces_8inl</filename>
+    <member kind="define">
+      <type>#define</type>
+      <name>oaPlugInVCInterfaces_I</name>
+      <anchor>a0</anchor>
+      <init></init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IAccessControl</name>
+    <filename>classIAccessControl.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>getAccess</name>
+      <anchor>a0</anchor>
+      <arglist>(oaLibAccessEnum accessType, oa::oaUInt4 timeOut)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>releaseAccess</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IAttr</name>
+    <filename>classIAttr.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getName</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getValue</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IBaseValue</name>
+    <filename>classIBaseValue.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual const char *</type>
+      <name>getType</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>toString</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ICell</name>
+    <filename>classICell.html</filename>
+    <base>IDMContainer</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getLib</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMLib *&amp;l)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getCellViews</name>
+      <anchor>a2</anchor>
+      <arglist>(ICellViewIter *&amp;cellViews)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ICellView</name>
+    <filename>classICellView.html</filename>
+    <base>IDMContainer</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getCell</name>
+      <anchor>a0</anchor>
+      <arglist>(ICell *&amp;c)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getView</name>
+      <anchor>a1</anchor>
+      <arglist>(IView *&amp;v)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getCellName</name>
+      <anchor>a2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getViewName</name>
+      <anchor>a3</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getViewType</name>
+      <anchor>a4</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ICellViewIter</name>
+    <filename>classICellViewIter.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>next</name>
+      <anchor>a0</anchor>
+      <arglist>(ICellView *&amp;objOut)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>reset</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="typedef">
+      <type>ICellView *</type>
+      <name>Type</name>
+      <anchor>s0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>ICellView</type>
+      <name>IType</name>
+      <anchor>s1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ICMPlugInBase</name>
+    <filename>classICMPlugInBase.html</filename>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~ICMPlugInBase</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getProtocols</name>
+      <anchor>a2</anchor>
+      <arglist>(oa::oaCMProtocolArray &amp;out) const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setProtocol</name>
+      <anchor>a3</anchor>
+      <arglist>(const oa::oaCMProtocol &amp;in)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>discardChangeSet</name>
+      <anchor>a4</anchor>
+      <arglist>(oa::oaChangeSetBase *in)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMAccess</name>
+    <filename>classIDMAccess.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>add</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMObject *object, bool checkExistence=false)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>addLeader</name>
+      <anchor>a1</anchor>
+      <arglist>(IDMFile *file)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>create</name>
+      <anchor>a2</anchor>
+      <arglist>(IDMObject *object)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>destroy</name>
+      <anchor>a3</anchor>
+      <arglist>(IDMObject *object)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getMappedName</name>
+      <anchor>a4</anchor>
+      <arglist>(NameSpace fromNS, const char *fromName, NameSpace toNS, IString *&amp;toName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IDMLib &gt;</type>
+      <name>getDMLib</name>
+      <anchor>a5</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="enumeration">
+      <name>NameSpace</name>
+      <anchor>s3</anchor>
+      <init>3</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cNativeNS</name>
+      <anchor>s3s0</anchor>
+      <init> 1</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cWinNS</name>
+      <anchor>s3s1</anchor>
+      <init> 2</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cUnixNS</name>
+      <anchor>s3s2</anchor>
+      <init> 3</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMContainer</name>
+    <filename>classIDMContainer.html</filename>
+    <base>IDMObject</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getDMFiles</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMFileIter *&amp;files)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMException</name>
+    <filename>classIDMException.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>IDMFile</name>
+    <filename>classIDMFile.html</filename>
+    <base>IDMObject</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getParent</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMObject *&amp;p)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getLeader</name>
+      <anchor>a2</anchor>
+      <arglist>(IDMFile *&amp;l)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isPrimary</name>
+      <anchor>a3</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isLeader</name>
+      <anchor>a4</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getFollowers</name>
+      <anchor>a5</anchor>
+      <arglist>(IDMFileIter *&amp;files)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isDMData</name>
+      <anchor>a6</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isTech</name>
+      <anchor>a7</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMLib</name>
+    <filename>classIDMLib.html</filename>
+    <base>IDMContainer</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getLibName</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getCells</name>
+      <anchor>a1</anchor>
+      <arglist>(ICellIter *&amp;cells)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getViews</name>
+      <anchor>a2</anchor>
+      <arglist>(IViewIter *&amp;views)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getCellViews</name>
+      <anchor>a3</anchor>
+      <arglist>(ICellViewIter *&amp;cellViews)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMObject</name>
+    <filename>classIDMObject.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isContainer</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isLib</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isCell</name>
+      <anchor>a2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isView</name>
+      <anchor>a3</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isCellView</name>
+      <anchor>a4</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>isDMFile</name>
+      <anchor>a5</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMObjectStatus</name>
+    <filename>classIDMObjectStatus.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getDMObject</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMObject *&amp;object)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>getStatus</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="enumeration">
+      <name>StatusEnum</name>
+      <anchor>s12</anchor>
+      <init>12</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cControlled</name>
+      <anchor>s12s0</anchor>
+      <init> 0x00000001</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cEditable</name>
+      <anchor>s12s1</anchor>
+      <init> 0x00000002</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cUpToDate</name>
+      <anchor>s12s2</anchor>
+      <init> 0x00000004</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cAdded</name>
+      <anchor>s12s3</anchor>
+      <init> 0x00000008</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cDeleted</name>
+      <anchor>s12s4</anchor>
+      <init> 0x00000010</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cModified</name>
+      <anchor>s12s5</anchor>
+      <init> 0x00000020</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cLocked</name>
+      <anchor>s12s6</anchor>
+      <init> 0x00000040</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cMerged</name>
+      <anchor>s12s7</anchor>
+      <init> 0x00000080</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cConflict</name>
+      <anchor>s12s8</anchor>
+      <init> 0x00000100</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cMissing</name>
+      <anchor>s12s9</anchor>
+      <init> 0x00000200</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cRemote</name>
+      <anchor>s12s10</anchor>
+      <init> 0x00000400</init>
+    </member>
+    <member kind="enumvalue">
+      <name>cAllStatus</name>
+      <anchor>s12s11</anchor>
+      <init> 0xFFFFFFFF</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMObjectVersion</name>
+    <filename>classIDMObjectVersion.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getDMObject</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMObject *&amp;object)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getVersion</name>
+      <anchor>a1</anchor>
+      <arglist>(IVersion *&amp;version)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IDMSystemCaps</name>
+    <filename>classIDMSystemCaps.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>queryCapability</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>getMetric</name>
+      <anchor>a1</anchor>
+      <arglist>(const char *name, oa::oaUInt4 &amp;metric)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>getMetric</name>
+      <anchor>a2</anchor>
+      <arglist>(const char *name, double &amp;metric)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IExport</name>
+    <filename>classIExport.html</filename>
+    <base>ICMPlugInBase</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~IExport</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>exportFull</name>
+      <anchor>a1</anchor>
+      <arglist>(oa::oaChangeSetBase *changeSet)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>exportIncr</name>
+      <anchor>a2</anchor>
+      <arglist>(oa::oaChangeSetBase *changeSet)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ILib</name>
+    <filename>classILib.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *libName, const char *libPath, oaLibModeEnum libMode, const char *writePath, IDMAccess *dmAccess, IAttrIter *dmAttrs=NULL)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>libPreCreate</name>
+      <anchor>a2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>libPostCreate</name>
+      <anchor>a3</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>libPreOpen</name>
+      <anchor>a4</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>libPostOpen</name>
+      <anchor>a5</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>libPreClose</name>
+      <anchor>a6</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellCreate</name>
+      <anchor>a7</anchor>
+      <arglist>(const char *cellName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>cellFind</name>
+      <anchor>a8</anchor>
+      <arglist>(const char *cellName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>cellValidate</name>
+      <anchor>a9</anchor>
+      <arglist>(const char *cellName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellPreFind</name>
+      <anchor>a10</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellValidateDestroy</name>
+      <anchor>a11</anchor>
+      <arglist>(ICell *cell)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellDestroy</name>
+      <anchor>a12</anchor>
+      <arglist>(ICell *cell)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>viewCreate</name>
+      <anchor>a13</anchor>
+      <arglist>(const char *viewName, const char *viewType)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>viewFind</name>
+      <anchor>a14</anchor>
+      <arglist>(const char *viewName, const char *viewType)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>viewValidate</name>
+      <anchor>a15</anchor>
+      <arglist>(const char *viewName, const char *viewType)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>viewPreFind</name>
+      <anchor>a16</anchor>
+      <arglist>(const char *viewName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>viewPreFind</name>
+      <anchor>a17</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>viewValidateDestroy</name>
+      <anchor>a18</anchor>
+      <arglist>(IView *view)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>viewDestroy</name>
+      <anchor>a19</anchor>
+      <arglist>(IView *view)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewCreate</name>
+      <anchor>a20</anchor>
+      <arglist>(const char *cName, const char *vName, const char *vtName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>cellViewFind</name>
+      <anchor>a21</anchor>
+      <arglist>(const char *cName, const char *vName, const char *vtName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>cellViewFindViewType</name>
+      <anchor>a22</anchor>
+      <arglist>(const char *cName, const char *vName, char *vtName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>cellViewValidate</name>
+      <anchor>a23</anchor>
+      <arglist>(const char *cName, const char *vName, const char *vtName)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewPreFind</name>
+      <anchor>a24</anchor>
+      <arglist>(ICell *cell)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewPreFind</name>
+      <anchor>a25</anchor>
+      <arglist>(IView *view)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewPreFind</name>
+      <anchor>a26</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewPreSetView</name>
+      <anchor>a27</anchor>
+      <arglist>(ICellView *cv, IView *view, IDMFile *newPrimary)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewPostSetView</name>
+      <anchor>a28</anchor>
+      <arglist>(ICellView *cv)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewValidateDestroy</name>
+      <anchor>a29</anchor>
+      <arglist>(ICellView *cv)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cellViewDestroy</name>
+      <anchor>a30</anchor>
+      <arglist>(ICellView *cv)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>fileCreate</name>
+      <anchor>a31</anchor>
+      <arglist>(const char *name, IDMObject *parent, bool primary)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>fileFind</name>
+      <anchor>a32</anchor>
+      <arglist>(const char *name, IDMObject *parent)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>fileValidate</name>
+      <anchor>a33</anchor>
+      <arglist>(const char *name, IDMObject *parent)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>filePreFind</name>
+      <anchor>a34</anchor>
+      <arglist>(IDMObject *parent)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>filePreSetLeader</name>
+      <anchor>a35</anchor>
+      <arglist>(IDMFile *file, IDMFile *leader)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>filePostSetLeader</name>
+      <anchor>a36</anchor>
+      <arglist>(IDMFile *file)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>filePreSetName</name>
+      <anchor>a37</anchor>
+      <arglist>(IDMFile *file, const char *name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>filePostSetName</name>
+      <anchor>a38</anchor>
+      <arglist>(IDMFile *file)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>fileValidateDestroy</name>
+      <anchor>a39</anchor>
+      <arglist>(IDMFile *file)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>fileDestroy</name>
+      <anchor>a40</anchor>
+      <arglist>(IDMFile *file)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>fileGetCache</name>
+      <anchor>a41</anchor>
+      <arglist>(IDMFile *file, IString *&amp;path)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>fileReleaseCache</name>
+      <anchor>a42</anchor>
+      <arglist>(IDMFile *file, const char *path)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getPath</name>
+      <anchor>a43</anchor>
+      <arglist>(IDMFile *file, IString *&amp;path)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getTempFile</name>
+      <anchor>a44</anchor>
+      <arglist>(IDMObject *dmObject, bool sameFileSystem, IString *&amp;path)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getDMSystemName</name>
+      <anchor>a45</anchor>
+      <arglist>(IString *&amp;dmSystem)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getAttributes</name>
+      <anchor>a46</anchor>
+      <arglist>(IAttrIter *&amp;dmAttrs)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setAttributes</name>
+      <anchor>a47</anchor>
+      <arglist>(IAttrIter *dmAttrs)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getPath</name>
+      <anchor>a48</anchor>
+      <arglist>(IDMFile *file, oaSaveRecoverTypeEnum type, IString *&amp;path)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>fileCreate</name>
+      <anchor>a49</anchor>
+      <arglist>(IDMFile *file, oaSaveRecoverTypeEnum type)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>fileValidateDestroy</name>
+      <anchor>a50</anchor>
+      <arglist>(IDMFile *file, oaSaveRecoverTypeEnum type)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>fileDestroy</name>
+      <anchor>a51</anchor>
+      <arglist>(IDMFile *file, oaSaveRecoverTypeEnum type)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>exists</name>
+      <anchor>a52</anchor>
+      <arglist>(IDMFile *file, oaSaveRecoverTypeEnum type)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ILibDef</name>
+    <filename>classILibDef.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaLibDefList *</type>
+      <name>open</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaLibDefList *</type>
+      <name>open</name>
+      <anchor>a1</anchor>
+      <arglist>(const oa::oaString &amp;filePath, oa::oaBoolean openReferences)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>save</name>
+      <anchor>a2</anchor>
+      <arglist>(const oa::oaLibDefList *libList)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>saveAs</name>
+      <anchor>a3</anchor>
+      <arglist>(const oa::oaLibDefList *libList, const oa::oaString &amp;path)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getDefaultPath</name>
+      <anchor>a4</anchor>
+      <arglist>(oa::oaString &amp;defaultPath)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getDefaultFileName</name>
+      <anchor>a5</anchor>
+      <arglist>(oa::oaString &amp;filename)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaBoolean</type>
+      <name>hasPath</name>
+      <anchor>a6</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaBoolean</type>
+      <name>hasWritePath</name>
+      <anchor>a7</anchor>
+      <arglist>() const=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getLibPath</name>
+      <anchor>a8</anchor>
+      <arglist>(const oa::oaLibDef *libDef, oa::oaString &amp;libPath)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getLibWritePath</name>
+      <anchor>a9</anchor>
+      <arglist>(const oa::oaLibDef *libDef, oa::oaString &amp;libWritepath)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>init</name>
+      <anchor>a10</anchor>
+      <arglist>(ILibDefAccess *libDefAccess)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ILibDefAccess</name>
+    <filename>classILibDefAccess.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>warn</name>
+      <anchor>a0</anchor>
+      <arglist>(const oa::oaLibDefList *defList, const oa::oaString &amp;message)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ILocking</name>
+    <filename>classILocking.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>lock</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMFile *obj)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>unlock</name>
+      <anchor>a1</anchor>
+      <arglist>(IDMFile *obj)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>getLockStatus</name>
+      <anchor>a2</anchor>
+      <arglist>(IDMFile *obj)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IScriptEngine</name>
+    <filename>classIScriptEngine.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual Value</type>
+      <name>eval</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *code)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Value</type>
+      <name>eval</name>
+      <anchor>a1</anchor>
+      <arglist>(const char *fun, IValueIter *args)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setVariable</name>
+      <anchor>a2</anchor>
+      <arglist>(const char *name, IBaseValue *value)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual Value</type>
+      <name>getVariable</name>
+      <anchor>a3</anchor>
+      <arglist>(const char *name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>defineProc</name>
+      <anchor>a4</anchor>
+      <arglist>(const char *name, IBaseValue *body)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>undefineProc</name>
+      <anchor>a5</anchor>
+      <arglist>(const char *name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>addObserver</name>
+      <anchor>a6</anchor>
+      <arglist>(IScriptObserver *observer)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>removeObserver</name>
+      <anchor>a7</anchor>
+      <arglist>(IScriptObserver *observer)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="typedef">
+      <type>SRef&lt; IBaseValue &gt;</type>
+      <name>Value</name>
+      <anchor>s0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IScriptObserver</name>
+    <filename>classIScriptObserver.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>onOutput</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *out)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ITracking</name>
+    <filename>classITracking.html</filename>
+    <base>ICMPlugInBase</base>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~ITracking</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>beginTracking</name>
+      <anchor>a1</anchor>
+      <arglist>(const oa::oaString &amp;name)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>endTracking</name>
+      <anchor>a2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ITypeValue</name>
+    <filename>classITypeValue.html</filename>
+    <base>IBaseValue</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void *</type>
+      <name>getValue</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setValue</name>
+      <anchor>a1</anchor>
+      <arglist>(void *value)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IValue</name>
+    <filename>classIValue.html</filename>
+    <templarg>T</templarg>
+    <base>IBaseValue</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual T</type>
+      <name>getValue</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setValue</name>
+      <anchor>a1</anchor>
+      <arglist>(T value)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IValueIter</name>
+    <filename>classIValueIter.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>next</name>
+      <anchor>a0</anchor>
+      <arglist>(IBaseValue *&amp;objOut)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>reset</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="typedef">
+      <type>IBaseValue *</type>
+      <name>Type</name>
+      <anchor>s0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>IBaseValue</type>
+      <name>IType</name>
+      <anchor>s1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IValueTypeInfo</name>
+    <filename>classIValueTypeInfo.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IBaseValue &gt;</type>
+      <name>bind</name>
+      <anchor>a0</anchor>
+      <arglist>(void *ptr)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IValueTypeLib</name>
+    <filename>classIValueTypeLib.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IValueTypeInfo &gt;</type>
+      <name>getValueInfo</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *name)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IVCMessageObserver</name>
+    <filename>classIVCMessageObserver.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>onMessageOut</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMObject *object, oa::oaUInt4 operation, oa::oaUInt4 msgType, const char *text)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IVCPlugIn</name>
+    <filename>classIVCPlugIn.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>init</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *dmSystemName, const char *libName, IDMAccess *dmAccess, IAttrIter *attrs)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>setAttributes</name>
+      <anchor>a1</anchor>
+      <arglist>(IAttrIter *attrs)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getAttributes</name>
+      <anchor>a2</anchor>
+      <arglist>(IAttrIter *&amp;attrs)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>newVersionObject</name>
+      <anchor>a3</anchor>
+      <arglist>(IVersion *&amp;version, const char *displayName=NULL)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IVCSystem</name>
+    <filename>classIVCSystem.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getName</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>testCapability</name>
+      <anchor>a1</anchor>
+      <arglist>(oa::oaUInt4 capability)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getControlledLibs</name>
+      <anchor>a2</anchor>
+      <arglist>(IDMLibIter *&amp;libs)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>newVersionObject</name>
+      <anchor>a3</anchor>
+      <arglist>(IVersion *&amp;version, const char *displayName=NULL)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IVersion</name>
+    <filename>classIVersion.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getVCSystemName</name>
+      <anchor>a0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getDisplayName</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>compare</name>
+      <anchor>a2</anchor>
+      <arglist>(IVersion *other)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IVersionControl</name>
+    <filename>classIVersionControl.html</filename>
+    <base>IBase</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getVCSystem</name>
+      <anchor>a0</anchor>
+      <arglist>(IVCSystem *&amp;system)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>addObserver</name>
+      <anchor>a1</anchor>
+      <arglist>(IVCMessageObserver *observer)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>removeObserver</name>
+      <anchor>a2</anchor>
+      <arglist>(IVCMessageObserver *observer)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual oa::oaUInt4</type>
+      <name>getStatus</name>
+      <anchor>a3</anchor>
+      <arglist>(IDMObject *object, oa::oaUInt4 mask=IDMObjectStatus::cAllStatus)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getStatus</name>
+      <anchor>a4</anchor>
+      <arglist>(IDMObjectStatusIter *&amp;info, IDMContainer *cont, oa::oaUInt4 depth=oacCellViewFileVCQueryDepth, oa::oaUInt4 mask=IDMObjectStatus::cAllStatus)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getControlledObjects</name>
+      <anchor>a5</anchor>
+      <arglist>(IDMObjectIter *&amp;objects, oa::oaUInt4 depth=oacCellViewFileVCQueryDepth, IDMObject *top=NULL, bool localOnly=false)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getVersions</name>
+      <anchor>a6</anchor>
+      <arglist>(IVersionIter *&amp;versions, IDMObject *object)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getWorkingVersion</name>
+      <anchor>a7</anchor>
+      <arglist>(IVersion *&amp;version, IDMObject *object)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getWorkingVersions</name>
+      <anchor>a8</anchor>
+      <arglist>(IDMObjectVersionIter *&amp;objects, IDMContainer *cont, oa::oaUInt4 depth=oacCellViewFileVCQueryDepth)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>update</name>
+      <anchor>a9</anchor>
+      <arglist>(IVersion *version, IDMObject *object, bool recurse=true, const char *options=NULL)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>makeEditable</name>
+      <anchor>a10</anchor>
+      <arglist>(IDMObject *object, bool lock, bool recurse=true, const char *options=NULL)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>cancelEdit</name>
+      <anchor>a11</anchor>
+      <arglist>(IDMObject *object, bool recurse=true, const char *options=NULL)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>commitEdits</name>
+      <anchor>a12</anchor>
+      <arglist>(IDMObject *object, const char *comment, bool recurse=true, bool keepEditable=false, const char *options=NULL)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>setControlled</name>
+      <anchor>a13</anchor>
+      <arglist>(IDMObject *object, bool recurse=true, const char *options=NULL)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>unsetControlled</name>
+      <anchor>a14</anchor>
+      <arglist>(IDMObject *object, bool recurse=true, bool keepLocal=true, const char *options=NULL)=0</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>IView</name>
+    <filename>classIView.html</filename>
+    <base>IDMContainer</base>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getLib</name>
+      <anchor>a0</anchor>
+      <arglist>(IDMLib *&amp;l)=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getName</name>
+      <anchor>a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>getViewType</name>
+      <anchor>a2</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>getCellViews</name>
+      <anchor>a3</anchor>
+      <arglist>(ICellViewIter *&amp;cellViews)=0</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>const Guid &amp;</type>
+      <name>getId</name>
+      <anchor>d0</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>TypeValue</name>
+    <filename>classTypeValue.html</filename>
+    <base>PlugInBase&lt; ITypeValue &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>TypeValue</name>
+      <anchor>a0</anchor>
+      <arglist>(void *v, const char *t)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~TypeValue</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>toString</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void *</type>
+      <name>getValue</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setValue</name>
+      <anchor>a5</anchor>
+      <arglist>(void *v)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Value</name>
+    <filename>classValue.html</filename>
+    <templarg>T</templarg>
+    <base>PlugInBase&lt; IValue&lt; T &gt; &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>Value</name>
+      <anchor>a0</anchor>
+      <arglist>(T v)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~Value</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>toString</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual T</type>
+      <name>getValue</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setValue</name>
+      <anchor>a5</anchor>
+      <arglist>(T v)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>Value&lt; const char * &gt;</name>
+    <filename>classValue_3_01const_01char_01_5_01_4.html</filename>
+    <base>PlugInBase&lt; IStringValue &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>Value</name>
+      <anchor>a0</anchor>
+      <arglist>(const char *v)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual</type>
+      <name>~Value</name>
+      <anchor>a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getType</name>
+      <anchor>a2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual SRef&lt; IString &gt;</type>
+      <name>toString</name>
+      <anchor>a3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual const char *</type>
+      <name>getValue</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>setValue</name>
+      <anchor>a5</anchor>
+      <arglist>(const char *v)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValuePtr&lt; T, 0 &gt;</name>
+    <filename>classValuePtr_3_01T_00_010_01_4.html</filename>
+    <templarg>T</templarg>
+    <base>SPtr&lt; IBaseValue &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a1</anchor>
+      <arglist>(T value, const char *type)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a2</anchor>
+      <arglist>(IBaseValue *in, const char *type)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a3</anchor>
+      <arglist>(const SRef&lt; IBaseValue &gt; &amp;in, const char *type)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>getValue</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ValuePtr&lt; T, 0 &gt; &amp;</type>
+      <name>operator=</name>
+      <anchor>a5</anchor>
+      <arglist>(const SRef&lt; IBaseValue &gt; &amp;v)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValuePtr&lt; T, 1 &gt;</name>
+    <filename>classValuePtr_3_01T_00_011_01_4.html</filename>
+    <templarg>T</templarg>
+    <base>SPtr&lt; IBaseValue &gt;</base>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a1</anchor>
+      <arglist>(T v)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a2</anchor>
+      <arglist>(IBaseValue *in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ValuePtr</name>
+      <anchor>a3</anchor>
+      <arglist>(const SRef&lt; IBaseValue &gt; &amp;in)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>operator T</name>
+      <anchor>a4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ValuePtr &amp;</type>
+      <name>operator=</name>
+      <anchor>a5</anchor>
+      <arglist>(T v)</arglist>
+    </member>
+    <member kind="function">
+      <type>ValuePtr &amp;</type>
+      <name>operator=</name>
+      <anchor>a6</anchor>
+      <arglist>(const SRef&lt; IBaseValue &gt; &amp;v)</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits</name>
+    <filename>classValueTraits.html</filename>
+    <templarg>T</templarg>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 0</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; char &gt;</name>
+    <filename>classValueTraits_3_01char_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; const char * &gt;</name>
+    <filename>classValueTraits_3_01const_01char_01_5_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; double &gt;</name>
+    <filename>classValueTraits_3_01double_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; float &gt;</name>
+    <filename>classValueTraits_3_01float_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; oa::oaInt2 &gt;</name>
+    <filename>classValueTraits_3_01oa_1_1oaInt2_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; oa::oaInt4 &gt;</name>
+    <filename>classValueTraits_3_01oa_1_1oaInt4_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; oa::oaInt8 &gt;</name>
+    <filename>classValueTraits_3_01oa_1_1oaInt8_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; oa::oaUInt2 &gt;</name>
+    <filename>classValueTraits_3_01oa_1_1oaUInt2_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; oa::oaUInt4 &gt;</name>
+    <filename>classValueTraits_3_01oa_1_1oaUInt4_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>ValueTraits&lt; oa::oaUInt8 &gt;</name>
+    <filename>classValueTraits_3_01oa_1_1oaUInt8_01_4.html</filename>
+    <member kind="enumvalue">
+      <name>isPrimitive</name>
+      <anchor>s1s0</anchor>
+      <init> 1</init>
+    </member>
+  </compound>
+</tagfile>

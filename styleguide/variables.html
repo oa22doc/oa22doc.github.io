@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Variables</h1>
+<hr />
+
+<p>Use variables with care. Improper use can affect code readability and 
+performance. </p>
+<p>This section describes:</p>
+<ul>
+  <li><a href="#1">Global Variables</a></li>
+  <li><a href="#2">Static Variables</a></li>
+  <li><a href="#3">Local Variables</a></li>
+  <li><a href="#4">#define Statements</a></li>
+</ul>
+<br /><br />
+
+
+<h2><a name="1"></a>Global Variables</h2>
+
+<p>Avoid global variables whenever possible. Use 
+<a href="classstruc.html#4">static class members</a> instead.</p>
+<br /><br />
+
+
+<h2><a name="2">Static Variables</a></h2>
+
+<p>Use static variables with care. They can be problematic when developing code 
+that must run under multiple threads. </p>
+<p>Developers often 
+   use static variables  in functions that return a value or 
+  object that is generated or computed dynamically. The easiest solution is 
+  to keep a static variable in which the computed value is placed, and return 
+  a pointer to the static variable. The problem is that if multiple threads 
+  attempt to execute the function at the same time, one of them will overwrite 
+  the results for the other.</p>
+<p>The best solution in this case is to design the function so that the caller 
+passes in the value or object to be filled out. This is a common place to use 
+references.</p><br /><br />
+
+
+<h2><a name="3">Local Variables</a></h2>
+
+<p>When using a C++ compiler, local variables can be declared anywhere within 
+a file or body of a function. Declare local variables as late in the code as 
+appropriate. 
+
+
+Place one blank line after each group of variable declarations, and place one blank line before each group except when&nbsp;it immediately follows an opening brace. </p>
+
+<p>For example:</p><br />
+
+<pre>
+// In this function, 'iter' and 'shape' are declared inside the if block, and
+// therefore are only constructed if the if clause is used.
+myFunc(const oaNet      &amp;net,
+        const oaTerm    &amp;term)
+{
+    oaString    netName;
+    oaString    termName;
+
+    net.getName(netName);
+    term.getName(termName);
+
+    if (netName == termName) {
+        oaNetShapeIter  iter;
+        oaShape         shape;
+
+        while (iter.getNext(shape)) {
+            . 
+            .
+            .
+        }
+    }
+}
+</pre><br />
+
+<p>Define local variables using the most limited scope possible. The previous 
+example could have declared <code>iter</code> and <code>shape</code> just above 
+the <code>if</code> statement. However, because these variables are only used inside 
+the <code>if</code> block, they should be placed inside the block, limiting their 
+scope and ensuring they are only constructed  when the <code>if</code> clause is true.</p>
+
+<p>Declare only one local variable per line. This adds clarity to variable 
+definitions and encourages variable construction or initialization at the same 
+time as the declaration.</p>
+
+<p>For example, the following is incorrect:</p>
+
+<pre>
+	// Don't do this.
+	oaUInt4 termIndex, netIndex, shapeIndex;
+
+	termIndex = term.index;
+	netIndex = termTbl::getNet(termIndex);
+	shapeIndex = netTbl::getFirstShape(netIndex);
+</pre>
+
+<p>Instead, put each variable on its own line and do as much initialization or 
+construction as possible:</p>
+
+<pre>
+	// This is much cleaner, and sometimes more efficient.
+	oaUInt4 termIndex       = term.index;
+	oaUInt4 netIndex        = termTbl::getNet(termIndex);
+	oaUInt4 shapeIndex      = netTbl::getFirstShape(netIndex);
+</pre>
+
+<p>This example also illustrates another guideline. If you initialize several 
+related variables together, align the assignments using indentation unless this makes the code more difficult to read.</p>
+<p> Local variables can be declared within the expression of a <code>while</code> loop and within the initializer of a&nbsp;<code>for</code> loop.&nbsp; Use a space (not a tab) to separate the type and the name of the variable. </p>
+<p>For example: </p>
+<pre>
+
+
+while (oaProp *prop = iter.getNext()) { 
+    prop-&gt;destroy();  
+} 
+
+for (oaUInt4 i = 0; i &lt; numUsed; i++) {  
+    if (!isDeleted(i)) { 
+        hashTbl-&gt;add(i);  
+    } 
+}  
+
+</pre>
+<h2><a name="4"></a>#define Statements</h2>
+
+<p>The <code>#define</code> statement is a pre-processor instruction. The 
+compiler simply inserts the specified value into the code whereever it sees
+the defined value.</p>
+
+<p>For example, if you use the following statement, whereever 
+<code>myInitVar</code> appears, the compiler inserts the value 
+<code>20</code>:</p>
+
+<pre>
+#define myInitVar       20
+</pre>
+
+<p>Most debuggers cannot properly handle this situation; if you ask the 
+debugger for the value of <code>myInitVar</code>, the debugger doesn't know. 
+It doesn't even know it is a variable.</p>
+
+<p>Some compilers duplicate storage for the variable if a <code>#define</code>
+statement is used. Also, there is no typing associated with a 
+<code>#define</code> variable.</p>
+
+<p>Instead of using <code>#define</code>, define a const variable. For example:</p>
+
+<pre>
+const oaUInt4   myInitVar = 20;
+</pre>
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+
+</div><br />
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

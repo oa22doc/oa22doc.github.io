@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>General Coding Standards</h1>
+<hr />
+
+<p>The following standards should be applied to  all source code and 
+header files. In most cases, these standards improve readability; where noted, 
+they may also affect performance.</p>
+
+<ul>
+<li><a href="#1">Binary Operators</a></li>
+<li><a href="#2">Unary Operators</a></li>
+<li><a href="#casts">Using Casts</a></li>
+<li><a href="#3"><b>.</b> and -&gt; Operators</a></li>
+<li><a href="#4">Pointer and Reference Declarations</a></li>
+<li><a href="#5">Braces</a></li>
+<li><a href="#6"><code>if</code> Statements</a></li>
+<li><a href="#7"><code>while</code> Statements</a></li>
+<li><a href="#8"><code>switch</code> Statements</a></li>
+<li><a href="#9"><code>for</code> Loops</a></li>
+<li><a href="#10"><code>do/while</code> Loops</a></li>
+<li><a href="#11">Function Calls</a></li>
+<li><a href="#12">Semicolons to Terminate Statements</a></li>
+<li><a href="#13">Multi-Line Statements</a></li>
+<li><a href="#14">Parentheses</a></li>
+<li><a href="#array_init">Array Initializers </a></li>
+<li><a href="#15">Signed or Unsigned Declarations?</a></li>
+<li><a href="#16">Pointers or References?</a></li>
+<li><a href="#17">Remove Test Code</a></li>
+<li><a href="#18">Compile Time Directives</a></li>
+</ul>
+<br /><br />
+
+
+<h2><a name="1">Binary Operators</a></h2>
+
+<p>Use the following format for binary operators (arithmetic operators, logical 
+operators, and so on). Include a single space on either side of the operator.</p> 
+
+<pre>
+	b = a + b;
+	myObj.getWidth() &lt; 5
+	xyz ^ abc
+</pre><br /><br />
+
+
+<h2><a name="2">Unary Operators</a></h2>
+
+<p>Use the following format for unary operators (increment, 
+decrement, bit-wise negation, bit-wise inverse, and so on).</p>
+
+<pre>
+	xyz += myVar;
+	flags |= ~bitMask
+	myCount++;
+	++myCount;<br>
+	if (!abc) {
+	 . . .
+	}
+</pre>
+
+<h2><a name="casts"></a>Using Casts</h2>
+<p>When writing a cast, use <code>const_cast&lt;&gt;</code> and <code>reinterpret_cast&lt;&gt;</code> if your compiler supports them. The rules for <code>reinterpret_cast&lt;&gt;</code> are complicated, but it cannot be used in contexts where <code>const_cast&lt;&gt;</code> is appropriate and cannot be used indiscriminately. C++ guarantees very little about the semantics of <code>reinterpret_cast&lt;&gt;</code> except that when casting from one type to another type, and then casting back from the second type to the original, the correct value is preserved. Use of <code>reinterpret_cast&lt;&gt;</code> does not ensure portability, but it is much easier locating uses of <code>reinterpret_cast&lt;&gt;</code> in the code (for examination during porting efforts) than locating uses of C-style casts.</p>
+<p>Do not use <code>static_cast*&lt;&gt;</code>. Instead, use the older styles:</p>
+  <ul>
+  <li>value(valueIn)</li> 
+  <li>(oaAppDefTbl*) dTbl</li>
+  </ul> 
+
+<p><strong>Note</strong>: When the type cast is a pointer type, there is no space between the base type name and the * or &amp;. However, a single space is used between the pointer type cast operator and its operand.</p>
+
+
+
+
+<h2><a name="3">&nbsp;<b>.</b> and -&gt; Operators</a></h2>
+
+<p>Use the following format for an object dereference and a pointer 
+dereference. Do not include a space on either side of the dereference 
+operators.</p>
+
+<pre>
+	width = path.getWidth();
+	bufLen += string-&gt;getLength();
+</pre><br /><br />
+
+
+<h2><a name="4">Pointer and Reference Declarations</a></h2>
+
+<p>When declaring pointers and references, place the <b>&amp;</b> and <b>*</b> 
+symbols before the variable name, not after the type. This makes pointer 
+and reference variable types more obvious and easier to recognize.</p>
+
+<pre>
+	// The following code declares a pointer to a string 
+	// and a reference to a string, respectively.
+	oaString	*oldCellName;                          // There must be at least one space between the type and the 
+	const oaString	&amp;cellName = cellView.getCellName();    // pointer or reference symbol. (Typically, four spaces or more.)
+
+	// These are incorrect!
+	oaString*	oldLibName;
+	const oaString&amp; libName = cellView.getLibName();
+	
+	// Inside conditional expressions, the spacing in the first example below is preferred, but the second example is allowed.
+	while(oaInst *inst ...   // Preferable to have the symbol next to the variable name.
+	while(oaInst * inst ...  // One space between the symbol and the variable name is also allowed.
+	
+</pre>
+<br /><br />
+
+
+<h2><a name="5">Braces</a></h2>
+
+<p>Braces enclose blocks of code to control code execution and limit the 
+scope of variables. Indent all statements inside of braces by one shift-width. 
+(The only exception to this is <a href="#8"><code>switch</code> statements</a>.) 
+
+
+Place the first statement&nbsp;on the&nbsp;line immediately&nbsp;after the opening brace; place the last statement&nbsp;on the line immediately before the closing brace. </p>
+
+<pre>
+	// This example shows the use of braces even when 
+	// the body is quite simple.
+	while (abc++ &lt; 10) {
+	    myFunct(abc);
+	}
+
+	// This block must use braces.
+	if (abc &lt; 10) {
+	    myFunc(abc);
+	    flag = TRUE;
+	}
+
+	// Be sure to use braces at every level of code block.
+	if (abc &lt; 10) {
+	    while (abc &lt; 4) {
+	        numCount++;
+	    }
+	}
+</pre>
+
+<p>If the base class in a class definition is an instantiation of a template, there must be a single space between the closing angle-bracket and the opening brace. The following examples show first incorrect formatting and then the correct formatting.</p>
+<pre>
+// This example uses no space between the closing angle bracket
+// of the template declaration and the opening brace.
+class OA_BASE_DLL_API oaPointArray : public oaArray&lt;oaPoint&gt;{
+public:
+    oaPointArray(oaUInt4    sizeIn = 0);
+    .
+    .			
+    .
+};
+
+// This example uses the correct space between the closing angle bracket
+// of the template declaration and the opening brace.
+class OA_BASE_DLL_API oaPointArray : public oaArray&lt;oaPoint&gt; {
+public:
+    oaPointArray(oaUInt4    sizeIn = 0);
+    .
+    .
+    .
+};
+</pre> 
+ 
+
+<p>Position braces consistently. When using braces to enclose the code for a 
+conditional statement (if, for, while, switch, and so on), place the opening brace at the end of the line containing the 
+conditional statement. Place the closing brace for the <code>if</code> clause 
+on the same line as the beginning of the <code>else</code> statement.</p>
+
+<pre>
+	// Putting the braces in the correct place makes it easier to
+	// pick out the different clauses.
+	if (abc &lt; xyz) {
+	    .
+	    .
+	    .
+	} else {
+	    .
+	    .
+	    .
+	}
+
+	for (oaUInt4 i = 0; i &lt; 10; i++) {
+	    .
+	    .
+	    .
+	}
+</pre>
+
+<p>Do not put the opening braces on their own lines. The following examples 
+show incorrect brace placements.</p>
+
+<pre>
+	// This is wrong because the opening brace is on a separate line and
+	// because the following else statement is on a separate line from the 
+	// closing brace for the if statement.
+	if (abc &lt; xyz)
+	{
+	    .
+	    .
+	}
+	else {
+	    .
+	    .
+	    .
+	}
+
+	// This is wrong because the closing brace is not on its own line and
+	// is more difficult to see.
+	for (oaUInt4 index = 0; index &lt; maxIndex; index++) {
+	    .
+	    .
+	    .
+	    totNum += index;}
+
+
+	// This is wrong because there no braces and the body of the
+	// conditional statement is on the same line as the <code>if</code>.
+	If (abc &lt; 10) x = y;
+</pre>
+<h3><br />
+</h3>
+
+<h2><a name="6">If Statements</a></h2>
+
+<p>Use the following format for <code>if</code> statements. Include a single 
+space between the <code>if</code> and <code>else</code> keywords and the left 
+parenthesis, and a single space between the right parenthesis and the 
+following open brace.</p>
+
+<pre>
+	if (abc &lt; xyz) {
+	    .
+	    .
+	} else if (abc &lt; var) {
+	    .
+	    .
+	} else {
+	    .
+	    .
+	}
+</pre>
+<br />
+<h2><a name="7">While Statements</a></h2>
+
+<p>The format for <code>while</code> statements is similar to <code>if</code> 
+statements. Include a single space between the <code>while</code> keyword 
+and the left parenthesis, and a single space between the right parenthesis 
+and the following open brace.</p>
+
+<pre>
+	// This while statement only contains one line, but still uses braces.
+	while (abc < 20) {
+	    myFunc(abc++);
+	}
+
+	// This while statement uses braces and it encloses multiple lines.
+	while (! myFunc(abc++)) {
+	    numCount++;
+	    flags |= myOtherFunc(xyz);
+	}
+</pre><br /><br />
+
+
+<h2><a name="8">Switch Statements</a></h2>
+
+<p><code>switch</code> statements use a somewhat unique structure to avoid 
+requiring too many indentations. Include a single space between the 
+<code>switch</code> keyword and the left parenthesis, and a single space 
+between the right parenthesis and the following open brace.</p>
+
+<p>The <code>case</code> statements are aligned with <code>switch</code>. Optionally, separate the code for each case with one empty line 
+if the case code blocks are long and would otherwise visually run together.</p>
+
+<pre>
+    // The 'case' statements are aligned with 'switch'. The case bodies are  
+    // four spaces inside the case statements.
+    switch (type) {
+    case oacRectType:
+        numRects++;
+        break;
+
+    case oacPolygonType:
+        numPolgyons++;
+        break;
+
+    case oacPathType:
+        numPaths++;
+        break;
+
+    default:
+        throw oacInvalidObjectTypeError;
+    }
+</pre>
+
+<p><code>switch</code> statements often require braces around the contents of 
+a particular case because variables are declared in the case and must have 
+local scope within the case only. In this situation, use the indentation 
+shown in the next example. Indent the braces past the case statement just as 
+any other part of a case block of code. Then further indent the code within 
+the braces, because there may be code that is part of the case that is not 
+within the braces.</p>
+
+<p>The braces should enclose the minimum amount of code to limit the scope of 
+local variables within the case.</p>
+
+<pre>
+	switch (type) {
+	.
+	.
+	.
+	case oacPolygonType:
+	    {
+	        oaNet   net;
+
+	        polygon.getNet(net);
+	        .
+	        .
+	        .
+	        numBits = net.getNumBits();
+	    }
+
+	    totNumBits += numBits;
+	    break;
+	.
+	.
+	.
+	}
+</pre><br /><br />
+
+
+<h2><a name="9">For Loops</a></h2>
+
+<p>Use the following format for a <code>for</code> loop. Include a single 
+space between the <code>for</code> keyword and the left parenthesis, a single 
+space between the right parenthesis and the following open brace, and a 
+single space after each semicolon. Do not include a space before each 
+semicolon or between the end-of-loop clause and the closing parenthesis.</p>
+
+<p>If the loop variables are used only within the loop, declare the variable 
+in the <code>for</code> loop.</p>
+
+<pre>
+	// This is a simple for loop.
+	for (oaUInt4 i = 0; i &lt; numBits; i++) {
+	   . . .
+	}
+
+	// This for loop demonstrates the use of a double index 
+	// including initialization.
+	for (oaUInt4 i = 0, j = numPoints; i &lt; numPoints; j = i++) {
+	}
+</pre>
+
+
+<p>In some simple cases, a <code>for</code> loop does not have a body because 
+all of the work is done in the <code>for</code> statement itself. In this 
+case, still include the braces, even though they enclose a trivial body. 
+Indent the terminating semicolon and place it on the following line to signify 
+a trivial body for the loop.</p>
+
+<pre>
+	for (char *s = buf; *buf != '\0'; *s++ = *buf++) {
+	    ;
+	}
+</pre>
+<p><strong>Note:</strong> Refer to the end of the <a href="#4">Pointer and Reference Declarations</a> section for information about formatting pointers inside conditional loops. </p>
+<p><br />
+  <br />
+  
+  
+</p>
+<h2><a name="10">Do/While Loops</a></h2>
+
+<p>The format for a <code>do/while</code> loop is similar to a 
+<code>while</code> loop. Include a single space between the right closing brace of the <span class="style1">do</span> statement and the <code>while</code> keyword, and include a single space between the <code>while</code> keyword and the left parenthesis.</p>
+<pre>
+	// This is a simple do/while loop.
+	do {
+	    .
+	    .
+	    .
+	} while (index &lt; maxIndex);
+</pre><br /><br />
+
+
+<h2><a name="11">Function Calls</a></h2>
+
+<p>Use the following format for a function call. Do not include a space 
+between the function name and the left parenthesis, between the left 
+parenthesis and the first argument, or between the last argument and the 
+right parenthesis.</p>
+
+<pre>
+	myFunc(arg1, arg2, arg3)
+</pre><br /><br />
+
+
+<h2><a name="12">Semicolons to Terminate Statements</a></h2>
+
+<p>Do not include a space between a semicolon and the end of the statement it 
+terminates.</p>
+
+<pre>
+	value = funcCal(arg1, arg2);
+	x = y;
+</pre>
+
+<p>Always enter only one statement per line. Do not put multiple statements 
+on the same line, even if they are extremely short.</p>
+
+<pre>
+	// Don't do this.
+	x1 = 0; y1 = 1;
+	x2 = 3; y2 = 7;
+</pre><br /><br />
+
+
+<h2><a name="13">Multi-Line Statements</a></h2>
+
+<p>If it is not possible to fit an entire statement on one line, break the 
+statement into multiple lines. None of the lines should exceed 80 characters. 
+Break the statement at the most obvious point, such as at a space, rather 
+than at a spot where there is not already a space. For example:</p>
+
+<pre>
+	// It is easier to read this code when the continuation line is at 
+	// a natural break in the statement.
+        myObjName-&gt;getMyMethodName() = myObjName-&gt;getMyOtherMethodName()
+                                                 + index;
+
+	// It is more difficult to read this statement because of 
+	// the strange break location.
+        myObjName-&gt;getMyMethodName() = myObjName
+                                              -&gt;getMyOtherMethodName() + index;
+</pre>
+<br />
+
+<p>When breaking up a line around an operator, always place the operator at 
+the beginning of the next line rather than leaving it at the end of the 
+previous line.
+</p>
+
+<pre>
+	// Putting the '+' at the beginning of the next line makes it more 
+	// obvious that the second line is a continuation of the first.
+        myObjName-&gt;getMyMethodName() = myObjName-&gt;getMyOtherMethodName()
+                                                 + index;
+
+	// It is not so obvious here that the second line is a continuation or
+	// a strange indentation.
+	myObjName-&gt;getMyMethodName() = myObjName-&gt;getMyOtherMethodName() + 
+                                            index;
+</pre>
+<br />
+
+
+<p>When you must break a line within a portion of a statement that is 
+enclosed in parenthesis, indent the continuing lines to align with the 
+opening parenthesis.</p>
+
+<pre>
+	// Aligning the arguments to this function makes it clear 
+	// what the code is doing.
+	numThings = myFunc(a, b, c) + myOtherFunc(arg1,
+                                                  myarg2,
+                                                  myClass-&gt;getInfo());
+
+	// This is OK too, and takes fewer lines.
+	numThings = myFunc(a, b, c) + myOtherFunc(arg1, myarg2, myarg3, myarg4
+                                                  myClass-&gt;getInfo(), myarg5);
+
+	// Use the same alignment for conditional statements 
+	// such as this if statement.
+	if (path.getWidth() &gt; 25 &amp;&amp; path.getPathStyle() == oacPathStyleTruncate
+	    &amp;&amp; path.getNumPoints() &gt; 150) {
+	    .
+	    .
+	    .
+	}
+
+	// It is more difficult to read this statement when it is unaligned.
+	numThings = myFunc(a, b, c) + myOtherFunc(arg1,
+                                  myarg2,
+                        myClass-&gt;getInfo());
+</pre><br /><br />
+
+
+<h2><a name="14">Parentheses</a></h2>
+	
+<p>Use parentheses to force associations in logical and arithmetic statements. 
+In general, do not use parentheses when the standard rules of precedence are 
+sufficient and the statement is clear without them.</p>
+
+<pre>
+	// The parentheses here are necessary to force the 
+	// summation before the multiplication.
+	y = (a + b) * (c + d);
+	xyz = (*myObj)-&gt;myMethod();
+
+	// Parentheses are not necessary here, because the 
+	// precedence rules make the code work as intended. 
+	// Do not include the parentheses.
+	x = a * b + c * d; 
+	abc = *myObj-&gt;myMethod();
+
+	// This example uses parentheses even though they are not strictly
+	// necessary, because the order of precedence is rather subtle.
+	x = (a &gt;&gt; b) ^ xyz-&gt;getExp();  
+	xyz = &amp;((*abc)-&gt;myFunc());
+</pre>
+
+<p>It is important to learn the rules of precedence 
+and only use parentheses when  appropriate.</p>
+<p>&nbsp;</p>
+<h2><a name="array_init"></a>Array Initializers</h2>
+<p>When initializing  an array using a list of values, place the assignment operator and the opening brace on the same line as the variable name (if the 80 column limit allows) and place each initializer value on a separate line followed by a comma.  The closing brace should align with the type of the array.  For example:</p>
+<pre>
+const oaString oaDBType::names[] = {
+    "Design",
+    "Tech",
+    "Lib",
+    "Wafer",
+    "Session",
+    "DMData"
+}; 
+</pre>
+<p>
+<h2><a name="15">Signed versus Unsigned Declarations</a></h2>
+
+<p>Do not use a signed variable in a situation where the variable can never 
+correctly contain a negative value. In these situations, always use an 
+unsigned variable.</p>
+
+<p>It is better to use unsigned variables because:</p>
+
+<ul>
+<li>The variable value can be twice as large.</li>
+
+<li>Declaring a variable as unsigned makes it clear that the variable 
+should only have positive values.</li>
+
+<li>Errors can be caught at compile time if an unsigned variable is 
+assigned the value of a signed variable.</li>
+</ul>
+
+<p>A common situation in which an unsigned variable can and should be used 
+is as the index of a loop.</p>
+<br /><br />
+
+
+<h2><a name="16">Pointers versus References</a></h2>
+
+<p>Although relatively simple to use, many C programmers have difficulty 
+understanding the value or correct usage of references. Our coding standards 
+dictate that in most situations you should use a reference rather than a pointer.</p>
+
+<p>References and pointers have the following (somewhat subtle) usage 
+differences: </p>
+
+<ul>
+<li>A pointer can have a NULL value. If  used correctly, 
+references will not have NULL values.</li>
+
+<li>A reference to an object is used just as if it were the object itself. A 
+pointer to an object that is passed to a function must be dereferenced within the 
+function to access the pointed-to object.</li>
+</ul>
+
+<p>Using references rather than pointers makes it possible to write functions with 
+arguments that can be filled out by the function, without either the caller 
+or the function dealing with the arguments in any special way.</p>
+
+<p>To illustrate, the following two loops perform the same function. The first 
+version uses references, and the second version uses pointers.</p>
+
+<pre>
+	// This loop generates the union of all shape bounding boxes. 
+	// Here we assume references to a oaBox have been declared in 
+	// the argument list for getBBox() and bBox.or().
+	oaBox                           bBox;
+	oaIter&lt;oaShape&gt;                 *iter(cellView-&gt;getShapes());
+	oaShape                         *shape;
+
+	while (shape = iter-&gt;getNext()) {
+	    oaBox       shapeBBox;
+
+	    //just pass the object; the reference will handle the details 
+	    // of creating and dereferencing a pointer to the shapeBBox.
+	    shape-&gt;getBBox(shapeBBox); 
+	    bBox.or(shapeBBox);
+	}
+
+	// As above, this loop generates the union of all shape bounding boxes. 
+	// Here we assume pointers to a oaBox have been declared in the argument
+	// list for getBBox() and bBox.or().
+	oaBox                           bBox;
+	oaIter&lt;oaShape&gt;                 *iter = new oaIter&lt;oaShape&gt;(cellView->getShapes());
+	oaShape                 	*shape;
+
+	while (shape = iter-&gt;getNext()) {
+	    oaBox       shapeBBox;
+
+	    // We need to use the addressOf operator to pass pointers to shapeBBox.
+	    // We will also need to dereference the pointers within getBBox() 
+	    // and bBox.or().
+	    shape-&gt;getBBox(&shapeBBox);
+	    bBox.or(&shapeBBox);
+	}
+	
+	delete iter;
+</pre>
+
+<p>Although the difference is relatively minor, you can see that there are 
+several places where the loop using pointers must pass in the address of an 
+object. With references, the same thing is happening, but the compiler does 
+it automatically.</p>
+
+<p>In the functions being called (such as <code>box.or()</code>), the passed 
+in arguments are less likely to be NULL, as long as the calling functions are 
+not dereferencing pointers to generate the references.</p>
+<br /><br />
+
+<h2><a name="17">Remove Test Code</a></h2>
+
+<p>Do not mix test code with the actual source code. If you add test code 
+during the development process, do not comment it out and leave it in the 
+code. This expands the actual source code and makes it more difficult to 
+read. Test code belongs in the test suite, not in the common source code.</p>
+
+<p>This does not refer to test code that is used during the development. It 
+refers to the completed code.</p>
+<br /><br />
+
+
+<h2><a name="18">Compile Time Directives</a></h2>
+
+<p>Avoid using compile time directives where possible. Compile time directives can make the source code difficult to read. A common reason for using #if is to conditionally compile test code. As mentioned in the previous section, do not leave test code in the completed source code.</p>
+
+<p>There are two cases in which compile time directives are necessary and appropriate:</p>
+<ul>
+<li>To protect header files against multiple inclusions (see <a href="filestruc.html#6">Header File Structure</a>).</li>
+<li>When there are unavoidable differences between platforms that affect the implementation.</li>
+</ul>
+
+<p>Always use:</p>
+<pre>
+    #if defined(...)
+</pre>
+<p>instead of:</p>
+<pre>
+    #ifdef ...
+</pre>
+<p>and use:</p>
+<pre>
+    #if !defined(...)
+</pre>
+<p>instead of:</p>
+<pre>
+    #ifndef ...
+</pre>
+
+<p>The verbose style is necessary to check for multiple symbols on the same line. The following example has no corresponding syntax using the #ifdef form.</p>
+<pre>
+    #if defined(WINDOWS) && defined(OA_BASE_DLL_EXPORTS)
+</pre>
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

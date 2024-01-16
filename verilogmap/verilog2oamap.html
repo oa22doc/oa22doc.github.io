@@ -1,0 +1,1106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Verilog to OpenAccess Mapping</h1>
+<hr>
+<p>This document describes </p>
+<ul>
+<li>How structural Verilog statements and constructs map to OpenAccess 2.2 database objects.</li>
+<li> The implementation requirements for all Verilog to OpenAccess translators in order to ensure interoperability.</li>
+</ul>
+<p>If a Verilog construct is listed as <em>not mapped</em>, or if a given Verilog construct is not explicitly described in this document, the OpenAccess <code>verilog2oa</code> translator does not support this feature of the Verilog language. This does not prohibit a different implementation from using or mapping that feature. </p>
+
+<p>Arithmetic expressions (including unary operators) are not mapped. In particular, the verilog2oa translator requires all integers to be unsigned.</p>
+
+<h2>Document Content</h2>
+<p>This document includes the following sections:</p>
+<ul>
+<li><a href="#conventions">Conventions for Verilog Syntax Descriptions </a></li>
+<li><a href="#name_map">Name Mapping</a></li>
+<li><a href="#keywords_map">How Verilog Constructs Map to OpenAccess Entities </a></li>
+<li><a href="#preprocessor">Preprocessor Directives</a></li>
+<li><a href="#verilog_module_decl"> Module Declarations</a></li>
+<li><a href="#port_declarations">Port Declarations</a></li>
+<li><a href="#Net_Declarations">Net Declarations</a></li>
+<li> <a href="#reg_trans_gate">Registers, Transistors, and Gates </a></li>
+<li><a href="#signalconcatenation">Signal Concatenations</a></li>
+<li><a href="#multi_ranges">Multi-Dimensional Ranges</a></li>
+<li><a href="#net_assign">Net Assignments</a></li>
+<li><a href="#module_instantiations">Module Instantiations (Hierarchical Connectivity)</a></li>
+<li><a href="#leaf_forward">Leaf Cells and Stub References</a></li>
+<li><a href="#explicit_by_name">Explicit Hierarchical Connection by Name</a></li>
+<li><a href="#implicit_by_order">Implicit Hierarchical Connection by Port Order</a></li>
+<li><a href="#exploding_connect"> Expanding Connectivity </a></li>
+<li> <a href="#global_names">Hierarchical Names (Global Nets)</a></li>
+<li> <a href="#numericalconstantsasnets">Numerical Constants as Global Nets</a></li>
+<li><a href="#parameters">Parameter Declarations</a></li>
+</ul>
+<hr />
+<h2><a name="conventions"></a>Conventions for Verilog Syntax Descriptions </h2>
+<p>This document uses the following conventions to describe Verilog language features:</p>
+<ul>
+<li>White space separates lexical tokens. </li>
+<li>Angle brackets (<code>&lt;&gt;</code>) surround descriptions of items and are <em>not </em> literal symbols. </li>
+<li><em><code>&lt;name&gt; </code></em> is a syntax construct. </li>
+<li><em><code>&lt;name&gt;? </code></em> is an optional, single item (zero or one). </li>
+<li><em><code>&lt;name&gt;* </code></em> is zero or more items. </li>
+<li><em><code>&lt;name&gt;&lt; </code></em><code><strong>, </strong><em>&lt;name&gt;&gt; * </em></code>expresses a comma-separated list of items with at least one item in the list. </li>
+<li><em><code>&lt;name&gt;+ </code></em> is one or more items. </li>
+<li>Items in <strong><code>bold</code></strong> are literal Verilog keywords or syntax characters. </li>
+</ul>
+<hr />
+<h2><a name="name_map"></a>Name Mapping </h2>
+<p>The OpenAccess namespace that maps OpenAccess names to Verilog identifiers is <code>oaVerilogNS</code>. </p>
+<hr>
+<h2><a name="keywords_map"></a>How Verilog Constructs Map to OpenAccess Entities </h2>
+<table width="100%"  border="1">
+    <tr bgcolor="#ccccdd">
+<th width="50%" scope="col"><div align="left">Verilog Construct </div></th>
+<th width="50%" scope="col"><div align="left">Mapping Section </div></th>
+    </tr>
+    <tr>
+<td width="50%"><strong>module, endmodule</strong></td>
+<td width="50%"><a href="#verilog_module_decl">Module Declarations</a></td>
+    </tr>
+    <tr>
+<td width="50%"><strong>input, output,&nbsp;inout </strong></td>
+<td width="50%"><a href="#port_declarations">Port Declarations</a></td>
+    </tr>
+    <tr>
+<td width="50%"><strong>wire, tri, tri0, tri1, triand, trior, wand,&nbsp;wor, supply0, supply1</strong></td>
+<td width="50%"><a href="#Net_Declarations">Net Declarations</a></td>
+    </tr>
+    <tr>
+<td width="50%"><strong>reg, int</strong></td>
+<td width="50%"><a href="#reg_trans_gate">Register Declarations</a></td>
+    </tr>
+    <tr>
+<td><strong>assign</strong></td>
+<td><a href="#net_assign">Net Assignments</a></td>
+</tr>
+<tr>
+<td width="50%"><strong>parameter</strong></td>
+<td width="50%"><a href="#parameters">Parameter Declarations</a></td>
+</tr>
+</table>
+
+<hr />
+<a name="preprocessor"></a>
+<h2>Preprocessor Directives</h2>
+<p>Preprocessor directives (statements that begin with a backtick) are not mapped.</p>
+
+<hr />
+<h2><a name="verilog_module_decl"></a>Module Declarations</h2>
+<p class="MsoListBullet"> A Verilog module maps to an OpenAccess oaModule. All Verilog modules are added to the same design by default. </p>
+<p class="MsoListBullet">The module might be the only module in the design, or it might be an embedded module. The module declaration describes the connectivity interface for the oaModule. This interface is described as a list of ports for the module. A variety of styles for the port list  must be handled.</p>
+<pre><strong>module</strong> <em>&lt;moduleName&gt;</em> (<em>&lt;list_of_ports&gt;</em>? ) ;
+  <strong>...</strong>
+<strong>endmodule</strong></pre>
+<p> Where: </p>
+<p><em><code>&lt;moduleName&gt;</code></em> is the name of the Verilog module (cell).</p>
+
+<h3><a name="moduleName"></a>Module Name</h3>
+<p><em><code>&lt;moduleName&gt;</code> </em>corresponds to the&nbsp;cell name of the oaModule (and to the name of the oaDesign if the module is not embedded).&nbsp; The view type will be set to oacNetlist for all designs created by <code>verilog2oa</code>. The view name for the oaModule defaults to  <code>netlist</code>. </p>
+<p>The name of a library is also required to create  an oaModule or an oaDesign . This is supplied with a command-line option. </p>
+<p><code>verilog2oa</code> can build either </p>
+<ul>
+<li>A single oaDesign  per Verilog module</li>
+<li>An embedded module hierarchy (EMH) owned by a single oaDesign  per Verilog module</li>
+</ul>
+<p>In order to build an EMH, the translator must create the oaDesign that will contain the modules <em>before</em> the modules are built. For example:</p>
+<pre>   // Get the library name from the command-line option.
+   oaScalarName	 libName(options.getLibName());
+
+
+   // Get the view name from the command-line option.
+   // The default name is "netlist".
+   oaScalarName    viewName(options.getDefaultViewName());    
+
+   if (options.buildEMH()) {
+      // Get the top-level module name as supplied by the customization 
+      // and create a Design to contain all Modules and the topModule
+      // that will contain the embedded hierarchy.
+      oaScalarName    topModuleName(vns, options.getTopModName());
+
+      topDesign  = oaDesign::open(libName, topModuleName, viewName,
+                                  oacNetlist, 'w');
+
+      topModule = oaModule::create(design, cellName);
+   }</pre>
+<p>If not building an EMH, the translator  creates an oaDesign with a single oaModule for each Verilog module. The following example shows code to support either mode. (This example assumes that the top-level oaDesign and oaModule have already been created as shown in the previous example.) </p>
+<pre>   // Get the Cell name from the oaString that represents the name of
+   // the Verilog module.
+   oaScalarName    cellName(vns, verilogModuleName);
+
+   // Create the new Module in a separate Design or in the Design of
+   // the top Module, depending on the mode.
+   oaDesign        *design;
+   if (options.buildEMH()) {
+        design = topDesign;
+   } else {
+        design  = oaDesign::open(libName, cellName, viewName,
+                                 oacNetlist, 'w');
+   }
+
+   oaModule        *module  = oaModule::find(design, cellName);
+
+   if (!module) {
+        module = oaModule::create(design, cellName);
+   }</pre>
+<h3><a name="list_of_ports"></a>List of Ports </h3>
+<p>The <em><code>&lt;list_of_ports&gt; </code></em>in  the module declaration can be one of the following: </p>
+<ul>
+<li>A simple list of port names with optional specifications of explicit connections to  nets with different names</li>
+<li>A list of port specifications that include  port types and optional  ranges for multi-bit ports</li>
+</ul>
+<pre><strong>module</strong> <em>&lt;moduleName&gt;</em> (<em>&lt;list_of_ports&gt;</em>? );
+      ...
+ <strong>endmodule</strong></code>  
+	</pre>
+<p>Where:</p>
+<pre><em>&lt;list_of_ports&gt;</em> = <em>&lt;portInterface&gt;</em>&lt;,<em>&lt;portInterface&gt;</em>&gt;&gt;*</pre>
+<blockquote>
+<p>Where:
+</p>
+</blockquote>
+<pre>    <em>&lt;portInterface&gt;</em> = <em>&lt;portName&gt;</em></pre>
+<blockquote>
+<blockquote>
+<p>Where:</p>
+<p><em><code>&lt;portName&gt; </code></em>is the name of the Verilog port.</p>
+</blockquote>
+<p>Or:</p>
+<pre><em>&lt;portInterface&gt;</em> = .<em>&lt;portName&gt;</em>(<em>&lt;netName&gt;</em>)
+</pre>
+<blockquote>
+<p>Where:</p>
+<p><em><code>&lt;portName&gt; </code></em>is the name of the Verilog port.</p>
+<p><em><code>&lt;netName&gt; </code></em>is the name of the net to connect to the port.</p>
+</blockquote>
+</blockquote>
+<p>Or:</p>
+<pre><em>&lt;list_of_ports&gt;</em> = <em>&lt;portSpecification&gt;</em>&lt;,<em>&lt;portSpecification&gt;</em>&gt;*</pre>
+
+<blockquote>
+<p>Where: </p>
+<pre><em>&lt;portSpecification&gt;</em> = <em>&lt;portType&gt;</em> <em>&lt;netType&gt;</em>? <em>&lt;range&gt;</em>? <em>&lt;portName&gt;</em>&lt;,<em>&lt;portName&gt;</em>&gt;*</pre>
+<blockquote>
+<p>Where: </p>
+<p><em><code>&lt;portType&gt; </code></em>is a Verilog port type keyword: <strong>input</strong>, <strong>inout</strong>, or <strong>output</strong>. </p>
+<p><em><code>&lt;netType&gt; </code></em>is a Verilog net type keyword (see the <a href="#net_type_mapping">Net Type Mapping </a>table.)</p>
+<pre><em>&lt;range&gt;</em> = <strong>[</strong> &lt;<em>startBit&gt;</em>:<em>&lt;stopBit&gt;</em> <strong>]</strong> </pre>
+<blockquote>
+<p>Or: </p>
+<pre><em>&lt;range&gt;</em> = <strong>[</strong> <em>&lt;singleBit&gt;</em> <strong>]</strong></pre>
+</blockquote>
+<p><em><code>&lt;portName&gt; </code></em>is the name of the Verilog port.</p>
+</blockquote>
+</blockquote>
+
+<h3>Examples</h3>
+<h5>Example 1 </h5>
+<pre><strong>module</strong> simple <strong>(</strong>a, b<strong>); </strong>
+   <strong>input</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a<strong>;</strong> 
+   <strong>output</strong>&nbsp;&nbsp;&nbsp;&nbsp; <strong>[</strong>1<strong>:</strong>0<strong>]</strong> &nbsp; b<strong>;</strong> 
+<strong>endmodule</strong></pre>
+<table border=1 cellpadding=0 width="450">
+<tr bgcolor="#ccccdd">
+<td width="24%" class="Normal">
+<p><strong>oaTerm</strong></p></td>
+<td width="42%" class="Normal"><strong>oaTermType</strong></td>
+<td width="34%" class="Normal">
+<p><strong>oaNet</strong></p></td>
+</tr>
+<tr>
+<td width="24%" class="Normal">
+<p>a</p></td>
+<td width="42%" class="Normal">oacInputTermType</td>
+<td width="34%" class="Normal">
+<p>a</p></td>
+</tr>
+<tr>
+<td width="24%" class="Normal">
+<p>b [1:0] </p></td>
+<td width="42%" class="Normal">oacOutputTermType</td>
+<td width="34%" class="Normal">b[1:0]</td>
+</tr>
+</table>
+<h5>Example 2 </h5>
+<pre><strong>module</strong> ansi <strong>(</strong>input a, output <strong>[</strong>1<strong>:</strong>0] b<strong>);</strong>
+<strong>endmodule</strong> 
+</pre>
+<table border=1 cellpadding=0 width="450">
+<tr bgcolor="#ccccdd">
+<td width="24%" class="Normal">
+<p><strong>oaTerm</strong></p></td>
+<td width="42%" class="Normal"><strong>oaTermType</strong></td>
+<td width="34%" class="Normal">
+<p><strong>oaNet</strong></p></td>
+</tr>
+<tr>
+<td width="24%" class="Normal">
+<p>a</p></td>
+<td width="42%" class="Normal">oacInputTermType</td>
+<td width="34%" class="Normal">
+<p>a</p></td>
+</tr>
+<tr>
+<td width="24%" class="Normal">
+<p>b [1:0] </p></td>
+<td width="42%" class="Normal">oacOutputTermType</td>
+<td width="34%" class="Normal">b[1:0]</td>
+</tr>
+</table>
+<h5>Example 3 </h5>
+<pre><strong>module</strong> same <strong>(.</strong>a<strong>(</strong>i<strong>), .</strong>b<strong>(</strong>i<strong>));</strong> 
+   <strong>input</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i<strong>;</strong> 
+<strong>endmodule</strong></pre>
+<table border=1 cellpadding=0 width="450">
+<tr bgcolor="#ccccdd">
+<td width="24%" class="Normal">
+<p><strong>oaTerm</strong></p></td>
+<td width="42%" class="Normal"><strong>oaTermType</strong></td>
+<td width="34%" class="Normal">
+<p><strong>oaNet</strong></p></td>
+</tr>
+<tr>
+<td width="24%" class="Normal">
+<p>a</p></td>
+<td width="42%" class="Normal">oacInputTermType</td>
+<td width="34%" class="Normal">
+<p>i</p></td>
+</tr>
+<tr>
+<td width="24%" class="Normal">
+<p>b</p></td>
+<td width="42%" class="Normal">oacInputTermType</td>
+<td width="34%" class="Normal">i</td>
+</tr>
+</table>
+<h5>Example 4 </h5>
+<pre>
+<strong>module</strong> rename <strong>(.</strong>a<strong>({</strong>b<strong>,</strong>c<strong>}),</strong> f<strong>, .</strong>g<strong>(</strong>h<strong>[</strong>1<strong>]));</strong> 
+   <strong>input</strong>        b<strong>,</strong>c<strong>;</strong> 
+   <strong>input</strong>        f<strong>;</strong> 
+   <strong>output</strong> <strong>[</strong>7<strong>:</strong>0<strong>]</strong> h<strong>;</strong> 
+<strong>endmodule</strong>
+</pre>
+<table border=1 cellpadding=0 width="732">
+<tr bgcolor="#ccccdd">
+<td width="12%" class="Normal">
+<p><strong>oaTerm</strong></p></td>
+<td width="27%" class="Normal"><strong>oaTermType</strong></td>
+<td width="13%" class="Normal">
+<p><strong>oaNet</strong></p></td>
+<td width="48%" class="Normal"><strong>Notes</strong></td>
+</tr>
+<tr>
+<td width="12%" class="Normal">a[1:0]</td>
+<td width="27%" class="Normal">oacInputOutputTermType</td>
+<td width="13%" class="Normal">b,c</td>
+<td width="48%" class="Normal">The width of &quot;a&quot; is determined by the number of bits in the b,c bundle.</td>
+</tr>
+<tr>
+<td class="Normal">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+<td class="Normal">b</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr>
+<td class="Normal">&nbsp;</td>
+<td class="Normal">&nbsp;</td>
+<td class="Normal">c</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr>
+<td class="Normal">f</td>
+<td class="Normal">oacInputTermType</td>
+<td class="Normal">f</td>
+<td class="Normal">&nbsp;</td>
+</tr>
+<tr>
+<td class="Normal">g</td>
+<td class="Normal">oacInputOutputTermType</td>
+<td class="Normal">h[1]</td>
+<td class="Normal">This is the only bit of h that is ported.</td>
+</tr>
+<tr>
+<td width="12%" class="Normal">&nbsp;</td>
+<td width="27%" class="Normal">&nbsp;</td>
+<td width="13%" class="Normal">h[7:0]</td>
+<td width="48%" class="Normal">The individual bits (h[7], h[6], h[5], and so forth ... ) can also exist as separate nets.</td>
+</tr>
+</table>
+<h3>Port Interface </h3>
+<p>The <em><code>&lt;portInterface&gt;</code> </em>&nbsp;styles above, as found in <em>Verilog-1995 (IEEE 1364-1995)</em>, do not provide sufficient information for  mapping  module ports to oaModTerms, so the oaModTerms must be created later as described in&nbsp; <a href="#port_declarations">Port Declarations</a>.</p>
+<p>The <em><code>&lt;portInterface&gt; </code></em>style lets you optionally declare in parentheses a net with a different name than the associated port. This indicates that the named net is to be the oaModNet that is connected to the oaModTerm created for that Verilog port. This is referred to as an <em>explicit connection </em>and is how Verilog can connect a net to a port with a different name. The association of the <em><code>&lt;netName&gt; </code></em> with the <em><code>&lt;portName&gt; </code></em>must be stored until the oaModTerm is created. You can use this syntax to connect the same net  to several different terminals.</p>
+<h3>Port Specification</h3>
+<p>The <em><code>&lt;portSpecification&gt; </code></em>style, sometimes referred to as an <em>ANSI-style </em>port list, is allowed in <em>Verilog-2001 (IEEE 1364-2001)</em>. This style includes sufficient range and port type information  to create each oaModTerm and its paired oaModNet of the same name in the oaModule. For more information about mapping Verilog ports to OpenAccess objects, see&nbsp; <a href="#port_declarations">Port Declarations</a>.</p>
+<h3><a name="portorder"><strong>Port Order </strong></a></h3>
+<p><code>verilog2oa</code>  supports implicit connections by order and explicit connections by name. Ports are arranged in the order they are listed in <em><code>&lt;list_of_ports&gt;</code>. </em>The <em><code>&lt;list_of_ports&gt; </code></em>can  contain the same port listed multiple times, and it can have gaps in the port list. In these cases, <code>verilog2oa</code>   generates a unique name for a terminal at the position of each gap. For example:</p>
+<blockquote>
+<pre><strong>module</strong> complex_ports<strong>(</strong>a<strong>,</strong> a<strong>,</strong> &nbsp;<strong>,</strong> c<strong>);</strong> <br><strong>endmodule;</strong></pre>
+</blockquote>
+<p>Becomes</p>
+
+<blockquote>
+<pre><strong>module</strong> complex_ports<strong>(.</strong>a<strong>(</strong>a<strong>), .</strong>_oaVerilogIn1_a<strong>(</strong>a<strong>), .</strong>_oaVerilogIn2_<strong>(</strong>_oaVerilogIn2_<strong>), .</strong>c<strong>(</strong>c<strong>));</strong></pre>
+</blockquote>
+<p>Generated terminals used to represent gaps are connected to nets that have no connectivity within the module. </p>
+
+<hr />
+<h2><a name="port_declarations"></a>Port Declarations </h2>
+<p>You can place Verilog port declarations inside the module declaration when using <em>Verilog-2001 (IEEE 1364-2001)</em>. See <a href="#verilog_module_decl">Module Declarations</a> for more information. Otherwise, you need to specify the necessary details of the ports  in a port declaration section after the module declaration according to the <em>Verilog-1995 (IEEE 1364-1995) </em>standard. &nbsp; </p>
+<pre><em>&lt;port_declarations&gt;</em> = <em>&lt;portDeclaration&gt;</em>&lt;;<em>&lt;portDeclaration&gt;</em>&gt;* ;</pre>
+     
+<p>Where:</p>
+
+      <pre><em>&lt;portDeclaration&gt;</em> = <em>&lt;portType&gt;</em> <em>&lt;range&gt;</em>? &lt;<em>portName&gt;</em>&lt;,<em>&lt;portName&gt;</em>&gt;* </pre>
+<blockquote>
+<p>Where: </p>
+<p><em><code>&lt;portType&gt;</code></em> &nbsp;&nbsp;is a Verilog port type keyword: <strong>input</strong>, <strong>inout</strong>,  or <strong>output</strong>.</p>
+<p><em><code>&lt;range&gt;</code></em> = <strong>[</strong> <em><code>&lt;startBit&gt;</code></em><strong>:</strong><em><code>&lt;stopBit&gt;</code></em> <strong>]</strong> </p>
+<blockquote>
+<p>Or: </p>
+<p><code><em>&lt;range&gt;</em> = <strong>[</strong> <em>&lt;singleBit&gt;</em> <strong>]</strong></code> &nbsp; </p>
+<p><em><code>&lt;portName&gt;</code></em> &nbsp;&nbsp;is the name of the Verilog port. </p>
+</blockquote>
+</blockquote>
+<p>Each Verilog port maps to an oaModTerm. OpenAccess requires that an oaModNet be created for each oaModTerm. Unless you explicitly connect to a net with a different name, the paired oaModNet has the same name as its associated oaModTerm.</p>
+<p>If you specify a <em><code>&lt;range&gt;</code></em>,  both the oaModNet and oaModTerm use the same <em><code>&lt;range&gt;</code>, </em>and an oaModBusNet and oaModBusTerm are used. Verilog supports multidimensional arrays, but OpenAccess does not. Multidimensional arrays are explicitly <em>not mapped</em>. </p>
+<p><em><code>&lt;portType&gt; </code></em>is used to select the <em><code>&lt;oaTermType&gt; </code></em>for  the oaModTerm. The following table shows the mapping of <strong>input, output, </strong>and <strong>inout </strong>keywords. </p>
+
+<h4>  Port Type Mapping</h4>
+<table cellpadding=0 border=1>
+
+<tr bgcolor="#ccccdd">
+<td width=386>
+<p align=left><strong>Verilog Port Type Keyword <em>&lt;portType&gt; </em></strong></p></td>
+<td width=428 valign=top>
+<p align=left><strong>oaTermTypeEnum <em>&lt;oaTermType&gt; </em></strong></p></td>
+</tr>
+<tr>
+<td width=386>
+<p align=left><strong>input </strong></p></td>
+<td valign=top width=428>
+<p align=left>oacInputTermType </p></td>
+</tr>
+<tr>
+<td width=386>
+<p align=left><strong>output </strong></p></td>
+<td valign=top width=428>
+<p align=left>oacOutputTermType </p></td>
+</tr>
+<tr>
+<td width=386>
+<p align=left><strong>inout </strong></p></td>
+<td valign=top width=428>
+<p align=left>oacInputOutputTermType </p></td>
+</tr>
+</table>
+
+<a name="portTypeConstraints"></a>
+<p>OpenAccess requires that all bits of a given port have the same direction. If the Verilog declares a different direction for different bits, the translator emits a warning and picks a single direction to apply to the OpenAccess terminal.</p>
+
+<h4>Name Mapping of Module Terms and Nets</h4>
+<p>The translator creates the names for the oaModTerm and its oaModNet first. Unless there is an <em>explicit connection</em>,  <em><code>&lt;netName&gt; </code></em>is the same as <em><code>&lt;portName&gt;</code></em>. </p>
+<pre>oaScalarName termName(vns, portName);
+oaScalarName netName(vns, netName);
+</pre>
+<p>When the port and associated net have no <em><code>&lt;range&gt;</code></em>, an oaModScalarNet and oaModScalarTerm are created. </p>
+<pre>
+oaModScalarNet   *net     =  oaModScalarNet::create(module, 
+                                                    netName);
+oaModScalarTerm  *term    =  oaModScalarTerm::create(net, 
+                                                    termName,
+                                                    &lt;oaTermType&gt;);
+</pre>
+
+<p>When you specify a &lt;range&gt;, an explicit oaModBusNetDef (or oaModBusTermDef) is created, and the direction of the range is recorded as either oacAcendingBitOrder or oacDescendingBitOrder, dependent on whether the bits of the range are ascending or descending. Although OpenAccess supports declaring bus ranges that are independent of the bit order of the bus def, the Verilog translator generates an error if the bits of a port are used inconsistently.</p>
+<pre>
+oaModBusNetDef   *netDef  =  oaModBusNetDef::create(module, 
+                                                    baseName,
+                                                    oacDescendingBitOrder); 
+ 
+oaModBusNet      *net     =  oaModBusNet::create(module, 
+                                                 netName, 
+                                                 startBit,
+                                                 stopBit, 
+                                                 1); 
+												 
+oaModBusTermDef  *termDef = oaModBusTermDef::create(module, 
+                                                    baseName,
+                                                    oacDescendingBitOrder);
+													
+oaModBusTerm     *term    = oaModBusTerm::create(net, 
+                                                 termName, 
+                                                 &lt;oaTermType&gt;, 
+                                                 startBit, 
+                                                 stopBit, 
+                                                 1, 
+                                                 oacSymbolicRouteMethod); 
+ 
+ 
+
+if (startBit &lt; stopBit) {
+    netDef->setBitOrder(oacAscendingBitOrder); 
+    termDef->setBitOrder(oacAscendingBitOrder);
+}
+</pre>
+<p>If you specify only a <em><code>&lt;singleBit&gt;</code></em>,  a single oaModBusNet and a single oaModBusTerm are created: </p>
+<pre>oaModBusNet   *net  = oaModBusNet::create(design, netName, &lt;singletBit&gt;);
+oaModBusTerm  *term = oaModBusTerm::create(net, termName, &lt;oaTermType&gt;, &lt;singleBit&gt;);
+</pre>
+
+<p>Finally, the port declaration for a multi-bit port might not include a <em><code>&lt;range&gt;</code></em>&nbsp;&nbsp;specification if the subsequent declaration of the associated net has a range. This can occur if the associated net (the owner oaModBusNet) has the same name or a different name that was specified explicitly. The resulting oaModTerm must be an oaModBusTerm in such cases. This case does not change the mapping, but it might  affect the implementation choices when using the API methods. </p>
+<p>For example, in the following case, p1 is an 8-bit port. </p>
+<pre><strong>module</strong> foo<strong> (.</strong>p1<strong>(</strong>x<strong>));</strong>
+   <strong>inout</strong> <strong>[</strong>7<strong>:</strong>0<strong>] </strong>x<strong>;</strong>
+<strong>endmodule</strong></pre>
+<hr />
+<h2><a name="Net_Declarations"></a>Net Declarations </h2>
+<p>The Verilog net (or <strong>wire</strong>) maps to the OpenAccess oaModNet.</p>
+<pre><em>&lt;net_declarations&gt;</em> = <em>&lt;netDeclaration&gt;</em>&lt;;<em>&lt;netDeclaration&gt;</em>&gt;* ;</pre>
+<p>Where: </p>
+<pre><em>&lt;netDeclaration&gt;</em> = <em>&lt;sigType&gt;</em> <em>&lt;range&gt;</em>? <em>&lt;netName&gt;</em>&lt;,<em>&lt;netName&gt;</em>&gt;*</pre>
+<blockquote>
+<p>Where: </p>
+<pre><em>&lt;sigType&gt;</em> = <em>&lt;netType&gt;</em></pre>
+<blockquote>
+<p>Where: </p>
+<p><em><code>&lt;netType&gt;</code></em>&nbsp;&nbsp;is a Verilog net type keyword from the <a href="#net_type_mapping">Net Type Mapping</a> table.</p>
+</blockquote>
+<p>Or: </p>
+<pre><em>&lt;sigType&gt;</em> = <em>&lt;dataType&gt;</em></pre>
+<blockquote>
+<p>Where: </p>
+<p><code>&lt;dataType&gt;</code>&nbsp;&nbsp;is a Verilog data type keyword from the <a href="#data_type_mapping">Data Type Mapping</a> table.</p>
+</blockquote>
+<p>And: </p>
+<pre><em>&lt;range&gt;</em> = [ <em>&lt;startBit&gt;</em>:<em>&lt;stopBit&gt;</em> ]</pre>
+<blockquote>
+<p>Or: </p>
+<pre><em>&lt;range&gt;</em> = [ <em>&lt;singleBit&gt;</em> ] 
+</pre>
+</blockquote>
+<p>And:</p>
+<p><em><code>&lt;netName&gt;</code></em>&nbsp;&nbsp;is the name of the Verilog net.
+
+</p>
+</blockquote>
+<p>The <em><code>&lt;netType&gt; </code></em>specifications in structural Verilog are associated with the oaSigTypeEnum <em></em>class as follows.</p>
+<h5><a name="net_type_mapping"></a>Net Type Mapping   &nbsp; <em></em></h5>
+<table cellpadding=0 border=1>
+
+<tr bgcolor="#ccccdd">
+<td width=362 valign=top>
+<p align=left><strong>Verilog Net Type Keywords <em>&lt;netType&gt; </em></strong></p></td>
+<td width=374 valign=top>
+<p align=left><strong>oaSigTypeEnum <em>&lt;oaSigType&gt; </em></strong></p></td>
+</tr>
+<tr>
+<td valign=top width=362>
+<p align=left><strong>wire </strong></p></td>
+<td valign=top width=374>
+<p align=left>oacSignalSigType </p></td>
+</tr>
+<tr>
+<td valign=top width=362 height=20>
+<p align=left><strong>supply1 </strong></p></td>
+<td valign=top width=374 height=20>
+<p align=left>oacTieHiSigType </p></td>
+</tr>
+<tr>
+<td valign=top width=362>
+<p align=left><strong>supply0 </strong></p></td>
+<td valign=top width=374>
+<p align=left>oacTieLoSigType </p></td>
+</tr>
+</table>
+<p>The&nbsp; <em><code>&lt;dataType&gt; </code></em>declarations in structural Verilog are also associated with the oaSigTypeEnum <em></em>class.</p>
+<h5><a name="data_type_mapping"></a>   Data Type Mapping&nbsp; <em></em></h5>
+<table cellpadding=0 border=1>
+
+<tr bgcolor="#ccccdd">
+<td width=363 valign=top>
+<p align=left><strong> Verilog Data Type Keywords <em>&lt;dataType&gt; </em></strong></p></td>
+<td width=377 valign=top>
+<p align=left><strong>oaSigTypeEnum <em>&lt;oaNetType&gt; </em></strong></p></td>
+</tr>
+<tr>
+<td valign=top width=363>
+<p align=left><strong>reg, tri, triand,&nbsp;trior, </strong><strong>tri0, tri1, wand, wor </strong></p></td>
+<td valign=top width=377>
+<p align=left>oacSignalSigType </p></td>
+</tr>
+
+</table>
+<hr />
+<h2><strong><a name="reg_trans_gate"></a>Registers, Transistors, and Gates </strong></h2>
+<p>Verilog functional primitives, such as transistors and gates, do not map to the current OpenAccess information model. However, a single-bit register declaration can be handled with oaModNet. An integer declaration can be handled with an oaModBusNet with range of [31:0] (or 32 one-bit bus nets with indices ranging from 31 down to 0 if multi-bit nets are expanded). See <a href="#Net_Declarations">Net Declarations</a> for information on how to create these net objects. </p>
+<table cellpadding=0 border=1>
+
+<tr bgcolor="#ccccdd">
+<td width=371>
+<p align=left><strong>Verilog Keywords</strong></p></td>
+<td width=370>
+<p align=left><strong>&nbsp;OpenAccess DB object(s) </strong></p></td>
+</tr>
+<tr>
+<td width=371>
+<p align=left><strong>reg </strong></p></td>
+<td width=370>
+<p align=left>oaModNet </p></td>
+</tr>
+<tr>
+<td width=371>
+<p align=left><strong>int </strong></p></td>
+<td width=370>
+<p align=left>oaModBusNet[31:0] </p></td>
+</tr>
+<tr>
+<td width=371>
+<p align=left><strong>cmos, rcmos, bufif0, bufif1, notif0, notif1,<br>
+</strong><strong>nmos, pmos, rnmos, rpmos,<br>
+</strong><strong>and, nand, or, nor, xor, xnor, buf, not, <br>
+</strong><strong>tranif0, tranif1, rtranif0, rtranif1, tran, rtran </strong></p></td>
+<td width=370>
+<p align=left>not mapped </p></td>
+</tr>
+
+</table>
+<hr />
+<h2><a name="signalconcatenation"><strong>Signal Concatenations </strong></a></h2>
+<p>Verilog signal concatenations are very similar to OpenAccess bundled nets. Even though the <code>oaVerilogNS</code> namespace does not directly support the Verilog concatenation syntax, <code>verilog2oa</code> maps these signal concatenations  to oaModBundleNets and oaModBundleTerms. A Verilog multi-concatenation is expanded by repeating the listed signals the number of times specified by the integer multiplier in the concatenation. The mapping only supports an integer-constant value for this multiplier and does <em>not </em>map  more general expressions.</p>
+<pre><em>&lt;netSignal_concatenation&gt;</em> = <strong>{</strong> <em>&lt;netName&gt;</em>&lt;,<em>&lt;netName&gt;</em>&gt;* <strong>}</strong></pre>
+   <p>Or: </p>
+<pre><em>&lt;netSignal_concatenation&gt;</em> = <strong>{</strong><em>&lt;multiplier&gt;</em> <strong>{</strong> <em>&lt;netName&gt;</em>&lt;,<em>&lt;netName&gt;</em>&gt;* <strong>}}</strong> </pre>
+<blockquote>
+<p>Where: </p>
+<p><em><code>&lt;multiplier&gt; </code></em>is an integer constant (general multiplier expressions are not mapped).
+
+</p>
+</blockquote>
+<p>For example: <br>
+<code>{4 {a, b, c} }</code> maps to <code>"a,b,c,a,b,c,a,b,c,a,b,c"</code> </p>
+<p>Concatenations may be nested: <br>
+<code>{ 2 { { 3 { a, b } }, c } }</code> maps to <code>"a,b,a,b,a,b,c,a,b,a,b,a,b,c"</code></p>
+<hr />
+<h2><strong><a name="multi_ranges"></a>Multi-Dimensional Ranges</strong></h2>
+<p>Verilog can express multi-dimensional ranges by specifying a multi-bit range in  the <em><code>&lt;range&gt;</code></em>&nbsp;&nbsp;declaration and  in the <em><code>&lt;netName&gt; </code></em>specification. For example, the following <strong><code>wire</code></strong> declaration specifies a two-dimensional range with a total of 16 bits.</p>
+<pre><strong>wire</strong> <strong>[</strong>7<strong>:</strong>0<strong>]</strong> a<strong>[</strong>1<strong>:</strong>0<strong>];</strong></pre>
+<p> However, such Verilog multi-dimensional ranges are <em>not mapped</em> to the OpenAccess database. </p>
+<p><strong>Note:</strong> The Verilog <strong><code>int</code> </strong>keyword maps to a 32-bit range, so ranges of <strong><code>int</code> </strong>are not mapped.</p>
+
+<hr />
+<h2><strong><a name="net_assign"></a>Net Assignments</strong></h2>
+<p>Nets can be assigned to other nets with the same range.&nbsp; Net assignment is implemented as net equivalence in OpenAccess. </p>
+<pre><strong>assign</strong> <em>&lt;sigName1&gt;</em> = <em>&lt;sigName2&gt;</em></pre>
+   
+<p>Where:<br>
+      <em><code>&lt;sigName1&gt; </code></em>and <em><code>&lt;sigName2&gt; </code></em>are  previously declared Verilog nets or ports.</p>
+
+<p>For example, the Verilog statement <strong><code>assign </code></strong><code>netA <strong>= </strong>netB</code> is mapped to the following: </p>
+<pre>netA-&gt;makeEquivalent(netB);</pre>
+<p>Assignment to an expression is <em>not mapped</em> to OpenAccess, but assignment to a number or a concatenation of literal numbers is mapped:</p>
+<pre>   <strong>assign</strong> b <strong>=</strong> a <strong>+</strong> c<strong>;</strong>  // Not mapped
+   <strong>assign</strong> b <strong>=</strong> 1'b1<strong>;</strong>   // OK
+
+   <strong>wire</strong> <strong>[</strong>31<strong>:</strong>0<strong>]</strong> c<strong>;</strong>
+   <strong>assign</strong> c <strong>=</strong> 32'h80000000<strong>;</strong>  // OK
+
+   <strong>wire</strong> <strong>[</strong>63<strong>:</strong>0<strong>]</strong> d<strong>;</strong>
+   <strong>assign</strong> d <strong>=</strong> <strong>{</strong>2<strong>{{</strong>4<strong>{</strong>4'b1001}<strong>}, {</strong>2<strong>{</strong>2'b01<strong>}}}};</strong>  // OK
+
+   <strong>wire [</strong>63:0<strong>]</strong> f<strong>;</strong> 
+   <strong>assign</strong> f = 64’hfedcba9876543210<strong>;</strong>  // OK
+  </pre>
+<p>See <a href="#numericalconstantsasnets">Numerical Constants as Global Nets</a> for information about how to map a number value to a net. See <a href="#signalconcatenation">Signal Concatenations</a> for information about how to map a concatenation to a signal name. </p>
+
+<p>When a constant value is assigned to a net, the net is made equivalent to the global tieHigh (or tieLow) signal.  This is not the same as declaring the net as a supply1 or a supply0.  Declaring a net as supply1 or supply0 does not change the global state of the net nor does it make it equivalent to any other net.   Assigning a constant value to a net does make the net equivalent to a global tieHigh net.</p>
+
+<p>For example</p>
+<pre>
+<strong>module sample(</strong>vcc<strong>);</strong>
+    <strong>output</strong>     vcc<strong>;</strong>
+    <strong>wire</strong>       x<strong>;</strong>
+ 
+    <strong>supply1</strong>    vcc<strong>;</strong>             // vcc is a local signal with oacTieHiSigType.
+    <strong>assign</strong>     x = 1’b1<strong>;</strong>        // x is equivalent to the global tie1 signal with
+                                 // oacTieHiSigType.  vcc is not equivalent to x
+                                 // or to tie1. 
+<strong>endmodule</strong>
+</pre>
+
+<h3>Expressing tieHi and tieLo Connections</h3>
+<p>There are different ways to express a connection to a tieHi or tieLo signal in Verilog. The signal can be declared as a supply1, or a continuous assignment can be made to a <code>1’b1</code> constant. However, there are subtle differences between these expressions, and it is worthwhile to understand how each expression maps to the OpenAccess model. Consider the following input Verilog:</p>
+
+<pre>
+<strong>module</strong> top()<strong>;</strong>
+    <strong>supply1</strong>  VCC<strong>;</strong> 
+
+    <strong>wire</strong>     y<strong>;</strong>
+    <strong>assign</strong>   y = 1’b1<strong>;</strong>
+	
+    mid I1<strong>(.</strong>A<strong>(</strong>y<strong>));</strong> 
+    mid I2<strong>(.</strong>A<strong>(</strong>VCC<strong>));</strong>
+    mid I3<strong>(.</strong>A<strong>(</strong>1’b1<strong>));</strong>
+<strong>endmodule</strong>
+
+
+<strong>module</strong> mid<strong>(</strong>A<strong>);</strong>
+    <strong>input</strong>    A<strong>;</strong>
+    <strong>supply1</strong>  VCC<strong>;</strong>
+
+    <strong>wire</strong>     x<strong>;</strong>
+    <strong>assign</strong>   x = 1’b1<strong>;</strong>
+
+    BUF I4<strong>(</strong>A<strong>);</strong> 
+    BUF I5<strong>(</strong>x<strong>);</strong>
+    BUF I6<strong>(</strong>VCC<strong>);</strong> 
+    BUF I7<strong>(</strong>1’b1<strong>);</strong>
+<strong>endmodule</strong>
+</pre>
+
+<p>In the module domain, this produces the following nets:</p>
+<table border="1" cellpadding="4">
+<tr>
+<th colspan="4" align="left">Module top</th>
+</tr>
+<tr>
+<th>Net Name</th>
+<th>sigType</th>
+<th>isGlobal</th>
+<th>Equivalences</th>
+</tr>
+<tr>
+<td>VCC</td>
+<td>tieHi</td>
+<td>no</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>y</td>
+<td>signal</td>
+<td>no</td>
+<td>tie1</td>
+</tr>
+<tr> 
+<td>tie1</td>
+<td>tieHi</td>
+<td>yes</td>
+<td>y</td>
+</tr>
+</table>
+<br>
+<table border="1" cellpadding="4">
+<tr>
+<th colspan="4" align="left">Module mid</th>
+</tr>
+<tr>
+<th>Net Name</th>
+<th>sigType</th>
+<th>isGlobal</th>
+<th>Equivalences</th>
+</tr>
+<tr>
+<td>A</td>
+<td>signal</td>
+<td>no</td>
+<td>&nbsp;</td>
+</tr>  
+<tr>
+<td>VCC</td>
+<td>tieHi</td>
+<td>no</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Signal</td>
+<td>no</td>
+<td>tie1</td>
+</tr>
+<tr>
+<td>tie1</td>
+<td>tieHi</td>
+<td>yes</td>
+<td>x</td>
+</tr>
+</table>
+
+<p>In the block domain of the same design, there will be:</p>
+
+<table border="1" cellpadding="4">
+<tr>
+<th colspan="4" align="left">Block</th>
+</tr>
+<tr>
+<th>Net Name</th>
+<th>sigType</th>
+<th>isGlobal</th>
+<th>Equivalences</th>
+</tr>
+<tr> 
+<td>VCC</td>
+<td>tieHi</td>
+<td>no</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>y</td>
+<td>signal</td>
+<td>no</td>
+<td>I3/x, I2/x, I1/x, tie1</td>
+</tr>
+<tr> 
+<td>tie1</td>
+<td>tieHi</td>
+<td>no</td>
+<td>y, I3/x, I2/x, I1/x</td>
+</tr>
+<tr>
+<td>I1/VCC</td>
+<td>tieHi</td>
+<td>no</td>
+<td>&nbsp;</td>
+</tr>  
+<tr>
+<td>I2/VCC</td>
+<td>tieHi</td>
+<td>no</td>
+<td>&nbsp;</td>
+</tr>  
+<tr>
+<td>I3/VCC</td>
+<td>tieHi</td>
+<td>no</td>
+<td>&nbsp;</td>
+</tr>
+<tr>  
+<td>I1/x</td>
+<td>signal</td>
+<td>no</td>
+<td>tie1, y, I3/x, I2/x</td>
+</tr>
+<tr>
+<td>I2/x</td>
+<td>signal</td>
+<td>no</td>
+<td>I1/x, tie1, y, I3/x</td>
+</tr>
+<tr>
+<td>I3/x</td>
+<td>signal</td>
+<td>no</td>
+<td>I2/x, I1/x, tie1, y</td>
+</tr> 
+</table>
+
+<p><strong>Notes:</strong></p>
+<ul>
+<li>The VCC nets are always local nets, and they are not equivalent to any other net even though they are all declared supply1.</li> 
+<li>Usages of <code>1’b1</code> become usages of a global tieHi net named tie1 in OpenAccess.</li> 
+<li>Nets that have <code>1’b1</code> continuous assignments (such as I1/x and y) retain their original signal sigType.</li>
+<li>Nets that have <code>1’b1</code> continuous assignments (such as I1/x and y) are equivalent nets in the block domain.</li>
+<li>OpenAccess has APIs for traversing all the connectivity of equivalent nets as if there is only a single net. This is handled by passing the appropriate filter flags to the functions that return the collections of terms and instTerms on the nets. For example:
+<pre>
+    oaNet::getInstTerms(oacInstTermIterNotImplicit | oacInstTermIterEquivNets) 
+    oaNet::getTerms(oacTermIterNotImplicit | oacTermIterEquivNets) 
+</pre>
+</li>
+</ul>
+ 
+
+<hr />
+<h2><a name="module_instantiations"></a>Module Instantiations (Hierarchical Connectivity) </h2>
+<p>The specification of hierarchical connectivity in Verilog uses the module instantiation construct. </p>
+<pre><em>&lt;moduleName&gt;</em> <em>&lt;instanceName&gt;</em> <em>&lt;instRange&gt;</em>? <em>&lt;list_of_connections&gt;</em>;</pre>
+<p>Where: </p>
+<p><em><code>&lt;moduleName&gt; </code></em>is the name of the master cell for the Verilog instance.</p>
+<p><em><code>&lt;instanceName&gt; </code></em>is the name of the Verilog instance.</p>
+<pre><em>&lt;instRange&gt;</em> = <strong>[</strong> <em>&lt;startPart&gt;</em> <strong>:</strong> <em>&lt;stopPart&gt;</em> <strong>]</strong>      </pre>
+<pre><em>&lt;list_of_connections&gt;</em> = (&lt;<em>connection</em> &lt;,<em>&lt;connection&gt;</em>&gt;*)</pre>
+<blockquote>
+<p>Where: </p>
+<p><code>&lt;connection&gt; = <em>&lt;netSignal&gt;</em>, </code>which is an implicit connection by port order.</p>
+<blockquote>
+<p>Where: </p>
+<pre><em>&lt;netSignal&gt;</em> = <em>&lt;netName&gt;</em> <em>&lt;range&gt;</em>?</pre>
+<blockquote>
+<p>Where: </p>
+<p><code><em>&lt;range&gt;</em> = <strong>[</strong> <em>&lt;startBit&gt;</em> <strong>:</strong> <em>&lt;stopBit&gt;</em> <strong>]</strong></code></p>
+<p>Or: </p>
+<p><code><em>&lt;range&gt;</em> = <strong>[</strong> <em>&lt;singleBit&gt;</em> <strong>]</strong> </code></p>
+</blockquote>
+</blockquote>
+<p>Or: </p>
+<p><code><em>&lt;connection&gt;</em> = <strong>.</strong><em>&lt;masterPortName&gt;</em> (<em>&lt;netSpec&gt;</em>?)</code>, which is an explicit connection.</p>
+<blockquote>
+<p>Where:</p>
+<p><code><em>&lt;masterPortName&gt; </em></code>is the identifier of the port in the master Verilog module.</p>
+<pre><em>&lt;netSpec&gt;</em> = <em>&lt;netSignal&gt;</em></pre><p>Or: </p>
+<p><code>&lt;netSpec&gt; = <em>&lt;netSignal_concatenation&gt;</em> </code> as specified in <a href="#signalconcatenation">Signal Concatenations</a>.</p>
+</blockquote>
+</blockquote>
+<p>The <em><code>&lt;moduleName&gt; </code></em>refers to the&nbsp;master module of the hierarchical child, and the <em><code>&lt;instanceName&gt; </code></em>identifies this instantiation of the master&nbsp;module. Module instantiations can be design instances (oaModInst) or  module instances (oaModModuleInst). </p>
+<p>For example, the following code  creates a scalar module instantiation while building an EMH:</p>
+<pre>&nbsp;&nbsp;&nbsp;&nbsp;// Get the module that is being instantiated.
+   oaModule *master &nbsp;&nbsp;= oaModule::find(topDesign, moduleName);
+   if (!master) {
+	&nbsp;&nbsp;// Code to find leaf cells or create forward references 
+	&nbsp;&nbsp;// goes here.  When this code returns, the master will refer
+	&nbsp;&nbsp;// to an actual oaModule.
+   }
+
+   // Create an instance of this module in the currentModule.
+   // The instance name is taken from the Verilog input.
+   oaModInst *inst &nbsp;&nbsp;&nbsp;= oaModModuleScalarInst::create(currentModule,master, instName);
+  </pre>
+<p>When explicit connectivity is specified with the instance, <em><code>&lt;masterPortName&gt; </code></em>refers to the name of the oaModInstTerm associated with the oaModTerm with the same name in the master&nbsp;module.&nbsp; When implicit connectivity by port order is used, <em><code>&lt;masterPortName&gt; </code></em>is omitted, and <em><code>&lt;netSpec&gt; </code></em>identifies the oaModNets to which the oaModInstTerm is connected. Each <em><code>&lt;netSignal&gt; </code></em>can  describe scalar, bus, or bundle nets. A <em><code>&lt;netSignal&gt; </code></em> can  be blank in the implicit connection style to indicate that there is no connection at the given position of the ordered connection. The <em><code>&lt;netSpec&gt; </code></em> can be a numerical constant such as <code>1'b1</code> (see <a href="#numericalconstantsasnets">Numerical Constants as Global Nets </a>). </p>
+<p>If no <em><code>&lt;netSignal&gt; </code></em>is connected to <em><code>&lt;masterPortName&gt; </code></em> (the oaModInstTerm), the oaModNet is created. This is an implicit net declaration, and the type is derived from the oaModTerm that the connected oaModInstTerm references in the master Module of the instance.&nbsp; </p>
+<hr />
+<h2><strong><a name="leaf_forward"></a>Leaf Cells and Stub References </strong></h2>
+<p><code>verilog2oa</code> might require access to an OpenAccess database for each module instantiated. The information in the database is needed to determine port ordering, port width, bus-bit ordering, and so forth. </p>
+<p>Modules  instantiated as references to external designs are called <em>leaf cells, </em> and users might be required to supply information needed to find these cells. </p>
+<p>The Verilog language does not specify library and view names for modules or module instantiations. By default, <code>verilog2oa</code>  creates module instances of modules (internal to the design being created) so library and view names are not necessary.&nbsp; However, there are some circumstances when references to external designs are appropriate&mdash;for example, when creating leaf cells with lef2oa and then instantiating those leaf cells with verilog2oa.</p>
+<p>When a Verilog module is instantiated, each library in the library list is searched for a cell with the same name as the Verilog module. If such a cell is found,  the module being instantiated is considered  a leaf cell and the module is instantiated as a design instance. The first view of the leaf view list that exists for that cell is chosen as the view for the instantiation. If no view exists, the instantiation is still  considered a leaf, (and the view selected is the first view in the leaf view list). </p>
+<p>Leaf cells that are found in these libraries are given preferential treatment over module definitions in the Verilog input.&nbsp; Neither the module definition of the leaf cell nor any modules used exclusively by leaf cells  appear in the output design. </p>
+
+<p>In some cases, a&nbsp;leaf cell has insufficient information to be used in a Verilog module instantiation. For example, the leaf cell might lack terminal ordering information and the Verilog module instantiation might use connection by order. In this case, if a Verilog module definition does exist for this leaf cell , the Verilog module will supply any required information missing from the leaf cell if there are no inconsistencies to prevent this. Regardless of whether or not there is a Verilog module definition for a leaf cell,&nbsp;the leaf cell in the leaf library is the cell that is instantiated (as a Design instance). </p>
+
+<p>For leaf cells with Verilog definitions, <code>verilog2oa</code> also checks their interfaces against the Verilog definition. It is an error if the Verilog definition contains terminals that are not part of the leaf cell. It is an error if the leaf cell specifies terminal order and that order is different than the terminal order specified in the Verilog input. It is not an error if the Verilog definition omits terminals that are part of the leaf cell.</p>
+
+<p>It is also possible to specify that all instances should be Design instances by using the <code>designPerMod</code> option. When you use this option, all Verilog modules are created as separate oaDesigns and all Verilog module instantiations become design instances. The same rules for leaf selection still apply, so Verilog instances that are leaf cells  always refer to the same oaDesign regardless of whether or not the <code>designPerMod</code> option is used. (See <a href="../verilog/verilog2oacmds.html">verilog2oa Translator</a> for more information.)</p>
+<h3><a name="leaf_search"></a>Searching for Leafs in refLibs and refViews</h3>
+<p><code>verilog2oa</code> searches for leaf cells using the following rules: </p>
+<ol>
+<li>Use the Verilog module name as a Cell name and look for a cell with that name in the first library in the leaf library list.</li>
+<li>If no matching Cell is found, look for a matching Cell in the next library in the list.</li>
+<li>If a matching Cell is found, the module is a leaf regardless of whether or not a matching view is found.</li>
+<li>Look for a view that matches the first view in the refView list.</li>
+<li>If no matching CellView is found, look for a CellView that matches the next view in the refView list.</li>
+<li>If no Views match, the module is still a leaf, but it takes its definition from the Verilog input (using the name of the first view in the leaf view list as the view name). If there is no Verilog definition for the module, a stub module is created.</li>
+<li>If no matching Cell is found in all of the leaf libraries, the module is not a leaf.</li>
+</ol>
+
+<a name="stubreferences"></a>
+<h3>Stub References</h3>
+<p>Stub references occur when a module is instantiated and there is no definition for the module either as a leaf cell or as a module in the Verilog input. When this occurs, <code>verilog2oa</code> creates an unbound module design instance. The terminal interface to the stub is assumed to be the union of all module instantiations of the stub. Different module instantiations can connect to different terminals of
+the stub. Because the presence of stub modules usually indicates an incomplete specification, and
+because the connectivity to the stub is prone to error, a warning is displayed
+if stub modules are present.</p>
+
+<p>Some assumptions are made for stub modules. Bus ranges are assumed to be descending, and the widths of all connections to stub ports are assumed to be exact.</p>
+<hr />
+<h2><strong><a name="explicit_by_name"></a>Explicit Hierarchical Connection by Name </strong></h2>
+<p>When explicitly connecting hierarchically by name, both the net name and the child's port name are supplied by the input Verilog. The only special consideration is that scalar names can refer to either of the following: </p>
+<ul>
+<li>Scalar nets and terms</li>
+<li>Bus nets and terms</li>
+</ul>
+<p>When a scalar name is used to represent a ported bus, the master Module of the child instance might be used to determine the order and specific range of the bus terminal. If the instance is not bound,  the master Module can be a leaf cell or a forward reference, and <code>verilog2oa</code> must  store the information and resolve the binding when appropriate.</p>
+<p>For example, when a scalar net is connected to a scalar term of a scalar instance, the code to create the explicit connectivity might look like this: </p>
+
+<pre>   oaModInst  *inst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= oaModModuleScalarInst::find(module, instName);
+   oaModule   *master&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= inst-&gt;getMasterModule();
+   oaModNet   *net&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= oaModScalarNet::find(module, netName);
+   oaModTerm  *term&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= oaModScalarTerm::find(master, termName);
+   oaModInstTerm  *iterm&nbsp;&nbsp;&nbsp;&nbsp;= oaModInstTerm::create(net, inst, term);
+</pre>
+<hr />
+<h2><strong><a name="implicit_by_order"></a>Implicit Hierarchical Connection by Port Order </strong></h2>
+<p>The <a href="#portorder">Port Order</a> section described how to record the position of terminals. When connections by order are needed, the port ordering information in the master Module of the instance is used to get the correct terminal name, which is then used to create the connecting oaModInstTerm. Again, if the instance is not bound,  the master Module may be a leaf cell or a forward reference, and <code>verilog2oa</code> must  store the information and resolve the binding when appropriate. </p>
+<hr />
+<h2><strong><a name="exploding_connect"></a>Expanding Connectivity </strong></h2>
+<p>Multi-bit connectivity in the input Verilog is preserved as much as possible during translation. If scalar connectivity is required by a downstream application, that application should call oaDesign::scalarize() on the database produced by the Verilog translator. However, there are circumstances when the OpenAccess multi-bit semantic needs to be mapped to the Verilog multi-bit semantic. This mapping is required when:</p>
+
+<ul>
+<li>For scalar instances, it does not matter whether the connecting net is wider or narrower than the connected term. If the net is wider than the connected term, the LSB bits of the net are connected to the term and the remaining bits of the net are left unconnected. If the term is wider than the net, the net is padded with generated bits so that the widths match. The padding bits will not be connected to any other elements in the design even if the same net is used to connect to multiple narrow terms&mdash;new padding bits will be generated for each connection. Whenever a width mismatch between the net and the term occurs, a warning is printed.</li>
+
+<li>For vector instances, if the width of the net exactly equals the width of the term, the entire net is connected to each term of each instance bit in the vector. This applies whether the net is a vector or a scalar. If the width of the net equals the width of the instance times the width of the term, then part-selects of the net are applied to the term in each instance bit of the vector. Neither of these cases generates a warning because there is no ambiguity about the design intent. If the width of the net does not fall within either of these two cases, a WidthMismatch exception is thrown.</li>
+</ul>
+
+<p>For example, the following Verilog input with a scalar net, w , and bus net, y </p>
+<pre>	<span class="style2">module</span> child <strong>(</strong>inout a<strong>,</strong> inout <strong>[</strong>1<strong>:</strong>0<strong>]</strong> b<strong>);</strong>
+	<strong>endmodule</strong>
+
+	<strong>module</strong> top <strong>();</strong>
+		<strong>wire</strong> w<strong>;</strong>
+		<strong>wire</strong> <strong>[</strong>3<strong>:</strong>0<strong>]</strong> y<strong>;</strong>
+
+		child I1<strong>[</strong>1<strong>:</strong>0<strong>] (.</strong>a<strong>(</strong>w<strong>), .</strong>b<strong>(</strong>y<strong>));</strong>
+	<strong>endmodule</strong></pre>
+<p>maps to an OpenAccess representation where:</p>
+<pre>	oaModScalarNet w is connected to oaModScalarTerm a of inst I1[1]
+	oaModScalarNet w is connected to oaModScalarTerm a of inst I1[0] 
+	oaModBusNet y[3:2] is connected to oaModBusTerm b[1:0] of inst I1[1]
+	oaModBusNet y[1:0] is connected to oaModBusTerm b[1:0] of inst I1[0]
+</pre>
+<p>Example 2, given the following Verilog input with a bus net, x </p>
+<pre>	<strong>module</strong> child <strong>(</strong>inout <strong>[</strong>8:5] a<strong>);</strong>
+	<strong>endmodule</strong>
+
+	<strong>module</strong> top <strong>();</strong>
+		<strong>wire</strong> <strong>[</strong>3<strong>:</strong>0<strong>]</strong> x<strong>;</strong>
+		child I1 <strong>(.</strong>a<strong>(</strong>x<strong>));</strong>
+	<strong>endmodule</strong>
+</pre>
+<p>maps to an OpenAccess representation where:</p>
+<pre>	oaModBusNet x[3] is connected to oaModBusTerm a[8] of inst I1
+	oaModBusNet x[2] is connected to oaModBusTerm a[7] of inst I1
+	oaModBusNet x[1] is connected to oaModBusTerm a[6] of inst I1
+	oaModBusNet x[0] is connected to oaModBusTerm a[5] of inst I1
+</pre>
+<p>Example 3, given the following Verilog input with a bus net, x</p>
+<pre>
+      <strong>module</strong> child (inout [3:0] a);
+      <strong>endmodule</strong>
+ 
+      <strong>module</strong> top <strong>();</strong>
+           <strong>wire</strong> <strong>[</strong>7:0<strong>]</strong> x<strong>;</strong>
+           child I1 <strong>(</strong>.a<strong>(</strong>x<strong>));</strong>
+      <strong>endmodule</strong>
+</pre>
+
+<p>maps to an OpenAccess representation where:</p>
+<pre>
+      oaModBusNet x[3:0] is connected to oaModBusTerm a[3:0] of inst I1
+</pre>
+<p>A warning is printed.</p>
+
+<p>Example 4, given the following Verilog input with a bus net, x</p> 
+<pre>
+      <strong>module</strong> child <strong>(</strong>inout <strong>[</strong>3:0<strong>]</strong> a<strong>);</strong>
+      <strong>endmodule</strong>
+ 
+      <strong>module</strong> top <strong>();</strong>
+           <strong>wire</strong> <strong>[</strong>1:0<strong>]</strong> x<strong>;</strong>
+           child I1 <strong>(</strong>.a<strong>(</strong>x<strong>));</strong>
+           child I2 <strong>(</strong>.a<strong>(</strong>x<strong>));</strong>
+      <strong>endmodule</strong>
+</pre>
+
+<p>maps to an OpenAccess representation where:</p>
+<pre>
+      oaModBundleNet {UNCONNECTED_oaVerilog0_[1:0], x[1:0]} is connected to oaModBusTerm a[3:0] of inst I1 
+      oaModBundleNet {UNCONNECTED_oaVerilog1_[1:0], x[1:0]} is connected to oaModBusTerm a[3:0] of inst I2
+</pre>
+
+<p>A warning is printed.</p>
+
+<hr />
+<h2><strong><a name="global_names"></a>Hierarchical Names </strong><strong>(Global Nets) </strong></h2>
+<p>Some Verilog code implements global nets as follows:</p>
+<blockquote>
+<pre><strong>module</strong> globals<strong>;</strong> 
+    <strong>wire</strong> gwire<strong>;</strong> 
+<strong>endmodule</strong>
+
+<strong>module</strong> local<strong>;</strong>
+    child m1<strong>(</strong>globals<strong>.</strong>gwire<strong>);</strong>
+<strong>endmodule</strong>
+</pre>
+</blockquote>
+<p>Here, the port of the <code>m1</code> instance should connect to the <code>gwire</code> wire in the <code>globals. </code>module. Global nets are the only type of hierarchical connections that must be mapped. Nets that are identified as global are set global using oaModNet::setGlobal(), and the hierarchical portion of the name (<code>globals.</code>) is discarded. By convention, a module named <code>globals</code> is assumed to be a repository for global nets, and all nets found in this module are declared global. Other Verilog to OpenAccess translators should  provide a mechanism to optionally specify the names of global nets. &nbsp; </p>
+<hr />
+<h2><a name="numericalconstantsasnets"><strong>Numerical Constants as Global Nets </strong></a></h2>
+<p>Numerical constants map to global nets. By default, <code>1'b1</code> maps to a global net named <code>tie1,</code> and <code>1'b0</code> maps to a global net named <code>tie0</code>. Numerical constants that consist of multiple bits map to concatenations of these nets. For example, <code>3'b101</code> maps to <code>{tie1,tie0,tie1}</code>. The Verilog translator that is distributed with OpenAccess does not restrict the number of bits that may be used with binary, hexadecimal or octal numerical constants. A different Verilog to OpenAccess translator might restrict the number of bits allowed in numbers to some reasonable value like 32. However, even with this restriction, connections using a larger number of bits are still possible. For example, a 64-bit bus can be assigned without violating the 32-bit restriction on numbers:&nbsp; </p>
+<pre>wire [63:0] bus;
+assign bus = {32'h80000000, 32'h00000001};
+  </pre>
+<hr />
+<h2><strong><a name="parameters"></a>Parameter Declarations </strong></h2>
+<p>Parameters are <em>not mapped</em> to properties, OpenAccess extensibility classes, or Pcells in OpenAccess, but they can be used in the construction of oaModNets, oaModTerms, and oaModInsts.&nbsp; Parameter names are evaluated only if they are used in the module in which they are declared. Even then, only the default values of the parameters are used. Parameter overrides are <em>not mapped</em>.</p>
+<pre>parameter &lt;<em>assignment</em>&gt; &lt;,&lt;<em>assignment</em>&gt;&gt;*;</pre>
+   
+<p>Where: </p>
+<pre><em>&lt;assignment&gt;</em> = <em>&lt;paramName&gt;</em>=<em>&lt;paramValue&gt;</em></pre>
+<hr />
+<p><a href="#pagetop">Return to top of page</a></p>
+<div style="text-align: center"><img src="images/verilogmapfooter.gif"> <br/>
+</div>
+<p class="copyright"><a href="../verilog/titlecopy.html">Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</a>  <br>
+All rights reserved.</p>
+<noscript>
+<p><em class="red">This page requires JavaScript enabled.</em></p>
+</noscript>
+</body>
+</html>

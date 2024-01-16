@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>LEF and DEF Translators</h1>
+<hr >
+ <h2>About the LEF and DEF Translators</h2>
+
+<p>The Library Exchange Format (LEF) and Design Exchange Format (DEF) translators read and write library and design information in LEF and DEF formats:</p>
+
+<ul>
+<li>
+<a href="lef2oa.html"><code>lef2oa</code></a> 
+  translates information from LEF to the OpenAccess database. 
+  
+<li><a href="oa2lef.html"><code>oa2lef</code></a> 
+  translates information from the OpenAccess database to the LEF file 
+ format. 
+  
+
+
+<li> <a href="def2oa.html"><code>def2oa</code></a> 
+  translates information from DEF to the OpenAccess database. 
+ 
+<li><a href="oa2def.html"><code>oa2def</code></a>  translates information from the OpenAccess database to the DEF file format.</li>
+</ul>
+
+
+<h3>Library Definition  File</h3>
+<p>The translator uses the library definition file when searching for or creating a new library. The library definition file is an ASCII file containing a list of libraries and their locations. The paths to the library directories specified in the library definition file can be either absolute or relative. If you define a relative path, the location of the library definition file is appended to the beginning of the path. The following is a simple example.</p>
+<p><code>#tools/oa/demo lib.defs file<br>
+DEFINE lib ./lib<br>
+DEFINE techlib /opt/OABuilds/sun4v/oa/tools.sun4v/oa/demo/technology</code>
+</p>
+
+
+
+<p><strong>Note:</strong> There are no requirements for the naming of the library definition file. </p>
+<h3>LEF and DEF Support</h3>
+<p>The translator reads LEF and DEF versions 5.3, 5.4, 5.5, and 5.6 </p>
+<P>Supported constructs in the LEF and DEF to OpenAccess translators support 
+  custom analog, digital, and mixed-signal designs. For additional information 
+  about supported and obsolete constructs, refer to the online document 
+  <EM>LEF/DEF Language Reference Manual</EM> located at <a href="http://www.openEDA.org">http://www.openEDA.org</a>. 
+Select the LEF/DEF link. </P>
+<P><STRONG>Important:</STRONG> Before beginning a translation, read the 
+information about&nbsp;<a href="../oa2lefdefmap/oalefindex.html#unsupported_lef">LEF</a> 
+and&nbsp;<a href="../oa2lefdefmap/oadefindex.html#unsupported_def">DEF</a> 
+constructs that are not supported in          
+  OpenAccess.</P>
+
+<div style="text-align: center">
+<img src="images/lefdeffooter.gif"><br />
+</div><br/>
+      <p class="copyright"><a href="../base/titlecopy.html"><em>Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</em></a>
+<br />
+All rights reserved.</p>
+      
+<noscript>
+ <p><em class="red">This page requires JavaScript enabled.</em></p>
+</noscript>
+      
+</body>
+</html>

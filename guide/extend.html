@@ -1,0 +1,506 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Extending the Database</H1>
+<hr>
+<p>Several classes supported by the database allow 
+applications to extend the data to support their own private data model. One 
+common way to extend the database is by using properties and groups. These are 
+described in the reference documentation for <a href="../base/classoaProp.html">oaProp</a> and <a href="../base/classoaGroup.html">oaGroup</a>.</P>
+<p>The OpenAccess API includes extensibility classes that 
+permit applications to create high-performance, application defined database 
+extensions that work the same as the built-in attributes of the database.</P>
+<p>Although extensions are very useful for customizing the 
+database to hold exactly the data your application requires, they can seriously 
+interfere with the interoperability with other applications. Because the 
+semantics for your extensions are not defined in the standard OpenAccess data 
+model, other applications may not correctly understand the designs that you have 
+placed the extensions on. </P>
+<p>The following topics are covered in this section:</P>
+<ul>
+  <li><a href="#1a">Which Classes can be Extended?</a> 
+  <li><a href="#1">Extensibility API</a> 
+  <li><a href="#2">Adding a Field to an Existing Object Type</a> 
+  <li><a href="#3">Extension Types</a> 
+  <li><a href="#4">Extension Storage</a> 
+  <li><a href="#5">Adding a New Independent Object Type</a> </LI></UL>
+<h2 class=spabove><a name="1a"></a><strong>Which Classes can be 
+Extended?</STRONG></H2>
+<p>All persistent managed classes can have extensions placed on them. These classes are related to the data types that are defined for each type of database that OpenAccess supports: </p>
+<ul>
+  <li><a href="../design/classoaDesignDataType.html">oaDesignDataType</a> for design databases </li>
+  <li><a href="../tech/classoaTechDataType.html">oaTechDataType</a> for technology databases </li>
+  <li><a href="../dm/classoaDMDataType.html">oaDMDataType</a> for design management databases </li>
+  <li><a href="../wafer/classoaWaferDataType.html">oaWaferDataType</a> for wafer databases <br>
+  </li>
+</ul>
+<p>For example, the oaDesignDataType enumeration lists oacShapeDataTypeEnum. This means that oaShape data can be extended. Currently, an attempt to extend a sub-type of a data type only defines the extension on the base data type. For example, defining an extension on an <a href="../design/classoaRect.html">oaRect</a> actually extends the <a href="../design/classoaShape.html">oaShape</a> class. </p>
+<p>For data types that span different <a href="../base/classoaDomain.html">oaDomains</a>, the extensions are specific to the domain object. For example, the oacDesignDataType lists oacNetDataTypeEnum, which means that you can extend the net data in each of the three domains by extending <a href="../design/classoaNet.html">oaNet</a>, <a href="../design/classoaModNet.html">oaModNet</a>, or <a href="../design/classoaOccNet.html">oaOccNet</a>. </p>
+<p>You cannot extend classes that are not associated with a database data type. For example, you cannot extend the <a href="../design/classoaFig.html">oaFig</a>, <a href="../design/classoaBlockObject.html">oaBlockObject</a>, or <a href="../design/classoaDesignObject.html">oaDesignObject</a> classes. </p>
+<p>The following is the list of classes that can be extended.</p>
+<table width="562" border="0">
+  <tr>
+    <td colspan="4" bgcolor="#CCCCCC">Design Classes </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaAnalysisOpPoint </td>
+    <td bgcolor="#FFFFCC">oaAnalysisPoint </td>
+    <td bgcolor="#FFFFCC">oaAppObject </td>
+    <td bgcolor="#FFFFCC">oaAssignment</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaBlock</td>
+    <td bgcolor="#FFFFCC">oaBlockage</td>
+    <td bgcolor="#FFFFCC">oaBoundary</td>
+    <td bgcolor="#FFFFCC">oaBusNetDef</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaBusTermDef</td>
+    <td bgcolor="#FFFFCC">oaCMap</td>
+    <td bgcolor="#FFFFCC">oaCluster</td>
+    <td bgcolor="#FFFFCC">oaConnectDef</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaDesign</td>
+    <td bgcolor="#FFFFCC">oaDevice</td>
+    <td bgcolor="#FFFFCC">oaElmore</td>
+    <td bgcolor="#FFFFCC">oaFigGroup</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaFigGroupMem</td>
+    <td bgcolor="#FFFFCC">oaGCellPattern</td>
+    <td bgcolor="#FFFFCC">oaGuide</td>
+    <td bgcolor="#FFFFCC">oaInst</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaInstTerm</td>
+    <td bgcolor="#FFFFCC">oaLPPHeader</td>
+    <td bgcolor="#FFFFCC">oaLayerHeader</td>
+    <td bgcolor="#FFFFCC">oaMarker</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaModAssignment</td>
+    <td bgcolor="#FFFFCC">oaModBusNetDef</td>
+    <td bgcolor="#FFFFCC">oaModBusTermDef</td>
+    <td bgcolor="#FFFFCC">oaModConnectDef</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaModInst</td>
+    <td bgcolor="#FFFFCC">oaModInstHeader</td>
+    <td bgcolor="#FFFFCC">oaModInstTerm</td>
+    <td bgcolor="#FFFFCC">oaModModuleInstHeader</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaModNet</td>
+    <td bgcolor="#FFFFCC">oaModTerm</td>
+    <td bgcolor="#FFFFCC">oaModVectorInstDef</td>
+    <td bgcolor="#FFFFCC">oaModule</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaNet</td>
+    <td bgcolor="#FFFFCC">oaNode</td>
+    <td bgcolor="#FFFFCC">oaOccAssignment</td>
+    <td bgcolor="#FFFFCC">oaOccBusNetDef</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaOccBusTermDef</td>
+    <td bgcolor="#FFFFCC">oaOccConnectDef</td>
+    <td bgcolor="#FFFFCC">oaOccInst</td>
+    <td bgcolor="#FFFFCC">oaOccInstHeader</td>
+  </tr>
+  <tr>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaOccInstTerm</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaOccModuleInstHeader</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaOccNet</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaOccTerm</td>
+  </tr>
+  <tr>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaOccVectorInstDef</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaOccurrence</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaOpPointHeader</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaPin</td>
+  </tr>
+  <tr>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaPoleResidue</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaReducedModel</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaRoute</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaRow</td>
+  </tr>
+  <tr>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaRowHeader</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaScanChain</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaScanChainInst</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaScanChainSet</td>
+  </tr>
+  <tr>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaShape</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaSteiner</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaSubNetwork</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaTerm</td>
+  </tr>
+  <tr>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaTrackPattern</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaTrackPattern</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaVectorInstDef</td>
+    <td bordercolor="#000000" bgcolor="#FFFFCC">oaVia</td>
+  </tr>
+  <tr>
+    <td colspan="4" bgcolor="#CCCCCC">Base Classes </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaConstraint</td>
+    <td bgcolor="#FFFFCC">oaConstraintGroup</td>
+    <td bgcolor="#FFFFCC">oaConstraintGroupHeader</td>
+    <td bgcolor="#FFFFCC">oaConstraintGroupMem</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaConstraintParam</td>
+    <td bgcolor="#FFFFCC">oaConstraintParamDef</td>
+    <td bgcolor="#FFFFCC">oaGroup</td>
+    <td bgcolor="#FFFFCC">oaGroupMember</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaProp</td>
+    <td bgcolor="#FFFFCC">oaValue</td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" bordercolor="#333333" bgcolor="#CCCCCC">Technology Classes </td>
+  </tr>
+  <tr>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaDerivedLayerParam</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaLayer</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaOpPoint</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaPurpose</td>
+  </tr>
+  <tr>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaSiteDef</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaTech</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaTechHeader</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaTechLayerHeader</td>
+  </tr>
+  <tr>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaTechViaDefHeader</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaViaDef</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">oaViaSpec</td>
+    <td bordercolor="#333333" bgcolor="#FFFFCC">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" bgcolor="#CCCCCC">Design Management Classes </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaCell</td>
+    <td bgcolor="#FFFFCC">oaCellView</td>
+    <td bgcolor="#FFFFCC">*oaDMFile</td>
+    <td bgcolor="#FFFFCC">*oaLibDMData</td>
+  </tr>
+  <tr bgcolor="#FFFFCC">
+    <td>*oaCellDMData</td>
+    <td>*oaViewDMData</td>
+    <td>*oaCellViewDMData </td>
+    <td>oaLib</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaView</td>
+    <td bgcolor="#FFFFCC">oaViewType</td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4" bgcolor="#FFFFCC"><span class="style3">*<span class="style2">oaAppDefs and oaProps should not be created on oaDMObjects. While OpenAccess does not enforce this restriction, there
+is no way to save such extensions. Instead, use a corresponding oaDMData object to properly represent these Props and AppDefs.</span></span></td>
+  </tr>
+  <tr>
+    <td colspan="4" bgcolor="#CCCCCC">Wafer Database Classes </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaDesignInst</td>
+    <td bgcolor="#FFFFCC">oaFrame</td>
+    <td bgcolor="#FFFFCC">oaFrameInst</td>
+    <td bgcolor="#FFFFCC">oaImage</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaReticle</td>
+    <td bgcolor="#FFFFCC">oaReticleRef</td>
+    <td bgcolor="#FFFFCC">oaStepperMap</td>
+    <td bgcolor="#FFFFCC">oaWafer</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFCC">oaWaferDesc</td>
+    <td bgcolor="#FFFFCC">oaWaferFeature</td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+  </tr>
+</table>
+<p><strong>Extensions that point to 
+paged objects </STRONG></P>
+<p>Note that even paged parasitic objects may have 
+extensions, and extensions set by an oaAppInterPointerDef on other object types
+   may point to a parasitic object. However, such a pointer extension will not
+   exist when the parasitic object it points to is paged out. It will come into
+   existence when the object it points to is loaded into memory. When the parasitic
+   object it points to is paged out, the extension will not be returned by an
+   AppDef iterator over a given object's extensions.</P>
+<h2 class=spabove><a name="1"></a>Extensibility API</H2>
+<p>The OpenAccess database provides predefined object types 
+for writing database applications. OpenAccess also includes the ability to 
+extend the database by adding to existing object types and defining new object 
+types.</P>
+<p>The Extensibility API supports two types of extensions 
+to the OpenAccess built-in objects:</P>
+<ul>
+  <li><a href="#2">Adding a field to an existing object type</a> 
+  <p>This is called an <em>attribute 
+  extension</EM>. This form of extension works the same as built-in object 
+  attributes, such as net names and terminal names.</P>
+  <li><a href="#5">Adding a new independent object type</a> 
+  <p>This is called an <em>object 
+  extension</EM>. This form of extension creates new object types. When first 
+  created, new objects have no associated data or relationships. You use the <em 
+  >attribute extension</EM> to add attributes to these 
+  objects and to define relationships with other objects in the 
+  database.</P></LI></UL>
+<p>Attributes added by the extensibility API are tightly 
+integrated into the existing database implementation. This takes advantage of 
+built-in techniques for compression and machine independence.</P>
+<p>Extensions can be added to any database. Generally, 
+reference to a database means a design (<a href="../design/classoaDesign.html"><code>oaDesign</CODE></a> class). However, a database can also 
+refer to a technology database (<a href="../tech/classoaTech.html"><code>oaTech</CODE></a> class), a design management library 
+database (<a href="../dm/classoaDMObject.html"><code>oaDMObject</CODE></a> class) or a wafer database (<a href="../wafer/classoaWafer.html"><code>oaWafer</CODE></a> class).</P>
+<h2 class=spabove><a name="2">Adding a Field to an Existing Object Type</a></H2><p>You can add application defined extensions to any managed class in any kind of database. For these extensions, the key to the API is the <a href="../base/classoaAppDef.html"><code>oaAppDef</CODE></a> class. This 
+is an abstract base class, and there are a number of sub-classes that derive 
+from this base class and reflect the different types of data that can be added 
+to objects in the database.</P>
+<p>To use these extensions, the caller creates an 
+instance of the <a href="../base/classoaAppDef.html"><code>oaAppDef</CODE></a> class, optionally specifying a default value, and then uses this definition 
+object to access the extension data on objects in the database.</P>
+<p><strong>Note:</STRONG><br>
+  oaAppDef objects do not own or contain the actual extension 
+data. Extension data is stored persistently in the database. oaAppDef 
+objects are a mechanism that is used by an application to identify and access 
+the extension data. These objects are managed objects, and are persistent if their persistency flag is set.</P>
+<p>The derived <a href="../base/classoaAppDef.html"><code>oaAppDef</CODE></a> classes, such as <a href="../base/classoaIntAppDef.html"><code>oaIntAppDef</CODE></a>, are 
+templates you can apply to managed database classes. Once you create an <a href="../base/classoaIntAppDef.html"><code>oaIntAppDef</CODE></a> object (using the object's get() method as shown below), 
+you use that definition object plus a pointer to a database object to set or get 
+the value associated with the object. This interface to set and get the 
+extension data is type-specific.</P>
+<p>When you create extension definition objects, identify 
+them with unique names that designate the type of data. Ensure that the name you 
+use does not collide with extensions that are added by other applications.</P>
+<p>The following example shows how to add a field to all <a href="../design/classoaNet.html"><code>oaNet</CODE></a> objects in a 
+design. The example uses the <a href="../base/classoaFloatAppDef.html"><code>oaFloatAppDef</CODE></a> class as a template to create a 
+field for the <a href="../design/classoaNet.html"><code>oaNet</CODE></a> class. The data 
+is then accessed through the extension object.</P>
+<pre>    // create an attribute definition<br>    oaFloatAppDef&lt;oaNet&gt; *weight = oaFloatAppDef&lt;oaNet&gt;::get(&quot;netWeight&quot;);<br><br>    // create a new design<br>    oaNativeNS  ns;<br>    oaDesign  *design = oaDesign::open(oaScalarName(&quot;myLib&quot;, ns),<br>                                       oaScalarName(&quot;myCell&quot;, ns),<br>                                       oaScalarName(&quot;myView&quot;, ns),<br>                                       oacMaskLayout,<br>                                       'w');<br>                                          <br>    // Get the topBlock for this design.<br>    oaBlock *block = design-&gt;getTopBlock();<br> <br>    // If no topBlock exists, create one.<br>    if (!block) {<br>        block = oaBlock::create(design);<br>    }<br>    // get a net in this design<br>    oaNet *net = oaNet::create(block, oaScalarName(&quot;myNetName&quot;, ns));<br> <br>    // set a value in the table extension<br>    weight-&gt;set(net, .335);<br> <br>    // get the value<br>    oaFloat value = weight-&gt;get(net);<br>
+</PRE>
+<p>The extension definition object declared in this example 
+is used to set or get <code>netWeight</CODE> values on <a href="../design/classoaNet.html"><code>oaNets</CODE></a> in any design.</P>
+<h3 class=spabove><a name="3"></a>Extension Types</H3>
+<p>The OpenAccess database supports the following extension 
+definition types.</P>
+<table cellSpacing=12 width=850 align=center summary=&nbsp; border=0>
+  <tr vAlign=top>
+    <td><a href="../base/classoaBooleanAppDef.html"><code       >oaBooleanAppDef</CODE></a></TD>
+    <td>Stores a boolean value on database objects.</TD>
+  </TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaIntAppDef.html"><code       >oaIntAppDef</CODE></a></TD>
+    <td>Adds an integer up to 4-bytes long onto any 
+      object in the database. This extension is sized to hold the largest 
+      integer stored by a particular extension in a given database. If the 
+      integers stored are values between 0 and 255, only a single byte of 
+      storage is used per object.</TD></TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaFloatAppDef.html"><code       >oaFloatAppDef</CODE></a> </TD>
+    <td>Stores a floating point number on database 
+      objects.</TD></TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaDoubleAppDef.html"><code       >oaDoubleAppDef</CODE> </a></TD>
+    <td>Stores a double precision floating point number 
+      on database objects.</TD></TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaStringAppDef.html"><code       >oaStringAppDef</CODE></a> </TD>
+    <td>Saves a string attribute with database 
+  objects.</TD></TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaIntraPointerAppDef.html"><code       >oaIntraPointerAppDef</CODE></a></TD>
+    <td>Adds a pointer to an object that points to other 
+      objects of the same type and in the same database. For example, a <a href="../base/classoaIntraPointerAppDef.html"><code       >oaIntraPointerAppDef</CODE></a> used on instances can 
+      be handed a pointer to any <a href="../design/classoaInst.html"><code       >oaInst</CODE></a> in the same database. Classes of 
+      objects are of the same type if they have the same value for dtIndex. For 
+      example, oaScalarNet and oaBusNet both have the dtIndex inherited from 
+      oaNet, so they can each be given an oaAppIntraPointer that points to the 
+      other.</TD>
+  </TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaInterPointerAppDef.html"><code       >oaInterPointerAppDef</CODE></a></TD>
+    <td>Adds a pointer to an object that points to other 
+      types of objects in the same database. For example, you can use a <a href="../base/classoaInterPointerAppDef.html"><code       >oaInterPointerAppDef</CODE></a> on a net to point to 
+      any terminal in the same database. You can also use a <a href="../base/classoaInterPointerAppDef.html"><code       >oaInterPointerAppDef</CODE></a> on a net to point to 
+      a extension object you have added to the same database.</TD>
+  </TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaDataAppDef.html"><code       >oaDataAppDef</CODE></a> </TD>
+    <td>Adds data of a given size. The data size is 
+      declared when creating the extension. The database does not know the 
+      organization of the data within the set of bytes. This type of extension 
+      can be used to store a <code>struct</CODE> defined 
+      within an application on objects in the database. The caller must be aware 
+      that if that whole <code>struct</CODE> is stored 
+      persistently, the database cannot handle machine differences within the 
+      representation of the fields within that <code 
+      >struct</CODE> if the database is written by one kind 
+      of computer and read by another type of computer.</TD></TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaVarDataAppDef.html"><code       >oaVarDataAppDef</CODE> </a></TD>
+    <td>Similar to <a href="../base/classoaDataAppDef.html"><code       >oaDataAppDef</CODE></a>, except you specify the size 
+      of the block of data to store for every time you use the data extension. 
+      The value does not have to be one size for all the times you use the 
+      extension.</TD>
+  </TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaTimeAppDef.html"><code       >oaTimeAppDef</CODE></a></TD>
+    <td>Stores a value of type oaTime on database 
+    objects.</TD></TR>
+  <tr vAlign=top>
+    <td><a href="../base/classoaVoidPointerAppDef.html"><code>oaVoidPointerAppDef</CODE> </a></TD>
+    <td>Stores a void pointer to any object in memory. The pointer can be an application object or an object in another OpenAccess database. The void pointer size is 32 bits in 32 bit compiled applications and 64 bits in 64 bit compiled applications. This extension type cannot be marked persistent, and the contents of the extension are destroyed when the database is purged from memory.</TD>
+  </TR>
+</TABLE>
+<h3 class=spabove><a name="4">Extension Storage</a></H3><p>When an application starts to add an extension to a given object type in a given database, only a small percentage of the objects have values that differ from their default value. Initially, these small number of extension values are stored in a hash table to minimize the total space used for that storage.</P><p>As the number of extension values grows, it becomes more efficient to store the values as a dense array containing a slot for every object of the type being extended. The database switches to this storage arrangement when appropriate.</P><p>It is here that specifying a correct default value can greatly reduce the size of the extension in a given database. In other words, the default value should be chosen to minimize the number of non-default values.</P><h2 class=spabove><a name="5">Adding a New Independent Object Type</a></H2><p>Another form of extension lets an application define its own independent objects. Such objects work like  built-in objects such as oaPin and oaBoundary. These independent objects are created in databases but are not additions to any particular built-in object class.</P><p>Independent objects have their own type of AppDef—the <a href="../base/classoaAppObjectDef.html">oaAppObjectDef</a>. This AppDef allows an application to 
+create empty objects with the type name specified. To make such objects useful, 
+they must have attributes. These attributes include values such as strings, 
+pointers, and other objects in the database including built-in and 
+application-defined objects. </P>
+<p>These secondary attributes are defined as attribute 
+extensions on the object extension. Any of the oaAppDef subclasses can be 
+applied to an oaAppObjectDef. To use an object extension, the application 
+must:</P>
+<ol>
+  <li>Create an oaAppObjectDef defining the type name of 
+  the new object. 
+  <li>Create various oaAppDefs defining attributes of the 
+  new object type. 
+  <li>Use the AppObjectDef to create an instance of the new 
+  object in a database. This returns an ID of type oaAppObject. 
+  <li>Use the attribute AppDefs to add information to the 
+  new object instance. </LI></OL>
+<p>oaAppObjects can have properties and belong to groups 
+just like built-in database objects. oaAppObjects are always defined as 
+persistent. If a database containing one of these object instances is saved, the 
+oaAppObject is saved with it. </P>
+<p>The following example creates  independent objects that have a name and a integer stored on them.</P>
+<p>The first step is to create an oaAppObjectDef for the new object type:</p>
+<pre> // Create a definition for the new object that will be created.
+   oaAppObjectDef *appObjDef = oaAppObjectDef::get(&quot;newObjectType&quot;);   </pre>
+<p>Now the new object type can be populated with extension values. Any class derived from oaAppDef can be used. This example uses two extensions: </p>
+<ul>
+  <li>An integer value to hold a weight attribute</li>
+  <li>A string value to hold a name</li>
+</ul>
+<pre>// Define the attributes to store on the new object type. 
+   oaIntAppDef&lt;oaAppObject&gt; *weightAttr;
+   oaStringAppDef&lt;oaAppObject&gt; *nameAttr;<br><br>   weightAttr = oaIntAppDef&lt;oaAppObject&gt;::get(&quot;weight&quot;, appObjDef);<br>
+   nameAttr = oaStringAppDef&lt;oaAppObject&gt;::get(&quot;name&quot;, appObjDef); </pre>
+<p>Now  the new object type can be instantiated.</p>
+<pre>// The new object type is defined, now create an instance of it.
+   oaAppObject       *newObj = oaAppObject::create(design, appObjDef);
+   </pre>
+<p>The oaAppDef::set() functions can be used to write to the extension values:</p>
+<pre>   
+   // Example of storing data on the new object
+   weightAttr-&gt;set(newObj, 47);
+   nameAttr-&gt;set(newObj, &quot;Howdy&quot;);</pre>
+<p>The oaAppDef::get() functions can be used to read the extension values:</p>
+<pre> // Example of retrieving data from the new object.
+   oaUInt4 weight = weightAttr-&gt;get(newObj);
+   
+   oaString name;
+   nameAttr-&gt;get(newObj, name);
+   
+   cout &lt;&lt; &quot;Result: &quot; &lt;&lt; name &lt;&lt; &quot;, &quot; &lt;&lt; weight &lt;&lt; endl; </pre>
+<p><br>
+</p>
+<p><a href="#pagetop">Return to top of page</a></P>
+<p><a href="index.html">Return to Programmers Guide topics</a></P>
+<div style="TEXT-ALIGN: center"><IMG src="../pgfooter.gif"><br></DIV><br>
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> 
+<br>All rights reserved.</P>
+</body>
+</HTML>

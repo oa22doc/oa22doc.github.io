@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Modeling Parasitics in OpenAccess</h1>
+<hr> 
+  <p>OpenAccess provides two models to represent parasitics in design. The simpler model is represented by the oaReducedModel class with  the related classes for the reduced model parasitics representation. The more comprehensive model is represented by the oaParasiticNetwork class with the related classes for the detailed model parasitics representation.</p> 
+
+<h2>Reduced Model Parasitics</h2> 
+<p>Reduced models are used as simplified representations of the electrical behavior of a net in order to be smaller and faster for delay calculation than a full detailed parasitic model. Reduced models are associated with a terminal or instance terminal on a net to represent the behavior of the net when that terminal or instance terminal is driving it.</p> 
+
+<p>Reduced models can be created in the block and in the occurrence domains. Those created in a hierarchical fashion are stored on oaTerms and oaInstTerms. Those created for an expanded hierarchy are stored on oaOccTerms and oaOccInstTerms.</p> 
+
+<p>Any change to the connectivity of the net that the reduced model is on causes that reduced model to be destroyed. This includes creating, destroying, or moving terminals or instance terminals. The classes that represent the reduced model parasitics in a design are:</p> 
+  <ul> 
+    <li>oaReducedModel, and the derived classes of oaLumpedElmore, oaPiElmore, oaPiPoleResidue</li> 
+    <li>oaElmore, oaPoleResidue</li> 
+  </ul> 
+<h3><a name="nets_primary"></a>oaReducedModel</h3> 
+<p>The oaReducedModel class is an abstract base for all reduced model objects that model the parasitics seen by a driver of a net. There are three specific classes that represent three specific reduced models: oaLumpedElmore, oaPiElmore, and oaPiPoleResidue. They derive from the oaReducedModel class.</p> 
+
+<h3><a name="terminals_primary"></a>oaLumpedElmore:</h3> 
+<p>The oaLumpedElmore class represents a reduced model for the parasitics seen by a driver of a net, using a total lumped capacitance and a set of elmore (oaElmore) delays to each receiver. The oaElmore class represents the Elmore delays, which are the first moment of the impulse response of the interconnect parasitics from the driver to each receiver.</p> 
+
+<h3>oaPiElmore:</h3> 
+<p>The oaPiElmore class represents a reduced model for the parasitics seen by a driver of a net, using a PI model and a set of Elmore delays to each receiver. The PI model consists of two capacitors and a resistor between them, with <em>nearCap</em> being the capacitor closer to the driver. The <a href="../design/classoaElmore.html"><b>oaElmore</b></a> class represents the Elmore delays, which are the first moment of the impulse response of the interconnect parasitics from the driver to each receiver.</p>
+ 
+<h3><a name="instances_primary"></a>oaPiPoleResidue:</h3> 
+<p>The oaPiPoleResidue class represents a reduced model for the parasitics seen by a driver of a net using a PI model. The PI model consists of two capacitors and a resistor between them, with <em>nearCap</em> being the capacitor closer to the driver. For each receiver, an <a href="../design/classoaPoleResidue.html">oaPoleResidue</a> object represents a set of poles and residues that approximate the transfer function for the interconnect parasitics from the driver to that receiver.</p> 
+
+<h3>oaElmore:</h3> 
+<p>The oaElmore class represents the first moment (delay) of the impulse response of the interconnect parasitics from a particular driver to the receivers on the net. The oaElmore objects are part of a complete oaLumpedElmore or oaPiElmore reduced model for a driver.</p> 
+
+<h3>oaPoleResidue:</h3> 
+<p>The oaPoleResidue class represents an Elmore delay and a set of poles and residues that approximate the transfer function of the interconnect parasitics from a particular driver to a receiver on the net. The oaPoleResidue objects are part of a complete oaPiPoleResidue reduced model for a driver.</p>
+
+<h2>Detailed Model Parasitics</h2> 
+<p>Detailed Model Parasitics are represented in OpenAccess by the oaParasiticNetwork class and its related classes. The oaParasiticNetwork class represents the parasitic elements for a particular net and analysis point pair as a graph containing nodes and devices. Each analysis point can have a separate parasitic network, or values associated with several analysis points can be annotated on a shared parasitic network common to those analysis points.</p> 
+
+<p>Parasitic networks can be associated with nets in the block and occurrence domains. These networks are generally created by an extractor that analyzes the geometry of the nets to create the parasitics. If the extraction runs hierarchically one block at a time, it creates a parasitic network on an <a href="../design/classoaNet.html"><b>oaNet</b></a>. If it runs on an expanded hierarchy, it writes the parasitic network on an <a href="../design/classoaOccNet.html"><b>oaOccNet</b></a>.</p> 
+
+<p>Any change to the connectivity of the net that the ParasiticNetwork is on causes the ParasiticNetwork to be destroyed. This includes creating, destroying, or moving Terminals or InstTerms.</p> 
+
+<p>The classes that represent the detailed model parasitics in a design are:</p> 
+  <ul> 
+    <li>oaParasiticNetwork</li> 
+    <li>oaNode, and the derived class of oaGroundNode</li> 
+    <li>oaDevice, and the derived classes of oaMutualInductor, oaSeriesRL, oaStdDevice and its derived classes of oaCouplingCap, oaDiode, oaInductor, oaResistor</li> 
+    <li>oaSubNetwork</li> 
+  </ul> 
+  
+<h3>oaParasiticNetwork</h3> 
+<p>The oaParasiticNetwork class represents the parasitic elements for a particular net and analysis point pair as a graph containing nodes and devices. Each analysis point can have a separate parasitic network, or values associated with several analysis points can be annotated on a shared parasitic network common to those analysis points.</p> 
+
+<p>Parasitic networks can be associated with nets in the block and occurrence domains. These networks are generally created by an extractor that analyzes the geometry of the nets to create the parasitics. If the extraction runs hierarchically, one block at a time, it creates a parasitic network on an <a href="../design/classoaNet.html"><b>oaNet</b></a>. If it runs on an expanded hierarchy, it writes the parasitic network on an <a href="../design/classoaOccNet.html"><b>oaOccNet</b></a>.</p> 
+
+<p>For very large nets such as supply and ground, the detailed parasitic representation can contain so many nodes and devices that it is not practical to keep the entire network in memory at the same time. For these cases, the detailed parasitics can be partitioned into a number of related oaParasiticNetworks that form a tree. Each of these oaParasiticNetworks can have a name or a bounding box to indicate how the partitioning was done. An application can selectively expand different portions of the tree by loading the root oaParasiticNetwork and then recursively loading one or more of its descendents. Devices in a lower level oaParasiticNetwork can refer to nodes (and devices, for mutual inductors) in an ancestor oaParasiticNetwork. When an oaParasiticNetwork is unloaded, all of its descendents are unloaded as well.</p>
+
+
+<h3>oaNode, oaGroundNode</h3> 
+<p>The oaNode class represents nodes contained within an <a href="../design/classoaParasiticNetwork.html"><b>oaParasiticNetwork</b></a>. Nodes connect devices, terms and instTerms. They can also describe the physical location of a point within the routing topology, which is useful when a long wire is broken into a series of distributed parasitic elements. In that case, the layer and origin represent the position of the node along the wire. Capacitance between a node and an implicit ground can be represented using the <a href="../design/classoaGroundedNode.html"><b>oaGroundedNode</b></a> derived class.</p> 
+
+<h3>oaDevice and its Derived Classes</h3> 
+<p>The oaDevice class is an abstract base class for parasitic devices contained within an <a href="../design/classoaParasiticNetwork.html"><b>oaParasiticNetwork</b></a>. A device represents an instance of a particular type of parasitic element, such as a resistor, capacitor, or inductor, and these are represented by the various derived classes of oaDevice.</p> 
+
+<p>There are a variety of different device types, many of which have two endpoints. Each endpoint connects directly to an <a href="../design/classoaNode.html"><b>oaNode</b></a> object. This is in contrast to connections between instances and nets, where an additional object (<a href="../design/classoaInstTerm.html"><b>oaInstTerm</b></a>) is used to represent the connection. Most parasitic devices are symmetrical and do not have distinct information associated with each endpoint. Because devices are among the most numerous of database objects, there is a substantial capacity improvement by using a different connectivity model for devices than for instances.</p>
+
+<p>In addition to its resistance value(s), an oaResistor can have a number of optional attributes that describe how the extractor modeled certain local variations in the process.  These include the effective width, length, and height of a wire, as well as the number of cuts, the cut area, and the cut perimeter of a via.</p>
+
+<p>Two types of devices do not have two endpoints connected to nodes. An <a href="../design/classoaMutualInductor.html"><b>oaMutualInductor</b></a> represents an electromagnetic relationship between two inductors (between devices rather than nodes). An <a href="../design/classoaCouplingCap.html"><b>oaCouplingCap</b></a> that couples between two different parasitic networks can connect directly to an instTerm or term in the other network, rather than to a node.</p>
+
+<p>Most parasitic devices have one value for each analysis point that the parasitic network represents. Each value reflects the parasitic effect applicable to the operating points associated with the corresponding analysis point. The <a href="../design/classoaSeriesRL.html"><b>oaSeriesRL</b></a> device has two values for each analysis point, one resistance and one capacitance. The <a href="../design/classoaSeriesRL.html"><b>oaSeriesRL</b></a> device can be used to improve capacity when a resistor and an inductor are connected in series and the node between them is not of interest.</p> 
+
+<p>From an electrical standpoint, a coupling capacitor can connect two different nodes in the same parasitic network, or it can connect two nodes in different networks. In OpenAccess, a particular coupling relationship between two different networks is represented separately for each of the networks, with an <a href="../design/classoaCouplingCap.html"><b>oaCouplingCap</b></a> device in each network. This allows each network to be loaded independently and efficiently. Applications must explicitly create and destroy each <a href="../design/classoaCouplingCap.html"><b>oaCouplingCap</b></a> in the pair for a given coupling relationship.</p>
+ 
+<p>Mutual inductors are handled in a similar fashion. A mutual inductor relates two different inductors, which can be in the same network or in different networks. When the inductors are in different networks, each network has its own mutual inductor device. Applications must explicitly create and destroy each mutual inductor in the pair for a given coupling relationship.</p> 
+
+<h3>oaSubNetwork</h3> 
+<p>The oaSubNetwork class identifies a subset of the nodes and devices within a full <a href="../design/classoaParasiticNetwork.html"><b>oaParasiticNetwork</b></a>. The oaSubNetwork class can be used to represent the relationship between a set of nodes and devices and the corresponding route element or shape. Nodes can appear in multiple subNetworks for cases such as a wire connecting to a via or several wires connecting at an <a href="../design/classoaSteiner.html"><b>oaSteiner</b></a> point. Although it is possible for a device to appear in multiple subNetworks, this is generally undesirable because it is not possible to determine what portion of the device's value lies within each subNetwork.</p> 
+
+<h2><b>Loading and Unloading Parasitics</b></h2> 
+<p>Parasitic annotations can involve a very large amount of data that is associated with the nets in a design. In order to limit the amount of memory that this data uses, OpenAccess has a paging scheme for parasitics that allows the parasitics for just some of a design's nets to be in memory at any given time. With this approach, the application informs OpenAccess which parasitics it currently needs, and then later, informs OpenAccess when it is done with those objects. When the application is done with a given net's parasitics, OpenAccess can free the memory that those objects use. For parasitics that are modified, OpenAccess writes the modified data to a paging file so the modified parasitics can be read later or saved persistently when the design is saved.</p> 
+
+<p>To access an existing oaParasiticNetwork object, a user calls the oaParasiticNetwork::load() function, which loads the network from disk if necessary. Several different users can access the same parasitic network at the same time. A reference count is kept to ensure that the parasitic network remains in memory at least until the last caller signals that it is done with the network by calling the oaParasiticNetwork::unload() function. </p> 
+
+<p>Pointers to the oaParasiticNetwork and to any objects within the network, for example the nodes and devices, are only valid between a matched pair of the <a href="../design/classoaParasiticNetwork.html#d4"><b>load()</b></a> and <a href="../design/classoaParasiticNetwork.html#a2"><b>unload()</b></a> calls that are mentioned above. After calling <a href="../design/classoaParasiticNetwork.html#a2"><b>unload()</b></a> for a parasitic network, the caller assumes that all of the pointers to that parasitic network's objects are no longer valid. The caller should also assume that the values of the object pointers change each time the same parasitic network is reloaded.</p> 
+
+<p>Changes made to a parasitic network are preserved across subsequent calls to <a href="../design/classoaParasiticNetwork.html#a2"><b>unload()</b></a> and <a href="../design/classoaParasiticNetwork.html#d4"><b>load()</b></a>. As with other design data, changes to parasitic networks do not affect the primary on-disk representation of the design until the changes are saved using <a href="../design/classoaDesign.html#oaDesign::save"><b>oaDesign::save()</b></a>. Saving a design that contains parasitic networks creates or updates an <a href="../dm/classoaDMFile.html"><b>oaDMFile</b></a>, detailed_rc.oa, that is a follower of the primary <a href="../design/classoaDesign.html"><b>oaDesign</b></a> database within the <a href="../dm/classoaCellView.html"><b>oaCellView</b></a></p> 
+
+<p>When the <a href="../dm/classoaCellView.html"><b>create()</b></a> function is used to build a new parasitic network, the data for that network remains in memory until the <a href="../dm/classoaCellView.html"><b>unload()</b></a> function is called.</p> 
+
+<p>Undo, properties, and groups are not supported for oaParasiticNetwork. Extensions on oaParasiticNetwork (and interPointer extensions that refer to an oaParasiticNetwork) are only accessible while the oaParasiticNetwork is loaded.</p> 
+
+<p><a href="#pagetop">     <!-- beginning of footer -->     Return to top of page</a></p> 
+  <p><a href="index.html">Return to Programmers Guide topics</a></p> 
+  <p align=center style='text-align:center;'><img
+border=0 src="../pgfooter.gif"></p> 
+  <p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p> 
+
+
+</body>
+</html>

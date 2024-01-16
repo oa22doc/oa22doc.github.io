@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Overview of Change Management System (CMS) Classes</h1>
+<hr>
+<p>The OpenAccess change management system (CMS) infrastructure is provided through several sets of classes, which are available from the <a href="../cms/classes.html">Change Management System (CMS) Class Index</a> page. These classes have different prefixes depending on their functionality. The following table explains the meaning of the prefixes.</p>
+</p>
+
+<table border="1" width="885">
+  <tbody><tr>
+    <th scope="col" bgcolor="#ccccdd" width="62"><div align="left">Prefix</div></th>
+    <th scope="col" bgcolor="#ccccdd" width="554"><div align="left">Functionality</div></th>
+    <th scope="col" bgcolor="#ccccdd" width="247"><div align="left">Related Documentation</div></th>
+  </tr>
+    <tr>
+      <td>oa</td>
+      <td><p>Classes with the oa prefix, such as oaChangeMgr and oaChangeRec, are classes that support the basic CMS capabilities. Specifically, oaChangeMgr provides functions to manage the CMS plug-ins, oaChangeRec and its derived classes allow for the creation of objects that capture information about changes to design data., and oaChangeSet provides a mechanism to group oaChangeRec objects.</p>
+      </td>
+      <td><a href="cms.html">Change Management System (CMS)</a></td>
+    </tr>
+    <tr>
+      <td>sd</td>
+      <td><p>The sd or schema definition classes provide metadata for the OpenAccess information model. The schema definitions are used to define the objects, attributes,  relationships, and values for OpenAccess managed objects. For example, an sdObject can provide the generic  schema definition for any OpenAccess class by specifying the  attributes and relationships that can exist for  objects of that class.</p>
+        </td>
+      <td><a href="../base/classsdBase.html">sdBase</a><br>
+        <a href="../base/classsrBase.html">srBase</a></a><a href="create_schema.html"><br>          Creating Schema Definitions</a>
+          </h3>        
+        </p>      </td>
+    </tr>
+    <tr>
+      <td>sr</td>
+      <td><p> This is the abstract base class to represent an attribute. It contains a pointer to the sdAttribute that defines the schema definition for the representation and an srObjectRef pointer to store the object from which the attribute value was obtained. The derived class will need to specialize for the specific value type. </p>
+          </td>
+      <td><a href="cms.html#srClasses">Schema Representation Classes</a></td>
+    </tr>
+    
+    
+    <tr>
+      <td>I</td>
+      <td>Classes prefixed with I define the interfaces for the  CMS plug-ins.</td>
+      <td><a href="cms_plugins.html">How to Write CMS Plug-Ins</a><br>
+      <a href="writingplugin.html">How to Write a Plug-In</a></td>
+    </tr>
+</tbody></table>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+		<div style="TEXT-ALIGN: center">
+			<img src="../pgfooter.gif"></div>
+		<br>
+		<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+			<br>
+			All rights reserved.</p>
+		
+</body>
+</html>

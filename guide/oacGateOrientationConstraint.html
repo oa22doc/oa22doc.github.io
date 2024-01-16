@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>oaGateOrientation (oacGateOrientation)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in oacGateOrientation layer contraint specifies horizontal, vertical or any orientation required for building gates. Gates can be built using any orientation if any orientation is specified or if this constraint is not specified. An optional parameter limits application of the constraint to only those gates that have a width equal to or less than a specified value.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaTech.html">oaTech</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>This oaIntValue is expressed using the oaGateOrientationType enumeration to represent a horizontal (oacHorizontalGateOrientationType), vertical (oacVerticalGateOrientationType ), or any (oacAnyGateOrientationType ) orientation. The default orientation is any direction if this constraint is not specified.</p>
+        <p>
+        Units: Enum</p>
+        <p>This 
+          value
+        is represented by an
+          <a href="../../html/base/classoaGateOrientationType.html">oaGateOrientationType</a>
+        enumeration:
+        </p>
+        <table border="0" cellpadding="4">
+          <tr style="background-color:#99cccc">
+            <th>Value</th>
+            <th>Name</th>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacAnyGateOrientationType</td>
+            <td valign="top">          any</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacHorizontalGateOrientationType</td>
+            <td valign="top">   horizontal</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacVerticalGateOrientationType</td>
+            <td valign="top">     vertical</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>width</b><br />oacWidthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>oacGateOrientation has a single, optional parameter to represent the maximum gate width at which this constraint applies. An oaConstraintParam of type oacWidthConstraintParamType represents the maximum gate width expressed in database units. If this parameter is not specified, the specified orientation applies to all gates.</p>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/figGateOrientation.gif" alt="figGateOrientation.gif" />
+      <br />
+    </p>
+    <h2>Manufacturing Reasons</h2>
+    <p>This constraint applies at the process level and might be used by layout generation tools that generate or place gates or used by layout checking tools. The constraint is associated with the derived layer representing gate shapes.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

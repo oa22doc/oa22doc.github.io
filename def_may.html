@@ -1,0 +1,621 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h2><b><tt><font color="#330000"><font size="+2" face="Arial, Helvetica, sans-serif">DEF 
+  5.4 Constructs</font></font></tt></b> </h2>
+<p><font face="Arial, Helvetica, sans-serif">The def2gn translator parses all 
+  LEF 5.4 constructs. Constructs that are not supported in this current release 
+  are ignored and the translator issues a message stating &quot;not yet supported&quot;. 
+  </font></p>
+<p><font face="Arial, Helvetica, sans-serif">Obsolete constructs are those which 
+  were supported in LEF/DEF 5.3 or earlier versions and are now obsolete in LEF/DEF 
+  5.4.</font></p>
+<p><font face="Arial, Helvetica, sans-serif">Constructs that will not be supported 
+  are those that support gate array style designs. OpenAccess 2 supports custom 
+  and automated design styles, analog and digital and mixed-signal designs.<br>
+  </font> </p>
+<hr width="100%">
+<p><font face="Arial, Helvetica, sans-serif"><a name="legend"></a>Please use the 
+  following legend to determine the status of DEF 5.4 constructs in OpenAccess 
+  2.0.<br>
+  <tt><font color="#006600"><i>feature</i> -- The feature is implemented</font></tt> 
+  <br>
+  <tt><font color="#FF0000"><i>feature</i> -- The feature will be implemented</font></tt> 
+  <br>
+  <tt><font color="#993399"><i><font color="#CC33CC">feature</font></i><font color="#CC33CC"> 
+  -- The feature is obsolete</font></font></tt> <br>
+  <tt><font color="#3366FF"><i>feature</i> -- The feature will not be supported</font></tt> 
+  </font><br>
+</p>
+<hr width="100%">
+<h3>Notes on LEF 5.4 Constructs</h3>
+<p><br>
+  <tt><font color="#000000"><b>Construct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  <a href="#note_defs">Note</a></b></font></tt><br>
+  <tt>- Version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Names Case Sensitive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Bus Bits Character&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Divider Character&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Technology&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Array&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (2)</tt> <br>
+  <tt>- Floorplan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (2)</tt> <br>
+  <tt>- Units&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- History&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Property Definitions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Die Area&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Rows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Tracks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- GCell Grid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Default Capacitances&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (1)</tt> <br>
+  <tt>- Can Place&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (2)</tt> <br>
+  <tt>- Cannot Occupy&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (2)</tt> <br>
+  <tt>- Vias&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Regions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Components&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Pins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (4)</tt> <br>
+  <tt>- Pin Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Special Nets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (4)</tt> <br>
+  <tt>- Nets&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (4)</tt> <br>
+  <tt>- I/O Timing&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (1)</tt> <br>
+  <tt>- Scan Chains&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Constraints&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (1)</tt> <br>
+  <tt>- Groups&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- Blockages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (5)</tt> <br>
+  <tt>- Slots&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (5)</tt> <br>
+  <tt>- Fills&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  (5)</tt> <br>
+  <tt>- Extensions&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  <tt>- End Design&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  -</tt> <br>
+  &nbsp; </p>
+<p><tt><font color="#000000"><a name="note_defs"></a>Notes :</font></tt> <br>
+  <tt><font color="#000000">(1) : 5.3 construct that became obsolete in 5.4 version.</font></tt> 
+  <br>
+  <tt><font color="#000000">(2) : Construct not supported by G2 Def Reader.</font></tt> 
+  <br>
+  <tt><font color="#000000">(3) : Some attributes of the construct became obsolete 
+  in 5.4 version.</font></tt> <br>
+  <tt><font color="#000000">(4) : New attributes appearing in 5.4</font></tt> 
+  <br>
+  <tt><font color="#000000">(5) : New construct appearing in 5.4</font></tt> <br>
+<hr WIDTH="100%">
+<p><tt><font color="#006600">VERSION versionNumber ;</font></tt>
+<br><font color="#006600"></font>&nbsp;
+<p><tt><font color="#FF0000">NAMESCASESENSITIVE { ON | </font><font color="#3366FF">OFF</font><font color="#FF0000">
+} ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">BUSBITCHARS "delimiterPair" ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">DIVIDERCHAR "character" ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">DESIGN designName ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#FF0000">TECHNOLOGY technologyName ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#3366FF">ARRAY arrayName ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#3366FF">FLOORPLAN {DEFAULT | floorPlanName};</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">UNITS DISTANCE MICRONS DEFconvertFactor ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#FF0000">HISTORY anyText ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">PROPERTYDEFINITIONS</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; objectType propName propType
+[ RANGE min max ] [ value | stringValue ] ; ...</font></tt>
+<br><tt><font color="#006600">END PROPERTYDEFINITIONS</font></tt>
+<p><tt><font color="#006600">objectType =</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; { DESIGN | COMPONENT |
+NET | SPECIALNET | GROUP | ROW</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| COMPONENTPIN | REGION }</font></tt>
+<br><tt><font color="#006600">propType =</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; { INTEGER | REAL | STRING
+}</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">DIEAREA pt pt ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">ROW</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; rowName rowType origX
+origY orient</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; { DO numX BY 1 STEP spaceX
+0</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; | DO 1 BY numY STEP 0
+spaceY }</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [+ PROPERTY {propName
+propVal}...]...;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">TRACKS</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; {X | Y} start</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; DO numtracks STEP space</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [ LAYER layerName ...]
+;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">GCELLGRID</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; X start DO numColumns+1
+STEP space</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; Y start DO numRows+1 STEP
+space ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#CC33CC">DEFAULTCAP tableSize</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp; {MINPINS numPins WIRECAP
+cap ;}...</font></tt>
+<br><tt><font color="#CC33CC">END DEFAULTCAP</font></tt>
+<br>&nbsp;
+<p><tt><font color="#3366FF">CANPLACE sitename</font></tt>
+<br><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp; origX origY orient DO
+numx BY numY STEP spaceX spaceY ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#3366FF">CANNOTOCCUPY sitename GE</font></tt>
+<br><tt><font color="#3366FF">&nbsp;&nbsp;&nbsp; origX origY orient DO
+numx BY numY STEP spaceX spaceY ;</font></tt>
+<br>&nbsp;
+<p><tt><font color="#FF0000">VIAS numVias ;</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp; [- viaName</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp; [+ PATTERNNAME patternName
++ RECT layerName pt pt]... ;]...</font></tt>
+<br><tt><font color="#FF0000">END VIAS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">REGIONS numRegions;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [- regionName pt pt [pt
+pt]...</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [+ PROPERTY {propName
+propVal}...]...;]...</font></tt>
+<br><tt><font color="#006600">END REGIONS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">COMPONENTS numComps ;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [- compName modelName</font><font color="#3366FF">[netName
+| *]...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ EEQMASTER macroname]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ GENERATE generatorName [parameters]]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SOURCE {NETLIST | DIST | USER | TIMING}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ FOREIGN foreignCellName pt orient]...</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ {FIXED | COVER | PLACED | UNPLACED} pt orient]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ WEIGHT weight]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ REGION {pt pt | regionName}]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ PROPERTY {propName propVal}...]...;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ]...</font></tt>
+<br><tt><font color="#006600">END COMPONENTS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">PINS numPins ;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [ - pinName + NET netName</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SPECIAL]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ DIRECTION {INPUT | OUTPUT | INOUT | FEEDTHRU}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ USE {SIGNAL | POWER | GROUND | CLOCK | TIEOFF</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| ANALOG |&nbsp; SCAN&nbsp; |&nbsp; RESET}]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ LAYER layerName pt pt]</font></tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font color="#006600">[+
+{FIXED | PLACED | COVER} pt orient]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINPARTIALMETALAREA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; integer [LAYER
+layerName] ] ...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINPARTIALMETALSIDEAREA&nbsp; integer [LAYER layerName] ] ...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINGATEAREA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+integer [LAYER layerName] ] ...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINDIFFAREA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+integer [LAYER layerName] ] ...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINMAXAREACAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+integer LAYER layerName ]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINMAXSIDEAREACAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; integer
+LAYER layerName ]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINPARTIALCUTAREA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; integer
+[LAYER cutLayerName] ] ...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ANTENNAPINMAXCUTCAR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+integer LAYER layerName ]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ]...</font></tt>
+<br><tt><font color="#006600">END PINS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">PINPROPERTIES num;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [- { compName | PIN }
+pinName</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ PROPERTY {propName propVal}...]...;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ]...</font></tt>
+<br><tt><font color="#006600">END PINPROPERTIES</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">SPECIALNETS numNets</font> ;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; <font color="#006600">[- netName [(compName</font><font color="#FF0000">RegExpr
+</font><font color="#006600">pinName</font><font color="#FF0000">[+
+SYNTHESIZED]</font><font color="#006600">)]...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ WIDTH layerName width]...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ VOLTAGE volts]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SOURCE {NETLIST | DIST | USER | TIMING}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ORIGINAL netName]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ USE</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ SIGNAL | POWER | GROUND | CLOCK</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| SCAN | RESET | TIEOFF | ANALOG }]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+PATTERN</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{STEINER | BALANCED | WIREDLOGIC | TRUNK}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ESTCAP wireCapacitance]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ WEIGHT weight]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ PROPERTY {propName propVal}...]...;]...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[</font><font color="#006600">+ {ROUTED | FIXED | COVER} layerName width</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SHAPE {RING | STRIPE | FOLLOWPIN | IOWIRE</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| COREWIRE | BLOCKWIRE | FILLWIRE</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| PADRING | BLOCKRING | BLOCKAGEWIRE}]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(x y) [ (x *) | (* y) | viaName ]...</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[ NEW layerName width</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SHAPE {RING | STRIPE | FOLLOWPIN | IOWIRE | COREWIRE</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| BLOCKWIRE | FILLWIRE</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| PADRING | BLOCKRING | BLOCKAGEWIRE}]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(x y) [ (x *) | (* y) | viaName ]...]...]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SHIELD shieldedNetName layerName width</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SHAPE {RING | STRIPE | FOLLOWPIN | IOWIRE</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| COREWIRE | BLOCKWIRE | FILLWIRE</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| PADRING | BLOCKRING | BLOCKAGEWIRE}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(x y) [ (x *) | (* y) | viaName ]...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[NEW layerName width</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SHAPE {RING | STRIPE | FOLLOWPIN | IOWIRE</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| COREWIRE | BLOCKWIRE | FILLWIRE | BLOCKAGEWIRE}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(x y) [ (x *) | (* y) | viaName ]...]...]...</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ;]...</font></tt>
+<br><tt><font color="#006600">END SPECIALNETS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">NETS numNets </font>;</tt>
+<br><tt>&nbsp;&nbsp;&nbsp; <font color="#006600">[- { netName [( {compName
+| PIN} pinName</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SYNTHESIZED]</font><font color="#006600">)]...</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| MUSTJOIN (compName pinName) }</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SHIELDNET shieldNetName ] ...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ NOSHIELD lastSegment ] ...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ VPIN vpinName [LAYER layerName] pt pt</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[ { PLACED | FIXED | COVER } pt orient ] ]...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SUBNET subnetName</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[( {compName | PIN} pinName)| (VPIN vpinName)]...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[NONDEFAULTRULE rulename]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[regularWiring]]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ XTALK num]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ NONDEFAULTRULE ruleName]</font></tt>
+<br><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [+ regularWiring]...</tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SOURCE {NETLIST | DIST | USER | TEST | TIMING}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ORIGINAL netName]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ USE</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{ SIGNAL | POWER | GROUND | CLOCK</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| SCAN | RESET | TIEOFF | ANALOG}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ PATTERN</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{STEINER | BALANCED | WIREDLOGIC}]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ ESTCAP wireCapacitance]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ WEIGHT weight]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ PROPERTY {propName propVal}...]...;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ]...</font></tt>
+<br><tt><font color="#006600">END NETS</font></tt>
+<p><tt>regularWiring =</tt>
+<br><tt><font color="#006600">{ROUTED | FIXED | COVER}</font></tt>
+<br><tt><font color="#006600">layerName </font><font color="#FF0000">[TAPER
+| TAPERRULE rulename]</font><font color="#006600"> ( x y </font><font color="#FF0000">[value]
+</font><font color="#006600">)</font></tt>
+<br><tt><font color="#006600">[( x * </font><font color="#FF0000">[value]</font><font color="#006600">
+) | ( * y </font><font color="#FF0000">[value]</font><font color="#006600">
+) | ( * * </font><font color="#FF0000">[value] </font><font color="#006600">)
+| viaName]...</font></tt>
+<br><tt><font color="#006600">[NEW layerName </font><font color="#FF0000">[TAPER
+| TAPERRULE rulename]</font> <font color="#006600">( x y </font><font color="#FF0000">[value]</font><font color="#006600">)</font></tt>
+<br><tt><font color="#006600">[( x * </font><font color="#FF0000">[value]</font><font color="#006600">)
+| ( * y </font><font color="#FF0000">[value]</font><font color="#006600">)
+| ( * * </font><font color="#FF0000">[value]</font><font color="#006600">
+) | viaName]...]...</font></tt>
+<br>&nbsp;
+<p><tt><font color="#CC33CC">IOTIMINGS numIOTimings ;</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp; [ - {(comp pin) | (PIN
+name)}</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ { RISE | FALL } VARIABLE min max ]...</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ { RISE | FALL } SLEWRATE min max ]...</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ CAPACITANCE capacitance ]</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ DRIVECELL macroName</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[ [ FROMPIN pinName] TOPIN pinName]</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[PARALLEL numDrivers ]</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+;</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp; ]...</font></tt>
+<br><tt><font color="#CC33CC">END IOTIMINGS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">SCANCHAINS numScanChains ;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [- chainName</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [+ COMMONSCANPINS [(IN
+pin)][(OUT pin)]]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [+ START {fixedInComp
+| PIN} [outPin] ]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; {+ FLOATING {floatingComp
+[(IN pin)] [(OUT pin)]}...}</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [+ ORDERED</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+{fixedComp [(IN pin)] [(OUT pin)]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fixedComp [(IN pin)] [(OUT pin)]}</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[fixedComp [(IN pin)] [(OUT pin)]] ...}]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [+ STOP {fixedOutComp
+| PIN} [inPin] ]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ;]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ...</font></tt>
+<br><tt><font color="#006600">END SCANCHAINS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#CC33CC">CONSTRAINTS numConstraints ;</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp; {- { operand</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ RISEMAX time][+ FALLMAX time]</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ RISEMIN time][+ FALLMIN time]</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| WIREDLOGIC netName MAXDIST distance</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+} ;}...</font></tt>
+<br><tt><font color="#CC33CC">END CONSTRAINTS</font></tt>
+<br><tt><font color="#CC33CC">operand =</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp; { NET netName</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp; | PATH comp fromPin comp
+toPin</font></tt>
+<br><tt><font color="#CC33CC">&nbsp;&nbsp;&nbsp; | SUM ( operand,... )
+}</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">GROUPS numGroups ;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; [- groupName compNameRegExpr...</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ SOFT</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[MAXHALFPERIMETER value]</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[MAXX value][MAXY value]]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ REGION {pt pt | regionName} ]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ PROPERTY {propName propVal}...]...;]...</font></tt>
+<br><tt><font color="#006600">END GROUPS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">BLOCKAGES numBlockages ;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; -&nbsp;&nbsp;&nbsp; {
+LAYER layerName</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[+ COMPONENT compName</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|+ SLOTS</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+|+ FILLS</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| + PUSHDOWN ]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| PLACEMENT</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[ + COMPONENT compName</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+| + PUSHDOWN ]</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RECT pt pt</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[RECT pt pt ] ... ;</font></tt>
+<br><tt><font color="#006600">&nbsp;&nbsp;&nbsp; ...</font></tt>
+<br><tt><font color="#006600">END BLOCKAGES</font></tt>
+<br>&nbsp;
+<p><tt><font color="#FF0000">SLOTS numSlots ;</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp; - { LAYER layerName</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RECT pt pt</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[RECT pt pt] ... ;</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp; ...</font></tt>
+<br><tt><font color="#FF0000">END SLOTS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#FF0000">FILLS numFills ;</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp; - { LAYER layerName</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+RECT pt pt</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[RECT pt pt] ... ;</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+}</font></tt>
+<br><tt><font color="#FF0000">&nbsp;&nbsp;&nbsp; ...</font></tt>
+<br><tt><font color="#FF0000">END FILLS</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">BEGINEXT "tag"</font></tt>
+<br><tt><font color="#006600">extensionText</font></tt>
+<br><tt><font color="#006600">ENDEXT</font></tt>
+<br>&nbsp;
+<p><tt><font color="#006600">END DESIGN</font></tt>
+<br>&nbsp;
+<br>&nbsp;
+</body>
+</html>

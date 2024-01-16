@@ -1,0 +1,90 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Plug-In Class Index
+
+
+HTMLFILES = \
+# oaCommon plug-in foundation classes
+	classIBase.html
+	classPlugInBase.html
+	classIException.html
+	structGuid.html
+	classIDTester.html
+	classInterfaceAccess.html
+	classNString.html
+	classPlugInDef.html
+	classSPtr.html
+	classSRef.html
+	classSRef_3_01IString_01_4.html
+# old dm plug-in build
+	classIDMObject.html
+	classIAccessControl.html
+	classIAttr.html
+	classICellViewIter.html
+	classIDMAccess.html
+	classIDMException.html
+	classIDMObjectStatus.html
+	classIDMObjectVersion.html
+	classIDMSystemCaps.html
+	classILib.html
+	classILocking.html
+	classIVCMessageObserver.html
+	classIVCPlugIn.html
+	classIVCSystem.html
+	classIVersion.html
+	classIVersionControl.html
+# old Pcell build and new Pcell Interface 1/20/07
+	classIPcell.html
+	classIPcellGen.html
+	classIPcellCPPDefMgr.html
+	classIEvalText.html
+# new PcellFile class 4/6/07
+#       classIPcellFile.html
+	classPcellFile.html
+# Concurrency
+        classILockFactory.html
+# old script engine build
+	classIScriptEngine.html
+	classIScriptObserver.html
+	classIBaseValue.html
+	classIValueIter.html
+	classIValueTypeInfo.html
+	classIValueTypeLib.html
+	classValue.html
+	classValue_3_01const_01char_01_5_01_4.html
+	classValuePtr_3_01T_00_010_01_4.html
+	classValuePtr_3_01T_00_011_01_4.html
+	classValueTraits.html
+	classValueTraits_3_01char_01_4.html
+	classValueTraits_3_01const_01char_01_5_01_4.html
+	classValueTraits_3_01double_01_4.html
+	classValueTraits_3_01float_01_4.html
+	classValueTraits_3_01int_01_4.html
+	classValueTraits_3_01oaCommon_1_1int64_01_4.html
+	classValueTraits_3_01oaCommon_1_1uint64_01_4.html
+	classValueTraits_3_01short_01_4.html
+	classValueTraits_3_01unsigned_01int_01_4.html
+	classValueTraits_3_01unsigned_01short_01_4.html	
+
+BUILDINFO
+OpenAccess allows certain functions of the API to be customized at run time through the use of plug-ins. 
+Plug-ins let the end user choose the implementation for select capabilities using software that may not have 
+been available when the application was linked.
+
+See <a href="../guide/writingplugin.html">How to Write a Plug-In</a>, 
+<a href="../guide/writecppgen.html">Writing a C++ Pcell Generator</a>, 
+<a href="../guide/pcelleval.html">How to Write a Pcell Evaluator Plug-In</a>, 
+<a href="../guide/tclpcell.html">Implementing Pcells Through Tcl</a>, 
+<a href="../guide/regionquery.html">Region Query Plug-In Architecture</a>,
+<a href="../guide/cms_plugins.html">How to Write Change Management System (CMS) Plug-Ins</a>, and
+<a href="../guide/textbBox.html">How to Write a Plug-in to Calculate Bounding Boxes for Text</a> for more 
+information.
+
+
+
+
+	

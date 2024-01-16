@@ -1,0 +1,36 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Extension and Property Class Index
+
+HTMLFILES = \
+	classoaProp.html
+	classoaGroup.html
+	classoaGroupDeleteWhen.html
+	classoaGroupMember.html
+	classoaGroupPurposeType.html
+	classoaGroupType.html
+	classoaAppDef.html
+	classoaAppObjectDef.html
+	classoaAppObject.html
+	classoaAppObjectDefCollection.html
+	classoaAppProp.html
+	classoaGroupDef.html
+
+BUILDINFO
+Several OpenAccess classes allow applications to extend databases to support their own 
+private data model. One common way to extend the database is by using OpenAccess properties and groups. 
+Another way is to use the OpenAccess extension classes to create application-defined database 
+extensions.
+
+See <a href="classoaProp.html">oaProp Class Reference</a>, 
+<a href="classoaGroup.html">oaGroup Class Reference</a>, and
+<a href="../guide/extend.html">Extending the Database</a> for more information.
+
+
+
+
+ 	

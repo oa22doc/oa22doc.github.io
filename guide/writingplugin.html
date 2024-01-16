@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>How to Write a Plug-In</h1> 
+<hr> 
+<p>OpenAccess uses plug-ins as the mechanism for customizing certain OpenAccess features. Plug-ins use dynamically loaded shared libraries to select a customized implementation at run-time without requiring an application </p>
+<ul>
+  <li>To be linked with that implementation</li>
+  <li>To have known about that implementation when the application was compiled and linked </li>
+</ul>
+<p>OpenAccess provides the following interface classes that you use to implement plug-ins. </p>
+<table border="1" cellpadding="4">
+  <tr>
+    <th width="161">Type of Plug-in</th>
+    <th width="137">Primary Interface Classes</th>
+    <th width="137">Category Name</th>
+    <th width="372">Related Documentation</th>
+  </tr>
+  <tr>
+    <td>Design Management</td>
+    <td>IAccessControl<br>
+      ILib<br>
+      ILocking</td>
+    <td>oaDMSystem</td>
+    <td><a href="libstruc.html">OpenAccess Libraries and Design Management</a></td>
+  </tr>
+  <tr>
+    <td>Design Management: <br>
+    Working with Library Definition Files</td>
+    <td>ILibDef<br>
+      ILibDefAccess<br></td>
+    <td>oaLibDefSystem</td>
+    <td><p><a href="libstruc.html">OpenAccess Libraries and Design Management</a></p>
+    </td>
+  </tr>
+  <tr>
+    <td>Text bBox Calculation </td>
+    <td>IText<br>
+      ITextInvalidate</td>
+    <td>oaTextSystem</td>
+    <td><a href="textbBox.html">How to Write a Plug-in to Calculate Bounding Boxes for Text</a></td>
+  </tr>
+  <tr>
+    <td>Pcell Evaluation</td>
+    <td>IPcell<br>
+      IPcellGen</td>
+    <td>none defined</td>
+    <td><a href="pcelleval.html">How to Write a Pcell Evaluator Plug-in</a></td>
+  </tr>
+  <tr>
+    <td>Eval Text Evaluation</td>
+    <td>IEvalText</td>
+    <td>none defined</td>
+    <td><a href="../PcellCPP/classIEvalText.html">IEvalText Class Reference</a></td>
+  </tr>
+  <tr>
+    <td>Region Query</td>
+    <td>IRegionQueryPlugMgr</td>
+    <td>oaRQSystem</td>
+    <td><a href="regionquery.html">Region Query Plug-In Architecture</a></td>
+  </tr>
+  <tr>
+    <td>Version Control</td>
+    <td>IVersionControl<br>
+      IVCSystem</td>
+    <td>oaVCSystem</td>
+    <td><a href="../plugins/classes.html">Plug-In Class Index</a></td>
+  </tr>
+  <tr>
+    <td>Change Management</td>
+    <td>IExport  <br>	ITracking  </td>
+    <td>oaCMExportSystem<br>
+    oaCMTrackingSystem</td>
+    <td><a href="cms_plugins.html">How to Write Change Management System (CMS) Plug-Ins</a></td>
+  </tr>
+</table>
+<p><strong>Important:</strong> The ICompatibility class provides a mechansim that any plug-in can use to verify whether or not a version of OpenAccess is compatible with the plug-in. </p>
+<p>This document explains the steps for writing a plug-in at a high level. After reading this document, refer to the related documentation for the plug-in of interest (in the table above).</p>
+ 
+<h2>Using the Built-in Interface Classes</h2>
+<p>OpenAccess defines a set of interfaces that serve as links to application functionality. An interface is a set of virtual C++ member functions grouped in an interface class. An application overrides these virtual functions to implement some specialized functionality.</p>
+
+<p>All plug-in implementations must include the following:</p>
+<ul>
+<li>A plugIn factory</li>
+<li>An entry point function</li>
+<li>A plugIn registration file</li>
+</ul>
+
+<a name="factory"></a>
+<h3>Understanding the Plug-in Factory</h3>
+<p>A plug-in factory creates instances of a particular plug-in, and each plug-in must have at least one factory. OpenAccess provides the templated class oaCommon::Factory&lt;T&gt;, which applications can use to define a factory object for a plug-in. An application needs to instantiate only one of this class in the shared library with its plug-in class as the template parameter.</p> 
+
+<p>For example, if an application implements an object using the class name myPlugin for the interfaces, it declares a static member in the plug-in class as follows:</p>
+<pre> 
+    oaCommon::Factory&lt;myPlugin&gt;	myFactory;
+</pre>
+
+<p>Then, use the following code to construct a static member of myPlugin:</p>
+<pre>
+    oaCommon::Factory&lt;myPlugin&gt;	myPlugin::myFactory("myPlugin")
+</pre>
+
+<p>The string argument "myPlugin" in the factory constructor is the classID for the plug-in. When the oaCommon::Factory&lt;T&gt; template creates a factory, the classID for the plug-in is automatically placed in the OpenAccess plug-in factory table. OpenAccess uses this classID as an identifier to find the factory for the plug-in.</p>
+
+<a name="entrypoint"></a>
+<h3>Implementing the Entry Point Function</h3>
+<p>Each plug-in shared library must implement the entry point function <em>getClassObject</em>. This function must have the function prototype:</p>
+<pre>
+    extern "C" long getClassObject(const char *classID,
+                                   const Guid &amp;interfaceID,
+                                   void **ptr);
+</pre>
+
+<p>In a typical plug-in, the getClassObject need only make a call to the FactoryBase::getClassObject as follows:</p>
+<pre>
+    long
+    getClassObject(const char *classID,
+                   const Guid &interfaceID,
+                   void **ptr)
+    {
+        return FactoryBase::getClassObject(classId, interfaceID, ptr);
+    }
+</pre>
+
+<p>The FactoryBase::getClassObject function traverses the OpenAccess plug-in factory table to find the factory identified by classID. It returns a pointer to the factory that is found. Note that only one <em>getClassObject</em> entry point function is required for each shared library, regardless of the number of plug-ins being served from that library.</p>
+
+<a name="registration"></a>
+<h3>Writing the Plug-In Registration File</h3>
+<p>A registration file is required for each plug-in. The  registration files for the plug-ins supplied by OpenAccess reside in the  installation data/plugins directory. Registration files must be of the form of &lt;<em>plug-in-name</em>&gt;.plg. For example, the plug-in registration file for OpenAccess Turbo Design Management System is as follows: </p>
+<pre>
+    <em>&lt;install_dir&gt;</em>/data/plugins/oaDMTurbo.plg
+</pre>
+
+<p>Plug-in developers can add their own plug-in registration files to the data/plugins directory. Alternatively, plug-in registration files can be placed in any location specified by the OA_PLUGIN_PATH environment variable. This environment variable specifies an ordered list of locations that OpenAccess  should search for plug-in files. OpenAccess uses the first matching  file found. By default, the data/plugins directory is searched last.
+<p>The XML format is used for  plug-in registration files. For example, the contents of a plug-in registration file for the myPlugin plug-in is as follows:
+<pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;plugIn lib="myPlugin"/&gt;</pre>
+<p>The value of the lib attribute, specified with the plugIn element, is the base name of the shared library for this plug-in. OpenAccess constructs a platform appropriate filename from this base name.  In the myPlugin example, the library name on the Sun platform would be<em> </em><em>libmyPlugin.so</em>, and the library name on the Win32 platform is<em> </em><em>myPlugin.dll</em>.</p>
+
+<p>In addition to the root name of the library, a plug-in registration file can also include a directory attribute to specify the path to the plug-in shared library. The path can be an absolute path or a path relative to the .plg file. For example, for a plug-in located at /usr/local/lib with the root name myPlugin, the registration file would contain the following:</p>
+<pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;plugIn lib="myPlugin" directory="/usr/local/lib"/&gt;
+</pre>
+
+
+
+<p>Unless the directory attribute is included in the plug-in registration file, the system loads the shared library by using the library search path (such as the LD_LIBRARY_PATH on UNIX systems). If the directory attribute is included, the path to the library is obtained as the path to the directory and the shared library name is constructed as described previously. On UNIX, the tilde is not interpreted as a home directory. On Windows, full paths must start with a drive letter, a colon, and a back slash. Paths that start with a letter, a colon, and a character other than a back slash, are not supported on Windows.</p>
+<p>The string values in a registration file are always enclosed by a pair of double quotes, and the back slash (\) must be used as an escape character if the double quote is used literally as part of a string. The escape character itself is ignored, and the next character is used literally without interpretation. As a consequence, a double quote character is represented by preceding it with a backslash (\”), and a backslash character is represented with two backslashes (\\). Therefore, the string to represent the directory attribute on the Windows platform must have double backslash characters.  For example, the string C:\work\designs must be represented in a plug-in registration file as:</p> 
+
+<pre>
+    "C:\\work\\designs"
+</pre>
+
+<p>Once the shared library is loaded, it finds and calls the entry-point function getClassObject with the name of the plug-in to get a pointer to that plug-in's factory. The factory is then used to create an instance of the plug-in.</p>
+<h3>Specifying a Default Plug-In for a Category of Plug-Ins</h3>
+<p>You can  designate that your plug-in should be the default for a category of plug-ins. Edit the <code><em>&lt;install_dir&gt;</em>/data/plugins/<em>&lt;plugin_category&gt;</em>.plg</code> file to specify your plug-in name with the <code>treatAs</code> attribute. For example, the following .plg represents a category of plug-ins called myPlugin. </p>
+<p><img src="images/myPlugin.gif" width="343" height="105"></p>
+<p>The treatAs attribute points to  myAppPlugin, which is to be used as the default for this category of plug-ins. </p>
+<p><img src="images/myAppPlugin.gif" width="343" height="116"></p>
+<p>If you are using the  OA_PLUGIN_PATH environment variable to point to a plug-in registration file outside the data/plugins directory,  copy the <code><em>&lt;plugin_category&gt;</em>.plg</code> file to the directory containing your .plg file, then specify the name of your plug-in for the <code>treatAs</code> attribute. </p>
+<h2>Locating  Plug-Ins</h2>
+<p>As mentioned previously, applications can look for plug-ins in the default location that contains the OpenAccess plug-ins, or they can use the OA_PLUGIN_PATH environment variable for locating plug-ins. </p>
+<p>The following flow chart demonstrates the sequence of events that occurs when an application receives a request to load a plug-in. </p>
+<p><img src="images/plugin_search_path.gif" width="812" height="1086"></p>
+<h2>Example Plug-in Code</h2>
+<p>OpenAccess includes numerous examples that demonstrate good coding practice. The example code is found in directories beneath <em>&lt;install_dir&gt;</em>/examples/oa. Several code examples for plug-ins are available:</p>
+<ul>
+<li><em>&lt;install_dir&gt;</em>/examples/oa/PCells</li>
+<li><em>&lt;install_dir&gt;</em>/examples/oa/PCells/opnPcell</li>
+</ul>
+
+<h3><a name="vc_example"></a>Example Version Control Code </h3>
+<p>Another example is provided at <em>&lt;install_dir&gt;</em>/oa/plugIns/VCSample. This is an example for a version control (VC) system  plug-in. The sample provides the boiler-plate code required to create a working VC system that can be plugged into an existing design management (DM) system such as DMTurbo or DMFileSys. The DM system can then present the VC interfaces as though both systems are one unit. The implementation details of this are presented in the example code.</p>
+<p>You can copy the example plug-in code to a development area and recreate the functions that are marked "VC System Developers: re-implement this function." Changing the names of the classes is optional, but changing the name of the plug-in is mandatory. You change the name of the plug-in by changing the name of the oaVCPlugSample.plg file. The root name of this file corresponds to the name of the plug-in. Inside the file, the value in quotations is the root name of the shared library of the plug-in. For example, a VC system called MyVCSystem built in a library named libMyVCSystem.so (on Solaris) would ship with a file called MyVCSystem.plg , which contains the following line of text: 
+<pre>
+    &lt;plugIn lib="MyVCSystem"/&gt;
+</pre> 
+
+<p>The primary interface that this plug-in implements is IVersionControl, which is the interface that OpenAccess uses to interact with the version control system. The comments in the oaVCPlug.cpp file help identify the purpose of each of these functions. When implementing the following functions, it is the responsibility of the version control system to insure that none of the affected files are locked by another process, and that once the action is started no locks are granted to other processes until the action is complete.</p>
+<pre>
+    IVersionControl::makeEditable()  
+
+    IVersionControl::cancelEdit()
+
+    IVersionControl::commitEdits()
+
+    IVersionControl::setControlled()
+
+    IVersionControl::unsetControlled( )  
+</pre>
+
+
+ 
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

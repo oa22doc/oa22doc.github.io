@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>Traversing and Iterating  Schema Definition Objects</h1>
+<hr>
+<p>This document  explains how to get information about a schema definition either by traversing the schema definition object or through the use of iterators. </p>
+<h2>Traversing Schema Definition Objects</h2>
+<p>To traverse a schema definition object, you must first obtain a reference to an sdSession  instance.</p>
+<pre>sdSession *mySession = sdSession::get();</pre>
+<p>Next, access the namespace for the  schema definitions:</p>
+<pre>sdNameSpace *ns = mySession -&gt; getNameSpace(&quot;appSchema&quot;);</pre>
+<p>The getNameSpace function initializes the schema definition for the<code> appSchema </code>namespace if it is not already initialized. </p>
+<p>Once an sdNameSpace object is acquired, an sdObject can be found by enum name, which is more efficient, or by string value. </p>
+<pre>
+sdObject *mySegment = ns -&gt; findObject(0);
+sdObject *mySegment = ns -> findObject("mySegment");
+</pre>
+<p>An sdAttribute can  be found by enum name or string value: </p>
+<pre>sdNamespace::findAttribute(0);
+sdNamespace::findAttribute("segmentBeginPoint");</pre>
+<p>Given an sdAttribute, you can  get the object on which it resides, the attribute's value, and whether or not the attribute has a single value, an array of values, or a collection of values. Refer to the <a href="../base/classsdAttribute.html">sdAttribute</a> class documentation for details. </p>
+<p>An sdRelationshipBase can also be found by enum name or string value:</p>
+<pre>
+sdNamespace::findRelationship(0);<br>sdNamespace::findRelationship(&quot;style&quot;);</pre>
+<h2><a name="iterate"></a>Using Iterators </h2>
+<p> You can use iterators to find sdObjects and sdAttributes for which the name or enum values are not known. These iterators return const objects.</p>
+<p>The following example iterates within the <code>ns</code> namespace for sdObjects.  In the example, objIter is a variable indicating a mapped pair. The first part is the enum value, the second part is the sdObject. </p>
+<pre>
+sdNameSpace::ObjectConstIter objIter(ns -> beginObject());
+
+for (objIter; objIter != ns->endObject(); ++objIter) {
+    const sdObject *object = objIter -> second;
+     ...
+}
+</pre>
+<p>You can iterate over the attributes or relationships of an sdObject. The next example iterates over the attributes of a schema definition named mySegment. The <code>true</code> argument to the beginAttribute function specifies that only local attributes should be returned. So,  attributes such as segmentBeginPoint and segmentEndPoint are returned, but attributes belonging to oaShape (from which  mySegment inherits) are not returned. </p>
+<pre>sdObjectAttributeIter attrPosition(mySegment -&gt; beginAttribute(true));
+
+for (attrPosition; attrPosition != mySegment -> endAttribute(true); ++attrPosition) {
+    const sdAttribute  *attr = *attrPosition;    
+    ...
+}
+</pre>
+<p>Relationships can also be iterated. </p>
+<pre>
+sdObjectRelationshipIter relPosition(mySegment -> beginRelationship(true));
+
+
+for (relPosition; relPosition != mySegment -> endRelationship(true); ++relPosition) {
+    const sdRelationship  *rel = *relPosition;    
+    ...
+}
+</pre>
+<p>&nbsp;</p>
+<div style="text-align: center"> <img src="../pgfooter.gif"><br />
+</div>
+<br />
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br />
+  All rights reserved.</p>
+</body>
+</html>

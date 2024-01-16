@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+<!-- start header -->
+<html><head>
+<title>OpenAccess to LEF/DEF Mapping</title>
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+</head>
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+  <tr>
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+ </tr>
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+  </tr>
+</table>
+</div>
+
+  <div style="position:relative;left:275px;margin-top:10px">
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+	        <td><div align="left">&nbsp;</div></td>
+	        <td><div align="left">&nbsp;</div></td>
+	        <td><div align="left">&nbsp;</div></td>
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+	    </tr>
+    </table>
+  </div>
+
+<h1>OpenAccess to DEF Mapping</h1>
+<p>The constructs are ordered alphabetically. Each construct links to a page describing how data stored in an OpenAccess database maps to a corresponding DEF construct.</p>
+
+<p>On output of DEF, only layers that have materials metal, cut, N/PImplant (5.6 only), N/PDiff, or poly are output. If objects in the database contain other layers, the entire object is silently ignored.</p>
+
+<table border="0" cellpadding="4">
+<tr>
+<td><a href="oadefblockages.html">BLOCKAGES</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefgroups.html">GROUPS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefrows.html">ROW</a></td>
+</tr>
+
+<tr>
+<td><a href="oadefbusbitchars.html">BUSBITCHARS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefnamescasesensitive.html">NAMESCASESENSITIVE</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefscanchains.html">SCANCHAINS</a></td>
+</tr>
+
+<tr>
+<td><a href="oadefcomponents.html">COMPONENTS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefnets.html">NETS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefspecialnets.html">SPECIALNETS</a></td>
+</tr>
+
+<tr>
+<td><a href="oadefdesign.html">DESIGN</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefnondefaultrules.html">NONDEFAULTRULES</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefstyles.html">STYLES</a></td>
+</tr>
+
+<tr>
+<td><a href="oadefdiearea.html">DIEAREA</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefpins.html">PINS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadeftechnology.html">TECHNOLOGY</a></td>
+</tr>
+
+<tr>
+<td><a href="oadefdividerchar.html">DIVIDERCHARACTER</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefpinproperties.html">PINPROPERTIES</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadeftracks.html">TRACKS</a></td>
+</tr>
+
+<tr>
+<td><a href="oadeffills.html">FILLS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefpropertydefinitions.html">PROPERTYDEFINITIONS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefunits.html">UNITS</a></td>
+</tr>
+
+<tr>
+<td><a href="oadefgcellgrid.html">GCELLGRID</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefregions.html">REGIONS</a></td>
+<td width="30">&nbsp;</td>
+<td><a href="oadefvias.html">VIAS</a></td>
+</tr>
+</table>
+
+<h3><a name="unsupported_def"></a><a name="defnot">DEF 
+Constructs Not Supported</a></h3>
+<p>Some constructs in DEF 5.3 and earlier versions are obsolete in DEF 5.4 and 
+5.5. When processing a 5.3 file, the translator ignores constructs that are 
+obsolete in 5.4 and subsequent versions. </p>
+<p>Constructs supporting gate array style designs are not supported for DEF in 
+OpenAccess.  In addition, the following specific constructs are not supported.</p>
+<pre class="code">
+BEGINEXT
+HISTORY
+SLOTS
+SUBNET
+VPIN
+ARRAY arrayName 
+FLOORPLAN {DEFAULT | floorPlanName}
+
+CANPLACE sitename <br>&nbsp;&nbsp;&nbsp; origX origY 
+
+orient DO numx BY numY STEP spaceX spaceY 
+
+CANNOTOCCUPY sitename<br>&nbsp;&nbsp;&nbsp; origX 
+
+origY orient DO numx BY numY STEP spaceX spaceY 
+</pre>
+<p>In the COMPONENTS statement, the following is not 
+supported:</p>
+<pre class="code">
+ &nbsp;&nbsp;&nbsp; [netName | *]...&nbsp; 
+</pre> 
+
+<p>OpenAccess is always case sensitive, and therefore, the NAMESCASESENSITIVE statement is ignored.</p>
+
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008</em></a>
+<br >All rights reserved.</p>
+
+</body>
+
+</html>

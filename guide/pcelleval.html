@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>How to Write a Pcell Evaluator Plug-in</h1>
+<p>OpenAccess supports parameterized cells (Pcells). Pcells are oaDesigns, which have content that is dynamically created based on a set of parameters. An application can provide different versions of Pcells by implementing a specialized Pcell evaluator; in this way, OpenAccess has the ability to support multiple Pcell evaluators at runtime.  These evaluators can be statically bound to an application, but it is recommended that they be implemented as a plug-in. Some Pcell evaluators, such as the OpenAccess C++ Pcell evaluator, call functions written by a user in C++ in order to generate a database for a particular Pcell instance. Other possibilities are Pcell evaluators that can  invoke  engines such as Tcl or Skill to execute scripts stored in Pcell masters in order to generate the appropriate OpenAccess structures.</p>
+
+<p>This document explains how to write a PCell evaluator plug-in. Additional information on writing a plug-in is available in the companion document <a href="writingplugin.html">How to Write a Plug-In</a>.</p>
+
+<h2>Defining Pcells in OpenAccess</h2>
+<p>OpenAccess uses superMasters and subMasters to define and manage Pcells. A superMaster is an oaDesign that contains the information necessary to generate different variations of itself based on a set of parameters. A superMaster is created through the oaDesign::defineSuperMaster() API, where the Pcell evaluator and the set of parameters with default values are specified. An application can create an instance by specifying a superMaster as the master and additionally provide a set of parameters with values usually different from the superMaster  defaults. </p>
+<p>OpenAccess creates a subMaster as the master for this instance by using the Pcell evaluator specified in the superMaster and by using the parameters specified in the instances. A Pcell evaluator is typically implemented to create the subMasters on the fly in virtual memory. In this case, the application can access the subMaster as a regular oaDesign, except that it cannot be saved to disk persistently. </p>
+<p>Alternatively, an application can save subMasters to a file using the <a href="../PcellCPP/classPcellFile.html#PcellFile::append">PcellFile::append</a> function. The subMasters can be read later by a Pcell evaluator. </p>
+<h2>Creating a Pcell Evaluator Plug-in</h2>
+<p>You can create a Pcell evaluator plug-in by creating a shared library that can be loaded by OpenAccess at runtime. The shared library must do the following:</p>
+<ul>
+<li>Create a plug-in factory</li>
+<li>Implement the entry point function <em>getClassObject</em></li>
+<li>Define a new class inherited from IPcell and construct an instance</li>
+</ul>
+
+<p>After the shared library is created, you must write a plug-in registration file to register your plug-in.</p>
+
+<h3>Creating a Plug-in Factory and Implementing the Entry Point Function</h3>
+<p>OpenAccess provides the templated class oaCommon::Factory&lt;T&gt; for defining a factory object for a plug-in. The factory object is used to create instances of a plug-in. Each plug-in has a classID, which is put into a factory table. When OpenAccess needs to create an instance of a plug-in, it uses the classID to find the factory for the plug-in. For more information about creating a plug-in factory, see the <a href="writingplugin.html#factory">Understanding the Plug-in Factory</a> section of the companion document on writing a plug-in.</p>
+
+<p>You must also implement the getClassObject entry point function. When called, this function returns a pointer to the plug-in factory. For more information about implementing the getClassObject entry point function, see the <a href="writingplugin.html#entrypoint">Implementing the Entry Point Function</a> section of  the companion document on writing a plug-in.</p>
+
+<p>The plug-in registration file registers the plug-in shared library. When the plug-in shared library is installed, the registration file can be installed in $(OA_HOME)/data/plugins. Alternatively,  the OA_PLUGIN_PATH environment variable can be used to reference a .plg file outside of $(OA_HOME)/data/plugins. Refer to <a href="writingplugin.html#registration">Writing the Plug-In Registration File</a> in <em>How to Write a Plug-In</em> for more information. </p>
+<p>To create a Pcell evaluator plug-in, you must define a new class inherited from the <a href="../PcellCPP/classIPcell.html">IPcell class</a>. This class implements the interfaces necessary to build and maintain Pcells in an OpenAccess database. The new class must implement all virtual functions of the IPcell class. Refer to the API documentation for IPcell for a detailed description about these virtual functions. OpenAccess uses the  oaPcellLink class to form a runtime link to the application provided Pcell evaluator. There can only be one link per Pcell evaluator. In a statically linked Pcell evaluator, an application creates an instance of the evaluator class object and calls oaPcellLink::create() with the instance as the argument. An oaPcellLink is automatically created when a Pcell evaluator is requested by name using oaPcellLink::find() or oaPcellLink::getPcellDef(). The standard OpenAccess plug-in loading and class creation mechanism is used by oaPcellLink to get an instance of the Pcell evaluator class. A description of some of the IPcell virtual functions provides insight into how they interact:</p>
+<ul>
+<li><strong>onBind()/onUnBind()</strong>&nbsp;&nbsp;These functions bind and unbind the evaluator specific oaPcellDef.<br>
+  <br>
+</li>
+<li><strong>onEval()</strong>&nbsp;&nbsp;This function takes an oaDesign and an oaPcellDef as arguments. The oaDesign is a subMaster with a parameter array that is specific to this instantiation. The oaPcellDef can be cast as the derived pcelldef object if one is defined by the plug-in. onEval uses the information in the pcelldef and the parameter list to create the appropriate OpenAccess objects in the supplied oaDesign. For example, in a Tcl based Pcell evaluator, an implementation might choose to store the Tcl commands to be executed in the pcelldef by using the oaPcellDef's data/value list. The IPcell's onEval() function for this plug-in then simply invokes the Tcl interpreter with the command list stored in the pcelldef and passes the submaster oaDesign as an argument. The IPcell's onEval() function for a plug-in can also include functionality to read the contents of subMasters from a cache&nbsp;file.<BR>
+  <br>
+  Alternatively, the plug-in might choose to derive a new class and define data members specific to its evaluation requirements. It then uses that information in the course of evaluation. <br>
+  <br>
+</li>
+<li><strong>onRead()/onWrite()</strong>&nbsp;&nbsp;These functions read and write the information specific to the evaluator. As mentioned previously, if an evaluator stores specific name/value pairs in the PcellDef, and the name/value pairs are used during evaluation, these string data/value pairs must be explicitly read and written by these functions.</li>
+</ul>
+
+<h2>Creating the Plug-in</h2>
+<p>A plug-in is a shared library that is installed in the OpenAccess installation hierarchy in the data/plugins directory, or in another location specified by the OA_PLUGIN_PATH environment variable. Applications load the plug-in at runtime to select a customized implementation. The following procedure describes the steps for creating an example plug-in. For additional guidance on writing a Pcell evaluator plug-in, see the code example in the $(OA_HOME)/examples/oa/PCells/opnPcell directory.</p>
+
+<h3>To Create a Plug-in Pcell Evaluator Named myPcell</h3>
+<ol>
+<li>Create a factory for the myPcell plug-in, and construct a static member of myPcell. Use:
+<pre> 
+    oaCommon::Factory&lt;myPcell&gt;	myFactory;
+
+    oaCommon::Factory&lt;myPcell&gt;	myPcell::myFactory("myPcell");
+</pre>
+</li>
+<li>Define the entry point function getClassObject(). Use:
+<pre>
+    extern "C" long getClassObject(const char *classID,
+                                   const Guid &amp;interfaceID,
+                                   void **ptr);
+</pre>
+</li>
+<li>Implement the entry point function as:
+<pre>
+    long
+    getClassObject(const char *classID,
+                   const Guid &interfaceID,
+                   void **ptr)
+    {
+        return FactoryBase::getClassObject(classId, interfaceID, ptr);
+    }
+</pre>
+</li>
+<li>Define a new class inherited from IPcell, and implement the required functions. For example:
+<pre>
+    class myPcell : public PlugInBase&lt;IPcell&gt; {
+      public:
+        virtual oaPcellDef	      *getPcellDef();
+        virtual void		getName(oaString &amp;name) {name = "myPcell";}
+
+        virtual void		onBind(oaDesign	*design,
+                                        oaPcellDef *pcellDef) {}
+        virtual void		onUnbind(oaDesign *design,
+                                          oaPcellDef	*pcellDef);
+        virtual void		onEval(oaDesign	*design,
+                                         oaPcellDef	*pcellDef);
+        virtual void		onRead(oaDesign	    *design,
+                                        oaMapFileWindow  &amp;mapWindow,
+                                        oaUInt4	    &amp;loc,
+                                        oaPcellDef	    *def) {}
+        virtual void		onWrite(oaDesign	    *design,
+                                         oaMapFileWindow &amp;mapWindow,
+                                         oaUInt4	    &amp;loc,
+                                         oaPcellDef	    *def) {}
+
+        virtual oaUInt4		calcDiskSize(oaPcellDef *pcellDef) const;
+
+      private:
+        static Factory&lt;myPcell&gt;  factory;
+    };</pre>
+</li>
+<li>Optionally implement an ICompatibility::validate function to verify whether or not the version of OpenAccess is compatible with the plug-in.
+  The validate() function should check the OpenAccess API version and either throw   an exception with a description of the requirements or simply return   false. <span class="style1">REVIEWERS: Need to describe how an app might check if an interface has an ICompatibility component and if so, how to use it. </span><br>
+  <pre>virtual bool                validate()</pre>
+</li>
+<li>Write the plug-in registration file myPcell.plg. Use:
+  <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;plugIn lib="myAppPcell"/&gt;
+  </pre>
+  <strong>Note:</strong> The registration file can be installed in $(OA_HOME)/data/plugins when the plug-in shared library is installed. Alternatively,  the OA_PLUGIN_PATH environment variable can be used to reference a .plg file outside of $(OA_HOME)/data/plugins. Refer to <a href="writingplugin.html#registration">Writing the Plug-In Registration File</a> in <em>How to Write a Plug-In</em> for more information<span class="style4">. </span></li>
+</ol>
+
+<p>Once the evaluator plug-in is done, an application must be written to create the corresponding Pcell superMasters. You can refer to the PCells.cpp code in $(OA_HOME)/examples/oa/PCells for an example of how you might write an application to create Pcells. The following steps include portions of the PCells.cpp code:</p>
+<ol>
+<li>Get the plug-in's PcellDef by calling oaPcellLink::getPcellDef(pluginname). For example:
+<pre>
+    oaPcellDef	*def = oaPcellLink::getPcellDef("myPcell");
+</pre>
+</li>
+<li>Define an oaDesign. For example:
+<pre>
+    oaDesignInit();
+    oaLibDefList::openLibs();
+</pre>
+</li>
+<li>Define the array of parameters to be associated with this pCell, along with their default values. For example:
+<pre>
+    oaParam p1;
+        p1.setName("width");
+        p1.setDoubleVal(3.0);
+
+    oaParam p2;
+        p2.setName("length");
+        p2.setDoubleVal(1.0);
+
+    oaParamArray    paramArray(2);
+        paramArray.append(p1);
+        paramArray.append(p2);
+</pre>
+</li>
+<li>Make the design a superMaster by calling oaDesign::defineSuperMaster(pcelldef, paramarray). For example:
+<pre>
+    oaScalarName    viewName(ns, "layout");
+    oaScalarName    sCellName(ns, "pcell_master");
+    oaViewType      *viewType = oaViewType::get(oacMaskLayout);
+    oaDesign        *superMaster = oaDesign::open(libName, sCellName,
+                                                  viewName, viewType, 'w');
+
+    superMaster->defineSuperMaster(def, paramArray);
+</pre>
+</li>
+<li>Save the design.</li>
+</ol>
+
+<p>After these steps are completed, when the application needs to create an instance of a Pcell, it simply uses the following call:
+<pre>
+    Scalarinst = oaScalarInst::create(ptrParentBlock, ptrSuperMaster, xform, paramarray);
+</pre>
+
+<p>Where ptrSuperMaster is a pointer to the oaDesign, which is the superMaster for the Pcell, and the paramArray is the array of the non-default parameters for the instance. An application that is only going to traverse the hierarchy only needs to call getMaster() on the instance, which returns the oaDesign that is the subMaster for that instance. The application can traverse the data on that oaDesign without taking into consideration that it is a Pcell that was generated on the fly.</p>
+<h3><a name="store"></a>Storing and Retrieving subMasters </h3>
+<p>An application can store multiple Pcell subMasters to a cache file using the <a href="../PcellCPP/classPcellFile.html">PcellFile</a> interface. An application  first uses the PcellFile constructor to get a handle to a cache file. The application must call PcellFile::open  before appending subMasters to the cache file. The append function returns an offset that indicates the location in the file for that particular subMaster. PcellFile::close() should be called to release the resources   associated with the cache file before calling the destructor on the handle. </p>
+<p>An application that writes Pcell subMasters to a file  is responsible for:</p>
+<ul>
+  <li>Specifying when  subMasters are saved. </li>
+  <li>Specifying when  subMasters should be re-evaluated and re-saved. </li>
+  <li>Specifying the cache file(s) to which the subMasters are saved.</li>
+  <li>Managing file access to the cache file(s) through their handles<span class="style1">.</span></li>
+  <li>Managing the state of the cached subMaster data.</li>
+  <li>  Conveying the offset for a particular subMaster to the evaluator that will read it from the cache.</li>
+  <li>Recovering from write failures to the cache file(s).  </li>
+</ul>
+<p>A different application can read a particular cached subMaster  from a file. In order to do this, the application needs:</p>
+<ul>
+  <li>A Pcell evaluator that can read cached Pcells.</li>
+  <li>A pointer to  the cache file.</li>
+  <li>The  offset (location in the file) for the  subMaster that was returned by OpenAccess when the subMaster was written. <br>
+  </li>
+</ul>
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

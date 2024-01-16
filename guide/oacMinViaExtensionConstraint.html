@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minViaExtension (oacMinViaExtension)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>This constraint specifies the required metal extension for vias. It supports the following configurations:</p>
+    <ul>
+      <li>Case 1 - On three sides, the extension should be &gt;= a certain value A as long as one side is &gt;= a certain value B.</li>
+    </ul>
+    <ul>
+      <li>Case 2 - The extension on two opposite sides needs to be &gt;= a certain value A as long as one side is &gt;= a certain value B and another side is &gt;= a certain value C.</li>
+    </ul>
+    <ul>
+      <li>Case 3 - In addition to the normal extension A, a larger minimum extension B is required to a diagonal edge.</li>
+    </ul>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top"><a href="../../html/tech/classoaLayerPairConstraint.html">oaLayerPairConstraint</a> (Symmetric: no)</td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaValueArrayValue.html">oaValueArrayValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaValueArrayValue.html">oaValueArrayValue</a>
+        </b>
+        <p>The list of extension values as oaIntValues, corresponding to the viaExtensionType parameter.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>viaExtensionType</b><br />oacViaExtensionTypeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)</td>
+        <td>
+          <p>
+    Describes the values in the oaValueArrayValue:
+  </p>
+          <ul>
+            <li>
+    "oneThree": First array value used for three sides, second value used for fourth side
+  </li>
+          </ul>
+          <ul>
+            <li>
+    "oneOneTwo": First array value used for two opposite sides, second value used for one side, third used for other side.
+  </li>
+          </ul>
+          <ul>
+            <li>
+    "diagonal": If the array has two entries, then the first one is used for non-diagonal edges and the second one is for diagonal edges. 
+    If the array has 3 entries, then the first two are identical to choice "oneThree". The third is the required extension to a diagonal edge.
+    If the array has 4 entries, then the first three are identical to choice "oneOneTwo". The fourth is the required extension to a diagonal edge.
+  </li>
+          </ul>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaViaExtensionType.html">oaViaExtensionType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacOneThreeViaExtensionType</td>
+              <td valign="top">oneThree</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacOneOneTwoViaExtensionType</td>
+              <td valign="top">oneOneTwo</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacDiagonalViaExtensionType</td>
+              <td valign="top">diagonal</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/minViaExtension.gif" alt="minViaExtension.gif" />
+      <br />
+    </p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

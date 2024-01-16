@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>OpenAccess Overview</h1>
+<hr />
+
+<p> OpenAccess provides an infrastructure designed to promote the interoperability of EDA applications and design data. The infrastructure is a C++ API that defines classes and member functions to create, access, and manage  databases that describe designs as they evolve through the design process to implementation.</p>
+<p>This document describes the following:</p>
+<ul>
+  <li><a href="#package">OpenAccess API Packages</a></li>
+  <li><a href="#examples">API Programming Examples</a></li>
+</ul>
+<h2><a name="package"></a>OpenAccess API Packages </h2>
+<p>The OpenAccess API is structured into a set of <em>packages</em>, each of which provide  the implementation of part of the total functionality. Each package has one top level header file that a program must include to access the package classes and functions. Each package is distributed in the form of a shared library that contains the implementation of its functions. An application must link against the shared library to call those functions.</p>
+<p>The debug versions of the shared libraries perform additional API argument checking that is not available in optimized libraries. OpenAccess will likely crash if incorrect arguments are used in API calls. The debug versions of the libraries perform additional checking for common errors such as incorrect argument values, which throw exceptions where optimized libraries crash. As an application developer, you must ensure that OpenAccess APIs are called with valid and consistent arguments to avoid application crashes when optimized libraries are used.</p>
+
+<p> OpenAccess supports three  kinds of databases: design, technology, and wafer. Each database has its own <em>data model, </em> which is the description of the objects that can reside in that database, their relationships with other objects, and their proper usage by EDA applications. The OpenAccess C++ API contains classes that represent these objects and member functions for traversing the relationships between them.</p>
+<p>Each of the three kinds of databases has its own package in OpenAccess. There are three additional packages, for a total of six:</p>
+<ul>
+  <li> <a href="#design">Design Database Package</a></li>
+  <li> <a href="#tech">Technology Database Package</a></li>
+  <li> <a href="#wafer">Wafer Database Package</a></li>
+  <li> <a href="#dm">Design Management Package</a></li>
+  <li> <a href="#base">Base Package</a></li>
+  <li> <a href="#plug">Plug-In Package</a></li>
+</ul>
+<p>The six packages and the public API  are shown below. </p>
+<p><img src="images/apiPackages.gif"></p>
+<h3><a name="design"></a>Design Database Package </h3>
+<p>The design database package is the <a href="../design/classoaDesign.html">oaDesign</a> API. It manages designs and everything they contain. Designs refers to the design-specific representation of all  the objects in a particular piece of a design, including the layouts, netlists, and schematics. A managed class is defined as having data that is persistently stored in an OpenAccess database. The managed classes in the design database package derive from the <a href="../design/classoaDesignObject.html">oaDesignObject</a> class.</p>
+<p>Design databases include connectivity, hierarchy, layout, floorplanning, place and route controls, and parasitics. </p>
+<h3><a name="tech"></a>Technology Database Package</h3>
+<p>Technology databases hold data that is not specific to one part of the design, but can be generally applied across the all designs made from a given technology. These include descriptions of  vias that can be used and the definitions of  layers that are available. The technology database also contains the routing and foundry constraints that specify which design geometries can be manufactured. </p>
+<p>Managed classes in this package are derived from the <a href="../tech/classoaTechObject.html">oaTechObject</a> class. </p>
+<h3><a name="wafer"></a>Wafer Database Package</h3>
+<p>Wafer databases contain the layout of chips as they are processed for manufacturing. A wafer database holds both the layout of the reticles that are used to manufacture each layer and the plan for stepping the reticle images across the entire wafer.</p>
+<p>Wafer databases are still in experimental usage and the data model is subject to change.</p>
+<p>Managed classes in the Wafer database derive from the <a href="../wafer/classoaWaferObject.html">oaWaferObject</a> class. </p>
+<h3><a name="dm"></a>Design Management Package</h3>
+<p>The Design Management package organizes design libraries that contain all the data files needed to describe designs. This includes OpenAccess databases and all other files used by EDA applications to contain design data. This package provides a structure that has lib, cell, and view containers that are used to organize those data files.</p>
+<p>OpenAccess lets you select between various design management systems when you create design libraries. These DM systems are implemented as plug-ins that can be found at run time.</p>
+<p>The Design Management API in OpenAccess also provides functions to access version control capabilities such as the ability to update a library from  versions checked into a remote repository. OpenAccess does not implement these functions, but a vendor can provide an implementation as a plug-in that gets automatically loaded at run time.</p>
+<p>Managed classes in the DM package derive from <a href="../dm/classoaDMObject.html">oaDMObject</a>. </p>
+<h3><a name="base"></a>Base Package</h3>
+<p>The Base Package  provides objects that are used by more than one database and provides generic infrastructure capabilities. It handles such things as names, strings, and properties. Managed classes in the base package derive directly from <a href="../base/classoaObject.html">oaObject</a>.</p>
+<h3><a name="plug"></a>Plug-In Package</h3>
+<p>OpenAccess allows certain functions of the API to be customized at run time through the use of plug-ins. Plug-ins let the end user choose the implementation for select capabilities  using software that might not have been available when the application was linked.</p>
+<p>The Plug-In package does not have an API that is used by typical applications. However, some functions in OpenAccess  automatically locate and use plug-ins. This includes the Design Management API, the Version Control API, and programmable cell (Pcell) evaluation.</p>
+
+<h2 class="spabove"><a name="examples"></a>API Programming Examples</h2>
+<p>Code examples are  available in your installation hierarchy under  <code>&lt;install_dir&gt;/examples/oa</code>. Separate sub-directories contain source code and a header file for common programming tasks. </p>
+<ul>
+  <li><a href="#compileExamples">Compiling the Examples </a></li>
+  <li><a href="#runExamples">Running the Examples</a></li>
+  <li><a href="#list">Listing of Examples </a></li>
+</ul>
+<h3><a name="compileExamples"></a>Compiling the Examples </h3>
+<p>The required GNU make utility for building the examples is GNU <code>make</code> version 3.80. It is recommended that you rename the make utility as <code>gmake</code>. This will prevent older, incompatible versions of <code>make</code> from being called.</p>
+<p>To compile the examples in debug mode, do the following:</p>
+<pre>cd /examples/oa<br>gmake 
+</pre>
+<p>To compile in optimized mode, use the OPTMODE argument:</p>
+<pre>gmake OPTMODE=opt</pre>
+<h3><a name="runExamples"></a>Running the Examples </h3>
+<p>Each example directory  includes a <code>log.ref</code> file that contains the expected output. The <code>&lt;install_dir&gt;/examples/oa/test/bin/runExamples</code> script runs all the examples at once. You can use the following switch to suppress the output and  report only whether each example passed or failed: </p>
+<pre>runExamples -q</pre>
+<p>By default, the examples are run in debug mode. To run them in optimized mode, set the following environment variable first:</p>
+<pre>setenv OA_MODE opt </pre>
+<p>You can run the examples individually as well. For instance:</p>
+<pre>cd HelloWorld
+./run -q</pre>
+<h4>Optionally Choosing a DM System for Running the Examples </h4>
+<p>Before you run the programming examples, you can choose the DMSystem  to use for design management. The default DMSystem for your OpenAccess installation is set in the file <code>&lt;installation_dir&gt;/data/plugins/oaDMSystem.plg</code>. You can choose a different DMSystem for the programming examples by setting the <code>$DMSystem</code> environment variable. The values for this environment variable are either <code>oaDMFileSys</code> or <code>oaDMTurbo</code>. This environment variable is  used only for the programming examples; it is otherwise ignored by OpenAccess. See <a href="libstruc.html">OpenAccess Libraries and Design Management</a> for more information about DMSystem.</p>
+<p>To better understand how to run the programming examples, refer to <a href="helloworld.html">Getting Started&mdash;A HelloWorld Example</a>. After working through HelloWorld, you are ready to look at the examples below.</p>
+<h3><a name="list"></a>Listing of Examples </h3>
+<ul>
+  <li><strong>BlockOverrides</strong><br>
+    <br>
+    Shows how to perform physical implementation of tie-off nets in the block domain. The program opens a design and replaces all oaTerms and oaInstTerms on tie-high nets with block domain overrides on net vdd. If the net vdd exists it is used, otherwise a physical-only version is created.
+    <strong><br>
+    Format:</strong> Command-line program with three required arguments: library, cell, and view name.
+<br>
+    <br>
+  </li>
+  <li><strong>Callback<br>
+      <br>
+  </strong>Demonstrates two classes of oaObserver usage. <br>
+  <br>
+  <ul>
+    <li><strong>connObsvrs</strong> in ConnectivityCB demonstrates the use of oaObservers for oaNet, oaTerm, and oaInstTerm objects. Creates a database and modifies it to show the action of the oaObservers. Creates DesignLib/ConnectionCB/netlist (design/cell/view).<br>
+      <strong>Format:</strong> Command-line program with no arguments<br>
+      <br>
+      </li>
+      <li><strong>designCB</strong> demonstrates the use of the oaObserver class with the oaDesign object. Creates an instance of the observer and operates on the design based on input arguments. <br>
+        <strong>Format:</strong> Command-line program with four required arguments and two optional arguments. Required arguments are library, cellname, viewname, and mode. Mode can be 'w', 'r', or 'a'. The two optional arguments can be 'sv' (save), 'sa' (save as) &lt;view name&gt;, 're' (reopen), 'rv' (revert), 'pr' (purge), and 'op' (open). Arguments 'op' and 're' take an additional mode argument, 'sa' takes an additional &lt;view name&gt; argument.<br>
+        <br>
+      </li>
+  </ul>
+  </li>
+  <li><strong>Connectivity </strong><span class="style2"> </span><strong><span class="style2"><br>
+    <br>
+  </span></strong></li>
+  <ul>
+    <li><strong>connectDef </strong><br>
+      Shows how to create connection definitions on nets and terms in a block and assign values to these definitions. This example creates the necessary designs in the specified library. <br>
+      <strong>Format:</strong> Command-line program with one command-line argument: library name. <br>
+      <br>
+    </li>
+    <li><strong>printAssignments</strong><br>
+      Opens the given design and prints the assigned connections and &ldquo;AssignDefs&rdquo; in that design.<br>
+      <strong>Format:</strong> Command-line program with three required arguments: library, cell, and view name <br>
+      <br>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>connectivity</strong> <br>
+      Shows how to create various types of connections including multi-bit and single-bit connections.<br>
+      <strong>Format:</strong> Command-line program <br>
+      <br>
+    </li>
+    <li><strong>mBitConnectivity</strong><br>
+      Opens the given design and prints the bitwise-connectivity information.<br>
+      <strong>Format:</strong> Command-line program with three required arguments: library, cell, and view name <br>
+      <br>
+      <br>
+    </li>
+  </ul>
+  <li><strong>Constraints1</strong><br>
+    Illustrates the basic  functionality for creating constraints and derived layers. This example performs the following tasks: <br>
+      <ul>
+        <li>Creates a constraint and adds it to an oaConstraintGroup. </li>
+        <li>Creates a custom oaConstraintDef. </li>
+        <li>Creates oaConstraintGroups with AND and OR semantics. </li>
+        <li> Creates derived layers. </li>
+        <li>Creates constraints and derived layers that are scoped to a particular purpose.<br>
+          <br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>Constraints2</strong><br>
+  Illustrates additional  functionality for creating constraints and oaConstraintGroups and associating them with groups. This example example performs the following tasks:
+    <ul>
+      <li>Creates a differential pair  including reflexive and transreflexive constraints and associated connectivity and groups. </li>
+      <li>Creates a shielding oaConstraintGroup and associated connectivity and constraints. </li>
+      <li>Creates a taper oaConstraintGroup and associated connectivity and constraints.<br>
+        This example also includes a constraint traverser/checker that demonstrates the constraint scoping and precedence rules. <br>
+        <br>
+      </li>
+    </ul>
+  </li>
+  <li><strong>DbContents </strong><br>
+    Prints the contents of the design. If you specify the <code>-hier</code> option, the example  traverses the hierarchy and prints the contents of all the designs.<br>
+    <strong>Format: </strong>Command-line program with three required arguments: library, cell, and view name 
+    <br>
+      <br>
+      <br>
+  </li>
+  <li><strong>EMH</strong><br>
+    Demonstrates embedded module hierarchy implemented in OpenAccess. The example shows how to modify a design in a block, module, or occurrence domain and shows how a change in one domain can cause changes in the design in other domains. The example performs the following tasks:
+    <ul>
+        <li>Creates a block hierarchy in a design.</li>
+      <li>Creates a module hierarchy in the same design.</li>
+      <li>Creates a net in the top-level module and the leaf-level module.</li>
+      <li>Prints the net names in the top-level block to demonstrate the effect of adding nets in the module domain.</li>
+      <li>Creates a net in the top-level block.</li>
+      <li>Prints the net names in the top-level module to demonstrate the effect of adding nets in the block domain.</li>
+      <li>Creates an instance of leaf-level block in the leaf-level module.</li>
+      <li>Creates an instance of design in the top-level block.</li>
+      <li>Prints the names and details of instances in the block and module domains.<br>
+            <strong>Format:</strong> Command-line program with no command-line arguments <br>
+            <br>
+      </li>
+    </ul>
+  </li>
+  <li><strong>HelloWorld </strong><br>
+    Shows how to build a simple application based on OpenAccess. Refer to <a href="helloworld.html">Getting Started—A HelloWorld Example</a> for details. <br>
+            <br>
+  </li>
+  <li><strong>Hierarchy</strong><br>
+    Shows how to traverse a hierarchical design in the block domain.  The example performs following tasks:
+    <ul>
+        <li>Opens the view.</li>
+      <li>Runs the instance iterator.</li>
+      <li>Gets the master of this instance and repeats the above steps to traverse the hierarchy.</li>
+      <li>While traversing the hierarchy, the example prints following data:
+        <ul>
+              <li>Name of the instance</li>
+          <li>Origin of the instance</li>
+          <li>Level on which this instance is used in the hierarchy</li>
+          <li>Total number of instances on a particular a level</li>
+          <li>Number of bound instances</li>
+          <li>Number of unbound instances</li>
+          <li>Number of designs which do not have instances<br>
+                  <strong>Format: </strong>Command-line program with three required arguments: library, cell, and view name <br>
+                  <br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong><a name="incrTechDB"></a>IncrTechDB</strong><br>
+  Shows how to create incremental technology databases  and read them. The example also demonstrates how conflicts can occur in incremental technology databases, and how to register observers to detect and report conflicts.  The example performs the following tasks: 
+    <ul>
+      <li>Derives and instantiates an oaTech conflict observer.</li>
+      <li>Creates a base technology database.</li>
+      <li>Creates an incremental technology database that references the base technology database. </li>
+      <li>Creates an oaTech database in each library.</li>
+      <li>Inserts objects into each oaTech.</li>
+      <li>Lists the layers in each oaTech and in the full set of incremental technology databases.</li>
+      <li>Edits the base oaTech  out of context and inserts conflicts.</li>
+      <li>Calls oaTech::open(), oaTech::validate(), and oaTech::setRefs() on the incremental oaTech database. </li>
+      <li>Each call  causes the conflict observer to be notified.<br>
+        The resulting output shows  21 conflicts for each of the following functions:
+          <ul>
+            <li>oaTech::open</li>
+            <li>oaTech::validate</li>
+            <li>oaTech::setRefs</li>
+          </ul>
+        The oaTech::setRefs() call  also results in an exception.<br>
+        <br>
+      </li>
+    </ul>
+  </li>
+  <li><strong>instQuery</strong> <br>
+    Shows how to use the oaInstQuery class to query the instances present in the given region. The example performs following tasks:
+      <ul>
+        <li>Inherits from the oaInstQuery class and provides an implementation for the queryInst() function.</li>
+        <li>Creates a hierarchical design with three levels. </li>
+        <li>Runs the instance query with different bounding boxes and filter sizes.<br>
+          <strong>Format:</strong> Command-line program with no command-line arguments <br>
+          <br>
+        </li>
+      </ul>
+  </li>
+  <li><strong>LibStructure</strong> <br>
+    Demonstrates how to traverse the design library, cell, and view. Depending upon the command-line options, the example will traverse the library, cell or view and print their names, or it will print the names of files stored in the library, cell, or view.<br>
+    <strong>Format:</strong> Utility with various command-line options (<code>-h</code> lists the supported command-line options). <br>
+    <br>
+  </li>
+  <li><strong>LPP</strong><br>
+    Opens the given design and iterates over the layer purpose pairs  in the design. The example prints the types and bounding boxes of shapes that are present on the layer purpose pairs.<br>
+    <strong>Format:</strong> Command-line program with three required arguments: library, cell, and view name <br>
+    <br>
+  </li>
+  <li> <strong>Nmp</strong><br>
+    Accepts a string in a particular namespace and prints that string in all the namespaces supported by OpenAccess. This illustrates how different namespaces modify the string according to their rules. <br>
+    <strong>Format:</strong> Command-line program with two required arguments: namespace (one of &ldquo;Cdba&rdquo;, &ldquo;Unix, &ldquo;Win&rdquo;, &ldquo;Lef&rdquo;, &ldquo;Def&rdquo;, &ldquo;Native&rdquo;, or &ldquo;Verilog&rdquo;) and the string to analyze. <br>
+    <br>
+  </li>
+  <li><strong>regionQuery</strong><br>
+    Shows how to use the oaShapeQuery class for querying the shapes present in the given region. This example also shows how to access an occurrence of a shape found in the given region. The example performs following tasks:
+    <ul>
+        <li>Inherits from the oaShapeQuery class and provides an implementation for the queryShape() function.</li>
+      <li>In the queryShape() function, obtains an occShape  from an oaShape and a bounding box. The hierarchical path and type of that shape are printed.</li>
+      <li>Creates a three-level hierarchical design with shapes.</li>
+      <li>Runs the shape query with different bounding boxes and filter sizes.</li>
+      <li>	Inherits from the oaLayerRangeBlockageQuery class and provides an implementation for the queryBlockage() function.</li>
+      <li> Inherits from the oaBlockageQuery class and provides an implementation for the queryBlockage() function. <br>
+        <strong>Format:</strong> Command-line program with no command-line arguments <br>
+        <br>
+      </li>
+    </ul>
+  </li>
+  <li> <strong>PinConnections</strong> <br>
+    Demonstrates different types of pin connections. <br>
+    There are three types of connections:
+    <ul>
+      <li>Must Join</li>
+      <li>Weak</li>
+      <li>Strong<br>
+          <strong>Format:</strong> Command-line program with no command-line arguments <br>
+          <br>
+      </li>
+    </ul>
+  </li>
+  <li> <strong>PinsTerms</strong><br>
+    Shows how to traverse the connectivity in the block hierarchy.  The example performs following tasks:
+    <ul>
+        <li>Opens the given design.</li>
+      <li>Iterates over the nets in the  design.</li>
+      <li>Iterates over oaTerms in each net and prints their names.</li>
+      <li>Iterates over oaInstTerms in each net and traverses the hierarchy.<br>
+            <strong>Format:</strong> Command-line program with three required arguments: library, cell, and view name <br>
+            <br>
+      </li>
+    </ul>
+  </li>
+  <li><strong>Route</strong><br>
+    Calculates the area of each route in the given design. The example demonstrates the use of the oaRoute API.<br>
+    <strong>Format:</strong> Command-line program with three required arguments: library, cell, and view name<br>
+    <br>
+  </li>
+  <li><strong>TermOrdering</strong><br>
+    Demonstrates  terminal ordering. You can create and destroy terminals as well as assign positions to  terminals. You can also print ordered and unordered terminals. <br>
+    <strong>Format</strong>: Interactive, menu-based command-line program <br>
+    <br>
+  </li>
+  <li><strong>TimeStamp</strong><br>
+    Shows how timestamps change on OpenAccess objects as they are modified. The timestamp on a particular object  changes if any other object owned by this object is modified. This example prints the timestamps of design, net, terminal, shape, and pin objects as they are created or modified. In the result, the modified timestamps are marked with an asterisk (*).<br>
+    <strong>Format:</strong> Command-line program, no command-line arguments<br>
+    <br>
+  </li>
+  <li><strong>Transform</strong><br>
+    The following two examples  explain the concept of transform in OpenAccess.
+      <br>
+      <br>
+    <ul>
+        <li><strong>Hierarchy Transform</strong><br>
+          Opens the given design and traverses it to find the given instance. After finding the instance, it calculates its transform with respect to the top-level design. The example requires the library, cell, and view name of a top-level design followed by instance names.<br>
+          <strong>Format:</strong> Command-line program with four required arguments: library, cell, and view name, followed by the instance name.<br>
+          <br>
+</li>
+      <li><strong>Shape Transform</strong><br>
+        Opens the given design, iterates over all the shapes, and rotates them about the center of the design through the given angle.<br>
+        The example requires the library, cell, and view names and the angle of rotation.<br>
+        <strong>Format:</strong> Command-line program with four required arguments: library, cell, and view names, plus the angle of rotation.<br>
+        <br>
+      </li>
+    </ul>
+  </li>
+  <li><strong><a name="via"></a>Via</strong><br>
+      Shows how to create custom and standard oaViaDefs, oaVias, and oaViaVariants. The example includes sample LEF and DEF files to create the initial design and technology data. The example shows how to:
+<br>
+    <ul>
+      <li>Create oaStdViaDefs and use them to create oaStdViaVariants.</li>
+      <li>Create oaStdVias from oaStdViaVariants. Replace an oaStdVia with a different one by searching for an oaStdViaVariant with a specific parameter combination.</li>
+      <li>Create a Pcell based oaCustomVias and write a simple in-memory Pcell evaluator.      </li>
+      <li>Create oaCustomViaVariants from parameterized oaCustomViaDefs.      </li>
+      <li>Create oaCustomVias from oaCustomViaVariants. Find oaCustomViaVariants by parameter combination.      </li>
+      <li> Create design-specific oaViaVariants and add them to an oacValidRoutingVias constraint.      </li>
+      <li>Create a constraint group with an oaConstraintGroupDef named <em>LEFDefaultRouteSpec</em> that references the oacValidRoutingVias constraint.
+        <br>
+        <strong>Format:</strong> Command-line program with three required arguments: library, cell, and view name <br>
+        <br>
+      </li>
+    </ul>
+  </li>
+  <li><strong><a name="pcell_example"></a>PCells<br>
+  </strong>Demonstrates how to create a Pcell factory, the plug in, and how to add it to your application.
+    <ul>
+      <li>The Pcell factory is defined in the subdirectory myPcell by the files <code>myPcell.h</code> and <code>myPcell.cpp</code>. </li>
+      <li>The <code>myPcell.plg</code> is the plug in file needed by your application to connect it to the Pcell factory dynamic library. </li>
+      <li>The <code>PCells.cpp</code> file demonstrates how to connect your PCell factory via the oaIPcellLInk() function call. It then creates two instances of the myPcell plug in and binds them to the application so that they are then evaluated. The resulting evaluated subMaster contents are  printed out.</li>
+      <li>This example also demonstrates:
+        <ul>
+          <li>The usage of the OA_PLUGIN_PATH environment variable, which is used to locate <code>.plg</code> files.</li>
+          <li>The usage of oaPcellObserver to receive notifications of errors during Pcell evaluation. </li>
+        </ul>
+      </li>
+      <li> <strong>Format:</strong> Command-line program with no arguments <br>
+        <br>
+        </li>
+    </ul>
+  </li>
+  <li><strong>Wafer</strong> <br>
+    Demonstrates the use of the API in the oaWafer database. This example also shows how the design  and wafer databases are related to each other.<br>
+    <br>
+  </li>
+  <li><strong><a name="fbc"></a>FeatureBasedCompatibility</strong>    <br>
+  This example contains two programs:
+    <br>
+    <br>
+    <ul>
+      <li><strong>createNewFeatures</strong>  <br>
+        Creates two features in a design: 
+          <ul>
+          <li><em>New ConstraintGroupDef</em> (from datamodel 4)</li>
+          <li><em>Reference to FigGroup</em> (from datamodel 2)<br>
+            <br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <ul>
+    <li><strong>openDesign</strong><br>
+      Initializes OpenAccess with datamodel 0 and attempts to open the design. As a result, the oaCompatibilityError exception is caught and the handleFBCError function prints a list of unsupported features in the design.</li>
+  </ul>
+</ul>
+<p></p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+
+</body>
+</html>

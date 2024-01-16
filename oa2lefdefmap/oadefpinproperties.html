@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|pinproperties'/>
+<a name='9'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="PinProperties"></a>Pin Properties</h1>
+<pre>
+ [PINPROPERTIES num;
+
+     [- {<a href='#10'>compName</a> pinName | <a href='#11'>PIN</a> pinName}
+           [+ <a href='#12'>PROPERTY</a> {propName propVal} ...] ...
+     ;]...
+
+ END PINPROPERTIES]
+</pre>
+<p>This statement defines pin properties in the design. The PINPROPERTIES are stored in OpenAccess as oaProps of the type that are specified by the preceding PROPERTYDEFINITION.</p>
+<p>The num value corresponds to the number of properties on the terminals and instTerms objects. See <a href="oadefproperties.html">PROPERTIES</a> for information about the API to iterate over properties.</p>
+</div>
+<a name='def|pinproperties|compname'/>
+<a name='10'/>
+<h2 class='topicSyntax'>
+compName pinName</h2>
+<div style='margin-left:40px;'>
+<p>This information corresponds to an oaInstTerm object with at least one property. compName is the name of the instance associated with the instTerm. pinName is the name of the terminal associated with the oaInstTerm.</p>
+<pre>
+   oaInst *oaInstTerm::getInst() const
+   void oaInst::getName(const oaNameSpace &amp;ns, oaString &amp;name) const
+
+   void oaInstTerm::getTermName(const oaNameSpace &amp;ns,
+                                oaString &amp;name ) const
+</pre>
+</div>
+<a name='def|pinproperties|pinname'/>
+<a name='11'/>
+<h2 class='topicSyntax'>
+PIN pinName</h2>
+<div style='margin-left:40px;'>
+<p>The pinName information corresponds to a terminal object with at least one property. The pinName value is the terminal name.</p>
+<pre>
+   void oaTerm::getName(const oaNameSpace &amp;ns, oaString &amp;name) const
+</pre>
+</div>
+<a name='def|pinproperties|property'/>
+<a name='12'/>
+<h2 class='topicSyntax'>
+PROPERTY {propName propVal} ...</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oadefproperties.html">PROPERTIES</a>.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

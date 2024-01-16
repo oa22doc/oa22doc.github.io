@@ -1,0 +1,995 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h1>Stream to OpenAccess Translator (strm2oa)</h1>
+		<hr>
+		<h2><a name="cmd">Overview</a></h2>
+		<p>You can translate Stream data to the OpenAccess database format using the <code>strm2oa</code>
+			command-line executable. A destination library and a Stream file are required 
+			to begin a translation.
+		</p>
+		<h3>Command Syntax</h3>
+		<pre>strm2oa -gds <em>file</em> -lib <em>library</em> [Optional Arguments]</pre>
+		<p><code>strm2oa</code> translates the Stream file to the destination OpenAccess 
+			library. Use the <code>-help</code> or <code>-h</code> argument to display 
+			command-line help. The command-line arguments are described in the following 
+			table.</p>
+		<table border="1" cellpadding="4">
+			<tr bgcolor="#ccccdd">
+				<th colspan="2" align="left">
+					Required Arguments
+				</th>
+			</tr>
+			<tr>
+				<td width="200" valign="top"><span class="code">-gds <em>file</em></span></td>
+				<td width="600">Specifies the Stream file to translate. You must specify the 
+					complete path to the Stream file.
+				</td>
+			</tr>
+			<tr>
+				<td valign="top">
+					-lib <em>library</em>
+				</td>
+				<td><p>Specifies the destination library for the Stream file contents. If the library 
+						does not exist, <code>strm2oa</code> creates it. For information about how the 
+						translator finds a library using the library definitions file, see <a href="../guide/usinglibs.html">							How Translators Use Libraries</a>.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#eeffcc">
+				<td colspan="2"><strong>Optional Arguments</strong></td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-cell <em>name</em></span></td>
+				<td>Specifies the top-level cell to translate. If you want to stream in part of a 
+					design, specifying a topCell is one way to accomplish this.<br>
+					<br>
+					If a translation creates more than one library, a cell named using this option 
+					is always in the library specified by the -lib option. See <a href="#note2">Note 2</a>
+					for additional information.<br>
+					<br>
+					By default, <code>strm2oa</code> translates all cells in the Stream file.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-cellMap <em>file</em></span></td>
+				<td><p>Specifies the cell mapping file to use during translation. You must specify the 
+						complete path to the file. If you use the asterisk (*) character in the cellmap 
+						file in place of the library name, the translator searches all the reference 
+						libraries for the mapped cellname.</p>
+					<p>The format for the mapping file is:</p>
+					<pre class="code" style="FONT-SIZE:14px">
+<em>&lt;destination library name&gt; &lt;destination cell name&gt; &lt;destination view name&gt; &lt;stream structure name&gt;</em></pre>
+					<p>If you specify a cell mapping file, <code>strm2oa</code> creates stream 
+						structures and instances of that structure found in the map file as the 
+						destination library, cell, and view name specified. No case conversion is 
+						processed on these names. <code>strm2oa</code> translates stream structures and 
+						instances not found in the mapping file using the structure names in the Stream 
+						file.</p>
+					<p>Lines in the cellMap file that are blank and lines beginning with the comment 
+						character <em>#</em> are ignored.</p>
+					<h4>Sample Cell Mapping File</h4>
+					<table border="0" cellpadding="4" summary="&nbsp;">
+						<tr>
+							<td width="140"><code>#library name</code></td>
+							<td width="140"><code>cell name</code></td>
+							<td width="140"><code>view name</code></td>
+							<td width="140"><code>stream name</code></td>
+						</tr>
+						<tr>
+							<td><code>des_lib</code></td>
+							<td><code>nand2</code></td>
+							<td><code>layout</code></td>
+							<td><code>nand2_1</code></td>
+						</tr>
+						<tr>
+							<td><code>sdes_lib</code></td>
+							<td><code>nand2</code></td>
+							<td><code>layout</code></td>
+							<td><code>nand2_2</code></td>
+						</tr>
+						<tr>
+							<td><code>des_lib</code></td>
+							<td><code>cell_nu</code></td>
+							<td><code>layout</code></td>
+							<td><code>cell_nu</code></td>
+						</tr>
+						<tr>
+							<td><code>*</code></td>
+							<td><code>cell_nu</code></td>
+							<td><code>layout</code></td>
+							<td><code>cell_new</code></td>
+						</tr>
+					</table>
+					<p>Each stream name in the cell mapping file must be unique.
+					</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-convertPathToPathSeg</td>
+				<td valign="top">Converts all orthogonal and diagonal paths to an oaPathSeg object 
+					for those paths that connect only two points. Paths that are neither orthogonal 
+					nor diagonal are not converted to oaPathSeg objects but imported as oaPath 
+					objects.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-dataModel <em>dataModel value</em></td>
+				<td>Specifies a dataModel value of 0, 1, 2, or 3, which determines the data model 
+					for the OpenAccess database. If this option is omitted, the default dataModel 
+					value of 1 is used unless the OA_DATAMODEL environment variable is set or a 
+					file named OA_DATAMODEL is found in the data directory of your OpenAccess 
+					installation hierarchy. See the discussion <a href="../guide/compat.html#transDataModel">						Specifying a DataModelRev for a Flow</a> for more information.
+					<br>
+					<br>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-dbuPerUU <em>number</em></span></td>
+				<td><span class="code">Specifies the dbuPerUU value.</span>
+					The dbuPerUU value in the OpenAccess database is always explicity set when you 
+					use this option even if the supplied value is the same as the existing value in 
+					the database.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-detectVias</span></td>
+				<td>Enables the automatic detection of standard and custom vias when a viaMap file 
+					is not available. If -techLib is used to specify a technology library, the 
+					physical layer material type and mask number specified in the tech database are 
+					used for detecting the via structures. Otherwise, the material type and mask 
+					numbers specified in the layermap file (using -layerMap) are used to detect the 
+					via structures. The translator can detect single and multicut vias as well as 
+					custom via structures. All references to a Stream via structure map to an 
+					oaStdVia instead of an oaDesign.<br>
+					<br>
+					If you do not have a viaMap file and you do not use this option and provide the 
+					necessary information in the layerMap file, the translator produces many 
+					oaDesigns to represent the vias. This can adversely affect performance of both 
+					strm2oa and other applications running on the oaDesigns that are produced.
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-DMAttributes <em>attributeList</em></td>
+				<td>Specifies a list of DM attributes that are associated with every library that 
+					this application creates. Attributes are specified as name=value pairs. There 
+					must be no space on either side of the equal sign, two or more pairs must be 
+					space-separated, and the list must be enclosed in quotes. For example:
+					<pre>
+    strm2oa ... -DMAttributes "name1=value name2=value name3=value"
+</pre>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-DMSystem <em>sysName</em></span></td>
+				<td>Specifies the DM system to use for the library, which can be any DM plug-in 
+					available to the user. The DM plug-ins included with OpenAccess are oaDMTurbo 
+					or oaDMFileSys. The default DM system is oaDMSystem, which automatically 
+					selects between oaDMTurbo or oaDMFileSys. Use of the oaDMTurbo plug-in is not 
+					recommended.</td>
+			</tr>
+			<TR>
+				<TD vAlign="top">-excludeMapToVia <EM>file</EM></TD>
+				<TD>
+					<P>Specifies the via exclusion file to be used for via recognition during 
+						translation. If the <EM>–detectVia</EM> option is used, the GDS structures 
+						listed in the via exclusion file are not mapped to an oaStdVia even if they can 
+						be represented as an oaStdVia.
+					</P>
+					<P>The via exclusion file contains one GDS structure per line. The wildcards ‘*’ 
+						and ‘?’&nbsp;can also be used.
+					</P>
+					<P>Blank lines and lines beginning with character # are ignored from the via 
+						exclusion file.</P>
+					<P><STRONG>Sample Via Exclusion File</STRONG></P>
+					<P># List of structures to be excluded from via mapping
+					</P>
+					<P>M1M2Wire&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						&nbsp;# Do not map M1M2Wire to a via
+					</P>
+					<P>M2M3Wire*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						# Do not map cells starting with M2M3Wire to a via</P>
+				</TD>
+			</TR>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-fontMap <em>file</em></span></td>
+				<td><p>Specifies the font mapping file to use during translation. You must specify the 
+						complete path to the file.
+					</p>
+					<p>The format for the mapping file is:</p>
+					<pre class="code">   <em>&lt;stream id&gt; &lt;OpenAccess font name&gt;</em> </pre>
+					<p>If you specify a font mapping file, stream font values found in the map file 
+						translate as the OpenAccess font name specified. Stream font values not found 
+						in the mapping file translate as defined by the following defaults:</p>
+					<ul>
+						<li>
+						Id 0 translates to a Fixed font
+						<li>
+						Id 1 translates to a EuroStyle font
+						<li>
+						Id 2 translates to a Gothic font
+						<li>
+							Id 3 translates to a Math font</li>
+					</ul>
+					<p>Valid values for Stream Font Ids are 0, 1, 2, and 3.
+					</p>
+					<p>Valid values for OpenAccess Font Names are EuroStyle, Gothic, Math, Roman, 
+						Script, Stick, Fixed, Swedish, and MilSpec.</p>
+					<p>Lines in the fontMap file that are blank and lines beginning with the comment 
+						character <em>#</em> are ignored.</p>
+					<h4>Sample Font Mapping File</h4>
+					<table border="0" cellpadding="3" summary="&nbsp;">
+						<tr>
+							<td width="150">
+								<code>#stream ID</code>
+							</td>
+							<td>
+								<code>OA font name</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>0</code>
+							</td>
+							<td>
+								<code>EuroStyle</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>1</code>
+							</td>
+							<td>
+								<code>Roman</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>2</code>
+							</td>
+							<td>
+								<code>Gothic</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>3</code>
+							</td>
+							<td>
+								<code>Script</code>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-help | -h</span></td>
+				<td><p class="spabove">Prints command-line help.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-hierDepth <em>number</em></span></td>
+				<td><p>Specifies the hierarchical depth to translate to.
+						<br>
+						The default depth is 20.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-ignoreBoxes</span></td>
+				<td>Specifies that Stream Box Records are <em>not</em> translated.
+					<br>
+					By default, Box Records are translated as rectangles.
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-layerMap <em>fileList</em></span></td>
+				<td><p>Specifies a quoted, space-separated list of one or more layer mapping files to 
+						be used during translation. You must specify the complete path for each layer 
+						map file.</p>
+					<p>The format for the map file is:</p>
+					<pre class="code">   <em>&lt;oaLayerName&gt; &lt;oaLayerPurpose&gt; &lt;gdsLayer&gt; &lt;gdsPurpose&gt; [&lt;oaMaterial&gt; [&lt;oaMaskNumber&gt;]] [&lt;Qualifier&gt;]</em></pre>
+					<p>If you specify a layer mapping file, <code>strm2oa</code> creates Stream objects 
+						on the layer and purpose numbers found in the technology library using the 
+						gdsLayer and gdsPurpose names specified in the map file. Stream objects on 
+						layer and type combinations not found in the map file are not translated.</p>
+					<p>If <code>strm2oa</code> cannot find the layer or purpose in the technology 
+						library, a warning message is issued, but <code>strm2oa</code> attempts to 
+						create it.</p>
+					<p>By default, if you do not specify a mapping file, stream layers and types 
+						translate to the names L<em>&lt;gdsLayer&gt;</em>, and P<em>&lt;gdsPurpose&gt;</em>
+						respectively. If the layer name or purpose name is not in the technology 
+						library, <code>strm2oa</code> attempts to add it.</p>
+					<p>Lines in the layerMap file that are blank and lines beginning with the comment 
+						character <em>#</em> are ignored.</p>
+					<p>The oaMaterial, oaMaskNumber, and Qualifier fields are optional. However, an 
+						oaMaskNumber may only be specified if the oaMaterial is also specified.</p>
+					<p>Currently, no qualifiers are supported by strm2oa. The Qualifier field is used 
+						by oa2strm and future enhancements. Any qualifiers specified are ignored.</p>
+					<p><strong>Note:</strong> You cannot specify the same gdsLayer/gdsPurpose type 
+						combination for multiple entries. If you do, an error is issued and the entry 
+						is ignored. When you are merging layers, if gdsLayer and gdsPurpose 
+						combinations match the same layer and purpose combinations in the database, a 
+						warning is issued.</p>
+					<p>If you use -detectVias, the oaMaterial and oaMaskNumber columns are used for 
+						automatically detecting via structures. However, if -techLib is used, and the 
+						technology library includes the material and mask numbers for the physical 
+						layers, the information in the technology library is used to detect via 
+						structures unless the material and mask numbers differ with the layer map file. 
+						If material and mask numbers differ, the technology library is updated with the 
+						layermap material and mask number information, and a warning is issued.<br>
+						<br>
+						If you do not use this option to specify oaMaterial and the -detectVias option, 
+						and the design has many different vias defined as cellViews, the translator 
+						will produce many new cellViews, which can adversely affect performance of both 
+						strm2oa and other applications running on the oaDesigns that are produced.</p>
+					<p><strong>Sample Layer Mapping File</strong></p>
+					<table border="0" cellpadding="4" summary="&nbsp;">
+						<tr>
+							<td><code># oaLayerName</code></td>
+							<td><code>oaLayerPurpose</code></td>
+							<td><code>gdsLayer</code></td>
+							<td><code>gdsPurpose</code></td>
+							<td><code>oaMaterial</code></td>
+							<td><code>oaMaskNumber</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;PImp</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;13</code></td>
+							<td><code>&nbsp;13</code></td>
+							<td><code>pImplant</code></td>
+							<td><code>&nbsp;3</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Metal1 </code>
+							</td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;1</code></td>
+							<td><code>&nbsp;1</code></td>
+							<td><code>metal</code></td>
+							<td><code>&nbsp;6</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Via1</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;2</code></td>
+							<td><code>&nbsp;2</code></td>
+							<td><code>cut</code></td>
+							<td><code>&nbsp;7</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Metal2</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;3</code></td>
+							<td><code>&nbsp;3</code></td>
+							<td><code>metal</code></td>
+							<td><code>&nbsp;8</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Via2</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;4</code></td>
+							<td><code>&nbsp;4</code></td>
+							<td><code>cut</code></td>
+							<td><code>&nbsp;9</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Metal3</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;5</code></td>
+							<td><code>&nbsp;5</code></td>
+							<td><code>metal</code></td>
+							<td><code>&nbsp;10</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Via3</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;6</code></td>
+							<td><code>&nbsp;6</code></td>
+							<td><code>cut</code></td>
+							<td><code>&nbsp;11</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Metal4</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;7</code></td>
+							<td><code>&nbsp;7</code></td>
+							<td><code>metal</code></td>
+							<td><code>&nbsp;12</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Via4</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;8</code></td>
+							<td><code>&nbsp;8</code></td>
+							<td><code>cut</code></td>
+							<td><code>&nbsp;13</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Metal5</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;9</code></td>
+							<td><code>&nbsp;9</code></td>
+							<td><code>metal</code></td>
+							<td><code>&nbsp;</code></td>
+						</tr>
+						<tr>
+							<td><code>&nbsp;&nbsp;Via5</code></td>
+							<td><code>drawing</code></td>
+							<td><code>&nbsp;10</code></td>
+							<td><code>&nbsp;10</code></td>
+							<td><code></code></td>
+							<td><code></code></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-libDefFile <em>filename</em></td>
+				<td>Specifies the lib.defs file to load. The path to the lib.defs file can be a 
+					full or relative path. If this option is omitted, the default search mechanism 
+					of the DM system is used to find and load the lib.defs file.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">
+					-libPath <em>path</em></td>
+				<td>Specifies the full path name (including the library name) for the library. Use 
+					this argument only if the library does not exist. If not specified, the library 
+					is ./&lt;library&gt;, where &lt;library&gt; is the value of the -lib argument.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-logFile <em>file</em></span></td>
+				<td><p>Specifies the log filename. If this option is omitted, the log filename defaults 
+						to strm2oa.log</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-noInfo <em>msgIds</em></td>
+				<td>Suppresses the specified INFO messages. <em>msgIds</em> is a quoted, space 
+					separated list of numbers. Each number in the list represents the numerical 
+					portion of the ID for the message you want to suppress. None of the numbers in 
+					the list may be zero. Suppressed messages do not appear on the terminal or in 
+					the log file.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-noWarning <em>msgIds</em></td>
+				<td>Suppresses the specified WARNING messages. <em>msgIds</em> is a quoted, space 
+					separated list of numbers. Each number in the list represents the numerical 
+					portion of the ID for the message you want to suppress. None of the numbers in 
+					the list may be zero. Suppressed messages do not appear on the terminal or in 
+					the log file and are not included in the total of WARNING messages displayed in 
+					the summary.</td>
+			</tr>
+			<TR>
+				<TD vAlign="top">-numCellsInLibLimit <EM>limit</EM></TD>
+				<TD>
+					<P>Specifies the maximum number of cells that can be created in a library. If a 
+						limit value corresponding to this option is not specified, the maximum number 
+						of cells per library as supported by the DM system will be used. Specifying a 
+						limit that exceeds the maximum limit supported by the DM system will result in 
+						an error.</P>
+					<P>For example, the output library of FileSys data management system is limited to 
+						20,000 cells to prevent exceeding UNIX limits on the number of files per 
+						directory.</P>
+					<P>When the number of cells for a library is exceeded, the translator creates 
+						additional libraries by appending an underscore and a number to the library 
+						name specified with the -lib option.
+					</P>
+					<P>For example, if you specify:
+					</P>
+					<PRE>strm2oa -lib GLib...</PRE>
+					<P>If&nbsp;the number of cells created in GLib exceeds the limit, strm2oa creates 
+						an additional library named GLib_n, where n starts at 1 and is incremented to 
+						create additional libraries as needed.</P>
+					<P>The name of the library directory is also modified in the same manner. For 
+						example, if the command includes:
+					</P>
+					<PRE>strm2oa -lib GLib –libPath /data/lib/libGDS ...</PRE>
+					<P>When the number of cells in the first library exceed the limit, the second 
+						library is named GLib_1 and is created at /data/lib/libGDS_1. A new library and 
+						library directory&nbsp;is created&nbsp;each time the cell limit is exceeded.</P>
+					<P>The limit of cells in a library can be exceeded in certain cases. When 
+						translating an SREF or an AREF that cannot be characterized as an oaTransform 
+						class object applied to a cell (for example, if magnification is involved), 
+						strm2oa creates variants of the cell and all masters referenced from the cell. 
+						All the variants are placed into the same library, to ensure that the total 
+						number of cells in the library may exceed the specified limit.</P>
+					<P>When the translator creates multiple libraries, the cell named using the -<EM>cell</EM>
+						option is always included in the first output library.</P>
+				</TD>
+			</TR>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-overwrite</td>
+				<td>Replaces an existing design with the translated data. If this option is 
+					omitted, any cell in the stream file that corresponds to a pre-existing 
+					oaDesign is silently skipped.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-propMap <em>file</em></span></td>
+				<td><p>Specifies the property mapping file to use during translation. You must specify 
+						the complete path to the file.</p>
+					<p>The format for the map file is:</p>
+					<pre class="code">   <em>&lt;stream id&gt; &lt;object type&gt; &lt;destination property name&gt;</em></pre>
+					<p>If you specify a property mapping file, <code>strm2oa</code> creates Stream 
+						properties with id and object type combinations found in the map file using the 
+						property name specified. <code>strm2oa</code> creates stream properties on id 
+						and object type combinations not found in the mapping file with the name STREAM 
+						PROPERTY #<em>&lt;strmid&gt;</em>.
+					</p>
+					<p>Valid objects types are: Dot, Line, Path, Polygon, Rect, Text, ArrayInst, and 
+						ScalarInst.</p>
+					<p>If you do <em>not</em> specify a mapping file, <code>strm2oa</code> interprets 
+						stream properties values as a list of properties separated by the property 
+						separator character with the form:</p>
+					<pre class="code">   <em>&lt;property name&gt;</em> = <em>&lt;property value&gt;</em></pre>
+					<p>For example,<code> height=10,width=20</code> yields two properties, the first 
+						named <b>height</b> with a value of <b>10</b>, and the second named <b>width</b>
+						with a value of <b>20</b>.</p>
+					<p><code>strm2oa</code> creates all properties as oaStringProps.</p>
+					<p>Lines in the propMap file that are blank and lines beginning with the comment 
+						character <em>#</em> are ignored.</p>
+					<h4>Sample Property Mapping File</h4>
+					<table border="0" cellpadding="5" summary="&nbsp;">
+						<tr>
+							<td><code>#stream Id</code></td>
+							<td><code>object</code></td>
+							<td><code>name</code></td>
+						</tr>
+						<tr>
+							<td><code>1</code></td>
+							<td><code>Rect</code></td>
+							<td><code>instP11</code></td>
+						</tr>
+						<tr>
+							<td><code>2</code></td>
+							<td><code>Polygon</code></td>
+							<td><code>poly1</code></td>
+						</tr>
+						<tr>
+							<td><code>3</code></td>
+							<td><code>Path</code></td>
+							<td><code>sigName</code></td>
+						</tr>
+						<tr>
+							<td><code>4</code></td>
+							<td><code>Text</code></td>
+							<td><code>pad32</code></td>
+						</tr>
+						<tr>
+							<td><code>5</code></td>
+							<td><code>Pin</code></td>
+							<td><code>io_term</code></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-propSeparator <em>char</em></span></td>
+				<td><p>Specifies the property separator character used to interpret property records.
+					</p>
+					<p>If you specify a property map file, <code>strm2oa</code> ignores the <code>propSeparator</code>
+						argument. The default value for this argument is a comma.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-refLibs <em>libList</em></td>
+				<td>Specifies one or more libraries in which to search for master cells. You 
+					specify multiple libraries with a quoted, space-separated list. If you omit 
+					this option, the refLibs list contains the design and tech libraries.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-refLibList <em>file</em></span></td>
+				<td><p>Specifies a file containing the list of libraries with cells referenced in the 
+						design. A library name in the file must match the library name in the <code>cds.lib</code>
+						file.</p>
+					<p>
+						If you do not use the <code>refLibList</code> argument, cells that are 
+						referenced in the Stream file but not defined are instantiated by name and 
+						remain unbound. If you specify a filename that does not exist, <code>strm2oa</code>
+						issues an error.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-refViews <em>viewList</em></td>
+				<td>Specifies a particular view in which to search for leaf cells. You can specify 
+					multiple views with a quoted, space-separated list.<br>
+					<br>
+					The default view list has a single view name: <code>abstract</code>.<br>
+					<br>
+					<code>refViews</code> are searched in the order they appear on the command 
+					line. <code>refViews</code> are searched after the arguments for <code>-refLib</code>
+					are searched. If no appropriate view is available, a stub module with the name 
+					of the first view name in the <code>refViews</code> list is generated for the 
+					leaf.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-shared</td>
+				<td>Allows other applications to access the output library while this application 
+					is running.<br>
+					<strong>Note</strong>: The additional synchronization overhead required for 
+					shared library access can increase translation time.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-techDMAttributes <em>attrList</em></td>
+				<td>Specifies a list of DM attributes to associate with each tech library that the 
+					translator creates.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-techDMSystem <em>sysName</em></td>
+				<td>DM system to use for the technology library, which is either oaDMTurbo or 
+					oaDMFileSys. The default is oaDMTurbo.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-techLib <em>library</em></span></td>
+				<td>Specifies the technology library to use during the translation. If the library 
+					does not exist, <code>strm2oa</code> creates it.<br>
+					The default value for this argument is the destination library specified with 
+					the <code>library</code> argument.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-techLibPath <em>path</em></span></td>
+				<td>Specifies the path for the technology library. If not specified, the technology 
+					path defaults to the current working directory.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-techRefs <em>parentTechs</em></td>
+				<td>Creates an incremental technology database that derives from one or more of the 
+					specified parent technology databases.<br>
+					<br>
+					Notes:
+					<ul>
+						<li>
+							If the library being translated does not have a technology database, this 
+							option creates an incremental technology database that has references to the 
+							specified <em>parentTechs</em>.
+						<li>
+						If the library being translated already has a standalone technology database, 
+						this option converts that technology database to an incremental type that has 
+						references to the specified parentTechs.
+						<li>
+						If the library being translated has an attached technology database, that 
+						attached technology database must be included in the list of parentTechs, or 
+						the translator issues an error.
+						<li>
+						If the library being translated already uses an incremental technology 
+						database, the current references from the incremental technology database must 
+						be included in the specified parentTechs, or the translator issues an error. 
+						Additional references can be provided.
+						<li>
+							This option requires data model 3. If you use this option without setting the 
+							data model to 3 (by using the -dataModel option, the OA_DATAMODEL environment 
+							variable, or using the OA.DATAMODEL file), an error is issued and the 
+							translation stops.</li>
+					</ul>
+					For more information, refer to <a href="../guide/tech.html">Incremental Technology 						Databases</a> in the <em>Using Technology Databases</em> section of the 
+					Programmers Guide, and see also <a href="../guide/compat.html#transDataModel">Specifying 						a DataModelRev for a Flow</a>.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-templateFile <em>file</em></span></td>
+				<td><p>Specifies a template file containing arguments to <code>strm2oa</code>. You can 
+						specify a template file instead of entering a string of arguments on the 
+						command line.
+					</p>
+					<p>If you specify a template file, arguments on the command line have precedence 
+						over arguments specified in the file. So, if the same argument exists in the 
+						template file and in the command line, the translator uses the argument on the 
+						command line.</p>
+					<p>Specify arguments in a template file as follows:</p>
+					<ul>
+						<li>
+						Enter arguments in the template file without a dash (-) before the argument.
+						<li>
+						Enter each argument and value pair on a single line.
+						<li>
+						Separate the argument from its value using a space or a tab.
+						<li>
+							Designate comment lines with a <em>#</em> sign as the first character in the 
+							line.</li>
+					</ul>
+					<h4>Sample Template File</h4>
+					<pre>
+#strm2oa arguments for AC33</pre>
+					<table border="0" cellpadding="3" summary="&nbsp;">
+						<tr>
+							<td>
+								<code>logFile</code>
+							</td>
+							<td><code> strm2oa.abstract.log </code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>view</code>
+							</td>
+							<td>
+								<code>abstract</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>hierDepth</code>
+							</td>
+							<td>
+								<code>2</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>noOverwrite</code>
+							</td>
+							<td>
+								<code>&nbsp;</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>cellMap</code>
+							</td>
+							<td>
+								<code>strm2oa.cell.map</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>toUpper</code>
+							</td>
+							<td>
+								<code>&nbsp;</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>fontMap</code>
+							</td>
+							<td>
+								<code>strm2oa.font.map</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>ignoreBoxes</code>
+							</td>
+							<td>
+								<code>&nbsp;</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>layerMap</code>
+							</td>
+							<td>
+								<code>strm2oa.layer.map</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>refLibList</code>
+							</td>
+							<td>
+								<code>strm2oa.reflibs</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>propMap</code>
+							</td>
+							<td>
+								<code>strm2oa.prop.map</code>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<code>propSeparator</code>
+							</td>
+							<td>
+								<code>:</code>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-textHeight <em>value</em></span></td>
+				<td>Specifies the text height for labels. If this option is not used, the text 
+					height defaults to the DBUPerUU value. For example, if the DBUPerUU value is 
+					1000, the default textHeight is 1000 or 1 user unit.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-toLower</span></td>
+				<td><p>Specifies that <code>strm2oa</code> convert all cell and instance names to lower 
+						case. The <code>toLower</code> argument does not affect Stream structures found 
+						in the cell mapping file, if specified.<br>
+						By default, <code>strm2oa</code> preserves the case.</p>
+					<p>The arguments <code>toUpper</code> and <code>toLower</code> are mutually 
+						exclusive. Specifying both arguments is an error.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-toUpper</span></td>
+				<td><p>Specifies that <code>strm2oa</code> convert all cell and instance names to upper 
+						case. This argument does not affect Stream structures found in the cell mapping 
+						file if specified.<br>
+						By default, <code>strm2oa</code> preserves the case.</p>
+					<p>The arguments <code>toUpper</code> and <code>toLower</code> are mutually 
+						exclusive. Specifying both arguments is an error.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-toLowerLabel</span></td>
+				<td>Converts labels to lower case.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-toUpperLabel</span></td>
+				<td>Converts labels to upper case.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-viaMap <em>fileList</em></span></td>
+				<td>Specifies a quoted, space-separated list of one or more via mapping files that 
+					define which structures to recognize as customViaDef masters. You must specify 
+					the complete path for each via map file.<br>
+					<br>
+					<strong>Custom Via Mapping File Syntax:</strong>
+					<pre>
+# Comment
+# Blank lines are ignored
+&lt;Structure Name&gt; &lt;oaCustomViaDef Name&gt; &lt;Layer1 Name/Number&gt; &lt;Layer2 Name/Number&gt;
+</pre>
+					Example Via Mapping File:<br>
+					<pre>
+# Custom Via Master List for aDesign
+via1 m1m2via m1 10 m2 20
+via2 m2m3via m2 20 m3 30
+</pre>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top"><span class="code">-view <em>view</em></span></td>
+				<td><p>Specifies the destination view name for the cells.<br>
+						If you omit this option, the default destination view name is <code>layout</code>.</p>
+					<!-- beginning of footer --></td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-v</td>
+				<td>
+					Prints tool, format, and library version information.</td>
+			</tr>
+			<tr bgcolor="#ffffff">
+				<td valign="top">-version</td>
+				<td>
+					Prints tool and format version information.</td>
+			</tr>
+		</table>
+		<p><strong>Notes</strong></p>
+		<P>
+			Command line arguments specifying library, cell, and view names are interpreted 
+			according to the Native name space. See <a href="../guide/namemap.html#9">Native 				Name Space</a> in the Name Mapping article of the Programmers Guide for 
+			details about the native namespace. <a name="note2"></a>
+		</P>
+		<h2>Handling Library Definitions File Errors</h2>
+		<p>If your library definitions file has errors, or any of the referenced libraries 
+			cannot be opened, either an error message is generated and translation halted 
+			or, if the library is not required to complete the translation, translation 
+			proceeds without an error or warning. For more information about this behavior, 
+			see the <a href="../guide/usinglibs.html#libDefErrors">Handling Errors in lib.defs 				Files</a> section in the Programmers Guide chapter <em>How Translators Use 
+				Libraries</em>.</p>
+		<h2>How the Translator Uses Namespaces</h2>
+		<p>A namespace is a set of rules that define the legal characters and determine how 
+			names are interpretted. This translator uses the oaNative namespace to 
+			interpret library, cell, and view names in the command line and for other names 
+			that refer to name-mapped OpenAccess objects, such as net and module names.</p>
+		<h2>Error and Warning Message Format</h2>
+		<p>Translators emit messages that report translation progress, report warnings 
+			about unusual data or conditions, or report problems with files or data that 
+			caused partial or complete translation failure. These messages are written to a 
+			log file so you can review translation status, identify error and warning 
+			conditions, and consider whether additional actions are needed.</p>
+		<p>OpenAccess translators use a standard message format to ensure comprehensive and 
+			consistent messaging. This message format consists of three elements, which 
+			are: message type keyword, message prefix, and message text.
+		</p>
+		<p>In addition to the three standard elements, messages can also include two 
+			optional elements. An optional filename/line number element is included, when 
+			available, to more precisely identify the source of a problem or condition 
+			within the source data file. A context string is another optional element that 
+			is included, when available, to identify the type of data object that caused 
+			the message to be emitted. The following example shows a typical error message 
+			that includes the optional filename and line number element.</p>
+		<pre>
+    ERROR: (OALEFDEF-50004): file.lef(123): A cell was not specified. Translation was terminated. 
+    You must specify a cell.
+</pre>
+		<p>One benefit of this message format is that it allows you to sort, filter, and 
+			examine only those types of messages that interest you. The keyword at the 
+			start of each message is either ERROR or WARNING and is always all uppercase. 
+			The message prefix identifies the translator family and the specific message 
+			source within the translator. The message prefix is a stable value that will 
+			not change between versions even when the message text gets updated. This makes 
+			it suitable for routine sorting and filtering.</p>
+		<p>If you seek assistance for resolving an issue related to a translator error or 
+			warning message, be sure to retain the message type keyword (ERROR or WARNING), 
+			and retain the message prefix to identify the translator family and the message 
+			source. Also make note of the filename/line number and context information if 
+			these are included in the message.</p>
+		<p>&nbsp;</p>
+		<p><a href="#pagetop">Return to top of page</a></p>
+		<div style="TEXT-ALIGN: center">
+			<img src="images/streamtransfooter.jpg"><br>
+		</div>
+		<br>
+		<p class="copyright"><a href="../base/titlecopy.html">Copyright © 2003-2010 Cadence Design Systems, Inc.</a><br>
+			All rights reserved.</p>
+	</body>
+</html>

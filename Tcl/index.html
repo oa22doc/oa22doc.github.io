@@ -1,0 +1,1096 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Tcl Bindings for the OpenAccess API</h1>
+<hr>
+
+<p>This document consists of five major sections:</p>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#tcloaapi">Understanding the Tcl OpenAccess API</a></li>
+<li><a href="#usingtclapi">Using the Tcl OpenAccess API</a></li>
+<li><a href="#programmingtclapi">Programming With the Tcl OpenAccess API</a></li>
+<li><a href="#limitations">Limitations</a></li>
+</ul>
+
+<a name="overview"></a>
+<h2>Overview</h2>
+<p>The OpenAccess API is a C++ API to an IC design database. Although the OpenAccess reference implementation is implemented in C++, you can access the reference implementation from Tcl. This document describes the OpenAccess API in Tcl. If you prefer to script part or all of your database application in Tcl, you can access and use the OpenAccess reference implementation through the Tcl OpenAccess API.
+</p>
+<p>The Tcl OpenAccess API resembles its C++ counterpart, but it is not identical. For example, some OpenAccess API C++ objects are not directly available in Tcl, such as the oaString class (Tcl provides built-in string support). More significantly, Tcl is a procedural language not an object-oriented language. Although Tcl calls to native OpenAccess functionality are designed to be as fast as possible, running Tcl is slower than running compiled C++ object code.</p>
+
+<p>Tcl is a straightforward programming language and well documented in numerous books and publications. The main focus of this document is the OpenAccess API in Tcl, but it also introduces a few fundamental Tcl language concepts and practices for those who are new to Tcl. </p>
+
+<p>The Tcl OpenAccess API is available in Tcl version 8.4.6. In order to use the Tcl OpenAccess API in Tcl, you must install Tcl 8.4.6 or later. You can obtain the most recent Tcl version from: </p>
+<p><a href="http://www.tcl.tk">http://www.tcl.tk</a></p>
+<p>You must set the <code>TCL_HOME</code> environment variable to the location of your Tcl installation. </p>
+<h4>Build Instructions </h4>
+<ul>
+  <li>The shared library for accessing the Tcl OpenAccess API is delivered as part of the OpenAccess installation. If you want to build the shared library instead of using the one provided, refer to the build instructions in <a href="../../relnotes/install.html">Installing OpenAccess</a>.</li>
+  <li>See <a href="build.html">Additional Tcl Build Instructions</a> for information about building Tcl on certain platforms.</li>
+</ul>
+
+<a name="tcloaapi"></a>
+<h2>Understanding the Tcl OpenAccess API</h2>
+<p>This section describes basic features of the Tcl OpenAccess API in comparison to the OpenAccess C++ API. This information is helpful to C++ programmers who want to use the OpenAccess Tcl API for specific Tcl scripting tasks.</p>
+<ul>
+<li><a href="#commandNames">Mapping Tcl Command Names to OpenAccess API Function Names</a></li>
+<li><a href="#funcparams">Mapping Tcl Command Arguments to OpenAccess C++ Types</a></li>
+<li><a href="#tcloutparams">Tcl Output Arguments</a></li>
+<li><a href="#overloadfuncs">Tcl Overloaded Commands</a></li>
+<li><a href="#oanames">OpenAccess Namespaces and Names</a></li>
+<li><a href="#constantsenums">Constants and Enumerations</a></li>
+<li><a href="#collections">Collections</a></li>
+<li><a href="#userunits">User Units</a></li>
+<li><a href="#pointsboxes">Points and Boxes</a></li>
+<li><a href="#commandhelp">Tcl OpenAccess Command Help</a></li>
+<li><a href="#tclerror">Tcl Error Handling</a></li>
+</ul>
+
+<h3><a name="commandNames">Mapping Tcl Command Names to OpenAccess API Function Names</a></h3>
+<p>All OpenAccess Tcl commands involve either using or returning an instance of an OpenAccess class. Tcl variables are used to hold either a reference or a pointer to an instance of an OpenAccess class. From the OpenAccess C+++ API perspective, this is either a class reference or pointer to a class. The Tcl variable can then be used to access the non-static member functions for this class or used as an argument when a reference or pointer to the class is required. When used to access a non-static member function of the class, it must be passed as the first argument of the Tcl command for the member function.</p>
+
+<p>All OpenAccess Tcl command names are defined in the Tcl namespace: oa. OpenAccess Tcl command names derive from their corresponding OpenAccess C++ class and member function names according to a set of rules. The rules for transforming non-static C++ function names to Tcl command names are different from those for transforming static C++ function names.</p>
+
+</p>
+
+<p>Tcl commands  bound to a non-static C++ member function of an OpenAccess  class</p>
+<ul>
+<li>Use  the same name as the member function.</li>
+<li>Use lowercase for the  first character of the member function name.</li>
+<li>Are called with the first argument being a Tcl variable referring to an instance of the class.</li>
+</ul>
+
+<p>Tcl commands  bound to a static C++ member function of an OpenAccess class</p>
+<ul>
+<li>Start with the full class name without the oa prefix.</li>
+<li>Are  suffixed with the name of the member function.</li>
+<li>Use uppercase for the first character of the member function name.</li>
+<li>Are called without using any Tcl variable referring to an instance of the class.</li>
+</ul>
+
+<p>Examples:</p>
+<table border="1" cellpadding="4">
+<tr>
+<th>Function Type</th>
+<th>OA Class Name</th>
+<th>Member Function Name</th>
+<th>Tcl Command</th>
+</tr>
+<tr>
+<td>Static</td>
+<td>oaDesign</td>
+<td>open()</td>
+<td>oa::DesignOpen</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>oaBlock</td>
+<td>create()
+<td>oa::BlockCreate
+</tr>
+<tr>
+<td>Non-Static
+<td>oaDesign
+<td>save()
+<td>oa::save
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>oaBlock
+<td>getDBUPerUU
+<td>oa::getDBUPerUU
+</tr>
+</table>
+
+<p>Example usage:</p>
+<pre>
+    set design [oa::DesignOpen libName cellName viewName w]
+    set block [oa::BlockCreate $design]
+    set dbu [oa:getDBUPerUU $block]
+    oa::save $design
+</pre>
+<p>See also the complete list of <a href="tclcommands.html">Tcl OpenAccess Commands</a>.</p>
+
+<a name="funcparams"></a>
+<h3> Mapping Tcl Command Arguments to OpenAccess C++ Types </h3>
+<p> Tcl has direct support for string, long, double and user defined values. Tcl command arguments map to OpenAccess C++ types according to the following table. </p>
+<h3><a name="_Ref49180130"> Tcl Argument Mapping</a></h3>
+<table border="1" cellpadding="1" cellspacing="1">
+  <tr>
+    <td width="194" valign="top"><p><strong>Open Access C++ Type </strong></p></td>
+    <td width="305" valign="top"><p><strong>Tcl Argument Type </strong></p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaChar </p></td>
+    <td width="305" valign="top"><p> string </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaByte </p></td>
+    <td width="305" valign="top"><p> int </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaInt2 </p></td>
+    <td width="305" valign="top"><p> int </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaInt4 </p></td>
+    <td width="305" valign="top"><p> int </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaInt8 </p></td>
+    <td width="305" valign="top"><p> long long </p></td>
+  </tr>
+  
+  <tr>
+    <td width="194" valign="top"><p> oaUInt2 </p></td>
+    <td width="305" valign="top"><p> int </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaUInt4 </p></td>
+    <td width="305" valign="top"><p> int </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaUInt8 </p></td>
+    <td width="305" valign="top"><p> long long </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaFloat </p></td>
+    <td width="305" valign="top"><p> double </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaDouble </p></td>
+    <td width="305" valign="top"><p> double </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaBoolean </p></td>
+    <td width="305" valign="top"><p> string <strong>true </strong>or <strong>false</strong> (case insensitive), <strong>1</strong> or <strong>0</strong></p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> enum </p></td>
+    <td width="305" valign="top"><p> string enum representation </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaObject </p></td>
+    <td width="305" valign="top"><p> user defined type </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaString </p></td>
+    <td width="305" valign="top"><p> Tcl string </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaBox </p></td>
+    <td width="305" valign="top"><p> {{left bottom} {right top}} </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaComplex </p></td>
+    <td width="305" valign="top"><p> {real imaginary} </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaComplexArray </p></td>
+    <td width="305" valign="top"><p> {{r0 i0} {r1 i1} &hellip;} </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaHashTable </p></td>
+    <td width="305" valign="top"><p> Excluded </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaPoint </p></td>
+    <td width="305" valign="top"><p> {x y} </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaPointArray </p></td>
+    <td width="305" valign="top"><p> {{x0 y0} {x1 y1} &hellip;} </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaScalarName </p></td>
+    <td width="305" valign="top"><p> user defined type </p></td>
+  </tr>
+  <tr>
+    <td width="194" valign="top"><p> oaTransform </p></td>
+    <td width="305" valign="top"><p> user defined type </p></td>
+  </tr>
+</table>
+<p><strong> Notes</strong></p>
+<ul>
+  <li>All C++ objects are represented by a C++ user defined type, unless stated otherwise. If this user defined type holds the null pointer, the string representation is the empty string, or Tcl <code>&quot;&quot;</code>. To provide a null pointer as a parameter value, the empty string, the string <em>null</em>, or the string <em>NULL</em> can be used.</li>
+<li>Tcl arguments corresponding to the OpenAccess C++ types oaByte, oaInt2, oaUInt2, and oaFloat are checked for being out of range prior to conversion to their internal type. An exception is thrown if the argument is out of range.</li>
+  <li>Class objects returned from C++ functions, or passed to output parameters, are passed to Tcl using the actual object type not a base type of the function signature. For example, if a C++ function returns an oaRect object as an oaShape, the equivalent Tcl command returns an object that has access to the full oaRect functionality not just the oaShape functions. Therefore, all Tcl commands for functions of a base class can be used on objects of a derived class. For example, the Tcl command <em>oa::getLayerNum</em> originating from oaShape can be called on a Tcl object that represents an oaRect object.</li>
+</ul>
+
+<a name="tcloutparams"></a>
+<h3> Tcl Output Arguments </h3>
+<p> A number of parameters of the OpenAccess C++ API are output arguments in Tcl. Some examples of OpenAccess C++ APIs are: </p>
+<pre>
+    void oaDesign::getLibName(oaScalarName &amp;name)
+    void oaPathSeg::getPoints(const oaPoint &amp;beginPoint,
+                              const oaPoint &amp;endPoint)
+
+</pre>
+<p>For member functions with <em>void</em> return values that have a <em>single</em> output parameter, the output parameter is converted to a Tcl return value. These functions may have additional input parameters. An example is:</p>
+<pre>
+    set libName [oa::getLibName $design]
+    
+</pre>
+
+<p>Commands with output arguments that do not satisfy these limitations are mapped directly. In other words, the arguments passed into the Tcl command are directly modified by the OpenAccess C++ implementation. These variables must first be initialized and be of the correct type. In the next example, $beginPt and $endPt are assigned by reference by oa::getPoints. Note that $beginPt and $endPt are  first initialized to be oaPoint type variables.</p>
+<pre>
+    set beginPt [oa::point [list 0 0]]
+    set endPt [oa::point [list 0 0]]
+    oa::getPoints $pathSeg $beginPt $endPt
+
+</pre>
+
+<a name="overloadfuncs"></a>
+<h3>Tcl Overloaded Commands </h3>
+<p>As a consequence of the conventions for OpenAccess function names as described earlier, many of the OpenAccess C++ functions appear to be overloaded in Tcl. Because the Tcl interpreter does not handle command overloading, the resolution is handled by the Tcl binding.</p>
+
+<p>The choice of the command based on the first arguments for mapped C++ member functions is the most common situation. The appropriate binding is first selected based on the class that this first argument represents, taking class derivation into account. For example, the Tcl function getBBox for an oaRect object selects the C++ getBBox member function of the oaFig class. Subsequently, the appropriate member function is selected if multiple functions by the same name, but with different argument types, exist for that class.</p>
+
+<a name="oanames"></a>
+<h3>OpenAccess Namespaces and Names</h3>
+<p> OpenAccess names are represented by strings and an OpenAccess namespace that defines the rules for the interpretation of the string. OpenAccess namespaces are objects and are different from Tcl or C++ namespaces. The OpenAccess namespaces can be created with the following Tcl commands: </p>
+<pre>oa::NativeNS </pre>
+<pre>oa::CdbaNS </pre>
+<pre>oa::LefNS </pre>
+<pre>oa::SpefNS </pre>
+<pre>oa::SpfNS </pre>
+<pre>oa::UnixNS </pre>
+<pre>oa::VerilogNS </pre>
+<pre>oa::VhdlNS </pre>
+<pre>oa::WinNS </pre>
+
+<p> The namespace can be used for creating names. For example, </p>
+
+<pre>set uns [oa::UnixNS] </pre>
+<pre>set bc [oa::ScalarName $uns BigChip] </pre>
+<pre>oa::get $bc [oa::WinNS] </pre>
+<p>The last command returns the string %Big%Chip, which is how the scalar name <em>BigChip</em> is represented in the Windows namespace. OpenAccess names can be handled automatically in Tcl. Names are represented in Tcl by the string that is obtained within the global namespace. It can be set globally with the following Tcl commands: </p>
+
+<pre>oa::pushNameSpace namespace </pre>
+<pre>oa::popNameSpace </pre>
+<pre>oa::getNameSpace </pre>
+
+<p>The native namespace is set as the global namespace on startup.</p>
+<p>The global namespace is also used for the construction of command arguments. Arguments that are scalar names can be specified with simple strings, which are converted to scalar names using the global namespace. Therefore, you can create a library with </p>
+
+<pre>oa::LibCreate myLib myLib </pre>
+<p>instead of:</p>
+<pre>oa::LibCreate [oa::ScalarName [oa::NativeNS] myLib] myLib </pre>
+
+<a name="constantsenums"></a>
+<h3>Constants and Enumerations</h3>
+<p> Several command arguments take enumerated values. </p>
+<p>For example, the <code>oa::ViewTypeGet</code> command takes an <code>oaReservedViewType</code> argument:</p>
+<pre>% oa::help ReservedViewType </pre>
+<pre>ReservedViewType </pre>
+<pre>   valueIn </pre>
+<pre>==&gt; oaReservedViewType </pre>
+<pre>ReservedViewType </pre>
+<pre>   name oaString </pre>
+<pre>==&gt; oaReservedViewType </pre>
+
+<p> Enumerated values and constants are Tcl variables in the oa namespace that start with “oac”. You can query all variables in Tcl with:  </p>
+<pre>% info vars oa::oacMask* </pre>
+<pre>oa::oacMaskLayout </pre>
+<p>You can use this variable directly. </p>
+<pre>% set oa::oacMaskLayout<br><br>0<br><br>%oa::ViewTypeGet [oa::ReservedViewType $oa::oacMaskLayout] </pre>
+<pre>oa:0x029A0092 </pre>
+<p> Alternatively, for enumerated values, you can use its string representation. The latter can be found with the getName function:</p>
+<pre>% oa::getName [oa::ReservedViewType $oa::oacMaskLayout] </pre>
+<pre>maskLayout </pre>
+<p> The command to obtain the reserved view type can simply be:</p>
+<pre>% oa::ViewTypeGet maskLayout </pre>
+<pre>oa:0x029A0092 </pre>
+
+<a name="collections"></a>
+<h3>Collections </h3>
+<p>A number of OpenAccess member functions return collection classes. These return values are represented by user-defined objects in Tcl just like regular objects.  The collection can be traversed directly using the Tcl <code>while</code> command: </p>
+
+<pre>set design [oa::DesignOpen $lib $cell $view r] 
+set top [oa::getTopBlock $design]
+set shapes [oa::getShapes $top] 
+while {[set shape [oa::getNext $shapes]] != ""} {
+    set box [oa::getBBox $shape]
+    puts "The bounding box is: $box"
+}
+
+set terms [oa::getTerms $top $oa::oacTermIterSingleBit]<BR>while {[set term [oa::getNext $terms]] != ""} {<BR>&nbsp;&nbsp;&nbsp; set termName [oa::getName $term [oa::NativeNS]]<BR>&nbsp;&nbsp;&nbsp; puts "Term: $termName"<BR>}
+
+</pre>
+
+<p> Note that the box and shape variables are unbound at the end of each iteration, and this code is therefore memory efficient. </p>
+
+<a name="userunits"></a>
+<h3>User Units </h3>
+<p> In Tcl, coordinates, offsets, and distances are floating-point numbers specified in user units. For Tcl commands, these user units are converted to database units by the Tcl bindings. Any distance or coordinate results returned by Tcl commands are automatically converted from database units back to user units. </p>
+<p> This affects the following C++ types directly: </p>
+<ul>
+  <li> oaCoord </li>
+  <li> oaDist </li>
+  <li> oaOffset </li>
+</ul>
+<p>Database units are converted to user units directly by the Tcl binding whenever possible. For example, when you call the <em>getWidth</em> command on a path object, the width return value is converted from database units to user units. This conversion is accomplished with oaTech conversion functions, as follows. </p>
+<table border="1" cellpadding="1" cellspacing="1">
+  <tr>
+    <td width="197" valign="top"><p><strong> Type</strong></p></td>
+    <td width="197" valign="top"><p><strong> Database to user</strong></p></td>
+    <td width="197" valign="top"><p><strong> User to database</strong></p></td>
+  </tr>
+  <tr>
+    <td width="197" valign="top"><p> oaCoord </p></td>
+    <td width="197" valign="top"><p> dbuToUU </p></td>
+    <td width="197" valign="top"><p> uuToDBU </p></td>
+  </tr>
+  <tr>
+    <td width="197" valign="top"><p> oaDist </p></td>
+    <td width="197" valign="top"><p> dbuToUUDistance </p></td>
+    <td width="197" valign="top"><p> uuToDBUDistance </p></td>
+  </tr>
+  <tr>
+    <td width="197" valign="top"><p> oaOffset </p></td>
+    <td width="197" valign="top"><p> dbuToUU </p></td>
+    <td width="197" valign="top"><p> uuToDBU </p></td>
+  </tr>
+</table>
+<p> These functions require the technology database and the view type. Tcl commands for C++ member functions that are derived from the oaDesignObject class obtain the technology database and the view type from their design. Because of this automatic conversion, a technology database must be available on the design before functions involving this conversion can be called. If a technology database is not available, a Tcl error results. </p>
+<p> The procedure for converting command arguments from user units to database units is similar to that of converting return values from database units to user units. </p>
+
+<a name="pointsboxes"></a>
+<h3>Points and Boxes </h3>
+<p>In Tcl, a point is represented by a Tcl list of a double x value and a double y value. The values are in user units. Round-off precision must be taken into account by a script when the values of two points are compared. </p>
+
+<p>A box object is represented in Tcl by a Tcl list of the lower left and the upper right points of the box. For example, the following command creates a rectangle with the lower left corner at (0,0) and the upper right at (100,400).
+<pre>
+    oa::RectCreate $block $layer $purpose [list [list 0 0] [list 100 400]]]
+</pre>
+
+<p>Similarly, functions that return boxes return a TCL list of two points. As a result, the following commands can be used to obtain the lower left corner of the bounding box of a shape.</p>
+<pre>
+    set bbox [oa::getBBox $shape]
+    set lowerLeft [lindex $bbox 0]
+</pre>
+
+<p>Important exceptions to this rule are the member functions of oaBox. The following example computes the center of the bounding box of a shape. The code illustrates how a bounding box obtained from an OA command can be used with an oaBox member function (oaBox::getCenter in this case).
+<pre> 
+    set box [join [oa::getBBox $shape]]
+    set boxObj [oa::Box [lindex $box 0] [lindex $box 1] [lindex $box 2] [lindex $box 3]]
+    set center [oa::getCenter $boxObj]
+</pre>
+
+<a name="commandhelp"></a>
+<h3>Tcl OpenAccess Command Help </h3>
+<p>The OpenAccess API in Tcl provides many commands. The <code>info</code> command provides a means to simply list the OpenAccess commands. However, the command <code>oa::help</code> provides additional, basic information on how to use an OpenAccess command. To create a library, you can use the <code>LibOpen</code> command returned by the info query in the previous section. To obtain additional information on this command, use the <code>help</code> command as follows: </p>
+<pre>% oa::help LibCreate</pre>
+<pre> LibCreate 
+   name        oaScalarName 
+   libPath     oaString 
+   mode        oaLibMode 
+   dmSystem    oaString 
+   dmAttrList  oaDMAttrArray 
+ ==&gt; oaLib </pre>
+<p>For example, create a library as follows: </p>
+<pre>% oa::LibCreate myLib myLib</pre>
+<p>This returns an address such as: </p>
+<pre>oa:0x80013 </pre>
+
+
+<a name="tclerror"></a>
+<h3>Tcl Error Handling </h3>
+<p>When errors occur in the OpenAccess API, a Tcl error is thrown. These errors can be the result of an exception that is thrown by the C++ implementation. Errors also can be the result of the C++ Tcl binding code. The Tcl error can be caught in Tcl. For example, a second call to create a library results in a Tcl error. The following code shows how this type of error can be caught:</p>
+<pre>oa::LibCreate myLib myLib
+if [catch {oa::LibCreate myLib myLib} err] {
+    puts "Error: $err"
+} 
+puts “Successfully continued the script”
+</pre>
+<p>If the Tcl error is not caught as in the above example, Tcl aborts the execution of the script. In the example code, the error is caught and script execution continues. </p>
+
+
+<a name="usingtclapi"></a>
+<h2>Using the Tcl OpenAccess API</h2>
+<p>This section provides information on using OpenAccess Tcl.</p>
+<ul>
+<li><a href="#tclbindings">Using the Tcl Bindings</a></li>
+<li><a href="#starttcl">Starting Tcl and Loading the Tcl OpenAccess Shared Library</a></li>
+<li><a href="#libdeffiles">Opening Library Definition Files in Tcl</a></li>
+<li><a href="#tclns">Tcl Namespaces</a></li>
+<li><a href="#memmanage">Memory Management</a></li>
+<li><a href="#ea25a8">Tcl Examples</a></li>
+</ul>
+<a name="tclbindings"></a>
+<h3>Using the Tcl Bindings</h3>
+<p> The Tcl bindings are packaged in a shared library that can be loaded by a standard Tcl shell, version 8.4.6 or later. This shared library path is shown in the table below and depends on the OpenAccess shared libraries that contain the reference implementation. To successfully load the Tcl library, you must set the library path environment variable to include the path to the directory of OpenAccess shared libraries. The following table provides sample commands to accomplish this. </p>
+<table border="1" cellpadding="1" cellspacing="1">
+  <tr>
+    <td width="128" valign="top"><p> Solaris </p></td>
+    <td width="634" valign="top"><pre> setenv LD_LIBRARY_PATH /opt/oa2.2/lib/sunos_58_32/opt:/usr/lib </pre></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p> HP </p></td>
+    <td width="634" valign="top"><pre> setenv SHLIB_PATH /opt/oa2.2/lib/hpux_11_32/opt:/usr/lib </pre></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p> Linux </p></td>
+    <td width="634" valign="top"><pre> setenv LD_LIBRARY_PATH /opt/oa2.2/lib/linux_rhel21_32/opt:&lt;gcc3.2.3_compliant_installDir&gt;/lib </pre></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p> AIX </p></td>
+    <td width="634" valign="top"><pre> setenv LIBPATH /opt/oa2.2/lib/aix_51_32/opt:/usr/lib </pre></td>
+  </tr>
+  <tr>
+    <td width="128" valign="top"><p> Windows XP </p></td>
+    <td width="634" valign="top"><pre> set PATH = c:\oa2.2\bin\win32\opt;c:\window\system32 </pre></td>
+  </tr>
+</table>
+<p> Note that the path on Windows should be modified through the Windows GUI.</p>
+<h5>Linux </h5>
+<p>If you want to run the Tcl bindings on a Linux platform, you must have a compliant version of the gcc runtime shared libraries in your LD_LIBRARY_PATH. 
+In most cases on Linux, these are <em>not</em> the standard C++ runtime libraries supplied with the operating system. </p>
+<pre>setenv LD_LIBRARY_PATH /opt/oa2.2/lib/linux_rhel21_32/opt:&lt;gcc3.2.3_compliant_installDir>/lib</pre>
+<p>If you do not have access to the libraries, for example, from your EDA vendor, you can build them. Refer to <a href="../../relnotes/install.html#linux_prereq">Notes on Compiling on Linux Platforms Without gcc 3.2.3</a> for build instructions.</p>
+
+<p><a name="starttcl"></a></p>
+<h3>Starting Tcl and Loading the Tcl OpenAccess Shared Library</h3>
+<p> You can start Tcl from the command line. For example, on UNIX platforms, enter:</p>
+<pre>&gt; tclsh8.4 </pre>
+
+<p>On Windows , enter: </p>
+<pre>&gt; tclsh84.exe </pre>
+
+<p>Alternatively, you can launch the Tcl shell on Windows by double-clicking the Tcl shortcut. </p>
+
+<p>This starts the Tcl shell from the Tcl distribution installed on your system. You can now enter Tcl commands. To see all available commands in the global Tcl namespace, use the info command: </p>
+
+<pre>% info commands * </pre>
+<p> This returns: </p>
+
+<pre>tell socket subst open eof pwd glob list exec pid auto_load_index time unknown eval 
+lrange fblocked lsearch auto_import gets case lappend proc break variable llength 
+auto_execok return linsert error catch clock info split array if fconfigure concat 
+join lreplace source fcopy global switch auto_qualify update close cd for auto_load 
+file append format read package set binary namespace scan trace seek while flush 
+after vwait uplevel continue foreach lset rename fileevent regexp upvar unset 
+encoding expr load regsub history interp exit puts incr lindex lsort tclLog string </pre>
+
+<p> All OpenAccess commands are provided in the Tcl namespace <em>oa</em>. To view commands in the oa namespace, enter: </p>
+
+<pre>% info commands oa::* </pre>
+<p>At this point, nothing is returned since there are no available OpenAccess commands because the oaTcl shared library is not loaded. The Tcl binding of OpenAccess supports the Tcl package command, which is preferred over the Tcl load command. The name of the OpenAccess package is “oa” and the version is 2.2. See the Tcl documentation for details on the package command. To use this Tcl command, the auto_path variable must include the directory of the oaTcl shared library. You can inspect the value of this variable with the Tcl command:</p>
+<pre>
+    set auto_path
+</pre>
+<p>To add the directory that contains the oaTcl shared library, use a statement such as:</p>
+<pre>
+    lappend auto_path /opt/oa2.2/lib/linux_rhel21_32/opt
+</pre>
+<p>The OpenAccess binding can be loaded with the package command as follows:</p>
+<pre>
+    package require oa
+</pre>
+<p>This command should return the value "2.2".</p>
+
+<p>The command <code>info oa::*</code> now returns a long list of functions. To see just the commands for opening libraries, use:</p>
+
+<pre>% info commands oa::Lib* </pre>
+
+<p> This returns: </p>
+<pre>::oa::LibDefListGetDefaultPath ::oa::LibDefListOpenLibs ::oa::LibDefCreate <br>::oa::LibGetOpenLibs ::oa::LibDefListFind ::oa::LibDMDataDestroy::oa::LibMode <br>::oa::LibDefListGetLibDefLists ::oa::LibCreate ::oa::LibExists <br>::oa::LibDefListRefFind ::oa::LibDMDataOpen ::oa::LibDMDataFind<br>::oa::LibDefListRefCreate ::oa::LibAccess ::oa::LibAccessLevel <br>::oa::LibOpen ::oa::LibDefFind ::oa::LibFind ::oa::LibDefListGetTopList <br>::oa::LibDMDataExists ::oa::LibDataType ::oa::LibDefListGet</pre>
+
+<p>All Tcl OpenAccess commands can be used after the oaTcl shared library is loaded. The OpenAccess database is automatically initialized when the OpenAccess Tcl shared library is loaded into Tcl.</p>
+
+<h2><a name="libdeffiles">Opening Library Definition Files in Tcl</a></h2>
+<p>While OpenAccess Tcl does not support oaObserver notifications in general, however it does supply one internal observer for handling of the messages generated during loading of the library defintion files. This internal observer for oaLibDefListObserver::onLoad call backs will accumulate the warning messages that occur during loading of library definition files initiated by the Tcl call to oa::LibDefListOpenLibs. If warning messages occur oa::LibDefListOpenLibs will throw an exception with those warning messages. Users are expected to enclose any call to oa::LibDefListOpenLibs in a catch block to detect this error condition.</p>
+ 
+<p>This behavior can be modifed via the oa::setLibDefListErrorLogging command. If oa::setLibDefListErrorLogging has not been called or has been called with the value <strong>true</strong> then the call back is enabled and the behavior of oa::LibDefListOpenLibs is as described above. If oa::setLibDefListErrorLogging has been called with the argument <strong>false</strong> then the observer will be disabled. oa::LibDefListOpenLibs will not print any warning messages and will return an ok status.</p>
+
+<a name="tclns"></a>
+<h3>Tcl Namespaces</h3>
+<p> All commands defined in the <code>oa </code>namespace are exported upon initialization of the OpenAccess Tcl API after all commands have been defined. OpenAccess commands can be imported to the global namespace with the common Tcl command <em>namespace import</em>. For example </p>
+<pre>namespace import oa::DesignOpen </pre>
+<p> Note that there are functions in the oa namespace that conflict with common Tcl functions, so you should not import all functions in the oa namespace to the global namespace. </p>
+
+<a name="memmanage"></a>
+<h3>Memory Management </h3>
+<p>There are two types of objects involved in the OpenAccess API: utility and managed. The utility type of  objects have constructor commands. These commands are the name of the object type itself. For example, oa::Transform creates a transform object of the type Transform. These objects are created and, if assigned to a Tcl variable, remain in memory until no variables reference the object. When the reference count of the object becomes zero, the object is removed and the implemented C++ destructor for the object is called.</p>
+<p>The managed type of objects do not have constructor commands, but instead have create commands. In Tcl, such commands are named according to the type of the object created, with &ldquo;Create&rdquo; appended to the command name. For example, the Tcl command <em>oa::RectCreate</em> is the name of the OpenAccess command to create a rectangle object. The lifetime of managed objects does not depend on Tcl variable references, but instead depends on the database the objects reside in. These objects remain valid as long as that database is opened. They become invalid as soon as the database is closed. For example, created rectangle objects are valid for as long as the design is open in which they reside. The validity of these objects is the responsibility of the Tcl programmer.</p>
+
+<h2><a name="ea25a8"></a><a name="ea25a9"></a>Tcl Examples</h2>
+<p>The following listing is a simple Tcl script that creates a net and adds two rectangles to it. The second half of this example outputs the bounding boxes of the two rectangles. The script assumes you have set the appropriate shared library path variable as explained previously.</p>
+
+
+<table width="700" border="0" cellspacing="2" cellpadding="2">
+  <tr>
+    <td bgcolor="#FFFFDD">
+	<pre>
+# &lt;---- Example Tcl Script: myExample.tcl ----&gt; 
+# A simple script to create a net and add two rectangles.
+
+proc openLib {name path} {
+    set lib [oa::LibFind $name]
+	
+    if {$lib != ""} {
+            return $lib
+    }
+
+    if {$lib != ""} {
+            return $lib
+    }
+    
+    if {[oa::LibExists $path]} {
+            set lib [oa::LibOpen $name $path]
+            return $lib
+    }
+ 
+    return [oa::LibCreate $name $path]
+}
+ 
+proc openTech {lib} {
+    set tech [oa::TechFind $lib]
+	
+    if {$tech != ""} {
+        return $tech
+    }
+ 
+    if {[oa::TechExists $lib]} {
+        return [oa::TechOpen $lib]
+    }
+ 
+    return [oa::TechCreate $lib]
+}
+ 
+    
+
+proc openLayer {{tech} {layerName} {layerNumber}} {
+    set layer [oa::PhysicalLayerFind $tech $layerName]
+	
+    if {$layer != ""} {
+        return $layer
+    }
+	
+    return [oa::PhysicalLayerCreate $tech $layerName $layerNumber]
+}
+
+
+proc sample {} { 
+    # Load OA shared libraries
+    set numBits [expr $::tcl_platform(wordSize) * 8]
+    lappend auto_path [exec oaGetLibPath -numBits $numBits]
+    
+    package require oa 2.2
+
+    
+    # Set the name space to oa::NativeNS
+    oa::pushNameSpace [oa::NativeNS] 
+    # Create the lib if it does not already exist
+    set lib [openLib "lib" "lib"]
+         
+    # Create a tech database if one does not already exists
+    set tech [openTech $lib]
+    
+    # Create a new design in the library
+    set master [oa::DesignOpen "lib" "cell" "view" [oa::ViewTypeGet maskLayout] w]
+    set top [oa::BlockCreate $master]
+    
+    # Create the net "net1" in the design
+    set net1 [oa::ScalarNetCreate $top "net1"]
+
+    # Create the layer "Metal1" if it does not exist
+    set layer [openLayer $tech "Metal1" 10]
+    set metal1 [oa::getNumber $layer]
+
+    # Get the "drawing" purpose from the tech database
+    set purpose [oa::PurposeGet $tech [oa::PurposeType $oa::oacDrawingPurposeType]]
+    set drawing [oa::getNumber $purpose]
+
+    # Create 2 shapes on "net1"
+    set rect1 [oa::RectCreate $top $metal1 $drawing [list [list 0 0] [list 100 400]]]
+    set rect2 [oa::RectCreate $top $metal1 $drawing [list [list 0 0] [list 400 100]]]
+    oa::addToNet $rect1 $net1
+    oa::addToNet $rect2 $net1
+
+    oa::save $master
+    oa::close $master
+
+    # Re-open the design and report the bounding boxes of the shapes on "net1"
+    set master [oa::DesignOpen "lib" "cell" "view" r]
+    set top [oa::getTopBlock $master]
+    
+    set net1 [oa::ScalarNetFind $top "net1"]
+    set shapes [oa::getShapes $net1]
+
+    while {[set shape [oa::getNext $shapes]] != ""} {
+        set box [join [oa::getBBox $shape]]
+        puts "The bounding box is: $box"
+
+        set box [oa::Box [lindex $box 0] [lindex $box 1] [lindex $box 2] [lindex $box 3]]
+        puts "The center is [oa::getCenter $box]\n"
+    }
+}
+</pre>
+</td>
+</tr>
+<tr>
+<td>To load and run the script in the Tcl shell, enter:
+<pre>
+    >tclsh
+    %source myExample.tcl
+    %sample
+</pre>
+</td>
+  </tr>
+</table>
+
+<h3>Sample .tclshrc File</h3>
+<p>This sample .tclshrc file provides two procedures for initializing your Tcl environment. The procedure <code>initoa</code> loads the oaTcl shared library and initializes the Tcl OpenAccess command interface. The <code>setup</code> procedure calls the LibDefListOpenLibs command to open all your libraries defined by your lib.defs file. It uses the environment variables OA_HOME for your installation directory and OA_MODE for debuggable or optimized mode selection.</p>
+
+<table width="700" border="0" cellspacing="2" cellpadding="2">
+  <tr>
+    <td bgcolor="#FFFFDD">
+<pre>
+################################################################################
+# oaInit.tcl#
+# This file is a Tcl package and is not intended to be executed as a standalone
+# script. This file provides Tcl functions to initialize the OpenAccess Tcl
+# binding and to perform some common setup tasks. This file also contains some
+# constants commonly used by OA Tcl scripts.
+################################################################################
+################################################################################
+package require Tcl 8.4.6
+################################################################################
+# getOAInstDir
+#
+# This function returns the OpenAccess installation directory.
+################################################################################
+proc getOAInstDir {} {
+    # Check first to see if it has been locally overridden
+    if {[info exists ::OA_HOME] && [file exists $::OA_HOME]} {
+        return $::OA_HOME
+    } elseif {[info exists ::env(OA_HOME)]} {
+        return $::env(OA_HOME)
+    }
+    
+    set file    [file join data plugins]
+    set cwd [file split [pwd]]
+
+    for {set i [llength $cwd]} {$i >= 0} {incr i -1} {
+        set dir     [eval file join [lrange $cwd 0 $i]]
+
+        if [file exists [file join $dir $file]] {
+            return $dir
+        }
+    }
+    return ""
+}
+
+################################################################################
+# getSharedLibPath
+#
+# This function returns the path to the shared library directory of OpenAccess.
+################################################################################
+proc getSharedLibPath {{mode ""}} {
+    set dir [getOAInstDir]
+
+    if {$dir == ""} {
+        return ""
+    }
+
+
+    set lib lib
+    if {$::tcl_platform(platform) == "windows"} {
+        set lib bin
+    }
+
+    return [file join $dir $lib [getSysName $dir] [getOAMode $mode]]
+}
+
+################################################################################
+# getSysName
+#
+# This function returns the OpenAccess system name, including the width which is
+# based on the tcl executable.
+################################################################################
+proc getSysName {dir} {
+    if {$::tcl_platform(platform) == "windows"} {
+        return win32
+    }
+
+    set plaf [exec [file join $dir bin sysname]]
+    set bits [expr $::tcl_platform(wordSize) * 8]
+
+    return ${plaf}_${bits}
+}
+
+################################################################################
+# getOAMode
+#
+# This function returns the mode. The default is dbg on UNIX and dbgStatic on
+# Windows.
+################################################################################
+proc getOAMode {{mode ""}} {
+    if {$mode != ""} {
+        return $mode
+    }
+
+    if {[info exists ::env(OA_MODE)]} {
+        return ${::env(OA_MODE)}
+    }
+
+    if {$::tcl_platform(platform) == "windows"} {
+        return dbgStatic
+    }
+
+    return dbg
+}
+
+################################################################################
+# initoa
+#
+# This function initializes the Tcl OpenAccess binding. Call this function
+# with the mode argument.
+################################################################################
+proc initoa {{mode ""}} {
+    global auto_path
+
+    set mode    [getOAMode $mode]
+    set dir     [getSharedLibPath $mode]
+
+    if {$dir == ""} {
+        puts "Cannot determine the OpenAccess installation directory. In order to
+        initialize OpenAccess run the Tcl shell from a directory inside the
+        installation hierarchy, or set the OA_HOME environment variable."
+        return
+    }
+
+    lappend auto_path $dir
+
+    
+    if {[catch {set val [package require oa]}]} {
+        puts "\nERROR: Cannot load the OA TCL shared libraries from $dir. 
+        Verify that the OA TCL shared libraries exist at that location. 
+        On Unix the global environment variable \$LD_LIBRARY_PATH must 
+        include $dir. Set its value using 'setenv' and rerun this program, 
+        since a TCL script cannot modify its own global environment variables.\n"    
+        return    
+    }     
+
+    puts "OpenAccess is loaded from $dir"
+    return val
+}
+
+################################################################################
+# setup
+#
+# This function performs some setup tasks that are common to most OA Tcl
+# scripts. This function loads the default lib.defs file, and sets the global 
+# OA namespace variable (ns) to oaNativeNS.
+################################################################################
+proc setup {{libDefs lib.defs}} {
+    set retval [initoa]
+    if {$retval != ""} {
+        if [file exists $libDefs] {
+            if {[catch {oa::LibDefListOpenLibs $libDefs} msg]} {
+                puts "Problem loading lib.defs: $msg"
+            }
+        }
+    }
+
+    return $retval
+}
+</pre>
+</td>
+</tr>
+</table>
+
+<p>The examples/oa/TCL directory in your OpenAccess installation hierarchy contains a number of example Tcl files, which are described in the following table.</p>
+
+<table border="1" cellpadding="4">
+<tr>
+<th colspan="2">Example Tcl Files Included With Your OpenAccess Installation</th>
+</tr> 
+<tr>
+<td width="100">
+<strong>sample.tcl</strong></td>
+<td>Excercises the findInst command implemented in C++ in findInst.cpp. Use "make" to compile the C++ code into "libfindInst.so". From the Tcl shell, enter:<br>
+<code>% oa::examples::demoSample</code>
+</td>
+</tr>
+<tr>
+<td width="100">
+<strong>route.tcl</strong></td>
+<td>Tcl routines for creating and printing information on OpenAccess routes. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoRoute</code>
+</td>
+</tr>
+<tr>
+<td width="100">
+<strong>pcell.tcl</strong></td>
+<td>Demonstrates the Tcl PCell interface. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoPcell</code>
+</td>
+</tr>
+<tr>
+<td width="100">
+<strong>oa.tcl</strong></td>
+<td>Tcl routines for creating and printing information on shapes. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoOa</code>
+</td>
+</tr>
+<tr>
+<td width="100">
+<strong>ns.tcl</strong></td>
+<td>Demonstrates OA Namespaces in Tcl. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoNS</code>
+</td>
+</tr>
+<tr>
+<td width="150">
+<strong>libStructure.tcl</strong></td>
+<td>Prints the cells, views and DMFiles in an OA library. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoInst</code>
+</td>
+</tr>
+<tr>
+<td width="100">
+<strong>inst.tcl</strong></td>
+<td>Traverses an OA design and prints information about the instances it contains. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoInst</code>
+</td>
+</tr>
+<tr>
+<td width="100">
+<strong>hello.tcl</strong></td>
+<td>The Tcl implementation of the C++ HelloWorld example. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoHello</code>
+</td>
+</tr>
+<tr>
+<td width="100">
+<strong>contents.tcl</strong></td>
+<td>Prints statistical information about the contents of an OA design. From the Tcl shell, enter:<br>
+<code>% oa::examples::demoContents</code>
+</td>
+</tr>
+</table>
+
+
+<a name="programmingtclapi"></a>
+<h2>Programming With the Tcl OpenAccess API</h2>
+<ul>
+<li><a href="#cppaccess">C++ Access</a></li>
+<li><a href="#linksharedlibs">Linking Shared Libraries</a></li>
+<li><a href="#tclinterpreter">Using a Specific Tcl Interpreter</a></li>
+</ul>
+
+<a name="cppaccess"></a>
+<h3>C++ Access</h3>
+<p> This section addresses:</p>
+<ul>
+  <li>Accessing OpenAccess objects from user-defined Tcl objects that are returned from the C++ binding functions.</li>
+  <li>Creating Tcl wrapper objects from OpenAccess objects that are passed into the wrapper functions. This is important to the binding of C++ application code that uses OpenAccess.</li>
+</ul>
+
+<p>As an example, consider a C++ application function to get all instances in a design that match a given name pattern. The programmer wants to bind this function in Tcl so that it can be used in Tcl as in the following example:</p>
+
+<pre>
+    set design [oa::DesignOpen lib cell view r]
+    set instances [findInstance $design "I3.*" [oa::NativeNS]]
+</pre>
+
+<p>The Tcl command findInstance is bound to the implementation with the wrapper function:</p>
+
+<pre>
+    extern "C" int
+    wrap_findInstance (ClientData  clientData,
+                       Tcl_Interp  *interp,
+                       int         objc,
+                       Tcl_Obj     *const objv[]);
+</pre>
+
+<p>This function is usually registered by the Tcl initialization procedure of the shared library, as explained in the Tcl documentation of the load command. This is achieved with a call similar to:</p>
+
+<pre>
+    Tcl_CreateObjCommand(interp, "findNearestRoute", wrap_findNearestRoute, NULL, NULL);
+</pre>
+
+<p>The second element of the objv argument refers to an OpenAccess object, in this case a design. The body of the binding function obtains the C++ OpenAccess object from the objv as explained below. The binding function also needs a way to create Tcl objects that are returned from the application wrapper, which in this example are objects that are stored in a Tcl list. These Tcl objects are used in a Tcl script and can be passed to an OpenAccess Tcl command. The TclCnv template class converts Tcl objects to OpenAccess C++ objects and converts OpenAccess C++ objects to Tcl objects. The oaTclArgException class is used to throw exceptions due to conversion errors. The TclCnv class is easily used in binding code.</p>
+
+<pre>
+extern "C" int 
+wrap_findInstance(ClientData    clientData,
+                  Tcl_Interp    *interp,
+                  int           objc,
+                  Tcl_Obj       *const objv[])
+{
+    TclEnv  env(interp, objc, objv);
+
+    try {
+     const TclParams params(env.params());
+
+     switch (params.size()) {
+       case 3:
+         {
+           TclCnv&lt;const oaDesign*&gt;        design(params[0]);
+           TclCnv&lt;const oaString&amp;&gt;        pattern(params[1]);
+           TclCnv&lt;const oaNameSpace&amp&gt;     ns(params[2]);
+           TclCnv&lt;oaArray&lt;oaInst*&gt; &gt;      inst(findInstance(design, pattern, 
+                                                            ns));
+           Tcl_Obj                        *result = createTclList(inst);
+
+           Tcl_SetObjResult(interp, result);
+
+           return TCL_OK;
+         }
+ 
+       default:
+         throw oaTclArgException(oacBadParamCount);
+     }
+ 
+    } catch (oaTclException &ex) {
+        return env.error(ex.getMsg());
+    } catch (oaException  &amp;ex) {
+        Tcl_SetObjResult(interp, Tcl_NewStringObj(ex.getMsg(), -1));
+		
+        return TCL_ERROR;
+    }
+}
+</pre>
+
+
+<p>The TclParams class is a simple helper class to avoid array boundary violations. A complete code example is provided as wrapper.h and wrapper.cpp in the directory &lt;install_directory&gt;/examples/oa/Tcl.</p>
+
+<a name="linksharedlibs"></a>
+<h3>Linking Shared Libraries</h3>
+<p>There are six shared libraries needed for binding Tcl with the OpenAccess API. These are:</p>
+
+
+<table border="0">
+<tr>
+<td width="120">&nbsp;&nbsp;<strong>oaLangBase</strong></td><td>Contains support classes to describe OpenAccess classes.</td>
+</tr>
+<tr>
+<td width="120">&nbsp;&nbsp;<strong>oaLangInfo</strong></td><td>Contains the description of OpenAccess classes and functions.</td>
+</tr>
+<tr>
+<td width="120">&nbsp;&nbsp;<strong>oaTclCommon</strong></td><td>Provides general support classes for Tcl bindings of C++ types.</td>
+</tr>
+<tr>
+<td width="120">&nbsp;&nbsp;<strong>oaTclBase</strong></td><td>Provides support classes for Tcl bindings to OpenAccess types.</td>
+</tr>
+<tr>
+<td width="120">&nbsp;&nbsp;<strong>oaTclPlugIn</strong></td><td>Provides support classes for the Tcl Script engine, which is used for Tcl Pcells.</td>
+</tr>
+<tr>
+<td width="120">&nbsp;&nbsp;<strong>oaTclHelp</strong></td><td>Provides the oa::help command bindings.</td>
+</tr>
+</table>
+
+
+<p>Shared libraries for custom Tcl bindings must be linked to oaTclBase, oaLangInfo, oaTclCommon, oaLangBase, and oaTclPlugIn; and your header file must include oaTcl.h.</p>
+
+<a name="tclinterpreter"></a>
+<h3>Using a Specific Tcl Interpreter</h3>
+<p>Some applications use a Tcl interpreter for other purposes besides OpenAccess. If a consistent interpreter is required in these situations, make the following call from the application: </p>
+<pre>
+oaTcl::oaTclEngineFactory::create(interp);
+</pre>
+
+<p>This call is necessary only in exceptional situations where the oaTcl shared library is not loaded from the interpreter. This call must be made before the call to Oa_Init.</p> 
+
+<a name="limitations"></a>
+<h2>Limitations </h2>
+<p>The oaTcl dynamic libraries are not guaranteed to be drop-in compatible for applications that are compiled using the oaTcl header files. Drop-in compatibility is only guaranteed for the public C++ OpenAccess API. Applications that call the Tcl bindings from C++ must be recompiled for each release of OpenAccess. Note however that OpenAccess API compatibility means that Tcl scripts using the oaTcl command bindings will not require changes due to future releases.</p>
+
+<p>Other limitations of the OpenAccess API in Tcl are:</p>
+<ul>
+  <li>Region query is not supported.</li> 
+  <li>AppDef extensions are not supported.</li>
+  <li>Tcl observers are not directly implemented because they can have a severe performance impact.
+</ul>
+
+<p>&nbsp;</p>
+<div style="text-align: center">
+<img src="footer.gif"><br/>
+</div>
+<p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</a>
+<br>
+All rights reserved.</p>
+</body>
+</html>

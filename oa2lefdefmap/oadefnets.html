@@ -1,0 +1,443 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|nets'/>
+<a name='7000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="Nets"></a>Nets</h1>
+<pre>
+ NETS numNets ;
+
+     [- - { <a href='#7002'>netName</a>
+              [ ( {compName pinName | PIN pinName} [+ SYNTHESIZED] ) ] ...
+        | <a href='#7004'>MUSTJOIN</a> ( compName pinName ) }
+         [+ <a href='#7005'>SHIELDNET</a> shieldNetName] ...
+         [+ <a href='#7006'>VPIN</a> vpinName [LAYER layerName] pt pt
+              [PLACED pt orient | FIXED pt orient | COVER pt orient]] ...
+         [+ <a href='#7007'>SUBNET</a> subnetName
+              [ ( {compName pinName | PIN pinName | VPIN vpinName} ) ] ...
+              [NONDEFAULTRULE rulename]
+              [regularWiring] ...] ...
+         [+ <a href='#7008'>XTALK</a> class]
+         [+ <a href='#7009'>NONDEFAULTRULE</a> ruleName]
+         [+ <a href='#7010'>SOURCE</a> {DIST | NETLIST | TEST | TIMING | USER}]
+         [+ <a href='#7012'>FIXEDBUMP</a>]
+         [+ <a href='#7013'>FREQUENCY</a> frequency]
+         [+ <a href='#7014'>ORIGINAL</a> netName]
+         [+ <a href='#7015'>USE</a> {ANALOG | CLOCK | GROUND | POWER | RESET | SCAN | SIGNAL | TIEOFF}]
+         [+ <a href='#7016'>PATTERN</a> {BALANCED | STEINER | TRUNK | WIREDLOGIC}]
+         [+ <a href='#7017'>ESTCAP</a> wireCapacitance]
+         [+ <a href='#7018'>WEIGHT</a> weight]
+         [+ <a href='#7019'>PROPERTY</a> {propName propVal} ...] ...
+     ;] ...
+
+ END NETS
+</pre>
+<p>Defines netlist connectivity for nets containing regular pins.</p>
+</div>
+<a name='def|nets|estcap'/>
+<a name='7017'/>
+<h2 class='topicSyntax'>
+ESTCAP wireCapacitance</h2>
+<div style='margin-left:40px;'>
+<p>The NET ESTCAP is stored in OpenAccess as an oaIntProp on the oaNet, with the name <q>ESTCAP</q>. Note that ESTCAP is specified in DEF as an integer in units of 0.000001 of picofarad, which is stored as-is in OpenAccess.</p>
+</div>
+<a name='def|nets|fixedbump'/>
+<a name='7012'/>
+<h2 class='topicSyntax'>
+FIXEDBUMP</h2>
+<div style='margin-left:40px;'>
+<p>The NET FIXEDBUMP attribute is stored in OpenAccess as the connStatus attribute of the oaNet. FIXEDBUMP is written if the status corresponds to <q>locked</q>.</p>
+</div>
+<a name='def|nets|frequency'/>
+<a name='7013'/>
+<h2 class='topicSyntax'>
+FREQUENCY frequency</h2>
+<div style='margin-left:40px;'>
+<p>frequency corresponds to the value of a float property named <q>FREQUENCY</q> on the net object. FREQUENCY is a float specified in units of Hertz in DEF. Use the following function to search for the property:</p>
+<pre>
+   oaProp *oaProp::find(oaObject *object,
+                        const oaString &amp;name,
+                        oaBoolean crossDomain = false)
+</pre>
+<p>where:</p>
+<ul>
+<li>The net object is the first parameter</li>
+<li>The string <q>FREQUENCY</q> is the second parameter.</li>
+<li>The crossDomain parameter determines whether multiple domains are searched</li>
+<li>   and whether properties can be inherited from other domains.</li>
+</ul>
+<p>The value of the property is obtained using:</p>
+<pre>
+   oaFloat oaFloatProp::getValue() const
+</pre>
+</div>
+<a name='def|nets|mustjoin'/>
+<a name='7004'/>
+<h2 class='topicSyntax'>
+MUSTJOIN ( compName pinName )</h2>
+<div style='margin-left:40px;'>
+</div>
+<a name='def|nets|netname'/>
+<a name='7002'/>
+<h2 class='topicSyntax'>
+netName<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ( {compName pinName | PIN pinName} [+ SYNTHESIZED] ) ] ...</h2>
+<div style='margin-left:40px;'>
+<p>netName corresponds to the net name mapped into the DEF name space. It is obtained using:</p>
+<pre>
+   void oaNet::getName(const oaNameSpace &amp;ns, oaString &amp;name) const
+</pre>
+<p>compName and pinName are obtained by iterating over all symbolic oaInstTerms of the net. These correspond to the instance name and terminal name (mapped into the DEF name space) associated with each instTerm. The only supported regular expression for compName is <q>*</q>.</p>
+</div>
+<a name='def|nets|nondefaultrule'/>
+<a name='7009'/>
+<h2 class='topicSyntax'>
+NONDEFAULTRULE ruleName</h2>
+<div style='margin-left:40px;'>
+<p>The NET NONDEFAULTRULE maps to OpenAccess by adding the constraint group that corresponds to the NONDEFAULTRULE to the net&#39;s default constraint group. Note that the constraint group for a NONDEFAULTRULE can be in the design or in the tech. ruleName maps to the name of the routeSpec object that is associated with the net.</p>
+</div>
+<a name='def|nets|original'/>
+<a name='7014'/>
+<h2 class='topicSyntax'>
+ORIGINAL netName</h2>
+<div style='margin-left:40px;'>
+<p>The ORIGNAL net is stored in OpenAccess as the original attribute of the oaNet. netName corresponds to the name of the original net for the current net.</p>
+<p>Note that the ORIGINAL attribute can refer to a net name that is not yet defined in the already processed nets. In that case, the attribute is stored in a temporary table until all nets are parsed.</p>
+</div>
+<a name='def|nets|pattern'/>
+<a name='7016'/>
+<h2 class='topicSyntax'>
+PATTERN {BALANCED | STEINER | TRUNK | WIREDLOGIC}</h2>
+<div style='margin-left:40px;'>
+<p>The NET PATTERN maps to OpenAccess as the oaRoutePattern attribute of the oaNet. The following table shows the correspondence between the DEF PATTERN and oaRoutePattern.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF PATTERN</th>
+<th class='borders'>oaRoutePatternEnum</th>
+</tr>
+<tr>
+<td class='borders'>STEINER</td>
+<td class='borders'>oacSteinerRoutePattern</td>
+</tr>
+<tr>
+<td class='borders'>BALANCED</td>
+<td class='borders'>oacBalancedRoutePattern</td>
+</tr>
+<tr>
+<td class='borders'>TRUNK</td>
+<td class='borders'>oacTrunkRoutePattern</td>
+</tr>
+</table>
+<p>Note : WIREDLOGIC information is not stored in the OpenAccess Database.</p>
+</div>
+<a name='def|nets|property'/>
+<a name='7019'/>
+<h2 class='topicSyntax'>
+PROPERTY {propName propVal} ...</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oadefproperties.html">PROPERTIES</a>.</p>
+</div>
+<a name='def|nets|shieldnet'/>
+<a name='7005'/>
+<h2 class='topicSyntax'>
+SHIELDNET shieldNetName</h2>
+<div style='margin-left:40px;'>
+<p>This information corresponds to the name of the shieldNet net (or nets) for the current net. There can be at most 2 SHIELDNET attributes for a net.</p>
+</div>
+<a name='def|nets|source'/>
+<a name='7010'/>
+<h2 class='topicSyntax'>
+SOURCE {DIST | NETLIST | TEST | TIMING | USER}</h2>
+<div style='margin-left:40px;'>
+<p>This information corresponds to the source attribute for the net and is obtained using the following API:</p>
+<pre>
+   oaSource oaNet::getSource() const
+</pre>
+<p>The following table shows the correspondence between the DEF source and oaSource.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF source</th>
+<th class='borders'>oaSourceEnum</th>
+</tr>
+<tr>
+<td class='borders'>NETLIST</td>
+<td class='borders'>oacNetlistSource</td>
+</tr>
+<tr>
+<td class='borders'>TIMING</td>
+<td class='borders'>oacTimingSource</td>
+</tr>
+<tr>
+<td class='borders'>DIST</td>
+<td class='borders'>oacDistSource</td>
+</tr>
+<tr>
+<td class='borders'>USER</td>
+<td class='borders'>oacUserSource</td>
+</tr>
+<tr>
+<td class='borders'>TEST</td>
+<td class='borders'>oacTestSource</td>
+</tr>
+</table>
+</div>
+<a name='def|nets|subnet'/>
+<a name='7007'/>
+<h2 class='topicSyntax'>
+SUBNET subnetName<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ( {compName pinName | PIN pinName | VPIN vpinName} ) ] ...<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[NONDEFAULTRULE rulename]<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[regularWiring] ...</h2>
+<div style='margin-left:40px;'>
+<p>This creates one or several routes objects for each regular wiring section and attaches them to the net.</p>
+<h2><a id="RegularWiring"></a>regularWiring</h2>
+<pre>
+   { +COVER | +FIXED | +ROUTED | +NOSHIELD}
+       layerName [TAPER | TAPERRULE ruleName] [STYLE styleNum]
+         routingPoints
+       [NEW layerName [TAPER | TAPERRULE ruleName] [STYLE styleNum]
+        routingPoints
+       ] ...
+</pre>
+<p>The regular wiring statements specify physical wiring for a net. They correspond to the symbolic routes objects attached to a net object. To retrieve this information, you must iterate over all the routes objects associated with the net.</p>
+<h3><a id="COVERFIXEDROUTEDNOSHIELD"></a>{ +COVER | +FIXED | +ROUTED | +NOSHIELD}</h3>
+<p>This information corresponds to the routeStatus attribute of the route object. It is obtained using:</p>
+<pre>
+   oaRouteStatus oaRoute::getRouteStatus() const
+</pre>
+<p>The following table shows the correspondence between DEF route status and oaRouteStatus.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF route status</th>
+<th class='borders'>oaRouteStatusEnum</th>
+</tr>
+<tr>
+<td class='borders'>FIXED</td>
+<td class='borders'>oacFixedRouteStatus</td>
+</tr>
+<tr>
+<td class='borders'>COVER</td>
+<td class='borders'>oacLockedRouteStatus</td>
+</tr>
+<tr>
+<td class='borders'>ROUTED or NOSHIELD</td>
+<td class='borders'>oacRoutedRouteStatus</td>
+</tr>
+</table>
+<p>The DEF route status is NOSHIELD instead of ROUTED if the route is not shielded:</p>
+<pre>
+     oaBoolean oaRoute::isUnShielded() const
+</pre>
+<h3><a id="LayerNameTAPERTAPERRULERuleName"></a>layerName [TAPER | TAPERRULE ruleName]</h3>
+<p>This information corresponds to the routeSpec object associated with the route. If it is the default oaRouteSpec, and the net that the route is attached to is associated with a different oaRouteSpec, TAPER is output. If it is not the default oaRouteSpec and it is different, ruleName is the name of the oaRouteSpec for the route.</p>
+<p>Segments with widths that do not conform with the oaRouteSpec width map to separate DEF PATHs with an associated TAPERRULE.</p>
+<h3><a id="STYLEStyleNum"></a>STYLE styleNum</h3>
+<p>This information specifies which end style to use for the route segments. This styleNum refers to the style defined earlier in the DEF file that is mapped to a particular oaSegStyle.</p>
+<h3><a id="RoutingPoints"></a>routingPoints</h3>
+<p>This information corresponds to the route elements of the route, which are stored in an array. A route element is either a route segment or a via route element.</p>
+</div>
+<a name='def|nets|use'/>
+<a name='7015'/>
+<h2 class='topicSyntax'>
+USE {ANALOG | CLOCK | GROUND | POWER | RESET | SCAN | SIGNAL | TIEOFF}</h2>
+<div style='margin-left:40px;'>
+<p>This information corresponds to the oaSigType attribute of the net and is obtained using:</p>
+<pre>
+   oaSigType oaNet::getSigType() const
+</pre>
+<p>The following table shows the correspondence between DEF USE and oaSigType:</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF USE</th>
+<th class='borders'>oaSigTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>ANALOG</td>
+<td class='borders'>oacAnalogSigType</td>
+</tr>
+<tr>
+<td class='borders'>CLOCK</td>
+<td class='borders'>oacClockSigType</td>
+</tr>
+<tr>
+<td class='borders'>GROUND</td>
+<td class='borders'>oacGroundSigType</td>
+</tr>
+<tr>
+<td class='borders'>POWER</td>
+<td class='borders'>oacPowerSigType</td>
+</tr>
+<tr>
+<td class='borders'>RESET</td>
+<td class='borders'>oacResetSigType</td>
+</tr>
+<tr>
+<td class='borders'>SCAN</td>
+<td class='borders'>oacScanSigType</td>
+</tr>
+<tr>
+<td class='borders'>SIGNAL</td>
+<td class='borders'>oacSignalSigType</td>
+</tr>
+<tr>
+<td class='borders'>TIEOFF</td>
+<td class='borders'>oacTieoffSigType</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacTieHiSigType</td>
+</tr>
+<tr>
+<td class='borders'>-</td>
+<td class='borders'>oacTieLoSigType</td>
+</tr>
+</table>
+</div>
+<a name='def|nets|vpin'/>
+<a name='7006'/>
+<h2 class='topicSyntax'>
+VPIN vpinName [LAYER layerName] pt pt<BR/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PLACED pt orient | FIXED pt orient | COVER pt orient]</h2>
+<div style='margin-left:40px;'>
+<p>The specified &#39;noShieldFlag&#39; bit is set to true if DEF routeStatus is NOSHIELD (regular Nets only), or the &#39;shieldFlag&#39; is set to true if DEF routeStatus is SHIELD (specialNets only).</p>
+</div>
+<a name='def|nets|weight'/>
+<a name='7018'/>
+<h2 class='topicSyntax'>
+WEIGHT weight</h2>
+<div style='margin-left:40px;'>
+<p>The NET WEIGHT is stored in OpenAccess as the priority attribute of the oaNet. The DEF weight range is mapped to the OpenAccess priority by subtracting 1 and limiting the maximum value to 128.</p>
+<p>The following table shows the range of valid net weight values and how they map from DEF to the OpenAccess database.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>DEF WEIGHT</th>
+<th class='borders'>OpenAccess Value</th>
+</tr>
+<tr>
+<td class='borders'>0  .</td>
+<td class='borders'>-1</td>
+</tr>
+<tr>
+<td class='borders'>1</td>
+<td class='borders'>unset</td>
+</tr>
+<tr>
+<td class='borders'>2-128</td>
+<td class='borders'>1-127</td>
+</tr>
+<tr>
+<td class='borders'>129-9999</td>
+<td class='borders'>128</td>
+</tr>
+</table>
+<p>A weight of 0 is interpretted as unset and maps to OpenAccess as a value of -1. When translating from OpenAccess to DEF, if a DEF NET WEIGHT is 1, the value is not written to the DEF file because 1 is the default DEF WEIGHT value.</p>
+</div>
+<a name='def|nets|xtalk'/>
+<a name='7008'/>
+<h2 class='topicSyntax'>
+XTALK class</h2>
+<div style='margin-left:40px;'>
+<p>class corresponds to the value of an integer property named <q>XTALK</q> on the net object. Use the following function to search for the property:</p>
+<pre>
+   oaProp *oaProp::find(oaObject *object,
+                        const oaString &amp;name,
+                        oaBoolean crossDomain = false)
+</pre>
+<p>where:</p>
+<ul>
+<li>net object is the first parameter</li>
+<li><q>XTALK</q> string is the second parameter</li>
+<li>crossDomain determines whether multiple domains are searched and whether</li>
+<li>  properties can be inherited from other domains.</li>
+</ul>
+<p>The value of the property is obtained using:</p>
+<pre>
+   oaInt4 oaIntProp::getValue() const
+</pre>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

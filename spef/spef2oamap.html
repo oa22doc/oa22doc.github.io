@@ -1,0 +1,488 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>SPEF to OpenAccess Mapping </h1>
+<hr>
+<p>This document describes how SPEF parasitic information maps to OpenAccess. OpenAccess includes standard implementations for translating SPEF information to and from an OpenAccess database. This document contains mapping information about the following SPEF constructs:</p>
+
+<ul>
+<li><a href="#HEADER">HEADER</a></li>
+<li><a href="#Units">Unit Mapping</a></li>
+<li><a href="#NAME_MAP">NAME_MAP</a></li>
+<li><a href="#POWER">POWER_NETS, GROUND_NETS</a></li>
+<li><a href="#PORTS">PORTS</a></li>
+<li><a href="#D_NET">D_NET</a></li>
+<li><a href="#R_NET">R_NET</a></li>
+<li><a href="#LOADS">LOADS</a></li>
+</ul>
+
+<p>spef2oa is the translator for creating an OpenAccess database from a SPEF file. For information about using the translator, see <a href="spef2oa.html">SPEF to OpenAccess Translator (spef2oa)</a>. oa2spef is the translator for creating a SPEF file from an OpenAccess database. For information about using this translator, see <a href="oa2spef.html">OpenAccess to SPEF Translator (oa2spef)</a>.</p>
+
+<h2>Overview</h2>
+<p>According to the SPEF standard, the parasitic values for resistance, capacitance, inductance, and delay can be specified as single float values or as triplet float values (float : float : float). In OpenAccess, parasitic values are associated with  analysis points. A single float value is associated with a single analysis point. Three analysis points are required to represent triplet float values. The three analysis points are min, typ, and max.</p>
+
+<p>Both the spef2oa and oa2spef translators include command line options for handling single and triple analysis points. spef2oa adds the parasitic values to an OpenAccess database as follows:</p>
+<ul>
+<li>If analysis points are specified on the command line, spef2oa adds the analysis points to the database.</li> 
+<li>Each parasitic value is read from the SPEF file and stored in the database using the appropriate analysis point.</li>
+</ul>
+
+<p>oa2spef extracts parasitic values from an OpenAccess database as follows:</p>
+<ul>
+<li>If analysis points are specified on the command line, oa2spef checks whether the analysis points exist in the database.</li>
+<li>If an analysis point exists, the parasitic values associated with that analysis point are retrieved from the database and written to the SPEF file.</li>
+</ul>
+
+<!-- #########################################################################
+     Begin HEADER section   -->
+<a name="HEADER"></a>
+<h2>SPEF HEADER Section</h2>
+<p>A SPEF file includes a HEADER section, which is composed of a number of subsections. The HEADER subsections are:</p>
+
+<ul>
+<li>*SPEF </li>
+<li> *DESIGN </li>
+<li>*DATE </li>
+<li> *VENDOR </li>
+<li> *PROGRAM </li>
+<li>*VERSION </li>
+<li>*DESIGN_FLOW </li>
+<li> *DIVIDER </li>
+<li>*DELIMITER </li>
+<li>*BUS_DELIMITER </li>
+<li> *T_UNIT </li>
+<li> *R_UNIT </li>
+<li>*C_UNIT </li>
+<li> *L_UNIT </li>
+</ul>
+
+<p>The information related to the HEADER section and its subsections is not stored in the OpenAccess database.  However, spef2oa uses the unit values and the values for *DIVIDER, *DELIMITER, and *BUS_DELIMITER during a translation.</p>
+
+<p>When extracting the parasitic values to a SPEF file, the oa2spef translator uses default values for these constructs, but you can specify other values by using command line options.</p>
+
+<!-- ########################################################################
+     Begin Units section  -->
+<a name="Units"></a>
+<h2>Unit Mapping</h2>
+<p>The SPEF standard specifies time, resistance, capacitance, and inductance units. The units used in OpenAccess are MKS units. For each parameter, the following table lists the base unit, the SPEF unit construct, the oa2spef unit options, and the default oa2spef units if units are not specified on the command line. oa2spef adjusts parasitic values based upon the units specified on the command line.</p> 
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#ccccdd">
+<th>Parameter</th>
+<th>Base Unit</th>
+<th>SPEF Unit Construct</th>
+<th>oa2spef Options</th>
+<th>Default Unit</th>
+</tr>
+<tr>
+<td>time</td>
+<td>second</td>
+<td>*T_UNIT</td>
+<td>PS for picosecond<br>NS for nanosecond</td>
+<td>PS</td>
+</tr>
+<tr>
+<td>resistance</td>
+<td>Ohm</td>
+<td>*R_UNIT</td>
+<td>OHM or<br>KOHM for kilOhm</td>
+<td>OHM</td>
+</tr>
+<tr>
+<td>capacitance</td>
+<td>Farad</td>
+<td>*C_UNIT</td>
+<td>PF for picoFarad<br>FF for femtoFarad</td>
+<td>PF</td>
+</tr>
+<tr>
+<td>inductance</td>
+<td>Henry</td>
+<td>*L_UNIT</td>
+<td>HENRY<br>MH for milliHenry<br>UH for microHenry</td>
+<td>HENRY</td>
+</tr>
+</table>
+
+<!-- ###################################################################
+     Begin NAME_MAP section  -->
+<a name="NAME_MAP"></a>
+<h2>NAME_MAP</h2>
+<p>NAME_MAP is an optional SPEF file section. Its purpose is to reduce file size by mapping an index to a name that is frequently used in a SPEF file.</p>
+
+<p>spef2oa implements an index-to-name map table that represents the name map section in a SPEF file. An index and an associated name are entered into the table while reading the entries in the NAME_MAP section. A unique index is assigned to each net (plus its instances and terminals) that has parasitic information. Instead of storing the name of a net, term, or instance, the index associated with the object is stored.</p>
+
+<p>By default, oa2spef does not write a name map unless the –nameMap option is used. When the –nameMap option is used, oa2spef maps all nets that have parasitic data. In addition to the net name, all instance, terminal, and all instance terminal names that are associated with the mapped net are also mapped. Power and ground nets are always mapped when the –nameMap option is used, whether or not they contain parasitic data. However, instances, terminals, and instance terminals connected exclusively to the power and ground nets, are never mapped. </p>
+
+<!-- #########################################################
+     Begin Power and Ground section  -->
+<a name="POWER"></a>
+<h2>POWER_NETS and GROUND_NETS</h2>
+<p>The SPEF constructs for power and ground nets are:</p>
+
+<pre>
+	*POWER_NETS <em>net_name </em> { <em>net_name </em>}
+	.
+	.
+	.
+	
+	*GROUND_NETS <em>net_name </em> { <em>net_name </em>}
+	.
+	.
+	.
+</pre>
+
+<p>In OpenAccess, the type of net (whether power or ground) is obtained by using the oaNet::getType() method. The following table maps the SPEF power and ground constructs to their corresponding objects in OpenAccess.</p>
+
+<table border="1" cellpadding="4">
+    <tbody><tr bgcolor="#ccccdd">
+        <td valign="top"><p align="center"><strong><em>Type of Net in SPEF </em></strong></p></td>
+		<td valign="top"><p align="center"><strong><em>oaType </em></strong></p></td>
+    </tr>
+    <tr>
+        <td valign="top"><p align="center">POWER_NET </p></td>
+		<td valign="top"><p align="center">oacPowerSigType </p></td>
+    </tr>
+    <tr>
+        <td valign="top"><p align="center">GROUND_NET </p></td>
+		<td valign="top"><p align="center">oacGroundSigType </p></td>
+    </tr>
+</tbody></table>
+
+<p>Dependent on the type of net, oa2spef adds it in the *POWER_NETS section or in the *GROUND_NETS section. The index from the name map table is used instead of the net name if an index is stored as an extension to a net.</p>
+
+<p>spef2oa ignores the *POWER_NETS and *GROUND_NETS designations, but it doesn't ignore the parasitic data. Parasitic data is always associated with signal nets.</p>
+
+<!-- ############################################################
+     Begin PORTS section -->
+<a name="PORTS"></a>
+<h2>PORTS</h2>
+<p>The PORTS section of the SPEF file lists the terminals in a block along with their direction and connection attributes. The construct for the PORTS section is:</p>
+
+<pre>
+	*PORTS <em>port_entry </em> { <em>port_entry </em>}
+	
+	port_entry ::= <em>port_name </em> <em>direction </em> { <em>conn_attr </em>}
+</pre>
+
+<p>port_name is replaced by the name of the term. If an index to the name exists in the name map table as an extension to the oaTerm object, oa2spef uses the index for the port_name.</p>
+
+<p>The direction of an oaTerm is determined by its oaTermType. The oacInputTermType maps to a SPEF input port represented by the I direction indicator, oacOutputTermType maps to an output port represented by the O direction indicator, and oacInputOutputTermType maps to a SPEF bidirectional port represented by a B direction indicator.</p> 
+
+<p><strong>Note:</strong> oa2spef does not write the &lt;conn_attr&gt; section for PORTS. However, you can inherit the related class in a custom implementation to include this data.</p>
+
+<p>spef2oa ignores the PORTS section of the SPEF file.</p>
+<!-- ######################################################################
+     Begin D_NET section -->
+<a name="D_NET"></a>
+<h2>D_NET </h2>
+<p>The SPEF D_NET section describes the detailed parasitic information for a particular net. The construct for this section is:</p>
+
+<pre>
+	*D_NET <em>net_ref total_cap </em> [ <em>routing_conf </em>] [ <em>conn_sec </em>] [ <em>res_sec </em>] [ <em>induc_sec </em>] *END
+</pre>
+
+
+
+<h3>*D_NET Parameter Mapping</h3>
+
+<dl>
+<dt><strong>net_ref </strong></dt>
+        <dd>The net_ref can be either a net name or an index to a net name in the name map table. </dd>
+ 
+    
+<dt><strong>total_cap</strong></dt>
+        
+		<dd>This is the total of all capacitances on a net.<br><br>
+		
+		oa2spef adds the capacitance values of all oaCouplingCaps in the parasitic network, and the resulting value is adjusted according to the specified C_UNIT. spef2oa ignores this section. </dd>
+
+<dt><strong>routing_conf </strong></dt>
+        <dd>spef2oa sets the routing confidence for a net using the oaNet::setParasiticConfidence() method. oa2spef obtains the routing confidence of a net by using the oaNet::getParasiticConfidence() method.</dd>
+
+<dt><strong>conn_sec </strong></dt>
+<dd>
+The construct for this parameter is:
+<pre>
+*CONN <em>conn_def </em> { <em>conn_def </em>} { <em>internal_node_coord </em>} 
+	
+conn_def ::= [ *P <em>port_name direction </em>{ <em>conn_attr </em>} | *I <em>pin_name direction </em>{ <em>conn_attr </em>}] 
+</pre>
+	
+	The *P section lists the terms that are present on a net. spef2oa ignores this section. oa2spef maps the port_name or the index to the term name if the index is stored as an extension on the oaTerm object. The direction is determined according to the oaTermType of oaTerm. Refer to the *PORTS section for mapping between direction and oaTermType.<br><br>
+
+internal_node_coord ::= *N <em>internal_node_name coordinates </em><br><br>
+
+The *N section lists the internal nodes and the coordinates associated with them.<br><br>
+
+The *I section lists the instTerms that are present on a net. spef2oa ignores this section. oa2spef maps the pin_name to the instance name and term name delimited by the specified pin delimiter. The indices are used instead of instance names and term names if indices are stored as an extension on the oaInst and oaTerm objects. The direction is determined according to oaTermType of oaTerm. Refer to the *PORTS section for the mapping between direction and oaTermType.<br><br>
+
+The conn_attr section is ignored by both spef2oa and oa2spef.
+</dd>
+
+<dt><strong>cap_sec</strong></dt>
+        
+<dd>
+The construct for this parameter is:
+
+<pre>		
+*CAP <em>cap_elem </em> { <em>cap_elem </em>} 
+
+cap_elem ::= [<em>cap_id node_name par_value </em> | <em>cap_id node_name node_name2 par_value </em>]
+</pre>
+            cap_elem maps to the oaCouplingCap object in OpenAccess. cap_id is an id used while creating the oaCouplingCap object. 
+<pre>
+node_name (or node_name2) ::= [&lt;net_name&gt;&lt;pin_delimiter&gt;&lt;oaNode id&gt; | 
+                              [ oaTerm name | &lt;index&gt;] |
+                              [ &lt;instance_name&gt;&lt;pin_delimiter&gt;&lt;term_name&gt; ]*
+                              ]
+</pre>
+<p>*  Only if a capacitor is connected to an instTerm.</p>			
+The par_value is the capacitance value for a given analysis point or for the triple analysis points if provided. spef2oa creates the &quot;From&quot; and &quot;To&quot; nodes to represent node_name and node_name2. If node_name2 is absent, oaGroundedNode is created. The oaCouplingCap is created with a given cap_id. The appropriate
+oaCouplingCap::create() method is used if a capacitor is connected to an
+instTerm or node in a different parasitic network.<br><br>
+
+spef2oa obtains the following values from the oaCouplingCap object:<br>
+
+<ul>
+<li>Capacitor id, </li>
+<li>&quot;From&quot; node, </li>
+<li> Capacitance for a given analysis point or for multiple points. </li>
+<li>&quot;To&quot; node or oaDesignObject. </li>
+</ul>
+<br>
+<p>oa2spef suppresses grounded capacitors that have values of 0.0. If there are multiple values on a capacitor (from multiple analysis points), the capacitor is suppressed only if all the values are 0.0.</p>
+
+
+A node id is obtained from oaNode.
+</dd>
+	
+<dt><strong>res_sec </strong></dt>
+<dd>
+The construct for this parameter is:
+<pre>
+*RES <em>res_elem </em> { <em>res_elem </em>} 
+
+res_elem ::= <em>res_id node_name node_name par_value</em>
+</pre>
+
+The res_elem maps to the oaResistor object in OpenAccess, and the res_id maps to the id that is used while creating the oaResistor object. Refer to cap_sec for mapping of the node_name. The par_value is the resistance value for a given analysis point or for multiple points.<br><br>
+
+spef2oa creates oaNodes to represent &quot;From&quot; and &quot;To&quot; nodes of the oaResistor. The translator uses the oaResistor::create() method to create a resistor element.<br><br>
+
+The following values are obtained from the oaResistor object:<br>
+                    <ul>
+                        <li>Resistor id </li>
+                        <li>&quot;From&quot; node </li>
+                        <li>&quot;To&quot; node </li>
+                        <li> Resistance for a given analysis point or points</li>
+                    </ul>
+</dd>
+
+<dt><strong>ind_sec </strong></dt>
+
+<dd>
+The construct for this parameter is:
+<pre>
+*INDUC <em>induc_elem </em> { <em>induc_element </em>}
+
+ induc_element ::= <em>induc_id node_name node_name par_value</em>
+ </pre>
+<br>
+The induc_elem maps to the oaInductor object in OpenAccess, and the induc_id maps to the id that is used to create the oaInductor object. The par_value is the inductance value for a given analysis point or for multiple points.<br><br>
+
+spef2oa creates oaNodes to represent &quot;From&quot; and &quot;To&quot; nodes of the oaInductor. The translator uses the oaInductor::create() method to create an inductor element.
+</dd>
+</dl>
+
+<!-- ##########################################################################
+     Begin R_NET section  -->
+<a name="R_NET"></a>
+<h2>R_NET</h2>
+<p>The R_NET section describes the reduced parasitic information for a particular net.</p>
+<p><strong>Issues: </strong></p>
+<ul>
+    <li>The current implementation of oaPiPoleResidue does not store
+Elmore delays for loads. These delay values are needed for writing the *RC
+section in the SPEF file or for storing the delay values while reading the
+SPEF file.</li>
+    <li>Since the oaLumpedElmore model does not specify
+values for near and far capacitors, and does not specify a resistor for a driver, the
+oaLumpedElmore model will not be written to the SPEF file. Similarly,
+while reading the SPEF file, if the driver section is not present for an
+R_NET, the reduced parasitic model will no be created for that net.</li>
+</ul>
+
+<p>The construct for R_NET is:</p>
+<pre>
+	*R_NET <em>net_ref total_cap </em>[ <em>routing_conf </em>] { <em>driver_reduc </em>} *END 
+</pre>
+
+
+<p><strong>Note:</strong> spef2oa ignores the *R_NET section if there is no &quot;driver_reduc&quot; section, and oa2spef does not write reduced parasitic information for a net that does not have a driver.</p>
+
+<h3><em>*R_NET Parameter Mapping </em></h3>
+<dl>
+<dt><strong>net_ref </strong></dt>
+        <dd>The net_ref can be either a net name or an index to a net name in the name map table. </dd>
+ 
+<dt><strong>total_cap </strong></dt>
+<dd>total_cap is the sum of all capacitances on a net.<br><br>
+
+spef20a ignores this section. oa2spef loads the parasitic model of the first driver found on a net. If it is oaPiElmore or oaPiPoleResidue, the near and far capacitance values are added to calculate total_cap. If there is no driver for the net, the R_NET section is not written. </dd>
+
+<dt><strong>routing_conf </strong></dt>
+        <dd>spef2oa sets the routing confidence for a net using the oaNet::setParasiticConfidence() method. oa2spef obtains the routing confidence of a net by using the oaNet::getParasiticConfidence() method.</dd>
+
+<dt><strong>driver_reduc </strong></dt>
+<dd>The construct for this parameter is:
+<pre>
+driver_reduc ::= <em>driver_pair driver_cell pie_model load_desc</em>
+</pre>
+
+This section maps to the following reduced parasitic models that can be stored for each driver of a net.
+            <ul>
+                <li>oaLumpedElmore </li>
+                <li>oaPiElmore </li>
+                <li>oaPiPoleResidue</li>
+            </ul>
+        
+<pre>	
+driver_pair ::= *DRIVER <em>pin_name</em>
+</pre>
+spef2oa finds the instTerm associated with the given pin_name, and the reduced parasitic models are created using this instTerm.<br><br>
+
+oa2spef Gets the term name and instance name from the instTerm and writes the indices if they exist for these names. Otherwise, the instance and term names are delimited by the pin delimiter.<br><br>
+<pre>	
+driver_cell ::= *CELL &lt; <em>cell_name </em>&gt;
+</pre>
+<br>
+
+spef2oa ignores this section. oa2spef maps cell_name to the name of the instance.<br><br>
+<pre>
+pie_model ::= *C2_R1_C1 <em>par_value par_value par_value</em>
+</pre>
+
+spef2oa does the following:<br>
+
+ <ul>
+ <li>If the &quot;pole_residue_sec&quot; is present, the oaPiPoleResidue model is created for this driver. </li>
+ <li>If the &quot;pole_residue_desc&quot; is not present, the oaPiElmore model is created for this driver. </li>
+ <li>Sets the values of nearCap, farCap and resistor.</li>
+ </ul><br><br>
+ 
+ oa2spef loads the oaPiElmore model or the oaPiPoleResidue model and gets the nearCap, farCap and resistor values.
+<pre>
+load_desc ::= *LOADS <em>rc_desc</em> { <em>rc_desc</em>}
+</pre>
+</dd>
+</dl>
+
+<!-- ##################################################################
+     Begin LOADS section -->
+<a name="LOADS"></a>
+<h2>LOADS</h2>
+<p>The SPEF construct for LOADS is:</p>
+<pre>
+	*LOADS <em>rc_desc </em> { <em>rc_desc </em>}
+    
+	rc_desc ::= *RC <em>pin_name par_value </em>{ <em>pole_residue_desc </em>} 
+	
+	pole_residue_desc ::= *Q <em>number_of_poles pole </em> { <em>pole </em>}  \
+	                      *K <em>number_of_residues </em><em>residue </em> { <em>residue </em>}
+</pre>
+
+<p>pin_name maps to the oaDesignObject, which is one of the receivers for the driver, and par_value maps to the delay value. An oaElmore object stores the delay value associated with this receiver object. Each receiver's oaElmore object is associated with the reduced model (oaLumpedElmore or oaPiElmore) for this driver. If a pole_residue_desc is included, it is represented by an oaPoleResidue object in OpenAccess, which in turn, is associated with an oaPiPoleResidue model.</p>
+        
+<p>spef2oa creates oaElmore objects for each *RC section for the appropriate model if pole_residue_desc is not present. If pole_residue_desc is present, spef2oa creates the oaPoleResidue object to represent poles and residues.</p>
+				
+<p>oa2spef gets the oaElmore objects from oaPiElmore or oaLumpedElmore models for writing pin_name and par_value in the *RC section.</p>
+
+<p><a href="#pagetop">Return to top of page</a></p>
+<div style="text-align: center"> <img src="images/spefoamap.gif"><br />
+</div>
+<p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</a>
+			<br>
+			All rights reserved.</p>
+		<noscript>
+			<p><em class="red">This page requires JavaScript enabled.</em></p>
+		</noscript>
+</body>
+</html>

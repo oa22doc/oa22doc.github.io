@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<title>OpenAccess API Deltas</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	</head>
+	<body bgcolor="#ffffff" text="#000000">
+		<h2>Summary of API Changes</h2>
+		<P> The summary of API changes&nbsp;for this release is as follows:
+			<span style="COLOR:#0066cc">
+				<SPAN style="COLOR: #0066cc">
+					<SPAN style="COLOR: #0066cc"></P>
+		<P>#################################<BR>
+			# The following new classes were added #<BR>
+			#################################<BR>
+			<PRE>	<A href="classLefInDBUnit.html">LefInDBUnit</A> <BR>
+</PRE>
+		<P><BR>
+			################################# </SPAN></SPAN><SPAN style="COLOR: #0066cc"></SPAN>
+		<P><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following classes were modified #<BR>#################################<BR></P>
+		<PRE>	<A href="classDefIn.html">DefIn</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classDefIn.html#b48">addUnsolvedGndSensitivityToList(oaName &amp;gTermName, oaName &amp;pinName, oaBitTerm *term)</A> <BR>
+		<A href="classDefIn.html#b49">addUnsolvedSupplySensitivityToList(oaName &amp;sTermName, oaName &amp;pinName, oaBitTerm *term)</A> <BR>
+		<A href="classDefIn.html#d18">cbPinsEnd(defrCallbackType_e cbType, void *data, defiUserData userData)</A> <BR>
+		<A href="classDefIn.html#b50">resolvePinSensitivity()</A> <BR>
+	<A href="classDefOutPin.html">DefOutPin</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classDefOutPin.html#b10">writeSensitivity()</A> <BR>
+	<A href="classLefDefBase.html">LefDefBase</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefDefBase.html#a50">get(const oaConstraint *constraint, const oaString ¶mName, T &amp;value)</A> <BR>
+	<A href="classLefDefIn.html">LefDefIn</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefDefIn.html#a30">set(oaConstraint *constraint, const oaString ¶mName, const T &amp;value)</A> <BR>
+	<A href="classLefInLayer.html">LefInLayer</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefInLayer.html#e0">intcmp(const oaInt4 *a1, const oaInt4 *a2)</A> <BR>
+		<A href="classLefInLayer.html#b78">isRangeContinuous(oaArray&lt; oaInt4 &gt; &amp;minRanges, oaArray&lt; oaInt4 &gt; &amp;maxRanges)</A> <BR>
+		<A href="classLefInLayer.html#b32">parseImplantSpacing()</A> <BR>
+		<A href="classLefInLayer.html#b34">parseImplantSpacingLayer()</A> <BR>
+		<A href="classLefInLayer.html#b33">parseImplantSpacingSimple()</A> <BR>		<BR>		<A href="classLefInLayer.html#b76">setSpacingTableConstraint(oaLayerNum layerNum, const oa2DLookupTbl&lt; oaInt4, oaInt4, oaInt4 &gt; &amp;table)</A> <BR><SPAN style="COLOR: #0066cc"></SPAN>
+<BR>
+	<A href="classLefInViaRule.html">LefInViaRule</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefInViaRule.html#b8">parseWidthRanges(oa2DLookupTbl&lt; oaInt4, oaInt4, oaViaTopologyArrayValue * &gt; &amp;viaTable, oa1DLookupTbl&lt; oaInt4, oaDualIntArray &gt; &amp;dirTable)</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		parseWidthRanges(oa2DLookupTbl&lt; 
+		oaInt4, oaInt4, oaViaTopologyArrayValue * &gt;  &amp;viaTable)<BR><BR>
+	<A href="classLefOutViaRule.html">LefOutViaRule</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefOutViaRule.html#b3">writeLayer(oaPhysicalLayer *layer, oaUInt4 minWidth, oaUInt4 maxWidth, oaBoolean hasDirection, LefDefViaLayerDirectionEnum direction)</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		writeLayer(oaPhysicalLayer *layer, oaUInt4 minWidth, oaUInt4 maxWidth, oaBoolean direction)<SPAN style="COLOR: #0066cc">
+</PRE>
+		<PRE>	<A href="classLefInVia.html">LefInVia</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefInVia.html#b9">verifyGeom(oaLayerNum layerNum, oaInt4 llx, oaInt4 lly, oaInt4 urx, oaInt4 ury)</A> <BR>
+		<A href="classLefInVia.html#b8">verifyGeometries(oaDesign *viaDesign)</A> <BR>
+<SPAN style="COLOR: #0066cc">	<A href="classLefInLayerDM4.html">LefInLayerDM4</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefInLayerDM4.html#b14">parseMinCut()</A> <BR>
+	<A href="classLefOutLayer.html">LefOutLayer</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefOutLayer.html#b55">writeAntennaAreaFactor(oaConstraint *c, oaBoolean isSide)</A> <BR>		<BR>		<A href="classLefOutLayer.html#b28">writeImplantSpacing()</A> <BR><BR>		<BR>		<A href="classLefOutLayer.html#b30">writeImplantSpacingLayer()</A> <BR><BR>		<BR>		<A href="classLefOutLayer.html#b29">writeImplantSpacingSimple()</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		writeAntennaAreaFactor(oaConstraint *c)<BR>
+<SPAN style="COLOR: #0066cc">	<A href="classLefIn.html">LefIn</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classLefIn.html#b50">getLefInDBUnit()</A> 
+</SPAN></SPAN>
+</SPAN><SPAN style="COLOR: #0066cc"><U><FONT color=#008000></FONT></U><BR> <SPAN style="COLOR: #0066cc">	<A href="classDefOutNet.html">DefOutNet</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added API</SPAN><BR>
+		<A href="classDefOutNet.html#b29">initDataTypes(oaBoolean checkSpecial=false, oaBoolean special=false)</A> <BR>
+<BR>		<SPAN style="COLOR: red; TEXT-DECORATION: underline">Removed API</SPAN><BR>
+		initDataTypes()</PRE>
+		<P>
+		################################# </SPAN></SPAN></SPAN>
+		<P><SPAN style="COLOR: #0066cc">#################################<BR># The 
+following enums were added #<BR>#################################<BR><PRE>	<A href="oaLefInViaRule_8h.html#a3">LefDefViaLayerDirectionEnum</A> <BR>
+</PRE><BR> </SPAN>
+		<P><SPAN style="COLOR: #0066cc"><PRE>	<A href="oaLefDefMsgs_8h.html#a158">LefDefMsgIds</A> <BR>
+<BR>		<SPAN style="COLOR: green; TEXT-DECORATION: underline">Added Values</SPAN><BR>
+		<A href="oaLefDefMsgs_8h.html#a158a151">cSpacingRangeNotContinuous</A>
+		<A href="oaLefDefMsgs_8h.html#a158a153">cMultipleInfluenceMaxRange</A> <BR>
+		<A href="oaLefDefMsgs_8h.html#a158a154">cPinSensitivityPinNotFound</A> <BR>
+		<A href="oaLefDefMsgs_8h.html#a158a155">cDBUnitNotDefinedForITDB</A> <BR>
+		<A href="oaLefDefMsgs_8h.html#a158a156">cDBUnitNotDefinedForTech</A> <BR>
+		<A href="oaLefDefMsgs_8h.html#a158a157">cInstMasterNotBound</A><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">
+</PRE><PRE>
+		<A href="oaLefDefMsgs_8h.html#a159a158">cForeignNameSameAsMacroName</A><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">
+<BR><BR>
+		<A href="oaLefDefMsgs_8h.html#a159a145">cDbuPerUURemainsUnchanged</A><BR><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">
+		<A href="oaLefDefMsgs_8h.html#a161a159">cMustJoinOnPGPin</A> <BR>
+		<A href="oaLefDefMsgs_8h.html#a161a160">cSiteInfoNotSavedForReadOnlyTech</A><SPAN style="COLOR: #0066cc"><BR>
+		<A href="oaLefDefMsgs_8h.html#a162a161">cLayerDirectionNotDefined</A></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN>
+</PRE><PRE><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc"><SPAN style="COLOR: #0066cc">		<SPAN style="COLOR: red"><u>Removed Values</u></SPAN><BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+		cDifferentHierDesignUnits</SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></SPAN></PRE></body>
+</html>

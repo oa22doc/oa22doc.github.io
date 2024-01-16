@@ -1,0 +1,18 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Design Class Index
+
+BUILDINFO
+An design database holds an integrated representation of all the data related to a particular element in a design. 
+This includes the design’s connectivity, geometry, hierarchy, parasitic, and floorplanning information. This 
+category includes all the classes that can be stored in <a href="classoaDesign.html">oaDesign</a> databases 
+and the classes that are used to interact with those objects.
+
+See <a href="../guide/logicalconnectivity.html">Understanding Logical Connectivity</a>, 
+<a href="../guide/routes.html">Understanding Routes</a>, and 
+<a href="../guide/emh.html">Understanding OpenAccess Hierarchy</a> in the Programmers Guide for more information.
+

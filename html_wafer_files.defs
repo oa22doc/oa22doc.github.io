@@ -1,0 +1,15 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Wafer Class Index
+
+BUILDINFO
+The OpenAccess oaWafer class implements a wafer database, which is a specific view of a cell. 
+This class is the main object for storing the description of a wafer and the reticle's frames and 
+images to associate with the wafer.
+
+See <a href="../../relnotes/newWafer.html">New Wafer Database</a> for more information.
+

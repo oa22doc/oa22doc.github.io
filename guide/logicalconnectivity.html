@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1><a name="pagetop"></a>Understanding Logical Connectivity </h1>
+ <hr>
+ <p>The logical connectivity in a design models the components and the electrical signals that move between those components. Logical connectivity is often associated with or derived from the geometric physical objects that represent the components, pins, and interconnects in a design. A design might contain</p>
+  <ul>
+    <li>Only physical connectivity (layouts imported from Stream)</li>
+    <li>Only logical connectivity (netlists imported from Verilog) </li>
+    <li>Both physical and logical connectivity </li>
+  </ul>
+  <p>Logical connectivity is used to simulate and analyze a design. When associated with physical connectivity, the logical connectivity can be used to ensure that the geometric objects connect at the correct locations.</p>
+  <p>The logical connectivity in a design can be viewed from  three domains:</p>
+  <ul>
+    <li> Block &ndash; The block domain is the physical description of a design. Physical geometries and components are associated with  connectivity elements. Nets can  be associated with connection figures, terminals can be associated with pins, and instances must be placed.</li>
+    <li>Module &ndash; The module domain is the logical description of a design. The description can include several embedded modules that form a module hierarchy, which matches the information found in a structural Verilog description.</li>
+    <li>Occurrence &ndash; The occurrence domain includes at least one instance or occurrence for each 
+module and for each module instance in a design. The occurrence domain also 
+includes the logical connectivity and functional netlist. Occurrence objects span the other domains; for example, an occurrence net can represent an occurrence of a block net and can be an occurrence of a module net in the module hierarchy.</li>
+  </ul>
+  <p>The connectivity discussed in this document applies in each of the three domains. For information about the relationships of connectivity objects  <em>between</em> the three domains, refer to <a href="emh.html">OpenAccess Hierarchy Domains</a>.</p>
+  <h2>Primary Objects </h2>
+  <p>The primary objects that represent the logical connectivity in a design are as follows: </p>
+  <ul>
+    <li><a href="#nets_primary">Nets</a></li>
+    <li><a href="#terminals_primary">Terminals</a></li>
+    <li> <a href="#instances_primary">Instances</a></li>
+    <li><a href="#instTerms_primary">Instance Terminals</a></li>
+  </ul>
+  <h3><a name="nets_primary"></a>Nets</h3>
+  <p>Conceptually, a net represents an electrical path in a circuit. A collection of wires or interconnects that carry the same electrical signal is considered to be in the same net. A net can be physically implemented using connection figure objects such as shapes (polygons, paths, lines, and so forth), routes, guides, and vias.</p>
+  <p>All nets have names, which are specified at creation time. Applications can retrieve the names and map them to strings using a specified nameSpace.</p>
+  <p>There four types of net objects:</p>
+  <ul>
+    <li> ScalarNet &ndash; A scalarNet is a single-bit net with a scalarName, such as &ldquo;A&rdquo;. When you create a scalarNet, the database  automatically assigns  a name.</li>
+    <li>BusNetBit &ndash; A busNetBit is a single-bit net with a vectorBitName, such as &ldquo;B[0]&rdquo;.</li>
+    <li>BusNet &ndash; A busNet is a multi-bit net with a vectorName, such as &ldquo;C[7:0]&rdquo;. The number of bits in the net is determined by the specified vector range.</li>
+    <li>BundleNet &ndash; A bundleNet is a multi-bit net that can contain a number of scalarNets, busNetBits, and busNets, such as &ldquo;A,B[0],C[7:0]&rdquo;. The number of bits in the net is determined by the sum of the number of bits of each member in the bundleNet.</li>
+  </ul>
+  
+  <p>Not every type of net is found in every type of design. Layout designs  typically have only scalarNets and busNetBits. Schematic and netlist designs might have all four types of nets.</p>
+  <p>When a multi-bit net is created, single-bit nets, or bitNets, are implicitly created for each bit of the net if they don&rsquo;t already exist.  implicit bitNets are automatically deleted when the multi-bit net is deleted if the bitNets are not members of another net. The database maintains the implicit bitNets to support  applications that can only perform scalarized traversal of the connectivity data.</p>
+  <p>The bits of one net can overlap with the bits of another net. For example, for nets &ldquo;A[7:0]&rdquo; and &ldquo;A[1:0]&rdquo;, the busNetBits &ldquo;A[1]&rdquo; and &ldquo;A[0]&rdquo; are members of both busNets. If net &ldquo;A[7:0]&rdquo; is deleted, the implicit busNetBits &ldquo;A[7]&rdquo;, &ldquo;A[6]&rdquo;, .., &ldquo;A[2]&rdquo; are also deleted, but the bits &ldquo;A[1]&rdquo; and &ldquo;A[0]&rdquo; remain because they are members of &ldquo;A[1:0]&rdquo;.</p>
+  <h4>Equivalent Nets </h4>
+  <p>Two or more bitNets can be made equivalent to one another, and each set of equivalent nets has exactly one preferred equivalent.  Equivalence can be logical equivalence, and not necessarily physical or electrical equivalence.  Physical implementation objects, such as routes or shapes, might appear exclusively on the preferred equivalent net, or  might be distributed among all of the equivalent nets.  Although applications are encouraged to use the preferred equivalent net for all physical implementation and annotations, applications that analyze data from a variety of sources must be able to interpret databases in which the data has been distributed among all of the equivalent nets.</p>
+  <p>If your design has physical information or annotations on non-preferred equivalent nets, you can use the following functions, which support traversal of all nets, including equivalent nets. </p>
+  <p>OpenAccess implicitly creates and maintains net equivalences in response to editing operations involving overlapping multi-bit instTerms, overlapping multi-bit terminals, a single-bit instTerm that is also a member of a multi-bit instTerm, a single-bit terminal that is also a member of a multi-bit terminal, a multi-bit instTerm with repeated members or a multi-bit terminal with repeated members. These implicit equivalences are similar to the equivalences created explicitly by applications using the oaBitNet::makeEquivalent function. However, the applications cannot break an implicit equivalence directly.</p>
+  <p>Let's consider the following example:</p>
+  <p><img src="images/multibit_insts.gif"></p>
+  <p>In this example, both the multi-bit instTerm "A[0:1]" and the single-bit instTerm "A[0]" are explicit. The explicit single-bit instTerm "A[0]" is moved from net "N[0]" to net "X". However, the explicit multi-bit instTerm "A[0:1]" indicates that instTerm "A[0]" is connected to net "N[0]". To provide consistent connectivity, OA will automatically create an implicit equivalence between net "N[0]" and net "X". Once the single-bit instTerm "A[0]" is moved back to net "N[0]" the implicit equivalence is automatically removed.</p>
+
+  <h5>Functions That Traverse Equivalent Nets</h5>
+  <p>The following functions  merge terms or instTerms from an entire set of equivalent nets when the   <em>oacInstTermIterEquivNets</em> flag is specified: </p>
+  <ul>
+    <li><a href="../design/classoaNet.html#oaNet::getInstTerms">oaCollection oaNet::getInstTerms</a>  	(oacInstTermIterEquivNets)   	 const </li>
+    <li><a href="../design/classoaNet.html#oaNet::getTerms">oaCollection oaNet::getTerms</a>  	(oacInstTermIterEquivNets)   	 const</li>
+    <li><a href="../design/classoaModNet.html#oaModNet::getInstTerms">oaCollection oaModNet::getInstTerms</a>  	(oacInstTermIterEquivNets)   	 const</li>
+    <li><a href="../design/classoaModNet.html#oaModNet::getTerms">oaCollection oaModNet::getTerms</a>  	(oacInstTermIterEquivNets)   	 const</li>
+    <li><a href="../design/classoaOccNet.html#oaOccNet::getInstTerms">oaCollection oaOccNet::getInstTerms</a>  	(oacInstTermIterEquivNets)   	 const </li>
+    <li><a href="../design/classoaOccNet.html#oaOccNet::getTerms">oaCollection oaOccNet::getTerms</a>  	(oacInstTermIterEquivNets)   	 const</li>
+  </ul>
+  <p>These functions return all equivalent nets by default: </p>
+  <ul>
+    <li><a href="../design/classoaBlock.html#oaBlock::getNets">oaCollection oaBlock::getNets</a>()   	 const </li>
+    <li><a href="../design/classoaOccurrence.html#oaOccurrence::getNets">oaCollection oaOccurrence::getNets</a>() const  </li>
+    <li><a href="../design/classoaModule.html#oaModule::getNets">oaCollection oaModule::getNets</a>() const <br>
+    </li>
+  </ul>
+  <ul>
+    <li><a href="../design/classoaOccNet.html#oaOccNet::getMemberNets">oaOccMemNetCollection oaOccNet::getMemberNets</a>() const </li>
+    <li><a href="../design/classoaNet.html#oaNet::getMemberNets">oaMemNetCollection oaNet::getMemberNets</a>() const </li>
+    <li><a href="../design/classoaModNet.html#oaModNet::getMemberNets">oaModMemNetCollection oaModNet::getMemberNets</a>() const  <br>
+    </li>
+  </ul>
+  <p>These functions return a single net that is associated with a given object. By default, the functions returns the particular net that is connected to the term regardless of whether of not it is the preferred equivalent. </p>
+  <ul>
+    <li><a href="../design/classoaOccTerm.html#oaOccTerm::getNet">oaOccNet * oaOccTerm::getNet</a>()   	 const </li>
+    <li><a href="../design/classoaModTerm.html#oaModTerm::getNet">oaModNet * oaModTerm::getNet</a>  	()   	 const </li>
+    <li><a href="../design/classoaTerm.html#oaTerm::getNet">oaNet * oaTerm::getNet</a>()   	 const </li>
+    <li><a href="../design/classoaOccInstTerm.html#oaOccInstTerm::getNet">oaOccNet * oaOccInstTerm::getNet</a>()   	 const</li>
+    <li><a href="../design/classoaModInstTerm.html#oaModInstTerm::getNet">oaModNet * oaModInstTerm::getNet</a>()   	 const </li>
+    <li><a href="../design/classoaInstTerm.html#oaInstTerm::getNet">oaNet * oaInstTerm::getNet</a>()   	 const</li>
+</ul>
+  <p><strong>Note:</strong> Some functions, such as oaNet::getShapes(), operate only on the particular net you specify. (This function does not have the ability to merge shapes across equivalent nets.) </p>
+  <h3><a name="terminals_primary"></a>Terminals</h3>
+  <p>Terminals represent the interface to a design. Nets are made available from one design to a higher-level design through terminals. Pins associated with terminals represent the physical implementation of the interface to a design.</p>
+  <p>All terminals have names, which are specified at creation time. Applications can retrieve the names and map them to  strings using a specified nameSpace.</p>
+  <p>Terminals are associated with a specified net when created. A terminal can be associated with one and only one net; however, a net might have many associated terminals. The number of bits in the net must match the number of bits implied by the specified terminal name. When a net is deleted, all  its associated terminals are also deleted.</p>
+  <p>There four types of terminal objects:</p>
+  <ul>
+    <li>ScalarTerm &ndash; A scalarTerm is a single-bit terminal with a scalarName, such as &ldquo;A&rdquo;. The net associated with a scalarTerm must be a single-bit net (for example, either a scalarNet or a busNetBit).</li>
+    <li>BusTermBit &ndash; A busTermBit is a single-bit terminal with a vectorBitName, such as &ldquo;B[0]&rdquo;. The net associated with a busTermBit must be a single-bit net (for example,  either a scalarNet or busNetBit).</li>
+    <li>BusTerm &ndash; A busTerm is a multi-bit terminal with a vectorName, such as &ldquo;C[7:0]&rdquo;. The number of bits in the terminal is determined by the number of bits in the associated net. </li>
+    <li>BundleTerm &ndash; A bundleTerm is a multi-bit terminal that can contain a number of scalarTerms, busTermBits, and busTerms, such as &ldquo;A,B[0],C[7:0]&rdquo;. The number of bits in the terminal is determined by the number of bits in the associated net.</li>
+  </ul>
+  <p>When you create a multi-bit terminal, single-bit terminals, or bitTerms, are implicitly created for each bit of the terminal if they don&rsquo;t already exist. These implicit bitTerms are automatically deleted when the multi-bit terminal is deleted if they are not  members of another terminal. The database maintains the implicit bitTerms to support  applications that can only perform scalarized traversal of the connectivity data.</p>
+  <p>The bits of one terminal can overlap with the bits of another terminal. For example, for terminals &ldquo;A[7:0]&rdquo; and &ldquo;A[1:0]&rdquo;, the busTermBits &ldquo;A[1]&rdquo; and &ldquo;A[0]&rdquo; are members of both busTerms. The database requires that the bits of the nets used to create the two terminals are the same for the common bitTerms. For example, if you create terms "A[1:0]" with net "a,b", you can only create term "A[7:0]" with a net like "z[7:2],a,b". The highest two bits of the term for "A[7:0]" must be the same as those in "A[1]" and "A[0]" or the database  throws an error. Because the bitTerms A[1] and A[0] already exist, when creating A[7:0], the net specified must include the bitNets "a" and "b". </p>
+  <p>Explicitly created terminals are considered  interface terminals, which means that they define the interface of the design that contains them.</p>
+  <p>You can assign a positional value to a  terminal. An instTerms that is created to connect to a position  binds to a terminal that has been assigned to that position.</p>
+  <h3><a name="instances_primary"></a>Instances</h3>
+  <p>Instances are references to other designs or modules from the context of the design in which they were placed. The design referenced by an instance is referred to as the master design; the module referenced by an instance is referred to as the master module. You can use instances to create hierarchical designs because the master of an instance can contain instances of other master designs or master modules.</p>
+  <p>All instances have names, which are specified at creation time. Applications can retrieve the names, then map them to strings using a specified nameSpace. Note that vectorInsts do not support non-singular step values in the range specification.</p>
+  <p>There is one instance object that appears only in the block and occurrence domains:</p>
+  <ul>
+    <li>ArrayInst &ndash; An arrayInst is a single-bit instance with a scalarName, such as &ldquo;I0&rdquo;. An arrayInst object  represents an array of instances 
+  of one master design.</li>
+  </ul>
+  <p>There are three instance objects that are typically used for representing logical connectivity:</p>
+  <ul>
+    <li>ScalarInst &ndash; A scalarInst is a single-bit instance with a scalarName, such as &ldquo;I0&rdquo;.</li>
+    <li>VectorInstBit &ndash; A vectorInstBit is a single-bit instance with a vectorBitName, such as &ldquo;INV0[0]&rdquo;.</li>
+    <li>VectorInst &ndash; A vectorInst is a multi-bit instance with a vectorName, such as &ldquo;R100[7:0]&rdquo;.</li>
+  </ul>
+  <p>In the block domain, the instance master must be another design. In the module and occurrence domains, the instance master can be either another design or a module in the context of the design containing the instance.</p>
+  <p>When a vectorInst is created, vectorInstBits are automatically created for each bit of the instance. Unlike nets and terminals, vectorInsts cannot overlap. In addition, explicit vectorInstBits cannot overlap with existing vectorInsts, and explicit vectorInsts cannot overlap with existing vectorInstBits.  The database maintains the implicit vectorInstBits to support  applications that can only perform scalarized traversal of the connectivity data.</p>
+  <h3><a name="instTerms_primary"></a>Instance Terminals</h3>
+  <p>Instance terminals, or instTerms, make connections between nets in one level of a design to terminals (and their nets) in a different level of the design in an instance master. A net specification (which can be NULL), instance, and terminal specification are required for creating an instTerm. There are two types of connections that instTerms support:</p>
+  <ul>
+    <li><a href="#reference">Connection by Reference</a></li>
+    <li><a href="#position">Connection by Position </a></li>
+    <li><a href="#multiBitConn">Multi-Bit Connections</a></li>
+  </ul>
+  <h4><a name="reference"></a>Connection by Reference</h4>
+  <p>An instTerm connects by reference when the terminal specification is either a pointer to a specific terminal in an instance master or the name of a terminal in an instance master. The connection is valid if the number of bits in the net matches the connection width, which is the number of bits in the terminal (or terminal name) multiplied by the number of bits in the corresponding instance.</p>
+  <p>Creating an instTerm using the name of a terminal does not cause the instance master to be bound (read in). OpenAccess attempts to  to bind the instance master only if the instTerm&rsquo;s terminal is queried. An instTerm is considered bound when the instance master is bound and the referenced terminal exists in the master. A traversal from a net to an instTerm to its corresponding terminal does not succeed unless the instTerm is bound.</p>
+  <p>When creating a connect-by-reference instTerm  in which the net is not NULL, the number of bits in the net must match the connection width. The connection is the number of bits implied by the terminal name or the terminal itself multiplied by the number of bits implied by the instance.</p>
+  <h4><a name="position"></a>Connection by Position</h4>
+  <p>An instTerm connects by position when the terminal specification is a numeric value specifying the terminal position to be connected. Positional connections support the connection semantics of Verilog and other netlist formats.</p>
+  <p>Creating an instTerm with a terminal position does not cause the instance master to be bound. The database attempts to bind the instance master only if the instTerm&rsquo;s terminal is queried. An instTerm is considered bound when the instance master is bound, a terminal exists at the specified position, and the connection width matches the number of bits associated with the instTerm.</p>
+  <p>All of the instTerms associated with a particular instance must be the same type. That is, all of the connections must either be by reference or by position.</p>
+  <h4><a name="multiBitConn"></a>Multi-Bit Connections </h4>
+  <p>When a multi-bit connection is made, implicit single-bit instTerms are created for each bit in the connection. The bits of a multi-bit instTerm can overlap the bits of other instTerms if the corresponding bitNets and bitTerms match. The database maintains the implicit instTerms to support those applications that can only perform scalar traversal of the connectivity data.</p>
+  <p>When the terminal associated with a multi-bit instTerm has repeated members, the bitNets in the net associated with the multi-bit instTerms should also be repeated. Otherwise, it is an error unless the bitNets across the repeated bit instTerms are equivalent.
+  
+The same is true when two multi-bit instTerms overlap. The bits of the net associated with the two multi-bit instTerms should be the same across the overlapping bits. Otherwise, it is an error  unless the bitNets are equivalent to each other.
+  </p>
+  <p>If an explicit multi-bit instTerm, "A[0:1]" is connected to net "N[0:1]" and the bit instTerm "A[0]" is also explicit but not connected to any net, then there is no way to consistently represent the connectivity of "A[0]"; the multi-bit connectivity says that it is connected to "N[0]" but the bit-wise connectivity says that "A[0]" is disconnected. In this situation, the bit-wise connectivity wins and the explicit multi-bit instTerm "A[0:1]" will be automatically disconnected from the multi-bit net as soon as "A[0]" is disconnected. Later, the bit instTerm "A[0]" may be connected to something else, but OA will not automatically restore the multi-bit connectivity of "A[0:1]". In this case, "A[0]" may say that it is connected to "X" but "A[0:1]" will not be connected to anything. Semantically, a disconnected multi-bit instTerm does not imply anything about the connectivity of the member bits.</p>
+  <p>
+
+  <h3><a name="ex_vlog"></a>Example: Verilog and VHDL Schematic Data </h3>
+  <p>This example compares  VHDL and Verilog code segments against a representative schematic. </p>
+  <table width="750" border=1 cellpadding=5 cellspacing=5 summary="&nbsp;">
+    <tr>
+      <th width="50%"><div align="left">Verilog Code </div></th>
+      <th width="50%"><div align="left">VHDL Code </div></th>
+    </tr>
+    <tr>
+      <td width="50%" valign="top"><pre>if (SEL == 1)<br>    OUT = A &amp; B;<br>else<br>    OUT = 0;</pre>
+      </td>
+      <td width="50%" valign="top"><pre>if (SEL = &lsquo;1&rsquo;) then<br>    OUT &lt;= A and B;<br>else<br>    OUT &lt;= &lsquo;0&rsquo;;<br>end if;</pre>
+      </td>
+    </tr>
+  </table>
+  <p>After translation, a corresponding schematic of the data might look like the following. Note that all of the nets and instances are scalar.</p>
+  <p><img src="images/figSchematic2.gif"></p>
+<h3><a name="ex_single"></a>Example: Single-Bit Data and Multi-Bit Data </h3>
+  <p>This example compares data implemented using single-bit nets, terminals, and an instance to data implemented using multi-bit nets, terminals, and a vectorInst. The first schematic uses four instances of IOLatch named I4, I5, I6, and I7. </p>
+  <p><img src="images/figSchematic3.gif" width="714" height="459"></p>
+  <p>This schematic uses a single vectorInst I[4:7], bundleNets, and bundleTerms to implement the same connectivity. </p>
+  <p><img src="images/figSchematic4.gif" width="474" height="372"></p>
+  <p>&nbsp;</p>
+  <h2>Secondary Objects</h2>
+  <p>There is a secondary set of objects that support and extend the basic capabilities of the primary connectivity objects.</p>
+  <ul>
+    <li><a href="#connect_defs">Connection Definitions </a></li>
+    <li><a href="#assignments">Assignments</a></li>
+    <li><a href="#inst_headers">Instance Headers</a></li>
+    <li><a href="#busNetDefs">BusNetDefs</a></li>
+    <li><a href="#busTermDefs">BusTermDefs</a></li>
+    <li><a href="#vectorInstDefs">VectorInstDefs</a></li>
+  </ul>
+  <h3><a name="connect_defs"></a>Connection Definitions</h3>
+  <p>A connection definition, or connectDef, associates an assignment definition with a bitNet or a bitTerm. The assignment definition specifies an assignment name and a default net name. The assignment name specifies the name of an assignment object to use when resolving the connectivity associated with the connection definition.</p>
+  <p>A connection definition is associated with a global net or a terminal representing a global net. With assignment definitions and objects, you can assign a different net to the connection from a higher level in a design or module hierarchy.  This supports the following: </p>
+  <ul>
+    <li>Specification of multiple power supplies</li>
+    <li>Specification of substrate connections</li>
+    <li>The use of parameterized power and ground symbols in a schematic</li>
+  </ul>
+  <p>A connectDef associated with a bitNet is called a netConnectDef. The default net name in the assignment definition specifies the name to use if a corresponding assignment is not found.</p>
+  <p>A connectDef associated with a bitTerm is called a termConnectDef. The default net name in the assignment definition specifies the name to use for the net that externally connects to the terminal if a corresponding assignment is not found.</p>
+  <p>The occInstTerm, occNet, and occTerm objects support getAssignedNet() methods that  determine the net assigned to the object based on the associated connection definition and corresponding assignments found in the occurrence hierarchy.</p>
+  <h3><a name="assignments"></a>Assignments </h3>
+  <p>A connection assignment specifies the assignment object for a corresponding net or terminal with a connection definition. In conjunction with connection definitions, assignment objects specify how nets are connected by name in a design hierarchy. Assignments are associated with an instance that represents the portion of the design hierarchy to which the connection assignment applies.  There are two types of assignment objects:</p>
+  <ul>
+    <li>AssignValue &ndash; This type of connection assignment specifies the name of the net to use for the connection. For a connection definition on a net, the name specifies the net to use in place of the net associated with the connectDef. For a connection definition on a terminal, the name specifies the net to use to externally connect to the terminal associated with the connectDef.</li>
+    <li>AssignAssignment &ndash; This type of connection assignment specifies new assignment definition values, overriding those of the originating connection definition or previously encountered assignAssignment. The database searches for the specified connection assignment while moving up the design hierarchy; the default name specified in the assignAssignment is used if no connection assignment is found.</li>
+  </ul>
+  <p>For more detailed information about how connection definitions and assignments work in the occurrence hierarchy, see <a href="definedconnections.html">Defined Connections</a>. </p>
+  <h3><a name="inst_headers"></a>Instance Headers </h3>
+  <p>An instance header, or instHeader, is an object that contains information common to all instances of a particular master. In the block domain, instHeaders are references to master designs outside of the context of the design containing the instance. In the module and block domains, instHeaders can be references to master designs or  references to master modules that have been defined in the context of the owning design.</p>
+  <p>An instHeader is implicitly created whenever the first instance referencing a particular master is created. The instHeader is destroyed when the last instance associated with it is destroyed.</p>
+  <h3><a name="busNetDefs"></a>BusNetDefs</h3>
+  <p>All busNets and busNetBits with the same base name are managed by a bus definition object called a busNetDef. The busNetDef manages:</p>
+  <ul>
+    <li>The busNets with the same base name</li>
+    <li>The busNetBits with the same base name</li>
+    <li>The lowest numbered bit of all associated busNets and busNetBits</li>
+    <li>The highest numbered bit of all associated busNets and busNetBits</li>
+  </ul>
+  <p>Some applications might explicitly create busNetDefs before creating any busNets or busNetBits with the same baseName. Otherwise, a busNetDef is implicitly created whenever an application creates a busNet or busNetBit. Implicitly created busNetDefs are automatically deleted when the busNet or busNetBit associated with it is deleted.</p>
+  <h3><a name="busTermDefs"></a>BusTermDefs</h3>
+  <p>All busTerms and busTermBits with the same base name are managed by a bus definition object called a busTermDef. The busTermDef manages:</p>
+  <ul>
+    <li>The busTerms with the same base name</li>
+    <li>The busTermBits with the same base name</li>
+    <li>The lowest numbered bit of all associated busTerms and busTermBits</li>
+    <li>The highest numbered bit of all associated busTerms and busTermBits</li>
+  </ul>
+  <p>Some applications might explicitly create busTermDefs before creating any busTerms or busTermBits with the same baseName. Otherwise, a busTermDef is implicitly created whenever an application creates a busTerm or busTermBit. Implicitly created busTermDefs are automatically deleted when the associated busTerm or busTermBit  is deleted.</p>
+  <h3><a name="vectorInstDefs"></a>VectorInstDefs </h3>
+  <p>All vectorInsts and vectorInstBits with the same base name are managed by a bus definition object called a vectorInstDef. The vectorInstDef manages:</p>
+  <ul>
+    <li>The vectorInsts with the same base name</li>
+    <li>The vectorInstBits with the same base name</li>
+    <li>The lowest numbered bit of all associated vectorInsts and vectorInstBits</li>
+    <li>The highest numbered bit of all associated vectorInsts and vectorInstBits</li>
+  </ul>
+  <p>Some applications might explicitly create vectorInstDefs before creating any vectorInsts or vectorInstBits with the same baseName. Otherwise, a vectorInstDef is implicitly created whenever an application creates a vectorInst or vectorInstBit. Implicitly created vectorInstDefs are automatically deleted when the associated vectorInst or vectorInstBit  is deleted.</p>
+  <h3>Bit Order on Vectored Objects</h3>
+  <p> The <em>busNetDef</em>, <em>busTermDef</em>, and <em>vectorInstDef</em> vector definition objects support a <em>bitOrder </em> attribute. The bitOrder specifies how the vector definition should be interpreted by applications interested in this information. For example, A[9:1] and A[0:7] are both legal bus names. The bitOrder on busNetDefs provides information about whether the vector definition should be interpreted as&nbsp; A[9:0] or A[0:9].</p>
+  <p>The bitOrder of a vector definition object is independent of the order within individual vector objects with the same name.So, the bitOrder of an explicit busNetDef is independent of the order within&nbsp; individual busNets with the same base name. Verilog requires a single wire declaration for a given base name, and the range of that declaration covers all of the bit indices used by the sub-ranges that correspond to busNets. </p>
+  <p>Applications  that need to define a specific bitOrder on a vector definition object  need to create the vector definition object explicitly before creating any of the corresponding  vectored objects. Vectored objects with the same base name are then added to the vector definition.</p>
+<h2>Bitwise Connectivity </h2>
+  <p>A scalarized view of the logical connectivity in a design is always available. The database  implicitly creates the bit objects as required. Applications can traverse nets, instTerms, instances, and terminals in a scalar fashion regardless of how the data was created.</p>
+  <h5><a name="bitwise_example"></a>Example: Bitwise Connectivity</h5>
+  <p><img src="images/figSchematic4.gif" width="474" height="372"></p>
+  <ul>
+    <li>When the bundleNet vdd,N0,N1,N2 is created, scalarNets vdd, N0, N1, and N2 are implicitly created.</li>
+    <li>When the vectorInst I[4:7] is created, implicit vectorInstBits I[4], I[5], I[6], and I[7] are implicitly created.</li>
+    <li> When the instTerm connecting the bundleNet vdd,N0,N1,N2 to the SIN terminal on instance I[4:7] is created, implicit instTerms are created connecting
+      <ul>
+        <li>Implicit scalarNet vdd to terminal SIN on implicit vectorInstBit I[4]</li>
+        <li>Implicit scalarNet N0 to terminal SIN on implicit vectorInstBit I[5]</li>
+        <li>Implicit scalarNet N1 to terminal SIN on implicit vectorInstBit I[6]</li>
+        <li>Implicit scalarNet N2 to terminal SIN on implicit vectorInstBit I[7]</li>
+      </ul>
+    </li>
+  </ul>
+  
+  <p>Implicitly created connectivity can be traversed and queried, but it cannot be modified -- only explicit connectivity can be modified. </p>
+  <h5>Example: Bitwise Connectivity Spanning Hierarchy</h5>
+  <p><img src="images/figSchematic5.gif" width="824" height="482"> </p>
+  <h3>Upgrading Implicit Connectivity to Explicit for Modification</h3>
+  <p>In order to modify implicit connectivity, the connectivity must first be made explicit. This can be accomplished in two ways:</p>
+  <ul>
+    <li><a href="#explicit_create">Explicit Creation</a></li>
+    <li><a href="#scalarization">Scalarization</a></li>
+  </ul>
+  <h4><a name="explicit_create"></a>Explicit Creation</h4>
+  <p>In the <a href="#bitwise_example">Bitwise Connectivity</a> example, when the bundleNet clk*4 is created, an implicit scalarNet, clk, is also created. A call to create an explicit scalarNet, clk,  results in upgrading the implicit clk so that it is explicit and can be modified independently from the bundleNet of which it is a member.</p>
+  <h4><a name="scalarization"></a>Scalarization</h4>
+  <p>You can also  upgrade implicit bit connectivity so that it is editable by scalarizing its multi-bit owner. Scalarizing the bundleNet vdd,N0,N1,N2 makes its implicit bitNets vdd, N0, N1, and N2 explicit and editable. In addition, the originating bundleNet is downgraded and made implicit so that it can no longer be modified. The individual bitNets can be manipulated as if they were explicitly created. The bundleNet remains to store information about how the connectivity was originally created. Deleting any one of the nets vdd, N0, N1, or N2  results in the implicit bundleNet also being deleted because the original definition of the bit connectivity is no longer valid.</p>
+  <p>The ability to scalarize an object is available on all of the primary connectivity objects. Scalarizing a net or a terminal follows the approach described previously; the implicit bit members of a multi-bit net or terminal are made explicit and the multi-bit net is made implicit. Scalarizing a bitNet or bitTerm insures that the object itself is explicit and available for modification and use.</p>
+  <p>Scalarizing a multi-bit instTerm makes the associated single-bit instTerms explicit and editable and makes the multi-bit instTerm implicit. In addition, the net associated with the multi-bit instTerm is also scalarized, insuring that the bitNets associated with the single-bit instTerms are also explicit. Scalarizing a single-bit instTerm insures that it is explicit and editable and scalarizes its associated net.</p>
+  <p>Scalarizing a vectorInst makes its associated vectorInstBits explicit and editable and makes the vectorInst implicit. In addition, each instTerm associated with the instance is scalarized, insuring that any implicit instTerms associated with one of the vectorInstBits are made explicit. As mentioned previously, this propagates to scalarizing the nets that are connected to instance.</p>
+  <p>The ability to scalarize objects allows applications to perform localized scalarization so that they can modify a portion of a design. As a convenience, there is a <a href="../design/classoaDesign.html#oaDesign::scalarize">scalarize()</a> method on oaDesign that  scalarizes all the connectivity in the associated design.</p>
+  <p> </p>
+  <p><a
+href="#pagetop">Return to top of page</a></p>
+    <p><a
+href="index.html">Return to Programmers Guide topics</a></p>
+    <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+
+</li>
+</body>
+</html>

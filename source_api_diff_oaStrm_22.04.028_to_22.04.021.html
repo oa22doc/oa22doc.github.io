@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h2>Summary of API Changes</h2>
+		<p>Following is a summary of the API changes between the OpenAccess p028 release 
+			and the p021 release.</p>
+		<p><span style="COLOR: rgb(0,102,204)">
+#################################<br>
+#  The following classes were modified  #<br>
+#################################<br>
+</span>
+			<pre><span style="COLOR: rgb(0,102,204)"><br>
+	LayerMapIn <br >
+<br >		<span style="COLOR:green; TEXT-DECORATION:underline">Added API</span><br >
+		add(oaUInt2 strmLayer, oaUInt2 strmType, oaLayerNum layer, oaPurposeNum purpose, oaMaterial materialName=oacOtherMaterial, oaUInt4 maskNum=oacNullIndex) <br >
+		add(oaUInt2 strmLayer, oaUInt2 strmType, const oaString &amp;layerName, const oaString &amp;purposeName, oaMaterial materialName=oacOtherMaterial, oaUInt4 maskNum=oacNullIndex)<br >
+
+		getMaterial(oaUInt4 index) const <br >
+		setLpp(oaUInt4 index, oaLayerNum layer, oaPurposeNum purpose)<br >
+<br >		<span style="COLOR:red; TEXT-DECORATION:underline">Removed API</span><br >
+		add(oaUInt2 strmLayer, oaUInt2 strmType, oaLayerNum layer, oaPurposeNum purpose, oaString *layerName=NULL, oaString *purposeName=NULL, oaString *materialName=NULL, oaUInt4 maskNum=oacNullIndex)<br >
+		findLppForStrmLayerTypePair(oaUInt2 strmLayer, oaUInt2 strmType, oaLayerNum &amp;layer, oaPurposeNum &amp;purpose) const<br >
+
+		getMaterialName(oaUInt4 index) const<br >
+		isLayerAndPurPoseNotDefined(oaUInt4 index)<br >
+		setOaLayer(oaUInt4 index, oaLayerNum layer)<br >
+		setOaPurpose(oaUInt4 index, oaPurposeNum purpose)<br >
+		</span>
+	<span style="COLOR: rgb(0,102,204)">OptionsIn <br >
+<br >		<span style="COLOR:green; TEXT-DECORATION:underline">Added API</span><br >
+
+		getTextHeight() const <br >
+		setTextHeight(oaUInt4 value)<br >
+</span></pre>
+			<pre><span style="COLOR: rgb(0,102,204)">
+	StrmIn <br>
+<br>	<span style="COLOR:green; TEXT-DECORATION:underline">Added API</span><br>
+		close(Structure *structIn, oaDesign *design) <br>
+		getCustomViaDefStat() const<br>
+		getStdViaDefStat() const <br>
+		getTmpCellName() const <br>
+		getTmpViewName() const <br>
+		incrCustomViaDefStat() <br>
+		incrStdViaDefStat() <br>
+		setTmpCellName(oaScalarName tmpCellNameIn) <br>
+		setTmpViewName(oaScalarName tmpViewNameIn) <br>
+		writeStdVia(oaDesign *cell, oaStdViaDef *def, oaPoint &amp;origin, oaBoolean mx, oaDouble angle, oaDouble mag, const PropArray &amp;props, const oaViaParam *params=NULL) <br>
+<br>		<span style="COLOR:red; TEXT-DECORATION:underline">Removed API </span><br>
+		close(oaDesign *design)<br>
+		writeStdVia(oaDesign *cell, oaStdViaDef *def, oaPoint &amp;origin, oaBoolean mx, oaDouble angle, oaDouble mag, const PropArray &amp;props)<br>
+	Structure <br>
+<br>		<span style="COLOR:green; TEXT-DECORATION:underline">Added API</span><br>
+		getBBox() const<br>
+		getSavedDesign() const<br>
+		getViaParam() const<br>
+		setBBox(const oaBox &amp;bBoxIn)<br>
+		setSavedDesign(oaBoolean value)<br>
+		setViaParam(const oaViaParam *viaParamIn)<br>
+</span></pre>
+			<span style="COLOR: rgb(0,102,204)"><br>
+#################################
+</span>
+		<P></P>
+	</body>
+</html>

@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1><a name="pagetop"></a>Deriving Your Own Namespace
+</h1>
+<hr />
+<p>A <em>namespace</em> refers to a set of rules for creating and interpreting
+legal names within an application. The OpenAccess database supports a number of
+commonly used namespaces, including <a href="../base/classoaVhdlNS.html">VHDL</a>, 
+<a href="../base/classoaVerilogNS.html">Verilog</a>, 
+<a href="../base/classoaCdbaNS.html">CDBA</a>, 
+<a href="../base/classoaLefNS.html">LEF</a>, 
+<a href="../base/classoaDefNS.html">DEF</a>, 
+<a href="../base/classoaSpefNS.html">SPEF</a>, 
+<a href="../base/classoaSpfNS.html">SPF</a>,
+<a href="../base/classoaUnixNS.html">UNIX</a>, and 
+<a href="../base/classoaWinNS.html">Windows</a>, as well as the 
+<a href="../base/classoaNativeNS.html">oaNative</a> OpenAccess namespace (the 
+internal format for <a href="../base/classoaName.html">oaName</a> objects).</p> 
+
+<p>Deriving a namespace to integrate your proprietary language with the
+OpenAccess database and other tools simplifies exporting your data to
+other systems.</p>
+
+<p>This section includes the following topics:</p>
+
+<ul>
+<li><a href="#deriv">Deriving from oaNameSpace</a></li>
+<li><a href="#flowIn">Implementation Flow: 	From Your Namespace to oaNative</a></li>
+<li><a href="#flowOut">Implementation Flow: 	From oaNative to Your Namespace</a></li>
+<li><a href="#funcsIn">Functions for Converting to the oaNative Namespace</a></li>
+<li><a href="#funcsOut">Functions for Converting from the oaNative Namespace</a></li>
+</ul>
+
+
+<h2 class="spabove"><a name="deriv">Deriving from oaNameSpace</a></h2>
+
+<p>Name spaces are derived from the abstract base class 
+<a href="../base/classoaNameSpace.html">oaNameSpace</a>. The oaNameSpace class
+defines the minimum amount of information you need to provide to the
+OpenAccess database in order to implement a namespace. Defining the required
+minimum input and output allows the OpenAccess database to interpret your data
+even though the database did not write the code. </p>
+
+<p>When deriving a namespace, you must determine how to translate the names
+from the original language to the 
+<a href="../base/classoaNativeNS.html">oaNative</a> format, and vice versa. Because
+namespaces always know that any name they receive from the OpenAccess database
+is in the oaNative format, the namespaces really need to know only how to
+translate from oaNative to their language, and from their language to 
+oaNative. Once that is implemented, names can then be translated into the
+correct format for any other derived namespace.</p>
+
+<p>When creating a namespace, be sure to document what the namespace
+supports, what special characters are used, what keywords are required, any
+sequencing issues, and if there are any restrictions on characters used to
+begin or end the name.</p>
+
+
+<div class="indent">
+<h4 class="spabove">Supported Name Objects</h4>
+
+<p>The <a href="../base/classoaName.html">oaName</a> object is used in conjunction
+with <a href="../base/classoaNameSpace.html">oaNameSpace</a> to perform name 
+mapping. oaName has the capability to represent scalar names, vectorBit names,
+vector names, and bundle names. The minimum name object you must support when
+creating a namespace is scalar names, which includes the minimal set of library
+names and cell names. Generally, about half of all names are scalar names, and
+slightly less than half are vector or vectorBit names. </p>
+
+
+<h4 class="spabove">Name Mapping</h4>
+
+<p>Names are memory intensive as well as algorithmically intensive. When
+implementing a derived namespace, you must use a one-to-one name mapping
+algorithm. For example:</p>
+
+<ul>
+<li>A legal name in the <a href="../base/classoaNativeNS.html">oaNative</a>
+namespace must map to a legal name in your derived namespace, and vice
+versa.</li>
+
+<li>In addition, every pair of names that are the same in the oaNative
+namespace map to the same names in your namespace, and vice versa.</li>
+
+<li>Finally, all mappings must be reversible, with the exception of possible
+loss of case if the original name space is case-insensitive.</li>
+</ul>
+
+<p>Additional information can be found in
+<a href="namemap.html#2">The Name Mapping Algorithm</a> within the 
+<a href="namemap.html">Name Mapping</a> section of this Programmers Guide.</p>
+
+<p>For specific examples of different name types, refer to the 
+<a href="namemap.html#ex">Examples of Name Mapping</a> table within the Name 
+Mapping section. These examples can help you understand fundamentally how your
+names map to <a href="../base/classoaNativeNS.html">oaNative</a> and how oaNative
+maps to your names.</p>
+
+<p>It is also helpful to study the namespaces that are already defined as
+OpenAccess classes for suggestions on implementing your own namespace. For
+example:</p>
+
+<ul>
+<li>The Windows namespace (<a href="../base/classoaWinNS.html">oaWinNS</a>) is an
+example of a case-insensitive namespace that supports keywords and only
+supports scalar names.</li>
+<br /><br />
+<li>The Native namespace (<a href="../base/classoaNativeNS.html">oaNativeNS</a>)
+is an example of a case-sensitive namespace that supports all types of names,
+including hierarchical, scalar, vectorBit, vector, stepped, and bundle
+names.</li>
+<br /><br />
+<li>The VHDL and Verilog namespaces 
+(<a href="../base/classoaVhdlNS.html">oaVhdlNS</a> and 
+<a href="../base/classoaVerilogNS.html">oaVerilogNS</a>) are examples of namespaces
+that support keywords and more than one name type.</li>
+</ul>
+</div>
+
+
+<h2 class="spabove"><a name="flowIn">Implementation Flow: 	From Your Namespace to oaNative</a></h2><p>When implementing your derived namespace, mapping it to the <a href="../base/classoaNativeNS.html">oaNative</a> format typically includes the
+following processes.</p>
+
+<ul>
+<li>If your namespace supports more than one name type, each name string
+should be checked to determine what kind of name it is (using the 
+<a href="../base/classoaNameSpace.html#oaNameSpace::getType">oaNameSpace::getType()</a> function).
+</li><br /><br />
+
+<li>If your namespace uses keywords, each name should be checked to determine
+if it is a keyword. If the name is a keyword, your namespace should throw an
+error. </li>
+<br /><br />
+
+<li>Each character should be checked to determine if it is valid in the
+<a href="../base/classoaNativeNS.html">oaNative</a> namespace. Validity is based on
+the oaNative language rules. Each valid character is written to a buffer, and
+then the next character is checked. A character that is a normal character in
+your original namespace but is a special character oaNative should be hex
+encoded.<br /><br />
+
+For additional information on special characters, refer to 
+<a href="namemap.html#5">Handling Illegal Characters</a> in the Name Mapping
+section of this Programmers Guide.</li>
+<br /><br />
+
+<li>Bus characters in your original namespace should be replaced with the
+<a href="../base/classoaNativeNS.html">oaNative</a> bus character.</li><br /><br />
+
+<li>Case sensitivity is considered in both the your namespace and in the
+oaNative namespace throughout the flow.</li>
+<br /><br />
+
+<p>For information on how case sensitivity is handled, see
+<a href="namemap.html#4">Understanding Case Sensitivity</a> in the Name
+Mapping section of this Programmers Guide.</li><br /><br />
+</ul>
+
+<h4 class="spabove"><a href="sampleWinToNativeFlow.html">SampleNamespace Implementation: oaWinNs to oaNative</a></h4>
+
+
+<br /><br />
+<h2 class="spabove"><a name="flowOut">Implementation Flow: 	From oaNative to Your Namespace</a></h2><p>Mapping from the <a href="../base/classoaNativeNS.html">oaNative</a> namespace
+to your derived namespace typically includes the following processes.</p>
+
+<ul>
+<li>If your namespace uses keywords, each name string should be checked to
+determine if it is a keyword. If the name is a keyword in your namespace, it
+must be escaped by adding the escape delimiter to the name string.</li>
+<br /><br />
+
+<li>Each character should be checked to determine if it is a valid character
+in your namespace. Validity is based on the rules of your language. Each valid
+character is written to a buffer, and then the next character is checked. A
+character that is a normal character in oaNative but is a special character in
+your namespace should be hex encoded.
+<br /><br />
+
+For additional information on special characters, refer to
+<a href="namemap.html#5">Handling Illegal Characters</a> in the Name Mapping
+section of this Programmers Guide.</li>
+<br /><br />
+
+<li>If your namespace supports bus characters, the
+<a href="../base/classoaNativeNS.html">oaNative</a> bus characters should be
+replaced by the bus character for your namespace.</li>
+<br /><br />
+
+<li>Case sensitivity is considered in both the oaNative namespace and your
+namespace throughout the flow.</li>
+
+<p>For information on how case sensitivity is handled, see
+<a href="namemap.html#4">Understanding Case Sensitivity</a> in the Name
+Mapping section of this Programmers Guide.</li><br /><br />
+</ul>
+
+<h4 class="spabove"><a href="sampleNativeToWinFlow.html">Sample NamespaceImplementation: oaNative to oaWinNS</a></h4>
+<br /><br />
+
+
+<h2><a name="funcsIn">Functions for Converting to the oaNative Namespace</a></h2>
+
+<p>When converting from a derived namespace to the oaNative namespace, you
+must implement the following virtual functions from the abstract base class
+<a href="../base/classoaNameSpace.html">oaNameSpace</a>. In addition to these
+functions, you must also implement the <a href="#isEqual">isEqual</a> 
+functions.</p>
+
+
+<pre>
+<p class="construct">
+void            <a href="../base/classoaNameSpace.html#oaNameSpace::getInternalMember">getInternalMember</a>(const oaChar  *in,		
+                                  oaString      &out,		
+                                  oaBoolean     &caseSensitive, 
+                                  oaUInt4       len,		
+                                  oaUInt4       flags = 0)	
+				  const = 0;			
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns the input string, including the case sensitivity
+setting, mapped into the <a href="../base/classoaNativeNS.html">oaNative</a> 
+namespace. The specified number of characters of the input string are 
+evaluated; the default is to evaluate the entire string. The data is returned
+in the string <em>out</em>. <em>Flags</em> has no valid values other than
+zero.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+void            <a href="../base/classoaNameSpace.html#oaNameSpace::getInternalScalar">getInternalScalar</a>(const oaChar  *in, 
+                                  oaScalarName  &out)
+				  const = 0;	     
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns the input string mapped into the
+<a href="../base/classoaNativeNS.html">oaNative</a> namespace. The data is
+returned in the string <em>out</em>.</p>
+</div>
+<br /><br />
+
+
+
+<h2><a name="funcsOut">Functions for Converting from the oaNative Namespace</a></h2><p>When converting from the oaNative namespace to your derived namespace, youmust implement the following virtual functions from the abstract base class<a href="../base/classoaNameSpace.html">oaNameSpace</a>. In addition to these
+functions, you must also implement the <a href="#isEqual">isEqual</a> 
+functions.</p>
+
+
+<pre>
+<p class="construct">
+void            <a href="../base/classoaNameSpace.html#oaNameSpace::get">get</a>(const oaByte    *data,
+                    oaString        &out, 
+                    oaUInt4         &loc) 
+		    const = 0;		  
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns the input block <em>data</em> mapped into 
+<em>this</em> namespace. The data is returned in the string <em>out</em>,
+beginning at the location <em>loc</em>.</p>
+
+<p>The format for the <em>data</em> byte array is as follows:</p>
+
+<ul>
+<li>The first unsigned integer returns the flags.</li>
+<br /><br />
+<li>The upper half of the integer indicates the type of name this represents.
+(The mask oavNameTypeMask can be used to get the name type).</li>
+</ul>
+
+<div class="indent">
+<table cellSpacing="8">
+<tr>
+<td>If the name is a<br />Simple Name:</td>
+<td>
+<ul>
+<li>For all simple names, the first unsigned integer indicates the name type
+in the upper half and the number of members in the lower half.</li>
+</ul></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>
+<ul>
+<li>For vector names, the next three unsigned integers indicate the start,
+stop, and step values, respectively.</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>
+<ul>
+<li>For vectorBit names, the next unsigned integer indicates the bit
+value.</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>
+<ul>
+<li>For all simple names, for each of the members, read the array as follows:
+</li><br /><br />
+<ul>
+<li><a href="../base/classoaNameSpace.html#oaNameSpace::readStr">readStr()</a> gives the 
+const char* representing the name member.</li>
+<br /><br />
+<li>The next unsigned integer gives the case sensitivity of the member.</li>
+</ul></ul>
+</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td width="150">If the name is a<br />Bundle Name:</td>
+<td>
+<ul>
+<li>The next unsigned integer indicates the number of members in the name.</li>
+</ul>
+</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>
+<ul>
+<li>For each of the members, read the array as follows:</li>
+<br /><br />
+<ul>
+<li>The next unsigned integer is the repeat value for the member.</li>
+<br /><br />
+<li>Read the next set of data as you would a simple name.</li>
+</ul></ul></td>
+</tr>
+</table>
+</div>
+
+
+<p>The <a href="../base/classoaCdbaNS.html">oaCdbaNS</a> namespace is an example 
+of a namespace that represents all of the different kinds of names. Since the
+code for reading the byte array doesn't change from namespace to namespace,
+studying this namespace can give you a better understanding of how to read the
+data byte array. </p>
+
+<p>The <a href="../base/classoaNameSpace.html#oaNameSpace::readUInt4">readUInt4()</a> and
+<a href="../base/classoaNameSpace.html#oaNameSpace::readStr">readStr()</a> methods in
+<a href="../base/classoaNameSpace.html">oaNameSpace</a> are available to make it
+easy to process the array.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+oaNameType      <a href="../base/classoaNameSpace.html#oaNameSpace::getType">getType</a>(const oaChar    *in) 
+			const = 0;    	     
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns the type of name represented by the specified string
+in <em>this</em> namespace: scalar, vector bit, vector, or bundle. This
+function does not indicate if the name is valid.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+void            <a href="../base/classoaNameSpace.html#oaNameSpace::getMember">getMember</a>(const oaChar  *in,		
+                          oaBoolean     caseSensitive,  
+                          oaString      &out,		
+                          oaUInt4       &loc,		
+                          oaUInt4       flags = 0) 	
+			  const = 0;			
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns the input name member, with the specified case
+sensitivity value, mapped into <em>this</em> namespace. It is assumed that the 
+input name is in the <a href="../base/classoaNativeNS.html">oaNative</a> namespace
+format. The data is returned in the string <em>out</em>, at the location
+<em>loc</em>. <em>Flags</em> has no valid values other than zero.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+void            <a href="../base/classoaNameSpace.html#oaNameSpace::getScalarName">getScalarName</a>(const oaScalarName    &in,	
+                              oaString              &out,	
+                              oaUInt4               &loc) 	
+		  	      const = 0;			
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns the input scalar name mapped into <em>this</em>
+namespace. It is assumed the input name is in the
+<a href="../base/classoaNativeNS.html">oaNative</a> namespace format. The data is
+returned in the string <em>out</em>, at the location <em>loc</em>.</p>
+</div>
+<br /><br />
+
+
+<h2 class="spabove"><a name="isEqual">isEqual Functions</a></h2>
+
+<p>The following functions return a boolean value that indicates if two 
+specified names match. Matching also includes case sensitivity for each member.
+You must implement all of the isEqual functions in your derived namespace. In
+ general, if a name type is not supported in your namespace, the equivalent
+functions should throw the appropriate exception (for example, if vector
+names are not supported, throw the exception
+<a href="../exceptionsByName.html#oacVectorNameInvalid">oacVectorNameInvalid</a>).</p>
+<br />
+
+
+<pre>
+<p class="construct">
+oaBoolean       <a href="../base/classoaNameSpace.html#oaNameSpace::isEqual">isEqual</a>(const oaNameMem &n1, 	
+                        const oaNameMem &n2) 	
+			const = 0;		
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns a boolean value that indicates if the two specified
+name members are equal in <em>this</em> namespace.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+oaBoolean       <a href="../base/classoaNameSpace.html#oaNameSpace::isEqual">isEqual</a>(const oaScalarName  &n1,
+                        const oaScalarName  &n2)
+			const = 0;		
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns a boolean value that indicates if the two specified
+scalar names are equal in <em>this</em> namespace.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+oaBoolean       <a href="../base/classoaNameSpace.html#oaNameSpace::isEqual">isEqual</a>(const oaVectorName  &n1,
+                        const oaVectorName  &n2)
+			const = 0;		
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns a boolean value that indicates if the two specified
+vector names are equal in <em>this</em> namespace. </p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+oaBoolean       <a href="../base/classoaNameSpace.html#oaNameSpace::isEqual">isEqual</a>(const oaVectorBitName   &n1,
+                        const oaVectorBitName   &n2)
+			const = 0;		    
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns a boolean value that indicates if the two specified
+vector bit names are equal in <em>this</em> namespace.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+oaBoolean       <a href="../base/classoaNameSpace.html#oaNameSpace::isEqual">isEqual</a>(const oaBundleName  &n1,
+                        const oaBundleName  &n2)
+			const = 0;		
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns a boolean value that indicates if the two specified
+bundle names are equal in <em>this</em> namespace.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+oaBoolean       <a href="../base/classoaNameSpace.html#oaNameSpace::isEqual">isEqual</a>(const oaSimpleName  &n1,
+                        const oaSimpleName  &n2)
+			const = 0;		
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns a boolean value that indicates if the two specified
+simple names are equal in <em>this</em> namespace.</p>
+</div>
+<br />
+
+
+<pre>
+<p class="construct">
+oaBoolean       <a href="../base/classoaNameSpace.html#oaNameSpace::isEqual">isEqual</a>(const oaName    &n1,    
+                        const oaName    &n2)    
+			const = 0;		
+</p>
+</pre>
+
+<div class="indent">
+<p>This function returns a boolean value that indicates if the two specified
+names are equal in <em>this</em> namespace.</p>
+</div>
+
+
+
+<!-- beginning of footer -->
+<br /><br /><br /><br />
+
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<p><a href="index.html">Return to Programmers Guide topics</a></p>
+
+<div style="text-align: center">
+<img src="../pgfooter.gif"><br />
+
+</div><br />
+
+<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+<br />All rights reserved.</p>
+</body>
+</html>

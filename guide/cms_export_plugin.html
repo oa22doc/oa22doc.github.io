@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>How to Write a Change Management System (CMS) Export Plug-In</h1>
+<hr>
+<p>A CMS export plug-in externalizes the information about changes made to a design and emits it in a format that can be consumed by a corresponding import plug-in. An export plug-in</p>
+<ul>
+  <li>Reads change records </li>
+  <li>Externalizes the information in the change records (by writing to disk or to a stream). Changes can be exported as a complete set or incrementally. </li>
+</ul>
+<p>The sections that follow provide a general guide for writing an export plug-in. </p>
+<p>For an overview of the CMS system, refer to <a href="cms.html">Change Management System (CMS)</a> in the Programmers Guide. </p>
+<h2>How Database Changes Are Exported by Applications</h2>
+<p>An application exports information about tracked design changes through CMS using the public oaChangeMgr class and an export plug-in. All interactions between CMS and the plug-in are managed by the oaChangeMgr singleton public class.</p>
+<p><img src="images/changeManagerExportPlugIn.gif" width="738" height="377"></p>
+<p>The exported changes can  then be imported by a different application with the appropriate import plug-in. </p>
+<p>Refer to <a href="cms.html#export">Exporting Changes</a> in the Change Management System (CMS) document for an overview of the sequence of interactions between the end user, the  application, the oaChangeMgr instance, and the tracking plug-in. </p>
+<h2>Creating a CMS Export Plug-In</h2>
+<p>Before starting this project, you might want to read <a href="writingplugin.html">How to Write a Plug-In</a>, which is a more generic document describing the general concept of plug-ins and how they work. </p>
+<p>In order to create an   CMS export plug-in, you need to:</p>
+<ul>
+  <li>Create a factory for your export plug-in and construct a static member of the plug-in.</li>
+  <li>Define and implement the entry point function.</li>
+  <li>Define a new class inherited from <a href="../plugin/classIExport.html">IExport</a>, and implement the required functions.</li>
+  <li>Write the plug-in registration file.</li>
+</ul>
+<p>OpenAccess provides  infrastructure support for implementing a CMS plug-in.  The functions in oaCommon.h provide basic plug-in support such as the ability to get the globally unique identifier (Guid) and manage the  plug-in lifetime.  Functions in oaCM.h provide support for all CMS objects. </p>
+<p>Note that a  sample export plug-in is provided at <em><code>&lt;install_dir&gt;</code></em><code>/oa/examples/cms/src/export</code>.</p>
+<p>To create a basic  export plug-in: </p>
+<ol>
+  <li>Create a factory for your export plug-in and construct a static member of it:<br>
+    <br>
+    <code>const oa::oaString myExportPlugIn::plugInName("myExportPlugIn");<br>
+oaCommon::Factory&lt;myExportPlugIn> myTrackingPlugIn::factory(myExportPlugIn::getPlugInName());</code><br>
+    <br>
+  </li>
+  <li>Define the entry point function getClassObject(). Use:<br>
+    <br>
+    <code>extern "C" long <br>
+    getClassObject(const char *classID,
+                                   <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const Guid &amp;interfaceID,
+                                   <br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **ptr);</code><br>
+   <br> 
+  </li>
+  <li>Implement the entry point function as:<br>
+    <br> 
+    <code>long <br>
+    getClassObject(const char	   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *classID,<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; const oaCommon::Guid &amp;interfaceID,<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+void		   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **ptr)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;
+return oaCommon::FactoryBase::getClassObject(classID, interfaceID, ptr);<br>
+}</code><br>
+<br>
+</li>
+  <li>Define a new class inherited from IExport, and implement the required functions. For example:<br>
+      <br>
+   <code>class myCMExport : public oaCommon::PlugInBase
+   &lt;oaPlugIn::IExport> {
+   <br>
+  public:<br>
+   &nbsp;&nbsp;&nbsp; </code><code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; myCMExport(); <br>
+  &nbsp;&nbsp;&nbsp; virtual void                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; init();
+
+     <br>
+   &nbsp;&nbsp;&nbsp; <br>
+  &nbsp;&nbsp;&nbsp; virtual void                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; getProtocols(oa::oaCMProtocolArray &out) const;
+    <br>
+   &nbsp;&nbsp;&nbsp; virtual void                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; setProtocol(const oa::oaCMProtocol &in);
+
+    <br>
+   &nbsp;&nbsp;&nbsp; <br>
+  &nbsp;&nbsp;&nbsp; virtual void                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exportFull(oa::oaChangeSetBase *changeSet);
+    <br>
+   &nbsp;&nbsp;&nbsp; virtual void                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exportIncr(oa::oaChangeSetBase *changeSet);
+
+    <br>
+   &nbsp;&nbsp;&nbsp; <br>
+  &nbsp;&nbsp;&nbsp; virtual void                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; discardChangeSet(oa::oaChangeSetBase *in);
+
+    <br>
+    <br>
+   &nbsp;&nbsp;&nbsp; static  oaCommon::IFactory                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *getFactory();
+    <br>
+   &nbsp;&nbsp;&nbsp; static  const oa::oaString                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &getPlugInName();
+
+    <br>
+    <br>
+    private:
+    <br>
+   &nbsp;&nbsp;&nbsp;&nbsp; oaCMProtocolArray                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_protocols;
+    <br>
+   &nbsp;&nbsp;&nbsp;&nbsp; oaCMProtocol                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; m_protocol;
+
+    <br>
+   &nbsp;&nbsp;&nbsp;&nbsp; static const oa::oaString                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plugInName;
+    <br>
+   &nbsp;&nbsp;&nbsp;&nbsp; static oaCommon::Factory
+    &lt;oaCMExportSample>&nbsp;&nbsp; factory;<br>
+    };</code><br>
+    <br>
+    Refer to <a href="#sampleIntImp">Sample Interface Implementations</a> for details about these interfaces and how they might be implemented. <br>
+    <br>
+  </li>
+  <li>Optionally implement an ICompatibility::validate function to verify whether or not the version of OpenAccess is compatible with the plug-in.
+  The validate() function should check the OpenAccess API version and either throw   an exception with a description of the requirements or simply return   false. <span class="style1">REVIEWERS: Need to describe how an app might check if an interface has an ICompatibility component and if so, how to use it. </span><br>
+  <pre>virtual bool                validate()</pre>
+  </li>
+  <li>Write the plug-in registration file myExportPlugIn.plg. Use:
+    <pre>    &lt;?xml version="1.0" encoding="utf-8" ?&gt;      <br>    &lt;plugIn lib="myExportPlugIn"/&gt;    </pre>
+  <strong>Note:</strong> The registration file can be installed in $(OA_HOME)/data/plugins when  the plug-in shared library is installed. Alternatively, the  OA_PLUGIN_PATH environment variable can be used to reference a .plg  file outside of $(OA_HOME)/data/plugins. Refer to <a href="writingplugin.html#registration">Writing the Plug-In Registration File</a> in <em>How to Write a Plug-In</em> for more information.</li>
+</ol>
+<h3><a name="sampleIntImp"></a>Sample Interface Implementations </h3>
+<p>The following are sample implementations of the interface functions shown in Step 4 above. </p>
+<h4><strong>init( )</strong></h4>
+<p> This function initializes the plug-in and establishes the protocol. It could be implemented as:</p>
+<pre>
+void
+myCMExport::init()
+{
+    oaCMAttrArray   fixed;
+    oaCMAttrArray   mod;
+
+    fixed.append(oaCMAttr("Format", "File"));
+    mod.append(oaCMAttr("FileName"));
+
+    m_protocols.append(oaCMProtocol("myExport", "myCMExport", fixed, mod));
+}</pre>
+
+<h4>getProtocols( )</h4>
+
+This function returns the protocol array for the plug-in and could be implemented as:
+  <pre>void<br>myCMExport::getProtocols(oa::oaCMProtocolArray &amp;out) const<br>{<br>    out = m_protocols;<br>}</pre>
+
+  <h4><strong>setProtocol( )</strong> </h4>
+<p>This function sets the protocols of this plug-in and could be implemented as:  </p>
+
+  <pre>
+void
+myCMExport::setProtocol(const oa::oaCMProtocol &in)
+{
+    if (!m_protocols.validate(in)) {
+        throw oaError(oacCMInvalidPlugInProtocol);
+    }
+
+    m_protocol = in;
+}</pre>
+  <pre>&nbsp;</pre>
+<h4>exportFull( ) and ExportInc( ) </h4>
+<pre>
+void
+myCMExport::exportFull(oa::oaChangeSetBase *changeSet)
+{
+    changeSet->setExported();
+}
+
+void
+myCMExport::exportIncr(oa::oaChangeSetBase *changeSet)
+{
+    if (!changeSet->isActive()) {
+        changeSet->setExported();
+    }
+}</pre>
+<h4>discardChangeSet( )</h4>
+<pre>
+void
+myCMExport::discardChangeSet(oa::oaChangeSetBase *in)
+{
+}</pre>
+<h4><strong>getFactory( )</strong> </h4>
+  <p>This function returns the factory interface for this plug-in and could be implemented as:  </p>
+
+  <pre>
+inline oaPlugIn::IFactory*
+myCMExport::getFactory()
+{
+    return &factory;
+}</pre>
+  <h4>getPlugInName( ) </h4>
+  <p>This function returns the string name of the plug-in and could be implemented as: </p>
+  <pre>
+inline const oa::oaString&
+myCMExport::getPlugInName()
+{
+    return plugInName;
+}</pre>
+  <p><a href="#pagetop">Return to top of page</a></p>
+		<p><a href="index.html">Return to Programmers Guide topics</a></p>
+		<div style="TEXT-ALIGN: center">
+			<img src="../pgfooter.gif"></div>
+		<br>
+		<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+			<br>
+			All rights reserved.</p>
+		
+</body>
+</html>

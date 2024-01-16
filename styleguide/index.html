@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>OpenAccess Coding Style Guide and Standards </h1>
+<hr>
+
+<p>This document describes the coding standards for OpenAccess 2.2. This
+reference is for developers who are extending the API. It can also be useful
+for developers writing an application interface using the OpenAccess API.</p>
+<table width="875" border="0">
+  <tr>
+    <td width="438"><span class="toc1"><a name="intro"></a><a href="intro.html">Introduction</a></span></td>
+    <td><span class="toc1"><a name="variables"></a><a href="variables.html"> Variables</a></span></td>
+  </tr>
+  <tr>
+    <td width="438"><a href="nameconvent.html">Names and Naming Conventions</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="variables.html#1">Global Variables</a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="nameconvent.html#2.1">Filenames</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="variables.html#2">Static Variables</a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="nameconvent.html#2.2">Class, Structure, and Enum Names</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="variables.html#3">Local Variables</a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="nameconvent.html#2.3">Global Constant Names</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="variables.html#4"><code>#define</code> Statements</a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="nameconvent.html#2.4">Macro Names</a> </td>
+    <td width="427"><a href="comments.html">Comments </a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="nameconvent.html#trans_standards">In OpenAccess Translators and Utilities</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;<a href="comments.html#3.1">Use C++ Comment Styles</a></td>
+  </tr>
+  <tr>
+    <td width="438"><span class="toc1"><a name="filestruc"></a><a href="filestruc.html">File      Structure</a></span></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<span class="toc2"><a href="comments.html#3.2">Version Information in Comments</a></span></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="filestruc.html#1">Line Width</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<span class="toc2"><a href="comments.html#3.3">Comment Code Blocks</a></span></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="filestruc.html#2">File Size</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="comments.html#switch">Commenting <code>switch</code>, <code>if</code>, and <code>while</code> Blocks</a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="filestruc.html#3">Indentation and Tabs </a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="comments.html#3.4">Writing Comments For Developers</a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="filestruc.html#4">Source File Comment Block</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="comments.html#3.5">Use Proper English</a></td>
+  </tr>
+  <tr>
+    <td width="438">&nbsp;&nbsp;&nbsp;&nbsp;<a href="filestruc.html#5">Separating File Contents into      Blocks</a></td>
+    <td width="427"><span class="toc1"><a name="general"></a><a href="general.html">General Coding      Standards</a></span></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="filestruc.html#6">Header File Structure</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#1">Binary Operators</a></td>
+  </tr>
+  <tr>
+    <td><span class="toc1"><a name="classstruc"></a><a href="classstruc.html"> Class, Structure, and Enum Declarations and Definitions</a></span></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#2">Unary Operators</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="classstruc.html#common">Common Coding Standard</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#casts">Using Casts</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="classstruc.html#1">Member Names</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#3"><code>&nbsp;<b>.</b></code> and <code>-&gt;</code> Operators</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="classstruc.html#2">Inline Methods</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#4">Pointer and Reference      Declarations</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="classstruc.html#3">Classes or Structs?</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#5">Braces</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="classstruc.html#4">Static Class Members</a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#6"><code>if</code> Statements</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="classstruc.html#5">Using <code>const</code></a></td>
+    <td width="427">&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#7"><code>while</code> Statements</a></td>
+  </tr>
+  <tr>
+    <td><span class="toc1"><a name="functions"></a><a href="functions.html"> Functions</a></span></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#8"><code>switch</code> Statements</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="functions.html#1">Function Formatting</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#9"><code>for</code> Loops</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="functions.html#alignvariables">Aligning Variable Declarations</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#10"><code>do/while</code> Loops</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="functions.html#2">Function Size</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#11">Function Calls</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="functions.html#3">Breaking Function Content into      Blocks</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#12">Semicolons to Terminate      Statements</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="functions.html#nestclasses">Nesting Classes in Functions</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<span class="toc2"><a href="general.html#13">Multi-Line Statements</a></span></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;&nbsp; &nbsp;<a href="general.html#14">Parentheses</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="functions.html#4">Comparing Pointer and Integral Types</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#array_init">Array Initializers </a></td>
+  </tr>
+  <tr>
+    <td><a href="bestpractice.html">Best Coding Practices</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#15">Signed or Unsigned      Declarations?</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="bestpractice.html#for_loops">Using <code>for</code> Instead of <code>while</code> Statements</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#16">Pointers or References?</a></td>
+  </tr>
+  <tr>
+    <td><a href="basetypes.html">Base Types</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#17">Remove Test Code</a></td>
+  </tr>
+  <tr>
+    <td><a href="apphelp.html">Command-Line Help for Command-Line Applications</a></td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="general.html#18">Compile Time Directives</a></td>
+  </tr>
+</table>
+<p class="toc2"><br />
+</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+
+<div style="text-align: center">
+<img src="images/stylefooter.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../base/titlecopy.html"><i>Copyright &#169; 2002-2010 Cadence Design Systems, Inc.</i></a><br />
+All rights reserved.</p>
+</body>
+</html>

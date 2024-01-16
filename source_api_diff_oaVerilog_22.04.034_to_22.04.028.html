@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="tabs.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h2>Summary of API Changes</h2>
+<p>Following is a summary of the oaVerilog API changes between the OpenAccess p034 release and the p028 release.</p>
+<p><span style="color:#0066cc">
+#################################<br />
+#  The following classes were modified  #<br />
+#################################<br />
+<pre>
+	CallbacksIn <br />
+<br />		<span style="color:green; text-decoration:underline;">Added API</span><br />
+		fitNet(oaModNet *net, const oaName &termName, oaModInst *inst)<br />
+		widthWarning(const oaModNet *net, const oaName &termName, oaModInst *inst) <br />
+		widthWarning(const oaModNet *net, const oaModTerm *term, oaModInst *inst)<br />
+<br />		<span style="color:red; text-decoration:underline;">Removed API</span><br />
+		fitNet(oaModNet *net, const oaName &termName)<br />
+		widthWarning(const oaModNet *net, const oaName &termName)<br />
+		widthWarning(const oaModNet *net, const oaModTerm *term)<br />
+	Error <br />
+<br />		<span style="color:green; text-decoration:underline;">Added API</span><br />
+		Error(oaString fileNameIn, oaUInt4 lineNumIn, oaUInt4 msgIdIn,...)</a> <br />
+		getFileName() const <br />
+		getLineNumber() const <br />
+		hasFileAndLineInfo() const<br />
+</pre><br />
+#################################
+</span>
+</body>
+</html>

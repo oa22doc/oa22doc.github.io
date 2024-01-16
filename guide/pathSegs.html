@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+ <h1><a name="pagetop"></a>Physical Routing Segments (Orthogonal or Diagonal)</h1>
+ <hr>
+ <p>The <a href="../design/classoaPathSeg.html">oaPathSeg</a> class is a specialization of the oaShape class and is used to create orthogonal or diagonal physical routing segments. PathSegs have a begin and end point,  a width, two end styles, and a layer and purpose number. The width and the two end styles, as well as any specific extension values (for variable or custom chamfers), are collectively represented by an <a href="../design/classoaSegStyle.html">oaSegStyle</a> object. </p>
+ <p>The following shows the begin and end points for a PathSeg with two truncated end styles.</p>
+ <P><img src="images/pathSegBeginEnd.gif"> </P>
+ <P><strong>Note</strong>: In the figures that follow, a green dot indicates the beginPoint of a PathSeg, and a red dot indicates the endPoint. </P>
+ <P>PathSeg objects can be used stand-alone or they can be made a component of an <a class=el href="../design/classoaRoute.html">oaRoute</a> object. The former case represents  geometric routing  while the latter represents symbolic routing.</P>
+ <h2>Orthogonal and Diagonal Routing Units </h2>
+ <P>The following figure shows the difference between orthogonal and diagonal routing units.</P>
+ <P><img src="images/pathSegOrthogDiagGrid.gif"></P>
+ <P>If a PathSeg is orthogonal, it's width is measured in orthogonal units. If a PathSeg is diagonal, it's width is measured in diagonal units.</P>
+ <P><img src="images/pathSegOrthogDiag.gif" width="600" height="337"> </P>
+ <h2>oaSegStyles</h2>
+ <p>The oaSegStyle class class implements a utility class that lets you specify and retrieve the width and the two end styles for a PathSeg object. The <a class=el href="../design/classoaEndStyle.html">oaEndStyle</a> class, which is a supporting class of SegStyle, implements an enumerated type representing the different styles for path segment ends.</p>
+ <p>SegStyle objects by themselves are not persistent, but they become persistent when associated with one or more PathSeg objects.</p>
+ <h3>End Styles </h3>
+ <p>OpenAccess provides five end styles for PathSegs. You can choose  different end styles for each end of a PathSeg.</p>
+ <table width="517" border="1">
+   <tr bgcolor="#CCCCCC">
+     <th width="156" scope="col"><div align="left">Style</div></th>
+     <th width="345" scope="col"><div align="left">Enumeration</div></th>
+   </tr>
+   <tr>
+     <td><a href="#truncate">truncate</a></td>
+     <td>oacTruncateEndStyle </td>
+   </tr>
+   <tr>
+     <td><a href="#extend">extend</a></td>
+     <td>oacExtendEndStyle </td>
+   </tr>
+   <tr>
+     <td><a href="#variable">variable</a></td>
+     <td>oacVariableEndStyle </td>
+   </tr>
+   <tr>
+     <td><a href="#chamfer">chamfer</a></td>
+     <td>oacChamferEndStyle </td>
+   </tr>
+   <tr>
+     <td><a href="#custom">custom</a></td>
+     <td>oacCustomEndStyle </td>
+   </tr>
+ </table>
+ <h4><a name="truncate"></a>Truncate End Style</h4>
+ <p>The PathSeg terminates at the end point with no overlap. </p>
+ <p><img src="images/pathSegBeginEnd.gif"></p>
+ <p>The following code creates the above PathSeg. The PathSeg is on layer 3, which is metal 1, on the drawing purpose. </p>
+ <pre>oaSegStyle myTruncateStyle(2, oacTruncateEndStyle, oacTruncateEndStyle);
+oaPoint begin(1,2);
+oaPoint end(8,2);
+oaPathSeg *myTruncatePathSeg = oaPathSeg::create(blk, 3, oavPurposeNumDrawing, begin, end, myTruncateStyle);</pre>
+ <h4><a name="extend"></a>Extend End Style</h4>
+ <p>The PathSeg terminates one-half the segment&rsquo;s width past the end point.</p>
+ <p><img src="images/pathSegExtend.gif"></p>
+ <p>The following code creates the above PathSeg, which has one truncated end and one extended end. </p>
+ <pre>oaSegStyle myEndExtendStyle(2, oacTruncateEndStyle, oacExtendEndStyle);
+oaPoint begin(1,2);
+oaPoint end(8,2);
+oaPathSeg *myEndExtendStylePathSeg = oaPathSeg::create(blk, 3, oavPurposeNumDrawing, begin, end, myEndExtendStyle);</pre>
+ <h4><a name="variable"></a>Variable End Style</h4>
+ <p>The PathSeg terminates at a user-specified (endExt) distance past the end point.</p>
+ <p><img src="images/pathSegVariable.gif"></p>
+ <p>The following code creates the above PathSeg, which has one truncated end and one variable end. </p>
+ <pre>oaSegStyle myEndVariableStyle(2, oacTruncateEndStyle, oacVariableEndStyle, 2);
+oaPoint begin(1,2);
+oaPoint end(8,2);
+oaPathSeg *myEndVariableStylePathSeg = oaPathSeg::create(blk, 3, oavPurposeNumDrawing, begin, end, myEndVariableStyle);</pre>
+ <h4><a name="chamfer"></a>Chamfer End Style </h4>
+ <P>The PathSeg is terminated with an octagonal (chamfered) end style of fixed uniform dimensions.</P>
+ <P>OpenAccess uses the width of the PathSeg to calculate the dimensions of the chamfer. The width of the PathSeg is divided by two to get the length of the extension (endExt or beginExt). Note that the width must be an even number. </P>
+ <P>In the case of an orthogonal PathSeg, the left and right diagonals of the chamfer are obtained by multiplying the extension by 3/2. </P>
+ <P><img src="images/pathSegChamferOrthog.gif"></P>
+ <P><strong>Note:</strong> The RightHalfWidth is always on the right side of the end point of the PathSeg when looking from the end point of the pathSeg to the end of the chamfer. </P>
+ <P>The following code creates the above PathSeg, which has two chamfered ends. </P>
+ <pre>oaSegStyle myChamferStyle(8, oacChamferEndStyle, oacChamferEndStyle);
+oaPoint begin(4,4);
+oaPoint end(12,4);
+oaPathSeg *myChamferStylePathSeg = oaPathSeg::create(blk, 3, oavPurposeNumDrawing, begin, end, myChamferStyle);</pre>
+
+ <p> In the case of a diagonal  PathSeg, the left and right diagonals of the chamfer are obtained by multiplying the extension by 2/3.</p>
+ <p><img src="images/pathSegChamferDiag.gif"></p>
+ <p>You can also create a PathSeg with two different end styles. </p>
+ <p class="style1"><img src="images/pathSegChamferVariable.gif"></p>
+ <p>The following code creates the above PathSeg, which has a chamfered end at the begin point and an variable end at the end point. </p>
+ <pre>oaSegStyle myChamferVariableStyle(6, oacChamferEndStyle, oacVariableEndStyle, 1);
+oaPoint begin(3,3);
+oaPoint end(8,8);
+oaPathSeg *myChamferVariableStylePathSeg = oaPathSeg::create(blk, 3, oavPurposeNumDrawing, begin, end, myChamferVariableStyle);</pre>
+ <h4><a name="custom"></a>Custom Chamfer End Style</h4>
+ <p>The PathSeg is terminated with an octagonal (chamfered) end-style where each dimension of the chamfer is user-specified. When creating a custom chamfer end style, you need to consider whether the PathSeg is orthogonal or diagonal. </p>
+ <p>The following figure shows a PathSeg with a custom chamfered end style on the endPoint. Note that the PathSeg is diagonal, so the endExt and endRightHalfWidth are specified in diagonal units. </p>
+ <p><img src="images/pathSegCustomChamferEnd.gif"></p>
+ <p>The following code creates the above PathSeg, which is truncated  at the begin point and has a custom chamfer at the end point. The width of this SegStyle defaults to twice the endRightHalfWidth. </p>
+ <pre>oaSegStyle myTruncateCustomStyle(oacTruncateEndStyle, oacCustomEndStyle, 12, 7, 10, 12);
+oaPoint begin(8,8);
+oaPoint end(14,14);
+oaPathSeg *myTruncateCustomStylePathSeg = oaPathSeg::create(blk, 3, oavPurposeNumDrawing, begin, end, myTruncateCustomStyle);</pre>
+ <p>This figure shows a PathSeg with two different custom chamfered end styles. Note that the PathSeg is diagonal, so the endExt, endRightHalfWidth, beginExt, and beginRigthHalfWidth are specified in diagonal units.</p>
+ <p><img src="images/pathSegCustomChamfered.gif"></p>
+ <p><strong>Note:</strong> The RightHalfWidth is always on the right side of the end point of the PathSeg when looking from the end point of the PathSeg to the end of the chamfer. </p>
+ <p>The following code creates the above PathSeg, which has two custom chamfered ends. The width for the SegStyle defaults to the sum of beginRightHalfWidth and endRightHalfWidth<EM>.</EM> An exception is thrown otherwise. </p>
+ <pre>oaSegStyle myCustomStyle(oacCustomEndStyle, 11, 6, 7, 12, oacCustomEndStyle, 12, 7, 10, 12,);
+oaPoint begin(8,8);
+oaPoint end(14,14);
+oaPathSeg *myTruncateCustomStylePathSeg = oaPathSeg::create(blk, 3, oavPurposeNumDrawing, begin, end, myTruncateCustomStyle);</pre>
+ <p>This figure shows   orthogonal and diagonal PathSegs used together. </p>
+ <p><img src="images/pathSegsConnecting.gif" width="603" height="388"> </p>
+ <P>&nbsp; </P>
+ <P>&nbsp;</P>
+ <p align=center style='text-align:center;'><img src="../pgfooter.gif"></p>
+    <p><br> 
+      <a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p>
+</li>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../tabs.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor='#ffffff'><a name='pagetop'></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src="../oaheader.gif" alt="../oaheader.gif"></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+    <td width = "95" height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+  </tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Additional Tcl Build Instructions </h1>
+<hr >
+<h2>AIX 32-Bit</h2>
+<p>If you follow the build instructions provided by Tcl, the Tcl shell will crash when the oaTcl.so shared library file is loaded. To fix this problem, do the following: </p>
+<ol>
+  <li>Run the configure script as described in the Tcl installation instructions.<br>
+    <br>
+  </li>
+  <li>Before issuing the command &lsquo;make&rsquo;, edit the  Makefile and change the lines indicated below: <br>
+    <br>
+    <em>change:</em>    <br>
+    <br>
+    <code>LDFLAGS_OPTIMIZE =</code><br>
+    <br>
+    <em>to:</em><br>
+    <br>
+    <code>LDFLAGS_OPTIMIZE = -brtl<br>
+    <br>
+    </code><strong>and for 64-bit builds, also change: </strong><br>
+    <br>
+    <code>CFLAGS = $(CFLAGS_OPTIMIZE)  -q64 -DTCL_DBGX=$(TCL_DBGX)</code><br>
+    <br>
+    <em>to:</em><br>
+    <br>
+    <code>CFLAGS = $(CFLAGS_OPTIMIZE)  -q64 -qlanglvl=ansi -qnoansialias                                -qlonglong -DTCL_DBGX=$(TCL_DBGX)<br>
+    </code></li>
+</ol>
+<div style="text-align: center">
+<img src="footer.gif"><br/>
+</div>
+<p class="copyright"><a href="../base/titlecopy.html">Copyright &#169; 2004-2010 Cadence Design Systems, Inc.</a>
+<br >
+All rights reserved.</p>
+
+</body>
+</html>

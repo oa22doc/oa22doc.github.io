@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Using Group Definitions</h1>
+<p>A group definition specifies a type of group based on the <a href="#abstractconcrete">managed types of objects</a> that the group can contain and in which databases the group can be created. A group definition consists of:</p>
+<ul>
+<li>Name</li>
+<li>List of allowed objects</li>
+<li>List of databases in which the associated group can be created</li>
+</ul>
+
+<p>A group definition is one of two oaGroupDef derived types. oaFlatGroupDef is an oaGroupDef derived object, which defines a group that may contain only managed types of objects; it may not contain other groups as members. oaHierGroupDef is an oaGroupDef derived object, which defines a group that may contain both managed objects and other groups as members.</p>
+
+<p>When an oaGroup is created, the GroupDef defines what type of group it is. This in turn determines the types of objects that can be added to the group when using oaGroupMem::create().
+
+<p>OpenAccess provides a number of built-in definitions that implicitly use an oaGroupPurposeType. The oaGroupDef::get function takes an oaGroupPurposeType and returns pointer to a pre-created oaGroupDef.  At startup, the built-in group definitions are created for each of the oaGroupPurposeType values. These built-in group definitions provide for the commonly used types of groups, which you can augment with your own definitions. The built-in group definitions use the following oaGroupPurposeTypes:</p>
+<ul>
+<li>Unrestricted</li>
+<li>Differential Net Pair</li>
+<li>Matched Nets</li>
+<li>Nets</li>
+<li>Nets and Groups</li>
+<li>Symmetric Nets</li>
+</ul>
+
+<p>The following table describes the semantics for these group purpose types and the associated built-in group definitions.</p>
+
+<table border="1" cellpadding="4">
+<tr bgcolor="#99cccc">
+<th valign="top" style="font-size:80%">oaGroupPurposeTypeEnum</th>
+<th valign="top" style="font-size:80%">Description</th>
+<th valign="top" style="font-size:80%">Objects</th>
+</tr>
+<tr>
+<td>Unrestricted</td>
+<td>The <a href="../base/classoaGroupPurposeType.html">oacUnrestrictedGroupPurposeType</a> is associated with the oaHierGroupDef definition and specifies that all types of objects and all types of other groups can be members of the group. Usually, if a group definition allows other groups as members, the member groups are restricted to groups that have the same group definition as the containing group. The Unrestricted type does not have this restriction, and it can contain any group regardless of its definition. This definition is identical to the definition that is implied in databases based on dataModels that preceded dataModel 4.</td>
+<td>Any object or oaGroup</td>
+</tr>
+<tr>
+<td>Differential Net Pair</td>
+<td>The <a href="../base/classoaGroupPurposeType.html">oacDiffNetPairGroupPurposeType</a>  is associated with the oaFlatGroupDef definition and specifies that the group may only contain oaBitNet objects as members and implies that the group consists of a net pair.<br><br></td>
+<td>oaBitNet</td>
+</tr>
+<tr>
+<td>Matched Nets</td>
+<td>The <a href="../base/classoaGroupPurposeType.html">oacMatchedNetGroupPurposeType</a> is associated with the oaFlatGroupDef  definition and specifies that the group may only contain oaBitNet objects as members.</td>
+<td>oaBitNet</td>
+</tr>
+<tr>
+<td>Nets</td>
+<td>The <a href="../base/classoaGroupPurposeType.html">oacNetGroupPurposeType</a> is associated with the oaFlatGroupDef definition and specifies that the group may only contain oaNet objects.</td>
+<td>oaNet</td>
+</tr>
+<tr>
+<td>Nets and Groups</td>
+<td>The <a href="../base/classoaGroupPurposeType.html">oacNestedNetGroupPurposeType</a> is associated with the oaHierGroupDef definition and specifies that the group may only contain oaNet objects and other groups that are also associated with the oacNestedNetGroupPurposeType definition.</td>
+<td>oaNet, oaGroup</td>
+</tr>
+<tr>
+<td>Symmetric Nets</td>
+<td>The <a href="../base/classoaGroupPurposeType.html">oacSymmetricNetGroupPurposeType</a> is associated with the oaFlatGroupDef definition and specifies that the group may only contain oaBitNet objects.</td>
+<td>oaBitNet</td>
+</tr>
+</table>
+
+
+<h3>User Defined Group Definitions</h3>
+<p>User-defined group definitions can be used to create object groups that are specific to a user or application requirement. For example, you might restrict the valid types or valid databases to a set of object types that are different from a built-in group definition.</p>
+
+<p>A group definition uses an oaManagedTypeArray object to identify the members that are allowed in an associated group. The list of allowed objects always comprises one or more managed objects. If the only element of the oaManagedTypeArray is the oaObject type of object, group membership is unrestricted because oaObject is the base class for all managed objects.</p>
+
+<a name="abstractconcrete"></a>
+<h3>Abstract and Concrete Object Types</h3>
+<p>The managed object types can be classified in two general categories:</p>
+<ul>
+<li>Abstract</li>
+<li>Concrete</li>
+</ul>
+
+<p>Specifying abstract objects such as oaNet, oaFig, oaPin, or oaTechObject as the allowed group members implies that all concrete types derived from these classes can also be members of those groups associated with the definition. For example, specifying oaNet as an allowed member in a group definition implies that oaBundleNet, oaBusNet, oaScalarNet, and oaBusBitNet are also allowed members. If a new derived oaNet type is defined later, that new derived type will be automatically recognized as an allowed member type for the group. See <a href="../base/classoaAbstractType.html">oaAbstractType</a> for a complete listing of the OpenAccess abstract object types. When the list of allowed types are only concrete types, only the types specified by the definition are allowed. Other concrete types derived from the same abstract base class are not implied.</p>
+
+<p>The oacUnrestrictedGroupPurposeType group definition is intended to include any other group as a member. In contrast, all other built-in group definitions are intended to include only groups of the same type. This means that  for built-in group definitions other than oacUnrestrictedGroupPurposeType, groups should be associated with the same group definition.</p>
+
+<p>Adding an object that is not allowed by the group definition is an error, and adding a non-managed object, such as oaString, is also an error.</p>
+
+<h2>Associating a Group Definition</h2>
+<p>You create a group by using one of the oaGroup::create() functions. The oaGroupDef object did not exist prior to dataModel 4. Therefore, overloaded  oaGroup::create() functions are provided to create groups associated with a group definition, and others are provided to create groups compatible with the earlier dataModels that do not support a group definition. All groups created in databases based on dataModel 4 or later must use group definitions.</p>
+
+<p>Databases that use a built-in group definition (other than oacUnrestrictedGroupPurposeType) or use a user-defined group definition, cannot be opened by applications that are not based on dataModel 4 or later. Group data in databases that predate dataModel 4 is associated with the oacUnrestrictedGroupPurposeType when read by applications that are based on libraries using dataModel 4 or later.</p> 
+
+</body>
+</html>

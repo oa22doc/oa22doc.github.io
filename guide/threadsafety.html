@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+<h1>Thread Safety</h1>
+<p>OpenAccess supports thread safety for two basic use models: multiple reader threads operating on one or more databases and 
+multiple writer threads operating on a single thread per database basis. OpenAccess ensures database access <em>thread safety</em> 
+under the defined multi-thread usage models, it will <em>not</em> create threads or use them internally.
+
+<p>Applications can turn on thread safety and locking within the session if they have met certain prerequisites and by 
+calling <a href="../base/classoaSession.html">oaSession::setThreadUseModel</a> with one of the following thread use 
+model enums.
+
+<p>
+<table border="1" cellpadding="4">
+<tr bgcolor="#99cccc">
+<th valign="top" style="font-size:80%">oaThreadUseModelEnum</th>
+<th valign="top" style="font-size:80%">Prerequisites?</th>
+<th valign="top" style="font-size:80%">Locking?</th>
+<th valign="top" style="font-size:80%">Description</th>
+</tr>
+<tr>
+<td>oacSingleThreadUseModel</td>
+<td>None</td>
+<td>No</td>
+<td>The application intends to interact with OpenAccess using a single thread. This is the default.</td>
+</tr>
+<tr>
+<td>oacMultipleReadersThreadUseModel</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The application intends to use multiple read-only threads to access one or more OpenAccess databases concurrently.</td>
+</tr>
+<tr>
+<td>oacMultipleWritersThreadUseModel</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>The application intends to use multiple read-write threads to edit a single OpenAccess database per thread.</td>
+</tr>
+</table>
+
+<h3>Single Thread Use Model</h3>
+<p>This is the default level of thread safety supported by OpenAccess.  The application will use a single thread in all of its 
+interactions with OpenAccess.  There are no prerequisites for operating in this use model.  There is no performance or capacity
+overhead due to thread-safety protection when operating under this use model.
+
+<h3>Multiple Readers Thread Use Model</h3>
+<p>The application intends to use multiple read-only threads to access data in one or more OpenAccess databases.  A "read-only" 
+thread is a thread that does not change the state of <em>any</em> database.  The application will not open new databases, or modify 
+the session in any way (for example, by creating appDefs, constraintDefs or other defs) either.  On entering this mode, OpenAccess 
+will precondition certain internal data structures and will enable internal locking on shared resources.  In particular, all designs 
+that were open in partial read will be completely read into memory.  This can cause the size of the process to grow significantly.  
+Additionally, there is a certain amount of overhead associated with resource locking.  A single thread operating in the Multiple Readers 
+Thread Use Model will not run as fast as a single thread operating under the Single Thread Use Model.  However this overhead is small 
+and properly written applications should scale as expected with the number of threads and the number of available CPUs.
+
+<h4>Application Responsibilities</h4>
+<p>These are the prerequisites that must be satisfied by the application before entering the Multiple Readers Thread Use Model.
+<ul>
+<li>Initialize all the oaObsevers used by the application.</li>
+<li>Open all the libraries, designs, techs and other databases that any of the threads will use. For example, a top oaDesign and all the designs in its hierarchy.</li>
+<li>Initialize region query data structures if any of the reader threads will do a region query.</li>
+<li>Bind oaInstHeaders and oaViaHeaders to their masters, if any of the reader threads will descend into the masters during the multi-threaded session. The binding of oaTech and oaDesign is handled automatically by OpenAccess core.</li>
+<li>Evaluate and bind all Pcell subMasters that will be needed by any of the reader threads. In particular, threads may <em>not</em> create new instances or change Pcell parameters.</li>
+<li>If any of the reader threads will traverse the occurrence hierarchy, the application must expand the occurrence hierarchy of each open design to the frontier that will be used.</li>
+<li>If any of the reader threads will access parasitic networks, the application must either pre-load those parasitic networks (which could be a capacity concern), or explicitly synchronize all calls to oaParasiticNetwork::load() and unload() at the application level.</li>
+<li>If any of the reader threads will access oaOccShape objects, which are dynamically generated, the application should either pre-generate all the occShape objects, or explicitly synchronize the queries which generate or release the occShapes at the application level.</li>
+</ul>
+
+<p>In debuggable builds, OpenAccess will assert if any databases are opened, closed, purged, or bound while in the Multiple Readers Thread Use Model.
+In optimized builds there are no protections. If applications do not adhere to the responsibilities and restrictions imposed by the use model, the results are undefined.
+
+<h3>Multiple Writers Thread Use Model</h3>
+<p>The application intends to use multiple writer threads on a single writer thread per database basis.  A "writer thread" is a thread that
+creates or edits OpenAccess data in a single database but which <em>does not modify the state of the OpenAccess session or modify the state 
+of other databases either directly or indirectly</em>.  In particular, writer threads must not open new databases, trigger binding between 
+databases or add new objects to the technology database. Changes made by a writer thread must be completely isolated to the design database 
+to which it is assigned.  As with the Multiple Readers Thread Use Model, upon entering this mode all designs that were open in partial read 
+will be completely read into memory and resource locking will be enabled.  
+
+<h4>Application Responsibilities</h4>
+<p>These are the prerequisites that must be satisfied by the application before entering the Multiple Writers Thread Use Model.  The application 
+responsibilities for the Multiple Writers Thread Use Model are the same as the application responsibilities for the Multiple Readers
+Thread Use Model with the additional constraints mentioned above.
+<ul>
+<li>Initialize all the oaObsevers used by the application.</li>
+<li>Open all the libraries, designs, techs and other databases that any of the threads will use. For example, a top oaDesign and all the designs in its hierarchy.</li>
+<li>Initialize region query data structures if any of the threads will do a region query.</li>
+<li>Bind oaInstHeaders and oaViaHeaders to their masters, if any of the threads will descend into the masters during the multi-threaded session. The binding of oaTech and oaDesign is handled automatically by OpenAccess core.</li>
+<li>Evaluate and bind all Pcell subMasters that will be needed by any of the threads. In particular, threads may <em>not</em> create new instances or change Pcell parameters.</li>
+<li>If any of the threads will traverse the occurrence hierarchy, the application must expand the occurrence hierarchy of each open design to the frontier that will be used.</li>
+<li>If any of the threads will access or edit parasitic networks, the application must either pre-load those parasitic networks (which could be a capacity concern), or explicitly synchronize all calls to oaParasiticNetwork::load() and unload() at the application level.</li>
+<li>If any of the threads will access or edit oaOccShape objects, which are dynamically generated, the application should either pre-generate all the occShape objects, or explicitly synchronize the queries which generate or release the occShapes at the application level.</li>
+</ul>
+
+<p>While in the Multiple Writers Thread Use Model, writer threads must adhere to the following constraints:
+
+<ul>
+<li>Changes (direct and indirect) made by a writer thread must be completely isolated to the design database to which it is assigned.</li>
+<li>Writer threads must not open new designs.</li>
+<li>Writer threads must not trigger binding between design or technology databases.</li>
+<li>Writer threads must not create new Pcell instances.</li>
+<li>Writer threads must not add, delete or change parameters of a Pcell instance or Pcell superMaster.</li>
+<li>Writer threads must not define new Pcell superMasters.</li>
+<li>Writer threads must not add new objects to technology databases.</li>
+<li>Writer threads must not set or unset technology database references.</li>
+<li>Writer threads must not create new appDefs, appObjectDefs, constraintParamDefs, constraintDefs, derivedLayerParamDefs, derivedLayerDefs, groupDefs or constraintGroupDefs.</li>
+</ul>
+
+<p>In debuggable builds, OpenAccess will assert if any databases are opened, closed, purged, or bound while in the Multiple Writers Thread Use Model.
+In optimized builds there are no protections. If applications do not adhere to the responsibilities and restrictions imposed by the use model, the results are undefined.
+
+<h3>Changing Use Models</h3>
+
+<p>Applications can freely switch from multi-threaded use models to single threaded and back again in the same session.  However,
+OpenAccess will not revert any data preconditioning that may have been done to support a multi-threaded use model when 
+switching back to single threaded.
+
+</body>
+
+
+<p><a
+href="#pagetop"> 
+    <!-- beginning of footer --> 
+    Return to top of page</a></p> 
+  <p><a
+href="index.html">Return to Programmers Guide topics</a></p> 
+  <p align=center style='text-align:center;'><img
+border=0 src="../pgfooter.gif"></p> 
+  <p><a
+href="../titlecopy.html">Copyright &#169; 2010 Cadence Design Systems, Inc.</a> <br> 
+    All rights reserved.</p> 
+
+</html>

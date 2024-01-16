@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minClearance (oacMinClearance)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in layer pair constraint definition, oacMinClearance, specifies the minimum separation between two different shapes on two different layers, in database units. Clearance constraints apply only to edges that have no intersections. Clearances are specified from the outside edge of the shape on the first layer to the outside edge of the shape on the second layer.
+</p>
+    <p>This constraint definition is symmetric, implying that the minimum clearance between layer1 and layer2 is the same as the minimum clearance between layer2 and layer1.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top"><a href="../../html/tech/classoaLayerPairConstraint.html">oaLayerPairConstraint</a> (Symmetric: yes)</td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/base/classoaIntValue.html">oaIntValue</a>, <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaRect.html">oaRect</a>, <a href="../../html/design/classoaPath.html">oaPath</a>, <a href="../../html/design/classoaPolygon.html">oaPolygon</a>, <a href="../../html/design/classoaPathSeg.html">oaPathSeg</a>, <a href="../../html/design/classoaRoute.html">oaRoute</a>, <a href="../../html/design/classoaPin.html">oaPin</a>, <a href="../../html/design/classoaLayerBlockage.html">oaLayerBlockage</a>, <a href="../../html/design/classoaAreaBlockage.html">oaAreaBlockage</a>, <a href="../../html/design/classoaScalarNet.html">oaScalarNet</a>, <a href="../../html/design/classoaBusNetBit.html">oaBusNetBit</a>, <a href="../../html/base/classoaAppObject.html">oaAppObject</a></td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>This value represents the minimum clearance in database units.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+      <li>
+        <b>
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>
+        </b>
+        <p>This value specifies the required clearance width as a function of two keys.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>widthLengthTableType</b><br />oacWidthLengthTableTypeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">(Required)<br />(only valid for value types:
+          <a href="../../html/base/classoaInt2DTblValue.html">oaInt2DTblValue</a>)
+        </td>
+        <td>
+          <p>This parameter determines how the value of the constraint is interepreted; whether the value is based on the widths of two shapes or is based on the width of the wider shape and the parallel run length of the other shape. The valid value for this parameter is an oaIntValue, which is represented by an oaWidthLengthTableType object.
+</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaWidthLengthTableType.html">oaWidthLengthTableType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacWidthParallelRunLengthTableType</td>
+              <td valign="top">widthParallelRunLengthTableType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacWidthWidthTableType</td>
+              <td valign="top">widthWidthTableType</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacTwoWidthParallelRunLengthTableType</td>
+              <td valign="top">twoWidthParallelRunLengthTableType</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>distanceMeasureType</b><br />oacDistanceMeasureTypeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Enum</td>
+        <td style="vertical-align: middle; text-align:center;">euclidian</td>
+        <td>
+          <p>This parameter determines whether the spacing values specified in the table values of the constraint are in either a Euclidian or Manhattan metric. The allowed value type for this parameter is an oaIntValue, and the allowed values are represented by an oaDistanceMeasureTypeEnum object.</p>
+          <p>This 
+          parameter
+        is represented by an
+          <a href="../../html/base/classoaDistanceMeasureType.html">oaDistanceMeasureType</a>
+        enumeration:
+        </p>
+          <table border="0" cellpadding="4">
+            <tr style="background-color:#99cccc">
+              <th>Value</th>
+              <th>Name</th>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacEuclidianDistanceMeasureType</td>
+              <td valign="top">euclidian</td>
+            </tr>
+            <tr style="background-color:#dddddd">
+              <td valign="top">oacManhattanDistanceMeasureType</td>
+              <td valign="top">manhattan</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>coincidentAllowed</b><br />oacCoincidentAllowedParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>When the coincidentAllowed parameter is specified and is true, then shapes can either meet the minimum extension or their edges can be coincident. If the parameter is false or is not specified, then the edges must meet the minimum extension specified and cannot be coincident.</p>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/figMinClearanceRule.gif" alt="figMinClearanceRule.gif" />
+      <br />
+    </p>
+    <h2>Manufacturing Reasons</h2>
+    <p>Shapes on layers such as poly and diffusion will create shorts if they touch. Setting a minimum clearance value keeps the two layers from touching and avoids unwanted gates or diodes.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Parasitic Class Index
+
+HTMLFILES = \
+	classoaParasiticNetwork.html
+	classoaNode.html
+	classoaDevice.html
+	classoaReducedModel.html
+	classoaElmore.html
+	classoaComplex.html
+	classoaComplexArray.html
+	classoaAnalysisOpPoint.html
+	classoaAnalysisPoint.html
+	classoaOpPoint.html
+	classoaOpPointHeader.html
+	
+BUILDINFO
+OpenAccess provides classes to support different parasitic modeling methodologies. 
+
+See <a href="../guide/modelparasitics.html">Modeling Parasitics in OpenAccess</a> for more information.
+
+
+
+	
+	

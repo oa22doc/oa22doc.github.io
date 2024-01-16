@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='def|scanchains'/>
+<a name='14000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="ScanChains"></a>Scan Chains</h1>
+<pre>
+ [SCANCHAINS numScanChains ;
+
+      [- <a href='#14001'>chainName</a>
+          [+ <a href='#14002'>PARTITION</a> partitionName [ MAXBITS maxBits ]]
+          [+ <a href='#14003'>COMMONSCANPINS</a> [( IN pin )] [( OUT pin )]]
+          + <a href='#14004'>START</a> {fixedInComp | PIN} [outPin]
+          [+ <a href='#14005'>FLOATING</a> {floatingComp [(IN pin)] [(OUT pin)] [( BITS numBits )]} ...]
+          [+ <a href='#14006'>ORDERED</a> {fixedComp [( IN pin )] [( OUT pin )] [( BITS numBits )]} ...] ...
+          + <a href='#14007'>STOP</a> {fixedOutComp | PIN} [inPin]
+      ;] ...
+
+ END SCANCHAINS]
+</pre>
+<p>Defines scan chains in the design.</p>
+<h2><a id="NumScanChains"></a>numScanChains</h2>
+<p>This information corresponds to the number of oaScanChain objects in the design.</p>
+<p>You iterate over all oaScanChain objects in the design to get the information for each scanChain:</p>
+<pre>
+   oaIter&lt;oaScanChain&gt;::oaIter&lt;oaScanChain&gt;(const oaBaseCollection &amp;coll)
+   oaScanChain *oaIter&lt;oaScanChain&gt;::getNext()
+</pre>
+</div>
+<a name='def|scanchains|chainname'/>
+<a name='14001'/>
+<h2 class='topicSyntax'>
+chainName</h2>
+<div style='margin-left:40px;'>
+<p>chainName is the name of the oaScanChain and is obtained using:</p>
+<pre>
+     void oaScanChain::getName(oaString &amp;name) const
+</pre>
+</div>
+<a name='def|scanchains|chainname|partition'/>
+<a name='14002'/>
+<h3 class='topicSyntax'>
+PARTITION partitionName [ MAXBITS maxBits ]</h3>
+<div style='margin-left:60px;'>
+<p>partitionName corresponds to the partition name attribute of an oaScanChain object. maxBits corresponds to the maximum number of bits that can be stored on the oaScanChain object. The informations is retrieved using the following API:</p>
+<pre>
+   void oaScanChain::getPartitionName(oaString &amp;name) const
+   oaUInt4 oaScanChain::getMaxBits() const
+</pre>
+</div>
+<a name='def|scanchains|chainname|commonscanpins'/>
+<a name='14003'/>
+<h3 class='topicSyntax'>
+COMMONSCANPINS [( IN pin )] [( OUT pin )]</h3>
+<div style='margin-left:60px;'>
+<p>This information is not stored in the OpenAccess database. Instead, unspecified pin names are resolved in the translator.</p>
+</div>
+<a name='def|scanchains|chainname|start'/>
+<a name='14004'/>
+<h3 class='topicSyntax'>
+START {fixedInComp | PIN} [outPin]</h3>
+<div style='margin-left:60px;'>
+<p>This information corresponds to the starting object in the scanChain, which can be a terminal or an instTerm object. In the case of a terminal, outPin is the terminal name. When the starting object is an oaInstTerm, fixedInComp is the instance name and outPin is the terminal name for the oaInstTerm. Use the following API to obtain this information:</p>
+<pre>
+   oaDBObject *oaScanChain::getStartObject() const
+
+   void oaTerm::getName(const oaNameSpace &amp;ns,
+                        oaString &amp;name) const
+
+   oaInst *oaInstTerm::getInst()
+   void oaInst::getName(const oaNameSpace &amp;ns,
+                        oaString &amp;name) const
+   void oaInstTerm::getTermName(const oaNameSpace &amp;ns,
+                                oaString &amp;name) const
+</pre>
+</div>
+<a name='def|scanchains|chainname|floating'/>
+<a name='14005'/>
+<h3 class='topicSyntax'>
+FLOATING {floatingComp [(IN pin)] [(OUT pin)] [( BITS numBits )]} ...</h3>
+<div style='margin-left:60px;'>
+<p>This information corresponds to the unordered oaScanChainSet objects that are associated with the oaScanChain. The oaScanChainSet objects contain oaScanChainInst objects, and each oaScanChainInst is associated with an instance, an input oaInstTerm, an output oaInstTerm, and has a sequential bit length attribute. You use the following API to get the values:</p>
+<pre>
+     oaCollection oaScanChain::getScanChainSets(oaUInt4 flag =
+     oacOrderedScanChainSetType ) const
+
+     oaIter&lt;oaScanChainSet&gt;::oaIter&lt;oaScanChainSet&gt;(const oaBaseCollection
+     &amp;coll)
+
+     oaScanChainSet *oaIter&lt;oaScanChainSet&gt;::getNext()
+     oaCollection oaScanChainSet::getInstances() const
+     oaIter&lt;oaScanChainInst&gt;::oaIter&lt;oaScanChainInst&gt;(const oaBaseCollection
+     &amp;coll)
+     oaScanChainInst *oaIter&lt;oaScanChainInst&gt;::getNext()
+
+     oaInst *oaScanChainInst::getInstance() const
+     void oaInst::getName(const oaNameSpace &amp;ns, oaString &amp;name) const
+
+     oaInstTerm *oaScanChainInst::getInInstTerm() const
+     oaInstTerm *oaScanChainInst::getOutInstTerm() const
+     void oaInstTerm::getTermName(const oaNameSpace &amp;ns,
+                                  oaString &amp;name ) const
+
+     oaUInt4 oaScanChainInst::getSeqBitLength() const
+</pre>
+</div>
+<a name='def|scanchains|chainname|ordered'/>
+<a name='14006'/>
+<h3 class='topicSyntax'>
+ORDERED {fixedComp [( IN pin )] [( OUT pin )] [( BITS numBits )]} ...</h3>
+<div style='margin-left:60px;'>
+<p>This information corresponds to the ordered oaScanChainSet objects associated with the oaScanChain. The oaScanChainSet objects contain oaScanChainInst objects, and each scanChainInst is associated with an instance, an input instTerm, an output instTerm, and has a sequential bit length attribute. You use the same API you use to get the FLOATING construct information:</p>
+<pre>
+     oaCollection oaScanChain::getScanChainSets(oaUInt4 flag = oacOrderedScanChainSetType ) const
+
+     oaIter&lt;oaScanChainSet&gt;::oaIter&lt;oaScanChainSet&gt;(const oaBaseCollection &amp;coll)
+
+     oaScanChainSet *oaIter&lt;oaScanChainSet&gt;::getNext()
+     oaCollection oaScanChainSet::getInstances() const
+     oaIter&lt;oaScanChainInst&gt;::oaIter&lt;oaScanChainInst&gt;(const oaBaseCollection &amp;coll)
+     oaScanChainInst *oaIter&lt;oaScanChainInst&gt;::getNext()
+
+     oaInst *oaScanChainInst::getInstance() const
+     void oaInst::getName(const oaNameSpace &amp;ns, oaString &amp;name) const
+
+     oaInstTerm *oaScanChainInst::getInInstTerm() const
+     oaInstTerm *oaScanChainInst::getOutInstTerm() const
+     void oaInstTerm::getTermName(const oaNameSpace &amp;ns,
+                                  oaString &amp;name ) const
+
+     oaUInt4 oaScanChainInst::getSeqBitLength() const
+</pre>
+</div>
+<a name='def|scanchains|chainname|stop'/>
+<a name='14007'/>
+<h3 class='topicSyntax'>
+STOP {fixedOutComp | PIN} [inPin]</h3>
+<div style='margin-left:60px;'>
+<p>This information corresponds to the stopping object in the oaScanChain, which can be a oaTerm or an oaInstTerm object. In the case of a terminal object, inPin is the terminal name. If the stopping object is an oaInstTerm, fixedOutComp is the instance name and inPin is the terminal name associated with the oaInstTerm. You use the following API to get this information:</p>
+<pre>
+     void *oaScanChain::getStopObject(oaDesignObject *object)
+
+     void oaTerm::getName(const oaNameSpace &amp;ns, oaString &amp;name) const
+
+     oaInst *oaInstTerm::getInst()
+     void oaInst::getName(const oaNameSpace &amp;ns, oaString &amp;name) const
+     void oaInstTerm::getTermName(const oaNameSpace &amp;ns,
+                                  oaString &amp;name ) const
+</pre>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

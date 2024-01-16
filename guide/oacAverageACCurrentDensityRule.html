@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+		<h1>Average AC Current Density
+		  <hr>
+	</h1>
+		<h2>Definition</h2>
+		<p>The average AC current density specifies how much average AC current a given width of a shape on the specified layer can handle at a certain frequency.</p>
+		<H2>Values</H2>
+		<p>The average AC current density attribute has one of the following values, each of which return a float that represents the average AC current density in mA/&micro;m, where the distance refers to the width of the wire. </H2>
+		<P>If an <a href="../base/classoaFltValue.html">oaFltValue</a> is specified, the value represents the average AC current a wire can handle.</P>
+		<P>If an <a href="../base/classoaFlt1DTblValue.html">oaFlt1DTblValue</a> is specified, the lookup key (&quot;frequency&quot;) in the table represents the frequency  in Mhz, and the value represents the average AC current the wire can handle.</P>
+		<P>If an <a href="../base/classoaFltIntFltTblValue.html">oaFltIntFltTblValue</a> is specified, the row lookup key (&quot;frequency&quot;) represents the frequency  in Mhz, the column lookup key (&quot;width&quot;) represents the width of the shape, and the value represents the average AC current that the wire can handle.</P>
+		<H2 class="spabove">
+		  <H2>Example</H2>
+    </H2>
+		<P><img src="images/figPeakACCurrentDensityRule.gif"></P>
+		<H2 class="spabove">
+			<H2>Manufacturing Reasons</H2>
+		</H2>
+		<p>Wires require enough current-carrying capability to avoid failures. Set the current density to the appropriate width to minimize failures due to current.</p>
+		<UL>
+          <LI>Use the average AC current density attribute to limit the average current density used. The average current is the average value over many clock cycles. This is rarely used, since this situation is typically covered by the RMS rule. <BR>
+    <BR>
+          <LI>Use the <a href="oacPeakACCurrentDensityRule.html">peak AC current density attribute</a> to limit the worst-case current density value. For example, the current can peak or spike in a large chip with a power rail, when everything switches in the same direction at the same time. <BR>
+    <BR>
+          <LI>Use the <a href="oacRmsACCurrentDensityRule.html">RMS AC current density attribute</a> to limit the the square root of the time average of the square of the current density value. In an intermittent duty cycle application, the RMS current is equal to the value of steady state current that would produce the equivalent resistive heating over a period of time. This is the most common rule specified by vendors and typically only applies to signal wires that have current flowing in both directions. </LI>
+    </UL>
+		<H2 class=spabove>See Also</H2>
+		<DIV class=indent>
+          <P><a href="oacPeakACCurrentDensityRule.html">Peak AC Current Density</a></P>
+          <P><a href="oacRmsACCurrentDensityRule.html">RMS AC Current Density</a></P>
+          <DIV class=indent>
+            <P><a href="oacAverageDCCurrentDensityRule.html">Average DC Current Density</a></P>
+          </DIV>
+          <!-- beginning of footer -->
+          <P>&nbsp;</P>
+    </DIV>
+		<!-- beginning of footer -->
+		<p>&nbsp;        </p>
+		<p><a href="../tech/classoaLayer.html">Return to oaLayer documentation</a>&nbsp;<br>
+		</p>
+		<p><a href="../base/titlecopy.html">Copyright &#169; 2001-2010 Cadence Design Systems, Inc.</a>
+			<br>
+			All rights reserved.</p>
+	</body>
+</html>

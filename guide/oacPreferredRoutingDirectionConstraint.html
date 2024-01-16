@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>oaPreferredRoutingDirection (oacPreferredRoutingDirection)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in oacPreferredRoutingDirection layer constraint is specific to the default constraint group of an oaAreaBoundary. The preferred routing direction outside the oaAreaBoundary is specified in the technology database. The preferred routing direction can be one of the orthogonal or one of the diagonal routing directions. If this constraint is set to one of the diagonal routing directions, the oacDiagonalShapesAllowed constraint must be set to true.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaAreaBoundary.html">oaAreaBoundary</a>, <a href="../../html/base/classoaAppObject.html">oaAppObject</a></td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </b>
+        <p>oacPreferredRoutingDirection is an oaIntValue that is represented by oaPrefRoutingDirEnum.</p>
+        <p>
+        Units: Enum</p>
+        <p>This 
+          value
+        is represented by an
+          <a href="../../html/tech/classoaPrefRoutingDir.html">oaPrefRoutingDir</a>
+        enumeration:
+        </p>
+        <table border="0" cellpadding="4">
+          <tr style="background-color:#99cccc">
+            <th>Value</th>
+            <th>Name</th>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacNotApplicablePrefRoutingDir</td>
+            <td valign="top">   Preferred direction cannot be determined</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacNonePrefRoutingDir</td>
+            <td valign="top">  All allowed directions.</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacHorzPrefRoutingDir</td>
+            <td valign="top">  Horizontal</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacVertPrefRoutingDir</td>
+            <td valign="top">  Vertical </td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacLeftDiagPrefRoutingDir</td>
+            <td valign="top"> Left Diagonal</td>
+          </tr>
+          <tr style="background-color:#dddddd">
+            <td valign="top">oacRightDiagPrefRoutingDir</td>
+            <td valign="top"> Right Diagonal</td>
+          </tr>
+        </table>
+      </li>
+    </ul>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/oacprefroutingdirenum.gif" alt="oacprefroutingdirenum.gif" />
+      <br />
+      <img src="images/figpreferredroutingdir.gif" alt="figpreferredroutingdir.gif" />
+      <br />
+    </p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>

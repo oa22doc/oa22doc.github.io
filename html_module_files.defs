@@ -1,0 +1,21 @@
+################################################################################
+# HtmlFiles.defs
+#
+################################################################################
+
+BUILDNAME =
+	Module Domain Class Index
+
+HTMLFILES = \
+	classoaModObject.html
+	classoaModNetTermArray.html
+	classoaModNetTermNameArray.html
+	classoaModNetTermPosArray.html
+
+BUILDINFO
+Module domain objects are used to specify the logical connectivity and hierarchy of a design. This category includes 
+all the classes that represent module objects.
+
+See <a href="../guide/emh.html">Understanding OpenAccess Hierarchy</a>
+in the Programmers Guide for more information.
+

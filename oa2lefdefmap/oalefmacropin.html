@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+<style>
+.header {
+  border: none;
+}
+</style>
+
+</head>
+
+<body bgcolor=#ffffff><a name="pagetop"></a>
+
+<div style="margin-bottom:10;width:760;">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width="760">
+  <tr>
+
+    <td height = "30"><a href="../index.html"><img src='../topics.gif' alt='topics.gif' height = "30" border="0" align="top"></a></td>
+
+    <td height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='classes.gif' height = "30" border="0"></a></td>
+
+    <td height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td height = "30"><a href="../guide/index.html"><img src='../progguide.gif' alt='progguide.gif' = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='infomodel.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='index.gif' height = "30" border="0"></a></td>
+
+    <td height = "30"><a href="../help.html"><img src='../help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+</table>
+
+</div>
+
+
+
+
+  <div style="position:relative;left:275px;margin-top:10px">
+
+    <table border="0" cellSpacing="0" cellpadding="0">
+        <tr>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td><div align="left">&nbsp;</div></td>
+
+	        <td valign="top"><div align="left"><a href="oalefindex.html"><img src="images/lefstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	        <td valign="top"><div align="left"><a href="oadefindex.html"><img src="images/defstmnt.gif" border=0 width=95 height=30></a></div></td>
+
+	    </tr>
+    </table>
+
+  </div>
+
+<a name='lef|macropin'/>
+<a name='63000'/>
+<h1 class='topicSyntax'>
+</h1>
+<div style='margin-left:20px;'>
+<h1><a id="MacroPin"></a>Macro Pin</h1>
+<pre>
+ [PIN pinName
+
+     [<a href='#63001'>TAPERRULE</a> ruleName ;]
+     [<a href='#63002'>DIRECTION</a> {INPUT | OUTPUT [TRISTATE] | INOUT | FEEDTHRU} ;]
+     [<a href='#63003'>USE</a> { SIGNAL | ANALOG | POWER | GROUND | CLOCK } ;]
+     [<a href='#63004'>NETEXPR</a> "netExprPropName defaultNetName" ;]
+     [<a href='#63005'>SUPPLYSENSITIVITY</a> powerPinName ;]
+     [<a href='#63005'>GROUNDSENSITIVITY</a> groundPinName ;]
+     [<a href='#63006'>SHAPE</a> {ABUTMENT | RING | FEEDTHRU} ;]
+     [<a href='#63007'>MUSTJOIN</a> pinName ;]
+     { <a href='#63008'>PORT</a>
+       [CLASS {NONE | CORE} ;]
+       {layerGeometries} ...
+     END ... }
+     [<a href='#63009'>PROPERTY</a> propName propVal ;] ...
+     [<a href='#63010'>ANTENNAPARTIALMETALAREA</a> value [LAYER layerName] ;] ...
+     [<a href='#63010'>ANTENNAPARTIALMETALSIDEAREA</a> value [LAYER layerName] ;] ...
+     [<a href='#63010'>ANTENNAPARTIALCUTAREA</a> value [LAYER layerName] ;] ...
+     [<a href='#63010'>ANTENNADIFFAREA</a> value [LAYER layerName] ;] ...
+     [<a href='#63010'>ANTENNAMODEL</a> {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4} ;] ...
+     [<a href='#63010'>ANTENNAGATEAREA</a> value [LAYER layerName] ;] ...
+     [<a href='#63010'>ANTENNAMAXAREACAR</a> value LAYER layerName ;] ...
+     [<a href='#63010'>ANTENNAMAXSIDEAREACAR</a> value LAYER layerName ;] ...
+     [<a href='#63010'>ANTENNAMAXCUTCAR</a> value LAYER layerName ;] ...
+
+ END pinName]
+</pre>
+<p>The LEF PIN construct is stored in OA as an oaTerm with the given name.</p>
+</div>
+<a name='lef|macropin|antenna'/>
+<a name='63010'/>
+<h2 class='topicSyntax'>
+ANTENNAPARTIALMETALAREA value [LAYER layerName] ;<BR/>
+&nbsp;ANTENNAPARTIALMETALSIDEAREA value [LAYER layerName] ;<BR/>
+&nbsp;ANTENNAPARTIALCUTAREA value [LAYER layerName] ;<BR/>
+&nbsp;ANTENNADIFFAREA value [LAYER layerName] ;<BR/>
+&nbsp;ANTENNAMODEL {OXIDE1 | OXIDE2 | OXIDE3 | OXIDE4} ;<BR/>
+&nbsp;ANTENNAGATEAREA value [LAYER layerName] ;<BR/>
+&nbsp;ANTENNAMAXAREACAR value LAYER layerName ;<BR/>
+&nbsp;ANTENNAMAXSIDEAREACAR value LAYER layerName ;<BR/>
+&nbsp;ANTENNAMAXCUTCAR value LAYER layerName ;</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO PIN ANTENNA attributes are stored in OpenAccess using an oaAntennaData object. This oaAntennaData object is stored in the oaTerm::AntennaData attribute. There is an oaAntennaData object for each ANTENNAMODEL used, which is accessed by specifying the right oaAntennaModelEnum when getting and setting the oaAntennaData on the oaTerm. The following table shows the mapping from LEF ANTENNAMODEL to oaAntennaModelEnum.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>LEF ANTENNAMODEL</th>
+<th class='borders'>oaAntennaModelEnum</th>
+</tr>
+<tr>
+<td class='borders'>OXIDE1 (default)</td>
+<td class='borders'>oacDefaultAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE2</td>
+<td class='borders'>oacSecondAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE3</td>
+<td class='borders'>oacThirdAntennaModel</td>
+</tr>
+<tr>
+<td class='borders'>OXIDE4</td>
+<td class='borders'>oacFourthAntennaModel</td>
+</tr>
+</table>
+<p>Each of the ANTENNA*AREA values is stored in OpenAccess by using an oaAntennaArea object, which is then appended to one of the oaAntennaData object&#39;s oaAntennaAreaArray attributes as shown in the following table.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>ANTENNA value</th>
+<th class='borders'>oaAntennaData attribute</th>
+</tr>
+<tr>
+<td class='borders'>ANTENNAPARTIALMETALAREA</td>
+<td class='borders'>oaAntennaData::partialMetal</td>
+</tr>
+<tr>
+<td class='borders'>ANTENNAPARTIALMETALSIDEAREA</td>
+<td class='borders'>oaAntennaData::partialMetalSide</td>
+</tr>
+<tr>
+<td class='borders'>ANTENNAPARTIALCUTAREA</td>
+<td class='borders'>oaAntennaData::partialCut</td>
+</tr>
+<tr>
+<td class='borders'>ANTENNADIFFAREA</td>
+<td class='borders'>oaAntennaData::diff</td>
+</tr>
+<tr>
+<td class='borders'>ANTENNAGATEAREA</td>
+<td class='borders'>oaAntennaData::gate</td>
+</tr>
+<tr>
+<td class='borders'>ANTENNAMAXAREACAR</td>
+<td class='borders'>oaAntennaData::maxCAR</td>
+</tr>
+<tr>
+<td class='borders'>ANTENNAMAXSIDEAREACAR</td>
+<td class='borders'>oaAntennaData::maxSideCAR</td>
+</tr>
+<tr>
+<td class='borders'>ANTENNAMAXCUTCAR</td>
+<td class='borders'>oaAntennaData::maxCutCAR</td>
+</tr>
+</table>
+</div>
+<a name='lef|macropin|direction'/>
+<a name='63002'/>
+<h2 class='topicSyntax'>
+DIRECTION {INPUT | OUTPUT [TRISTATE] | INOUT | FEEDTHRU} ;</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO PIN DIRECTION attribute maps to OpenAccess using the oaTerm::TermType attribute. The following table shows the mapping between PIN DIRECTION and the oaTermTypeEnum values.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>PIN DIRECTION</th>
+<th class='borders'>oacTermTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>INPUT</td>
+<td class='borders'>oacInputTermType (default)</td>
+</tr>
+<tr>
+<td class='borders'>OUTPUT</td>
+<td class='borders'>oacOutputTermType</td>
+</tr>
+<tr>
+<td class='borders'>OUTPUT TRISTATE</td>
+<td class='borders'>oacTristateTermType</td>
+</tr>
+<tr>
+<td class='borders'>INOUT</td>
+<td class='borders'>oacInputOutputTermType</td>
+</tr>
+<tr>
+<td class='borders'>FEEDTHRU</td>
+<td class='borders'>oacJumperTermType</td>
+</tr>
+</table>
+</div>
+<a name='lef|macropin|mustjoin'/>
+<a name='63007'/>
+<h2 class='topicSyntax'>
+MUSTJOIN pinName ;</h2>
+<div style='margin-left:40px;'>
+<p>The MUSTJOIN attribute is stored in OpenAccess using the mustJoin attribute on the oaBitTerm associated with the LEF PIN. If the terminal specified by the mustJoin attribute does not exist in the design, it is an error. MUSTJOIN on POWER and GROUND PINS will be ignored with a warning and the ports will be merged with the ports of the original LEF PIN.</p>
+</div>
+<a name='lef|macropin|netexpr'/>
+<a name='63004'/>
+<h2 class='topicSyntax'>
+NETEXPR "netExprPropName defaultNetName" ;</h2>
+<div style='margin-left:40px;'>
+<p>The NETEXPR maps to an <a href="../design/classoaTermConnectDef.html">oaTermConnectDef</a> in OpenAccess. The netExprPropName is stored as the assignmentName of an <a href="../design/classoaAssignmentDef.html">oaAssignmentDef</a>, and the defaultNetName is stored as the defaultName of the oaAssignmentDef. The oaAssignmentDef is then associated with the current oaTerm by the <a href="../design/classoaTermConnectDef.html">oaTermConnectDef</a>.</p>
+</div>
+<a name='lef|macropin|port'/>
+<a name='63008'/>
+<h2 class='topicSyntax'>
+PORT<BR/>
+&nbsp;&nbsp;&nbsp;[CLASS {NONE | CORE} ;]<BR/>
+&nbsp;&nbsp;&nbsp;{layerGeometries} ...<BR/>
+&nbsp;END</h2>
+<div style='margin-left:40px;'>
+<p>The PORT attributes are stored in OpenAccess as oaPin objects. The associated shapes and vias are stored as the oaPin figures. For each port geometry, a new shape is created and attached to the oaPin.</p>
+<p>The CLASS attribute maps to an oaStringProp named CLASS on the oaPin representing the LEF PORT. For backward compatibility, an oaBooleanProp named CLASSCORE is also set for CLASS CORE ports.</p>
+</div>
+<a name='lef|macropin|properties'/>
+<a name='63009'/>
+<h2 class='topicSyntax'>
+PROPERTY propName propVal ;</h2>
+<div style='margin-left:40px;'>
+<p>See <a href="oalefproperties.html">PROPERTIES</a>.</p>
+</div>
+<a name='lef|macropin|sensitivity'/>
+<a name='63005'/>
+<h2 class='topicSyntax'>
+SUPPLYSENSITIVITY powerPinName ;<BR/>
+&nbsp;GROUNDSENSITIVITY groundPinName ;</h2>
+<div style='margin-left:40px;'>
+<p>The LEF PIN SUPPLYSENSITIVITY attribute maps to OpenAccess as the supplySensitivity attribute of the current oaTerm. The oaTerm specified by powerPinName must exist in the design.</p>
+<p>The LEF PIN GROUNDSENSITIVITY attribute maps to OpenAccess as the groundSensitivity attribute of the current oaTerm. The oaTerm specified by groundPinName must exist in the design.</p>
+</div>
+<a name='lef|macropin|shape'/>
+<a name='63006'/>
+<h2 class='topicSyntax'>
+SHAPE {ABUTMENT | RING | FEEDTHRU} ;</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO PIN SHAPE attribute is stored in OpenAccess using the oaTerm::PinConnectMethod attribute. The following table shows the mapping between PIN SHAPE and the oaPinConnectMethodEnum values.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>PIN SHAPE</th>
+<th class='borders'>oaPinConnectMethodEnum</th>
+</tr>
+<tr>
+<td class='borders'>none</td>
+<td class='borders'>oacPinConnectMethodDefault (default)</td>
+</tr>
+<tr>
+<td class='borders'>ABUTMENT</td>
+<td class='borders'>oacPinConnectMethodAbut</td>
+</tr>
+<tr>
+<td class='borders'>RING</td>
+<td class='borders'>oacPinConnectMethodRing</td>
+</tr>
+<tr>
+<td class='borders'>FEEDTHRU</td>
+<td class='borders'>oacPinConnectMethodFeedthru</td>
+</tr>
+</table>
+</div>
+<a name='lef|macropin|taperrule'/>
+<a name='63001'/>
+<h2 class='topicSyntax'>
+TAPERRULE ruleName ;</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO PIN TAPERRULE attribute maps to OpenAccess as a constraint group member for the oaNet attached to the current oaTerm. The oaConstraintGroup named ruleName must exist in the technology database.</p>
+</div>
+<a name='lef|macropin|use'/>
+<a name='63003'/>
+<h2 class='topicSyntax'>
+USE { SIGNAL | ANALOG | POWER | GROUND | CLOCK } ;</h2>
+<div style='margin-left:40px;'>
+<p>The MACRO PIN USE attribute is stored in OpenAccess using the oaNet::SigType attribute of the oaNet attached to this oaTerm. The following table shows the mapping between PIN USE and the oaSigTypeEnum values.</p>
+<table class='borders'>
+<tr>
+<th class='borders'>PIN USE</th>
+<th class='borders'>oacSigTypeEnum</th>
+</tr>
+<tr>
+<td class='borders'>SIGNAL</td>
+<td class='borders'>oacSignalSigType (default)</td>
+</tr>
+<tr>
+<td class='borders'>ANALOG</td>
+<td class='borders'>oacAnalogSigType</td>
+</tr>
+<tr>
+<td class='borders'>CLOCK</td>
+<td class='borders'>oacClockSigType</td>
+</tr>
+<tr>
+<td class='borders'>GROUND</td>
+<td class='borders'>oacGroundSigType</td>
+</tr>
+<tr>
+<td class='borders'>POWER</td>
+<td class='borders'>oacPowerSigType</td>
+</tr>
+</table>
+<p>Note: If the pin is not a power or ground pin, the oaBlock created for the current LEF MACRO is made visible to the module domain.</p>
+</div>
+<div style="text-align: center">
+<img src="images/footer.gif"><br />
+</div><br/>
+
+<p class="copyright"><a href="../titlecopy.html"><em>Copyright &#169; 2003-2008 Cadence Design Systems, Inc.</em></a>
+<br />All rights reserved.</p>
+</body>
+</html>

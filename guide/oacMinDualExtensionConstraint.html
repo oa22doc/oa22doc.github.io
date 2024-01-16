@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="../style.css" rel="stylesheet" type="text/css">
+
+<link href="../print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='../oaheader.gif' alt='../oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../index.html"><img src='../topics.gif' alt='../topics.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes.html"><img src='../classes_all.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../classes_sel.html"><img src='../classes_sel.gif' alt='../classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../exceptionsByName.html"><img src='../exceptions.gif' alt='../exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="index.html"><img src='../progguide.gif' alt='../progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../schema/schematoc.html"><img src='../infomodel.gif' alt='../infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../doc_index.html"><img src='../index.gif' alt='../index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../help.html"><img src='../help.gif' alt='../help.gif' border="0" ></a></td>
+
+</tr>
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+
+    <h1>minDualExtension (oacMinDualExtension)</h1>
+    <hr />
+    <h2>Description</h2>
+    <p>The built-in oacMinDualExtension layer pair constraint specifies, in database units, the minimum distance a shape on one layer must extend past a shape on a second layer. Extensions are measured from the outside edge of the shape on the second layer to the inside edge of the shape on the first layer.</p>
+    <p>This constraint specifies a pair of values. One value applies to extensions in one direction, and the other value applies to extensions in the other direction. If the first value applies to edges in the vertical direction, the second value must apply to the edges in the horizontal direction. Alternatively, if the first value applies to edges in the horizontal direction, the second value applies to the edges in the vertical direction. Each value can apply to a different direction for each shape on a layer.</p>
+    <p>This constraint can specify a single pair of values, or multiple pairs of values, that are keyed by wire width. In addition, multiple oacMinDualExtension constraints can be defined in a precedence constraint group. In such a constraint group, the constraints are ordered first by width and cut distance, then by width, and then by length. Members in the group that do not specify width have the lowest precedence.</p>
+    <p>Optional parameters can be used to qualify when the constraint applies. See the Parameters section below for more information about using the optional parameters. This constraint definition is not symmetric, which means that the minimum extension of layer1 past layer2 is not the same as the minimum extension of layer2 past layer1. If you specify an oacMinDualExtension constraint for a layer pair, you should not specify an oacMinExtension constraint.</p>
+    <p>oacMinDualExtension constraints have two values. One value is for one orthogonal direction, and the other value for the other orthogonal direction. The specific horizontal or vertical direction of each value is not implied. If the first value is used to evaluate the extension in the horizontal direction, the second value is used to evaluate the extension in the vertical direction.</p>
+    <h2>Constraint at a Glance</h2>
+    <table border="0" cellpadding="4">
+      <tr>
+        <td valign="top">
+          <strong>Constraint type:</strong>
+        </td>
+        <td valign="top"><a href="../../html/tech/classoaLayerPairConstraint.html">oaLayerPairConstraint</a> (Symmetric: no)</td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Value types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/base/classoaDualIntValue.html">oaDualIntValue</a>, <a href="../../html/base/classoaDualInt1DTblValue.html">oaDualInt1DTblValue</a>, <a href="../../html/base/classoaIntDualIntArrayTblValue.html">oaIntDualIntArrayTblValue</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Database types:</strong>
+        </td>
+        <td valign="top"><a href="../../html/design/classoaDesign.html">oaDesign</a>, <a href="../../html/tech/classoaTech.html">oaTech</a></td>
+      </tr>
+      <tr>
+        <td valign="top">
+          <strong>Object types:</strong>
+        </td>
+        <td valign="top">
+          <a href="../../html/base/classoaAppObject.html">oaAppObject</a>
+        </td>
+      </tr>
+    </table>
+    <h2>Values</h2>
+    <p>The following value types are supported by this constraint:</p>
+    <ul>
+      <li>
+        <b>
+          <a href="../../html/base/classoaDualIntValue.html">oaDualIntValue</a>
+        </b>
+        <p>This value represents the minimum extension in each direction in database units</p>
+        <p>
+        Units: DBU</p>
+      </li>
+      <li>
+        <b>
+          <a href="../../html/base/classoaDualInt1DTblValue.html">oaDualInt1DTblValue</a>
+        </b>
+        <p>This oaDualInt1DTblValue is used when the lookup key in each table represents the width of the shape on the second layer, and the value for each table represents the minimum extension of that second shape past the first.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+      <li>
+        <b>
+          <a href="../../html/base/classoaIntDualIntArrayTblValue.html">oaIntDualIntArrayTblValue</a>
+        </b>
+        <p>When an array of value pairs is assigned for a given width, width is expressed as an oaInt4, the array is an oaDualIntArray, and the value type is an oaIntDualIntArrayTblValue.</p>
+        <p>
+        Units: DBU</p>
+      </li>
+    </ul>
+    <h2>Parameters</h2>
+    <p>The following parameters are supported by this constraint:</p>
+    <table>
+      <tr style="background-color:#cccccc">
+        <th title="String name and C++ enum name of the parameter">Name</th>
+        <th title="Class name of the parameter value" style="text-align:center;">Value Type</th>
+        <th title="The units in which the parameter is specified" style="text-align:center;">Units</th>
+        <th title="The default value for optional parameters, or '(Required)' for required parameters." style="text-align:center;">Default</th>
+        <th>Description</th>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>coincidentAllowed</b><br />oacCoincidentAllowedParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>When the coincidentAllowed parameter is specified and is true, then shapes can either meet the minimum extension or their edges can be coincident. If the parameter is false or is not specified, then the edges must meet the minimum extension specified and cannot be coincident.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>length</b><br />oacLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>length is an oaIntValue that specifies the total length of the enclosure required for the extension pair. This parameter is represented by oacLengthConstraintParamType. This constraint only applies if the total enclosure length is greater than or equal to this length parameter.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>oaCutDistance</b><br />oacCutDistanceConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>cutWithin is an oaIntValue represented by oacCutDistanceConstraintParamType, which specifies a distance within which via cuts are considered. If there is another cut within a distance that is less than or equal to the distance given by this parameter, this constraint does not apply.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>redundantCutDistance</b><br />oacRedundantCutDistanceConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>The oacMinDualExtension constraint with this parameter has smaller enclosure requirements. It applies only if there is a redundant cut within cutWithin distance (with the same metal shape above and below) which has the required enclosures specified in an oacMinDualExtension rule without the redundant parameter.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>oaNoSharedEdge</b><br />oacNoSharedEdgeConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>noSharedEdge is an oaBoolean value represented by oacNoSharedEdgeConstraintParamType that determines whether vias on a shared edge that are within the cutWithin distance are counted as redundant. If the value of this parameter is true, only vias that are not along the same wire edge can be counted as being inside the cutWithin distance. The default value of this parameter is false, which means that via cuts along the same wire edge are counted.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>hasParallelRunLength</b><br />oacHasParallelRunLengthConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>If this parameter is set to true, a common parallel run length &gt; 0 exist on the opposite edges for all of the failing edges of a cut.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>cutClass</b><br />oacCutClassConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaDualIntValue.html">oaDualIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">DBU</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>This parameter specifies the width and length dimensions of the cut class.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>numCuts</b><br />oacNumCutsConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaIntValue.html">oaIntValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Count</td>
+        <td style="vertical-align: middle; text-align:center;">None</td>
+        <td>
+          <p>Specifies the minimum required number of same metal cuts for which this constraint applies.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>endSideOverhang</b><br />oacEndSideOverhangConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>
+If this parameter is set to true, the first overhang value in the oaDualIntValue is associated with the short edge of the cut and the second overhang value is associated with the long edge.</p>
+        </td>
+      </tr>
+      <tr style="background-color:#eeeeee">
+        <td style="vertical-align: middle; text-align:left;"><b>exceptCutMetalEdgeExtension</b><br />oacExceptCutMetalEdgeExtensionConstraintParamType</td>
+        <td style="vertical-align: middle; text-align:center;">
+          <a href="../../html/base/classoaBooleanValue.html">oaBooleanValue</a>
+        </td>
+        <td style="vertical-align: middle; text-align:center;">Boolean</td>
+        <td style="vertical-align: middle; text-align:center;">False</td>
+        <td>
+          <p>If this parameter is true, and a via metal shape overlaps an edge of a wide wire, then the constraint would not apply to that edge.</p>
+        </td>
+      </tr>
+    </table>
+    <h2>Examples</h2>
+    <p>
+      <img src="images/figMinDualExtension.gif" alt="figMinDualExtension.gif" />
+      <br />
+    </p>
+    <h2>Manufacturing Reasons</h2>
+    <p>Extension rules ensure that the necessary overlaps are maintained to provide good connections after manufacturing. These kinds of constraints are common for metal shapes over cuts. If the process shifts the metal layer, the metal can uncover the cut and the resulting connection can be compromised. In the case of dual extension constraints, the larger extension is enough to maintain the connection when the geometry shifts. This allows for a smaller extension in the opposite direction than a uniform extension constraint might allow. Providing the minimum extensions of metal past a cut ensures that correct connections are maintained regardless of process variations.</p>
+    <p><br />
+          Copyright 2002 - 2010 Cadence Design Systems, Inc.<br />
+          All rights reserved.
+        </p>
+  </body>
+</html>
