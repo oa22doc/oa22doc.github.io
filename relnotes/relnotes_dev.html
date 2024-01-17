@@ -1,0 +1,987 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd">
+<html>
+	<head>
+		<title>OpenAccess 2.2 API</title> 
+		<!-- start header -->
+		<link type="text/css" rel="stylesheet" href="style.css">
+			<style type="text/css"> .style11 { }
+	.style5 { FONT-SIZE: xx-small }
+	.style12 { FONT-SIZE: x-small }
+	</style>
+	</head>
+	<body style="BACKGROUND-COLOR: rgb(255,255,255)">
+		<a name="pagetop"></a>
+		<div>
+			<table border="0" cellpadding="0" cellspacing="0" width="760" id="Table22">
+				<tbody>
+					<tr>
+						<td><img src="oaheader.gif" alt="oaheader.gif"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table border="0" cellpadding="0" cellspacing="0" width="760" id="Table23">
+				<tbody>
+					<tr>
+						<td height="30" width="95"><a href="../html/index.html"><img src="topics.gif" alt="overview.gif" align="top" border="0" height="30" width="95"></a></td>
+						<td height="30" width="95"><a href="../html/classes.html"><img src="classes_all.gif" alt="classes.gif" border="0" height="30" width="95"></a></td>
+						<td height="30" width="95"><a href="../html/classes_sel.html"><img src="classes_sel.gif" alt="progguide.gif" border="0" height="30" width="95"></a></td>
+						<td height="30" width="95"><a href="../html/exceptionsByName.html"><img src="exceptions.gif" alt="exceptions.gif" border="0"></a></td>
+						<td height="30" width="95"><a href="../html/guide/index.html"><img src="progguide.gif" alt="progguide.gif" border="0" height="30" width="95"></a></td>
+						<td height="30" width="95"><a href="../html/schema/schematoc.html"><img src="infomodel.gif" alt="infomodel.gif" border="0" height="30" width="95"></a></td>
+						<td height="30" width="95"><a href="../html/doc_index.html"><img src="index.gif" alt="index.gif" border="0" height="30" width="95"></a></td>
+						<td height="30" width="95"><a href="../html/help.html"><img src="help.gif" alt="help.gif" border="0"></a></td>
+					</tr>
+					<!-- start urhere row --> <!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+					<tr>
+						<td height="20" width="95"></td>
+						<td height="20" width="95"></td>
+						<td height="20" width="95"></td>
+						<td height="20" width="95"></td>
+						<td height="20" width="95"></td>
+						<td height="20" width="95"></td>
+						<td height="20" width="95"></td>
+						<td height="20" width="95"></td>
+						<!-- end urhere row-->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p><!-- end header -->
+		</p>
+		<h1>
+			OpenAccess 22.41.004 Release
+		</h1>
+		<hr>
+		<h2>Contents
+		</h2>
+		<ul>
+			<li>
+				<a href="#22.41.004">Version 22.41.004 Release</a></li>
+		</ul>
+		<div class="Header1"><a name="22.41.004"></a>Version 22.41.004 Release</div>
+		<ul>
+			<li>
+				<a href="#22.41.004_build">Build Configurations</a>
+			<li>
+				<a href="#22.41.004_compat">Compatibility with Earlier Releases</a>
+			<li>
+				<a href="#22.41.004_features">Changes and New Features</a>
+			<li>
+				<a href="#22.41.004_api_reports">API Changes</a>
+			<li>
+				<a href="#22.41.004_fixes">Fixed Problems </a>
+			<li>
+				<a href="#22.41.004_incomplete">Incomplete Status</a></li>
+		</ul>
+		<div class="Header2"><a name="22.41.004_build"></a>Build Configurations</div>
+		<p>The following table shows the build configurations and prebuilt libraries 
+			shipped with OpenAccess.
+		</p>
+		<P>
+			<table id="Table5" height="352" cellPadding="8" width="888" border="1">
+				<tbody>
+					<tr>
+						<th align="left" width="552">
+							Platform</th>
+						<th align="left" width="443">
+							Compiler</th></tr>
+					<tr bgColor="#e6e6e6">
+						<td width="552" bgColor="#e6e6e6">Solaris (x86_64) Operating System 10 with support 
+							for STLPort4 C++ standard template libraries</td>
+						<td bgColor="#e6e6e6">Solaris Compiler: Sun Studio 11 C++ 5.8
+						</td>
+					</tr>
+					<tr bgColor="#ffffcc">
+						<td width="552" bgColor="#ffffcc">Solaris Operating System 10
+							<br>
+							with support for STLPort4 C++ standard template libraries
+						</td>
+						<td bgColor="#ffffcc">Solaris Compiler: Sun Studio 12 C++ 5.9*
+						</td>
+					</tr>
+					<tr bgColor="#e6e6e6">
+						<td width="552" bgColor="#e6e6e6">Linux (x86 and x86_64) Operating System: Redhat 
+							Enterprise 4.0
+							<br>
+							Compatible with: RHEL50, SLES 10, SLES11
+						</td>
+						<td bgColor="#e6e6e6">Linux Compiler: gcc 4.4.3</td>
+					</tr>
+					<tr bgColor="#ffffcc">
+						<td width="552" bgColor="#ffffcc">Windows Operating System: Windows 2000/XP</td>
+						<td bgColor="#ffffcc">Windows Compiler: Visual Studio 2005</td>
+					</tr>
+					<tr bgColor="#e6e6e6">
+						<td width="552" bgColor="#e6e6e6">IBM Operating System: AIX 5.3
+						</td>
+						<td bgColor="#e6e6e6">IBM Compiler: XL C++ 7.0</td>
+					</tr>
+				</tbody></table>
+		</P>
+		<P>
+			<table id="Table7" border="5">
+				<tbody>
+					<tr>
+						<td class="style5" vAlign="top" width="512"><span class="style8"><strong>Notes</strong></span></td>
+					</tr>
+					<tr>
+						<td class="style8" vAlign="top"><strong>*</strong> For sun4v systems for Solaris 
+							10, the following variable must be set:<code> setenv OA_COMPILER stl4 </code>
+						</td>
+					</tr>
+					<tr>
+						<td class="style8" vAlign="top">32 bit OA libraries are compiled without the PIC 
+							option on Solaris and Linux.</td>
+					</tr>
+				</tbody></table>
+			<div class="Header2"><a name="22.41.004_compat"></a>Compatibility with Earlier 
+				Releases</div>
+		<p>The current data model revision is 4. The following table shows the contents of 
+			each data model revision.</p>
+		<table id="Table96" border="1" cellpadding="4" width="780">
+			<tbody>
+				<tr bgcolor="#99cccc">
+					<th colspan="2">
+						Data Model Revision (oacDataModelRevNumber)</th>
+				</tr>
+				<tr>
+					<td width="38">4</td>
+					<td width="714">45/65 nanometer constraints, layer-pair exclusivity, purpose-aware 
+						constraints, and predefined via parameters
+					</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Incremental technology databases</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Constraints and oaFigGroups</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Huge Database feature</td>
+				</tr>
+				<tr>
+					<td>0</td>
+					<td>OpenAccess 2.2, but no new features are used.</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>Refer to the <a href="feature_table.html">Features by Data Model</a> document 
+			for a full list of the features included in each data model revision of 
+			OpenAccess.
+		</p>
+		<p>The <em>oacAPIMinorRevNumber</em>&nbsp;&nbsp;is 201.</p>
+		<H4>About the 22.41 Stream</H4>
+		<P>The 22.41 stream is a separate stream from 22.04. Although both streams support 
+			data model 4, 22.41 is built and tested on a different set of build 
+			configurations. These streams are data compatible with each other. Databases 
+			written by 22.41 kits can be read by 22.04 kits, and databases written by 22.04 
+			kits can be read by 22.41 kits. However, applications built with 22.41 kits 
+			should be run with 22.41 kits and applications built with 22.04 kits should be 
+			run with 22.04 kits. It is possible to run an application compiled with 
+			22.04 kits against newer 22.41 kits, however this is not recommended.</P>
+		<div class="Header2"><a name="22.41.004_features"></a>Changes and New Features
+		</div>
+		<h4>LEF/DEF parser version</h4>
+		<P>To build the LEF/DEF translators, the lefdef5.7_32_p002 (or later) 
+			toolkit is required.</P>
+		<h4>Thread Safety</h4>
+		<P>OpenAccess now supports thread safety on a beta basis. Thread safety is 
+			supported for two basic use models: multiple reader threads operating on one or 
+			more databases and multiple writer threads operating on a single thread per 
+			database basis. The OpenAccess API and implementation only supports thread 
+			safety in the form of resource locking and data preconditioning. OpenAccess 
+			will <EM>not</EM> create threads or use them internally.
+		</P>
+		<P>Applications can turn on thread safety and locking within the session if they 
+			have met certain prerequisites and by calling oaSession::setThreadUseModel() 
+			with one of the following thread use model enums.</P>
+		<P>
+			<TABLE id="Table2" height="75" cellSpacing="1" cellPadding="1" width="1104" border="1">
+				<TR>
+					<TD width="195"><STRONG>oaThreadUseModel</STRONG></TD>
+					<TD width="148"><STRONG>Enum Prerequisites?</STRONG></TD>
+					<TD width="93"><STRONG>Locking?</STRONG></TD>
+					<TD><STRONG>Description </STRONG>
+					</TD>
+				</TR>
+				<TR>
+					<TD width="195">oacSingleThreadUseModel</TD>
+					<TD width="148">None</TD>
+					<TD width="93">No</TD>
+					<TD>The application intends to interact with OpenAccess using a single thread. This 
+						is the default value.</TD>
+				</TR>
+				<TR>
+					<TD width="195">oacMultipleReadersThreadUseModel</TD>
+					<TD width="148">Yes</TD>
+					<TD width="93">Yes</TD>
+					<TD>The application intends to use multiple read-only threads to access one or more 
+						OpenAccess databases concurrently.</TD>
+				</TR>
+				<TR>
+					<TD width="195">oacMultipleWritersThreadUseModel</TD>
+					<TD width="148">Yes</TD>
+					<TD width="93">Yes</TD>
+					<TD>The application intends to use multiple read-write threads to access a single 
+						OpenAccess database per thread.</TD>
+				</TR>
+			</TABLE>
+		</P>
+		<P>Applications can switch from multi-threaded to single threaded use models (and 
+			back) in the same session. However, OpenAccess will not revert any data 
+			preconditioning for supporting a multi-threaded use model when switching back 
+			to single threaded.</P>
+		<P>
+			At this point in time, the oacMultipleWritersThreadUseModel does not support 
+			traversing data. This will be addressed in an upcoming incremental release. 
+			Until then, thread safety should be considered beta and is not intended for 
+			production use.</P>
+		<H4>Handling Recursion</H4>
+		<P>This capability enhances OpenAccess to handle recursive designs. In addition, 
+			OpenAccess now disallows the introduction of recursion through any of its APIs. 
+			Additionally, the applications can also query regarding the existence of 
+			recursion in a design hierarchy. The data is loaded in such a way that allows 
+			the user or application to fix the data. Recursion here refers to a design 
+			containing an instance of itself.</P>
+		<P><EM>Note: Recursion&nbsp;handling is&nbsp;limited to self-instantiation 
+				scenarios.&nbsp;Complex recursion types (like A-&gt;B-&gt;A) are not currently 
+				supported.</EM></P>
+		<P>The following sections provide a detailed description on enhancements included 
+			in this release:</P>
+		<h5>Header Binding</h5>
+		<p>When an attempt is made to bind a header to its master in memory, OpenAccess 
+			checks if the master already references the header's design (or module). If it 
+			does, the header is left unbound to ensure non occurrence of a recursive loop 
+			in the hierarchy. Subsequently, the header is added to the unbound header list 
+			and it will remain unbound until adjustments are made to the data to remove the 
+			recursive loop.When this situation is detected, OpenAccess issues an on-bind 
+			recursion observer notification.</p>
+		<p>The detection notification will include data that will provide an observer 
+			enough information to report a meaningful message to the user.</p>
+		<h5>Recursion Checking for Existing APIs</h5>
+		<p>The following OpenAccess public APIs have been identified for recursion checking 
+			to prevent the user from introducing recursion:</p>
+		<UL>
+			<LI>
+			oaInst::setMaster(), oaInstHeader::setMaster(), and 
+			oaModDesignInst::setMaster(): If the master is specified, a check now detects 
+			whether the master already references the design that owns the instance. If it 
+			does, an oaDesignError noting the attempt to create a self-reference is thrown.
+			<LI>
+			For oaInst::setMaster() and oaModDesignInst::setMaster() versions that accept 
+			lib/cell/view names of the new master, if the master is open in memory, the 
+			reference check will be done else a minimal self-reference check will be done.
+			<LI>
+			oaDesign::saveAs() now checks if the new location exists and is already 
+			referenced somewhere in the design hierarchy.
+			<LI>
+				Instance creation APIs - If the specified master is same as the design that the 
+				block or module where the instance is being created in, throw an oaDesignError 
+				noting the attempt to create a self-reference.</LI></UL>
+		<H5>Recursion Checking APIs</H5>
+		<P>The following new functions have been added in this release:</P>
+		<UL>
+			<LI>
+			oaDesign::hasRecursion(): This function returns a Boolean value to indicate 
+			whether the design hierarchy contains any recursive loops.
+			<LI>
+				oaDesign::hasReference(): This function returns a Boolean to indicate whether 
+				the design hierarchy (starting at this design) already references the specified 
+				design master.</LI></UL>
+		<H5>New Recursion Observer</H5>
+		<P>A new observer has been defined to provide notification to applications if 
+			recursion is detected. The detection notifications can be of two types. The 
+			first type of notification is issued during the explicit oaDesign::hasRecursion 
+			check. When recursion is detected, the design where a reference to it already 
+			exists in its hierarchy and hierarchy stack is part of the notification. The 
+			second type of notification is issued when an instHeader or viaHeader is being 
+			bound and one of the design's in the hierarchy portion which instantiates the 
+			instHeader's or viaHeaders's owning design already references the design. The 
+			list of new functions is as follows:</P>
+		<PRE>oaRecursionObserver(oaUInt4 priorityIn, oaBoolean enabledIn = true);<BR>virtual ~oaRecursionObserver();<BR>virtual void onDetect(const oaDesign *design, const oaDesignArray &amp;bottomUpList);<BR>virtual void onBind(const oaRefHeader *header, const oaDesign *master, const oaDesignArray &amp;bottomUpList);<BR>static  void notifyDetectObservers(const oaDesign *design, const oaDesignArray &amp;bottomUpList);<BR>static  void notifyBindObservers(const oaRefHeader *header, const oaDesign *master, const oaDesignArray &amp;bottomUpList);</PRE>
+		<H4>oaChangeSetObserver Observer Class</H4>
+		<P>A new observer class oaChangeSetObserver is defined for oaChangeSet to provide 
+			notifications(as explained below). Applications can choose to derive their own 
+			observer from this class and implement the observer methods.</P>
+		<PRE>class oaChangeSetObserver <BR>       {<BR>	public: void onPostCreate(oaChangeSetBase *cs); <BR>	void onPreDestroy(oaChangeSetBase *cs); <BR>	void onEmpty(oaChangeSetBase *cs); <BR>	void onFirstChange(oaChangeSetBase *cs); <BR>	void onFullExport(oaChangeSetBase *cs); <BR>	void onIncrementalExport(oaChangeSetBase *cs); <BR>	};</PRE>
+		<P>The detailed description of methods defined by oaChangeSetObserver class is as 
+			follows:</P>
+		<UL>
+			<LI>
+				<FONT face="Courier">oaChangeSetObserver::onFirstChange(oaChangeSetBase *cs)</FONT>
+				<BR>
+				This notification indicates that there are change records in the change set 
+				that need to be exported.&nbsp;It is issued for the first change record that 
+				gets added in an empty oaChangeSet. It is also issued when the first change 
+				record gets added after an incremental export of the change set.
+				<BR>
+			<LI>
+				<FONT face="Courier">oaChangeSetObserver::onEmpty(oaChangeSetBase *cs)</FONT><BR>
+				This notification indicates that the change set is now empty. This notification 
+				occurs as a result of an undo operation that rolls back the changes recorded in 
+				a change set. The change set starts without change records and&nbsp;the "empty" 
+				state is implied. For example, an explicit onEmpty notification is not sent to 
+				the application when the change set gets created.
+				<BR>
+			<LI>
+				<FONT face="Courier">oaChangeSetObserver::onPostCreate(oaChangeSetBase *cs) </FONT>
+				<BR>
+				This notification is sent on creation of the change set.
+				<BR>
+			<LI>
+				<FONT face="Courier">oaChangeSetObserver::onPreDestroy(oaChangeSetBase *cs)</FONT><BR>
+				This notification is sent on explicit or implicit deletion of the change set. 
+				Explicit deletion happens through a call to discardChangeSet on oaChangeMgr. 
+				Implicit deletion of the change set occurs when an undo operation goes beyond 
+				the beginning of the change set.
+				<BR>
+			<LI>
+				<FONT face="Courier">oaChangeSetObserver::onFullExport(oaChangeSetBase *cs)</FONT><BR>
+				This notification is sent when a full export is performed on a change set.<BR>
+			<LI>
+				<FONT face="Courier">oaChangeSetObserver::onIncrementalExport(oaChangeSetBase *cs)</FONT><BR>
+				This notification is sent when an incremental export is performed on a change 
+				set.
+			</LI>
+		</UL>
+		<h4>Restricting APIs in Block Overrides flow</h4>
+		<p>Block Overrides are only allowed on nets with the following 
+			</SPAN></FONT>sigTypes: "power", "ground", "tieoff", "tieHi", or "tieLo"<FONT color="navy"><SPAN style="COLOR: navy"></SPAN></FONT><SPAN style="COLOR: red"><FONT color="#000000">or 
+					on nets that are equivalent to a net with one of these </FONT>
+			</SPAN>sigTypes. Additional checking has been added to several APIs that 
+			restrict the editing of connectivity in the block domain&nbsp;that 
+			will&nbsp;break the sigType invariant for Block Overrides. The detailed 
+			description of&nbsp;these APIs and related exceptions is&nbsp;as follows:</p>
+		<P>
+			<TABLE id="Table1" height="722" cellSpacing="1" cellPadding="1" width="984" border="1">
+				<TR>
+					<TD><STRONG>API Name</STRONG></TD>
+					<TD><STRONG>Exception </STRONG>
+					</TD>
+					<TD><STRONG>Description</STRONG></TD>
+				</TR>
+				<TR>
+					<TD height="77"><EM>oaInstTerm::addToNet</EM></TD>
+					<TD height="77">oacInvalidSigTypeForBlockOverrideNet</TD>
+					<TD height="77">This exception is thrown if the instTerm overrides the connectivity 
+						of another instTerm and the specified net does not have an appropriate sigType 
+						(either directly or through any of its equivalent nets).</TD>
+				</TR>
+				<TR>
+					<TD height="41"><EM>oaNet::destroy</EM></TD>
+					<TD height="41">
+						<P>oacCannotDestroyNetOnHiddenTerm&nbsp;<BR>
+							or oacCannotDestroyNetOnHiddenInstTerm<OACCANNOTDESTROYNETONHIDDENINSTTERM></P>
+					</TD>
+					<TD height="41">These exceptions are thrown if any terms or instTerms were hidden 
+						on the net.</TD>
+				</TR>
+				<TR>
+					<TD height="48"><EM>oaNet::isEmpty</EM></TD>
+					<TD height="48">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						-</TD>
+					<TD height="48">This function returns false if there are no terms or instTerms on 
+						the net or if the only terms and instTerms on the net were hidden.</TD>
+				</TR>
+				<TR>
+					<TD height="51"><EM>oaNet::setSigType</EM></TD>
+					<TD height="51">oacInvalidSigTypeForBlockOverrideNet</TD>
+					<TD height="51">This exception is thrown if the net is associated with an 
+						overriding instTerm or term and&nbsp;it does not have an equivalent net that 
+						has one of the required&nbsp;sigTypes.</TD>
+				</TR>
+				<TR>
+					<TD height="70">
+						<P><EM>oaNet::merge
+								<BR>
+								and
+								<BR>
+								oaNet::transfer</EM></P>
+					</TD>
+					<TD height="70">oacCannotEditNetOnHiddenTerm&nbsp;<BR>
+						or<BR>
+						oacCannotEditNetOnHiddenInstTerm
+					</TD>
+					<TD height="70">This exception is thrown if any terms or instTerms were hidden on 
+						the specified source net.</TD>
+				</TR>
+				<TR>
+					<TD height="233"><EM>oaBitNet::breakEquivalence</EM></TD>
+					<TD height="233">oacInvalidSigTypeForBlockOverrideNet</TD>
+					<TD height="233">
+						<P>This exception prevents an application from inadvertently using <EM>breakEquivalence</EM>
+							to remove the "power" or "ground" characteristic sigType from a net with hidden 
+							or overriding terms or instTerms that inherit&nbsp;that characteristic sigType 
+							from an equivalent net.
+						</P>
+						<P>OpenAccess throws this exception in one of the following conditions:</P>
+						<UL>
+							<LI>
+							The net has&nbsp;one or more overriding terms or instTerms&nbsp;and it does not 
+							have one of the following sigType:&nbsp; "power", "ground", "tieoff", "tieHi", 
+							or "tieLo".
+							<LI>
+							One of the nets in the equivalent set of nets&nbsp;has an overriding term or 
+							instTerm and it does not have one of the following sigType: "power", "ground", 
+							"tieoff", "tieHi", or "tieLo.
+							<LI>
+								The sigType of the net is&nbsp;"power"/"ground"/"tieoff"/"tieHi" or "tieLo" but 
+								no other net in the equivalent net set has one of these sigTypes.</LI></UL>
+					</TD>
+				</TR>
+				<TR>
+					<TD><EM>oaTerm::moveToNet</EM></TD>
+					<TD>oacInvalidSigTypeForBlockOverrideNet</TD>
+					<TD>This exception is thrown if the term is an overriding term and&nbsp;the 
+						destination net&nbsp;does not have a&nbsp;"power", "ground", "tieoff", "tieHi", 
+						or "tieLo" sigType and it is not equivalent to a net with one of these 
+						sigTypes.</TD>
+				</TR>
+			</TABLE>
+		</P>
+		<h4>oaOccTraverser Changes</h4>
+		<p>A new public class oaOccProducer has been defined. This class separates the 
+			traversal of the hierarchy from the production of the contents of a specific 
+			occurrence.&nbsp;
+		</p>
+		<p>The oaOccTraverser class has also been changed. It now derives from the 
+			oaOccProducer class. This helps&nbsp;maintain&nbsp;compile compatibility by 
+			preserving the process functions in the&nbsp;public interface of the 
+			oaOccTraverser class. Applications should still derive from oaOccTraverser to 
+			define the behavior of objects as they are processed or to traverse through the 
+			hierarchy.</p>
+		<p>Both the APIs and the behavior of the oaOccTraverser class have been changed to 
+			make the class usable to a wider range of applications. The significant 
+			behavior changes are:
+		</p>
+		<ul>
+			<li>
+			The produce() function can be overridden to customize the production of the 
+			objects.
+			<li>
+			The produceInsts() function no longer descends through the hierarchy. It has 
+			been changed to simply produce the instances.
+			<li>
+			The produceInsts() function now calls startInstHeader(), endInstHeader() and 
+			startModuleInstHeader(), endModuleInstHeader() functions to allow instance 
+			filtering based on headers.
+			<li>
+			The produceInstHeaders() function no longer calls startInstHeader() or 
+			endInstHeader(). Instead, it now calls&nbsp;processInstHeader().
+			<li>
+			The startOccurrence() function controls the production of the contents of the 
+			given occurrence. If the function returns false, the contents are not produced. 
+			This also controls the descent along with the startInst() function.
+			<li>
+			Even if the startOccurrence() function returns false, the corresponding 
+			endOccurrence() function will always be called. The same applies to the 
+			startInst() and endInst() functions.
+			<li>
+			If the startInst() function returns false, the traverser will not descend 
+			through that instance, but the instance&nbsp;may still be produced because the 
+			traversal is separated from the production. Note that this is similar to the 
+			behavior when startOccurrence() returns false, but if startInst() returns false 
+			the occurrence hierarchy will not be expanded to the master occurrence.
+			<li>
+				If the startInstHeader() function returns false, all instances associated with 
+				that header will not be produced. The same applies for startModuleInstHeader().
+			</li>
+		</ul>
+		<p>The OpenAccess Hierarchy Domains section in the Programmer's Guide contains the 
+			definitions and examples of pre- and post- order traversals. See the 
+			Programmer's Guide for more information on how to use&nbsp;oaOccTraverser.</p>
+		<h4>oaStrm API Changes (for Derived Translators)</h4>
+		<p><a href="../html/source_api_diff_oaStrm_22.41.004_to_22.04.069.html">View a summary</a> of the 
+			oaStrm changes for derived translators.
+			<h4>
+				<H4>
+					CMS API Changes (Change Management)</H4>
+			</h4>
+		<p><a href="../html/source_api_diff_cms_22.41.004_to_22.04.069.html">View a summary</a> of 
+			the&nbsp;CMS changes.
+			<h4>oaLefDef API Changes (for Derived Translators)</h4>
+		<p><a href="../html/source_api_diff_oaLefDef_22.41.004_to_22.04.069.html">View a summary</a> of the 
+			oaLefDef changes for derived translators.
+			<h4>oaSpef API Changes (for Derived Translators)</h4>
+		<p><a href="../html/source_api_diff_oaSpef_22.41.004_to_22.04.069.html">View a summary</a> of the 
+			oaSpef changes for derived translators.
+			<div class="Header2"><a name="22.41.004_api_reports">API Change Reports</a></div>
+		</A>
+		<P><A href="../html/source_api_diff_22.41.004_to_22.04.069.html">View a summary</A> of the&nbsp;API 
+			changes&nbsp;for this&nbsp;release.</A></P>
+		<br>
+		<div class="Header2"><a name="22.41.004_fixes">Fixed Problems</a></div>
+		<div>
+			<table id="Table97" border="1">
+				<tbody>
+					<tr>
+						<td bgcolor="#99cccc" ><strong>Si2 ITS </strong>
+						</td>
+						<td bgcolor="#99cccc" width="81%"><strong>Issue</strong></td>
+					</tr>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The oa2def translator provides a confusing message to report missing instance master
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Change the fixed layer number for creating the layer specified in -textLayer 
+							option in lef2oa
+						</TD>
+					</TR>
+					<TR>
+						<TD>
+							1205
+						</TD>
+						<TD>
+							The DEF translator loses supply and ground sensitivity in round trip</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							The XYTree shared library should link to oaTech</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The oaTech::getFeatures() API crashes while constructing a collection of 
+							constraintParamDefs in the presence of ITDB graph</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Provide a way to exclude cells from via recognition</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>If an abstract view does not exist, verilogAnnotate creates a new abstract view 
+							instead of issuing a warning</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The verilogAnnotate translator should not default to abstract if the -refViews 
+							option is used</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Strm2oa error message 80046 contains a typo</TD>
+					</TR>
+					<TR>
+						<TD>1211</TD>
+						<TD>The getGroupsOwnedBy().includes() does not show attrDisplay as a part of the 
+							group</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Lef2oa stores the VIARULE direction incorrectly
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Strm2oa is not handling GDS with more than 20000 cells correctly
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Segmentation fault during undo of uniquify</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Oa2def is not preserving the hierarchy delimiter defined in the original DEF 
+							file translated to OA</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Via detection creates multiple on-disk cellviews which can impact performance</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							The lef2oa translator should issue a warning if the techDB exists and the LEF 
+							has no UNITS statement</TD>
+					</TR>
+					<TR>
+						<TD>1230</TD>
+						<TD>The unbound via bbox changes after destroy and undo</TD>
+					</TR>
+					<TR>
+						<TD>1109</TD>
+						<TD>The oaOccTraverser::processInstHeader is not called during traversal</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The hierDepth should be considered only when the cell option is specified</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Blockages mismatch due to difference in&nbsp;default value&nbsp;across DM3 and 
+							DM4</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Empty lppHeaders should be skipped in oaStrmOut::writeOaLPPHeader()
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>oaRefHeaderTbl::getMaster&nbsp;returns a super header from a subHeader
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							A superHeader could be destroyed even when it is being referenced by a 
+							viaDefArrayValue</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							The modInstTerm should appear to be disconnected and getNet should return 
+							NULL,&nbsp;if the reflected instTerm is connected to a physical-only net</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Overriding instTerm should be physical-only.</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Incorrect LEF mapping comment for minEndOfLineSpacing</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Terminal iteration in an oaTerm collection goes into an infinite loop</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The oa2def translator should export physical-only instances with +SOURCE DIST</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The spef2oa translator should use gzread to read the SPEF file</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The lef2oa translator should assume OVERLAP as the name of the overlap layer</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>via orientation for nets is lost after round trip of def2oa+oa2def
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Add support for redo() to update the headers in a uniquify operation
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Merge oaOccObjectMemTbl::remove and removeUniquify functions</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							spef2oa should handle the direction of a term with termType oacJumperTermType</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>def2oa should exit after detecting a cellview type mismatch exception</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							The oa2verilog translator should not emit any port declarations for terminals 
+							whose isInterface state is set to false</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The oaProp::copyTo() fails to set correct domain for target property</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The oa2lef is ignoring the orientation for FOREIGN objects</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>oaPropTbl::moveTo()should not generate a loop-ownership</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Fix broken link issue related to multibit_insts.bmp in logical connectivity PG 
+							article</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Non persistent appDef's back pointer is lost after saving the design
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Updated stdViaDef searching mechanism to include cut size swap and layer 
+							matches
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							oa2lef should consider the isSide() attribute of the oaAntennaRatioValue for a 
+							given oaAntenna constraint before the value of 
+							oacAntennaAreaFactorConstraintParamType is output</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Creating overlapping vector instances with a V__ prefix should throw an 
+							exception</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Add oaDesign::hasRecursion and oaDesign::hasReference public APIs to enable 
+							recursion checking during header binding</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Output the correct origin for FOREIGN objects and issue a warning when the 
+							FOREIGN name matches the MACRO name</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>If cell count exceeds maxCells limit in the current library, provide an 
+							information message before creating a new library</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Compare the file timestamp on disk against oaDatabase::fileTimestamp before 
+							upgrading a design to append mode</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Bind TextOverrides to duplicate test objects</TD>
+					</TR>
+					<TR>
+						<TD>1240</TD>
+						<TD>Update lastSavedTime and creationTime for a new design created using Save As 
+							option</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Error/info messages related to the design translation for a cellView should be 
+							printed at the start of actual translation
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>oaDesignData::openHier() should run traversal loop twice to bind missing 
+							subHeaders. If the header is already bound, skip it in the second loop
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Do not check the sigType of the multibit net while creating a multibit override</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Switch statements in oaRouteTbl::checkContiguity should include default case</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Changing the connectivity of a vector instance with a large number of bits may 
+							cause the system to run out of memory</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							strm2oa should check top block after new design creation</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Clean-up temp cells after strmIn translation more efficiently</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Do not create empty auto-named constraintGroup when determining routing layer</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The strm2oa translator crashes with "Unable to lock database file" error</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>If a layer number is set to a steiner which is not associated with a layer, the 
+							steiner should be removed from the grid of layerless steiners</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The oa2lef translator crashes while writing VIARULE DIRECTION
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The strm2oa translator should not change the DBUperUU of an existing tech
+						</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							Performance improvement of oaBundleNetTbl::getBit</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>
+							The lef2oa translator crashes due to an invalid viaDirection parameter</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Data in oaTech graph is not findable when setRefs() is called during the course 
+							of oaTech graph open, in some cases</TD>
+					</TR>
+					<TR>
+						<TD>1207</TD>
+						<TD>spef2oa should terminate the file name with NULL character while dropping the 
+							.gz extension</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>If a terminal uses both MUSTJOIN and USE POWER/GROUND attributes, lef2oa should 
+							ignore MUSTJOIN property with a warning</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Performance improvement for oaInst::getPin()</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Term sensitivity is not reverted by undo</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The lef2oa translator should report a warning if a read-only tech is modified 
+							for SITE statement</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Invalid net is being passed to onEndCreate notification for oaModNet scoped 
+							observer</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Preserve cache file if owning host is unreachable</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>The oa2strm translator should not crash when exporting a recursive design</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Crash in oaDesign::open() if via superMaster parameters have been modified</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Add public PcellFile object pointer and offset to PcellFile observer 
+							notifications</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Add cutClassProfile parameter to cut class spacing</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>oaShape::transform does not consider negative angles to check 90 degree angle</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Copying or moving an oaPathSeg may change the begin and end extension</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>lef2oa should issue a warning if direction is not defined for routing layers</TD>
+					</TR>
+					<TR>
+						<TD>1274</TD>
+						<TD>Unbind instTerm when the term is renamed</TD>
+					</TR>
+					<TR>
+						<TD>1277</TD>
+						<TD>Add the library search path at the beginning of the existing search path to 
+							ensure that the entries for existing OA libraries are not overriden</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Performance issue in oa2strm for designs with many pcells</TD>
+					</TR>
+					<TR>
+						<TD>1267</TD>
+						<TD>verilog2oa hangs in the makeCanonEquivalences function</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>clusterBoundary copy fails to make a copy if it is the member of an oaFigGroup</TD>
+					</TR>
+					<TR>
+						<TD>1280</TD>
+						<TD>oaString::substr should validate offset</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Do not update design's tech bindings unless the modified tech is the design's 
+							tech or the design's tech is not being opened and the modified tech is in the 
+							design's techgraph</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>Crash in oaTextDisplay::copy() to a different block if the textDisplay is a 
+							group member</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>strmout hangs in specific scenarios with nested pcells</TD>
+					</TR>
+					<TR>
+						<TD>&nbsp;</TD>
+						<TD>oaGetVersion output does not contain oaUtil library information on the AIX 
+							platform</TD>
+					</TR>
+				</tbody>
+			</table>
+		</div>
+		<p></p>
+		<div class="Header2"><a name="22.41.004_incomplete"></a>Incomplete Status</div>
+		<p><strong>Note</strong>: The Change Management System is no longer designated as 
+			Beta, and is considered to be of production quality. However, the Importer 
+			plug-in interface referenced in the documentation is&nbsp;not yet implemented.</p>
+		<p>Some parts of this release are still in development and are considered to be of 
+			Beta quality. They are subject to changes in their use and interface. This 
+			includes:</p>
+		<ul>
+			<li>
+			Tcl interface
+			<li>
+			Wafer database
+			<li>
+			Tcl Pcells
+			<li>
+			Turbo DM System
+			<LI>
+				Thread Safety&nbsp;</LI>
+		</ul>
+		<p>The Turbo DM System is not considered to be of production quality and is not 
+			supported.</p>
+		<p><a href="#pagetop">Return to top of page</a></p>
+		<div style="TEXT-ALIGN: center">
+			<img src="images/relnotesfooter.gif"><br>
+		</div>
+		<p class="copyright"><a href="../html/titlecopy.html"><em> Copyright © 2003-2010 Cadence 
+					Design Systems, Inc.</em></a>
+			<br>
+			All rights reserved.</p>
+	</body>
+</html>

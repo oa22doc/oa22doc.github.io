@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>Major Release API Compatibility</h1>
+<hr>
+<p><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">Starting with the  2.2 release, OpenAccess has added mechanisms to allow compatibility when future releases occur. Compatibility is a target both for API compatibility (allowing old programs to run on new releases without recompiling) and for database compatibility (allowing applications on new releases to read older databases).</SPAN></FONT></p>
+<H2><B><FONT face=Arial color=black size=5><SPAN 
+style="FONT-SIZE: 16pt; COLOR: black; FONT-FAMILY: Arial">API Compatibility </SPAN></FONT></B></H2>
+<P><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">OpenAccess has previously provided API compatibility within a given release version. So the various versions of 2.0, such as 2.0.4 and 2.0.5, are drop-in compatible. This means that when newer shared libraries are installed, the applications that worked on earlier versions will continue to run without any change or re-link (much less re-compile). This allows functions to be added in newer releases, but it requires that older functions never  change their signature or be removed.</SPAN></FONT></P>
+<P><span class="style1"><SPAN 
+style="FONT-FAMILY: Arial">The 2.2 release is </SPAN></span> <span class="style1"><SPAN 
+style="FONT-FAMILY: Arial">targeting</SPAN></span><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial"> API compatibility for one major revision back. In other words, the OpenAccess 2.3 shared libraries will allow applications that work on version 2.2 to continue to work. Applications based on different versions of the API will be able to release asynchronously and still </SPAN></FONT><span class="style1"><SPAN 
+style="FONT-FAMILY: Arial">interoperate.</SPAN></span><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial"> When these applications are running on the 2.3 version of the OpenAccess implementation, the databases that they use will be 2.3 databases.</SPAN></FONT></P>
+<p><img src="images/oacompat.gif" width="731" height="406"></p>
+<p>&nbsp;</p>
+<h2>C++ Namespaces to Distinguish Between API Versions </h2>
+<p><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">C++ namespaces will be used to distinguish between the OpenAccess 2.2 API and the OpenAccess 2.3 API. </SPAN></FONT></p>
+<UL type=disc>
+  <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">All OpenAccess symbols are enclosed in an API versioned OpenAccess namespace, which will be </SPAN></FONT><CODE><FONT face=Courier>OpenAccess_4</FONT></CODE><FONT 
+face=Arial><SPAN style="FONT-FAMILY: Arial"> initially. </SPAN></FONT>
+  <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">A non-versioned </SPAN></FONT><CODE><FONT face=Courier>oa</FONT></CODE><FONT face=Arial><SPAN 
+style="FONT-FAMILY: Arial"> namespace alias is also provided.</SPAN></FONT>
+  <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">To use OpenAccess symbols, you must use a namespace. </SPAN></FONT>
+      <UL type=circle>
+        <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">If your application does not need to access two different versions of the OpenAccess API simultaneously, do one of the following: </SPAN></FONT>
+            <UL type=square>
+              <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">Add the declaration: </SPAN></FONT><FONT face="Courier New"><SPAN 
+style="FONT-FAMILY: 'Courier New'">using namespace<CODE><FONT 
+face="Courier New"><SPAN style="FONT-FAMILY: 'Courier New'"> oa</SPAN></FONT></CODE></SPAN></FONT><FONT face=Arial><SPAN 
+style="FONT-FAMILY: Arial"> </SPAN></FONT>
+              <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">Prefix all symbols with </SPAN></FONT><CODE><FONT face=Courier>oa::</FONT></CODE><FONT face=Arial><SPAN 
+style="FONT-FAMILY: Arial"> </SPAN></FONT></LI>
+            </UL>
+        <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">If your application does need to support accessing two different versions of the API in one compilation (which is very unusual), do one of the following: </SPAN></FONT>
+            <UL type=square>
+              <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">Add the declaration: </SPAN></FONT><FONT face="Courier New"><SPAN 
+style="FONT-FAMILY: 'Courier New'">using namespace </SPAN></FONT><FONT 
+face="Courier New" color=black><SPAN 
+style="COLOR: windowtext; FONT-FAMILY: 'Courier New'">OpenAccess_4</SPAN></FONT><FONT 
+face=Arial><SPAN style="FONT-FAMILY: Arial"> </SPAN></FONT>
+              <LI class=MsoNormal style="COLOR: black"><FONT face=Arial color=black 
+size=3><SPAN style="FONT-SIZE: 12pt; FONT-FAMILY: Arial">Prefix all symbols with </SPAN></FONT><CODE><FONT face=Courier>OpenAccess_4::</FONT></CODE><FONT 
+face=Arial><SPAN style="FONT-FAMILY: Arial"> </SPAN></FONT></LI>
+            </UL>
+        </LI>
+      </UL>
+  </LI>
+</UL>
+<P><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">The </SPAN></FONT><CODE><FONT face=Courier color=black><SPAN 
+style="COLOR: black">using</SPAN></FONT></CODE><FONT face=Arial 
+color=black><SPAN style="COLOR: black; FONT-FAMILY: Arial"> declaration is not present in any OpenAccess public header files.</SPAN></FONT></P>
+<h2><B><FONT face=Arial color=black size=5><SPAN 
+style="FONT-SIZE: 16pt; COLOR: black; FONT-FAMILY: Arial">Persistent Storage Compatibility</SPAN></FONT></B></h2>
+<P><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">OpenAccess has modified the format of its on-disk representation to allow certain changes to the data to be implemented in a way that will still allow compatibility with older databases. This will permit certain additions to the data model within the 2.2 stream.</SPAN></FONT></P>
+<P><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">As new capabilities are added to OpenAccess and its data model is expanded, there will be a need to examine the trade-offs between providing new data in a compatible fashion and requiring that databases be translated, or that applications use an incompatible API for the new features. OpenAccess is a high-performance database that is critical to the performance of the applications that run on it, and providing compatibility requires trade-offs in performance.</SPAN></FONT></P>
+<P><FONT face=Arial color=black size=3><SPAN 
+style="FONT-SIZE: 12pt; COLOR: black; FONT-FAMILY: Arial">Future development will have to make those trade-offs. At some point, changes will again require that databases be translated to a newer format.</SPAN></FONT><p:colorscheme
+ colors="#ffffff,#000000,#808080,#000000,#00cc99,#3333cc,#ccccff,#b2b2b2"/></P>
+<div v:shape="_x0000_s1026" class=O>
+  <div style='mso-line-spacing:"100 30 0";mso-char-wrap:1;mso-kinsoku-overflow:
+1'></div>
+  <div style='text-align:center;mso-line-spacing:"90 50 0";mso-char-wrap:1;
+mso-kinsoku-overflow:1'><br>
+</div>
+</div>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

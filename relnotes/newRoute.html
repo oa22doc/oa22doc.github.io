@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>Route Data Model </h1>
+<hr>
+<P class=MsoListBullet>The OpenAccess route data model has been enhanced to improve performance, improve the usability of the route API, and  efficiently support diagonal routing.</P>
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#first_class">Route Elements as Managed Classes </a></li>
+  <li><a href="#createRoute">Creating Routing</a></li>
+  <li><a href="#geo">Geometric Routes are Eliminated</a></li>
+  <li><a href="../html/schema/route.html">Information Model Diagram for oaRoute</a></li>
+</ul>
+<p>See also: <a href="../html/guide/routes.html"><br>Understanding Routes </a> in the Programmers Guide<br>
+<a href="../html/guide/pathSegs.html">Physical Routing Segments (Orthogonal or Diagonal)</a> in the Programmers Guide</p>
+<hr>
+<h2><a name="overview"></a>Overview</h2>
+<p>Routes are a symbolic abstraction for the geometry of a wire. Routes directly indicate end-to-end centerline connectivity and define wire geometry such that it is understood by routing applications.</p>
+<p>The collection of routes on a net portray its partitioning into point-to-point segments. Each route indicates the objects to which it connects (pins, terminals, Steiner's). 
+Internal branching of a net is represented with a Steiner. </p>
+<p>Each route points to the rules that it is intended to follow.</p>
+<h2> <a name="first_class"></a>Route Elements as Managed Classes </h2>
+<p>In OpenAccess 2.2, the following route elements are managed objects that can be manipulated individually:</p>
+<ul>
+  <li>Path Segments</li>
+  <li>Vias</li>
+  <li>Guides</li>
+</ul>
+<p>Think of a route as a container that holds these new managed objects. </p>
+<p>This approach uses more memory than the previous route data model, but provides better performance. </p>
+<p>For more information about pathSegs, see <a href="../html/guide/pathSegs.html">Physical Routing Segments (Orthogonal or Diagonal)</a> in the Programmers Guide. Refer to the API documentation for details about <a href="../html/design/classoaVia.html">vias</a> and <a href="../html/design/classoaGuide.html">guides</a>. </p>
+<h2> Creating Routing <a name="createRoute"></a></h2>
+<p> Creating routes with the new managed objects is as straightforward as custom design. The general flow is as follows:<p:colorscheme
+ colors="#ffffff,#000000,#cccccc,#cc0000,#cccccc,#4d4d4d,#cc0000,#cc0000"/> </p>
+<div v:shape="_x0000_s1026">
+  <div class=O style='mso-line-spacing:"100 0 50";mso-margin-left-alt:104'><span
+style='color:#4D4D4D;mso-color-index:5'><span style='mso-special-format:bullet;
+position:absolute;left:-2.28%'>&bull;</span></span>
+    <ul>
+      <li><span style='color:#4D4D4D;
+mso-color-index:5'>Create <a href="../html/design/classoaPathSeg.html">PathSegs</a> and <a href="../html/design/classoaVia.html">Vias</a>.&#13;<br>
+          <strong>Note:</strong> PathSegs support 45 degree segments. </span></li>
+    </ul>
+  </div>
+  <div class=O style='mso-line-spacing:"100 0 50";mso-margin-left-alt:104'><span
+style='color:#4D4D4D;mso-color-index:5'><span style='mso-special-format:bullet;
+position:absolute;left:-2.28%'>&bull;</span></span>
+    <ul>
+      <li><span style='color:#4D4D4D;
+mso-color-index:5'>Construct an <a href="../html/design/classoaRouteObjectArray.html">RouteObjectArray</a>.&#13;</span></li>
+    </ul>
+  </div>
+  <div class=O style='mso-line-spacing:"100 0 50";mso-margin-left-alt:104'><span
+style='color:#4D4D4D;mso-color-index:5'><span style='mso-special-format:bullet;
+position:absolute;left:-2.28%'>&bull;</span></span>
+    <ul>
+      <li><span style='color:#4D4D4D;
+mso-color-index:5'>Add pointers to route elements to the RouteObjectArray.&#13;<br>
+      </span>There are no  constraints on the order of objects in the array.&#13;</span><br>
+      <br>
+      </li>
+      <li>Create a <a href="../html/design/classoaRoute.html">Route</a> from the RouteObjectArray and add the route to a <a href="../html/design/classoaNet.html">net</a>.<br>
+        <br>
+      </li>
+      <li>Iterate over <a href="../html/design/classoaShape.html">Shapes</a> and Vias on the net.</li>
+    </ul>
+  </div>
+</div>
+  <div class=O style='text-align:center;mso-line-spacing:"90 50 0";mso-margin-left-alt:
+104;mso-char-wrap:1;mso-kinsoku-overflow:1'></div>
+  <P>Routes can have an associated <a href="../html/base/classoaConstraintGroup.html">oaConstraintGroup</a>, which specifies the rules that the router follows when the Route is constructed. The <a href="../html/base/classoaConstraintGroup.html">oaConstraintGroup</a> may be on the route itself, or it may be on the <a href="../html/design/classoaNet.html">oaNet</a>, <br>
+<a href="../html/design/classoaBlock.html">oaBlock</a> or <a href="../html/design/classoaDesign.html">oaDesign</a> to which the Route belongs.</P>
+  <h3>Begin and End Points </h3>
+  <p>Routes may specify the two objects that they connect. These BeginConn and EndConn objects must be one of: </p>
+  <P>
+  <UL>
+    <LI>An <a href="../html/design/classoaTerm.html">oaTerm</a>, 
+	<a href="../html/design/classoaInstTerm.html">oaInstTerm</a> or <a href="../html/design/classoaPin.html">oaPin</a> to which the route connects</LI>
+  </UL>
+  <P>
+  <UL>
+    <LI>An <a href="../html/design/classoaSteiner.html">oaSteiner</a> where the Route ends (where the net branches)</LI>
+  </UL>
+  <P>
+  <UL>
+    <LI>An <a href="../html/design/classoaShape.html">oaShape</a> or <a href="../html/design/classoaVia.html">oaVia</a> that is part of geometric routing</LI>
+  </UL>
+  <P>&nbsp;</P>
+  <P><strong>Example</strong></P>
+  <pre>oaSegStyle  segst1(20,	oacExtendEndStyle, oacVariableEndStyle, 0,30);
+oaSegStyle  segst2(20,	oacVariableEndStyle, oacExtendEndStyle, 30,0);
+oaPoint     strtPt(100, 100);
+oaPoint     viaPt(300, 200);
+oaPoint     endPt(300, 300);
+
+oaPathSeg   *seg1 = oaPathSeg::create(blk, lyrM1, purpDrw,
+					                   strtPt, viaPt, segst1);
+oaStdVia    *via = oaStdVia::create(blk, viaDef, viaPt);
+oaPathSeg   *seg2 = oaPathSeg::create(blk, lyrM2, purpDrw,
+					                   viaPt, endPt, segst2);
+
+oaRouteObjArray objs(3);
+objs.setNumObjs(3);
+objs[0] = seg1;
+objs[1] = via;
+via->setDirection(oacLayer1ToLayer2ViaDirection);
+objs[2] = seg2;
+
+oaRoute   route = oaRoute::create(blk,net);
+route.setObjects(objs);
+</pre>
+<h2><a name="geo"></a>Geometric Routes are Eliminated</h2>
+<p>Geometric routes (&ldquo;Special&rdquo; routes in DEF terminology) have been eliminated in OpenAccess 2.2 because the route object did not add value here. In OpenAccess 2.2, you can add   shapes and vias directly to the net. <br>
+  <br>
+</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br > 
+</div> 
+<br> 
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br > 
+  All rights reserved.</p> 
+</body>
+</html>

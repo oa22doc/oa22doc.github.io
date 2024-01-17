@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>Rules Replaced By Constraints </h1>
+<hr>
+<p><SPAN style="COLOR: black">For yield improvement, there may be several sets of routing rules with varying levels of density and routability. Ideally, when there are several possible implementations for a particular net, the router would automatically chose between them. To do so, the router must understand  the different sets of rules  and the order in which the designer wants them to be considered. </SPAN></p>
+<p>To support this model, OpenAccess 2.2 replaced rules with constraints. Specifically, the oaRule and oaRouteSpec classes have been replaced by the more generalized approach supported by the oaConstraint class. </p>
+<p>Constraints can represent the OpenAccess 2.0 foundry rules, and user-defined constraints can represent any sort of new constraint. OpenAccess also provides many useful built-in constraints. </p>
+<p>The following topics are covered in this document:</p>
+<ul>
+  <li><a href="#overview">Overview of oaConstraints</a></li>
+  <li><a href="../html/schema/constraint.html">Information Model Diagram for the oaConstraint Class </a></li>
+  <li><a href="#builtIn">Built-in Constraints </a></li>
+  <li><a href="#mapping">Mapping from RouteSpecs to Constraints</a></li>
+  <li><a href="#constraintGroups">Constraint Groups</a></li>
+  <li><a href="#searching">Constraint Searching </a></li>
+  <li><a href="#area">Area Constraints</a></li>
+  <li><a href="#valueParam">Constraint Values and Parameters</a></li>
+  <li><a href="#lookup">Lookup Table Additions </a></li>
+  <li><a href="#oaLayer">oaLayer Additions</a></li>
+  <li><a href="#routingGrid">Routing Grid is Now a Constraint</a></li>
+  <li><a href="#techAttr">Other Tech Attributes Replaced By Constraints</a></li>
+  <li><a href="#iterators">Constraint Iterators</a></li>
+  <li><a href="#userDef">User-Defined Constraints</a></li>
+</ul>
+<p>See also, the Programmers Guide article <a href="../html/guide/constraints.html">Creating and Modeling Process Rules and Constraints</a>.</p>
+<h2><a name="overview"></a>Overview of oaConstraints</h2>
+<p>OpenAccess provides a flexible infrastructure for constraints (<a href="../html/base/classoaConstraint.html">oaConstraints</a>) that let's you </p>
+<UL>
+  <LI>Create and apply built-in and user-defined constraints. 
+  <LI>Set precedence relationships between constraints and groups of constraints. 
+  <LI>Scope constraints to particular objects.</LI>
+</UL>
+<p>All constraints must have a constraint definition, <a href="../html/base/classoaConstraintDef.html">oaConstraintDef</a>. Individual constraints are placed in <a href="../html/base/classoaConstraintGroup.html">oaConstraintGroups</a>. You can also place oaConstraintGroups in other oaConstraintGroups.</p>
+<p>Objects that can take constraints have a default oaConstraintGroup that you can use to apply Constraints to that object. You can create oaConstraints, oaConstraintDefs, and oaConstraintGroups in oaDesign, oaTech, or oaWafer databases. </p>
+<p>For more information, see <a href="../html/guide/constraints.html">Creating and Modeling Process Rules and Constraints</a>.</p>
+<h2><a name="builtIn"></a>Built-In Constraints</h2>
+<p>Built-in constraints replace the oaRules and oaRouteSpecs from 2.0. For built-in constraints, the oaConstraintDef is predefined in OpenAccess. </p>
+<h3>Using Built-in Constraints </h3>
+<p>To get a constraint def, use the  get method on <a href="../html/base/classoaLayerConstraintDef.html">oaLayerConstraintDef</a>, <a href="../html/base/classoaLayerPairConstraintDef.html">oaLayerPairConstraintDef</a>, or <a href="../html/base/classoaSimpleConstraintDef.html">oaSimpleConstraintDef</a>. <br>
+For example: </p>
+<pre>oaSimpleConstraintDef *  get(oaSimpleConstraintType type); </pre>
+<p>Then create an oaValue for the constraint:</p>
+<pre>oaIntValue * create(oaObject *database, oaInt4 value);
+</pre>
+<p>Next, create an oaConstraint with that ConstraintDef:</p>
+<pre>oaLayerConstraint *&nbsp;create(oaLayerNum layer, const oaLayerConstraintDef *def, oaValue *value);</pre>
+<p>Get the oaConstraintGroup that is to contain this oaConstraint (from oaTech):</p>
+<pre>oaConstraintGroup *&nbsp;getFoundryRules()</pre>
+<p>Add the oaConstraint to the oaConstraintGroup:</p>
+<pre>oaConstraintGroupMem *&nbsp;create (oaConstraintGroup *group, oaConstraint *constraint);
+</pre>
+<h3>Example: Setting a Built-In Constraint </h3>
+<pre>// Set the min width on Metal1 to a constant 14 DBU
+oaLayerConstraintDef  *mindef = oaLayerConstraintDef::get(oacMinWidth);
+oaTech                  *tech = desgn->getTech();
+oaIntValue             *val14 = oaIntValue::create(tech, 14);
+oaLayerNum              m1num = oaLayer::find(tech, “metal1”)->getNumber();
+oaLayerConstraint     *minwid = oaLayerConstraint::find(mindef, m1num, true);
+if (minwid)
+	minwid->setValue(val14);
+else
+	minwid = oaLayerConstraint::create(m1num, mindef, val14);
+oaConstraintGroup *fgrp = tech->getFoundryRules();
+oaConstraintGroupMem::create(fgrp, minwid);
+</pre>
+<h3>OpenAccess 2.2 Built-in Constraints</h3>
+<p>See <a href="../html/guide/constraints.html#builtIn">Built-in Constraints</a> in the Programmers Guide for a complete list of the 2.2 built-in constraints. </p>
+<h2><a name="mapping"></a>Mapping from RouteSpecs to Constraints</h2>
+<table width="700" border="1">
+  <tr>
+    <th width="50%" scope="col">2.0 RouteSpec</th>
+    <th scope="col">2.2 Constraint Type</th>
+  </tr>
+  <tr>
+    <td width="50%">oaRouteLayerSpec.width</td>
+    <td>oacMinWidth</td>
+  </tr>
+  <tr>
+    <td width="50%">oaRouteLayerSpec.spacing</td>
+    <td>oacMinSpacing</td>
+  </tr>
+  <tr>
+    <td width="50%">oaRouteLayerSpec.diagWidth</td>
+    <td>oacMinDiagonalWidth</td>
+  </tr>
+  <tr>
+    <td width="50%">oaRouteLayerSpec.diagSpacing</td>
+    <td>oacMinDiagonalSpacing</td>
+  </tr>
+  <tr>
+    <td width="50%">oaRouteLayerSpec.wireExt</td>
+    <td>oacMinWireExtension</td>
+  </tr>
+  <tr>
+    <td>oaRouteLayerSpecArray</td>
+    <td>oacValidRoutingLayers</td>
+  </tr>
+  <tr>
+    <td width="50%">oaViaSpecArray</td>
+    <td>oacValidRoutingVias</td>
+  </tr>
+</table>
+
+<p>An oaRouteSpec in 2.0 was created in an oaTech database and attached to an oaRoute, oaNet, or a oaCellView. This approach is replace by oaConstraintGroups in 2.2. You can include oaConstraintGroups  in the default oaConstraintGroup for an oaRoute, oaNet, oaBlock, or the oaTech.</p>
+<p>The 2.0 LEF default rules (from the LAYER information) become the LEFDefaultRouteSpec in 2.2. Also, the LEF and DEF NONDEFAULTRULEs map to an oaConstraintGroup with the given rule name.</p>
+<h2><a name="constraintGroups"></a>Constraint Groups</h2>
+<p> oaConstraintGroups are the only mechanism for applying a constraint to an object. oaConstraintGroups provide a container that lets you reuse sets of rules on multiple objects. You can also set multiple levels of constraints such as &ldquo;preferred rules&rdquo; and &ldquo;hard rules.&rdquo; Every object that can have constraints has a  default oaConstraintGroup. You get the default oaConstraintGroup from the object, you don&rsquo;t create it.</p>
+<p>You might create a constraint group using <a href="../html/base/classoaConstraintGroup.html#oaConstraintGroup::create">oaConstraintGroup::create</a> if you need to set up multi-level constraints or when you want to create a group that you will reuse. </p>
+<p>For more information about constraint groups, see <a href="../html/guide/constraints.html#applyConstraints">Applying Constraints to Objects</a> in the Programmers Guide. </p>
+<h4>Constraint Group Hierarchy</h4>
+<p>oaConstraintGroups can contain other oaConstraintGroups -- they can form a tree of oaConstraintGroups. 
+oaConstraintGroups are ordered, and a  tree of constraints should be searched depth-first. 
+A tree of constraints can have multiple copies of a given constraint type, in which case the order shows the precedence of the constraints.
+<p><img src="images/constraintTree.gif">
+<h2><a name="searching"></a>Constraint Searching</h2>
+<p>There is a specific approach to use when determining how constraint groups apply to objects. See <a href="../html/guide/constraints.html#constraintGroupsToObject">Determining Which Constraints Groups Apply to Objects</a> in the Programmers Guide for details. 
+<h3>Constraint Searching Modifiers</h3>
+<p>Constraints can be flagged as hard constraints with <a href="../html/base/classoaConstraint.html#oaConstraint::setHard">oaConstraint::setHard</a>. Hard constraints must be met. All 2.0 oaRules would be considered  hard.</p>
+<p>In some situations, looser constraints should be allowed. For example, you might have a RAM cell that is custom designed so it has narrower shapes than the Foundry min width rule. To accommodate this, you can specify a oaConstraintGroup as an override using <a href="../html/base/classoaConstraintGroup.html#oaConstraintGroup::override">oaConstraintGroup::override</a>, or you can create a new oaConstraintGroup and set the override parameter. </p>
+<h2><a name="area"></a>Area Constraints </h2>
+<p>Many legacy flows use shapes on a recognition layer to indicate a region of the design where a particular set of rules applies. In OpenAccess 2.2, this is modeled with an <a href="../html/design/classoaAreaBoundary.html">oaAreaBoundary</a>. You can add  constraints  to the oaConstraintGroup for the AreaBoundary.</p>
+<h2><a name="valueParam"></a>Constraint Values and Parameters</h2>
+<p>Any of the <a href="../html/base/classoaValue.html">oaValue</a> value types can be used as constraint values. </p>
+<p>Param rule types have been removed. Instead, any constraint can have params (<a href="../html/base/classoaConstraintParam.html">oaConstraintParams</a>) that are independent from its value type. Every ConstraintParam has an <a href="../html/base/classoaConstraintParamDef.html">oaConstraintParamDef</a>, which is a session object that defines the type of its value. oaConstraintParams use the same set of <a href="../html/base/classoaValue.html">oaValue</a> types  that oaConstraints use.</p>
+<h2><a name="lookup"></a>Lookup Table Additions</h2>
+
+<p>Headers  have names in OpenAccess 2.2. See the following methods for more information:</p>
+<ul>
+  <li>
+    <pre><a href="../html/base/classoa1DLookupTbl.html">oa1DLookupTbl</a>::getName(oaString &amp;name) const;</pre>
+  </li>
+  <li>
+    <pre><a href="../html/base/classoa2DLookupTbl.html">oa2DLookupTbl</a>::getRowName (oaString &amp;name) const;</pre>
+  </li>
+  <li>
+    <pre>oa2DLookupTbl::getColName (oaString &amp;name) const</pre>
+  </li>
+</ul>
+<p>Extrapolation types are available for both upper and lower ranges:</p>
+<ul>
+  <li>
+    <pre>oaExtrapolateType&nbsp;getLowerExtrapolateType () const;</pre>
+  </li>
+  <li>
+    <pre>oaExtrapolateType&nbsp;getUpperExtrapolateType () const;</pre>
+  </li>
+</ul>
+<p>New interpolation types are available:</p>
+<ul>
+  <li>
+    <pre>oacInclusiveSnapDownInterpolateType</pre>
+  </li>
+  <li>
+    <pre>oacInclusiveSnapUpInterpolateType&nbsp;</pre>
+  </li>
+</ul>
+<p>This models the LEF spacing rules more intuitively.</p>
+<h2><a name="oaLayer"></a>oaLayer Additions</h2>
+<p>In OpenAccess 2.2, an oaDerivedLayer no longer has an <em>error</em> attribute. Instead, a layer can have an <a href="../html/guide/oacErrorLayerConstraint.html">oacErrorLayer</a> constraint to specify whether or not it is an error for a geometry to exist on the layer.</p>
+<p>The <a href="../html/tech/classoaMaterial.html">oaMaterial</a> class now has an oacRecognitionMaterial value, which means that shapes on this layer  indicate places where some special condition applies in the design. 
+  oaMaterial exists on each oaPhysicalLayer.</p>
+<h2><a name="routingGrid"></a>Routing Grid is Now a Constraint</h2>
+<p>The routing grid is stored as a layer constraint with an oaIntValue. See the following built-in constraints for more information:</p>
+<ul>
+  <li>
+    <pre><a href="../html/guide/oacHorizontalRouteGridPitchConstraint.html">oacHorizontalRouteGridPitch</a></pre>
+  </li>
+  <li>
+    <pre><a href="../html/guide/oacHorizontalRouteGridOffsetConstraint.html">oacHorizontalRouteGridOffset</a></pre>
+  </li>
+  <li>
+    <pre><a href="../html/guide/oacVerticalRouteGridPitchConstraint.html">oacVerticalRouteGridPitch</a></pre>
+  </li>
+  <li>
+    <pre><a href="../html/guide/oacVerticalRouteGridOffsetConstraint.html">oacVerticalRouteGridOffset</a></pre>
+  </li>
+  <li>
+    <pre><a href="../html/guide/oac135RouteGridPitchConstraint.html">oac135RouteGridPitch</a></pre>
+  </li>
+  <li>
+    <pre><a href="../html/guide/oac135RouteGridOffsetConstraint.html">oac135RouteGridOffset</a></pre>
+  </li>
+  <li>
+    <pre><a href="../html/guide/oac45RouteGridPitchConstraint.html">oac45RouteGridPitch</a></pre>
+  </li>
+  <li>
+    <pre><a href="../html/guide/oac45RouteGridOffsetConstraint.html">oac45RouteGridOffset</a></pre>
+  </li>
+</ul>
+<h2><a name="techAttr"></a>Other Tech Attributes Replaced By Constraints </h2>
+<p>Most tech attributes are now stored in the <a href="../html/tech/classoaTech.html">oaTech</a> default oaConstraintGroup.<span class="style1"> </span></p>
+<ul>
+  <li>The 2.0 MetalAntennaRatios and ViaAntennaRatios attributes on oaTech have been replaced by the <a href="../html/guide/oacCumMetalAntennaConstraint.html">oacCumMetalAntenna</a>&nbsp;and <a href="../html/guide/oacCumViaAntennaConstraint.html">oacCumViaAntenna</a> constraints. These constraints take  an oaAntennaRatioValue or  an oaAntennaRatioArrayValue to support multiple oxide models.<br>
+  </li>
+  <li>The oaViaStackLimits attribute on oaTech has been replaced by the <a href="../html/guide/oacViaStackLimitConstraint.html">oacViaStackLimit</a>&nbsp; constraint.</li>
+</ul>
+<h2><a name="iterators"></a>Constraint Iterators </h2>
+<p>There are  collections and iterators to get  the contents of a given constraint group. This gives you all the constraints attached to a given object (starting from its default oaConstraintGroup) and also provides all the constraints stored in the oaTech default and foundry oaConstraintGroups.</p>
+<p>There is a collection and iterator for all the oaConstraintGroups defined in a given database.</p>
+<h2><a name="userDef"></a>User-Defined Constraints</h2>
+<p>You can create your own constraints for many different purposes, including:</p>
+<ul>
+  <li>Forcing alignment of cells</li>
+  <li>Constraining the timing of the design</li>
+  <li>Implementing new foundry constraints that have not yet proliferated</li>
+</ul>
+<p>User-defined constraints are  an extension to the built-in data model. As with any extension, it doesn&rsquo;t promote interoperability. Your constraints may need <a href="../html/base/classoaAppDef.html">oaAppDefs</a> to express how they are applied.</p>
+<p>User-defined constraints work  like  built-in constraints except that the oaConstraintDef is identified with a string, not an enum value:</p>
+<pre>oa<em>Subtype</em>ConstraintDef *&nbsp;create(oaString             &amp;name <br>                                oaSubset&lt; oaType &gt;   &amp;allowedValues, <br>                                oaSubset&lt; oaType &gt;   &amp;allowedObjects, <br>                                oaSubset&lt; oaDBType &gt; &amp;allowedDB);</pre>
+<p>Where <em><code>Subtype</code></em> is Layer, LayerPair, or Simple.</p>
+<p>The oaConstraintDef attributes are as follows: </p>
+<p>oaType representation&#8212;This is the oaType of the oaConstraint subclass, such as oacSimpleConstraintType.</p>
+<p>oaSubset&lt; oaType &gt; &amp;allowedValues&#8212;This holds the oaTypes of the oaValue subclasses that can be placed on this constraint, such as  oacFltValueType&nbsp;and&nbsp;oacInt1DTblValueType.</p>
+<p>oaSubset&lt; oaType &gt; &amp;allowedObjects&#8212;This is the set of object types that can have this constraint, such as oacStdViaType and oacRouteType.</p>
+<p>oaSubset&lt; oaDBType &gt; &amp;allowedDB&#8212;The database types, which can be any of oacDesignDBType, &nbsp;oacTechDBType, or &nbsp;oacWaferDBType.&nbsp;</p>
+<h3>Applying  User-Defined Constraints</h3>
+<p>Once you have defined the constraint, you can apply it in the same manner as the built-in constraints.</p>
+<p>&nbsp; </p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

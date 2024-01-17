@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>OpenAccess Translators</h1>
+<hr>
+<p>OpenAccess includes translators for reading and writing the standard formats that are commonly used in a design flow. All translators provide a full-featured, base implementation, which can be customized and extended through translator class inheritance. A direct interface to OpenAccess is always preferred, but translators provide an important interface to applications in a flow that do not provide a direct interface. Translators are also useful for validating the migration of applications to the OpenAccess database.</p>
+
+The following list provides links to the sections of this document that describe what is new or improved in the base translator implementations for this release.</p>
+<ul>
+<li><a href="#common">Common Options</a></li>
+<li><a href="#lefdef">LEF/DEF Readers and Writers</a></li>
+<li><a href="#verilog">Verilog Reader and Writer</a></li>
+<li><a href="#spef">SPEF Reader and Writer</a></li>
+<li><a href="#stream">Stream Reader and Writer</a></li>
+</ul>
+
+<a name="common"></a>
+<h2>Common Options</h2>
+<p>A new option for all translators is <code>-DMSystem</code>, which specifies which design management system to use for the library. An option that is common to all readers is  <code>-DMAttributes</code>, which specifies one or more DM attributes to associate with each library that the  translator creates.</p>
+
+<a name="lefdef"></a>
+<h2>LEF/DEF Readers and Writers</h2>
+<p>The translators support LEF/DEF version 5.6 in addition to versions 5.3, 5.4, and 5.5. A new mode is added to the DEF reader to update a logical representation of a design with physical data. The GUI for these translators is removed, which eliminates the OpenAccess dependency on Qt.</p>
+
+<h3>New DEF Reader Mode</h3>
+<p>def2oa has a new default mode that appends physical information to an oaDesign that already has a logical hierarchy. If the logical equivalent of a DEF net is not found by name, the translator searches for a logical net that connects to the same instTerm. def2oa skips any DEF components, pins, nets, and instance-terminals that are missing in the logical representation and issues a warning. If the oaDesign does not have a logical hierarchy, def2oa infers one from the hierarchical names. Certain physical-only objects, such as physical only pins, power/ground nets, globals, tie-hi/tie-low, and cover cells, are always created.</p>
+
+</p>def2oa includes the -overwrite switch to disable this default behavior of appending physical information to an oaDesign.</p>
+
+<h3>LEF/DEF 5.6 Syntax Supported</h3>
+<p>The LEF/DEF translators support version 5.6 syntax. The LEF 5.6 syntax highlights include:</p>
+<ul>
+<li>Supports oaConstraintGroups for non-default rules.</li>
+<li>Stores orthogonal and diagonal routing grid information as a set of rules and handles multiple routing grids.</li>
+<li>Supports an array of sites, each with orientation and location.</li> 
+<li>Supports a variety of new rules</li>
+</ul>
+
+<p>For information about using the LEF translators and translation options, see the documentation for <a href="../html/translators/lef2oa.html">lef2oa</a> and <a href="../html/translators/oa2lef.html">oa2lef</a>.</p>
+
+<p>The DEF 5.6 syntax highlights include:</p>
+<ul>
+<li>Supports multiple shapes on a pin.</li>
+<li>Creates an oaConstraintGroup for the NONDEFAULTRULE section.</li>
+<li>Supports 45 degree routes.</li>
+<li>ROWs can refer to arrays of sites.</li>
+<li>Supports NETEXPR, supply, and group sensitivity for pins.</li>
+</ul>
+
+<p>For information about using the DEF translators and translation options, see the documentation for <a href="../html/translators/def2oa.html">def2oa</a> and <a href="../html/translators/oa2def.html">oa2def</a>.</p>
+
+<a name="verilog"></a>
+<h2>Verilog Reader and Writer</h2>
+<p>Verilog is often an important source of front-end design data. The Verilog reader brings structural Verilog information into OpenAccess usually by using the embedded module hierarchy (EMH) to represent it. The writer generates structural Verilog preserving interfaces and multi-bit connectivity. It does not preserve behavioral constructs and original comments. In addition to the Verilog reader and writer, the verilogAnnotate translator is also provided.</p>
+
+<h3>Verilog Reader</h3>
+<p>The verilog2oa translator can create a module hierarchy in a single oaDesign or create a set of oaDesigns in OpenAccess. This translator supports mapping of global signals, tieHigh/tieLow nets, Verilog concatenations, net assignments, and forward references. verilog2oa stores port order information in OpenAccess.</p>
+
+<p>verilog2oa provides several new options. The translator automatically finds the top module when used in default mode, but you can defeat the automatic top module detection and specify the module you want by using the <code>-top</code> <em>module</em> option. A <code>-blackBox</code> option creates a separate design for each empty Verilog module that has no instances and no assign statements.</p>
+
+<h3>Verilog Writer</h3>
+<p>oa2verilog supports mapping of global signals, tieHigh/tieLow nets, Verilog concatenations, and net assignments. The translator utilizes port ordering if available, or orders ports alphabetically when port ordering is not available.</p>
+
+<p>The translator provides two new options. The <code>-leafCell</code> <em>filename</em> option directs oa2verilog to write stubs for leaf cells to the specified file instead of the file specified by the output option. The translator default behavior is to translate only the top module. The <code>-recursive</code> option directs the translator to recursively write all oaDesigns in the hierarchy that are in the same directory and have the same top view name.</p>
+
+<h3>verilogAnnotate</h3>
+<p>The verilogAnnotate translator updates an existing OpenAccess design with information in a Verilog netlist. This translator updates an existing oaDesign with:</p>
+<ul>
+<li>Port ordering information</li>
+<li>Bit direction information</li>
+</ul> 
+
+<p>For additional information about Verilog translators, see the <a href="../html/verilog/index.html">Verilog translator documentation</a>.</p>
+
+<a name="spef"></a>
+<h2>SPEF Reader and Writer</h2>
+<p>SPEF represents both detailed and reduced model parasitic data for physical designs. spef2oa provides a source of data from parasitic extraction tools that do not provide a direct interface to OpenAccess. The SPEF reader and writer also provide a path between Cadence extraction engines and other analysis tools that lack a direct OpenAccess interface. The translators are also a means of comparing and validating the results of different extraction engines.</p>
+
+<h3>SPEF Reader</h3>
+<p>spef2oa annotates parasitic information onto an existing OpenAccess database that contains connectivity information. The translator can create either a single analysis point or three (min/typ/max) analysys points for a single oaDesign. spef2oa can read either detailed parasitics or reduced models. The default mode is to read both.</p> 
+
+<p>spef2oa uses the OpenAccess built in netwise loading capability for improved capacity. It supports the SPEF name map construct, and it handles split files by using a continuation syntax.</p>
+
+<h3>SPEF Writer</h3>
+<p>oa2spef reads parasitic data from the OpenAccess database, and writes SPEF. The translator can write a single analysis point or three (min/typ/max) analysis points for a single oaDesign. oa2spef writes nets with either detailed parasitics or reduced models. The default is to write both.</p>
+
+<p>spef2oa uses the OpenAccess built in netwise loading capability for improved capacity. It writes a SPEF name map, and optionally writes SPEF in a compressed gzip format.</p>
+
+<p>For additional information about the SPEF translators, see the documentation for <a href="../html/spef/spef2oa.html">spef2oa</a> and <a href="../html/spef/oa2spef.html">oa2spef</a>.</p> 
+
+
+<p>&nbsp;</p>
+
+<a name="stream"></a>
+<h2>Stream Reader and Writer</h2>
+<p>The GUI for these translators is removed, which eliminates the OpenAccess dependency on Qt.</p>
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p> 
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

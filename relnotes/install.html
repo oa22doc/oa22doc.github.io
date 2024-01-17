@@ -1,0 +1,1033 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>OpenAccess Installation and Configuration Notes</title>
+		<link href="../html/style.css" rel="stylesheet" type="text/css">
+			<style type="text/css"> <!-- .style5 {font-size: xx-small}
+	--></style>
+	</head>
+	<body bgcolor="#ffffff">
+		<a name="pagetop"></a>
+		<h1>
+			OpenAccess 2.2&nbsp;Installation and Configuration&nbsp;Notes
+		</h1>
+		<P>This document describes</P>
+		<UL>
+			<li>
+				<a href="#components">Installation Kits </a>
+				<ul>
+					<li>
+						<a href="#plat_indep">Platform-Independent Kits</a>
+					<li>
+						<a href="#plat_spec">Platform-Specific Kits (or Installers)</a>
+					<li>
+						<a href="#download">What to Download</a></li>
+				</ul>
+			<li>
+				<a href="#hierarchy">Installation Hierarchy</a>
+			<li>
+				<a href="#runtime">Runtime Requirements</a>
+			<li>
+				<a href="#compat">Compatibility</a>
+				<ul>
+					<li>
+						<a href="#specDataModel">Specifying a DataModelRev for a Flow When Importing Data</a>
+					</li>
+				</ul>
+			<LI>
+				<A href="#config">Configuration Information </A>
+				<ul>
+					<li>
+						<a href="#supported_plat">Supported Platforms and Compilers for OpenAccess 
+							Pre-Compiled Libraries </a>
+					<li>
+						<a href="#enVars">Environment Variables</a>
+					<li>
+						<a href="#unix_config">Optionally </a><a href="#unix_config">Compiling on UNIX 
+							Platforms (Solaris, IBM, and Linux)</a>
+					<li>
+						<a href="#unqualified_platform">Optionally Compiling on an Unqualified Linux 
+							Platform</a>
+					<li>
+						<a href="#windows_config">Optionally Compiling on the Windows Platform</a>
+					<li>
+						<a href="#dev_windows">Developing Applications on Windows</a>
+					<li>
+						<a href="#compiling_trans">Prerequisites for Compiling Translators and Other 
+							Non-Core Packages</a><a href="#oa_verilog"></a></li>
+				</ul>
+			<LI>
+				<a href="#uninstall">Uninstalling OpenAccess</a></LI>
+		</UL>
+		<p>For information about problems and workarounds, see the <A href="./kpns.html">Known 
+				Problems and Solutions.</A></p>
+		<H2><A name="components"></A>Installation Kits
+		</H2>
+		<p>Before installing, first close all applications that use OpenAccess libraries. 
+			Then make sure that there are no <code>oaLibServer</code> or <code>oaFSLockD</code>
+			processes running (kill these processes with the <code>kill</code> command).
+		</p>
+		<p>The tarkits containing source code, public includes, and documentation are 
+			platform independent.</p>
+		<h3><strong><a name="plat_indep"></a>Platform-Independent Kits </strong>
+		</h3>
+		<TABLE width="100%" border="1" cellPadding="8">
+			<TR>
+				<TH width="409" align="left">
+					Full Tarkit Name
+				</TH>
+				<TH width="653" align="left">
+					OpenAccess Components</TH>
+			</TR>
+			<TR bgColor="#cccccc">
+				<TD><pre><strong>oaSrc</strong>_<em>&lt;rel&gt;</em>_all.tar.gz</pre>
+				</TD>
+				<TD>OpenAccess source code
+				</TD>
+			</TR>
+			<TR bgColor="#cccccc">
+				<TD><pre><strong>oaInc</strong>_<em>&lt;rel&gt;</em>_all.tar.gz</pre>
+				</TD>
+				<TD>OpenAccess public includes
+				</TD>
+			</TR>
+			<TR bgColor="#cccccc">
+				<TD><pre><strong>oaDoc</strong>_<em>&lt;rel&gt;</em>_all.tar.gz</pre>
+				</TD>
+				<TD><p>Documentation and programming examples
+					</p>
+				</TD>
+			</TR>
+		</TABLE>
+		<p>The tarkits containing the libraries and binaries are platform specific.
+		</p>
+		<h3><strong><a name="plat_spec"></a>Platform-Specific Kits (or Installers) </strong>
+		</h3>
+		<TABLE width="100%" border="1" cellPadding="8">
+			<TR>
+				<TH width="452" align="left">
+					Full Tarkit Name
+				</TH>
+				<TH width="415" align="left">
+					OpenAccess Components</TH>
+			</TR>
+			<TR bgColor="#ffffcc">
+				<TD><pre><strong>oaDev</strong>_<em>&lt;rel&gt;</em>_<em>&lt;platform&gt;</em>.tar.gz
+</pre>
+				</TD>
+				<TD>Debuggable libraries, debuggable binaries, plus both debuggable and optimized 
+					archives
+				</TD>
+			</TR>
+			<TR bgColor="#ffffcc">
+				<TD><pre><strong>oaRun</strong>_<em>&lt;rel&gt;</em>_<em>&lt;platform&gt;</em>.tar.gz
+</pre>
+				</TD>
+				<TD>Optimized libraries and binaries
+				</TD>
+			</TR>
+		</TABLE>
+		<h3><a name="download"></a>What to Download</h3>
+		<p>If you want a runtime version of OpenAccess, simply download the <em>oaRun</em> tarkit 
+			for your platform.</p>
+		<p>If you want a developers version including the documentation and examples, 
+			download the <em>oaDev</em> tarkit for your platform, plus the following 
+			platform-independent tarkits:
+		</p>
+		<ul>
+			<li>
+			oaSrc
+			<li>
+			oaInc
+			<li>
+				oaDoc</li>
+		</ul>
+		<p><STRONG>Important:</STRONG> Do <EM>not</EM> move directories or files within the 
+			OpenAccess installation hierarchy. This will result in problems with your 
+			installation. Also, do not mix kits from different releases.</p>
+		<h2><a name="hierarchy"></a>Installation Hierarchy</h2>
+		<p>The following figures shows the main components of the OpenAccess 2.2 
+			installation hierarchy.
+		</p>
+		<p><img src="images/hierarchyBack.gif" width="812" height="425"></p>
+		<p>For information about the naming conventions for <code>&lt;<em>platform</em>&gt;</code>
+			and <code>&lt;<em>mode</em>&gt;</code>, refer to <a href="newMigrate.html#hier">OpenAccess 
+				Installation Hierarchy</a> in <em>What's New in OpenAccess</em>.</p>
+		<h2><a name="runtime"></a>Runtime Requirements
+		</h2>
+		<p>The SPEF and LEF/DEF translators require zlib to run (Windows platform only).
+		</p>
+		<ul>
+			<li>
+				Install the zlib package from <a href="http://www.gzip.org/zlib/">http://www.gzip.org/zlib/</a>.<br>
+				<br>
+			<li>
+				Add the path to the zlib installation's <code>lib</code> directory to your <code>PATH</code>
+				environment variable.
+				<br>
+				For example, if you install <code>zlib</code> into <code>C:\zlib1.2.1</code>, 
+				use:
+				<br>
+				<code>C:\zlib1.2.1\lib;</code></li>
+		</ul>
+		<h2><a name="compat"></a>Compatibility</h2>
+		<p>OpenAccess provides specific levels of compatibility between releases. Two types 
+			of compatibility are provided:
+		</p>
+		<ul>
+			<li>
+			API compatibility - Allowing an old application to run on new OpenAccess releases 
+			without changing the code or recompiling
+			<li>
+				Data compatibility - Addresses whether or not the databases written by 
+				applications built on one version of OpenAccess can be read or modified by 
+				applications using a different version of OpenAccess.
+			</li>
+		</ul>
+		<p>For more information, refer to <a href="../html/guide/compat.html">Compatibility for 
+				OpenAccess Applications and Data</a>.</p>
+		<h3><a name="specDataModel"></a>Specifying a DataModelRev for a Flow When Importing 
+			Data
+		</h3>
+		<p>All applications in a flow must be capable of supporting the highest data model 
+			used in that flow. There are several ways you can specify the supported data 
+			model when importing data using OpenAccess translators.
+		</p>
+		<ul>
+			<li>
+				Create a text file containing containing a single numeric value that represents 
+				the supported data model. Save the file as <code>OA.DATAMODEL</code> in the <code>data</code>
+				directory of your OpenAccess installation hierarchy.
+				<br>
+				<br>
+			<li>
+				Set the <code>OA_DATAMODEL</code> environment variable to specify the highest 
+				data model supported by your flow. For example, set the environment variable as 
+				follows to indicate that your flow does not yet support the incremental 
+				technology database feature:<br>
+				<br>
+				<code>OA_DATAMODEL 2</code>
+				<br>
+				<br>
+				<strong>Note:</strong> The incremental technology database feature was first 
+				available in data model revision 3, as described in the <a href="feature_table.html">
+					OpenAccess 2.2 Development Feature List</a>.<br>
+				<br>
+			<li>
+				Use the <code>-dataModel</code> option of the <code>strm2oa</code>, <code>lef2oa</code>, 
+				or <code>def2oa</code> translator to specify the data model when importing data 
+				into OpenAccess.
+			</li>
+		</ul>
+		<p>The <code>OA_DATAMODEL</code> environment variable overrides a value set in the <code>
+				OA.DATAMODEL</code> file. In addition, the individual <code>-dataModel</code>
+			translator options override the value set by either the environment variable or 
+			an <code>OA.DATAMODEL</code> file. If you use the <code>OA.DATAMODEL</code> file 
+			or the <code>OA_DATAMODEL</code> environment variable to specify the highest 
+			data model supported by your flow, the translators default to this value when 
+			importing data into OpenAccess.
+		</p>
+		<p>When reading data into OpenAccess, the translators adjust their output based on 
+			the specified data model. For example, if data model 1 is specified (by any of 
+			the three mechanisms above), and the design data to be imported contains new 
+			constraints from data model 2, those constraints will either be saved as 
+			properties instead of as OpenAccess constraints or dropped. For more 
+			information about how data is handled in such situations, refer to the mapping 
+			documentation for the translators.</p>
+		<H2 class="spabove"><A name="config"></A>Configuration Information</H2>
+		<H4 class="spabove"><a name="supported_plat"></a>Supported Platforms and Compilers 
+			for OpenAccess Pre-Compiled Libraries
+		</H4>
+		<P>If you want to link against the OpenAccess pre-compiled libraries, you must use 
+			the compilers in the following table.
+		</P>
+		<P>
+			<TABLE id="Table5" cellPadding="8" width="832" border="1" height="487">
+				<TR>
+					<TH align="left" width="118">
+						Redist kit</TH>
+					<TH align="left" width="702">
+						Platform</TH>
+					<TH align="left" width="443">
+						Compiler</TH></TR>
+				<TR bgColor="#e6e6e6">
+					<TD bgColor="#e6e6e6">sol86</TD>
+					<TD bgColor="#e6e6e6" width="702">Solaris (x86_64) Operating System 10
+						<BR>
+						with support for STLPort4 C++ standard template libraries</TD>
+					<TD bgColor="#e6e6e6">Solaris Compiler: Sun Studio 11 C++ 5.8
+					</TD>
+				</TR>
+				<TR bgColor="#ffffcc">
+					<TD bgColor="#ffffcc">sun4v</TD>
+					<TD bgColor="#ffffcc" width="702">Solaris Operating System 10
+						<BR>
+						with support for STLPort4 C++ standard template libraries
+					</TD>
+					<TD bgColor="#ffffcc">Solaris Compiler: Sun Studio 12 C++ 5.9*
+					</TD>
+				</TR>
+				<TR bgColor="#e6e6e6">
+					<TD bgColor="#e6e6e6">lnx86</TD>
+					<TD bgColor="#e6e6e6" width="702">Linux (x86 and x86_64) Operating System: Red Hat 
+						Enterprise Linux 4.0
+						<BR>
+						Compatible with: RHEL50, SLES 10, SLES11
+					</TD>
+					<TD bgColor="#e6e6e6">Linux Compiler: gcc 4.4.3</TD>
+				</TR>
+				<TR bgColor="#ffffcc">
+					<TD bgColor="#ffffcc">wint</TD>
+					<TD bgColor="#ffffcc" width="702">Windows Operating System: Windows 2000/XP</TD>
+					<TD bgColor="#ffffcc">Windows Compiler: Visual Studio 2005</TD>
+				</TR>
+				<TR bgColor="#e6e6e6">
+					<TD bgColor="#e6e6e6">ibmrs</TD>
+					<TD bgColor="#e6e6e6" width="702">IBM Operating System: AIX 5.3
+					</TD>
+					<TD bgColor="#e6e6e6">IBM Compiler: XL C++ 7.0</TD>
+				</TR>
+			</TABLE>
+			<BR>
+			<TABLE id="Table6" border=".5">
+				<TR>
+					<TD class="style5" vAlign="top" width="512"><SPAN class="style8"><STRONG>Notes</STRONG></SPAN></TD>
+				</TR>
+				<TR>
+					<TD class="style8" vAlign="top"><STRONG>*</STRONG> For sun4v systems for Solaris 
+						10, the following variable must be set:<CODE> setenv OA_COMPILER stl4 </CODE>
+					</TD>
+				</TR>
+				<TR>
+					<TD class="style8" vAlign="top">32 bit OA libraries are now compiled without the 
+						PIC option on Solaris and Linux.</TD>
+				</TR>
+			</TABLE>
+		</P>
+		<P>The required GNU make utility is:
+		</P>
+		<blockquote>
+			<p>GNU <code>make</code> version 3.80
+			</p>
+		</blockquote>
+		<P>Earlier versions of the GNU <code>make</code> utility do not work correctly with 
+			the GNU makefiles supplied with OpenAccess. Refer to <A href="http://www.gnu.org/software/make">
+				http://www.gnu.org/software/make</A> for information about downloading the 
+			GNU <code>make</code> utility.</P>
+		<P><strong>Important:</strong> It is recommended that you rename the make utility 
+			as <code>gmake</code>. This will prevent older, incompatible versions of <code>make</code>
+			from being called.</P>
+		<H4><a name="enVars"></a>Environment Variables</H4>
+		<h5>Windows 2000/XP
+		</h5>
+		<blockquote>
+			<p>Set your <code>path</code> variable to point to the location of your OpenAccess 
+				binaries so that you can execute the binaries from any directory:
+				<br>
+				<br>
+				<code><em>&lt;install_dir&gt;</em>/bin/win32/opt</code></p>
+		</blockquote>
+		<h5>UNIX Platforms</h5>
+		<blockquote>
+			<p>The OpenAccess UNIX binaries have wrapper scripts to automatically set 
+				appropriate environment variables. On Linux, you must set the LD_LIBRARY_PATH 
+				variable to include the directory containing the correct version of <code>libstdc++.so</code>, 
+				which is described
+				<span class="spabove"> in <a href="#unix_config">Optionally Compiling on UNIX Platforms 
+						(Solaris, IBM, and Linux)</a></span>.
+				<br>
+				<br>
+				You can set your path environment variable to point to the location of the 
+				OpenAccess wrappers in the top-level bin directory of your installation:
+			</p>
+			<p><code><em>&lt;install_dir&gt;</em>/bin/</code></p>
+			<p>The generally accepted installation location for <em><code>&lt;install_dir&gt;</code></em>&nbsp;&nbsp;is
+				<code>/opt/OpenAccess</code>.
+				<span class="spabove">You need to install as root on UNIX in order to use the default installation path.</span></p>
+			<h5><a name="unsupportedPlat"></a>Unsupported Platforms
+			</h5>
+			<p>For UNIX platforms, you can build on an unsupported platform by setting the 
+				environment variable <code>OA_UNSUPPORTED_PLAT</code> for your platform. Note 
+				that this environment variable will not override a recognized supported 
+				platform.</p>
+			<p>To determine how to set <code>OA_UNSUPPORTED_PLAT</code>, do the following:</p>
+			<ol>
+				<li>
+					In the bin directory, type <code>./sysname</code>.<br>
+					This script returns the string that must be overwritten with the <code>OA_UNSUPPORTED_PLAT</code>
+					variable.<br>
+					<br>
+				<li>
+					Set the environment variable to the correct string.<br>
+					<br>
+					For example, if the binary directory that exists is <code>linux_suse9_32</code>, 
+					but the wrapper scripts are looking for <code>linux_rhel30_gcc411</code>, you 
+					should set <code>OA_UNSUPPORTED_PLAT</code> to <code>linux_suse9</code>. (The <code>
+						_32</code> portion is automatically set and should not be part of the name 
+					you use.)</li>
+			</ol>
+			<h5><a name="64_bit"></a>Overriding Environment Variables
+			</h5>
+			<p>The debug versions of the shared libraries perform additional checking that is 
+				not available in optimized libraries. For more information, see <a href="../html/guide/apipkgs.html">
+					OpenAccess Overview</a>.</p>
+			<p>To run all the binaries in debug mode:
+			</p>
+			<pre>setenv OA_MODE dbg</pre>
+			<p>To set the mode to debug for a single binary, use the name of the executable in 
+				all capital letters, followed by <code>_MODE</code>. For example:
+			</p>
+			<pre>setenv DEF2OA_MODE dbg</pre>
+			<p>To set the mode to 64-bit for all binaries (SUN, or IBM platforms only):</p>
+			<pre>setenv OA_BIT 64</pre>
+			<p><strong>Note</strong>: On Opteron, the default is 32, but will revert to 64 if 
+				the 32-bit version is not available.</p>
+			<p>To set the mode to 64-bit for a specific binary, use the name of the executable 
+				in all capital letters, followed by <code>_BIT</code> (SUN, or IBM platforms 
+				only). For example:
+			</p>
+			<pre>setenv DEF2OA_BIT 64
+</pre>
+		</blockquote>
+		<H4><a name="unix_config"></a>Optionally Compiling on UNIX Platforms (Solaris, IBM, 
+			and Linux)</H4>
+		<p>Pre-compiled versions of all the OpenAccess libraries are included in your 
+			installation. You might want to recompile these libraries in order to port to a 
+			new platform or verify a bug fix. You might also want to use a different 
+			compiler of your choosing. When you recompile the OpenAccess libraries, the 
+			translators, extensions, and the package containing the functions common to the 
+			translators are also recompiled.
+		</p>
+		<p><strong>Important:</strong></p>
+		<ul>
+			<li>
+				GNU <code>make</code> version 3.80 is required. (It is recommended that you 
+				rename the make utility as <code>gmake</code>. This will prevent older, 
+				incompatible versions of <code>make</code>
+			from being called.)
+			<li>
+				There are prerequisites for building the translators. Refer to <a href="#compiling_trans">
+					Optionally Building Translators</a>
+			for more information.
+			<li>
+				For <strong>Linux</strong> users:
+				<ul>
+					<li>
+					The path to the gcc compiler libraries must be in your LD_LIBRARY_PATH.
+					<li>
+						The elfutils-devel package is required.</li>
+				</ul>
+			</li>
+		</ul>
+		<h5>Default Compiler Environment<a name="def_compile"></a></h5>
+		<p>The following table shows the default compiler environments for OpenAccess. The 
+			compiler environment is controlled with a platform-specific configuration file 
+			included in your installation.
+		</p>
+		<p>If your compiler is in a location other than the default, create a symbolic link 
+			from the default path in the table to the location of your compiler.
+		</p>
+		<table border="1" cellpadding="4">
+			<tr>
+				<th width="154">
+					Platform</th>
+				<th colspan="2">
+					Compiler</th>
+				<th>
+					Configuration File
+				</th>
+			</tr>
+			<tr>
+				<td width="154" rowspan="3" bgcolor="#e6e6e6"><p>Solaris 10 STLPort4
+						<br>
+						(x86_64),
+						<br>
+						32-bit or 64-bit
+					</p>
+				</td>
+				<td colspan="2" bgcolor="#e6e6e6">Sun Studio 11 C++ 5.8
+				</td>
+				<td width="503" rowspan="3" bgcolor="#e6e6e6"><p><EM><code>&lt;install_dir&gt;</code></EM><code>/build/make/sunos_510_x86_stl4_32.variables<BR>
+							<EM>&lt;install_dir&gt;</EM>/build/make/sunos_510_x86__stl4_64.variables</code></p>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#e6e6e6">Default Path</td>
+				<td bgcolor="#e6e6e6"><code>/opt/SUNWspro/v11/SUNWspro/bin/CC</code></td>
+			</tr>
+			<tr>
+				<td bgcolor="#e6e6e6">Compiler Version
+				</td>
+				<td bgcolor="#e6e6e6">Sun C++ 5.8 Patch 121018-16 2008/06/25</td>
+			</tr>
+			<tr>
+				<td width="154" rowspan="3" bgcolor="#ffffcc"><p>Solaris 10 STLPort4,
+						<br>
+						32-bit or 64-bit
+					</p>
+				</td>
+				<td colspan="2" bgcolor="#ffffcc">Sun Studio 12 C++ 5.9
+				</td>
+				<td width="503" rowspan="3" bgcolor="#ffffcc"><p><EM><code>&lt;install_dir&gt;</code></EM><code>/build/make/sunos_510_stl4_32.variables<BR>
+							<EM>&lt;install_dir&gt;</EM>/build/make/sunos_510_stl4_64.variables</code></p>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#ffffcc">Default Path</td>
+				<td bgcolor="#ffffcc"><code>/opt/SUNWspro/v12/SUNWspro/bin/CC</code></td>
+			</tr>
+			<tr>
+				<td bgcolor="#ffffcc">Compiler Version
+				</td>
+				<td bgcolor="#ffffcc">Sun C++ 5.9 SunOS_sparc Patch 124863-11 2009/03/10</td>
+			</tr>
+			<tr bgcolor="#ccccff">
+				<td width="154" rowspan="3" valign="top" bgcolor="#e6e6e6">
+					Red Hat Enterprise Linux 4.0, 32-bit or 64-bit<br>
+					<br>
+				</td>
+				<td colspan="2" bgcolor="#e6e6e6">Linux Compiler: gcc 4.4.3
+				</td>
+				<td rowspan="3" bgcolor="#e6e6e6"><p><code><em>&lt;install_dir&gt;</em>/build/make/linux_rhel40_gcc44x_64.variables</code><br>
+						<br>
+						This file includes the <code>linux.variables</code> file, which specifies the <code>
+							/usr/bin</code> default path.</p>
+				</td>
+			</tr>
+			<tr bgcolor="#e6e6e6">
+				<td bgcolor="#e6e6e6">Default Path</td>
+				<td bgcolor="#e6e6e6"><code>/opt/gcc4.4.3/bin/g++ </code>
+				</td>
+			</tr>
+			<tr bgcolor="#ccccff">
+				<td width="126" bgcolor="#e6e6e6">Compiler Version
+				</td>
+				<td bgcolor="#e6e6e6">gcc (GCC) 4.4.3</td>
+			</tr>
+			<tr bgcolor="#ffffcc">
+				<td width="154" rowspan="3" valign="top" bgcolor="#ffffcc">
+					IBM AIX 5.3,
+					<br>
+					32-bit or 64-bit</td>
+				<td colspan="2" bgcolor="#ffffcc">IBM Compiler: XL C++ 7.0
+				</td>
+				<td rowspan="3" bgcolor="#ffffcc"><p><code><em>&lt;install_dir&gt;</em>/build/make/aix_53_32.variables<br>
+							<em>&lt;install_dir&gt;</em>/build/make/aix_53_64.variables</code><br>
+					</p>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffcc">
+				<td height="28" bgcolor="#ffffcc">Default Path</td>
+				<td bgcolor="#ffffcc"><code>/usr/bin/xlC_r</code></td>
+			</tr>
+			<tr bgcolor="#ffffcc">
+				<td width="126" height="28" bgcolor="#ffffcc">Compiler Version
+				</td>
+				<td bgcolor="#ffffcc">vacpp.cmp.core 07.00.0000.0007 C F IBM XL C/C++ Compiler</td>
+			</tr>
+		</table>
+		<P>The compiler versions indicate the minimum version. To determine the compiler 
+			version for a system, use the following commands.</P>
+		<table border="1" cellpadding="4">
+			<tr>
+				<th width="321" align="left">
+					Platform</th>
+				<th colspan="2" align="left">
+					Command</th>
+			</tr>
+			<tr bgcolor="#ffffcc">
+				<td valign="top" bgcolor="#e6e6e6"><p>Solaris</p>
+				</td>
+				<td width="356" colspan="2" bgcolor="#e6e6e6"><code>CC -V</code></td>
+			</tr>
+			<tr bgcolor="#ffffcc">
+				<td valign="top" bgcolor="#ffffcc"><p>Linux
+					</p>
+				</td>
+				<td width="356" colspan="2" bgcolor="#ffffcc"><code>gcc --version</code></td>
+			</tr>
+			<tr bgcolor="#ccccff">
+				<td valign="top" bgcolor="#e6e6e6">
+					IBM AIX 5.3</td>
+				<td colspan="2" bgcolor="#e6e6e6"><code>xlC_r -qversion </code>
+				</td>
+			</tr>
+			<tr bgcolor="#ffffcc">
+			</tr>
+		</table>
+		<h5>Compiling OpenAccess</h5>
+		<P>You compile OpenAccess as follows. (If you want to compile on a Linux platform 
+			not listed above, refer to <a href="#unqualified_platform">Optionally Compiling on 
+				an Unqualified Linux Platform</a> before proceeding.)
+		</P>
+		<ol>
+			<li>
+				(Optional) If you want to compile a 64-bit version, set the following 
+				environment variable. (Otherwise, the default is a 32-bit compilation.)
+				<br>
+				<br>
+				<CODE>setenv SYSNAME_OPTIONS _64<br>
+					<br>
+				</CODE><strong>Note:</strong> On Opteron, this is automatically set to <code>_64</code>. 
+				You can force it to <code>_32</code>.<br>
+				<br>
+			<li>
+				<CODE>cd <em>&lt;install_dir&gt;</em>/oa</CODE><br>
+				<br>
+			<li>
+				<code>gmake <em>&lt;command&gt;</em> OPTMODE=<em>&lt;mode&gt;</em> VERBOSE=<em>&lt;state&gt;</em></code></li>
+		</ol>
+		<blockquote>
+			<table width="593" border="1" cellpadding="3" cellspacing="1">
+				<tr>
+					<td colspan="2" bgcolor="#e6e6e6"><em><code>&lt;command&gt;</code></em> can operate 
+						on the entire OpenAccess distribution including all subpackages and 
+						translators, or just the OpenAccess core packages.</td>
+				</tr>
+				<tr>
+					<td width="188"><code>install_all</code></td>
+					<td width="384" rowspan="3">Entire distribution*</td>
+				</tr>
+				<tr>
+					<td><code>clean_all</code></td>
+				</tr>
+				<tr>
+					<td><code>uninstall_all</code></td>
+				</tr>
+				<tr>
+					<td><code>install</code></td>
+					<td rowspan="3">Core packages
+					</td>
+				</tr>
+				<tr>
+					<td><code>clean</code></td>
+				</tr>
+				<tr>
+					<td><code>uninstall</code></td>
+				</tr>
+				<tr>
+					<td colspan="2" valign="bottom" bgcolor="#e6e6e6"><em><code>&lt;mode&gt;</code></em>
+						is one of:
+					</td>
+				</tr>
+				<tr>
+					<td><code>dbg</code></td>
+					<td>Debug compile, which is the default</td>
+				</tr>
+				<tr>
+					<td><code>opt</code></td>
+					<td>
+						Optimize compile</td>
+				</tr>
+				<tr>
+					<td colspan="2" valign="bottom" bgcolor="#e6e6e6"><em><code>&lt;state&gt;</code></em>
+						is one of:
+					</td>
+				</tr>
+				<tr>
+					<td><code>false</code></td>
+					<td>
+						Hide compile commands, which is the default</td>
+				</tr>
+				<tr>
+					<td><code>true</code></td>
+					<td>
+						Show compile command</td>
+				</tr>
+			</table>
+			<br>
+			<table width="57%" border="0">
+				<tr>
+					<td width="1%" valign="top" class="style5">*
+					</td>
+					<td width="99%">There are prerequisites for building the translators and other 
+						non-core packages. Refer to <a href="#compiling_trans">Prerequisites for Compiling 
+							Translators and Other Non-Core Packages</a> for more information.</td>
+				</tr>
+			</table>
+			<br>
+			Recompiling the OpenAccess libraries does not mean that you must also recompile 
+			the translators. However, note that the translators and the OpenAccess 
+			libraries must be built with the same compilers in order to work together.<br>
+			<P></P>
+			<table width="57%" border="0">
+				<tr>
+					<td width="1%" valign="top" class="style5">*
+					</td>
+					<td width="99%">There are prerequisites for building the translators and other 
+						non-core packages. Refer to <a href="#compiling_trans">Prerequisites for Compiling 
+							Translators and Other Non-Core Packages</a> for more information.</td>
+				</tr>
+			</table>
+		</blockquote>
+		<h5><strong>Compilation Errors</strong></h5>
+		<p>Refer to <a href="#compiling_trans">Prerequisites for Compiling Translators and 
+				Other Non-Core Packages</a> if you get compilation errors related to the 
+			translators, oaTcl, or other non core packages.
+		</p>
+		<H5>Testing Your Environment</H5>
+		<P>
+			After you compile OpenAccess, you can test your build by running the supplied 
+			unit tests.
+		</P>
+		<ol>
+			<li>
+				<code>cd <em>&lt;install_dir&gt;</em>/oa/test</code>
+			<li>
+				<code>gmake unitTest OPTMODE=<em>&lt;mode&gt;</em> VERBOSE=<em>&lt;state&gt;</em> &gt; 
+					&amp; test.out &amp;</code></li>
+		</ol>
+		<h4><a name="unqualified_platform"></a>Optionally Compiling on an Unqualified Linux 
+			Platform</h4>
+		<p>If you want to compile OpenAccess on a platform not listed in <a href="#supported_plat">
+				Supported Platforms and Compilers for OpenAccess Pre-Compiled Libraries</a>, 
+			complete the following:</p>
+		<ol>
+			<li>
+				Do one of the following:
+				<br>
+				<br>
+				<ul>
+					<li>
+						Modify the <code>sysname</code> shell script to return the <em><code>&lt;platform_name&gt;</code></em>
+						for your platform. Note that this script is overwritten when you install a new 
+						version of OpenAccess.
+						<br>
+						<br>
+						The <code>sysname</code> shell script is located at <code><em>&lt;install_dir&gt;</em>/build/bin</code>.
+						<br>
+						<br>
+					<li>
+						Set the <code>OA_UNSUPPORTED_PLAT</code> environment variable. See <a href="#unsupportedPlat">
+							Unsupported Platforms</a> for more information. With this approach, the 
+						information is not lost when you install a new version of OpenAccess.
+						<br>
+						<br>
+					</li>
+				</ul>
+			<li>
+				Create a file to define the path to your C++ compiler, C compiler, C++ compiler 
+				flags, path to linker, applicable linker flags, and so forth.
+			</li>
+		</ol>
+		<ol>
+			<ul>
+				<li>
+					Name the file: <code><em>&lt;platform_name&gt;_&lt;bit&gt;</em>.variables<br>
+					</code>
+					<br>
+					Where: <code><em>&lt;platform_name</em>&gt;</code> is the name you chose in 
+					Step 1, and <em><code>&lt;bit&gt;</code></em> is either 32 or 64 (to represent 
+					either a 32 or 64-bit operating system).
+					<br>
+					<br>
+				<li>
+					Use the example files available in <code><em>&lt;install_dir&gt;/</em>build/make</code>
+					to determine the content required for your file.</li>
+			</ul>
+		</ol>
+		<p>Proceed to <a href="#unix_config">Optionally Compiling on UNIX Platforms (Solaris, 
+				IBM, and Linux)</a>.</p>
+		<H4><a name="windows_config"></a>Optionally Compiling on the Windows Platform</H4>
+		<p>Pre-compiled versions of all the OpenAccess libraries are included in your 
+			installation. You might want to recompile these libraries in order to port to a 
+			new platform or verify a bug fix.
+		</p>
+		<p><strong>Note: </strong>Recompiling the OpenAccess libraries does not mean that 
+			you must also recompile the translators, such as <code>verilog2oa</code>. 
+			However, note that the translators and the OpenAccess libraries must be built 
+			with the same compilers in order to work together.
+		</p>
+		<p>Use&nbsp;Microsoft Visual Studio 2005&nbsp; to compile your environment on 
+			Windows. The OpenAccess solution files for Visual Studio 2005 have a &nbsp;<code>_vc8</code>
+			extension in their name.
+		</p>
+		<h5>Sample Solution File Names
+		</h5>
+		<ul>
+			<li>
+				<code>oaDynamic_vc8.sln</code> is for Visual Studio 2005</li>
+		</ul>
+		<H5>Rebuilding the OpenAccess Source</H5>
+		<P>OpenAccess provides a solution file that you can use to rebuild OpenAccess. You 
+			might do this if you want to test changes to the OpenAccess API on your local 
+			machine.
+		</P>
+		<P>The following solution lets you compile and build dynamically on all source 
+			packages, and includes an oaTest.exe that includes all the unit tests 
+			(oaBaseTest, oaDesignTest, oaReticleTest, oaTechTest).
+		</P>
+		<p><code><em>&lt;install_dir&gt;</em>/oa/oaDynamic_vc8.sln</code></p>
+		<p>To build:</p>
+		<ol>
+			<li>
+				Double click&nbsp;the&nbsp;solution file you want, for example:
+				<BR>
+				<BR>
+				<code>oaDynamic_vc8.sln</code> (for Visual Studio 2005)<br>
+				<br>
+				Microsoft Visual Studio opens the solution file.<br>
+				<BR>
+			<li>
+				On the configuration menu, select the mode you want:
+				<br>
+				<br>
+				optDLL for an optimized build.<br>
+				dbgDLL for a debug build.<br>
+				<br>
+				<img src="images/config_menu.gif" width="575" height="139">
+				<br>
+				<br>
+			<li>
+				Choose <em>Build &gt; Build Solution</em> or <em>Rebuild Solution</em>.
+				<br>
+				The code is built on all packages and an oaTest.exe is created.<br>
+			</li>
+		</ol>
+		<p>You can also build on the command line. For example, the following command 
+			creates an optimized version of OpenAccess and outputs the build information to <code>
+				out.log</code>:
+		</p>
+		<pre>devenv oaDynamic_vc8.sln /build optDLL /out out.log</pre>
+		<h5>Testing Your Environment
+		</h5>
+		<p>Run <code>oaTest.exe</code> to test your environment. The <code>testLog.txt</code>
+			log file and the unit test libraries are at <code><em>&lt;install_dir&gt;</em>/oa/test/testDir</code>. 
+			The oaStrm, oaLefDef, and oaVerilog translators can be compiled similarly. 
+			However, it is rarely necessary to compile the translators. The executables 
+			have already been provided.
+		</p>
+		<h4><a name="dev_windows"></a>Developing Applications on Windows
+		</h4>
+		<P>If you want&nbsp;to develop an application using OpenAccess,&nbsp;you can create 
+			your own Visual Studio solution to include the headers and libraries that you 
+			want. Provide Visual Studio with the following OpenAccess paths:</P>
+		<TABLE cellPadding="8" border="1">
+			<TR>
+				<TH width="239">
+					Files</TH>
+				<TH width="364">
+					Path</TH>
+			</TR>
+			<TR bgColor="#ffffcc">
+				<TD>Executable files</TD>
+				<TD><code><em>&lt;install_dir&gt;</em>\bin\win32\<em>&lt;mode&gt;</em></code></TD>
+			</TR>
+			<TR bgColor="#ccccff">
+				<TD bgcolor="#e6e6e6">Include files<br>
+				</TD>
+				<TD bgcolor="#e6e6e6"><code><em>&lt;install_dir&gt;</em>\include\oa<br>
+						<em>&lt;install_dir&gt;</em>\include\oaLefDef<br>
+						<em>&lt;install_dir&gt;</em>\include\oaSpef<br>
+						<em>&lt;install_dir&gt;</em>\include\oaStrm<br>
+						<em>&lt;install_dir&gt;</em>\include\oaUtil<br>
+						<em>&lt;install_dir&gt;</em>\include\oaVerilog</code></TD>
+			</TR>
+			<TR bgColor="#ffffcc">
+				<TD>Library files</TD>
+				<TD><code><em>&lt;install_dir&gt;</em>\lib\win32\<em>&lt;mode&gt;</em></code></TD>
+			</TR>
+		</TABLE>
+		<P>To set these paths in Visual Studio:</P>
+		<OL>
+			<LI>
+				From the Visual Studio menus, choose <em>Tools &gt; Options</em>.
+			<LI>
+				In the Options dialog, highlight <em>Projects</em>, then <em>VC++ Directories</em>.
+			<LI>
+				Under <em>Show directories for</em>, choose <em>Executable files</em>, <em>Include 
+					files</em>, or <em>Library files</em>
+			(depending on which path you want to set).
+			<LI>
+				Double click in the field containing the paths, then click the <em>browse</em> button 
+				to navigate to the directory you want.</LI>
+		</OL>
+		<h5>Dependencies</h5>
+		<p>OpenAccess depends on the Winsock2 socket technology, and therefore must include 
+			Winsock2.h.
+		</p>
+		<p>If your code files contain <code>#include &lt;Windows.h&gt;</code> statements, 
+			you must do one of the following:
+		</p>
+		<ul>
+			<li>
+				Place the include statement for the OpenAccess headers before any <code>#include 
+					&lt;Windows.h&gt;</code> statement.
+				<br>
+				<br>
+			<li>
+				Place the <code>#include &lt;WinSock2.h&gt;</code> statement before the <code>#include 
+					&lt;Windows.h&gt;</code> statement.</li>
+		</ul>
+		<p>Note that most users do not specify <code>#include &lt;Windows.h&gt;</code> statements 
+			in their code files because OpenAccess code files already contain include 
+			statements for <code>Windows.h</code>.
+		</p>
+		<h4><a name="compiling_trans"></a>Prerequisites for Compiling Translators and Other 
+			Non-Core Packages
+		</h4>
+		<p>Very few users need to recompile the OpenAccess translators. You need to do this 
+			if you use an operating system that is not compatible with one of the pre-built 
+			versions, or if you want to modify the distributed translator. Third-party 
+			packages are required in order to build the translators.
+		</p>
+		<blockquote>
+			<h5>LEF and DEF</h5>
+			<p>Unless you have the LEF/DEF parser kits and zlib installed, you will get errors 
+				on LEF/DEF translator compilation.</p>
+			<p>Download and compile the 5.70 or later LEF/DEF parser from <a href="https://openeda.si2.org/projects/lefdef/">
+					http://openeda.si2.org/projects/lefdef/</a>. The makefiles for the LEF/DEF 
+				translators supplied by OpenAccess expect the LEF/DEF parser to be installed in<code>
+					/opt/lefdefInt/v<em>&lt;version&gt;</em></code>. To satisfy this 
+				requirement, do one of the following:
+			</p>
+			<ul>
+				<li>
+					Specify a <code>LEFDEF_HOME</code> environment variable to override the default 
+					location. You can also specify LEF and DEF paths individually with <code>LEF_HOME</code>
+					and <code>DEF_HOME</code>.
+				<li>
+					Copy the files to the correct locations:
+					<ul>
+						<li>
+							The LEF/DEF parser header files must be copied into <code>/opt/lefdefInt/v<em>&lt;version&gt;</em>/tools.<em>&lt;platform&gt;</em>/include</code>.
+						<li>
+							The 32bit LEF/DEF parser libraries must be copied into <code>/opt/lefdefInt/v&lt;<em>version&gt;</em>/tools.<em>&lt;platform&gt;</em>/lib</code>.
+						<li>
+							The 64bit LEF/DEF parser libraries must be copied into <code>/opt/lefdefInt/v&lt;<em>version&gt;</em>/tools.<em>&lt;platform&gt;</em>/lib/64bit</code>.</li>
+					</ul>
+				</li>
+			</ul>
+			<p>You must also install the <code>zlib</code> package from: <a href="http://www.gzip.org/zlib/">
+					http://www.gzip.org/zlib/</a><br>
+				<br>
+				The OpenAccess LEF and DEF translators were qualified using <code>zlib</code> version 
+				1.2.3.
+			</p>
+			<p>On UNIX, the <code>ZLIB_HOME</code> variable defaults to <code>/opt/zlib/v1.2.3</code>
+				(for 32-bit execution) and <code>/opt/zlib/v1.2.3_64</code> (for 64-bit 
+				execution).</p>
+			<p>On Windows, you must set the <code>ZLIB_HOME</code> environment variable to 
+				point to the <code>zlib</code> installation directory. In addition, set the 
+				OA_DEP_LIBS environment variable to point to the directory containing your 
+				LEF/DEF parser kits (lefdefInt). The default version of the LEF/DEF parser kits 
+				is specified in &lt;install_dir&gt;/build/MSVS/dep.vsprops. Modify this file if 
+				you need to override the default version.</p>
+			<p><strong>Note:</strong> The OA_DEP_LIBS environment variable overrides any 
+				LEFDEF_HOME environment variables.</p>
+			<p>See the OpenAccess <a href="./relnotes.html">release notes</a> for information 
+				about limitations for LEF and DEF in this release.</p>
+			<h5>OpenAccess to SPEF Translator</h5>
+			<p>If you want to compile your own version of the SPEF translator, you must install 
+				the <code>zlib</code> package from: <a href="http://www.gzip.org/zlib/">http://www.gzip.org/zlib/</a><br>
+				<br>
+				The OpenAccess SPEF translator was qualified using <code>zlib</code> version 
+				1.2.3.
+			</p>
+			<p>On Windows, you must set the <code>ZLIB_HOME</code> environment variable to 
+				point to the <code>zlib</code> installation directory. On UNIX, the <code>ZLIB_HOME</code>
+				variable defaults to <code>/opt/zlib/v1.2.3</code> (for 32-bit execution) and <code>
+					/opt/zlib/v1.2.3_64</code> (for 64-bit execution).</p>
+			<h5>OpenAccess to Verilog Translators</h5>
+			<p>If you want to compile your own versions of the Verilog translators, you need 
+				the following tools:
+			</p>
+			<ul>
+				<li>
+					Bison 1.875 source and executables <a href="http://sourceforge.net/project/showfiles.php?group_id=23617&amp;package_id=22822">
+						(http://sourceforge.net/project/showfiles.php?group_id=23617&amp;package_id=22822)</a><br>
+				<li>
+					Flex++ 2.5.4 source (<a href="http://www.gnu.org">http://www.gnu.org</a>)<br>
+					<strong>Note:</strong> Flex++ is included with the Flex package.
+				</li>
+			</ul>
+			<p>Use the environment variables BISON_HOME and FLEX_HOME to specify the 
+				installation root of the Bison and Flex executables. &nbsp;(It is expected that 
+				the executables will be in the <code>bin</code> directory under the 
+				installation root).
+			</p>
+			<TABLE width="598" border="1" cellPadding="4">
+				<TR>
+					<TH width="162">
+						Environment Variable</TH>
+					<TH width="214">
+						Windows Default
+					</TH>
+					<TH width="182">
+						UNIX Default
+					</TH>
+				</TR>
+				<TR bgColor="#ccccff">
+					<TD bgcolor="#e6e6e6">BISON_HOME</TD>
+					<TD bgcolor="#e6e6e6">C:\Program Files\GnuWin32</TD>
+					<TD bgcolor="#e6e6e6"><p><code>/opt/bison/v1.875 </code>
+						</p>
+					</TD>
+				</TR>
+				<TR bgColor="#ffffcc">
+					<TD vAlign="top" rowSpan="2">FLEX_HOME</TD>
+					<TD vAlign="top" rowSpan="2">None</TD>
+					<TD><code>/opt/flex/v2.5.4 </code>
+					</TD>
+				</TR>
+			</TABLE>
+			<h5>OpenAccess Tcl bindings</h5>
+			<p>Unless you have Tcl installed, you will get errors for oaLang compilation, which 
+				contains the OpenAccess Tcl bindings. For information about compiling the 
+				OpenAccess Tcl bindings, refer to <a href="../html/Tcl/index.html">Tcl Bindings for 
+					OpenAccess APIs</a>.
+			</p>
+			<p>The Tcl OpenAccess API is available in Tcl version 8.4.6. and later. In order to 
+				use the Tcl OpenAccess API in Tcl, you must install Tcl 8.4.6. or later. You 
+				can obtain Tcl from:
+			</p>
+			<p><a href="http://www.tcl.tk">http://www.tcl.tk</a></p>
+			<p>Set the TCL_HOME environment variable to the location of your Tcl installation. 
+				The default TCL_HOME path is: <code>/opt/tcltk/v8.4.6</code>.
+			</p>
+			<h5><strong>oa20to22 Translator</strong></h5>
+		</blockquote><blockquote>
+			<ol>
+				<li>
+					If you do not already have a OpenAccess 2.0 installation, download and install 
+					the 2.0 kits.<br>
+					<br>
+				<li>
+					Download the following kit for the platform you want:
+					<BR>
+					<BR>
+					OACommon<BR>
+					<BR>
+				<li>
+					Expand this kit in the directory that contains your OpenAccess 2.0 hierarchy.
+					<BR>
+					<BR>
+				<li>
+					Set the environment variable <CODE>OAHOME_2_0</CODE> to the directory that 
+					contains the expanded kits and the OpenAccess 2.0 hierarchy.
+					<BR>
+					<BR>
+				<li>
+					Add the directory that contains the cdsCommon executables (typically <CODE>tools.&lt;platformName&gt;/bin</CODE>) 
+					to your executable search path.
+					<br>
+				</li>
+			</ol>
+		</blockquote>
+		<h2><a name="uninstall"></a>Uninstalling OpenAccess
+		</h2>
+		<p><strong><a name="unix_un"></a>UNIX Platforms (Solaris, IBM, and Linux)</strong></p>
+		<p>Use the <code>rm -r</code> command to remove your installation hierarchy:<br>
+			<br>
+			<code>% rm -rf <em>&lt;install_dir&gt;</em></code></p>
+		<p><A href="#pagetop">Return to top of page</A></p>
+		<div style="TEXT-ALIGN: center"><img src="images/installfooter.gif"><br>
+		</div>
+		<br>
+		<p class="copyright"><A href="../html/titlecopy.html"><em> Copyright © 2003-2006</em></A>
+			<br>
+			All rights reserved.</p>
+		<p>&nbsp;</p>
+		<blockquote>&nbsp;</blockquote>
+	</body>
+</html>

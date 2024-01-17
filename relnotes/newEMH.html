@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1>Embedded Module Hierarchy (EMH)</h1>
+<hr>
+<p>The OpenAccess Embedded Module Hierarchy is enhanced in several areas, which are listed next in relative order of importance:</p>
+
+<ul>
+<li><a href="#multipledesigns">The occurrence hierarchy can include multiple oaDesigns.</a></li>
+<li><a href="#embed">Embed and Detach are supported.</a></li>
+<li><a href="#oamodinstheaders">oaModInstHeaders scope is changed.</a></li>
+<li><a href="#uniquify">Applications must explicitly uniquify.</a></li>
+<li><a href="#singlename">Modules have a single name.</a></li>
+<li><a href="#getname">A getName function is provided for occurrence objects.</a></li>
+<li><a href="#newcollections">New collections are available for global signals.</a></li>
+<li><a href="#equivalentnets">Equivalent nets are preserved in occurrence and block domains.</a></li>
+<li><a href="#parasitics">Occurrence parasitics can coexist with oaDesign parasitics.</a></li>
+<li><a href="#translators">Translators support EMH</a></li>
+</ul>
+
+<p>See also, the Programmers Guide article <a href="../html/guide/emh.html"><em>Understanding OpenAccess Hierarchy</em></a>.
+<hr>
+
+<a name="multipledesigns"></a>
+<h2>Occurrence Hierarchy Can Include Multiple oaDesigns</h2>
+<p>The occurrence hierarchy can cover a full design hierarchy derived from multiple oaDesign objects. The occurrence hierarchy is built as you traverse it using the following API:</p>
+<pre>
+    <a href="../html/design/classoaOccInst.html#oaOccInst::getMasterOccurrence">oaOccInst::getMasterOccurrence</a>()
+</pre>
+
+<p>The full hierarchy is saved persistently using</p>
+<pre>
+    <a href="../html/design/classoaDesign.html#oaDesign::save">oaDesign::save</a>()
+</pre>
+
+<p>Only annotations such as properties, extensions, and parasitics are saved with the top design. The original oaDesigns must be read again when the occurrence hierarchy is read.</p>
+
+<p>The connectivity consisting of nets, instances, and terminals are stored in the oaDesign for the masters of the occurrence objects only. If the design is edited when the occurrence hierarchy is in memory, the connectivity is kept in synch with the occurrence objects. If the design is edited in a different context, the database compares the time stamps and invalidates the occurrence tree beneath all instances of a changed master. The occurrence hierarchy must be re-expanded in each session by calling getMasterOccurrence.</p>
+
+<a name="embed"></a>
+<h2>Embed and Detach are Supported</h2>
+<p>A module hierarchy, in a given oaDesign, can be aggregated from separate oaDesigns using the following API to embed the separate designs:</p>
+<pre>
+    <a href="../html/design/classoaModule.html#oaModule::embed">oaModule::embed</a>(oaDesign*        destination,  
+                    const oaDesign*  master) 
+
+</pre>
+
+<p>This is a static method on oaModule that creates a module hierarchy, which is copied from the master. The oaModDesignInsts associated with this master are converted to oaModModuleInsts that point to the new module. The names of all the new modules must be unique, otherwise, the database auto-names the imported modules.
+The master oaDesign is not changed in any way.</p>
+
+<p>A module hierarchy can be broken out or detached from a given oaDesign and placed into a new oaDesign in order to repartition a design. You use the following API to detach a module hierarchy from an oaDesign:</p>
+
+<pre>
+    <a href="../html/design/classoaModule.html#oaModule::detach">oaModule::detach</a>(oaScalarName &amp;libName, 
+                      oaScalarName &amp;cellName, 
+                      oaScalarName &amp;viewName, <br>                      oaDetachVisibilityEnum)
+</pre>
+
+<p>This function creates a new oaDesign with the module hierarchy beneath the module that is copied to it. The 
+oaModModuleInsts associated with this master are converted to oaModDesignInsts that point to the new oaDesign. The modules that are used only in the detached hierarchy are removed from the starting oaDesign.</p>
+
+<a name="oamodinstheaders"></a>
+<h2>Change to oaModInstHeaders Scope</h2>
+<p>There is now a single InstHeader in each oaDesign for each master oaDesign that is referenced. These are the InstHeaders for oaModDesignInsts only, not for oaModModuleInsts. The collection supports a scope to a parent module that can be used to provide the traversal to ModInsts within a given parent.</p>
+<pre>
+    <a href="../html/design/classoaModInstHeader.html#oaModInstHeader::getInsts">oaCollection oaModInstHeader::getInsts</a>(oaUInt4 filterFlags=oacInstIterNotImplicit,
+                                           oaModule *   module)
+</pre>
+
+<a name="uniquify"></a>
+<h2>Applications Must Explicitly Uniquify</h2>
+<p>Edits in the block domain to objects that are derived from folded module objects require the module to be uniquified. In this case, the module object corresponds to two or more block objects. If one of these block objects is changed, the module must be split into two variants. When modules are uniquified, many object pointers become invalid, and it is too complex to automatically identify which object pointers become invalid. In OpenAccess 2.2, this uniquification must be done explicitly by the application.</p>
+
+<a name="singlename"></a>
+<h2>Modules have a Single Name</h2>
+<p>In version 2.2, OpenAccess modules have a single name like other database objects. You use the following API to assign a module name:</p>
+
+<pre>
+    <a href="../html/design/classoaModule.html#oaModule::create">oaModule::create</a>(oaDesign *design, 
+                     oaScalarName &amp;name)
+</pre>
+
+<p>If a module is uniquified, the database remembers which module it started from. The following API identifies the original source module:</p>
+<pre>
+    <a href="../html/design/classoaModule.html#oaModule::getOrig">oaModule::getOrig</a>(oaScalarName name,
+                      oaScalarName libName,
+                      oaScalarName cellName,
+                      oaScalarName viewName)
+</pre>
+
+<p>Several additional oaModule functions show the relationships between a variant and source module:</p>
+<pre> 
+    oaBoolean isDerived()
+	
+    oaBoolean isEmbedded()
+	
+    oaBoolean isVariant (oaModule *module)
+	
+    oaBoolean isClone (oaModule *module)
+	
+    oaBoolean isMasterModified (oaModule *module)
+</pre>
+
+<a name="getname"></a>
+<h2>getName() Provided for Occurrence Objects</h2>
+<p>The classes <a href="../html/design/classoaOccNet.html">oaOccNet</a> and its children, and the classes <a href="../html/design/classoaOccInst.html">oaOccInst</a> and its children, have getName and a getPathName member functions. </p>
+<p>For example, if getName returns <em>mbuf,</em> getPathName might return <em>cp1.mem0.mbuf,</em> which is the name from the top of the occurrence hierarchy.</p>
+
+<a name="newcollections"><h2>New Collections Available for Global Nets</h2><p>In order to simplify the identification of a flattened set of nets, there are new functions to return the set of global nets in an occurrence hierarchy. You can get a representative net for each global name in an occurrence hierarchy by using the following API:</p><pre>    oaCollection &lt;oaOccNet, oaOccurrence&gt;  <a href="../html/design/classoaOccurrence.html#oaOccurrence::getNets">oaOccurrence::getNets</a>(oacNetIterGlobal)
+</pre>
+
+<p>You can get all the other occNets with the same name in the hierarchy by using:</p>
+<pre>
+    oaCollection &lt;oaOccNet, oaOccNet&gt;  <a href="../html/design/classoaOccNet.html#oaOccNet::getGlobalNets">oaOccNet::getGlobalNets</a>()
+</pre>
+
+<a name="equivalentnets"></a>
+<h2>Equivalent Nets Preserved in Block and Occurrence Domains</h2>
+<p>When equivalent nets are specified in the module domain, where possible, EMH preserves these in the block and occurrence domains. This is different from most flattening algorithms. In addition, OpenAccess provides flags on collections for applications that want to ignore equivalent nets.</p>
+<pre>
+    oaCollection <a href="../html/design/classoaNet.html#oaNet::getTerms">oaNet::getTerms</a>(oaUInt4 filterFlags)
+</pre>
+
+<p>The flag oacTermIterEquivNets determines whether the collection gets terms from all nets that are equivalent to the given net. To obtain the preferred equivalent net, set the preferred argument of oaTerm::getNet() to true:</p>
+<pre>
+    oaNet * <a href="../html/design/classoaTerm.html#oaTerm::getNet">oaTerm::getNet</a>(oaBoolean   preferred = false)
+</pre>
+
+<a name="parasitics"></a>
+<h2>Occurrence Parasitics Coexist with oaDesign Parasitics</h2>
+<p>Parasitics can be placed on both an oaOccNet and its corresponding oaNet. This allows parasitic extraction to the oaNets in a block, which then allows them to be stitched into a single model that is placed on an oaOccNet.</p>
+
+<p>The connection object on an oaNode at a hierarchy boundary is the term or instTerm at that boundary. Usually, it is easy to align these by finding the corresponding term or instTerm and getting its node. Note that the connection object of an oaNode may not be a Pin or an InstPin in version 2.2. In some complex cases where a terminal has multiple pins, or a pin is extracted into multiple nodes, they must be compared using their coordinates. However, this is not supported by SPEF.</p>
+
+<a name="translators"></a>
+<h2>Translators Support EMH</h2>
+<p>The verilog2oa translator can read an entire Verilog source into a single oaDesign and create a module hierarchy for it. Each Verilog module becomes an OpenAccess module. Modules that are not used in the hierarchy under the top module are removed.</p>
+
+<p>def2oa can add physical-only objects to a Verilog hierarchy. It cannot create a module hierarchy, but it can annotate on top of a Verilog hierarchy. This form of annotation requires a file with hierarchical names.</p>
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p> 
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

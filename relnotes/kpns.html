@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>OpenAccess 2.2 Known Problems and Solutions (KP&amp;S) </h1>
+<p> This document describes OpenAccess KP&amp;S.</p>
+<ul>
+  <li><a href="#all">All Platforms (UNIX and Windows) </a></li>
+  <li><a href="#unix_all">UNIX Platforms (All UNIX</a>) </li>
+  <li><a href="#solaris">Solaris Platform</a></li>
+  <li><a href="#windows">Windows Platforms</a></li>
+</ul>
+<h2><a name="all"></a>All Platforms (UNIX and Windows) </h2>
+<hr>
+
+<p><strong>Problem: Obtaining a string from a mapped name returns incorrect results. </strong></p>
+<p>The namespace classes use library functions that depend on the currently set locale. Certain locales cause the namespaces to return incorrect results
+when obtaining a string from an oaName.</p>
+<p><strong>Solution:</strong> OA applications written in C++ should always use the C locale, which is the default.  When using the TCL bindings, unset the LANG environment
+variable before starting the TCL interpreter.</p>
+<p>&nbsp;</p>
+
+<p><strong>Problem: A crash occurs when closing a superMaster design. </strong></p>
+<p>The following scenario results in a crash. An application creates an in-memory Pcell evaluator, then  calls oaPcellLink::create() to notify OpenAccess of this evaluator. The application creates (or opens) a superMaster design that uses this evaluator. Next the application   calls oaPcellLink::destroy() to destroy the link to the evaluator. When the application closes the superMaster design, OpenAccess crashes. </p>
+<p><strong>Solution:</strong> Applications must be responsible for keeping the evaluator link active while in use. This means closing all superMasters that use the evaluator link before destroying the link. </p>
+<p>&nbsp;</p>
+
+<p><strong>Problem: In certain situations, applications might experience  performance or capacity degradation when opening large oaDesigns.</strong></p>
+<p><strong>Solution:</strong> Set the libReadOnly attribute on read-only reference libraries to yes to indicate that no one has write access to that library. Accordingly, OpenAccess can always  perform partial reading of the oaDesigns, which improves performance. <br>
+  <br>
+</p>
+<p><strong>Problem: When opening a library with an attached technology database,  the software hangs.</strong></p>
+<p><strong>Solution:</strong> This situation occurs when technology database attachments form a loop. Such a situation might arise if libraries were edited out of context. Use oaTech::getAttachment to examine the attachments and break the loop such that the final target library contains a technology database. Also, in order to prevent a loop from occurring, use oaTech::attach to create technology database attachments. The oaTech::attach function throws an exception when it detects a loop. (Using the deprecated techLibName string property to create attachments does not prevent the attachment loop.) </p>
+<p>&nbsp;</p>
+<p><strong><a name="multiBit"></a>Problem: There are outstanding issues with multi-bit instTerms in either of the following scenarios:</strong></p>
+<ol>
+  <li>The <em>instTerm</em> has repeated members because its corresponding terminal or terminal name has repeated members. An example of this is an <em>instTerm</em> that connects to a terminal named <code><br>
+        <br>
+    IN[0:4],IN[4],IN[4]</code> <br>
+    <br>
+    where bit <code>IN[4]</code> is repeated three times.<br>
+    <br>
+  </li>
+  <li> Two multi-bit <em>instTerms</em> share overlapping bits because the corresponding terminals or terminal names have overlapping bits. An example of this is two <em>instTerms</em> that connect to terminals named <code>DATA[0:4]</code> and <code>DATA[3:7]</code>, where bits <code>DATA[3]</code> and <code>DATA[4]</code> are shared between the two bus terminals.</li>
+</ol>
+<p>The connection is allowed if </p>
+<ul>
+  <li>The corresponding bits in the nets match.
+    <ul>
+        <li>In the first scenario above, the <em>instTerm</em> can be created if the net matches the repeated pattern in the corresponding terminal. For example, an <em>instTerm</em> to terminal <code>IN[0:4],IN[4],IN[4]</code> can be created if the net has a name of the form <code>itNet[0:4],itNet[4],itNet[4]</code>. </li>
+      <li>In the second scenario, the <em>instTerm</em> can be created if the nets used to create the <em>instTerms</em> also overlap in a similar pattern. For example, <em>instTerms</em> to each of the terminals can be created if the nets have names of the form <code>itNet[0:4]</code> and <code>itNet[3:7]</code>. </li>
+    </ul>
+  </li>
+  <li>The corresponding bits in the nets do not match, but the mismatching bit nets are marked as being equivalent.
+    <ul>
+        <li>In the first scenario, a net named <code>A[0:6]</code> is legal for creating an <em>instTerm</em> to terminal <code>IN[0:4],IN[4],IN[4]</code> if the bit nets <code>A[4]</code>, <code>A[5]</code>, and <code>A[6]</code> are equivalent to each other. </li>
+    </ul>
+  </li>
+</ul>
+<p>The issues with supporting this are as follows: </p>
+<ol>
+  <li>The <em>instTerm</em> <em>create</em> functions throw exceptions if the bit nets do not match, regardless of whether or not the bit nets are equivalent. </li>
+  <li>The <em>instTerm addToNet </em>function currently does not perform any validation of the contents of the net. If you add a multi-bit <em>instTerm</em> to the multi-bit net, OpenAccess does not throw an exception or attempt to resolve the relationship between the mismatched bit nets. The result is that some of the bit nets that appear to be connected are not. <br>
+      <br>
+    For example:</li>
+</ol>
+<ul>
+  <li> If you add an <em>instTerm</em> for terminal <code>IN[0:4],IN[4],IN[4]</code> to a net named <code>A[0:6]</code>, OpenAccess processes the first bit in the <em>instTerm</em> for terminal bit <code>IN[4]</code> and associates it with bit net <code>A[4]</code>. OpenAccess processes the next bit in the <em>instTerm</em> and identifies that the <em>instTerm</em> bit already has a net (because it represents a connection to the same bit terminal in the master) and no action is taken. This leaves the bit nets <code>A[5]</code> and <code>A[6]</code> unconnected, and the application must address what to do with these bits. Some applications choose to explicitly make <code>A[4]</code>, <code>A[5]</code>, and <code>A[6]</code> equivalent.</li>
+  <li>Assume there are <em>instTerms</em> for two overlapping terminals <code>DATA[0:4]</code> and <code>DATA[3:7]</code>, initially with NULL nets. When adding the <em>instTerm</em> for <code>DATA[0:4]</code> to net <code>A[0:4]</code>, and adding the <em>instTerm</em> for <code>DATA[3:7]</code> to net <code>B[0:4]</code>, there is a problem resolving the implicit bit <em>instTerms</em> that are common to both connections that match the terminal bits <code>DATA[3]</code> and <code>DATA[4]</code>. This situation can arise in a Verilog description, and the <code>verilog2oa</code> translator currently does <em>not</em> establish equivalence for the nets associated with these types of connections to terminals. <br>
+      <br>
+    Consider this example:<br>
+    <br>
+    <code>module hack({a,a,a}); <br>
+      &nbsp;&nbsp;&nbsp; output a; <br>
+      endmodule <br>
+      <br>
+      module top(); <br>
+      &nbsp;&nbsp;&nbsp; hack I1 ({x,y,z}); <br>
+      endmodule </code><br>
+    <br>
+    In this example, the nets y and z will not be connected to anything. The application that created this connectivity might expect the nets y and z to be made equivalent to net x, and it might expect that a signal driven onto x will also be driven onto y and z. However, in our connectivity model, neither of these are true.</li>
+</ul>
+<p><strong>Solution:</strong> The application must ensure that the mismatching bit nets are equivalent in order for consistent evaluation of the connectivity. (This issue will be fixed in a future release.)</p>
+<p>&nbsp;</p>
+<p><strong>Problem: When using a technology database created by lef2oa prior to 2.2.1, the DBUPerUU for any viewType is set to 0, or the user units for any viewType is incorrectly set to oacMicron.</strong></p>
+<p><strong>Solution:</strong> Due to a bug fix, technology databases that used  the default values for User Units and DBUPerUU in 2.2.0 will now contain incorrect values. <SPAN class=734320722-01022005>You need to recreate your technology database.</SPAN></p>
+<p>&nbsp;</p>
+<p><strong>Problem: The pcell generator definition manager (IPcellCPPDefMgr) form oaPcellCPP cannot modify IPcellGen definitions when any oaPcellCPP supermaster is opened in the library.</strong> </p>
+<p><strong>Solution:</strong> Complete the modifications to IPcellGen definitions  before any oaPcellCPP supermaster is opened.</p>
+<p>&nbsp;</p>
+<p><strong>Problem: OpenAccess cannot load your libraries.</strong>
+<p>You get an error message such as <code>&quot; ERROR: lib.defs: Error at line 1 : Syntax error in libDefFile.&quot;</code>
+<p><strong>Solution: </strong>Check the syntax of your <code>lib.defs</code> file. Note that <code>cds.lib</code> files supported in previous versions of OpenAccess that include  double dash (--) comment characters are no longer allowed. Remove the comment characters or replace the double dashes with the pound (#) comment character.
+<p>In general, renaming <code>cds.lib</code> files as <code>lib.defs</code> files is not supported: SOFTINCLUDE and UNDEFINE statements are not supported, and the $compute() syntax is not supported in library paths.
+<p>For more information, see <a href="../html/guide/libstruc.html#libDefs_syntax">Library Definition Files</a>.
+<p>&nbsp;</p>
+<p><STRONG>Problem: </STRONG><strong>There are length limits on the names used for files stored in OpenAccess FileSys libraries:</strong> </p>
+<p>Cell names and view names cannot be longer than the maximum length of a file name allowed by the operating system.   For example, that max is 255 on UNIX. </p>
+<p><STRONG>Solution:</STRONG> This limitation existed in the 2.0 release, and there are no plans to change this.</p>
+<p>&nbsp;</p>
+<p><STRONG>Problem:  The default or foundry rules constraintGroup contains   a member that has an unbound constraintGroupHeader even though all  the technology databases that are referenced are open in   memory.</STRONG>
+<p>This situation  occurs if the originally referenced technology database is replaced by one with a different data model revision number. Specifically, this  occurs if a referenced tech database with a data model revision number of 2 or earlier is replaced  by a tech database with a data model revision number of 3 or later (or vice-versa).
+<p>Refer to the <a href="../relnotes/feature_table.html">Features By Data Model</a> for information about data model revision numbers.
+<p><strong>Solution:</strong> Use the oaTech::setRefs function to recreate the relationships for all technology databases that refer to the replaced technology database.</p>
+<p>&nbsp;</p>
+<p><STRONG><strong>Problem:</strong></STRONG> oaDMData that uses new features (as   outlined in <a href="feature_table.html">Features By Data Model</a>)&nbsp;might lose data when opened in an   OpenAccess release prior to 2.2 P047.</p>
+<p><STRONG><strong>Solution:</strong></STRONG> Do not use new features in the DMData database if you   think your data might be used with a pre-2.2 P047 release.</p>
+<HR>
+<h2><a name="unix_all"></a>UNIX Platforms (All UNIX) </h2>
+<p><strong>Problem: Rational Tools (Purify, PureCov, Quantify) cannot find &quot;load on demand&quot; libraries</strong></p>
+<p><strong>Solution:</strong> To use the Rational tools with OpenAccess, you need to create links in the directories inside the Purify/PureCov/Quantify cache directories (that correspond to the top-level installation directory) to the bin and data directories of the installation.</p>
+<p>For example:</p>
+<pre>/user/oa/lib
+/user/oa/data
+/user/Cache/user/oa</pre>
+<p><br>
+  Create these links: </p>
+<pre>/user/Cache/user/oa/data@ -&gt; /user/oa/data
+/user/Cache/user/oa/bin@ -&gt; /user/oa/bin
+</pre>
+<hr>
+<h2><a name="solaris"></a>Solaris Platform</h2>
+<p><strong>Problem:</strong> Calls to <code>insert()</code> functions in <code>HashSet</code> and <code>HashMap</code> fail on the Solaris platform. If you have multiple calls to <code>insert()</code> in the same function or in a function that calls itself recursively, calls after the first one fail.</p>
+<p><b>Solution:</b> This occurs because the Solaris C++ compiler does not destroy function return values when it should. To resolve this problem, set the following compiler flag:</p>
+<pre>-features=tmplife</pre>
+<hr>
+<h2><a name="windows"></a>Windows Platform</h2>
+<p><strong>Problem:</strong> When statically linking an OpenAccess based executable, the linker reports the unresolved symbol <code>_GetProcessMemoryInfo@12</code>.</p>
+<p><strong>Solution:</strong> Add  <em>psapi.lib</em> to the link line of the executable.</p>
+<p></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<p><br>
+</p>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

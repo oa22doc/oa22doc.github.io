@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>Pin Modeling </h1>
+<hr>
+<p>In previous releases of OpenAccess, strong and weak connections were modeled with pin groups, and pins could have a single oaFig. However, routers are more efficient when polygonal or rectilinear pins are decomposed into rectangles.</p>
+<p>To address this, OpenAccess 2.2 introduces a new approach for modeling pins (<a href="../html/design/classoaPin.html">oaPins</a>).</p>
+<ul>
+  <li>oaPins have collections of zero or more
+<ul>
+      <li>Figures (<a href="../html/design/classoaPinFig.html">oaPinFigs</a>), which can be shapes, instances, or vias</li>
+      <li>Routes (<a href="../html/design/classoaRoute.html">oaRoutes</a>) </li>
+    </ul>
+  </li>
+  <li>oaPinFigs on the same oaPin are strongly connected.</li>
+  <li>oaPins on the same terminal are weakly connected.</li>
+  <li>Terminals that must be connected at the next level of hierarchy can be added to a MUSTJOIN set. </li>
+  <li>oaPinGroups are no longer needed and have been removed. </li>
+  <li>oaInstPins are no longer needed and have been removed. <br>
+  </li>
+</ul>
+<h2><a name="PinModelLEF"></a>Pin Modeling Mapped to LEF </h2>
+<p>The following LEF representation demonstrates oaPinFigs that are strongly connected, and oaPins that are weakly connected. </p>
+<pre>PIN IN
+ PORT RectA; RectB; END
+ PORT RectC; RectD; END
+END IN</pre>
+<p>Two metal rectangles that are part of the same LEF port are oaFigs on the same oaPin. In OpenAccess, the two rectangles are said to be strongly connected:</p>
+<p><img src="images/strongConnect.gif" width="392" height="237"> </p>
+<p>Both oaPins belong to the same oaTerm, which corresponds to the LEFpin &ldquo;IN&rdquo;. The pins are said to be weakly connected:</p>
+<p><img src="images/weakConnect.gif" width="393" height="229"> </p>
+<p>This is represented as follows in OpenAccess:</p>
+<p><img src="images/LEF_hier.gif" width="633" height="238"><br> 
+</p>
+<h2><a name="mustJoins"></a>MUSTJOIN Sets </h2>
+<p>A MUSTJOIN set indicates that some connections within a master are incompletely implemented in the instantiating design. These connections must be completed for each instance. Terminals in a MUSTJOIN set must be connected at the next level of hierarchy. Each terminal in a MUSTJOIN set must come from a different, non-equivalent net.</p>
+<p>The following LEF representation demonstrates MUSTJOIN sets.</p>
+<pre>PIN IN
+  PORT  RectA; RectB; END
+END IN
+PIN IN.1
+  MUSTJOIN IN;
+  PORT RectC; RectD; END
+END IN.1
+</pre>
+<p><img src="images/mustJoin.gif" width="552" height="248"></p>
+<p>This is represented as follows in OpenAccess:</p>
+<p><img src="images/LEF_hier_MustJoin.gif" width="643" height="203"></p>
+<h2><a name="elimPin"></a>Elimination of oaInstPin</h2>
+<p>The oaInstPin class was  used by routes and parasitics in previous versions of OpenAccess. For a route ending at an instTerm of a terminal with multiple pins, oaInstPin specified which of those pins the route touched.</p>
+<p>With multiple figs per pin in OpenAccess 2.2, oaInstPin is no longer sufficient. <br>
+  <br>
+  In OpenAccess 2.2, routes and parasitics connect to instTerms.</p>
+<p>You can use coordinates (oaPoint and  layer)  to distinguish between</p>
+<ul>
+  <li>Multiple pins per terminal</li>
+  <li>Multiple figs per pin</li>
+</ul>
+<p>Routers and parasitic stitchers need to interpret the coordinates. </p>
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

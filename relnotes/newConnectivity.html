@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>Connectivity Model </h1>
+<hr>
+<p>The OpenAccess connectivity model has been enhanced in the following areas:</p>
+<ul>
+  <li><a href="#bitwiseConnect">Bitwise Connectivity</a></li>
+  <li><a href="#bitOrder">Bit Order</a></li>
+  <li> <a href="#terminalOrder">Terminal Ordering </a></li>
+</ul>
+<p>See also: <a href="../html/guide/logicalconnectivity.html">Understanding Logical Connectivity</a> in the Programmers Guide. </p>
+<hr>
+<h2><a name="bitwiseConnect"></a>Bitwise Connectivity</h2>
+<p>The new bitwise connectivity functionality extends the OpenAccess data model to provide a complete, explicit, scalarized view of the connectivity in a design to support complete data interoperability between bus-aware and implementation applications. <p:colorscheme
+ colors="#ffffff,#000000,#808080,#000000,#00cc99,#3333cc,#ccccff,#b2b2b2"/> <span style='font-size:12pt'>When a logical design is physically implemented, OpenAccess can relate the scalar connectivity in the physical implementation back to the original multi-bit logical description.<span style='mso-spacerun:yes'>&nbsp; </span></span></p>
+<p>Bitwise connectivity let's an application  look at the connectivity of a database either as single-bit nets or as busses and bundles. Bitwise connectivity supports </p>
+    <ul>
+      <li> Multi-bit databases with explicit single-bit connectivity, such as a Verilog design containing schematic-based logical connectivity plus physical implementation details. </li>
+      <li> Multi-bit databases without explicit single-bit connectivity, such as a Verilog design with schematic-based logical connectivity.</li>
+      <li> Explicit single-bit connectivity with no multi-bit objects as  in the def2oa use model. Object names can include a single bus index. </li>
+    </ul>
+<h3>Multi-Bit Objects </h3>
+<p>OpenAccess 2.2 introduces base classes for single-bit objects in order to preserve type-safety. This is  done consistently for nets, insts, and terms. The following figure addresses the block domain, but the corresponding objects exist in the module and occurrence domains as well. </span></p>
+<p><img src="images/bitHier.gif" width="889" height="516"> </p>
+<div style='mso-line-spacing:"100 30 0";mso-char-wrap:1;mso-kinsoku-overflow:
+1'></div>
+<div style='mso-line-spacing:"100 30 0";mso-char-wrap:1;mso-kinsoku-overflow:
+1'>
+  <h3>Single-Bit Components of Multi-Bit Objects</h3>
+  <ul>
+    <li>BusNetBits and BusTermBits are used to represent single bits of BusNets and BusTerms.</li>
+    <li> BusNetBits and BusTermBits can be implicit or explicit.</li>
+    <li>You can use the scalarize function on the design, net, inst, or term to convert implicit single-bit objects into explicit single-bit objects.  </li>
+  </ul>
+  <div style='mso-line-spacing:"100 30 0";mso-char-wrap:1;mso-kinsoku-overflow:
+1'>
+    <h3>VectorInstBits</h3>
+  </div>
+  <div style='mso-line-spacing:"100 30 0";mso-char-wrap:1;mso-kinsoku-overflow:
+1'>
+    <p><span style='font-size:12pt'>Vector instances cannot overlap in range.<span style='mso-spacerun:yes'>&nbsp;&nbsp;</span></span><span style='font-size:12pt'>For example, the vector instance I[0:3] can be represented </span><span
+style='font-size:12pt'>either as the vector I[0:3] or as I[0], I[1], I[2], I[3].<span style='mso-spacerun:yes'>&nbsp; </span>This has implications for </span><span
+style='font-size:12pt'>the masters of the instances.<span style='mso-spacerun:yes'>&nbsp; </span>I[0:3]<span style='mso-spacerun:yes'>&nbsp; </span>can have only one master, but each individual bit I[0], I[1] &hellip; </span><span
+style='font-size:12pt'>I[3] can potentially have different masters.</span></p>
+  </div>
+</div>
+<h3>Consistent Traversal of Connectivity Through Hierarchy<p:colorscheme
+ colors="#ffffff,#000000,#808080,#000000,#00cc99,#3333cc,#ccccff,#b2b2b2"/> </h3>
+<div v:shape="_x0000_s1026" class=O>
+  <div style='mso-line-spacing:"100 30 0";mso-char-wrap:1;mso-kinsoku-overflow:
+1'>
+    <p><span style='font-size:12pt'>Navigation through hierarchy interfaces is now more consistent.<span style='mso-spacerun:yes'>&nbsp; </span>It is easier to perform </span><span
+style='font-size:12pt'> a single-bit traversal of a multi-bit net through an InstTerm, into the correct bit of a multi-bit terminal, and on to the correct bit of the connected multi-bit net of the lower level cell.&#13;</span></p>
+  </div>
+</div>
+<p>In the figure, grey objects are multi-bit objects and blue objects are single-bit objects.
+
+In a logical design flow, the connectivity and structure of this design is specified using bus ranges and vector instances.  There is only one BusTerm at the Chip level and it’s name is A[0:3].   This BusTerm connects to a single BusNet X[0:3] which, in turn, is connected to a single InstTerm.  </p>
+<p>At this stage in the design, the individual bits are implicit.  You can perform a “find” on A[0] and X[0] and traverse their connectivity.  However, these objects are implicit and they will not be returned by iterators unless the containing collection was obtained with the oacInstTermIterAll or the oacNetIterAll flags.</p>
+<p><img src="images/hierConn.gif" width="856" height="500"></p>
+<h3>Scalarized Hierarchical Connectivity </h3>
+<p>When it is time to implement the design (by assigning physical locations to instances, adding routes, and so forth), you need to consider the bit-wise connectivity of this multi-bit design.  To do so, you must scalarize the design.  The scalarize function converts implicit single-bit objects to explicit single-bit objects.  In addition, explicit multi-bit objects are converted to implicit multi-bit objects by  the scalarize function.
+</p>
+<p>After running scalarize, the blue objects are the explicit objects.  You can now trace the connectivity from A[0] to X[0] through an InstTerm, and into B[0] to Y[0] through another InstTerm, then into Terminal C of instance I[0].  
+  
+You can still ask for the BusTerm A[0:3], and still find that it is connected to the BusNet X[0:3]. You can still walk across an InstTerm and through the BusTerm B[0:3], and into BusNet Y[0:3], even though those objects are now implicit objects. </p>
+<p><img src="images/scalarHierConn.gif" width="856" height="500"></p>
+<hr>
+<h2><a name="bitOrder"></a>Bit Order</h2>
+<p> Bit order enables the data model to represent the ascending and descending order for the complete range of indices for a given base name. For example, consider the following module declaration:</p>
+<pre>module M1(input A[0:3], input A[7:4]); 	    
+   wire A[0:7];</pre>
+<p><strong>Note:</strong> The example uses Verilog syntax but does not adhere to Verilog semantics. It is intended to represent a database concept and not to represent legal Verilog. </p>
+<p>The terminal bit order is implied by the names of the terminals. 
+    Separate busNets would be created for A[0:3] and A[7:4]. 
+    The bit order for the wire declaration can be captured on the oaBusNetDef. </p>
+<p>In OpenAccess 2.2 </p>
+<ul>
+  <li><a href="../html/design/classoaBusNetDef.html">oaBusNetDef</a>, <a href="../html/design/classoaBusTermDef.html">oaBusTermDef</a>, and <a href="../html/design/classoaVectorInstDef.html">oaVectorInstDef</a> can be explicit objects.</li>
+  <li>setBitOrder() can be called on an explicit Def object.</li>
+  <li>oacAscendingBitOrder, oacDescendingBitOrder, and oacNoneBitOrder enumerations are provided by the <a href="../html/design/classoaBitOrder.html">oaBitOrderClass</a>. The default is oacNoneBitOrder.</li>
+</ul>
+<p><strong>Example</strong></p>
+<pre>// Explicitly create the BusNetDef and assign a Descending bit order.
+// Skip this step if bit order is not needed.
+netDef = oaModBusNetDef::create(module, baseName,
+				      oacDescendingBitOrder);<br>
+// Create a BusNet.  The order of the bits in the name is independent of
+// the bit order on the BusNetDef.
+net = oaModBusNet::create(module, baseName, 7, 0, 1);
+
+// Change the bit order of the BusNetDef to Ascending.  This operation can
+// only be performed on explicitly created BusNetDef objects.  It will not
+// affect the names of BusNet objects.
+netDef->setBitOrder(oacAscendingBitOrder);
+</pre>
+<hr>
+<h2><a name="terminalOrder"></a>Terminal Ordering</h2>
+<p> Terminal ordering allows the data model to capture the original ordering of the ports declared in a Verilog module. Consider the following module declaration:</p>
+<pre>module INV(input A, output Y);  </pre>
+<p>When you create instances of this module, you can connect  explicitly by name, as shown in the first line below. However, there are times when you  want to say something like, &ldquo;connect n3 to the terminal that appears first in the module interface.&rdquo; In order to properly bind the terminals, OpenAccess must record that A is the first terminal and Y is the second terminal. This information is stored on the Position attribute on <a href="../html/design/classoaTerm.html">oaTerm</a>.</p>
+<pre>INV  i1(.A(n1), .Y(n2));	 // Connect by name    <br>INV  i2(n3, n4);	         // Connect by position</pre>
+<p>Verilog translators use terminal ordering to interpret connect by position, and to accurately recreate a module interface. Terminal position must be set explicitly by the application -- is <em>not</em> automatically set on newly created terminals.  It is possible for terminals to <em>not</em> have a position. </p>
+<p><strong>Example</strong></p>
+<pre>oaModScalarTerm *term = oaModScalarTerm::create(net, name); // Create the terminal
+term->setPosition(1);  // Assign the terminal to a position</pre>
+
+<p>Setting a position on a terminal that already has a position or using the same position on two terminals  generates an exception. </p>
+<p>To get the position of a terminal:</p>
+<pre>oaUInt4 position = term->getPosition();</pre>
+
+<p>To change the position of a terminal, use unsetPosition() first. </p>
+<h3>Terminal Ordering and InstTerms</h3>
+<p>You can create InstTerms by position as follows:</p>
+<pre>oaModInstTerm::create(net, inst, 1);</pre>
+<p>All InstTerms on the same instance must use the same connection strategy (either by name or by position).
+</p>
+<p>InstTerms that are created by position do not have names.  </p>
+<p>oaModInstTerm::getTermName() will throw an exception if the InstTerm was created by position.    </p>
+<p>oaModInstTerm::usesTermPosition() can be used to detect whether an InstTerm was created by name or position.</p>
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p> 
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

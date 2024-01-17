@@ -1,0 +1,1145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1>Features by Data Model</h1>
+<hr>
+<p>OpenAccess can add new kinds of data to the data model as newer versions are released.  </p>
+<p>Each new kind of data added to the data model is called a <em>feature</em>. When a database contains one or more instances of the new kind of data, then it is using that feature. In many cases, older applications will not be able to use databases that have new features. </p>
+<p>OpenAccess includes the infrastructure to support feature-based compatibility, which means that OpenAccess has the ability to control the access that an application has to an OpenAccess database based on </p>
+<ul>
+  <li>The revision of the OpenAccess data model that the application supports. This version is declared by the application in its <em>init</em> call.</li>
+  <li> The new features used in that database</li>
+</ul>
+<p>When OpenAccess releases a new feature, that feature has a set of <em>policies</em> that define how applications can access databases that include those new features. </p>
+<p>This document includes:</p>
+<ul>
+  <li><a href="#policies">Policy Definitions</a></li>
+  <li><a href="#history">Version History for New Features</a></li>
+  <li><a href="#feature_list">Feature List</a>
+    <ul>
+      <li><a href="#dm_1">Data Model Revision 1</a></li>
+      <li><a href="#dm_2">Data Model Revision 2 </a></li>
+      <li><a href="#dm_3">Data Model Revision 3 </a></li>
+      <li><a href="#dm_4">Data Model Revision 4 </a></li>
+    </ul>
+  </li>
+</ul>
+<p>For more information, refer to <a href="../html/guide/compat.html#fbc">Feature-Based Data Compatibility</a> in <em>Compatibility for OpenAccess Applications and Data</em>. In addition, OpenAccess provides API programming examples, which include an example that demonstrates how feature-based compatibility is used. Refer to the FeatureBasedCompatibility example in <a href="../html/guide/apipkgs.html#examples"> API Programming Examples</a> for more information. </p>
+<p>You can use oaDesign::getFeatures(), oaTech::getFeatures(), oaDMData::getFeatures() and oaWafer::getFeatures() to query for the features currently present in an in-memory database.   These functions  return an array of the features described in the following tables.</p>
+<h2><a name="policies"></a>Policy Definitions</h2>
+<ul>
+  <li>Cannot open<br>
+      <br>
+    The database contains a new feature and cannot be opened.<br>
+    The version of OpenAccess software that you are using was released before 2.2.4 (p029) and does not include the infrastructure to support feature-based compatibility. The database containing the new feature cannot be opened, and the exception message will not contain details about the feature or the compatibility error. <br>
+    <br>
+    <strong>Important: </strong>The <em>default policy</em> for  all features is that no database with features can be opened by a version of the OpenAccess libraries earlier than 2.2.4 (p029) or an oacCannotUpgrade exception is thrown.<br>
+    <br>
+  </li>
+  <li>Cannot open with compatibility exception <br>
+      <br>
+    The database contains a new feature and cannot be opened. <br>
+    The version of OpenAccess software that you are using is older than the version of OpenAccess that created the database containing the new feature. The database containing the new feature cannot be opened, but the exception does provide an oaCompatibilityError with details about the compatibility error. <br>
+    <br>
+  </li>
+  <li>Cannot append<br>
+      <br>
+    The database contains a new feature and cannot be opened for append 'a' mode. <br>
+    The version of OpenAccess software that you are using is older than the version of OpenAccess that created the database containing the new feature. The database cannot be opened in append mode 'a', but can be opened in read mode or in a forced append mode &lsquo;A&rsquo;. If the database is opened in one of these modes and  saved, the data for the new feature will be lost. <br>
+    <br>
+  </li>
+  <li >Cannot edit in any mode <br>
+      <br>
+    The database contains a new feature and cannot be edited in any mode, not even in  forced append mode &lsquo;A&rsquo;.</li>
+</ul>
+<h2><a name="history"></a>Version History for New Features </h2>
+<p>The following table shows   the data model version history of OpenAccess releases and  the new features defined and supported in each data model version.</p>
+<table width="703" border="1">
+  <tr>
+    <th width="155" scope="col"><div align="left">Data Model <br>
+      Revision Number </div></th>
+    <th width="192" scope="col"><div align="left">OpenAccess Version </div></th>
+    <th width="334" scope="col"><div align="left">Feature</div></th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>2.2.0 through 2.2.3 (or p032)</td>
+    <td>Base OpenAccess 2.2 data model </td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>2.2.4 (or P033) </td>
+    <td>Huge Databases </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>2.2.6 (or P044) </td>
+    <td>FigGroups, Constraint features </td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>2.2.6 (or P044)&nbsp;</td>
+    <td>IncrementalTech </td>
+  </tr>
+  <tr>
+    <td >4</td>
+    <td >*22.04.001</td>
+    <td><p >45/65 nanometer constraints, layer-pair exclusivity constraints, and predefined via parameters.</p>
+        <p ><strong>Important:</strong> All the features that are planned for data model revision 4 are included in this document. However, not all are implemented at this time. </p></td>
+  </tr>
+</table>
+<p>* The OpenAccess versioning format has changed starting with the release containing data model revision 4. For more information, refer to the <a href="relnotes_dev.html">release notes</a>. </p>
+<h2><a name="feature_list"></a>2.2 Feature List</h2>
+<p>The following sections list the new features available in each OpenAccess data model revision. </p>
+<p>For each data model revision,  a table  lists all the new features and  shows their policies. A policy can pertain to the version of the OpenAccess shared libraries, or to the data model revision supported by the application. The tables also show the part of the OpenAccess data model that contains the new feature. More detailed descriptions of the features follow each table. </p>
+<p><strong>Important: </strong>Recognition of features in OpenAccess started with the OpenAccess 2.2.4 (p029) release. The <em>default policy</em> for  all features is that no database with features can be opened by a version of the OpenAccess libraries earlier than 2.2.4 (p029) or an oacCannotUpgrade exception is thrown.</p>
+<ul>
+  <li><a href="#dm_1">Data Model Revision 1</a></li>
+  <li><a href="#dm_2">Data Model Revision 2 </a></li>
+  <li><a href="#dm_3">Data Model Revision 3 </a></li>
+  <li><a href="#dm_4">Data Model Revision 4 </a></li>
+</ul>
+<h3><a name="dm_1"></a>Data Model Revision 1</h3>
+<table width="935" border="1" cellspacing="2" cellpadding="2">
+  <tr>
+    <th width="122" scope="col">Feature Name </th>
+    <th width="236" scope="col">ID</th>
+    <th width="127" scope="col">Policy</th>
+    <th width="135" scope="col">Applicable if ... </th>
+    <th width="271" scope="col">Relevant Part of the Data Model </th>
+  </tr>
+  <tr>
+    <td><a href="#huge_database">Huge Databases</a></td>
+    <td>oacHugeDatabaseFeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp; &lt;&nbsp; 1 </td>
+    <td>oacBaseDBType<br>
+      oacNoDomain<br>
+      oacFutureCategory<br>
+      oacUnknownType<br>
+      oacAdditionDataModelModType <br></td>
+  </tr>
+</table>
+<h4><a name="huge_database"></a>Huge Database</h4>
+<p>OpenAccess provides the ability to open very large database in which a single type of data takes over 4 Gbytes of memory.&nbsp;</p>
+<h3><a name="dm_2"></a>Data Model Revision 2 </h3>
+<table border="1" cellspacing="2" cellpadding="2">
+  <tr>
+    <th width="228" scope="col">Feature Name </th>
+    <th width="418" scope="col">ID</th>
+    <th width="243" scope="col">Policy</th>
+    <th width="206" scope="col">Applicable if ... </th>
+    <th width="393" scope="col">Relevant Part of the Data Model </th>
+  </tr>
+  <tr>
+    <td rowspan="2"><a href="#figGroup">FigGroup</a></td>
+    <td rowspan="2">oacFigGroupFeatureID</td>
+    <td>Cannot open with compat. exception </td>
+    <td>OpenAccess libs  < =   2.2.5 (P035)</td>
+    <td rowspan="2"><p>oacDesignDBType <br>
+      oacBlockDomain <br>
+      oacGeometryCategory <br>
+      oacFigGroupType <br>
+      oacAdditionDataModelModType </p></td>
+  </tr>
+  <tr>
+    <td>Cannot append</td>
+    <td>OpenAccess libs  > 2.2.5 (P035)</td>
+  </tr>
+  <tr>
+    <td><a href="#referenceFigGroup">Reference to FigGroup</a></td>
+    <td>oacReferenceToFigGroupFeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&lt;&nbsp; 2 </td>
+    <td>oacDesignDBType <br>
+      oacBlockDomain <br>
+      oacGeometryCategory <br>
+      oacFigGroupType <br>
+      oacAdditionDataModelModType </td>
+  </tr>
+  <tr>
+    <td><a href="#containsNewDefaultCG">Contains New Default Constraint Groups</a>
+    <td>oacDefaultConstraintGroupFeatureID</td>
+    <td>Cannot open with compat. exception </td>
+    <td> OpenAccess  libs &lt;&nbsp; 2.2.6 (P046) </td>
+    <td><p>oacDesignDBType <br>
+      oacNoDomain<br>
+      oacConstraintsCategory <br>
+      oacConstraintGroupType<br>
+      oacAdditionDataModelModType <br>
+    </p>    </tr>
+  <tr>
+    <td><a href="#newConstraintsExistingTypeRev1">New Constraint Of Existing Type</a></td>
+    <td>oacNewConstraintOfExistingTypeInRev1FeatureID
+</td>
+    <td colspan="2">Default policy only </td>
+    <td>oacConstraintsCategory<br>
+      oacAdditionDataModelModType</td>
+  </tr>
+  <tr>
+    <td><a href="#modConstraintsRev1">Modified Constraint In Rev1</a></td>
+    <td>oacModifiedConstraintInRev1FeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp; &lt; 2 </td>
+    <td>oacConstraintsCategory<br>
+      oacChangeDataModelModType</td>
+  </tr>
+  <tr>
+    <td><a href="#newConstraintParamsRev1">New Constraint Param</a></td>
+    <td>oacDerivedLayerParamFeatureID
+</td>
+    <td colspan="2">Default policy only </td>
+    <td><p>oacConstraintsCategory<br>
+      oacConstraintParamType
+      oacAdditionDataModelModType</p></td>
+  </tr>
+  <tr>
+    <td><a href="#newValueTypeRev1">New Value Type in Rev1</a></td>
+    <td>oacNewValueTypeInRev1FeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&nbsp; &lt;&nbsp; 2 </td>
+    <td>oacConstraintsCategory<br>
+      oacAdditionDataModelModType</td>
+  </tr>
+  <tr>
+    <td><a href="#constraintID">Constraint ID </a></td>
+    <td>oacConstraintIDDataFeatureID
+</td>
+    <td>Cannot append</td>
+    <td>OpenAccess  libs &lt;&nbsp;2.2.6 (P046) </td>
+    <td>oacConstraintsCategory 
+      oacAdditionDataModelModType</td>
+  </tr>
+  <tr>
+    <td><a href="#constraintDesc">Constraint Description</a></td>
+    <td>oacConstraintDescriptionDataFeatureID
+</td>
+    <td>Cannot append</td>
+    <td>OpenAccess  libs &lt;&nbsp;2.2.6 (P046) </td>
+    <td>oacConstraintsCategory 
+      oacAdditionDataModelModType</td>
+  </tr>
+  <tr>
+    <td><a href="#gateGrounded">Gate Grounded Attribute on Tech </a></td>
+    <td>oacTechGateGroundedDataFeatureID</td>
+    <td>Cannot append (if set to non-default value) </td>
+    <td>OpenAccess  libs &lt;&nbsp;2.2.6 (P046) </td>
+    <td><p>oacTechDBType<br>
+      oacTechCategory <br>
+      oacTechType <br>
+      oacAdditionDataModelModType </p></td>
+  </tr>
+  <tr>
+    <td><a href="#newMaterialEnum">New Material Type</a></td>
+    <td>oacNewMaterialTypeEnumFeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&nbsp; &lt;&nbsp; 2 </td>
+    <td><p>oacTechDBType<br>
+      oacTechCategory <br>
+      oacPhysicalLayerType 
+      oacAdditionalDataModelModType </p></td>
+  </tr>
+  <tr>
+    <td><a href="#layerArrayConstraint">Layer Array Constraint</a></td>
+    <td>oacLayerArrayConstraintTypeFeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&nbsp; &lt;&nbsp; 2 </td>
+    <td>oacConstraintsCategory<br>
+      oacAdditionDataModelModType</td>
+  </tr>
+  <tr>
+    <td><a href="#newDerivedLayer">New Derived Layer </a></td>
+    <td>oacNewDerivedLayerFeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&nbsp; &lt;&nbsp; 2 </td>
+    <td>oacTechDBType<br>
+      oacTechCategory<br>
+      oacDerivedLayerType<br>
+      oacAdditionDataModelModType<br></td>
+  </tr>
+  <tr>
+    <td><a href="#derivedLayerParam">Derived Layer Param </a></td>
+    <td>oacDerivedLayerParamFeatureID
+</td>
+    <td>Cannot append</td>
+    <td>OpenAccess  libs &lt; 2.2.6 (P046) </td>
+    <td>oacTechDBType<br>
+      oacTechCategory<br>
+      oacDerivedLayerParamType<br>
+      oacAdditionDataModelModType<br></td>
+  </tr>
+  <tr>
+    <td><a href="#referenceToDerivedLayerParam">Reference to Derived Layer Param</a></td>
+    <td>oacReferenceToDerivedLayerParamFeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&nbsp; &lt;&nbsp; 2 </td>
+    <td>oacTechDBType<br>
+      oacTechCategory<br>
+      oacDerivedLayerParamType</td>
+  </tr>
+</table>
+<h4><a name="figGroup"></a>FigGroup</h4>
+<p>The oaFigGroup object represents a collection that can be used by graphical design-entry tools to hold a set of figures that can be easily replicated and reused. An oaFigGroup is purely geometric and does not contain connectivity objects or anything else that is not a figure. </p>
+<p>For more information, refer to:</p>
+<ul>
+  <li><a href="../html/design/classoaFigGroup.html">oaFigGroup</a></li>
+  <li><a href="../html/design/classoaFigGroupMem.html">oaFigGroupMem</a></li>
+  <li><a href="../html/design/classoaFigGroupQuery.html">oaFigGroupQuery</a></li>
+  <li><a href="../html/design/classoaFigGroupStatus.html">oaFigGroupStatus</a></li>
+</ul>
+<h4><a name="referenceFigGroup"></a>Reference to FigGroup</h4>
+<p>This feature represents items in OpenAccess that make use of oaFigGroups. This feature is present if </p>
+<ul>
+  <li>An oaFigGroup belongs to an oaGroup</li>
+  <li>An oaFigGroup has a property on it, and that property belongs to an oaGroup</li>
+  <li>An oaFigGroup belongs to a marker</li>
+  <li>An oaFigGroup is part of an inter-pointer oaAppDef</li>
+  <li>An oaFigGroup has constraints on it</li>
+</ul>
+<h4><a name="containsNewDefaultCG"></a>Contains New Default Constraint Groups</h4>
+<p>Default constraint groups have been added to objects that formerly did not have default constraint groups. </p>
+<p>For more information, refer to:</p>
+<ul>
+  <li><a href="../html/design/classoaNet.html">oaNet</a></li>
+  <li><a href="../html/design/classoaRoute.html">oaRoute</a></li>
+  <li><a href="../html/base/classoaGroup.html">oaGroup</a></li>
+  <li><a href="../html/guide/constraints.html#applyConstraints">Applying Constraints to Objects</a></li>
+</ul>
+<h4><a name="newConstraintsExistingTypeRev1"></a>New Constraints of Existing Type</h4>
+<p>New oaLayerConstraints</p>
+<ul>
+  <li>oacMinParallelViaSpacing </li>
+  <li>oacMinEndOfLineSpacing</li>
+  <li>oacMaxFloatingArea</li>
+  <li>oacMinLargeViaArraySpacing</li>
+  <li>oacMinLargeViaArrayWidth</li>
+  <li>oacMinLargeViaArrayCutSpacing</li>
+  <li>oacRectangularLargeViaArraysAllowed</li>
+  <li>oacMinEdgeMaxCount</li>
+  <li>oacMinEdgeAdjacentDistance</li>
+  <li>oacMaxDiagonalEdgeLength</li>
+  <li>oacMaxRoutingDistance</li>
+  <li>oacKeepAlignedShapeAndBoundary<br>
+      <br>
+    See <a href="../html/base/classoaType.html">oaType</a>, <a href="../html/base/classoaLayerConstraintType.html">oaLayerConstraintType</a>. </li>
+</ul>
+<p>New oaLayerPairConstraints</p>
+<ul>
+  <li>oacMinRedundantViaSetback</li>
+  <li>oacMinConcaveCornerOverlap</li>
+  <li>oacMinConcaveCornerExtension</li>
+  <li>oacKeepAlignedShapes </li>
+  <li>oacMinEndOfLineExtension<br>
+      <br>
+    See <a href="../html/base/classoaLayerPairConstraintType.html">oaLayerPairConstraintType</a> </li>
+</ul>
+<p>New oaSimpleConstraints</p>
+<ul>
+  <li>oacHorizontalPlacementGridPitch</li>
+  <li>oacHorizontalPlacementGridOffset</li>
+  <li>oacVerticalPlacementGridPitch</li>
+  <li>oacVerticalPlacementGridOffset <br>
+  </li>
+</ul>
+<h4> <a name="modConstraintsRev1"></a>Modified Constraints In Rev1 </h4>
+<p>Enhanced oaLayerConstraints and oaLayerPairConstraints</p>
+<ul>
+  <li> oacMinDualExtension<br>
+      <br>
+      <table width="655" border="1" cellpadding="2" cellspacing="1">
+        <tbody>
+          <tr>
+            <td colspan="2">New Valid Value Type </td>
+          </tr>
+          <tr>
+            <td>oaIntDualIntArrayTblValue </td>
+            <td width="395">When an array of value pairs is assigned for a given width, width is expressed as an oaInt4, the array is an oaDualIntArray, and the value type is an oaIntDualIntArrayTblValue.</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+      <br>
+  </li>
+  <li>oacAntenna <br>
+      <br>
+      <table border="1" cellpadding="2" cellspacing="1" width="622">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameters</td>
+          </tr>
+          <tr>
+            <td>oacAntennaAreaFactorConstraintParamType </td>
+            <td>oaFloatValue </td>
+            <td><p>Specifies the metal factor. Depending on the value of the isSide attribute, this parameter represents one of the following: </p>
+                <ul>
+                  <li>The areaFactor (when calculating antenna/gate area ratios using metal area) </li>
+                  <li>The sideFactor (when calculating antenna/gate ratios using metal side area)</li>
+                </ul>
+              <p>The default value for this parameter is 1 in both cases.</p></td>
+          </tr>
+          <tr>
+            <td class="style7">oacAntennaDiffPlusFactorConstraintParamType </td>
+            <td>oaFloatValue</td>
+            <td> Specifies the diffPlusFactor. The default value for this parameter is 0. </td>
+          </tr>
+          <tr>
+            <td class="style7">oacAntennaDiffMinusFactorConstraintParamType </td>
+            <td>oaFloatValue</td>
+            <td>Specifies the diffMinusFactor. The default value for this parameter is 0.</td>
+          </tr>
+          <tr>
+            <td class="style7">oacAntennaDiffAreaReduceFactorConstraintParamType </td>
+            <td>oaFlt1DtblValue </td>
+            <td>Specifies the diffAreaReduceFactor. This table stores the factors based on the diffusion area. These values typically are in the range of 0 to 1. The default value for this parameter is 1.</td>
+          </tr>
+          <tr>
+            <td width="85" class="style7">oacAntennaCumRoutingPlusCutConstraintParamType </td>
+            <td width="85">oaBooleanValue </td>
+            <td width="428">Specifies the cumRoutingPlusCut. This parameter determines how the cumulative antenna ratios for metal and cut layers are calculated. The default value for this parameter is false. </td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+  </li>
+  <li>oacMinSpacing<br>
+      <br>
+      <table border="1" cellpadding="2" cellspacing="1" width="622">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameters</td>
+          </tr>
+          <tr>
+            <td width="85" class="style7">oacWidthLengthTableTypeConstraintParamType</td>
+            <td width="85">oaIntValue</td>
+            <td width="428">Specifies how the oaInt2DTblValue table, supplied as the constraint value, is interpreted by applications. There are two possible interpretations:
+              <p></p>
+              <ul>
+                  <li>The allowed spacing is based on the width of the wider shape and the parallel run length between the two shapes.</li>
+                <li>The allowed spacing is based on the widths of both shapes. </li>
+              </ul></td>
+          </tr>
+          <tr>
+            <td class="style7">oacDistanceMeasureTypeConstraintParamType</td>
+            <td>oaIntValue</td>
+            <td>Specifies whether the distances are measured as Euclidean (which is the the default) or Manhattan.</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+  </li>
+  <li>oacMinClearance <br>
+      <br>
+      <table border="1" cellpadding="2" cellspacing="1" width="622">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameter </td>
+          </tr>
+          <tr>
+            <td width="85">oacDistanceMeasureTypeConstraintParamType</td>
+            <td width="85">oaIntValue</td>
+            <td width="428">Specifies whether the distances are measured as Euclidean (which is the default) or Manhattan.</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+      <br>
+      <table border="1" cellpadding="2" cellspacing="1" width="622">
+        <tbody>
+          <tr>
+            <td colspan="2">New Valid Value Type</td>
+          </tr>
+          <tr>
+            <td>oaInt2DTblValue</td>
+            <td width="428">Specifies the required clearance width as a function of two keys.</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+  </li>
+  <li>oacMinExtension <br>
+      <br>
+      <table border="1" cellpadding="2" cellspacing="1" width="656">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameter </td>
+          </tr>
+          <tr>
+            <td width="119">oacDistanceMeasureTypeConstraintParamType</td>
+            <td width="119">oaIntValue</td>
+            <td width="394">Specifies whether the distances are measured as Euclidean (which is default) or Manhattan.</td>
+          </tr>
+        </tbody>
+      </table>
+    <br>
+  </li>
+  <li>oacMinSameNetSpacing <br>
+      <br>
+      <table border="1" cellpadding="2" cellspacing="1" width="655">
+        <tbody>
+          <tr>
+            <td colspan="2">New Valid Value Type </td>
+          </tr>
+          <tr>
+            <td>oaInt1DtblValue</td>
+            <td width="395">Specifies the dependency of the net spacing on the width of the shape on the net.</td>
+          </tr>
+        </tbody>
+      </table>
+  </li>
+</ul>
+<p> See <a href="../html/base/classoaConstraintParamType.html">oaConstraintParamType</a>. </p>
+<h4> <a name="newConstraintParamsRev1"></a>New Constraint Param </h4>
+<p>Built-in constraint parameters of the following type indicate the presence of this feature:</p>
+<ul>
+  <li>oacWidthLengthTableTypeConstraintParamType</li>
+  <li>oacDistanceMeasureTypeConstraintParamType </li>
+  <li>oacCountConstraintParamType </li>
+  <li>oacParallelEdgeSpaceConstraintParamType </li>
+  <li>oacParallelEdgeWithinConstraintParamType </li>
+  <li>oacMaxLengthConstraintParamType </li>
+  <li>oacMaxEdgeCountConstraintParamType </li>
+  <li>oacMinNumCutsConstraintParamType </li>
+  <li>oacAntennaAreaFactorConstraintParamType </li>
+  <li>oacAntennaDiffPlusFactorConstraintParamType </li>
+  <li>oacAntennaDiffMinusFactorConstraintParamType </li>
+  <li>oacAntennaDiffAreaReduceFactorConstraintParamType </li>
+  <li>oacAntennaCumRoutingPlusCutConstraintParamType </li>
+  <li>oacAlignmentTypeConstraintParamType </li>
+  <li>oacEndOfLineSpaceConstraintParamType </li>
+</ul>
+<h4><a name="newValueTypeRev1"></a>New Value Type in Rev1</h4>
+<p>Four new oaValue subclasses are added to support new constraints and derived layers:</p>
+<ul>
+  <li><a href="../html/base/classoaIntRangeValue.html">oaIntRangeValue</a></li>
+  <li><a href="../html/base/classoaIntDualIntArrayTblValue.html">oaIntDualIntArrayTblValue</a></li>
+  <li><a href="../html/base/classoaUInt8Value.html">oaUInt8Value</a></li>
+  <li><a href="../html/base/classoaUInt8RangeValue.html">oaUInt8RangeValue</a></li>
+</ul>
+<h4> <a name="constraintID"></a>Constraint ID </h4>
+<p>A numeric ID for constraints. </p>
+<h4> <a name="constraintDesc"></a>Constraint Description </h4>
+<p>A string description for constraints.</p>
+<h4><a name="gateGrounded"></a>Gate Grounded Attribute on Tech </h4>
+<p>A new gateGrounded attribute on oaTech that indicates whether or not the gate is grounded. The default value is false. <br>
+  The feature is present only if this attribute is set to true.</p>
+<h4><a name="newMaterialEnum"></a>New Material Type </h4>
+<p>The oaMaterialTypeEnum includes a new enum value that can be used when creating physical layers. </p>
+<PRE class="248172616-02112005">enum oaMaterialEnum {
+    // Existing enumeration values here ...
+	
+    oacPassivationCutMaterial
+};
+
+
+const oaString  oaMaterial::names[] = {
+  // Existing names here...
+  
+  "passivationCut"
+};
+</PRE>
+<h4><a name="layerArrayConstraint"></a>Layer Array Constraint</h4>
+<p>Defines constraints for three or more layers. Refer to <a href="../html/tech/classoaLayerArrayConstraint.html">oaLayerArrayConstraint</a> for more information.</p>
+<h4><a name="newDerivedLayer"></a>New Derived Layer</h4>
+<p>The oaDerivedLayer class now provides the ability to create sized layers or layers based on operations. Also, layers can be derived from one or two layers. Derived layers can now have associated parameters. </p>
+<p>Refer to the following functions in the <a href="../html/tech/classoaDerivedLayer.html">oaDerivedLayer</a> class documentation for more information.</p>
+<pre>
+oaDerivedLayer* oaDerivedLayer::create(oaTech*                             tech,  
+                                       const oaLayer*                      layer1,  
+                                       const oaDerivedLayerDef*            def,  
+                                       const oaString&                     name,  
+                                       oaLayerNum                          number,  
+                                       const oaDerivedLayerParamArray *    params = NULL 
+                                       )  [static] 
+</pre>
+<pre>
+oaDerivedLayer* oaDerivedLayer::create(oaTech*            tech,  
+                                       oaLayer*           layer1,  
+                                       oaLayer*           layer2,  
+                                       oaLayerOp          operation,  
+                                       const oaString&    name,  
+                                       oaLayerNum         number 
+                                       )  [static] 
+</pre>
+<pre>
+oaDerivedLayer* oaDerivedLayer::find(const oaTech*                      tech,  
+                                     oaLayerNum                         layer1Num,  
+                                     oaLayerNum                         layer2Num,  
+                                     const oaDerivedLayerDef*           def,  
+                                     const oaDerivedLayerParamArray*    params = NULL,  
+                                     oaBoolean                          local = false 
+                                     )  [static] 
+
+
+oaDerivedLayer* oaDerivedLayer::find(const oaTech*                      tech,  
+                                     oaLayerNum                         layer1Num,  
+                                     const oaDerivedLayerDef*           def,  
+                                     const oaDerivedLayerParamArray*    params = NULL,  
+                                     oaBoolean                          local = false 
+                                     )  [static] </pre>
+<h4><a name="derivedLayerParam"></a>Derived Layer Param</h4>
+<p><a href="../html/tech/classoaDerivedLayerParam.html">oaDerivedLayerParam</a> describes additional information for derived layers. For example, a derived layer with an inside layer operation has two input layers and one parameter, which describes the net connectivity of the shapes. </p>
+<p><a href="../html/tech/classoaDerivedLayerParamDef.html">oaDerivedLayerParamDef</a> enforces the value type of a derived layer parameter. </p>
+<h4><a name="referenceToDerivedLayerParam"></a>Reference to Derived Layer Param</h4>
+<p>This feature represents items in OpenAccess that make use of derived layer parameters. </p>
+<h3><a name="dm_3"></a>Data Model Revision 3 </h3>
+<table width="925" border="1" cellspacing="2" cellpadding="2">
+  <tr>
+    <th width="251" scope="col">Feature Name </th>
+    <th width="251" scope="col">ID</th>
+    <th width="118" scope="col">Policy</th>
+    <th width="218" scope="col">Applicable if ... </th>
+    <th width="302" scope="col">Relevant Part of the Data Model </th>
+  </tr>
+  
+  <tr>
+    <td><a href="#inc_tech">IncrementalTech</a></td>
+    <td>oacIncrementalTechFeatureID
+</td>
+    <td>Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&nbsp; &lt;&nbsp; 3 </td>
+    <td><p>oacTechDBType<BR>
+      oacNoDomain<BR>
+      oacTechCategory<BR>
+      oacTechType<BR>
+    oacChangeDataModelModType </p></td>
+  </tr>
+</table>
+<h4><a name="inc_tech"></a>IncrementalTech</h4>
+<p> OpenAccess lets applications  use incremental technology databases to provide  technology information from multiple sources, such as the foundry, an  IP provider, or a designer, to the application at different points in  the design cycle. Applications can incrementally assemble  technology information by creating references from one oaTech database  to other oaTech databases. For more information, refer to <a href="../html/guide/tech.html">Using Technology Databases</a> in the <em>Programmers Guide</em>. </p>
+<p><strong>Note:</strong> The IncrementalTech feature is present in a technology database if that technology database contains references to other technology databases. However, even if the references are unset, if the technology database still contains any unbound object headers that cannot be resolved, the feature is still considered present. </p>
+<h3><a name="dm_4"></a>Data Model Revision 4 </h3>
+<table width="1188" border="1" cellspacing="2" cellpadding="2">
+  <tr>
+    <th width="172"  scope="col">Feature Name </th>
+    <th width="424"  scope="col">ID</th>
+    <th width="81"  scope="col">Policy</th>
+    <th width="203"  scope="col">Applicable if ... </th>
+    <th width="264"  scope="col">Relevant Part of the Data Model </th>
+  </tr>
+  <tr>
+    <td><a href="#groupMemberType">New GroupDef</a></td>
+    <td>oacGroupDefInRev4FeatureID</td>
+    <td >Cannot append</td>
+    <td >OpenAccess  libs &lt; 22.04.003</td>
+    <td><p >oacTechDBType<br>
+      oacDesignDBType</p></td>
+  </tr>
+  <tr>
+    <td ><a href="#CGsemantics">Constraint Group Operators </a></td>
+    <td ><p>oacConstraintGroupOperatorInRev4FeatureID</p></td>
+    <td>Cannot append</td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4</td>
+    <td >oacTechDBType<br>
+oacDesignDBType</span></td>
+  </tr>
+  <tr>
+    <td ><a href="#constraintGroupDefs">New ConstraintGroupDef</a></td>
+    <td >oacConstraintGroupDefInRev4FeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacTechDBType<br>
+      oacDesignDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#newConstraintParams">New Constraint Parameter</a></td>
+    <td >oacNewConstraintParamInRev4FeatureID</td>
+    <td colspan="2">Default policy only </td>
+    <td ><p >oacBaseDBType<br>
+      oacNoDomain<br>
+      oacConstraintCategory<br>
+      oacUnknownType<br>
+      oacAdditionDataModelModType</p></td>
+  </tr>
+  <tr>
+    <td ><a href="#modConstraintParamDM4">Modified Constraint Parameter </a></td>
+    <td >oacModifiedConstraintParamInRev4FeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacDesignDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#purposeAware">Purpose Aware Constraint</a></td>
+    <td >oacPurposeAwareConstraintInRev4DesignFeatureID
+
+oacPurposeAwareConstraintInRev4TechFeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacTechDBType<br>
+      oacDesignDBType</td>
+  </tr>
+  <tr>
+    <td height="87"><a href="#NewPurp">New Reserved Purpose</a></td>
+    <td >oacNewReservedPurposeInRev4DesignFeatureID
+
+oacNewReservedPurposeInRev4TechFeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacTechDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#purpAwareDerived">Layer Derived From Purpose</a></td>
+    <td >oacLayerDerivedFromPurposeInRev4FeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacTechDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#newValues">New Value Type </a></td>
+    <td >oacNewValueTypeInRev4FeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacTechDBType<br>
+      oacDesignDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#layerExclude">Layer Pair Exclusion</a></td>
+    <td >oacLayerExclusionInRev4FeatureID</td>
+    <td >Cannot append</td>
+    <td >OpenAccess  libs &lt; 22.04.003</td>
+    <td >oacTechDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#procFamily">Process Family</a></td>
+    <td >oacTechProcessFamilyInRev4FeatureID</td>
+    <td >Cannot append</td>
+    <td >OpenAccess  libs &lt; 22.04.003</td>
+    <td >oacTechDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#modConstraints">Modified Constraint </a></td>
+    <td >oacModifiedConstraintInRev4FeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td><p >oacBaseDBType<br>
+      oacNoDomain<br>
+      oacConstraintCategory <br>
+      oacUnknownType<br>
+      oacChangeDataModelModType</p></td>
+  </tr>
+  <tr>
+    <td ><a href="#newConstraintDM4">New Constraint </a></td>
+    <td >oacNewConstraintInRev4FeatureID</td>
+    <td colspan="2">Default policy only </td>
+    <td><p>oacTechDBType<br>
+    oacDesignDBType<br>
+    oacBaseDBType <br>
+        oacNoDomain<br>
+        oacConstraintCategory<br>
+        oacUnknownType<br>
+    oacAdditionDataModelModType</p>    </td>
+  </tr>
+  <tr>
+    <td ><a href="#viaVariants">New Via Variant</a></td>
+    <td >oacViaVariantInRev4DesignFeatureID
+
+oacViaVariantInRev4TechFeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td>App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacTechDBType<br>
+      oacDesignDBType</td>
+  </tr>
+  <tr>
+    <td ><a href="#pinTypeEnum">New PinType Attribute </a></td>
+    <td >oacNewPinTypeInRev4FeatureID</td>
+    <td >Cannot append </td>
+    <td >OpenAccess  libs &lt; 22.04.003</td>
+    <td><p >oacDesignDBType <br>
+      oacNoDomain <br>
+      oacConnectivityCategory <br>
+      oacPinType<br>
+      oacAdditionDataModelModType</p></td>
+  </tr>
+  <tr>
+    <td ><a href="#ExceptPGNet">New ExceptPGNet Attribute</a></td>
+    <td >oacNewBlockageExceptPGNetInRev4FeatureID</td>
+    <td >Cannot append </td>
+    <td >OpenAccess  libs &lt; 22.04.003</td>
+    <td><p >oacDesignDBType<br>
+      oacBlockDomain <br>
+      oacPlaceAndRouteCategory<br>
+      oacLayerBlockageType<br>
+      oacAdditionDataModelModType</p></td>
+  </tr>
+  <tr>
+    <td ><a href="#spacingLayerBlockage">New Spacing Attribute </a></td>
+    <td >oacNewBlockageSpacingInRev4FeatureID</td>
+    <td >Cannot append </td>
+    <td >OpenAccess  libs &lt; 22.04.003</td>
+    <td><p >oacDesignDBType <br>
+      oacBlockDomain<br>
+      oacPlaceAndRouteCategory<br>
+      oacLayerBlockageType&nbsp; <br>
+      oacAdditionDataModelModType</p></td>
+  </tr>
+  <tr>
+    <td ><a href="#softHalo">New Soft Attribute </a></td>
+    <td >oacNewBlockageSoftInRev4FeatureID</td>
+    <td >Cannot append </td>
+    <td >OpenAccess  libs &lt; 22.04.003</td>
+    <td><p >oacDesignDBType<br>
+      oacBlockDomain <br>
+      oacPlaceAndRouteCategory <br>
+      oacLayerBlockageType<br>
+      oacAdditionDataModelModType</p></td>
+  </tr>
+  <tr>
+    <td ><a href="#layerRangeBlockage">LayerRangeBlockage</a></td>
+    <td >oacLayerRangeBlockageInRev4FeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacDesignDBType</td>
+  </tr>
+  <tr>
+    <td height="24"><a href="#layerRangeHalo">LayerRangeHalo</a></td>
+    <td >oacLayerRangeHaloInRev4FeatureID</td>
+    <td >Cannot open with compat. exception </td>
+    <td >App data model rev.&nbsp;&nbsp; &lt;&nbsp; 4 </td>
+    <td >oacDesignDBType</td>
+  </tr>
+</table>
+<h4 ><a name="groupMemberType"></a>New GroupDef</h4>
+<p >The usage of the <a href="../html/base/classoaGroupDef.html">oaGroupDef</a> allows the definition of a group whose membership is restricted by a specified list of OpenAccess managed types. For example, it is possible to define a group that  can contain only oaNets. </p>
+<p >Refer to <a href="../html/guide/usinggroupdefs.html">Using Group Definitions</a> in the <em>Programmers Guide</em> for more information. </p>
+<h4><a name="CGsemantics"></a>Constraint Group Operators </h4>
+<p>A constraint group can use the And operator to indicate that a set of constraints in the same group, such as minSpacing or minDualExtension constraints, must all be met. </p>
+<p>A constraint group can use the Or operation to indicate that  only one constraint in the group   must be met. </p>
+<p>By   default, constraint groups use the Precedence operator to indicate that   constraint group members are ordered, and their order implies precedence   between constraints in the group.</p>
+<p>Refer to the class documentation for <a href="../html/base/classoaConstraintGroupOperator.html">oaConstraintGroupOperator</a> and <a href="../html/guide/constraints.html#combiningconstraints">Combining Constraints in Constraint Groups</a> in  the <i>Creating and Modeling Process Rules and Constraints</i>
+   section of the Programmers Guide for more information.</p>
+<h4 ><a name="constraintGroupDefs"></a>New ConstraintGroupDef</h4>
+<p >An <a href="../html/base/classoaConstraintGroupDef.html">oaConstraintGroupDef</a>  is a public object that specifies a definition for a constraint  group.&nbsp; The definition contains a name, a  type, a list of databases that the constraint group can be created in, a list  of objects (by type) that the constraint applies to, a relationship type, and  an indicator of whether or not there can be only one constraint group that uses  this definition in any given database.&nbsp; </p>
+<p >There are a set of built-in ConstraintGroupDefs with  associated semantics:</p>
+<ul>
+  <li >oaImplicit</li>
+  <li >oaDefault</li>
+  <li >oaFoundry</li>
+  <li >oaTaper</li>
+  <li >oaInputTaper</li>
+  <li >oaOutputTaper</li>
+  <li > oaShielding</li>
+  <li >oaTransReflexive</li>
+  <li >oaReflexive</li>
+  <li >oaInterChild</li>
+  <li >oaUserDefined</li>
+</ul>
+<p>Refer to <a href="../html/guide/constraints.html#usingcgdefs">Using Constraint Group Definitions</a> in the <em>Creating and Modeling Process Rules and Constraints</em> section of the Programmers Guide. </p>
+<p><strong>Upgrade notes:</strong> When  constraint group data created by an application that uses the shared libraries from data model 3 or earlier is opened in data model 4, the data is mapped into the new built-in constraint group definitions. </p>
+<ul>
+  <li>The implicit constraint groups  are mapped to the oaImplicit   constraint group type. </li>
+  <li>The default constraint groups  are mapped to   the oaDefault constraint group type. </li>
+  <li>User-defined constraint groups are mapped   into the oaUserDefined constraint group type. In addition, all constraint groups created with the <em>oaConstraintGroup::create(oaObject *database, const oaString &name, oaBoolean override)</em> function are of this constraint group type.</li>
+</ul>
+<h4 ><a name="newConstraintParams"></a>New Constraint Parameter</h4>
+<p >There  are new built-in <a href="../html/base/classoaConstraintParamType.html">oaConstraintParamTypes</a> for which applications can create corresponding oaConstraintParams. </p>
+<ul>
+  <li >oacSpacingDirectionParamType</li>
+  <li >oacCutDistanceConstraintParamType</li>
+  <li >oacDistanceWithinConstraintParamType</li>
+  <li >oacNoSharedEdgeConstraintParamType</li>
+  <li >oacNotchLengthConstraintParamType</li>
+  <li >oacNotchSpacingConstraintParamType</li>
+  <li >oacNotchWidthConstraintParamType</li>
+  <li>oacConnectivityTypeConstraintParamType</li>
+  <li>oacPGNetConstraintParamType</li>
+  <li>oacCenterToCenterConstraintParamType</li>
+  <li>oacAreaConstraintParamType</li>
+  <li>oacStackConstraintParamType</li>
+  <li>oacExceptSamePGNetConstraintParamType</li>
+  <li >oacNoSingleCutViaConstraintParamType</li>
+</ul>
+<h4><a name="modConstraintParamDM4"></a>Modified Constraint Parameter</h4>
+<ul>
+  <li>oacWidthLengthTableTypeConstraintParamType <br>
+      <br>
+    This parameter is extended to accept a third integer  value to designate that the constraint value stores the LEF SPACINGTABLE  PARALLELRUNLENGTH TWOWIDTHS specification. </li>
+</ul>
+<h4 ><a name="purposeAware"></a>Purpose Aware Constraint</h4>
+<p >The  create functions of the following layer constraint objects now accept  oaPurposeNums so that applications  can limit the scope of a layer-based constraint to a specific set of purposes. </p>
+<ul>
+  <li ><a href="../html/tech/classoaLayerConstraint.html">oaLayerConstraint</a></li>
+  <li ><a href="../html/tech/classoaLayerPairConstraint.html">oaLayerPairConstraint</a></li>
+  <li ><a href="../html/tech/classoaLayerArrayConstraint.html">oaLayerArrayConstraint</a></li>
+</ul>
+<p><strong>Upgrade notes:</strong> If an older database is loaded by an application that&nbsp;uses the shared libraries   from data model revision 4 or later, any missing built-in purposes are   added.&nbsp;OpenAccess reserves   purpose numbers in the range 0xffff0000 to 0xffffffff inclusive for built-in   purposes.&nbsp; If&nbsp;a database&nbsp;created before data model revision 4   includes a user-defined purpose that uses a&nbsp;purpose number in the reserved range, and that   database is&nbsp;read by newer OpenAccess shared libraries, the user-defined purposes   in the reserved range are&nbsp;removed from the database.</p>
+<h4 ><a name="NewPurp"></a>New Reserved Purpose</h4>
+<p >The following are new built-in purpose types: </p>
+<ul>
+  <li >oaAny<br>
+      <br>
+    Enables matching a layer with a   constraint that has any purpose specified. <br>
+    <br>
+  </li>
+  <li >oaNo<br>
+      <br>
+    Enables   matching a layer with a constraint that has no purpose specified.<br>
+    <br>
+  </li>
+  <li >oaFillOPC (oacFillopcPurposeType) <br>
+      <br>
+    Specifies whether or not a fill shape requires OPC.<br>
+  </li>
+</ul>
+<h4 ><a name="purpAwareDerived"></a>Layer Derived From Purpose </h4>
+<p >A new   built-in <a href="../html/tech/classoaLayerOp.html">oaLayerOp</a> allows for the selection of all  shapes with a given purpose.&nbsp;In addition,   new built-in <a href="../html/tech/classoaDerivedLayerParamType.html">oaDerivedLayerParamType</a> captures the purpose  information when the oaDerivedLayerDef operation selects all shapes with a given purpose. </p>
+<p >For more information, refer to <a href="../html/guide/derivedlayer.html">Deriving Layers and Performing Layer Operations</a> in the Programmers Guide for more information. </p>
+<h4 ><a name="newValues"></a>New Value Type </h4>
+<ul >
+  <li >IntRangeArrayValue</li>
+  <li>IntRangeArray1DTblValue</li>
+  <li>IntRangeArray2DTblValue</li>
+  <li >IntRange1DTblValue</li>
+  <li >IntRange2DTblValue</li>
+  <li >StringValue</li>
+  <li >ViaTopologyArrayValue </li>
+  <li >ViaTopology2DTblValue</li>
+  <li>PurposeValue</li>
+</ul>
+<h4 ><a name="layerExclude"></a>Layer Pair Exclusion</h4>
+<p >Layers in  an oaLayerNameArray can be excluded from a technology database or graph of technology databases. </p>
+<p >Refer to <a href="../html/guide/tech.html#excluding_layers">Excluding Incompatible Layers</a> in the Programmers Guide for more information. </p>
+<h4 ><a name="procFamily"></a>Process Family </h4>
+<p >Foundries    can set the processFamily attribute to ensure that  technology databases in the same graph are from the same process family. </p>
+<h4 ><a name="modConstraints"></a>Modified Constraint</h4>
+<ul>
+  <li><span >oacValidRoutingVias<br>
+        <br>
+    </span>
+      <table width="655" border="1" cellpadding="2" cellspacing="1">
+        <tbody>
+          <tr>
+            <td colspan="2">New Valid Value Types </td>
+          </tr>
+          <tr>
+            <td >oaViaTopologyArrayValue</td>
+            <td >Provides  a set of via specifications (oaViaVariants).</td>
+          </tr>
+          <tr>
+            <td >oaViaTopology2DTblValue</td>
+            <td width="395">Provides valid or default power routing vias.</td>
+          </tr>
+        </tbody>
+      </table>
+  </li>
+</ul>
+<p >The following constraints accept new parameters: </p>
+<ul>
+  <li ><span >oacMinSpacing<br>
+        <br>
+    </span>
+      <table border="1" cellpadding="2" cellspacing="1" width="656">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameter </td>
+          </tr>
+          <tr>
+            <td width="244">oacSpacingDirectionParamType</td>
+            <td width="89">oaIntValue</td>
+            <td width="299">Specifies horizontal, vertical,   or any spacing direction.</td>
+          </tr>
+        </tbody>
+      </table>
+    <span ><br>
+    </span></li>
+  <li ><span >oacMinDualExtension <br>
+        <br>
+    </span>
+      <table border="1" cellpadding="2" cellspacing="1" width="764">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameter </td>
+          </tr>
+          <tr>
+            <td width="291">oacNoSharedEdgeConstraintParamType </td>
+            <td width="158">oacBooleanValueType</td>
+            <td width="291">Controls whether vias on a shared edge are counted.</td>
+          </tr>
+          <tr>
+            <td >oacCutDistanceConstraintParamType</td>
+            <td >oacIntValueType</td>
+            <td >If another cut exists within this distance across the length of the wire, this constraint does not apply, and the constraint associated with the minimum size wire applies. </td>
+          </tr>
+          <tr>
+            <td >oacLengthConstraitParamType</td>
+            <td >oacIntValueType</td>
+            <td >Specifies the total  length of the enclosure required for that extension pair.</td>
+          </tr>
+        </tbody>
+      </table>
+    <span ><br>
+    </span></li>
+  <li ><span >oacMinNumCut <br>
+        <br>
+    </span>
+      <table border="1" cellpadding="2" cellspacing="1" width="656">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameter </td>
+          </tr>
+          <tr>
+            <td width="119">oacDistanceWithinConstraintParamType </td>
+            <td width="119">oaIntValue</td>
+            <td width="394">Specifies a distance within which via cuts count toward the minimum required. </td>
+          </tr>
+        </tbody>
+      </table>
+    <span ><br>
+    </span></li>
+  <li ><span >oacMinProtrusionNumCut <br>
+        <br>
+    </span>
+      <table border="1" cellpadding="2" cellspacing="1" width="656">
+        <tbody>
+          <tr>
+            <td colspan="3">New Parameter </td>
+          </tr>
+          <tr>
+            <td width="119">oacDistanceWithinConstraintParamType </td>
+            <td width="119">oaIntValue</td>
+            <td width="394">Specifies a distance below which via cuts are counted. </td>
+          </tr>
+        </tbody>
+      </table>
+  </li>
+</ul>
+<h4><a name="newConstraintDM4"></a>New Constraint </h4>
+<p >The following new constraints rely on extending the enumerated  type values of oaSimpleConstraintType, oaLayerConstraintType, oaLayerPairConstraintType, and oaLayerArrayConstraintType.</p>
+<ul >
+  <li><a href="../html/guide/oacPreferredRoutingDirectionConstraint.html">oacPreferredRoutingDirection</a></li>
+  <li><a href="../html/guide/oacMinEdgeAdjacentLengthConstraint.html">oacMinEdgeAdjacentLength</a></li>
+  <li><a href="../html/guide/oacMinRectAreaConstraint.html">oacMinRectArea</a></li>
+  <li><a href="../html/guide/oacMinParallelViaClearanceConstraint.html">oacMinParallelViaClearance</a></li>
+  <li><a href="../html/guide/oacDefaultHorizontalRouteGridPitchConstraint.html">oacDefaultHorizontalRouteGridPitch</a></li>
+  <li><a href="../html/guide/oacDefaultVerticalRouteGridPitchConstraint.html">oacDefaultVerticalRouteGridPitch</a></li>
+  <li><a href="../html/guide/oacDefault135RouteGridPitchConstraint.html">oacDefault135RouteGridPitch</a></li>
+  <li><a href="../html/guide/oacDefault45RouteGridPitchConstraint.html">oacDefault45RouteGridPitch</a></li>
+  <li><a href="../html/guide/oacDefaultHorizontalRouteGridOffsetConstraint.html">oacDefaultHorizontalRouteGridOffset</a></li>
+  <li><a href="../html/guide/oacDefaultVerticalRouteGridOffsetConstraint.html">oacDefaultVerticalRouteGridOffset</a></li>
+  <li><a href="../html/guide/oacDefault135RouteGridOffsetConstraint.html">oacDefault135RouteGridOffset</a></li>
+  <li><a href="../html/guide/oacDefault45RouteGridOffsetConstraint.html">oacDefault45RouteGridOffset</a></li>
+  <li><a href="../html/guide/oacGateOrientationConstraint.html">oacGateOrientation</a></li>
+  <li><a href="../html/guide/oacMinOrthogonalViaSpacingConstraint.html">oacMinOrthogonalViaSpacing</a></li>
+  <li><a href="../html/guide/oacMinNotchSpacingConstraint.html">oacMinNotchSpacing</a></li>
+  <li><a href="../html/guide/oacMinEndOfNotchSpacingConstraint.html">oacMinEndOfNotchSpacing</a></li>
+  <li><a href="../html/guide/oacDummyPolyExtensionConstraint.html">oacDummyPolyExtension</a></li>
+  <li><a href="../html/guide/oacAllowedSpacingRangeConstraint.html">oacAllowedSpacingRange</a></li>
+  <li><a href="../html/guide/oacAllowedClearanceRangeConstraint.html">oacAllowedClearanceRange</a></li>
+  <li><a href="../html/guide/oacShapeAngleConstraint.html">oacShapeAngle</a></li>
+  <li><a href="../html/guide/oacTaperHaloConstraint.html">oacTaperHalo</a></li>
+  <li><a href="../html/guide/oacMinViaSpacingConstraint.html">oacMinViaSpacing</a></li>
+  <li><a href="../html/guide/oacMinViaClearanceConstraint.html">oacMinViaClearance</a></li>
+  <li><a href="../html/guide/oacUseNonOrthogonalRoutingRulesConstraint.html">oacUseNonOrthogonalRoutingRules</a></li>
+  <li><a href="../html/guide/oacLayerShapeAngleConstraint.html">oacLayerShapeAngle</a></li>
+</ul>
+<h4 ><a name="viaVariants"></a>New Via Variant</h4>
+<p >OpenAccess lets you store predefined parameterizations of oaStdVias and oaCustomVias, known as via variants (<a href="../html/tech/classoaViaVariant.html">oaViaVariants</a>). The oaViaVariant object represents a named pairing of an oaViaDef reference and a fully specified set of via parameters. The oacValidRoutingVias  constraint can now store oaStdViaDefs with oaViaParams, and oaCustomViaDefs  with oaParamArrays.</p>
+<p>For more information, refer to <a href="../html/guide/viaparams.html#variants">Via Variants</a> in the <em>Representing Vias in OpenAccess</em> section of the Programmers Guide. </p>
+<h4 ><a name="pinTypeEnum"></a>New PinType Attribute </h4>
+<p >This enumerated value  sets and gets a  new pinType attribute on <a href="../html/design/classoaPin.html">oaPin</a>. </p>
+<h4 ><a name="ExceptPGNet"></a>New ExceptPGNet Attribute</h4>
+<p >The <em>allowPGNet</em> oaBoolean attribute on <a href="../html/design/classoaLayerBlockage.html">oaLayerBlockage</a>  indicates that the blockage does not apply to signals of type oacPowerSigType  and oacGroundSigType.</p>
+<h4 ><a name="spacingLayerBlockage"></a>New Spacing Attribute </h4>
+<p >The <em>spacing</em> oaDist attribute on <a href="../html/design/classoaLayerBlockage.html">oaLayerBlockage</a>   supports effective spacing. </p>
+<h4 ><a name="softHalo"></a>New Soft Attribute </h4>
+<p >The new <em>soft</em> oaBoolean attribute on <a href="../html/design/classoaAreaBlockage.html">oaAreaBlockage</a>  specifies that initial placement should not put standard cells  within the blockage area during initial  placement, though later optimization phases can use the blockage area.&nbsp;The new <em>soft</em> oaBoolean attribute on oaAreaHalo indicates that standard cells should not be placed  within the halo, but later optimization phases can use the halo area.</p>
+<h4 ><a name="layerRangeBlockage"></a>LayerRangeBlockage </h4>
+<p >The <a href="../html/design/classoaLayerRangeBlockage.html">oaLayerRangeBlockage</a> object represents a blockage over a range of layers. </p>
+<h4 ><a name="layerRangeHalo"></a>LayerRangeHalo</h4>
+<p >The <a href="../html/design/classoaLayerRangeHalo.html">oaLayerRangeHalo</a> object   represents a halo over a range of layers.</p>
+<h3>&nbsp;</h3>
+<p><a href="#pagetop">Return to top of page</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br> 
+</div>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br > 
+  All rights reserved.</p> 
+</body>
+</html>

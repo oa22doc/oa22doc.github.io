@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a>oaAppDefs are Session Objects </h1>
+<hr>
+<p>OpenAccess 2.2 includes several enhancements to oaAppDefs:</p>
+<ul>
+  <li><a href="#rename">oaAppDef Classes Renamed for Consistency</a></li>
+  <li><a href="#session">oaAppDefs as Session Objects</a></li>
+  <li><a href="#defaults">Default Values</a></li>
+  <li><a href="#using">Using oaAppDefs</a></li>
+  <li><a href="../html/schema/object.html">Information Model Diagram for the oaAppDefClass</a></li>
+</ul>
+<p>In addition, the new oaAppDefs can be twice as fast as the 2.0 oaAppDefs.</p>
+<h2><a name="rename"></a>oaAppDef Classes Renamed for Consistency</h2>
+<p>The <a href="../html/base/classoaAppDef.html">oaAppDef</a> classes have been renamed to be more consistent with oaProp and oaConstraint class names and to allow the  string &ldquo;AppDef&rdquo; to appear in the name, for example:</p>
+<ul>
+  <li>
+    <pre>oaIntAppDef</pre>
+  </li>
+  <li>
+    <pre>oaFloatAppDef</pre>
+  </li>
+  <li>
+    <pre>oaVoidPointerAppDef</pre>
+  </li>
+</ul>
+<h2><a name="session"></a>oaAppDefs as Session Objects</h2>
+<p>In previous versions of OpenAccess, oaAppDefs were utility objects. Multiple oaAppDefs with the same name could refer to the same data.</p>
+<p>In OpenAccess 2.2, oaAppDefs are managed <a href="../html/base/classoaSessionObject.html">oaSessionObjects</a>. You can find or create oaAppDefs with the appropriate get() method. oaAppDefs should be declared before loading any oaDesigns, and the names for oaAppDefs must be unique. <br>
+  <br>
+If an oaDesign is loaded with an oaAppDef that has the same name and type as an existing oaAppDef, but the signatures of the two oaAppDefs do not match, the  oaDesign&rsquo;s oaAppDef data is discarded.</p>
+<p><strong>Examples</strong></p>
+<pre>oaIntAppDef&lt;oaModInst&gt; *ival = oaIntAppDef&lt;oaModInst&gt;::get(&quot;ival&quot;, 7, true);
+
+oaUInt4 value = ival-&gt;get(inst);</pre>
+<h2><a name="defaults"></a>Default Values </h2>
+<p>The default value of an oaAppDef can be specified by the application. The default value is part of the signature of the oaAppDef. Different signatures imply different oaAppDefs, even if the names are identical.</p>
+<p>The following oaAppDefs are different because they differ in default value. Their use would be considered a programming error. </p>
+<pre>oaIntAppDef&lt;oaModInst&gt; *val = oaIntAppDef&lt;oaModInst&gt;::get(&quot;value&quot;, 0, true); </pre>
+<pre>oaIntAppDef&lt;oaModInst&gt; *val = oaIntAppDef&lt;oaModInst&gt;::get(&quot;value&quot;, 1, true);</pre>
+<h2><a name="using"></a>Using oaAppDefs</h2>
+<p>Using 2.2 oaAppDefs requires more planning than in previous release of OpenAccess. Components that share oaAppDefs must agree on type, name, default value, and persistence.</p>
+<p>Do not query  the database to determine the characteristics of oaAppDefs. This is to avoid inadvertently creating multiple appDefs with the same name but with different signatures in separate applications.  The database will not warn you if this  occurs and it can result in the destruction of existing appDef data.
+</p>
+<p></p>
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

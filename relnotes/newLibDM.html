@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1>Library and Design Management</h1>
+<hr>
+<p>OpenAccess 2.2 incorporates new and expanded capabilities for library and design management (DM). The library structure is improved and provides the ability to store associations between files, the ability to use AppDefs on library objects, and a Version Control API. Libraries have access modes (shared, non-shared, and read-only) to specify how the library will be available to clients. </p>
+<p>The new features and enhancements to library management are:</p>
+<ul>
+<li><a href="#apiexpanded">Library API is Expanded</a></li>
+<li><a href="#accessModes">Access Modes for Libraries </a></li>
+<li><a href="#libtransactions">Getting Data out of Libraries</a></li>
+</ul>
+
+<p>See also: <a href="../html/guide/libstruc.html">OpenAccess Libraries and Design Management</a> in the Programmers Guide.</p>
+<p>In addition to the traditional directory-based model that uses the file system, a new server-based DM system relies on a database to  persistently record and manage library files. Both  design management (DM) systems are included with OpenAccess as alternative plug-in solutions. </p>
+<ul>
+<li><a href="#twodm">Two Design Management Systems Provided</a></li>
+  <ul>
+  <li><a href="#turbo">Turbo DM System</a></li>
+  <li><a href="#filesys">FileSys DM System</a></li>
+  <li><a href="#liborganization">Library Organization</a></li>
+  <li><a href="#viewtypes">Views Have Type Attributes</a></li>
+  <li><a href="#dmtransactions">DM System Uses Transactions</a></li>
+  <li><a href="#dmassigned">Libraries are Assigned a DM System</a></li>
+  <li><a href="#dmplugin">Applications Use a DM System Plug-in</a></li>
+  </ul>
+</ul>
+
+<p>OpenAccess supports <a href="#vcsupport">version control</a> for versioning, check out, check in, and change history for library contents. A third-party version control solution can be incorporated through the OpenAccess plug-in interface.<a name="apiexpanded"></a></p>
+<h2>Library API is Expanded</h2>
+<p>The library API is expanded significantly. You can use a <code>lib.defs</code> file to identify libraries and their paths, and you can open all existing libraries at once by reading this file. You use the following API to open all libraries included in the default <code>lib.defs</code> file:</p>
+<pre>
+    <a href="../html/dm/classoaLibDefList.html#oaLibDefList::openLibs1">oaLibDefList::openLibs</a>() 
+</pre>
+
+<p>To locate <code>lib.defs</code>, this function performs a search that includes your current directory, your login directory, and the data directory for your installation hierarchy.</p>
+
+<p>If you prefer, you can devise your own library definition file naming convention and read your library definition file by supplying the filename. For example:</p>
+<pre>
+    oaLibDefList::openLibs("../projectLib.defs")
+</pre> 
+<p>See also: <a href="../html/guide/libstruc.html#libDefs_syntax">Library Definition Files</a> in the <em>OpenAccess Libraries and Design Management</em> article of the Programmers Guide.</p>
+
+<p>You can open a library directly, without using the <code>lib.defs</code> file, by using:</p>
+<pre>
+    <a href="../html/dm/classoaLib.html">oaLib::open</a>(const oaScalarName &amp;name,
+                const oaString     &amp;libPath,
+                const oaString     &writePath="",
+                oaLibMode          mode=oaSharedLibMode)
+</pre>
+<h3>Changing the Library Definition File </h3>
+<p>When an application adds or deletes a library, the <code>lib.defs</code> file should be updated accordingly. </p>
+<p>See: <a href="../html/guide/libstruc.html#change_libdef">Changing the Library Definition File</a> in the <em>OpenAccess Libraries and Design Management</em> article of the Programmers Guide.</p>
+<h3><STRONG><a name="accessModes"></a>Access Modes for  Libraries </STRONG></h3>
+<P>The access mode for a library is specified when the library is opened using <CODE>oaLib::open</CODE>. When using <CODE>oaLibDefList::openLibs</CODE>, the access mode can be specified by an <CODE>ASSIGN</CODE> statement in the library definition file. </P>
+<P>OpenAccess provides <EM>shared</EM>, <EM>non-shared, </EM>and <EM>read-only</EM> library access modes, with the default being <EM>shared</EM>. Each mode is valid only if the DM system implementation supports it. </P>
+<P>See also: <a href="../html/guide/libstruc.html#accessModes">Accessing Objects in Libraries</a> in the <em>OpenAccess Libraries and Design Management</em> article of the Programmers Guide.</P>
+<p><a name="libtransactions"></a>
+</p>
+<h3>Getting Data Out of Libraries </h3>
+<p>Applications call <a href="../html/dm/classoaLib.html#classoaLib.html"><CODE>oaLib::getAccess</CODE></a> on a library to establish  access. At this point, the application can get data out of the library as shown in this example, which gets the primary file in an oaCellView:</p>
+<pre>oaNativeNS nameSpace; 
+    oaScalarName(nameSpace, "viewName");
+	
+    if ( lib1->getAccess(oacReadDMTransType) ) {
+        oaCell     *cell = oaCell::get(lib1, oaScalarName(nameSpace, "cellName"));
+        oaView     *view = oaView::get(lib1, oaScalarName(nameSpace, "viewName"));
+        oaCellView *cv = oaCellView::get(cell, view);
+
+        oaDMFile   *cvfile = cv->getPrimary();
+
+        cvfile->getPath(filePath);
+
+        lib1->releaseAccess();
+    }</pre>
+<p>&nbsp;</p>
+<p>The application calls <a href="../html/dm/classoaLib.html#oaLib::releaseAccess"><CODE>oaLib::releaseAccess</CODE></a> when finished with the current traversal. All pointers to DM objects (other than the oaLib itself) become invalid as soon as the access is released. </p>
+<p>See also: <a href="../html/guide/libstruc.html#accessObjs">Accessing Objects in Libraries</a> in the <em>OpenAccess Libraries and Design Management</em> article of the Programmers Guide.</p>
+<a name="twodm"></a>
+<h2>Two Design Management Systems Provided</h2>
+<p>OpenAccess provides two design management (DM) systems. The new system is a server-based, database solution that is more efficient and improves overall system performance. The other is based on the traditional directory-based solution that uses the file system to manage libraries and design data.  These DM solutions are designated as:</p>
+<ul>
+<li>Turbo DM System</li>
+<li>FileSys DM System</li>
+</ul>
+
+<p>See also: <a href="../html/guide/libstruc.html#dmSystems">DM Systems</a> in the <em>OpenAccess Libraries and Design Management</em> article of the Programmers Guide.</p>
+<a name="turbo"></a>
+<h3>Turbo DM System</h3>
+<p>The Turbo DM system uses a database and server-based implementation to provide a high-speed design management solution. This system supports library attributes that you use to specify the server host, port number, log filename, and a third-party version control system. The Turbo system supports leader-follower associations among library files. When a leader is  destroyed, the operation is applied to all followers. When a version control operation is applied to a leader, the operation also is applied to the followers. The Turbo files and organization are intentionally opaque. Access to libraries through the Turbo system are entirely through the API.</p>
+ 
+<a name="filesys"></a>
+<h3>FileSys DM System</h3>
+<p>The FileSys DM system organizes library information using a directory structure of the file system. This system provides compatibility with previous versions of OpenAccess. Library files are stored in directories with names based on the cell and view names of the object. When you choose the FileSys DM system for a library, you can include an attribute to designate a third-party version control system.</p>
+
+<a name="liborganization"></a>
+<h3>Library Organization</h3>
+<p> Libraries are logical containers that are represented as oaLib objects. Within libraries are oaCell (cell containers), oaView (view containers), oaCellView (cellView containers), and oaDMFile objects. Each cellView includes one oaDMFile, which is the primary file that holds the primary data for a cellView. The following figure shows the organization of the library and relationships among the library objects.</p>
+
+<img src="../html/schema/dmobject.png" alt="Library Containers" border="1">
+
+<a name="viewtypes"></a>
+<h3>Views Have Type Attributes</h3>
+<p>Each view has a designated view type, which is persistent. The view type is designated using the oaViewType object. Several reserved view types include <em>maskLayout</em>, <em>schematic</em>, <em>netlist</em>, and <em>wafer</em>. You create a view type using:</p>
+<pre>
+    <a href="../html/dm/classoaViewType.html#oaViewType::get">oaViewType::get</a>(oaReservedViewType type)
+</pre>
+
+<p>When you open a design database, you designate a view type using the following API:</p>
+<pre>
+    <a href="../html/design/classoaDesign.html#oaDesign::open">oaDesign::open</a>(const oaScalarName &amp;libNameIn,
+                   const oaScalarName &amp;cellNameIn,
+                   const oaScalarName &amp;viewNameIn,
+                   const oaViewType   viewType,<br>                   oaChar             mode)
+</pre>
+
+<p>You can get the primary file for a cellview by using the API:</p>
+<pre>
+    <a href="../html/dm/classoaCellView.html">oaCellView::getPrimary()</a>
+</pre>
+
+<a name="dmassigned"></a>
+<h3>Libraries are Assigned a DM System</h3>
+<p>In addition to the library name, path, access mode, and persistent attributes; you designate the DM system for a library when it is created. You use the API:</p>
+<pre>
+    <a href="../html/dm/classoaLib.html">oaLib::create</a>(const oaScalarName   &amp;name,
+                  const oaString       &amp;libPath,
+                  oaLibMode            mode=oacSharedLibMode,
+                  const oaString       &amp;dmSystem="oaDMTurbo",<br>                  const oaDMAttrArray  *dmAttrList=NULL)
+</pre>
+
+<a name="dmplugin"></a>
+<h3>Applications Use a DM System Plug-in</h3>
+<p>Applications choose a DM system at run time by using a plug-in interface to load a shared library. This plug-in interface uses programming techniques similar to those used in the Microsoft &reg; COM technology. The DM plug-in implementation provides a <em>versionable interface</em> that can be revised or upgraded to provide new functionality without breaking prior versions of the interface. The following figure illustrates the DM plug-in implementation.</p>
+<img src="../html/guide/images/generalArch.gif" border="0" alt="General DM Architecture"> 
+
+<a name="vcsupport"></a>
+<h2>Version Control is Supported</h2>
+<p>OpenAccess does not include a version control implementation, but a third-party version control plug-in can be loaded  by OpenAccess at runtime. </p>
+<p>For more information, see <a href="../html/guide/writingplugin.html#vc_example">Example Version Control Code</a> in <em>How to Write a Plug-in.</em></p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

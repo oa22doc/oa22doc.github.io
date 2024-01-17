@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop">Region Query and Occurrence Shapes</h1>
+<hr>
+<p>Region query performance is improved and its usage is simplified. The region query implementation is now through a plug-in. The plug-in provided with OpenAccess uses an X/Y tree for area searches, but other region query implementations are easily added by including a new plug-in in the shared library path. Therefore application performance is not limited to the default region query performance.</p>
+
+<p>A new occurrence shape object is added to OpenAccess to represent the unique occurrences of shapes in a design hierarchy. Each type of shape has a matching occurrence object.</p>
+
+<p>This document contains the following sections:</p>
+<ul>
+<li><a href="#plugin">Plug-in Architecture</a></li>
+<li><a href="#multiplequeryobjects">oaRegionQuery Object Split Into Multiple Query Objects</a></li>
+<li><a href="#codestructure">Region Query Code Structure</a></li>
+<li><a href="#shapeoccurrences">Shape Occurrences</a></li>
+</ul>
+
+<a name="plugin"></a>
+<h2>Plug-in Architecture</h2>
+<p>The plug-in interface uses programming techniques similar to those used in the Microsoft &reg; COM technology. The region query plug-in provides an interface that is easily updated or replaced. You can initialize the query tree plug-in structure by using the following API:</p>
+<pre>
+    <a href="../html/design/classoaRegionQuery.html">void oaRegionQuery::init(const oaString &amp;pluginName="oaRQSystem")</a>
+</pre>
+
+<a name="multiplequeryobjects"></a>
+<h2>oaRegionQuery Object Split Into Multiple Query Objects</h2>
+<p>Each query is specialized for each OpenAccess object type. The following figure shows the oaRegionQuery subclasses available for object queries.</p>
+
+<img src="images/rqsubclasses.gif" border="0" alt="oaRegionQuery subclasses">
+
+<p>Each object implements query() functions that include <em>startLevel</em> and <em>endLevel</em> parameters to control hierarchy traversal. You can initialize region query structures for a block and all other blocks bound to it. The call to initialize region query structures in a block is:</p>
+<pre>
+    <a href="../html/design/classoaBlock.html">oaBlock::initForRegionQuery()</a>
+</pre>
+<p>This call usually takes some time, but it is not required. It is provided so users can spawn a process in parallel with other non-interfering tasks that an application performs. If not called explicitly, OpenAccess  makes the call internally the first time region query functionality is used.</p>
+
+<a name="codestructure"></a>
+<h2>Region Query Code Structure</h2>
+<p>To perform a region query:</p>
+<ol>
+<li>Choose the type of query you want.</li>
+<li>Derive an application-specific class from the appropriate abstract query class.</li>
+<li>Override the <code>query</code><em>"Object"</em>() function to add processing code.</li>
+<li>Override startRef() to be notified of the event or to set the return value to false if you want to skip the reference.</li>
+</ol>
+
+<p>See the &lt;install_dir&gt;/examples/oa/instQuery directory for a code example that demonstrates how you can implement a region query.</p>
+
+<p>Shape queries are much simpler because special processing of route data is unnecessary. startHeader() and stopHeader() calls are no longer used. Query structures are no longer used for iterating shapes by layer purpose pair (LPP), and query structures are no longer used for iterating references by master. Applications control LPP selection, and instances and vias are no longer organized by master.</p>
+
+<a name="shapeoccurrences"></a>
+<h2>Shape Occurrences</h2>
+<p>oaOccShape is an abstract base class for all occurrence shapes. It is similar to oaShape, but oaOccShape is not editable. Occurrence shapes do not represent new data. They are transient objects that are created on demand, which helps to maintain a small virtual memory size. These objects have read-only access, so no property or group can be assigned.</p>
+
+<p>oaOccShape is useful for representing and referring to specific occurrences of shapes in the hierarchy.  You access occurrence shapes via a region query using:</p>
+<pre>
+    <a href="../html/design/classoaShapeQuery.html">oaShapeQuery::getOccShape()</a>
+</pre>
+
+<p>You use class methods as if data is virtually flat. Applications are responsible for managing query objects. These query objects stay resident until the application frees them. To free memory, you use:</p>
+<pre>
+    <a href="../html/design/classoaOccShape.html">oaOccShape::release()</a>
+</pre>
+
+
+
+
+
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>

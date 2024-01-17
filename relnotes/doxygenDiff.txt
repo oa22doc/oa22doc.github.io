@@ -1,0 +1,1086 @@
+cvs server: Diffing .
+Index: classdef.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/classdef.cpp,v
+retrieving revision 1.1
+retrieving revision 1.8
+diff -r1.1 -r1.8
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+138c138
+<     n=qualifiedNameWithTemplateParameters();
+---
+>     n=qualifiedNameWithTemplateParameters(NULL, true);
+156,157c156,176
+<   //printf("*** insert sub class %s into %s\n",cd->name().data(),name().data());
+<   m_inheritedBy->inSort(new BaseClassDef(cd,0,p,s,t));
+---
+>     //printf("*** insert sub class %s into %s\n",cd->name().data(),name().data());
+>   
+>     /* <Sailaja Dhulipala> 
+> 	Actual template class is made the parent of a class derived, instead of an
+> 	instance of the template class. Similary the instances (cd) of the template 
+> 	classes	are not added to it base class.
+>     */
+> 
+>     // This is an instance of a template with custom template parameters. Add the child to
+>     // the template master
+>     if (m_templateMaster) {
+> 	m_templateMaster->m_inheritedBy->inSort(new BaseClassDef(cd,0,p,s,t));
+>     }
+> 
+>     // The sub class is templatized class with template arguments. The actual template class
+>     // must have already been added.
+>     if (cd->m_templateMaster) {
+> 	return;
+>     }
+> 
+>     m_inheritedBy->inSort(new BaseClassDef(cd,0,p,s,t));
+800a820
+> 
+801a822,835
+> static MemberDef *lookUpMember(const MemberList &list, const char *name)
+> {
+> 	MemberListIterator mli(list);
+> 	MemberDef *md;
+> 
+> 	for ( ; (md=mli.current()) ; ++mli) {
+> 		if (name == md->name()) {
+> 			return md;
+> 		}
+> 	}
+> 
+> 	return NULL;
+> }
+> 
+804a839,864
+> 
+>     /* <SD> 25-Jan-2003
+> 	If this class is a wrapper for an enum, set a flag on the MemberDef for the enum name 
+> 	that the anchors should not point to the doxygen file.
+>     */
+> 
+>     MemberDef *wrappedEnumMember = NULL;
+>     FileDef   *wrappedEnumFile   = NULL;
+> 
+>     if (!m_wrappedEnumName.isEmpty()) {
+> 	wrappedEnumFile = m_fileDef;
+> 		
+> 	if (m_incInfo && m_incInfo->fileDef) {
+> 	    wrappedEnumFile = m_incInfo->fileDef;
+> 	    wrappedEnumMember = lookUpMember(wrappedEnumFile->docEnumMembers, m_wrappedEnumName);
+> 
+> 	} else if (wrappedEnumFile){
+> 	    wrappedEnumMember = lookUpMember(wrappedEnumFile->docEnumMembers, m_wrappedEnumName);
+> 	}
+> 
+> 	if (wrappedEnumMember) {
+> 	    wrappedEnumMember->setIgnoreFileReference(true);
+> 	}
+>     }
+> 
+> 
+1095a1156
+> #if 0    
+1099c1160,1165
+<     ol.enableAll();
+---
+>  #else
+>     ol.startImageLink(m_memListFileName,0);
+>     ol.writeImageLink("members.gif");
+>     ol.endImageLink();
+> #endif
+>    ol.enableAll();
+1129,1131d1194
+<   // public types
+<   pubTypes.writeDeclarations(ol,this,0,0,0,theTranslator->trPublicTypes(),0); 
+< 
+1138a1202,1204
+>   // public types
+>   pubTypes.writeDeclarations(ol,this,0,0,0,theTranslator->trPublicTypes(),0); 
+> 
+1146,1149c1212,1217
+<   // protected methods
+<   proSlots.writeDeclarations(ol,this,0,0,0,theTranslator->trProtectedSlots(),0); 
+<   proMethods.writeDeclarations(ol,this,0,0,0,theTranslator->trProtectedMembers(),0); 
+<   proStaticMethods.writeDeclarations(ol,this,0,0,0,theTranslator->trStaticProtectedMembers(),0); 
+---
+>   if (!m_excludeProtectedMethods) {
+>     // protected methods
+>     proSlots.writeDeclarations(ol,this,0,0,0,theTranslator->trProtectedSlots(),0); 
+>     proMethods.writeDeclarations(ol,this,0,0,0,theTranslator->trProtectedMembers(),0); 
+>     proStaticMethods.writeDeclarations(ol,this,0,0,0,theTranslator->trStaticProtectedMembers(),0); 
+>   }
+1191c1259,1265
+<   
+---
+>   if (!m_wrappedEnumName.isEmpty() && wrappedEnumMember) {
+>     ol.startGroupHeader();
+>     ol.endGroupHeader();
+>     wrappedEnumMember->writeDocumentation(&wrappedEnumFile->docEnumMembers, ol, 
+> 			   theTranslator->trEnumerationTypeDocumentation(), wrappedEnumFile, false);
+>   }
+> 
+1195,1196d1268
+<   enumMembers.writeDocumentation(ol,name(),this,
+<                          theTranslator->trMemberEnumerationDocumentation());
+1201c1273,1287
+<   functionMembers.writeDocumentation(ol,name(),this,
+---
+>   bool empty = m_excludeProtectedMethods;
+>   if (m_excludeProtectedMethods) {
+>     MemberListIterator mli(functionMembers);
+>     MemberDef *md;
+>     for ( ; (md=mli.current()) ; ++mli)
+>     {
+> 	if (md->protection() != Protected) {
+> 	    empty = false;
+> 	    break;
+> 	}
+>     }
+>   }
+> 
+>   if (!empty) {
+>     functionMembers.writeDocumentation(ol,name(),this,
+1202a1289
+>   }
+1215a1303,1305
+>   enumMembers.writeDocumentation(ol,name(),this,
+>                          theTranslator->trMemberEnumerationDocumentation());
+>  
+1307a1398,1400
+>   if (wrappedEnumMember) {
+>     wrappedEnumMember->setIgnoreFileReference(false);
+>   }
+1371c1464
+<       if (cd && !md->name().isEmpty() && md->name()[0]!='@')
+---
+>       if (cd && !md->name().isEmpty() && md->name()[0]!='@' && !md->isExcludeDocs())
+1670a1764
+>       !m_excludeDocs	     &&	   /* not excluded from documentation */      
+2461,2462c2555,2556
+< QCString ClassDef::qualifiedNameWithTemplateParameters(
+<     QList<ArgumentList> *actualParams) const
+---
+> QCString ClassDef::qualifiedNameWithTemplateParameters(QList<ArgumentList> *actualParams,
+> 						       bool ignoreTemplate) const
+2472c2566
+<       scName = cd->qualifiedNameWithTemplateParameters(actualParams);
+---
+>       scName = cd->qualifiedNameWithTemplateParameters(actualParams, ignoreTemplate);
+2489,2504c2583,2602
+<   bool isSpecialization = localName().find('<')!=-1;
+<   if (templateArguments())
+<   {
+<     if (actualParams && (al=actualParams->current()))
+<     {
+<       if (!isSpecialization)
+<       {
+<         scName+=tempArgListToString(al);
+<       }
+<       actualParams->next();
+<     }
+<     else
+<     {
+<       if (!isSpecialization)
+<       {
+<         scName+=tempArgListToString(templateArguments());
+---
+> 
+>   if (!ignoreTemplate) {
+>       bool isSpecialization = localName().find('<')!=-1;
+>       if (templateArguments())
+>       {
+> 	if (actualParams && (al=actualParams->current()))
+> 	{
+> 	  if (!isSpecialization)
+> 	  {
+> 	    scName+=tempArgListToString(al);
+> 	  }
+> 	  actualParams->next();
+> 	}
+> 	else
+> 	{
+> 	  if (!isSpecialization)
+> 	  {
+> 	    scName+=tempArgListToString(templateArguments());
+> 	  }
+> 	}
+2506d2603
+<     }
+2507a2605
+> 
+Index: classdef.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/classdef.h,v
+retrieving revision 1.1
+retrieving revision 1.4
+diff -r1.1 -r1.4
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+193c193
+<         QList<ArgumentList> *actualParams=0) const;
+---
+>         QList<ArgumentList> *actualParams=0, bool ignoreTemplate = false) const;
+285a286,289
+>     void setWrappedEnumName(const QCString &name) { m_wrappedEnumName = name; }
+>     bool isExcludeProtectMethods() {return m_excludeProtectedMethods; }
+>     void setExcludeProtectMethods(bool excludeProtectedMethods) 
+> 	{ m_excludeProtectedMethods = excludeProtectedMethods; }
+422a427,433
+> 
+>     /* This class is a wrapper for enum declaration. So the enum docs should be
+>        included in the class docs
+>     */
+> 
+>     QCString m_wrappedEnumName;
+>     bool m_excludeProtectedMethods;
+Index: config.l
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/config.l,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+1642a1643,1658
+> 
+>   cb = addBool(
+>                     "EXTRACT_ATTRIBS",
+>                     "If the EXTRACT_ATTRIBS tag is set to NO, Doxygen will hide all \n"
+>                     "class data members. \n"
+>                     "If set to YES (the default) these declarations will be included in the \n"
+>                     "documentation. \n",
+>                     TRUE
+>                  );
+> 
+>   cl = addList(
+>                     "EXCLUDE_CLASSES",
+>                     "The EXCLUDE_CLASSES tag can be used to exclude a list of classes from \n"
+>                     "documentation sections, marked by \n"
+>                  );
+> 
+Index: definition.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/definition.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+59a60
+>   m_excludeDocs = false;
+Index: definition.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/definition.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+84a85,87
+>     bool isExcludeDocs() const { return m_excludeDocs; }
+>     void setExcludeDocs(bool exclude) { m_excludeDocs = exclude; }
+> 
+152c155
+< 
+---
+>     bool m_excludeDocs; // exlcude this member from documentation
+Index: docparser.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/docparser.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+629,635c629,635
+<       children.append(new 
+<           DocLinkedWord(parent,name,
+<             compound->getReference(),
+<             compound->getOutputFileBase(),
+<             member->anchor()
+<                        )
+<                      );
+---
+>       if (member->isIgnoreFileReference()) {
+> 	    children.append(new  DocLinkedWord(parent,name, NULL, NULL, member->anchor()));
+> 
+> 	} else {
+> 	    children.append(new  DocLinkedWord(parent,name, compound->getReference(),
+> 			    compound->getOutputFileBase(), member->anchor()));
+> 	}
+Index: doxygen.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/doxygen.cpp,v
+retrieving revision 1.1
+retrieving revision 1.7
+diff -r1.1 -r1.7
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+189a190,191
+> QCString Doxygen::exceptionsListFile("exceptionsByName.html");
+> 
+577a580,594
+> 
+>   QCString className(fullName);
+>   className.stripWhiteSpace();
+> 
+>   const QRegExp separator("\\s");
+>   int index = -1;
+>   while ((index = separator.match(className)) != -1) {
+> 	className.remove(index, 1);
+>   }
+> 
+>   QStrList &excludeList = Config_getList("EXCLUDE_CLASSES");
+>   if (excludeList.contains(className)) {
+> 	  return;
+>   }
+>   
+671a689,692
+>     
+>     cd->setExcludeDocs(root->excludeDocs);
+>     cd->setWrappedEnumName(root->wrappedEnumName);
+>     cd->setExcludeProtectMethods(root->excludeProtMethods);
+1211a1233
+> 		newMd->setExcludeDocs(root->excludeDocs);		
+1239a1262,1267
+>   bool extractAttribs = Config_getBool("EXTRACT_ATTRIBS");
+>   if (!extractAttribs && mtype == MemberDef::Variable) {
+> 		return NULL;
+>   }
+> 
+> 
+1328a1357
+>   md->setExcludeDocs(root->excludeDocs);  
+1497a1527
+>   md->setExcludeDocs(root->excludeDocs);  
+1902a1933
+>   md->setExcludeDocs(root->excludeDocs);
+2213a2245
+> 	  md->setExcludeDocs(root->excludeDocs);	  
+3550c3582
+<     if ((cd==0 || (!cd->hasDocumentation() && !cd->isReference())) && 
+---
+>     if ((cd==0 || (!cd->hasDocumentation() && !cd->isExcludeDocs() && !cd->isReference())) && 
+3765a3798
+>   md->setExcludeDocs(root->excludeDocs);  
+4617,4654c4650,4692
+<           warn(root->fileName,root->startLine,
+<                "Warning: no matching class member found for"
+<               );   
+< 
+<           if (root->tArgLists)
+<           {
+<             QListIterator<ArgumentList> alli(*root->tArgLists);
+<             ArgumentList *al;
+<             for (;(al=alli.current());++alli)
+<             {
+<               warn_cont("  template %s\n",tempArgListToString(al).data());
+<             }
+<           }
+<           warn_cont("  %s\n",fullFuncDecl.data());
+< 
+<           if (candidates>0)
+<           {
+<             warn_cont("Possible candidates:\n");
+<             for (mni.toFirst();(md=mni.current());++mni)
+<             {
+<               ClassDef *cd=md->getClassDef();
+<               if (cd!=0 && cd->name()==className)
+<               {
+<                 if (md->templateArguments())
+<                 {
+<                   warn_cont("  template %s\n",tempArgListToString(md->templateArguments()).data());
+<                 }
+<                 warn_cont("  ");
+<                 if (md->typeString()) 
+<                 {
+<                   warn_cont("%s ",md->typeString());
+<                 }
+<                 warn_cont("%s::%s%s\n",
+<                     cd->qualifiedNameWithTemplateParameters().data(),
+<                     md->name().data(),md->argsString());
+<               }
+<             }
+<           }
+---
+> 	bool ignoreWarn = (root->section ==  Entry::VARIABLE_SEC && 
+> 			    !Config_getBool("EXTRACT_ATTRIBS")) ;
+> 	if (!ignoreWarn) {
+> 
+> 	    warn(root->fileName,root->startLine,
+> 		"Warning: no matching class member found for"
+> 		);   
+> 
+> 	    if (root->tArgLists)
+> 	    {
+> 		QListIterator<ArgumentList> alli(*root->tArgLists);
+> 		ArgumentList *al;
+> 		for (;(al=alli.current());++alli)
+> 		{
+> 		warn_cont("  template %s\n",tempArgListToString(al).data());
+> 		}
+> 	    }
+> 	    warn_cont("  %s\n",fullFuncDecl.data());
+> 
+> 	    if (candidates>0)
+> 	    {
+> 		warn_cont("Possible candidates:\n");
+> 		for (mni.toFirst();(md=mni.current());++mni)
+> 		{
+> 		ClassDef *cd=md->getClassDef();
+> 		if (cd!=0 && cd->name()==className)
+> 		{
+> 		    if (md->templateArguments())
+> 		    {
+> 		    warn_cont("  template %s\n",tempArgListToString(md->templateArguments()).data());
+> 		    }
+> 		    warn_cont("  ");
+> 		    if (md->typeString()) 
+> 		    {
+> 		    warn_cont("%s ",md->typeString());
+> 		    }
+> 		    warn_cont("%s::%s%s\n",
+> 			cd->qualifiedNameWithTemplateParameters().data(),
+> 			md->name().data(),md->argsString());
+> 		}
+> 		}
+> 	    }
+> 	  }
+4715a4754
+> 	  md->setExcludeDocs(root->excludeDocs);	  
+4863a4903
+>           md->setExcludeDocs(root->excludeDocs);	  
+4895,4897c4935,4941
+<         warn(root->fileName,root->startLine,
+<              "Warning: member `%s' of class `%s' cannot be found",
+<              funcName.data(),className.data());
+---
+> 	bool ignoreWarn = (root->section ==  Entry::VARIABLE_SEC && 
+> 			    !Config_getBool("EXTRACT_ATTRIBS")) ;
+> 	if (!ignoreWarn) {
+> 	    warn(root->fileName,root->startLine,
+> 	    "Warning: member `%s' of class `%s' cannot be found",
+> 	    funcName.data(),className.data());
+> 	};
+5105a5150
+>       md->setExcludeDocs(root->excludeDocs);      
+5641c5686,5690
+<    
+---
+>   
+>     if (cd->isExcludeDocs()) {
+> 	continue;
+>     }
+> 
+5875a5925
+>       md->setExcludeDocs(root->excludeDocs);      
+Index: doxygen.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/doxygen.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+96a97
+>     static QCString exceptionsListFile;
+Index: entry.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/entry.cpp,v
+retrieving revision 1.1
+retrieving revision 1.3
+diff -r1.1 -r1.3
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+43a44,45
+>   excludeDocs = 0;  
+>   excludeProtMethods = 0;
+99a102,103
+>   excludeDocs = e.excludeDocs;
+>   excludeProtMethods = e.excludeProtMethods;
+250a255,256
+>   excludeDocs = 0;  
+>   excludeProtMethods = 0;
+Index: entry.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/entry.h,v
+retrieving revision 1.1
+retrieving revision 1.3
+diff -r1.1 -r1.3
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+252a253,254
+>     bool excludeDocs;	      //!< exclude this entry from documentation.
+>     bool excludeProtMethods;  //!< exclude protected methods of this entry from documentation.
+276a279
+>     QCString     wrappedEnumName; //!< name of the enum related to a class.
+Index: filedef.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/filedef.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+113c113
+<       return hasDocumentation() && !isReference();
+---
+>       return hasDocumentation() && !isReference()  && !m_excludeDocs;
+Index: htmldocvisitor.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/htmldocvisitor.cpp,v
+retrieving revision 1.1
+retrieving revision 1.3
+diff -r1.1 -r1.3
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+23a24
+> #include "htmlgen.h"
+569c570
+<   m_t << "<p><b>" << theTranslator->trForInternalUseOnly() << "</b></p>" << endl;
+---
+>   m_t << "<p>" << theTranslator->trForInternalUseOnly() << endl;
+761a763,764
+> 
+>   bool exception = ( pl->type() == DocParamSect::Exception);
+764a768,778
+> 
+>     if (exception) {
+> 	MemberName *mn = Doxygen::functionNameSDict[s];
+> 	if (mn) {
+> 	    m_t << "<a class=\"el\" href=\"" << Doxygen::exceptionsListFile << "#" << s << "\">";
+> 	} else {
+> 	    HtmlGenerator *ci = (HtmlGenerator *)&m_ci;
+> 	    err("Error: Exception with id %s is not valid anymore in %s.\n",s, ci->getLastFile());
+> 	}
+>     }
+> 
+Index: htmlgen.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/htmlgen.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+498a499,527
+> void HtmlGenerator::startImageLink(const char *f,const char *anchor)
+> {
+>   t << "<p> </p> \n";
+>   t << "<table cellspacing=\"0\" cellpadding=\"1\" border=\"1\" bordercolor=\"#ffffff\"> \n";
+>   t << "<tr bgcolor=\"#339933\"> \n";
+>   
+>   t << "<td> <a href=\"";
+>   if (f)   t << f << Doxygen::htmlFileExtension;
+>   if (anchor) t << "#" << anchor;
+>   t << "\">"; 
+> }
+> 
+> void HtmlGenerator::endImageLink()
+> {
+>   t << "</a></td>\n";
+>   t << "</tr>\n";
+>   t << "</table>\n";
+> }
+> 
+> void HtmlGenerator::writeImageLink(const char *imageName)
+> {
+>   t << "<img src=\"";
+>   if (imageName) {
+> 	  t << imageName;
+>   }
+> 
+>   t << "\">";
+> }
+> 
+1015c1044
+<   t << "          <td class=\"md\" valign=\"top\">(&nbsp;</td>" << endl;
+---
+>   t << "          <td class=\"md\" valign=\"top\"><b>(&nbsp;</b></td>" << endl;
+1060c1089
+<       t << "          <td class=\"md\" valign=\"top\">)&nbsp;</td>" << endl;
+---
+>       t << "          <td class=\"md\" valign=\"top\"><b>)&nbsp;<b></td>" << endl;
+1069c1098
+<       t << "          <td class=\"md\">)&nbsp;</td>" << endl;
+---
+>       t << "          <td class=\"md\"><b> )&nbsp;</b></td>" << endl;
+Index: htmlgen.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/htmlgen.h,v
+retrieving revision 1.1
+retrieving revision 1.3
+diff -r1.1 -r1.3
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+80a81,83
+>     void startImageLink(const char *file,const char *anchor);
+>     void endImageLink();
+>     void writeImageLink(const char *imageName);
+209a213,214
+> 
+>     const char * getLastFile() { return lastFile; }
+Index: index.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/index.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+55a56
+> int countClasses();
+65a67,68
+> void writeQuickMemberIndex(OutputList &ol,bool *charUsed);
+> 
+110a114
+> static bool g_classIndexLetterUsed[256];
+601c605,611
+<     {
+---
+>     {	
+>     
+> 	if (cd->isExcludeDocs()) {
+> 	    continue;
+> 	}
+> 
+> 
+1204c1214,1215
+<     if (cd->isLinkableInProject() && cd->templateMaster()==0)
+---
+>     if (cd->isLinkableInProject() && cd->templateMaster()==0
+> 	&& !cd->isExcludeDocs())
+1287a1299,1304
+>   int nClasses = countClasses();
+>   if (nClasses)
+>   {
+>     writeQuickMemberIndex(ol,g_classIndexLetterUsed);
+>   }
+>   
+1298c1315,1316
+<     if (cd->isLinkableInProject() && cd->templateMaster()==0)
+---
+>     if (cd->isLinkableInProject() && cd->templateMaster()==0
+>         && !cd->isExcludeDocs())
+1331c1349,1350
+<     if (cd->isLinkableInProject() && cd->templateMaster()==0)
+---
+>     if (cd->isLinkableInProject() && cd->templateMaster()==0
+>         && !cd->isExcludeDocs())
+1387c1406,1417
+<           ol.writeString("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">"
+---
+> 	  ol.writeString("<a name=\"index_");
+> 		  
+> 	  char lastChar[2] = "";
+> 	  lastChar[0] = tolower(s[0]);
+> 	  lastChar[1] = 0;
+> 
+> 	  ol.writeString(lastChar);
+> 	  ol.writeString("\"></a><div class=\"ah\">&nbsp;&nbsp;&nbsp;<b> ");
+>           ol.writeString(s);
+>           ol.writeString("</b>&nbsp;&nbsp;");
+> #if 0          
+> 	  ol.writeString("<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">"
+1394a1425
+> #endif			 
+1645a1677,1710
+> 
+> 
+> //----------------------------------------------------------------------------
+> 
+> int countClasses()
+> {
+>   for (int i = 0; i < 256; i++) 
+> 	  g_classIndexLetterUsed[i]=FALSE;
+> 
+>   int count = 0;
+>   
+>   ClassSDict::Iterator cdict(Doxygen::classSDict);
+>   ClassDef *cd=0;
+> 
+>   char startLetter = 0;
+> 
+>   for (cdict.toFirst();(cd=cdict.current());++cdict)
+>   {
+> 	if (cd->isLinkableInProject() && cd->templateMaster()==0 && !cd->isExcludeDocs())
+>     {
+>       int index = getPrefixIndex(cd->className());
+> 
+>       if (toupper(cd->className().at(index))!=startLetter) { // new begin letter => new header
+>         startLetter=toupper(cd->className().at(index));
+> 	
+> 		g_classIndexLetterUsed[tolower(startLetter)]=TRUE;
+>         count++;
+>       }
+> 	}
+>   }
+> 
+>   return count;
+> }
+> 
+Index: latexgen.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/latexgen.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+976a977,990
+> }
+> 
+> void LatexGenerator::startImageLink(const char *f,const char *anchor)
+> {
+>  
+> }
+> 
+> 
+> void LatexGenerator::endImageLink()
+> {
+> }
+> 
+> void LatexGenerator::writeImageLink(const char *imageName)
+> {
+Index: latexgen.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/latexgen.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+88a89,91
+>     void startImageLink(const char *file,const char *anchor);
+>     void endImageLink();
+>     void writeImageLink(const char *imageName);
+Index: mangen.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/mangen.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+85a86,88
+>     void startImageLink(const char *file,const char *anchor) {}
+>     void endImageLink() {}
+>     void writeImageLink(const char *imageName) {}
+Index: memberdef.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/memberdef.cpp,v
+retrieving revision 1.1
+retrieving revision 1.5
+diff -r1.1 -r1.5
+76a77
+> 
+129c130,135
+<     if (md->isDefine() || first) ol.startParameterType(first);
+---
+>       if (md->isDefine() || first) {
+> 	  ol.startParameterType(first);
+> 	  ol.disableAllBut(OutputGenerator::Html);
+> 	  ol.startBold();
+> 	  ol.enableAll();
+>       }
+150a157,160
+>       ol.disableAllBut(OutputGenerator::Html);
+>       ol.endBold();
+>       ol.enableAll();
+>    
+152a163,167
+> 
+>       ol.disableAllBut(OutputGenerator::Html);
+>       ol.startBold();
+>       ol.enableAll();
+> 
+187a203,206
+> 	  ol.disableAllBut(OutputGenerator::Html);
+> 	  ol.endBold();
+> 	  ol.enableAll();
+> 
+189a209,212
+> 
+> 	  ol.disableAllBut(OutputGenerator::Html);
+> 	  ol.startBold();
+> 	  ol.enableAll();
+193a217
+> 
+197a222
+> 
+211a237,241
+>   
+>   ol.disableAllBut(OutputGenerator::Html);
+>   ol.startBold();
+>   ol.enableAll();
+> 
+219a250,254
+> 
+>   ol.disableAllBut(OutputGenerator::Html);
+>   ol.endBold();
+>   ol.enableAll();
+> 
+223a259
+>   ol.startBold();
+239a276
+>   ol.endBold();
+285a323,324
+>   m_ignoreFileReference = 0;
+> 
+653a693,695
+>     if (m_excludeDocs)
+> 	return;
+> 
+1016a1059,1066
+>   
+> 
+>   bool isProtectedMethod = (prot == Protected) && 
+> 			    (mtype == Function || mtype == Slot || mtype == Signal);
+>   ClassDef *parent = getClassDef();
+>   
+>   bool hideMember = isProtectedMethod && parent && parent->isExcludeProtectMethods();
+> 
+1019c1069
+<   if ( hasDocs )
+---
+>   if ( hasDocs && !m_excludeDocs && !hideMember)
+1167a1218
+>       ol.startBold();      
+1168a1220,1221
+>       ol.endBold();
+> 
+1202a1256
+>       ol.startBold();      
+1231a1286
+>       ol.endBold();
+1607a1663
+>       !m_excludeDocs &&
+1677a1734,1738
+> 
+>   if (m_ignoreFileReference) {
+> 	  return "e" + anc;
+>   }
+> 
+Index: memberdef.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/memberdef.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+250a251,260
+> 
+>     bool isIgnoreFileReference() const
+>     {
+> 	return m_ignoreFileReference;
+>     }
+>     
+>     void setIgnoreFileReference(bool ignoreFileReference)
+>     { 
+> 	m_ignoreFileReference = ignoreFileReference; 
+>     }
+294a305,306
+>     bool m_ignoreFileReference;	// set this flag to true if this is enum and it should be
+> 				// documented elsewhere than the file source    
+Index: memberlist.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/memberlist.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+64c64
+<     if (md->isBriefSectionVisible())
+---
+>     if (md->isBriefSectionVisible() && !md->isExcludeDocs())
+129c129
+<       if (md->memberType()!=MemberDef::EnumValue) m_numDocMembers++;
+---
+>       if (md->memberType()!=MemberDef::EnumValue && !md->isExcludeDocs()) m_numDocMembers++;
+Index: outputgen.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/outputgen.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+233a234,236
+>     virtual void startImageLink(const char *file,const char *anchor) = 0;
+>     virtual void endImageLink() = 0;
+>     virtual void writeImageLink(const char *imageName) = 0;
+Index: outputlist.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/outputlist.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+128a129,136
+>     
+>     void startImageLink(const char *file,const char *anchor)
+>     { forall(&OutputGenerator::startImageLink,file,anchor); }
+>     void endImageLink()
+>     { forall(&OutputGenerator::endImageLink); }
+>     void writeImageLink(const char *imageName)
+>     { forall(&OutputGenerator::writeImageLink,imageName); }
+>     
+Index: rtfgen.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/rtfgen.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+1193a1194,1207
+> }
+> 
+> void RTFGenerator::startImageLink(const char *f,const char *anchor)
+> {
+>  
+> }
+> 
+> void RTFGenerator::endImageLink()
+> {
+> }
+> 
+> void RTFGenerator::writeImageLink(const char *imageName)
+> {
+> 
+Index: rtfgen.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/rtfgen.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+88a89,92
+>     void startImageLink(const char *file,const char *anchor);
+>     void endImageLink();
+>     void writeImageLink(const char *imageName);
+>     
+Index: scanner.l
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/scanner.l,v
+retrieving revision 1.1
+retrieving revision 1.4
+diff -r1.1 -r1.4
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+603a604
+> %x	WrapperArg1
+3693a3695,3716
+> <Doc,PageDoc,ClassDoc,ClassDocFunc,EnumDocArg1,NameSpaceDocArg1,ClassDocArg1>{B}*{CMD}"nodoc"{B}* {
+> 						current->excludeDocs = true;
+>   					}
+> 
+> <Doc,PageDoc,ClassDoc>{B}*{CMD}"excludeProtectedMethods"{B}* {
+> 						current->excludeProtMethods = true;
+>   					}
+> 					
+> <Doc,PageDoc,ClassDoc>{B}*{CMD}"wrapper"{B}* {
+> 					      BEGIN(WrapperArg1);
+>   					     }
+> <WrapperArg1>{SCOPENAME} {
+> 			    current->wrappedEnumName = yytext;
+> 			 }
+> <WrapperArg1>"\\"{B}*"\n"   { 
+>                                 yyLineNr++; 
+>                             }
+> <WrapperArg1>"\n"	{
+>   			    yyLineNr++;
+> 			    newDocState();
+>   			}
+> 
+Index: translator_en.h
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/translator_en.h,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+205c205
+<         return "Compound Members"; 
+---
+>         return "Methods From All Classes"; 
+218c218
+<         return "File Members"; 
+---
+>         return "Non Class Symbols"; 
+380c380
+<         return "Compound Index"; 
+---
+>         return "List of Classes"; 
+Index: util.cpp
+===================================================================
+RCS file: /opt/cds/cvsmaster/oa_2_1/doc/doxygen/src/util.cpp,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -r1.1 -r1.2
+3c3
+<  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+---
+>  * $Id: //depot/oa/builds/22.41/oaDoc/relnotes/doxygenDiff.txt#1 $
+827,828c827,832
+<           out.writeLink(d->getReference(),d->getOutputFileBase(),
+<                                  md->anchor(),word);
+---
+> 	    if (md->isIgnoreFileReference()) {
+> 		out.writeLink(NULL,NULL, md->anchor() ,word);
+> 	    } else {
+> 		out.writeLink(d->getReference(),d->getOutputFileBase(), md->anchor(),word);
+> 	    }	  
+> 
+

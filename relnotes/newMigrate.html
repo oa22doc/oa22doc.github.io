@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html40/loose.dtd"> 
+
+<!-- start header -->
+
+<html><head>
+
+<title>OpenAccess 2.2 API</title>
+
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<link href="print.css" rel="stylesheet" type="text/css" media="print">
+
+</head>
+
+<body bgColor=#ffffff><a name="pagetop"></a>
+
+<div id="navigation">
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760">
+
+  <tr>
+
+    <td><img src='oaheader.gif' alt='oaheader.gif'></td>
+
+  </tr>
+
+</table>
+
+<table border='0' cellpadding='0' cellspacing='0' width = "760
+
+">
+
+  <tr>
+
+    <td width = "95" height = "30"><a href="../html/index.html"><img src='topics.gif' alt='overview.gif' width = "95" height = "30" border="0" align="top"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes.html"><img src='classes_all.gif' alt='classes.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/classes_sel.html"><img src='classes_sel.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30" ><a href="../html/exceptionsByName.html"><img src='exceptions.gif' alt='exceptions.gif' border="0" ></a></td>
+
+	<td width = "95" height = "30"><a href="../html/guide/index.html"><img src='progguide.gif' alt='progguide.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/schema/schematoc.html"><img src='infomodel.gif' alt='infomodel.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/doc_index.html"><img src='index.gif' alt='index.gif' width = "95" height = "30" border="0"></a></td>
+
+    <td width = "95" height = "30"><a href="../html/help.html"><img src='help.gif' alt='help.gif' border="0" ></a></td>
+
+  </tr>
+
+<!-- start urhere row -->
+
+<!-- <div align="center"><img src='urhere.jpg' alt='urhere.jpg' border="0" align="top"></div> -->
+
+  <tr>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+    <td width = "95" height = "20"></td>
+
+<!-- end urhere row-->
+
+  </tr>
+
+</table>
+
+</div>
+
+<p>
+
+<!-- end header -->
+<h1><a name="pagetop"></a><STRONG>Migrating to OpenAccess 2.2 </STRONG></h1>
+<hr>
+<p>This document will help you migrate to the OpenAccess 2.2 release. It covers:</p>
+<ul>
+  <li><a href="#hier">OpenAccess Installation Hierarchy</a></li>
+  <li><a href="#migrate">Migrating Data to OpenAccess 2.2</a></li>
+</ul>
+<h2><a name="hier"></a>OpenAccess Installation Hierarchy</h2>
+<p>The following figure shows the main components of the OpenAccess 2.2 installation hierarchy:</p>
+<p> <img src="images/hierarchyBack.gif"></p>
+<p>The <em><code>&lt;platform&gt;</code></em> names now better represent the OpenAccess hardware and operating system options, and are of the form:<p:colorscheme
+ colors="#ffffff,#333333,#808080,#333333,#00ff00,#0033cc,#0033cc,#0033cc"/></p>
+<pre>&lt;<em>os_name</em>>_&lt;<em>os_version</em>>[_&lt;<em>hardware_arch</em>>]
+</pre>
+<p>Also, the mode directories let you mix  libraries built for various purposes, such as debug or optimized versions. You might use this approach to compile with gcc versus a native version.</p>
+<h3>Source Code Reorganized</h3>
+<p>The OpenAccess source has been reorganized and the directory names have been simplified. In addition:</p>
+<ul>
+  <li>Directories for additional databases have been added (DM and Wafer). </li>
+  <li>The directory for the library server has been added to <code>oa/oaDMTurbo</code>. </li>
+  <li>The translator directories are at the same level as the <code>oa</code> directory.</li>
+</ul>
+<p><img src="images/sourceHier.gif"></p>
+<h2><a name="migrate"></a>Migrating Data to OpenAccess 2.2</h2>
+<p>OpenAccess provides several capabilities to help  migrate your data to the 2.2 release. These are described in the sections that follow: </p>
+<ul>
+  <li><a href="#migrateLibrary">Migrating Your Library Data</a></li>
+  <li><a href="#migrateASCII">Migrating Data in ASCII Format</a></li>
+  <li><a href="#migrateSource">Migrating Your Source Code</a></li>
+</ul>
+<h3><a name="migrateLibrary"></a>Migrating Your Library Data</h3>
+<p>OpenAccess provides a library migration tool, <code>oa20to22</code>, that lets you create an OpenAccess 2.2 design library from an OpenAccess 2.0.x design library. </p>
+<p><code>oa20to22</code> translates all of your OpenAccess databases in the 2.0 library format to databases in the 2.2 library format. Note that the databases that were called “CellViews” in 2.0 are now called “Designs” in 2.2. <code>oa20to22</code> will translate all 2.0 cellViews to 2.2 designs,  all 2.0 tech databases to 2.2 tech databases, and all library properties to the new 2.2 format.</p>
+<h5>Data Model Changes </h5>
+<p>Data model changes are handled on a case by case basis. See <a href="../html/uprev/index.html">Automatically Updating 2.0.x Libraries to 2.2</a> for more information. </p>
+<h3><a name="migrateASCII"></a>Migrating Data in ASCII Format</h3>
+<p>Where your design data uses the data model of the standard formats supported by the OpenAccess translators, it is also possible to dump your libraries to these formats using the 2.0 translators and to read them back in using the 2.2 version of the translators. </p>
+<p>See the following documents for more information:</p>
+<ul>
+  <li><a href="../html/stream/streamincmds.html">Stream to OpenAccess Translator (strm2oa)</a></li>
+  <li><a href="../html/translators/lef2oa.html">LEF to OpenAccess Translator (lef2oa)</a></li>
+  <li><a href="../html/translators/def2oa.html">DEF to OpenAccess Translator (def2oa)</a></li>
+  <li><a href="../html/verilog/verilog2oacmds.html">Verilog to OpenAccess Translator (verilog2oa)</a></li>
+</ul>
+<h3><a name="migrateSource"></a>Migrating Your Source Code</h3>
+<p>OpenAccess provides a source code migrator, <code>oa20to22src</code>, to help  migrate your application source code to 2.2. The migrator addresses many of the required changes: </p>
+<ul>
+  <li>The name changes to oaAppDefs and enums are handled. </li>
+  <li>oaCellViews are renamed to oaDesigns.</li>
+  <li>oaViews are converted to oaCellViews.</li>
+</ul>
+<p>See <a href="../html/migration/mig.html">Migrating Your 2.0 Applications to OpenAccess 2.2</a> for specifics about how to use <code>oa20to22src</code> and the results to expect.</p>
+<p>There are manual steps you that need to perform in addition to running the source code migrator. Some changes cannot be automated. For example, the way that routes are handled is different in 2.2 because vias and segments are now managed objects. Programmers need to adjust their code accordingly. </p>
+<p>The best source of information about the manual code changes are reflected in this set of <a href="relnotes.html">What's New in OpenAccess 2.2</a> documents. </p>
+<p>The process for completing this part of the migration will involve updating your code, compiling, and making fixes, until the code compiles correctly. </p>
+<p>&nbsp;</p>
+<p><a href="#pagetop">Return to top of page</a></p>
+<p><a href="relnotes.html">Return to What's New topics</a></p>
+<div style="TEXT-ALIGN: center"> <IMG src="images/relnotesfooter.gif"><br >
+</div>
+<br>
+<p class="copyright"><a href="../html/base/titlecopy.html"><em> Copyright &#169; 2003-2010 Cadence Design Systems, Inc.</em></a> <br >
+  All rights reserved.</p>
+</body>
+</html>
